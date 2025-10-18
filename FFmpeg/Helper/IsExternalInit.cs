@@ -1,4 +1,4 @@
-﻿namespace System.Runtime.CompilerServices;
+﻿namespace FFmpeg.Helper;
 
 /// <summary>
 /// Allows to use init in .net standard

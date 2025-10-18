@@ -1,5 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
 namespace FFmpeg.Options;
@@ -44,19 +43,13 @@ public sealed unsafe class Option
     /// <remarks>
     /// This property determines whether the option is related to video, audio, subtitle, or an unknown media type based on its flags.
     /// </remarks>
-    public MediaType OptionMediaType
-    {
-        get
-        {
-            if ((option->flags & ffmpeg.AV_OPT_FLAG_VIDEO_PARAM) != 0)
-                return MediaType.Video;
-            return (option->flags & ffmpeg.AV_OPT_FLAG_AUDIO_PARAM) != 0
+    public MediaType OptionMediaType => (option->flags & ffmpeg.AV_OPT_FLAG_VIDEO_PARAM) != 0
+                ? MediaType.Video
+                : (option->flags & ffmpeg.AV_OPT_FLAG_AUDIO_PARAM) != 0
                 ? MediaType.Audio
                 : (option->flags & ffmpeg.AV_OPT_FLAG_SUBTITLE_PARAM) != 0
                 ? MediaType.Subtitle
                 : MediaType.Unknown;
-        }
-    }
 
     /// <summary>
     /// Gets the flags associated with the option.
@@ -95,8 +88,5 @@ public sealed unsafe class Option
     /// Initializes a new instance of the <see cref="Option"/> class.
     /// </summary>
     /// <param name="option">Pointer to the native <see cref="AutoGen._AVOption"/> structure.</param>
-    internal Option(AutoGen._AVOption* option)
-    {
-        this.option = option;
-    }
+    internal Option(AutoGen._AVOption* option) => this.option = option;
 }

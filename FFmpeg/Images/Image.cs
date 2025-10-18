@@ -68,7 +68,8 @@ public sealed unsafe class Image : IDisposable
     public AVResult32 GetLineSize(Span<int> lineSizes)
     {
         int planes = Info.Planes;
-        if (planes > lineSizes.Length) return AVResult32.InvalidArgument;
+        if (planes > lineSizes.Length)
+            return AVResult32.InvalidArgument;
         for (int i = 0; i < planes; i++)
             lineSizes[i] = Info.GetLineSize(i);
         return planes;
@@ -85,11 +86,13 @@ public sealed unsafe class Image : IDisposable
     public AVResult32 GetPlanes(Span<IntPtr> planePtrs, Span<int> lineSizes)
     {
         int planes = Info.Planes;
-        if (planes > planePtrs.Length || planes > lineSizes.Length) return AVResult32.InvalidArgument;
+        if (planes > planePtrs.Length || planes > lineSizes.Length)
+            return AVResult32.InvalidArgument;
         AutoGen.byte_ptrArray4 ptrArray = new();
         AutoGen.int_array4 lineArray = new();
         AVResult32 res = ffmpeg.av_image_fill_arrays(ref ptrArray, ref lineArray, (byte*)Data, (AutoGen._AVPixelFormat)Info.Format, Width, Height, Info.Alignment);
-        if (res.IsError) return res;
+        if (res.IsError)
+            return res;
         for (int i = 0; i < planes; i++)
         {
             planePtrs[i] = (IntPtr)ptrArray[(uint)i];
@@ -108,11 +111,13 @@ public sealed unsafe class Image : IDisposable
     public AVResult32 GetPlanePointers(Span<IntPtr> planePtrs)
     {
         int planes = Info.Planes;
-        if (planes > planePtrs.Length) return AVResult32.InvalidArgument;
+        if (planes > planePtrs.Length)
+            return AVResult32.InvalidArgument;
         AutoGen.byte_ptrArray4 ptrArray = new();
         AutoGen.int_array4 lineArray = new();
         AVResult32 res = ffmpeg.av_image_fill_arrays(ref ptrArray, ref lineArray, (byte*)Data, (AutoGen._AVPixelFormat)Info.Format, Width, Height, Info.Alignment);
-        if (res.IsError) return res;
+        if (res.IsError)
+            return res;
         for (int i = 0; i < planes; i++)
             planePtrs[i] = (IntPtr)ptrArray[(uint)i];
         return planes;
@@ -171,7 +176,7 @@ public sealed unsafe class Image : IDisposable
     public Image ConvertTo(ImageInfo dstFormat)
     {
         Image img = Create(dstFormat);
-        var res  = SwsContext.Convert(this, img, SwsAlgorithm.Bicubic());
+        AVResult32 res = SwsContext.Convert(this, img, SwsAlgorithm.Bicubic());
         if (res.IsError)
         {
             img.Dispose();

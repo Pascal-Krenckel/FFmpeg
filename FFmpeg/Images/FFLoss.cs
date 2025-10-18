@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Images;
+﻿namespace FFmpeg.Images;
 /// <summary>
 /// Represents different types of data loss in video compression as flags.
 /// These values are defined in the FFmpeg library (ffmpeg.FF_LOSS_*).

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
 namespace FFmpeg.Logging;
-public unsafe static class Logger
+
+public static unsafe class Logger
 {
-    static readonly object _lock = new object();
+    private static readonly object _lock = new();
     static Logger()
     {
-        AutoGen.av_log_set_callback_callback logCallback = LogFunc;
+        _ = LogFunc;
         //ffmpeg.av_log_set_callback(logCallback);
         ffmpeg.av_log_set_level(ffmpeg.AV_LOG_ERROR);
 
@@ -18,17 +16,17 @@ public unsafe static class Logger
 
     public static void Log(LogLevel logLevel, string message, params object[] args)
     {
-        message = String.Format(message, args);
+        message = string.Format(message, args);
         if (!message.EndsWith("\n"))
             ffmpeg.av_log(null, (int)logLevel, message + "\n");
         else
             ffmpeg.av_log(null, (int)logLevel, message);
     }
-   
+
     public static void Error(string message, params object[] args) => Log(LogLevel.Error, message, args);
 
-    public static void Panic(string message, params object[] args ) => Log(LogLevel.Panic, message, args);
-    public static void Fatal(string message, params object[] args) => Log(LogLevel.Fatal, message,args);
+    public static void Panic(string message, params object[] args) => Log(LogLevel.Panic, message, args);
+    public static void Fatal(string message, params object[] args) => Log(LogLevel.Fatal, message, args);
     public static void Warning(string message, params object[] args) => Log(LogLevel.Warning, message, args);
     public static void Info(string message, params object[] args) => Log(LogLevel.Info, message, args);
     public static void Verbose(string message, params object[] args) => Log(LogLevel.Verbose, message, args);
@@ -38,7 +36,7 @@ public unsafe static class Logger
 
     public static void Log(IFormatProvider formatProvider, LogLevel logLevel, string message, params object[] args)
     {
-        message = String.Format(formatProvider, message, args);
+        message = string.Format(formatProvider, message, args);
         if (!message.EndsWith("\n"))
             ffmpeg.av_log(null, (int)logLevel, message + "\n");
         else

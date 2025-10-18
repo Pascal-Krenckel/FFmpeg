@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Subtitles;
+﻿namespace FFmpeg.Subtitles;
 /// <summary>
 /// Represents the type of subtitle, which defines how the subtitle data is structured or formatted.
 /// </summary>

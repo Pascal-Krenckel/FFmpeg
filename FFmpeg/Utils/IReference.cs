@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Utils;
+﻿namespace FFmpeg.Utils;
 /// <summary>
 /// Represents an interface for managing references to unmanaged objects that must be disposed,
 /// such as FFmpeg objects, without requiring the implementing struct to handle disposal directly.

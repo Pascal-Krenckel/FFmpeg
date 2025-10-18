@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections;
 
 namespace FFmpeg.Subtitles;
 /// <summary>
@@ -89,7 +86,7 @@ public unsafe class Subtitle : IReadOnlyList<SubtitleRect>, IDisposable
     //ToDo:
     public void Free()
     {
-        var subtitle = this.subtitle;
+        AutoGen._AVSubtitle subtitle = this.subtitle;
         ffmpeg.avsubtitle_free(&subtitle);
         this.subtitle = subtitle;
     }

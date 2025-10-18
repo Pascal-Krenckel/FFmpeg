@@ -31,17 +31,7 @@ public readonly unsafe struct ChannelLayoutConstList : IReadOnlyList<ChannelLayo
     /// <param name="index">The zero-based index of the <see cref="ChannelLayout_ref"/> to get.</param>
     /// <returns>The <see cref="ChannelLayout_ref"/> at the specified index.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="index"/> is less than zero or greater than or equal to <see cref="Count"/>.</exception>
-    public ChannelLayout_ref this[int index]
-    {
-        get
-        {
-            if (index >= 0 && index < length)
-            {
-                return new(first + index, true);
-            }
-            throw new ArgumentOutOfRangeException(nameof(index));
-        }
-    }
+    public ChannelLayout_ref this[int index] => index >= 0 && index < length ? new(first + index, true) : throw new ArgumentOutOfRangeException(nameof(index));
 
     /// <summary>
     /// Gets the number of <see cref="ChannelLayout_ref"/> instances in the list.

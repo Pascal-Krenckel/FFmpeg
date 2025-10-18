@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Utils;
+﻿namespace FFmpeg.Utils;
 /// <summary>
 /// Specifies different types of picture frames used in video coding standards.
 /// </summary>

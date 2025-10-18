@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Utils;
+﻿namespace FFmpeg.Utils;
 
 /// <inheritdoc cref="AVPacket"/>
-public unsafe readonly struct AVPacket_ref : IPacket, IReference<AVPacket>
+public readonly unsafe struct AVPacket_ref : IPacket, IReference<AVPacket>
 {
     /// <inheritdoc />
     internal readonly AutoGen._AVPacket* packet;
@@ -126,8 +122,9 @@ public unsafe readonly struct AVPacket_ref : IPacket, IReference<AVPacket>
     ///<inheritdoc />
     public AVPacket? GetReferencedObject()
     {
-        var packet = ffmpeg.av_packet_alloc();
-        if (packet == null) throw new OutOfMemoryException();
+        AutoGen._AVPacket* packet = ffmpeg.av_packet_alloc();
+        if (packet == null)
+            throw new OutOfMemoryException();
         AVResult32 res = ffmpeg.av_packet_ref(packet, this.packet);
         if (res.IsError)
         {
@@ -153,15 +150,15 @@ public unsafe readonly struct AVPacket_ref : IPacket, IReference<AVPacket>
     public void MoveTo(IPacket dst)
     {
         dst.Unreference();
-        ffmpeg.av_packet_move_ref(dst.Packet, this.packet);
+        ffmpeg.av_packet_move_ref(dst.Packet, packet);
     }
     /// <inheritdoc />
     public void CloneTo(IPacket dst)
     {
         dst.Unreference();
-        ((AVResult32)ffmpeg.av_packet_ref(dst.Packet, this.packet)).ThrowIfError();
-        ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, this.packet)).ThrowIfError();
+        ((AVResult32)ffmpeg.av_packet_ref(dst.Packet, packet)).ThrowIfError();
+        ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
     }
     /// <inheritdoc />
-    public void CopyProperties(IPacket dst) => ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, this.packet)).ThrowIfError();
+    public void CopyProperties(IPacket dst) => ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
 }

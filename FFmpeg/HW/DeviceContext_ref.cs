@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
+using System.Diagnostics;
 
 namespace FFmpeg.HW;
 
@@ -61,17 +61,19 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
     /// <inheritdoc />
     public DeviceContext? GetReferencedObject()
     {
-        var dev = ffmpeg.av_buffer_ref(*this.buffer);
-        if (buffer == null)
-            throw new OutOfMemoryException("Failed to reference the buffer for the new device context.");
-        return new DeviceContext(dev);
+        AutoGen._AVBufferRef* dev = ffmpeg.av_buffer_ref(*buffer);
+        return buffer == null
+            ? throw new OutOfMemoryException("Failed to reference the buffer for the new device context.")
+            : new DeviceContext(dev);
     }
 
     /// <inheritdoc />
     public void SetReferencedObject(DeviceContext? device)
     {
         if (device == null)
+        {
             ffmpeg.av_buffer_unref(buffer);
+        }
         else
         {
             if (IsReadOnly)
@@ -103,17 +105,9 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
     /// <param name="left">The first instance to compare.</param>
     /// <param name="right">The second instance to compare.</param>
     /// <returns><see langword="true"/> if the instances are equal; otherwise, <see langword="false"/>.</returns>
-    public static bool operator ==(DeviceContext_ref? left, DeviceContext_ref? right)
-    {
-        if (!left.HasValue)
-            if (!right.HasValue)
-                return true;
-            else
-                return *right.Value.buffer == null;
-        if (!right.HasValue)
-            return *left.Value.buffer == null;
-        return EqualityComparer<DeviceContext_ref>.Default.Equals(left.Value, right.Value);
-    }
+    public static bool operator ==(DeviceContext_ref? left, DeviceContext_ref? right) => !left.HasValue
+            ? !right.HasValue || *right.Value.buffer == null
+            : !right.HasValue ? *left.Value.buffer == null : EqualityComparer<DeviceContext_ref>.Default.Equals(left.Value, right.Value);
 
     /// <summary>
     /// Determines whether two <see cref="DeviceContext_ref"/> instances are not equal.

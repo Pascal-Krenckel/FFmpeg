@@ -42,24 +42,37 @@ public class FFmpegException : Exception
     /// <exception cref="FFmpegException">Thrown if the error code is negative.</exception>
     public static void ThrowIfError(int error)
     {
-        if (error >= 0) return;
-        if (error == AVResult32.TryAgain) return; // ToDo:
-        if (error == AVResult32.OptionNotFound) throw new OptionNotFoundException();
-        if (error == AVResult32.OutOfMemory) throw new OutOfMemoryException();
-        if (error == AVResult32.InvalidArgument) throw new ArgumentException("Invalid Argument", ExceptionLog.GetLog());
-        if (error == AVResult32.OutOfRange) throw new ArgumentOutOfRangeException();
-        if (error == AVResult32.EndOfFile) throw new EndOfStreamException();
-        if (error == AVResult32.ArgumentListTooLong) throw new ArgumentException();
-        if (error == AVResult32.BrokenPipe) throw new System.IO.IOException();
-        if (error == AVResult32.BitstreamFilterNotFound) throw new BitStreamFilterNotFoundException();
-        if (error == AVResult32.Bug || error == AVResult32.Bug2) throw new FFmpegException(error, ExceptionLog.GetLog());
-        if (error == AVResult32.BufferTooSmall) throw new BufferToSmallExcpetion();
-        if (error == AVResult32.DecoderNotFound) throw new DecoderNotFoundException(ExceptionLog.GetLog());
+        if (error >= 0)
+            return;
+        if (error == AVResult32.TryAgain)
+            return; // ToDo:
+        if (error == AVResult32.OptionNotFound)
+            throw new OptionNotFoundException();
+        if (error == AVResult32.OutOfMemory)
+            throw new OutOfMemoryException();
+        if (error == AVResult32.InvalidArgument)
+            throw new ArgumentException("Invalid Argument", ExceptionLog.GetLog());
+        if (error == AVResult32.OutOfRange)
+            throw new ArgumentOutOfRangeException();
+        if (error == AVResult32.EndOfFile)
+            throw new EndOfStreamException();
+        if (error == AVResult32.ArgumentListTooLong)
+            throw new ArgumentException();
+        if (error == AVResult32.BrokenPipe)
+            throw new System.IO.IOException();
+        if (error == AVResult32.BitstreamFilterNotFound)
+            throw new BitStreamFilterNotFoundException();
+        if (error == AVResult32.Bug || error == AVResult32.Bug2)
+            throw new FFmpegException(error, ExceptionLog.GetLog());
+        if (error == AVResult32.BufferTooSmall)
+            throw new BufferToSmallExcpetion();
+        if (error == AVResult32.DecoderNotFound)
+            throw new DecoderNotFoundException(ExceptionLog.GetLog());
         throw new FFmpegException(error, ExceptionLog.GetLog());
-            // ToDo: error
+        // ToDo: error
 
     }
 
-    
+
 }
 

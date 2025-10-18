@@ -1,8 +1,8 @@
-﻿using FFmpeg.Collections;
-using FFmpeg.Audio;
+﻿using FFmpeg.Audio;
+using FFmpeg.Collections;
+using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
-using FFmpeg.Images;
 
 namespace FFmpeg.Options;
 
@@ -30,8 +30,10 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     {
         AutoGen._AVOption* option = null;
         while ((option = AutoGen.ffmpeg.av_opt_next(ptr, option)) != null)
+        {
             if ((option->flags & ffmpeg.AV_OPT_FLAG_DEPRECATED) == 0)
                 options.Add(new(option)); // Do not add deprecated options, as they should not be used.
+        }
 
         if (recursive)
         {
@@ -348,9 +350,13 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     public AVResult32 SetOption(string name, IDictionary<string, string> values, bool recursive = true)
     {
         if (values is AVDictionary_ref pDic)
+        {
             return ffmpeg.av_opt_set_dict_val(Pointer, name, *pDic.Pointer, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else if (values is Collections.AVDictionary dic)
+        {
             return ffmpeg.av_opt_set_dict_val(Pointer, name, dic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else
         {
             using Collections.AVDictionary dictionary = new(values);
@@ -368,9 +374,13 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     public AVResult32 SetOption(string name, ILookup<string, string> values, bool recursive = true)
     {
         if (values is AVMultiDictionary_ref pDic)
+        {
             return ffmpeg.av_opt_set_dict_val(Pointer, name, *pDic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else if (values is Collections.AVMultiDictionary dic)
+        {
             return ffmpeg.av_opt_set_dict_val(Pointer, name, dic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else
         {
             using Collections.AVMultiDictionary dictionary = new(values);
@@ -387,7 +397,9 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     public AVResult32 SetOption(IDictionary<string, string> values, bool recursive = true)
     {
         if (values is AVDictionary_ref pDic)
+        {
             return ffmpeg.av_opt_set_dict2(Pointer, pDic.Pointer, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else if (values is Collections.AVDictionary dic)
         {
             AutoGen._AVDictionary* dicPointer = dic.dictionary;
@@ -418,7 +430,9 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     public AVResult32 SetOption(string name, ref ILookup<string, string> values, bool recursive = true)
     {
         if (values is AVMultiDictionary_ref pDic)
+        {
             return ffmpeg.av_opt_set_dict2(Pointer, pDic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        }
         else if (values is Collections.AVMultiDictionary dic)
         {
             AutoGen._AVDictionary* p = dic.dictionary;
@@ -444,17 +458,27 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(string name, object value, bool recursive = true)
     {
-        if (TryConvert(value, out string str)) return SetOption(name, str, recursive);
-        if (TryConvert(value, out long l)) return SetOption(name, l, recursive);
-        if (TryConvert(value, out double d)) return SetOption(name, d, recursive);
-        if (TryConvert(value, out Rational r)) return SetOption(name, r, recursive);
-        if (value is byte[] bytes) return SetOption(name, bytes.AsSpan(), recursive);
-        if (value is Memory<byte> memory) return SetOption(name, memory, recursive);
-        if (TryConvert(value, out (int, int) size)) return SetOption(name, size.Item1, size.Item2, recursive);
-        if (TryConvert(value, out PixelFormat pixFmt)) return SetOption(name, pixFmt, recursive);
-        if (TryConvert(value, out SampleFormat sampleFmt)) return SetOption(name, sampleFmt, recursive);
-        if (TryConvert(value, out IDictionary<string, string> dict)) return SetOption(name, dict, recursive);
-        return TryConvert(value, out ILookup<string, string> lookup)
+        if (TryConvert(value, out string str))
+            return SetOption(name, str, recursive);
+        if (TryConvert(value, out long l))
+            return SetOption(name, l, recursive);
+        if (TryConvert(value, out double d))
+            return SetOption(name, d, recursive);
+        if (TryConvert(value, out Rational r))
+            return SetOption(name, r, recursive);
+        if (value is byte[] bytes)
+            return SetOption(name, bytes.AsSpan(), recursive);
+        if (value is Memory<byte> memory)
+            return SetOption(name, memory, recursive);
+        if (TryConvert(value, out (int, int) size))
+            return SetOption(name, size.Item1, size.Item2, recursive);
+        if (TryConvert(value, out PixelFormat pixFmt))
+            return SetOption(name, pixFmt, recursive);
+        return TryConvert(value, out SampleFormat sampleFmt)
+            ? SetOption(name, sampleFmt, recursive)
+            : TryConvert(value, out IDictionary<string, string> dict)
+            ? SetOption(name, dict, recursive)
+            : TryConvert(value, out ILookup<string, string> lookup)
             ? SetOption(name, lookup, recursive)
             : TryConvert(value, out ChannelLayout layout) ? SetOption(name, layout, recursive) : (AVResult32)AVResult32.InvalidData;
     }
@@ -630,7 +654,7 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
                 value = string.Empty;
                 return 0;
             }
-            long size = *((int*)ptr+1);
+            long size = *((int*)ptr + 1);
             if ((size * 2) + 1 > int.MaxValue)
                 return AVResult32.InvalidArgument;
             byte[] buffer = new byte[size];
@@ -641,7 +665,8 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
         }
         byte* b;
         AVResult32 res = ffmpeg.av_opt_get(ptr, name, ffmpeg.AV_OPT_ALLOW_NULL, &b);
-        if (res < 0) return res;
+        if (res < 0)
+            return res;
         value = b == null ? string.Empty : Marshal.PtrToStringUTF8((nint)b);
         ffmpeg.av_free(b);
         return res;
@@ -690,7 +715,8 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     {
         long v;
         AVResult32 res = ffmpeg.av_opt_get_int(Pointer, name, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0, &v);
-        unchecked { value = (int)v; }
+        unchecked
+        { value = (int)v; }
         return res;
     }
 
@@ -724,7 +750,8 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
     {
         long v;
         AVResult32 res = ffmpeg.av_opt_get_int(Pointer, name, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0, &v);
-        unchecked { value = (uint)v; }
+        unchecked
+        { value = (uint)v; }
         return res;
     }
 
@@ -1218,7 +1245,8 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
             return TryGetOption(option.Name, out value, recursive);
         byte* b;
         AVResult32 res = ffmpeg.av_opt_get(Pointer, option.Name, ffmpeg.AV_OPT_ALLOW_NULL | (recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0), &b);
-        if (res < 0) return res;
+        if (res < 0)
+            return res;
         value = b == null ? string.Empty : Marshal.PtrToStringUTF8((nint)b);
         ffmpeg.av_free(b);
         return res;

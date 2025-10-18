@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Net.WebSockets;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 
 namespace FFmpeg.Filters;
 
@@ -9,10 +7,7 @@ public unsafe struct FilterInOutEntry
 {
     internal AutoGen._AVFilterInOut* filterInOut;
 
-    internal FilterInOutEntry(AutoGen._AVFilterInOut* filterInOut)
-    {
-        this.filterInOut = filterInOut;
-    }
+    internal FilterInOutEntry(AutoGen._AVFilterInOut* filterInOut) => this.filterInOut = filterInOut;
 
 
     public string? Name
@@ -27,14 +22,7 @@ public unsafe struct FilterInOutEntry
 
     public FilterContext? Filter
     {
-        get => filterInOut->filter_ctx != null ? new FilterContext(filterInOut->filter_ctx) : null;
-        set
-        {
-            if (value == null)
-                filterInOut->filter_ctx = null;
-            else
-                filterInOut->filter_ctx = value.context;
-        }
+        get => filterInOut->filter_ctx != null ? new FilterContext(filterInOut->filter_ctx) : null; set => filterInOut->filter_ctx = value == null ? (AutoGen._AVFilterContext*)null : value.context;
     }
 
     public int PadIdx
@@ -72,12 +60,10 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
     {
         get
         {
-            var node = head;
-            while(node != null && index-- >= 0)
-               node = node->next;
-            if(node == null)
-                throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.");
-            return new FilterInOutEntry(node);
+            AutoGen._AVFilterInOut* node = head;
+            while (node != null && index-- >= 0)
+                node = node->next;
+            return node == null ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.") : new FilterInOutEntry(node);
         }
     }
 
@@ -117,9 +103,9 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
                 // TODO: Verwalteten Zustand (verwaltete Objekte) bereinigen
             }
 
-            var head = this.head;
+            AutoGen._AVFilterInOut* head = this.head;
             ffmpeg.avfilter_inout_free(&head);
-            head = tail = null;
+            _ = tail = null;
             disposedValue = true;
         }
     }
@@ -156,13 +142,18 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
         public bool MoveNext()
         {
             if (current == null)
+            {
                 if (filterInOutList.head == null)
+                {
                     return false;
+                }
                 else
                 {
                     current = filterInOutList.head;
                     return true;
                 }
+            }
+
             if (current->next == null)
                 return false;
             current = current->next;
@@ -173,7 +164,7 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
     public FilterInOutEntry Add(string linkName, FilterContext filter, int filterPadIndex)
     {
-        var inout = ffmpeg.avfilter_inout_alloc();
+        AutoGen._AVFilterInOut* inout = ffmpeg.avfilter_inout_alloc();
         inout->name = ffmpeg.av_strdup(linkName);
         inout->filter_ctx = filter.context;
         inout->pad_idx = filterPadIndex;
@@ -182,9 +173,9 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
     private FilterInOutEntry Add(FilterInOutEntry entry)
     {
-        var count = GetTail(entry.filterInOut, out var tail);
+        int count = GetTail(entry.filterInOut, out AutoGen._AVFilterInOut* tail);
         Count += count;
-        if(head == null)
+        if (head == null)
             head = entry.filterInOut;
         this.tail = tail;
         return entry;
@@ -192,10 +183,10 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
     public void Clear()
     {
-        var head = this.head;
+        AutoGen._AVFilterInOut* head = this.head;
         ffmpeg.avfilter_inout_free(&head);
         this.head = null;
-        this.tail = null;
+        tail = null;
         Count = 0;
     }
 }

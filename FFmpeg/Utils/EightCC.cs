@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Utils;
+﻿namespace FFmpeg.Utils;
 /// <summary>
 /// Represents an EightCC (eight-character code), which is a sequence of eight 8-bit characters
 /// packed into a 64-bit unsigned integer.
@@ -52,7 +48,8 @@ public readonly struct EightCC : IEquatable<EightCC>
     /// <returns>A string containing the eight-character code.</returns>
     public override string ToString()
     {
-        if (_value == 0) return string.Empty;
+        if (_value == 0)
+            return string.Empty;
         ReadOnlySpan<char> chars = stackalloc[]
         {
             (char)(_value & 0xFF),

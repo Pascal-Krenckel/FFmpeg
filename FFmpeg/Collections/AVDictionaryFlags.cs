@@ -1,4 +1,5 @@
 ﻿namespace FFmpeg.Collections;
+
 [Flags]
 /// <summary>
 /// Enumeration for FFmpeg dictionary options.

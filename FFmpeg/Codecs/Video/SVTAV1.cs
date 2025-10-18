@@ -2,7 +2,6 @@
 using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Text;
 
 namespace FFmpeg.Codecs.Video;
@@ -50,7 +49,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
         get => BitrateControl?.CRF;
         set
         {
-            var bitrateControl = BitrateControl ?? new BitrateControl();
+            BitrateControl bitrateControl = BitrateControl ?? new BitrateControl();
             bitrateControl.CRF = value;
             BitrateControl = bitrateControl;
         }
@@ -74,7 +73,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
         get => GOPSettings?.SceneChangeDetection;
         set
         {
-            var settings = GOPSettings ?? new GOPSettings();
+            GOPSettings settings = GOPSettings ?? new GOPSettings();
             settings.SceneChangeDetection = value;
             GOPSettings = settings;
         }
@@ -89,7 +88,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
         get => GOPSettings?.Frames;
         set
         {
-            var settings = GOPSettings ?? new GOPSettings();
+            GOPSettings settings = GOPSettings ?? new GOPSettings();
             settings.Frames = value;
             GOPSettings = settings;
         }
@@ -104,7 +103,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
         get => GOPSettings?.AsTimeSpan;
         set
         {
-            var settings = GOPSettings ?? new GOPSettings();
+            GOPSettings settings = GOPSettings ?? new GOPSettings();
             settings.AsTimeSpan = value;
             GOPSettings = settings;
         }
@@ -149,14 +148,14 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
     /// <inheritdoc />
     public override string ToString()
     {
-        var sb = new StringBuilder();
+        StringBuilder sb = new();
 
         if (PixelFormat != PixelFormat.None)
             _ = sb.Append($" -pix_fmt {AutoGen.ffmpeg.av_get_pix_fmt_name((AutoGen._AVPixelFormat)PixelFormat)}");
 
         _ = sb.Append($" {string.Join(' ', AdditionalParameters.Select(kv => $"--{kv.Key}={kv.Value}"))}");
 
-        var svtParams = new StringBuilder();
+        StringBuilder svtParams = new();
 
         if (Profile.HasValue)
             _ = svtParams.Append($"profile={Profile.Value.ProfileID}:");
@@ -165,7 +164,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
         if (BitrateControl.HasValue)
             _ = svtParams.Append($"{BitrateControl.Value}:");
         if (Tune.HasValue)
-            _ = svtParams.Append($"tune={((int)Tune.Value)}:");
+            _ = svtParams.Append($"tune={(int)Tune.Value}:");
         if (GOPSettings.HasValue)
             _ = svtParams.Append($"{GOPSettings.Value}:");
         if (EnableOverlays.HasValue)
@@ -180,7 +179,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             _ = svtParams.Append($"fast-decode={(FastDecode.Value ? 1 : 0)}:");
         if (Threads.HasValue)
             _ = svtParams.Append($"lp={Threads}:");
-        foreach (var pair in AdditionalSVTParameters)
+        foreach (KeyValuePair<string, string> pair in AdditionalSVTParameters)
             _ = svtParams.Append($"{pair.Key}={pair.Value}:");
 
         if (svtParams.Length > 0)
@@ -196,7 +195,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
     /// <inheritdoc />
     protected override void AddCodecOptions(CodecContext context)
     {
-        var dic = new Dictionary<string, string>(AdditionalSVTParameters);
+        Dictionary<string, string> dic = new(AdditionalSVTParameters);
 
         if (Profile.HasValue)
             context.Profile = Profile.Value;

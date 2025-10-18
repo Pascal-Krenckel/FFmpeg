@@ -69,8 +69,11 @@ public readonly unsafe struct OutputFormat
         {
             List<Codecs.CodecTag> ids = [];
             for (int i = 0; Format->codec_tag != null && Format->codec_tag[i] != null; i++)
+            {
                 for (int j = 0; Format->codec_tag[i][j].id != AutoGen._AVCodecID.AV_CODEC_ID_NONE; j++)
                     ids.Add(Format->codec_tag[i][j]);
+            }
+
             return ids;
         }
     }

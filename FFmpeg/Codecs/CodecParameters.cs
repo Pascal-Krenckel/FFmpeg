@@ -40,13 +40,7 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// </param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="existingPtr"/> is null.</exception>
     /// <exception cref="OutOfMemoryException">Thrown if memory allocation fails during copying.</exception>
-    internal CodecParameters(AutoGen._AVCodecParameters* existingPtr)
-    {
-        if (existingPtr == null)
-            throw new ArgumentNullException(nameof(existingPtr));
-        else codecParameters = existingPtr;
-
-    }
+    internal CodecParameters(AutoGen._AVCodecParameters* existingPtr) => codecParameters = existingPtr == null ? throw new ArgumentNullException(nameof(existingPtr)) : existingPtr;
 
     /// <summary>
     /// Frees the _AVCodecParameters instance and everything associated with it.
@@ -80,7 +74,8 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyFrom(ICodecParameters other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_copy(codecParameters, other.Parameters);
         if (result < 0)
@@ -97,7 +92,8 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyFrom(CodecContext other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_from_context(codecParameters, other.context);
         if (result < 0)
@@ -114,7 +110,8 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyTo(CodecContext other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_to_context(other.context, codecParameters);
         if (result < 0)
@@ -155,7 +152,7 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// Gets the extra binary data needed for initializing the decoder.
     /// </summary>
     public Span<byte> ExtraData => codecParameters->extradata_size == 0 || codecParameters->extradata == null
-                ? ([])
+                ? []
                 : new Span<byte>(codecParameters->extradata, codecParameters->extradata_size);
 
     /// <summary>
@@ -416,9 +413,9 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
         get => new(codecParameters->ch_layout, false);
         set
         {
-            var layout = value.layout;
+            _AVChannelLayout layout = value.layout;
             ffmpeg.av_channel_layout_uninit(&codecParameters->ch_layout);
-            ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
+            _ = ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
         }
     }
 }

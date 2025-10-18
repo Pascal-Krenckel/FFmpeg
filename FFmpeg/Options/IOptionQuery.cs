@@ -112,7 +112,7 @@ public interface IOptionQuery
 
     /// <inheritdoc cref="OptionQueryBase.TryGetOption(Option, out ValueTuple{int, int}, bool)"/>
     AVResult32 TryGetOption(Option option, out (int Width, int Height) size, bool recursive = true);
-    
+
 
     /// <inheritdoc cref="OptionQueryBase.TryGetOption(Option, out Collections.AVDictionary, bool)"/>
     AVResult32 TryGetOption(Option option, out Collections.AVDictionary value, bool recursive = true);
@@ -243,5 +243,5 @@ public interface IOptionQuery
     /// <inheritdoc cref="OptionQueryBase.TryGetOption(string, Span{byte}, bool)"/>
     AVResult32 TryGetOption(string name, Span<byte> value, bool recursive = true);
 
-    
+
 }

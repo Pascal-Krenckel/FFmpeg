@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace FFmpeg.Threading;
 
-namespace FFmpeg.Threading;
 public class AutoResetAllEvent : IDisposable
 {
     private readonly object _lock = new();

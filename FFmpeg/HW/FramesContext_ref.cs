@@ -1,8 +1,5 @@
 ﻿using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace FFmpeg.HW;
 /// <summary>
@@ -63,21 +60,24 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
     /// <inheritdoc />
     public FramesContext? GetReferencedObject()
     {
-        var dev = ffmpeg.av_buffer_ref(*this.buffer);
-        if (buffer == null)
-            throw new OutOfMemoryException("Failed to reference the buffer for the new device context.");
-        return new FramesContext(dev);
+        AutoGen._AVBufferRef* dev = ffmpeg.av_buffer_ref(*buffer);
+        return buffer == null
+            ? throw new OutOfMemoryException("Failed to reference the buffer for the new device context.")
+            : new FramesContext(dev);
     }
 
     /// <inheritdoc />
     public void SetReferencedObject(FramesContext? device)
     {
-        if (device == null) ffmpeg.av_buffer_unref(buffer);
+        if (device == null)
+        {
+            ffmpeg.av_buffer_unref(buffer);
+        }
         else
         {
             if (IsReadOnly)
                 throw new NotSupportedException("Cannot modify a read-only device context.");
-            AVResult32 result = ffmpeg.av_buffer_replace(buffer,device.buffer);
+            AVResult32 result = ffmpeg.av_buffer_replace(buffer, device.buffer);
             result.ThrowIfError();
         }
     }

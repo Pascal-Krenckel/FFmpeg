@@ -1,8 +1,7 @@
-﻿using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using FFmpeg.Audio;
+﻿using FFmpeg.Audio;
 using FFmpeg.Images;
 using FFmpeg.Utils;
+using System.Runtime.InteropServices;
 
 namespace FFmpeg.Filters;
 /// <summary>
@@ -46,10 +45,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     /// Initializes a new instance of the <see cref="FilterContext"/> class with the given FFmpeg filter context.
     /// </summary>
     /// <param name="context">Pointer to the FFmpeg filter context.</param>
-    internal FilterContext(AutoGen._AVFilterContext* context)
-    {
-        this.context = context;
-    }
+    internal FilterContext(AutoGen._AVFilterContext* context) => this.context = context;
     /// <summary>
     /// Creates a new filter context using the specified filter, name, arguments, and filter graph.
     /// </summary>
@@ -68,7 +64,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     /// <summary>
     /// Gets or sets the hardware device context used by the filter.
     /// </summary>
-    public HW.DeviceContext_ref HwDeviceContext { get => new(&context->hw_device_ctx, false); }
+    public HW.DeviceContext_ref HwDeviceContext => new(&context->hw_device_ctx, false);
 
     public int ExtraHWFrames
     {
@@ -143,7 +139,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     public static FilterContext CreateSource(string name, Codecs.CodecContext ctx, FilterGraph graph)
     {
         FilterContext? context = Allocate(name, ctx.CodecType == MediaType.Video ? Filter.VideoBufferSource : Filter.AudioBufferSource, graph) ?? throw new ArgumentNullException();
-        using var @params = BufferSrcParameters.Allocate();
+        using BufferSrcParameters @params = BufferSrcParameters.Allocate();
 
         @params.ChannelLayout.CopyFrom(ctx.ChannelLayout);
         @params.Width = ctx.Width;
@@ -173,7 +169,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     public static FilterContext CreateSource(string name, Formats.AVStream stream, FilterGraph graph)
     {
         FilterContext? context = Allocate(name, stream.MediaType == MediaType.Video ? Filter.VideoBufferSource : Filter.AudioBufferSource, graph) ?? throw new ArgumentNullException();
-        using var @params = BufferSrcParameters.Allocate();
+        using BufferSrcParameters @params = BufferSrcParameters.Allocate();
 
         @params.ChannelLayout.CopyFrom(stream.CodecParameters.ChannelLayout);
         @params.Width = stream.CodecParameters.Width;
@@ -254,7 +250,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     /// </summary>
     public AVResult32 SendFrame(AVFrame? frame, bool keepRef = false)
     {
-        var f = frame != null ? frame.Frame : null;
+        AutoGen._AVFrame* f = frame != null ? frame.Frame : null;
         return keepRef ? ffmpeg.av_buffersrc_write_frame(context, f) : ffmpeg.av_buffersrc_add_frame(context, f);
     }
 
@@ -313,19 +309,13 @@ public unsafe class FilterContext : Options.OptionQueryBase
     public uint InputCount => context->nb_inputs;
     public uint OutputCount => context->nb_outputs;
 
-    public FilterPad GetInputFilterPad(int index)
-    {
-        if (index < 0 || index >= InputCount)
-            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter pads.");
-        return new FilterPad(context->input_pads, index);
-    }
+    public FilterPad GetInputFilterPad(int index) => index < 0 || index >= InputCount
+            ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter pads.")
+            : new FilterPad(context->input_pads, index);
 
-    public FilterPad GetOutputFilterPad(int index)
-    {
-        if (index < 0 || index >= OutputCount)
-            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter pads.");
-        return new FilterPad(context->output_pads, index);
-    }
+    public FilterPad GetOutputFilterPad(int index) => index < 0 || index >= OutputCount
+            ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter pads.")
+            : new FilterPad(context->output_pads, index);
 
     public IEnumerable<FilterPad> InputFilterPads
     {
@@ -351,7 +341,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
         {
             for (int i = 0; i < InputCount; i++)
             {
-                var link = GetInputFilterLink(i);
+                FilterLink? link = GetInputFilterLink(i);
                 if (link != null)
                     yield return link;
             }
@@ -364,26 +354,20 @@ public unsafe class FilterContext : Options.OptionQueryBase
         {
             for (int i = 0; i < OutputCount; i++)
             {
-                var link = GetOutputFilterLink(i);
+                FilterLink? link = GetOutputFilterLink(i);
                 if (link != null)
                     yield return link;
             }
         }
     }
 
-    public FilterLink? GetInputFilterLink(int index)
-    {
-        if (index < 0 || index >= InputCount)
-            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter links.");
-        return context->inputs[index] != null ? new FilterLink(context->inputs[index]) : null;
-    }
+    public FilterLink? GetInputFilterLink(int index) => index < 0 || index >= InputCount
+            ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter links.")
+            : context->inputs[index] != null ? new FilterLink(context->inputs[index]) : null;
 
-    public FilterLink? GetOutputFilterLink(int index)
-    {
-        if (index < 0 || index >= OutputCount)
-            throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter links.");
-        return context->outputs[index] != null ? new FilterLink(context->outputs[index]) : null;
-    }
+    public FilterLink? GetOutputFilterLink(int index) => index < 0 || index >= OutputCount
+            ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter links.")
+            : context->outputs[index] != null ? new FilterLink(context->outputs[index]) : null;
 
 }
 

@@ -1,6 +1,5 @@
 ﻿using FFmpeg.Codecs;
 using FFmpeg.Collections;
-using FFmpeg.Filters;
 using FFmpeg.Formats;
 using FFmpeg.HW;
 using FFmpeg.Logging;
@@ -16,9 +15,7 @@ public class MediaSource : IDisposable
     /// Gets the format context associated with this media source.
     /// </summary>
     public FormatContext FormatContext { get; private set; }
-
-    private readonly object _lock = new();
-    public object SyncRoot => _lock;
+    public object SyncRoot { get; } = new();
     private readonly AVPacket packet = new() { StreamIndex = -1 };
     private readonly DeviceType hwType = DeviceType.None;
 
@@ -48,11 +45,11 @@ public class MediaSource : IDisposable
         {
             if (codecContexts.Length != Streams.Count)
             {
-                lock (_lock)
+                lock (SyncRoot)
                 {
                     if (this.codecContexts.Length == Streams.Count)
                         return this.codecContexts;
-                    var codecContexts = new CodecContext[Streams.Count];
+                    CodecContext[] codecContexts = new CodecContext[Streams.Count];
                     ExceptionLog.Reset();
                     int old = this.codecContexts.Length;
                     Array.Resize(ref codecContexts, Streams.Count);
@@ -144,10 +141,7 @@ public class MediaSource : IDisposable
     /// <param name="file">The format context representing the media source.</param>
     /// <param name="deviceType">The device type for hardware-accelerated decoding (default is <see cref="DeviceType.None"/>).</param>
     /// <returns>A new <see cref="MediaSource"/> instance.</returns>
-    public static MediaSource Open(FormatContext file, DeviceType deviceType = DeviceType.None)
-    {
-        return new MediaSource(file, deviceType);
-    }
+    public static MediaSource Open(FormatContext file, DeviceType deviceType = DeviceType.None) => new(file, deviceType);
 
     /// <summary>
     /// Finds the best stream of the specified media type within this media source.
@@ -163,7 +157,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 ReadPacket(AVPacket packet)
     {
-        lock (_lock)
+        lock (SyncRoot)
             return FormatContext.ReadFrame(packet);
     }
 
@@ -175,7 +169,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 ReadFrame(AVPacket srcPacket, AVFrame dstFrame)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             AVResult32 res = CodecContexts[srcPacket.StreamIndex].SendPacket(srcPacket);
             return res.IsError ? res : CodecContexts[srcPacket.StreamIndex].ReceiveFrame(dstFrame);
@@ -185,7 +179,7 @@ public class MediaSource : IDisposable
     /// <inheritdoc cref=CodecContext.DecodeSubtitle(AVPacket, out Subtitles.Subtitle) />
     public AVResult32 DecodeSubtitle(AVPacket srcPacket, Subtitles.Subtitle subtitle)
     {
-        lock (_lock)
+        lock (SyncRoot)
             return codecContexts[srcPacket.StreamIndex].DecodeSubtitle(srcPacket, subtitle);
     }
 
@@ -198,7 +192,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation. Returns the stream index if successful; otherwise, the error result.</returns>
     public AVResult32 ReadAndDecodeAVFrame(AVFrame frame)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             ExceptionLog.Reset();
             AVResult32 res = 0;
@@ -210,9 +204,10 @@ public class MediaSource : IDisposable
 
                     if (res == AVResult32.EndOfFile)
                     {
-                        foreach (var ctx in codecContexts.Where(ctx => ctx.CodecType is MediaType.Audio or MediaType.Video))
+                        foreach (CodecContext? ctx in codecContexts.Where(ctx => ctx.CodecType is MediaType.Audio or MediaType.Video))
                             _ = ctx.DrainDecoder();
                         for (int i = 0; i < codecContexts.Length; i++)
+                        {
                             if (codecContexts[i].CodecType is MediaType.Audio or MediaType.Video)
                             {
                                 res = codecContexts[i].ReceiveFrame(frame);
@@ -222,13 +217,15 @@ public class MediaSource : IDisposable
                                     return res;
 
                             }
+                        }
+
                         return AVResult32.EndOfFile;
                     }
                     res.ThrowIfError();
                     // ToDo: decode other media types
                     if (Streams[packet.StreamIndex].Discard.HasFlag(DiscardFlags.All) ||
-                        CodecContexts[packet.StreamIndex].CodecType != MediaType.Audio &&
-                        CodecContexts[packet.StreamIndex].CodecType != MediaType.Video)
+                        (CodecContexts[packet.StreamIndex].CodecType != MediaType.Audio &&
+                        CodecContexts[packet.StreamIndex].CodecType != MediaType.Video))
                     {
                         res = AVResult32.TryAgain;
                         continue;
@@ -239,7 +236,7 @@ public class MediaSource : IDisposable
                         res = AVResult32.TryAgain;
                         continue;
                     }
-                    CodecContexts[packet.StreamIndex].SendPacket(packet);
+                    _ = CodecContexts[packet.StreamIndex].SendPacket(packet);
                 }
                 res = CodecContexts[packet.StreamIndex].ReceiveFrame(frame);
             } while (res == AVResult32.TryAgain);
@@ -253,7 +250,7 @@ public class MediaSource : IDisposable
     /// </summary>
     public void FlushBuffers()
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             for (int i = 0; i < CodecContexts.Count; i++)
             {
@@ -263,12 +260,12 @@ public class MediaSource : IDisposable
                 { // if hw accel then recreate the context, it seek seems to fail otherwise
                     CodecContext @new = CodecContext.Allocate(CodecContexts[i].Codec);
                     CodecContexts[i].CopyParameters(@new);
-                    @new.SetHWDeviceType(hwType);
+                    _ = @new.SetHWDeviceType(hwType);
                     @new.PacketTimeBase = CodecContexts[i].PacketTimeBase;
-                    @new.Open(@new.Codec);
+                    _ = @new.Open(@new.Codec);
                     CodecContexts[i].Dispose();
                     codecContexts[i] = @new;
-                    
+
                 }
             }
         }
@@ -282,7 +279,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the seek operation.</returns>
     public AVResult32 Seek(TimeSpan time)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             FlushBuffers();
             return FormatContext.Seek(time);
@@ -297,7 +294,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the seek operation.</returns>
     public AVResult32 Seek(TimeSpan time, int streamIndex)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             FlushBuffers();
             return FormatContext.Seek(time, streamIndex);
@@ -311,7 +308,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the seek operation.</returns>
     public AVResult32 Seek(long frame)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             FlushBuffers();
             return FormatContext.Seek(frame);
@@ -326,7 +323,7 @@ public class MediaSource : IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the seek operation.</returns>
     public AVResult32 Seek(long frame, int streamIndex)
     {
-        lock (_lock)
+        lock (SyncRoot)
         {
             FlushBuffers();
             return FormatContext.Seek(frame, streamIndex);

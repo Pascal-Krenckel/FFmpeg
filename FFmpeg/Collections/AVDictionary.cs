@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using FFmpeg.Utils;
+using System.Collections;
 using System.Runtime.InteropServices;
-using FFmpeg.Utils;
 
 namespace FFmpeg.Collections;
 /// <summary>
@@ -65,7 +65,8 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
             AVResult32 res = (AVResult32)AutoGen.ffmpeg.av_dict_set(&dictionary, key, value, (int)Flags);
             this.dictionary = dictionary;
             res.ThrowIfError();
-            unchecked { _check++; }
+            unchecked
+            { _check++; }
         }
     }
 
@@ -98,7 +99,8 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// <exception cref="ArgumentException">Thrown when an element with the same key already exists in the dictionary.</exception>
     public void Add(string key, string value)
     {
-        if (key == null) throw new ArgumentNullException(nameof(key));
+        if (key == null)
+            throw new ArgumentNullException(nameof(key));
         if (ContainsKey(key))
             throw new ArgumentException("An element with the same key already exists in the Dictionary<TKey,TValue>.");
         this[key] = value;
@@ -116,7 +118,8 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
         AVResult32 res = AutoGen.ffmpeg.av_dict_set(&dictionary, key, value, (int)(Flags | AVDictionaryFlags.Append));
         this.dictionary = dictionary;
         res.ThrowIfError();
-        unchecked { _check++; }
+        unchecked
+        { _check++; }
     }
 
     /// <summary>
@@ -174,7 +177,8 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     public bool Remove(string key)
     {
         bool b = ContainsKey(key);
-        if (!b) return false;
+        if (!b)
+            return false;
         this[key] = null!;
         return true;
     }

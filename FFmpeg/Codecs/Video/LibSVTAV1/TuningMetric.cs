@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Codecs.Video.LibSVTAV1;
+﻿namespace FFmpeg.Codecs.Video.LibSVTAV1;
 /// <summary>
 /// Specifies the metric used for tuning the encoding process to optimize quality or performance.
 /// </summary>

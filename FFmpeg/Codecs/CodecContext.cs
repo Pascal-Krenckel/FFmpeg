@@ -1,9 +1,9 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
+using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Logging;
 using FFmpeg.Utils;
-using FFmpeg.Helper;
 using System.Runtime.InteropServices;
 using AVFrame = FFmpeg.Utils.AVFrame;
 using AVPacket = FFmpeg.Utils.AVPacket;
@@ -85,9 +85,10 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec)
     {
-        CodecContext context = new(codec);       
+        CodecContext context = new(codec);
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, null);
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -103,13 +104,15 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, Collections.AVDictionary? dictionary)
     {
-        if (dictionary == null) return Open(codec);
+        if (dictionary == null)
+            return Open(codec);
 
         CodecContext context = new(codec);
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, &dic);
         dictionary.dictionary = dic;
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -125,13 +128,15 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, Collections.AVMultiDictionary? dictionary)
     {
-        if (dictionary == null) return Open(codec);
+        if (dictionary == null)
+            return Open(codec);
 
         CodecContext context = new(codec);
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, &dic);
         dictionary.dictionary = dic;
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -147,9 +152,11 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, IDictionary<string, string>? dictionary)
     {
-        if (dictionary == null) return Open(codec);
+        if (dictionary == null)
+            return Open(codec);
 
-        if (dictionary is Collections.AVDictionary avDict) return Open(codec, avDict);
+        if (dictionary is Collections.AVDictionary avDict)
+            return Open(codec, avDict);
 
         using Collections.AVDictionary dic = new(dictionary);
         CodecContext result = Open(codec, dic);
@@ -175,7 +182,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
             context.SetCodecParameters(codecParams);
 
         AVResult32 result = context.Open(codec);
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -195,7 +203,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         _ = context.SetHWDeviceType(deviceType);
 
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, null);
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -212,14 +221,16 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, Collections.AVDictionary? dictionary, HW.DeviceType deviceType)
     {
-        if (dictionary == null) return Open(codec, deviceType);
+        if (dictionary == null)
+            return Open(codec, deviceType);
 
         CodecContext context = new(codec);
         _ = context.SetHWDeviceType(deviceType);
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, &dic);
         dictionary.dictionary = dic;
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -236,14 +247,16 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, Collections.AVMultiDictionary? dictionary, HW.DeviceType deviceType)
     {
-        if (dictionary == null) return Open(codec, deviceType);
+        if (dictionary == null)
+            return Open(codec, deviceType);
 
         CodecContext context = new(codec);
         _ = context.SetHWDeviceType(deviceType);
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context.context, codec.codec, &dic);
         dictionary.dictionary = dic;
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -260,9 +273,11 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, IDictionary<string, string>? dictionary, HW.DeviceType deviceType)
     {
-        if (dictionary == null) return Open(codec, deviceType);
+        if (dictionary == null)
+            return Open(codec, deviceType);
 
-        if (dictionary is Collections.AVDictionary avDict) return Open(codec, avDict, deviceType);
+        if (dictionary is Collections.AVDictionary avDict)
+            return Open(codec, avDict, deviceType);
 
         using Collections.AVDictionary dic = new(dictionary);
         CodecContext result = Open(codec, dic, deviceType);
@@ -290,7 +305,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
             context.SetCodecParameters(codecParams);
         _ = context.SetHWDeviceType(deviceType);
         AVResult32 result = context.Open(codec);
-        if (result.IsError) context.Dispose();
+        if (result.IsError)
+            context.Dispose();
         result.ThrowIfError();
         return context;
     }
@@ -299,7 +315,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     public static CodecContext OpenEncoder(Formats.AVStream stream)
     {
         Logger.LogLevel = LogLevel.Debug;
-        var ctx = CodecContext.Allocate(Codec.FindEncoder(stream.CodecId));
+        CodecContext ctx = CodecContext.Allocate(Codec.FindEncoder(stream.CodecId));
         ctx.SetCodecParameters(stream.CodecParameters);
         ctx.TimeBase = ctx.PacketTimeBase = stream.TimeBase;
         ctx.FrameRate = stream.RealFrameRate;
@@ -1111,7 +1127,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 Open(Codec? codec, Collections.AVDictionary? dictionary)
     {
-        if (dictionary == null) return Open(codec);
+        if (dictionary == null)
+            return Open(codec);
         _AVCodec* c = codec != null ? codec.Value.codec : null;
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context, c, &dic);
@@ -1133,7 +1150,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 Open(Codec? codec, Collections.AVMultiDictionary? dictionary)
     {
-        if (dictionary == null) return Open(codec);
+        if (dictionary == null)
+            return Open(codec);
         _AVCodec* c = codec != null ? codec.Value.codec : null;
         _AVDictionary* dic = dictionary.dictionary;
         AVResult32 result = ffmpeg.avcodec_open2(context, c, &dic);
@@ -1155,8 +1173,10 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 Open(Codec? codec, IDictionary<string, string>? dictionary)
     {
-        if (dictionary == null) return Open(codec);
-        if (dictionary is Collections.AVDictionary avDict) return Open(codec, avDict);
+        if (dictionary == null)
+            return Open(codec);
+        if (dictionary is Collections.AVDictionary avDict)
+            return Open(codec, avDict);
         using Collections.AVDictionary dic = new(dictionary);
         AVResult32 result = Open(codec, dic);
         dictionary.Clear();
@@ -1179,7 +1199,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 Open(Codec? codec, ICodecParameters? codecParameters)
     {
-        if (codecParameters == null) return Open(codec);
+        if (codecParameters == null)
+            return Open(codec);
         SetCodecParameters(codecParameters);
         return Open(codec);
     }
@@ -1201,7 +1222,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     public AVResult32 DecodeSubtitle(AVPacket packet, Subtitles.Subtitle subtitle)
     {
         subtitle?.Free();
-        if (!IsOpen) Open(null).ThrowIfError();
+        if (!IsOpen)
+            Open(null).ThrowIfError();
         if (CodecType != MediaType.Subtitle)
             throw new NotSupportedException($"{nameof(DecodeSubtitle)} can only be used with subtitle codecs.");
 
@@ -1209,7 +1231,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         int b;
 
         // Decoding the subtitle from the given packet
-        var res = ffmpeg.avcodec_decode_subtitle2(context, &sub, &b, packet.packet);
+        int res = ffmpeg.avcodec_decode_subtitle2(context, &sub, &b, packet.packet);
 
         // Creating the subtitle object from the decoded AVSubtitle
         subtitle ??= new();
@@ -1238,7 +1260,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </remarks>
     public AVResult32 EncodeSubtitle(AVPacket packet, Subtitles.Subtitle subtitle)
     {
-        if (!IsOpen) Open(null).ThrowIfError();
+        if (!IsOpen)
+            Open(null).ThrowIfError();
         if (CodecType != MediaType.Subtitle)
             throw new NotSupportedException($"{nameof(EncodeSubtitle)} can only be used with subtitle codecs.");
 
@@ -1254,7 +1277,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         packet.Resize(1024 * 1024);
 
         // Encoding the subtitle
-        var res = ffmpeg.avcodec_encode_subtitle(context, packet.packet->data, packet.Size, &sub);
+        int res = ffmpeg.avcodec_encode_subtitle(context, packet.packet->data, packet.Size, &sub);
 
         // Notify the size of the packet to the result if encoding was successful
         if (res >= 0)
@@ -1276,10 +1299,11 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 SendPacket(AVPacket? packet)
     {
-        if (!IsOpen) Open(null).ThrowIfError();
-        if (CodecType is MediaType.Audio or MediaType.Video)
-            return ffmpeg.avcodec_send_packet(context,packet!= null? packet.packet : null);
-        throw new NotSupportedException($"{nameof(SendPacket)} can only be used with audio or video codecs.");
+        if (!IsOpen)
+            Open(null).ThrowIfError();
+        return CodecType is MediaType.Audio or MediaType.Video
+            ? (AVResult32)ffmpeg.avcodec_send_packet(context, packet != null ? packet.packet : null)
+            : throw new NotSupportedException($"{nameof(SendPacket)} can only be used with audio or video codecs.");
     }
 
     /// <summary>
@@ -1293,10 +1317,11 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 ReceivePacket(AVPacket packet)
     {
-        if (!IsOpen) Open(null).ThrowIfError();
-        
-        var result = ffmpeg.avcodec_receive_packet(context, packet.packet);
-        if(TimeBase.IsValidTimeBase)
+        if (!IsOpen)
+            Open(null).ThrowIfError();
+
+        int result = ffmpeg.avcodec_receive_packet(context, packet.packet);
+        if (TimeBase.IsValidTimeBase)
             packet.TimeBase = TimeBase;
         if (PacketTimeBase.IsValidTimeBase)
             packet.RescaleTS(PacketTimeBase);
@@ -1314,8 +1339,9 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 SendFrame(AVFrame? frame)
     {
-        if (!IsOpen) this.Open(null).ThrowIfError();
-        if(frame?.TimeBase.IsValidTimeBase == true)
+        if (!IsOpen)
+            Open(null).ThrowIfError();
+        if (frame?.TimeBase.IsValidTimeBase == true)
             TimeBase = frame.TimeBase; // set this to frames time base, so receive package uses the right timebase.
         return ffmpeg.avcodec_send_frame(context, frame != null ? frame.Frame : null);
     }
@@ -1335,7 +1361,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 ReceiveHWFrame(AVFrame frame)
     {
-        if(!IsOpen) Open(null).ThrowIfError();
+        if (!IsOpen)
+            Open(null).ThrowIfError();
         int res = ffmpeg.avcodec_receive_frame(context, frame.Frame);
         if (frame.TimeBase.Numerator == 0)
             frame.TimeBase = context->pkt_timebase;
@@ -1356,7 +1383,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </returns>
     public AVResult32 ReceiveFrame(AVFrame frame)
     {
-        if(!IsOpen) Open(null).ThrowIfError();
+        if (!IsOpen)
+            Open(null).ThrowIfError();
         if (context->hw_device_ctx == null)
         {
             int res = ffmpeg.avcodec_receive_frame(context, frame.Frame);
@@ -1367,9 +1395,11 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         else
         {
             AVResult32 res = ffmpeg.avcodec_receive_frame(context, hardwareFrame.Frame);
-            if (res.IsError || res == AVResult32.TryAgain) return res;
+            if (res.IsError || res == AVResult32.TryAgain)
+                return res;
             res = ffmpeg.av_hwframe_transfer_data(frame.Frame, hardwareFrame.Frame, 0);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
             _ = ffmpeg.av_frame_copy_props(frame.Frame, hardwareFrame.Frame);
             hardwareFrame.Unreference();
             if (frame.TimeBase.Numerator == 0)
@@ -1380,24 +1410,22 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
 
     // ToDo: Docu, include info about TryAgain
     public AVResult32 Decode(AVPacket? packet, AVFrame frame)
-    {        
+    {
         var res = SendPacket(packet);
-        if(res == AVResult32.TryAgain) res.ThrowIfError(); //  should never happen, since ReceiveFrame is always called afterwards, but if it does happen, you need to call ReceiveFrame until TryAgain 
+        if (res == AVResult32.TryAgain)
+            res.ThrowIfError(); //  should never happen, since ReceiveFrame is always called afterwards, but if it does happen, you need to call ReceiveFrame until TryAgain 
         // in draining mode SendPacket might return EOF
-        if(res.IsError &&  res != AVResult32.EndOfFile) return res;       
-        return ReceiveFrame(frame);
+        return res.IsError && res != AVResult32.EndOfFile ? res : ReceiveFrame(frame);
     }
 
 
-    public AVResult32 Encode(AVFrame frame,AVPacket packet)
+    public AVResult32 Encode(AVFrame frame, AVPacket packet)
     {
         var res = SendFrame(frame);
         if (res == AVResult32.TryAgain)
             res.ThrowIfError(); //  should never happen, since ReceivePacket is always called afterwards, but if it does, you need to call ReveicePacket until TryAgain
         // in draining mode SendPacket might return EOF
-        if (res.IsError && res != AVResult32.EndOfFile)
-            return res;
-        return ReceivePacket(packet);
+        return res.IsError && res != AVResult32.EndOfFile ? res : ReceivePacket(packet);
     }
 
     /// <summary>
@@ -1409,7 +1437,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public void FlushBuffers()
     {
-        if (!IsOpen) return;
+        if (!IsOpen)
+            return;
         ffmpeg.avcodec_flush_buffers(context);
     }
 

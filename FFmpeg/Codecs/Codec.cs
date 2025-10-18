@@ -1,10 +1,9 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Audio;
+﻿using FFmpeg.Audio;
+using FFmpeg.AutoGen;
+using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
-using FFmpeg.Images;
-using FFmpeg.Logging;
 
 namespace FFmpeg.Codecs;
 
@@ -78,16 +77,12 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     {
         get
         {
-            if (codec == null) return [];
+            if (codec == null)
+                return [];
             void* output = null;
             System.Diagnostics.Debug.Assert(sizeof(ulong) == sizeof(Rational));
             AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_FRAME_RATE, 0, &output, null);
-            if(res.IsError || output == null)
-            {
-                return [];
-            }
-           
-            return new(output, res);
+            return res.IsError || output == null ? [] : new(output, res);
         }
     }
 
@@ -100,14 +95,13 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     {
         get
         {
-            if (codec == null) return null;
+            if (codec == null)
+                return null;
             System.Diagnostics.Debug.Assert(sizeof(_AVPixelFormat) == sizeof(PixelFormat));
 
             void* output = null;
             AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_PIX_FORMAT, 0, &output, null);
-            if (output == null || res.IsError)
-                return [];
-            return new(output, res);
+            return output == null || res.IsError ? [] : new(output, res);
         }
     }
 
@@ -115,7 +109,8 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     public PixelFormat GetBestPixelFormat(PixelFormat src, bool alphaUsed, out FFLoss loss)
     {
         _AVPixelFormat* output = null;
-        AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_PIX_FORMAT, 0, (void**)&output, null);
+
+        _ = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_PIX_FORMAT, 0, (void**)&output, null);
         if (output == null)
         {
             loss = FFLoss.None;
@@ -123,7 +118,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         }
         int _loss;
         int alpha = Convert.ToInt32(alphaUsed);
-        var pixFmt = (PixelFormat)ffmpeg.avcodec_find_best_pix_fmt_of_list(output, (_AVPixelFormat)src, alpha, &_loss);
+        PixelFormat pixFmt = (PixelFormat)ffmpeg.avcodec_find_best_pix_fmt_of_list(output, (_AVPixelFormat)src, alpha, &_loss);
         loss = (FFLoss)_loss;
         return pixFmt;
     }
@@ -143,14 +138,11 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     {
         get
         {
-            if (codec == null) return null;
+            if (codec == null)
+                return null;
             void* output = null;
             AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_RATE, 0, &output, null);
-            if(res.IsError || output == null)
-            {
-                return [];
-            }
-            return new ReadOnlySpan<int>(output, res);
+            return res.IsError || output == null ? [] : new ReadOnlySpan<int>(output, res);
         }
     }
 
@@ -163,15 +155,13 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     {
         get
         {
-            if (codec == null) return null;
+            if (codec == null)
+                return null;
             System.Diagnostics.Debug.Assert(sizeof(SampleFormat) == sizeof(_AVSampleFormat));
             _AVSampleFormat* ptr = null;
             AVResult32 length = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_FORMAT, 0, (void**)&ptr, null);
 
-            if (ptr == null || length.IsError)
-                return [];
-
-            return new(ptr, length);
+            return ptr == null || length.IsError ? [] : new(ptr, length);
         }
     }
 
@@ -184,8 +174,8 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     public ReadOnlyCollection<Profile> Profiles
     {
         get
-        {  
-          
+        {
+
             _AVProfile* ptr;
             if (codec == null || (ptr = codec->profiles) == null)
                 return new([]);
@@ -219,9 +209,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
             _AVChannelLayout* ptr;
             AVResult32 length = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_FORMAT, 0, (void**)&ptr, null);
 
-            if (ptr == null || length.IsError)
-                return [];
-            return new ChannelLayoutConstList(ptr, length);
+            return ptr == null || length.IsError ? [] : new ChannelLayoutConstList(ptr, length);
         }
     }
 

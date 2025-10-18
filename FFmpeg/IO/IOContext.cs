@@ -170,7 +170,8 @@ public abstract unsafe class IOContext : AVIOContext
     {
         if (!disposedValue)
         {
-            if (gch.IsAllocated) gch.Free();
+            if (gch.IsAllocated)
+                gch.Free();
 
             // Free the buffer and AVIOContext associated with the format context
             AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);

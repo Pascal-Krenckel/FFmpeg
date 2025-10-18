@@ -3,23 +3,20 @@ using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.Logging;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
 
 namespace FFmpeg;
+
 public class MediaSink : IDisposable
 {
     public FormatContext FormatContext { get; private set; }
 
     private readonly AVPacket packet = new() { StreamIndex = -1 };
-    
+
     public MediaSink(FormatContext context) => FormatContext = context;
 
     public IReadOnlyList<AVStream> Streams => FormatContext.Streams;
 
-    private List<CodecContext?> codecContexts = [];
+    private readonly List<CodecContext?> codecContexts = [];
 
     /// <summary>
     /// A function to retrieve a codec by its ID. This can be set to provide custom codec retrieval logic.
@@ -33,10 +30,7 @@ public class MediaSink : IDisposable
     /// This property initializes codec contexts lazily based on the number of streams. It also sets up codec contexts
     /// for each stream, guessing the frame rate for video streams and adjusting codec parameters as needed.
     /// </remarks>
-    public IReadOnlyList<CodecContext?> CodecContexts
-    {
-        get => codecContexts;
-    }
+    public IReadOnlyList<CodecContext?> CodecContexts => codecContexts;
     public AVDictionary_ref Metatdata => FormatContext.Metadata;
 
     public AVStream AddStream(CodecContext? encoderContext)
@@ -49,8 +43,8 @@ public class MediaSink : IDisposable
         else
         {
             codecContexts.Add(encoderContext);
-            var stream = FormatContext.AddStream(encoderContext.Codec);
-            var @params = stream.CodecParameters;
+            AVStream stream = FormatContext.AddStream(encoderContext.Codec);
+            CodecParameters_ref @params = stream.CodecParameters;
             @params.CodecTag = encoderContext.CodecTag;
             stream.TimeBase = encoderContext.TimeBase;
             stream.CodecParameters.CopyFrom(encoderContext);
@@ -83,8 +77,11 @@ public class MediaSink : IDisposable
         ExceptionLog.Reset();
         FormatContext.WriteHeader().ThrowIfError();
         for (int i = 0; i < Streams.Count; i++)
+        {
             if (CodecContexts[i] != null)
                 CodecContexts[i]!.PacketTimeBase = Streams[i].TimeBase; // reset pkt_timebase since it might have changed.
+        }
+
         OpenCodecs();
     }
 
@@ -92,7 +89,10 @@ public class MediaSink : IDisposable
     {
         ExceptionLog.Reset();
         for (int i = 0; i < codecContexts.Count; i++)
-            if (codecContexts[i]?.IsOpen == false) codecContexts[i]!.Open(null).ThrowIfError();
+        {
+            if (codecContexts[i]?.IsOpen == false)
+                codecContexts[i]!.Open(null).ThrowIfError();
+        }
     }
 
     public void WriteHeader(IDictionary<string, string> dic)
@@ -100,17 +100,22 @@ public class MediaSink : IDisposable
         ExceptionLog.Reset();
         FormatContext.WriteHeader(dic).ThrowIfError();
         for (int i = 0; i < codecContexts.Count; i++)
-            if (codecContexts[i]?.IsOpen == false) codecContexts[i]!.Open(null).ThrowIfError();
+        {
+            if (codecContexts[i]?.IsOpen == false)
+                codecContexts[i]!.Open(null).ThrowIfError();
+        }
     }
     public AVResult32 WritePacket(IPacket packet) => FormatContext.WriteFrameInterleaved(packet);
     public AVResult32 WriteFrame(AVFrame frame, int streamIndex)
     {
         lock (packet)
         {
-            var error = CodecContexts[streamIndex]!.SendFrame(frame);
-            if (error.IsError) return error;
+            AVResult32 error = CodecContexts[streamIndex]!.SendFrame(frame);
+            if (error.IsError)
+                return error;
             error = CodecContexts[streamIndex]!.ReceivePacket(packet);
-            if (error.IsError) return error;
+            if (error.IsError)
+                return error;
             packet.StreamIndex = streamIndex;
             return WritePacket(packet);
         }
@@ -119,8 +124,9 @@ public class MediaSink : IDisposable
     {
         lock (packet)
         {
-            var error = CodecContexts[streamIndex]!.EncodeSubtitle(packet,subtitle);
-            if (error.IsError) return error;
+            AVResult32 error = CodecContexts[streamIndex]!.EncodeSubtitle(packet, subtitle);
+            if (error.IsError)
+                return error;
             packet.StreamIndex = streamIndex;
             return WritePacket(packet);
         }
@@ -128,27 +134,22 @@ public class MediaSink : IDisposable
 
     public static MediaSink? Create(string? url, OutputFormat? outputFormat)
     {
-        if (string.IsNullOrWhiteSpace(url) && outputFormat == null) throw new ArgumentNullException(nameof(url));
-        var res  = FormatContext.OpenOutput(url, outputFormat);
-        if (res == null)
-            return null;
-        return new(res);
+        if (string.IsNullOrWhiteSpace(url) && outputFormat == null)
+            throw new ArgumentNullException(nameof(url));
+        FormatContext? res = FormatContext.OpenOutput(url, outputFormat);
+        return res == null ? null : new(res);
     }
     public static MediaSink? Create(string url) => Create(url, null);
     public static MediaSink? Create(Stream stream, OutputFormat outputFormat)
     {
-        var res  = FormatContext.OpenOutput(stream, outputFormat);
-        if (res == null)
-            return null;
-        return new(res);
+        FormatContext? res = FormatContext.OpenOutput(stream, outputFormat);
+        return res == null ? null : new(res);
     }
 
     public static MediaSink? Create(IO.IOContext ioContext, OutputFormat outputFormat)
     {
-        var res  = FormatContext.OpenOutput(ioContext, outputFormat);
-        if (res == null)
-            return null;
-        return new(res);
+        FormatContext? res = FormatContext.OpenOutput(ioContext, outputFormat);
+        return res == null ? null : new(res);
     }
 
     public void Close() => Dispose();
@@ -166,9 +167,10 @@ public class MediaSink : IDisposable
             if (disposing)
             {
                 for (int i = 0; i < CodecContexts.Count; i++)
+                {
                     if (CodecContexts[i] != null && CodecContexts[i]!.CodecType is MediaType.Audio or MediaType.Video)
                     {
-                        var context = CodecContexts[i];
+                        CodecContext? context = CodecContexts[i];
                         _ = context!.DrainEncoder();
 
                         AVResult32 res;
@@ -178,11 +180,14 @@ public class MediaSink : IDisposable
                             packet.StreamIndex = i;
                             if (!res.IsError)
                                 _ = FormatContext.WriteFrameInterleaved(packet);
-                            else break;
+                            else
+                                break;
                         } while (true);
                     }
+                }
+
                 FormatContext.Dispose();
-                foreach (var ctx in CodecContexts)
+                foreach (CodecContext? ctx in CodecContexts)
                     ctx?.Dispose();
                 packet.Dispose();
             }

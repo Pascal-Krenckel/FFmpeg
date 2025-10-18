@@ -1,5 +1,4 @@
 ﻿using FFmpeg.Utils;
-using System.Security.Cryptography.X509Certificates;
 
 namespace FFmpeg.Audio;
 
@@ -87,7 +86,7 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <returns><see langword="true"/> if the buffer is writable; otherwise, <see langword="false"/>.</returns>
     public bool TryMakeWriteable()
     {
-        var reference = buffer.Reference;
+        AutoGen._AVBufferRef* reference = buffer.Reference;
         AVResult32 res = ffmpeg.av_buffer_make_writable(&reference);
         buffer = new AudioBufferRef(reference);
         return res >= 0;
@@ -107,10 +106,7 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// Initializes a new instance of the <see cref="AudioBuffer"/> class using the specified <see cref="AudioBufferRef"/>.
     /// </summary>
     /// <param name="buffer">The reference to the underlying audio buffer.</param>
-    private AudioBuffer(AudioBufferRef buffer)
-    {
-        this.buffer = buffer;
-    }
+    private AudioBuffer(AudioBufferRef buffer) => this.buffer = buffer;
 
     /// <summary>
     /// Allocates a new <see cref="AudioBuffer"/> with the specified buffer info and sample capacity.
@@ -142,7 +138,7 @@ public sealed unsafe class AudioBuffer : IDisposable
         if (source.Length != samplesToCopy * info.Channels * info.Format.GetBytesPerSample())
             throw new ArgumentException("The length of buffer must be a multiple of BytesPerSample*Channels");
 
-        var audioBuffer = Allocate(info, samplesToCopy);
+        AudioBuffer audioBuffer = Allocate(info, samplesToCopy);
         _ = audioBuffer.CopyFromPlanarUncheckedType(source);
         return audioBuffer;
     }
@@ -183,8 +179,8 @@ public sealed unsafe class AudioBuffer : IDisposable
         {
             for (int ch = 0; ch < info.Channels; ch++)
             {
-                Buffer.MemoryCopy(planarSrc[ch] + (sample + srcSampleIndex) * sampleSize,
-                                  packedDst + packSize * (sample + dstSampleIndex) + ch * sampleSize,
+                Buffer.MemoryCopy(planarSrc[ch] + ((sample + srcSampleIndex) * sampleSize),
+                                  packedDst + (packSize * (sample + dstSampleIndex)) + (ch * sampleSize),
                                   sampleSize, sampleSize);
             }
         }
@@ -204,8 +200,8 @@ public sealed unsafe class AudioBuffer : IDisposable
         int sampleSize = info.Format.GetBytesPerSample();
         for (int ch = 0; ch < info.Channels; ch++)
         {
-            Buffer.MemoryCopy(planarSrc[ch] + srcSampleIndex * sampleSize,
-                              planarDst[ch] + dstSampleIndex * sampleSize,
+            Buffer.MemoryCopy(planarSrc[ch] + (srcSampleIndex * sampleSize),
+                              planarDst[ch] + (dstSampleIndex * sampleSize),
                               samples * sampleSize, samples * sampleSize);
         }
     }
@@ -222,8 +218,8 @@ public sealed unsafe class AudioBuffer : IDisposable
     private static void CopyFromPackedToPacked(AudioBufferInfo info, byte* packedSrc, int srcSampleIndex, byte* packedDst, int dstSampleIndex, int samples)
     {
         int sampleSize = info.Format.GetBytesPerSample();
-        Buffer.MemoryCopy(packedSrc + sampleSize * info.Channels * srcSampleIndex,
-                          packedDst + sampleSize * info.Channels * dstSampleIndex,
+        Buffer.MemoryCopy(packedSrc + (sampleSize * info.Channels * srcSampleIndex),
+                          packedDst + (sampleSize * info.Channels * dstSampleIndex),
                           samples * info.Channels * sampleSize, samples * info.Channels * sampleSize);
     }
 
@@ -244,8 +240,8 @@ public sealed unsafe class AudioBuffer : IDisposable
         {
             for (int ch = 0; ch < info.Channels; ch++)
             {
-                Buffer.MemoryCopy(packedSrc + packSize * (sample + srcSampleIndex) + ch * sampleSize,
-                                  planarDst[ch] + sampleSize * (dstSampleIndex + sample),
+                Buffer.MemoryCopy(packedSrc + (packSize * (sample + srcSampleIndex)) + (ch * sampleSize),
+                                  planarDst[ch] + (sampleSize * (dstSampleIndex + sample)),
                                   sampleSize, sampleSize);
             }
         }
@@ -265,14 +261,15 @@ public sealed unsafe class AudioBuffer : IDisposable
             throw new ArgumentException("The length of buffer must be a multiple of BytesPerSample*Channels");
 
         int samplesToCopy = Math.Min(Samples - startSrcSampleIndex, samplesPerChannel);
-        if (samplesToCopy <= 0) return 0;
+        if (samplesToCopy <= 0)
+            return 0;
 
         fixed (byte* ptr = destination)
         {
             if (IsPacked)
-                CopyFromPackedToPacked(Info, this.buffer.Buffer, startSrcSampleIndex, ptr, 0, samplesToCopy);
+                CopyFromPackedToPacked(Info, buffer.Buffer, startSrcSampleIndex, ptr, 0, samplesToCopy);
             else
-                CopyFromPlanarToPacked(Info, this.buffer.Planes, startSrcSampleIndex, ptr, 0, samplesToCopy);
+                CopyFromPlanarToPacked(Info, buffer.Planes, startSrcSampleIndex, ptr, 0, samplesToCopy);
         }
 
         return samplesToCopy;
@@ -323,10 +320,10 @@ public sealed unsafe class AudioBuffer : IDisposable
         }
         else
         {
-            using var layout = new ChannelLayout();
+            using ChannelLayout layout = new();
             layout.Init(Channels);
             using SwrContext context = new(layout, Format, 1, layout, destination.Format, 1);
-            var res = context.Convert(this, startSrcSampleIndex, destination, destination.Samples);
+            AVResult32 res = context.Convert(this, startSrcSampleIndex, destination, destination.Samples);
             res.ThrowIfError();
             return res;
         }
@@ -340,8 +337,9 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <exception cref="OutOfMemoryException">Thrown if memory allocation fails.</exception>
     public AudioBuffer Copy()
     {
-        var buffer = ffmpeg.av_buffer_alloc(this.buffer.Reference->size);
-        if (buffer == null) throw new OutOfMemoryException();
+        AutoGen._AVBufferRef* buffer = ffmpeg.av_buffer_alloc(this.buffer.Reference->size);
+        if (buffer == null)
+            throw new OutOfMemoryException();
         Buffer.MemoryCopy(this.buffer.Reference->data, buffer->data, buffer->size, buffer->size);
         return new AudioBuffer(new(buffer));
     }
@@ -353,9 +351,8 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <exception cref="OutOfMemoryException">Thrown if the buffer reference creation fails.</exception>
     public AudioBuffer Clone()
     {
-        var buffer = ffmpeg.av_buffer_ref(this.buffer.Reference);
-        if (buffer == null) throw new OutOfMemoryException();
-        return new AudioBuffer(new(buffer));
+        AutoGen._AVBufferRef* buffer = ffmpeg.av_buffer_ref(this.buffer.Reference);
+        return buffer == null ? throw new OutOfMemoryException() : new AudioBuffer(new(buffer));
     }
 
     /// <summary>
@@ -370,7 +367,8 @@ public sealed unsafe class AudioBuffer : IDisposable
             throw new ArgumentException("The length of buffer must be a multiple of BytesPerSample*Channels");
 
         int samplesToCopy = Math.Min(Capacity - Samples, source.Length / Channels / BytesPerSample);
-        if (samplesToCopy <= 0) return 0;
+        if (samplesToCopy <= 0)
+            return 0;
 
         fixed (byte* ptr = source)
         {
@@ -405,10 +403,7 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <param name="source">The source <see cref="AudioBuffer"/> to copy data from.</param>
     /// <param name="startSrcSampleIndex">The starting sample index in the source buffer.</param>
     /// <returns>The number of samples copied.</returns>
-    public int CopyFrom(AudioBuffer source, int startSrcSampleIndex = 0)
-    {
-        return source.CopyTo(this, startSrcSampleIndex);
-    }
+    public int CopyFrom(AudioBuffer source, int startSrcSampleIndex = 0) => source.CopyTo(this, startSrcSampleIndex);
 
     /// <summary>
     /// Copies audio data from an <see cref="AVFrame"/> into this buffer.
@@ -440,7 +435,7 @@ public sealed unsafe class AudioBuffer : IDisposable
         else
         {
             using SwrContext context = new(source.ChannelLayout, source.SampleFormat, source.SampleRate, source.ChannelLayout, Format, source.SampleRate);
-            var res = context.Convert(source, this, Samples);
+            AVResult32 res = context.Convert(source, this, Samples);
             res.ThrowIfError();
             return res;
         }
@@ -457,12 +452,7 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// Thrown when the buffer is not packed (i.e., <see langword="false"/> for <see cref="IsPacked"/>).
     /// </exception>
     /// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="byte"/> representing the packed audio data.</returns>
-    public ReadOnlySpan<byte> AsReadOnlySpanPacked()
-    {
-        if (!IsPacked)
-            throw new NotSupportedException();
-        return new ReadOnlySpan<byte>(buffer.Buffer, Samples * BytesPerSample * Channels);
-    }
+    public ReadOnlySpan<byte> AsReadOnlySpanPacked() => !IsPacked ? throw new NotSupportedException() : new ReadOnlySpan<byte>(buffer.Buffer, Samples * BytesPerSample * Channels);
 
     /// <summary>
     /// Returns a <see cref="ReadOnlySpan{T}"/> of packed audio data, where the samples are tightly packed in the buffer.
@@ -475,12 +465,7 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// Thrown when the buffer is not packed (i.e., <see langword="false"/> for <see cref="IsPacked"/>).
     /// </exception>
     /// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="byte"/> representing the packed audio data.</returns>
-    public Span<byte> AsSpanPacked()
-    {
-        if (!IsPacked)
-            throw new NotSupportedException();
-        return new Span<byte>(buffer.Buffer, Samples * BytesPerSample * Channels);
-    }
+    public Span<byte> AsSpanPacked() => !IsPacked ? throw new NotSupportedException() : new Span<byte>(buffer.Buffer, Samples * BytesPerSample * Channels);
 
     #region Dispose
 
@@ -499,7 +484,7 @@ public sealed unsafe class AudioBuffer : IDisposable
                 // TODO: Release managed resources if needed
             }
 
-            var b = buffer.Reference;
+            AutoGen._AVBufferRef* b = buffer.Reference;
             ffmpeg.av_buffer_unref(&b);
             buffer = default;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.HW;
+﻿namespace FFmpeg.HW;
 /// <summary>
 /// Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.
 /// </summary>

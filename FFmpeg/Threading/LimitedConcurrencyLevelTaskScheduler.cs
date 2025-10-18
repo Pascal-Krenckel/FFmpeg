@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Threading;
+﻿namespace FFmpeg.Threading;
 
 // Provides a task scheduler that ensures a maximum concurrency level while
 // running on top of the thread pool.
@@ -46,42 +42,39 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
     }
 
     // Inform the ThreadPool that there's work to be executed for this scheduler.
-    private void NotifyThreadPoolOfPendingWork()
-    {
-        _ = ThreadPool.UnsafeQueueUserWorkItem(_ =>
-        {
-            // Note that the current thread is now processing work items.
-            // This is necessary to enable inlining of tasks into this thread.
-            _currentThreadIsProcessingItems = true;
-            try
-            {
-                // Process all available items in the queue.
-                while (true)
-                {
-                    Task item;
-                    lock (_tasks)
-                    {
-                        // When there are no more items to be processed,
-                        // note that we're done processing, and get out.
-                        if (_tasks.Count == 0)
-                        {
-                            --_delegatesQueuedOrRunning;
-                            break;
-                        }
+    private void NotifyThreadPoolOfPendingWork() => _ = ThreadPool.UnsafeQueueUserWorkItem(_ =>
+                                                         {
+                                                             // Note that the current thread is now processing work items.
+                                                             // This is necessary to enable inlining of tasks into this thread.
+                                                             _currentThreadIsProcessingItems = true;
+                                                             try
+                                                             {
+                                                                 // Process all available items in the queue.
+                                                                 while (true)
+                                                                 {
+                                                                     Task item;
+                                                                     lock (_tasks)
+                                                                     {
+                                                                         // When there are no more items to be processed,
+                                                                         // note that we're done processing, and get out.
+                                                                         if (_tasks.Count == 0)
+                                                                         {
+                                                                             --_delegatesQueuedOrRunning;
+                                                                             break;
+                                                                         }
 
-                        // Get the next item from the queue
-                        item = _tasks.First.Value;
-                        _tasks.RemoveFirst();
-                    }
+                                                                         // Get the next item from the queue
+                                                                         item = _tasks.First.Value;
+                                                                         _tasks.RemoveFirst();
+                                                                     }
 
-                    // Execute the task we pulled out of the queue
-                    base.TryExecuteTask(item);
-                }
-            }
-            // We're done processing items on the current thread
-            finally { _currentThreadIsProcessingItems = false; }
-        }, null);
-    }
+                                                                     // Execute the task we pulled out of the queue
+                                                                     _ = base.TryExecuteTask(item);
+                                                                 }
+                                                             }
+                                                             // We're done processing items on the current thread
+                                                             finally { _currentThreadIsProcessingItems = false; }
+                                                         }, null);
 
     // Attempts to execute the specified task on the current thread.
     protected sealed override bool TryExecuteTaskInline(Task task, bool taskWasPreviouslyQueued)
@@ -93,10 +86,7 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         // If the task was previously queued, remove it from the queue
         if (taskWasPreviouslyQueued)
             // Try to run the task.
-            if (TryDequeue(task))
-                return base.TryExecuteTask(task);
-            else
-                return false;
+            return TryDequeue(task) && base.TryExecuteTask(task);
         else
             return base.TryExecuteTask(task);
     }
@@ -115,8 +105,9 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         if (maxDegreeOfParallelism < 1)
             throw new ArgumentOutOfRangeException("maxDegreeOfParallelism");
         if (Monitor.TryEnter(_tasks))
+        {
             try  // try enter _tasks and if successful, adjust the running threads if needed
-            {  
+            {
                 _maxDegreeOfParallelism = maxDegreeOfParallelism;
                 if (_delegatesQueuedOrRunning < _maxDegreeOfParallelism)
                 {
@@ -127,8 +118,11 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
                 }
             }
             finally { Monitor.Exit(_tasks); }
+        }
         else // tasks is locked, just set the value, it will be used when possible
+        {
             _maxDegreeOfParallelism = maxDegreeOfParallelism;
+        }
     }
 
     // Gets an enumerable of the tasks currently scheduled on this scheduler.
@@ -138,10 +132,7 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         try
         {
             Monitor.TryEnter(_tasks, ref lockTaken);
-            if (lockTaken)
-                return _tasks;
-            else
-                throw new NotSupportedException();
+            return lockTaken ? (IEnumerable<Task>)_tasks : throw new NotSupportedException();
         }
         finally
         {

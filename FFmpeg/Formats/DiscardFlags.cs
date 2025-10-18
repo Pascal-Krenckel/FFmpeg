@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Formats;
+﻿namespace FFmpeg.Formats;
 /// <summary>
 /// Flags to specify the discard behavior for frames during processing.
 /// </summary>

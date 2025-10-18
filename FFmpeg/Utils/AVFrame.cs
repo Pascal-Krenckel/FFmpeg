@@ -1,7 +1,7 @@
-﻿using FFmpeg.AutoGen;
+﻿using FFmpeg.Audio;
+using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
 using FFmpeg.Collections;
-using FFmpeg.Audio;
 using FFmpeg.Images;
 
 namespace FFmpeg.Utils;
@@ -33,9 +33,9 @@ public sealed unsafe class AVFrame : IDisposable
         if (index < 8)
             return (int)(Frame->buf[(uint)index] != null ? Frame->buf[(uint)index]->size : 0);
         index -= 8;
-        if (index < Frame->nb_extended_buf)
-            return (int)(Frame->extended_buf[(uint)index] != null ? Frame->extended_buf[(uint)index]->size : 0);
-        return 0;
+        return index < Frame->nb_extended_buf
+            ? (int)(Frame->extended_buf[(uint)index] != null ? Frame->extended_buf[(uint)index]->size : 0)
+            : 0;
 
     }
 
@@ -83,12 +83,12 @@ public sealed unsafe class AVFrame : IDisposable
         {
             if (ExtendedData == null)
                 return [];
-            else if (IsVideo)
-                return new(Frame->extended_data, PixelFormat.PlaneCount());
-            else if (SampleFormat.IsPacked())
-                return new(Frame->extended_data, 1);
             else
-                return new(Frame->extended_data, Frame->ch_layout.nb_channels);
+            {
+                return IsVideo
+                ? new(Frame->extended_data, PixelFormat.PlaneCount())
+                : SampleFormat.IsPacked() ? new(Frame->extended_data, 1) : new(Frame->extended_data, Frame->ch_layout.nb_channels);
+            }
         }
     }
 
@@ -108,8 +108,8 @@ public sealed unsafe class AVFrame : IDisposable
             AVResult32 res = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, in linesize);
             res.ThrowIfError();
             int length = (int)sizes[uindex];
-            byte* data = linesize[uindex] >= 0 ?  ExtendedData[index] : ExtendedData[index] - length; 
-            return new(data,length);
+            byte* data = linesize[uindex] >= 0 ? ExtendedData[index] : ExtendedData[index] - length;
+            return new(data, length);
         }
         throw new NotSupportedException("Only audio or video frames are supported");
     }
@@ -118,16 +118,16 @@ public sealed unsafe class AVFrame : IDisposable
     {
         if (bufferIndex < 8)
         {
-            if (Frame->buf[(uint)bufferIndex] == null)
-                return [];
-            return new(Frame->buf[(uint)bufferIndex]->data, (int)Frame->buf[(uint)bufferIndex]->size);
+            return Frame->buf[(uint)bufferIndex] == null
+                ? []
+                : new(Frame->buf[(uint)bufferIndex]->data, (int)Frame->buf[(uint)bufferIndex]->size);
         }
         bufferIndex -= 8;
-        if (bufferIndex >= Frame->nb_extended_buf)
-            return [];
-        if (Frame->extended_buf[(uint)bufferIndex] == null)
-            return [];
-        return new(Frame->extended_buf[(uint)bufferIndex]->data, (int)Frame->extended_buf[(uint)bufferIndex]->size);
+        return bufferIndex >= Frame->nb_extended_buf
+            ? []
+            : Frame->extended_buf[(uint)bufferIndex] == null
+            ? []
+            : new(Frame->extended_buf[(uint)bufferIndex]->data, (int)Frame->extended_buf[(uint)bufferIndex]->size);
     }
 
     /// <summary>
@@ -238,13 +238,7 @@ public sealed unsafe class AVFrame : IDisposable
     /// A timestamp (in stream time base units) representing when the frame should be presented. 
     /// This is typically the PTS; if the PTS is not set, the best-effort timestamp is returned instead.
     /// </returns>
-    public long GetPresentationTimestamp()
-    {
-        if (PresentationTimestamp != ffmpeg.AV_NOPTS_VALUE)
-            return PresentationTimestamp;
-        else
-            return BestEffortTimestamp;
-    }
+    public long GetPresentationTimestamp() => PresentationTimestamp != ffmpeg.AV_NOPTS_VALUE ? PresentationTimestamp : BestEffortTimestamp;
 
     /// <summary>
     /// Gets or sets the decoding timestamp (DTS) of the packet that triggered the return of this frame.
@@ -467,12 +461,9 @@ public sealed unsafe class AVFrame : IDisposable
     /// <param name="align">Specifies the alignment requirement for the buffer. Defaults to 1.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the success or failure of the buffer allocation.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the frame already has a buffer.</exception>
-    public AVResult32 GetBuffer(int align = 1)
-    {
-        if (HasBuffer)
-            throw new InvalidOperationException("The frame already has a buffer, to avoid memory leakage, this operation is not permitted.");
-        return ffmpeg.av_frame_get_buffer(Frame, align);
-    }
+    public AVResult32 GetBuffer(int align = 1) => HasBuffer
+            ? throw new InvalidOperationException("The frame already has a buffer, to avoid memory leakage, this operation is not permitted.")
+            : (AVResult32)ffmpeg.av_frame_get_buffer(Frame, align);
 
     /// <summary>
     /// Unreferences the frame, releasing any associated resources but keeping the frame structure allocated.

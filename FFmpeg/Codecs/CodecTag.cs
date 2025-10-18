@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Codecs;
+﻿namespace FFmpeg.Codecs;
 /// <summary>
 /// Represents a codec tag, combining a codec ID and a FourCC (Four Character Code) tag.
 /// </summary>

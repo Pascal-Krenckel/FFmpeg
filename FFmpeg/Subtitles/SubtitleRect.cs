@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Runtime.InteropServices;
 
 namespace FFmpeg.Subtitles;
 /// <summary>
@@ -68,13 +65,13 @@ public unsafe struct SubtitleRect
     /// Gets a span over the bitmap data associated with the subtitle. 
     /// This span references up to 4 planes of image data for bitmap subtitles.
     /// </summary>
-    public Span<IntPtr> BitmapData => new Span<IntPtr>(&rects->data, 4);
+    public Span<IntPtr> BitmapData => new(&rects->data, 4);
 
     /// <summary>
     /// Gets a span over the line sizes (stride) for each plane of the bitmap data.
     /// This span is used to determine how many bytes each line of the bitmap takes.
     /// </summary>
-    public Span<int> LineSize => new Span<int>(&rects->linesize, 4);
+    public Span<int> LineSize => new(&rects->linesize, 4);
 
     /// <summary>
     /// Gets or sets the plain text subtitle content. 
@@ -120,9 +117,5 @@ public unsafe struct SubtitleRect
     /// If plain text is present, it will return that; otherwise, it returns the ASS-formatted content.
     /// </summary>
     /// <returns>The plain text or ASS subtitle content as a string.</returns>
-    public override string ToString()
-    {
-        if (Text != null) return Text;
-        return ASS;
-    }
+    public override string ToString() => Text ?? ASS;
 }

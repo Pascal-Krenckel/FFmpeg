@@ -2,16 +2,13 @@
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Codecs;
 /// <summary>
 /// A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure, 
 /// providing safe access to codec parameters.
 /// </summary>
-public unsafe struct CodecParameters_ref :  ICodecParameters
+public unsafe struct CodecParameters_ref : ICodecParameters
 {
     internal AutoGen._AVCodecParameters* codecParameters;
     AutoGen._AVCodecParameters* ICodecParameters.Parameters => codecParameters;
@@ -29,13 +26,7 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// </param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="existingPtr"/> is null.</exception>
     /// <exception cref="OutOfMemoryException">Thrown if memory allocation fails during copying.</exception>
-    internal CodecParameters_ref(AutoGen._AVCodecParameters* existingPtr)
-    {
-        if (existingPtr == null)
-            throw new ArgumentNullException(nameof(existingPtr));
-        else codecParameters = existingPtr;
-
-    }
+    internal CodecParameters_ref(AutoGen._AVCodecParameters* existingPtr) => codecParameters = existingPtr == null ? throw new ArgumentNullException(nameof(existingPtr)) : existingPtr;
 
     /// <summary>
     /// Copies the contents of another <see cref="CodecParameters"/> instance to this instance.
@@ -45,7 +36,8 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyFrom(ICodecParameters other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_copy(codecParameters, other.Parameters);
         if (result < 0)
@@ -62,7 +54,8 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyFrom(CodecContext other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_from_context(codecParameters, other.context);
         if (result < 0)
@@ -79,7 +72,8 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
     public void CopyTo(CodecContext other)
     {
-        if (other == null) throw new ArgumentNullException(nameof(other));
+        if (other == null)
+            throw new ArgumentNullException(nameof(other));
 
         int result = ffmpeg.avcodec_parameters_to_context(other.context, codecParameters);
         if (result < 0)
@@ -120,7 +114,7 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// Gets the extra binary data needed for initializing the decoder.
     /// </summary>
     public Span<byte> ExtraData => codecParameters->extradata_size == 0 || codecParameters->extradata == null
-                ? ([])
+                ? []
                 : new Span<byte>(codecParameters->extradata, codecParameters->extradata_size);
 
     /// <summary>
@@ -317,12 +311,12 @@ public unsafe struct CodecParameters_ref :  ICodecParameters
     /// <inheritdoc/>
     public ChannelLayout ChannelLayout
     {
-        get => new(codecParameters->ch_layout,false);
+        get => new(codecParameters->ch_layout, false);
         set
         {
-            var layout = value.layout;
+            _AVChannelLayout layout = value.layout;
             ffmpeg.av_channel_layout_uninit(&codecParameters->ch_layout);
-            ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
+            _ = ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
         }
     }
 

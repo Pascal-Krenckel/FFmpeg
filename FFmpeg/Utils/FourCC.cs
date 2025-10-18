@@ -43,7 +43,8 @@ public readonly struct FourCC : IEquatable<FourCC>
     /// <returns>A string containing the four-character code.</returns>
     public override string ToString()
     {
-        if (_value == 0) return string.Empty;
+        if (_value == 0)
+            return string.Empty;
         ReadOnlySpan<char> chars = stackalloc[]
         {
             (char)(_value & 0xFF),

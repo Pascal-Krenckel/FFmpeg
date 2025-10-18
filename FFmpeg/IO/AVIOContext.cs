@@ -29,10 +29,7 @@ public unsafe class AVIOContext : IDisposable
     /// Initializes a new instance of the <see cref="AVIOContext"/> class with the specified AVIOContext pointer.
     /// </summary>
     /// <param name="ctx">Pointer to the unmanaged AVIOContext structure.</param>
-    internal AVIOContext(AutoGen._AVIOContext** ctx)
-    {
-        context = ctx;
-    }
+    internal AVIOContext(AutoGen._AVIOContext** ctx) => context = ctx;
 
     // You have to use SetContext
     internal AVIOContext() { }
@@ -54,7 +51,7 @@ public unsafe class AVIOContext : IDisposable
         {
             if (close)
                 _ = ffmpeg.avio_closep(context);
-            else 
+            else
                 ffmpeg.avio_context_free(context);
 
             context = null;
@@ -83,9 +80,8 @@ public unsafe class AVIOContext : IDisposable
 
     internal static AVResult32 Open(AutoGen._AVIOContext** pb, string filename, int flags, out AVIOContext? ioContext)
     {
-        var res = ffmpeg.avio_open(pb, filename, flags);
-        if (res >= 0) ioContext = new AVIOContext(pb) { close = true };
-        else ioContext = null;
+        int res = ffmpeg.avio_open(pb, filename, flags);
+        ioContext = res >= 0 ? new AVIOContext(pb) { close = true } : null;
         return res;
     }
 }

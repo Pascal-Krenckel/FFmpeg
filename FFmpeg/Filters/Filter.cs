@@ -18,13 +18,11 @@ public readonly unsafe struct Filter : IEquatable<Filter>
     /// <param name="filter">Pointer to the FFmpeg filter.</param>
     internal Filter(AutoGen._AVFilter* filter) => this.filter = filter;
 
-    private static ReadOnlyCollection<Filter>? allFilters;
-
     /// <summary>
     /// Gets a read-only collection of all available filters in FFmpeg.
     /// The filters are initialized lazily and cached for future access.
     /// </summary>
-    public static ReadOnlyCollection<Filter> AllFilters => allFilters ??= InitAllFilters();
+    public static ReadOnlyCollection<Filter> AllFilters => field ??= InitAllFilters();
 
     /// <summary>
     /// Initializes and retrieves all available FFmpeg filters.

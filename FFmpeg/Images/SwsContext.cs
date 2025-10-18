@@ -198,7 +198,8 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
     public AVResult32 Convert(AVFrame src, Span<byte> dst, int dstAlign = 1)
     {
         int size = GetDestinationBufferSize(dstAlign);
-        if (dst.Length < size) return AVResult32.InvalidArgument;
+        if (dst.Length < size)
+            return AVResult32.InvalidArgument;
         fixed (byte* dstPtr = dst)
             return Convert(src, (nint)dstPtr, dstAlign);
     }
@@ -222,8 +223,10 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
         Span<int> srcLines = stackalloc int[4];
 
         _ = src.GetPlanes(srcData, srcLines);
-        if (!dst.HasBuffer) dst.GetBuffer().ThrowIfError();
-        else dst.MakeWriteable().ThrowIfError();
+        if (!dst.HasBuffer)
+            dst.GetBuffer().ThrowIfError();
+        else
+            dst.MakeWriteable().ThrowIfError();
         fixed (void* dstDataPtr = srcData, dstLinesPtr = srcLines)
             return ffmpeg.sws_scale(context, (byte**)dstDataPtr, (int*)dstLinesPtr, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
@@ -245,9 +248,12 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
         AutoGen.byte_ptrArray4 srcData = new();
         AutoGen.int_array4 srcLines = new();
         AVResult32 res = ffmpeg.av_image_fill_arrays(ref srcData, ref srcLines, (byte*)src, (AutoGen._AVPixelFormat)SourceFormat, SourceWidth, SourceHeight, srcAlign);
-        if (res.IsError) return res;
-        if (!dst.HasBuffer) dst.GetBuffer().ThrowIfError();
-        else dst.MakeWriteable().ThrowIfError();
+        if (res.IsError)
+            return res;
+        if (!dst.HasBuffer)
+            dst.GetBuffer().ThrowIfError();
+        else
+            dst.MakeWriteable().ThrowIfError();
         return ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
 
@@ -262,7 +268,8 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
     public AVResult32 Convert(Span<byte> src, AVFrame dst, int srcAlign = 1)
     {
         int size = GetSourceBufferSize(srcAlign);
-        if (src.Length < size) return AVResult32.InvalidArgument;
+        if (src.Length < size)
+            return AVResult32.InvalidArgument;
         fixed (byte* srcPtr = src)
             return Convert((nint)srcPtr, dst, srcAlign);
     }
@@ -281,7 +288,8 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
         AutoGen.byte_ptrArray4 srcData = new();
         AutoGen.int_array4 srcLines = new();
         AVResult32 res = AutoGen.ffmpeg.av_image_fill_arrays(ref srcData, ref srcLines, (byte*)src, (AutoGen._AVPixelFormat)SourceFormat, SourceWidth, SourceHeight, srcAlign);
-        if (res.IsError) return res;
+        if (res.IsError)
+            return res;
         AutoGen.byte_ptrArray4 dstData = new();
         AutoGen.int_array4 dstLines = new();
         res = AutoGen.ffmpeg.av_image_fill_arrays(ref dstData, ref dstLines, (byte*)dst, (AutoGen._AVPixelFormat)DestinationFormat, DestinationWidth, DestinationHeight, dstAlign);
@@ -301,11 +309,15 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
     /// <seealso cref="Convert(IntPtr, IntPtr, int, int)"/>
     public AVResult32 Convert(IntPtr src, ImageInfo srcInfo, IntPtr dst, ImageInfo dstInfo)
     {
-        if (srcInfo.Format != SourceFormat) throw new ArgumentException();
-        if (srcInfo.Width != SourceWidth) throw new ArgumentException();
-        if (srcInfo.Height != SourceHeight) throw new ArgumentException();
-        if (dstInfo.Format != DestinationFormat) throw new ArgumentException();
-        return dstInfo.Width != DestinationWidth
+        if (srcInfo.Format != SourceFormat)
+            throw new ArgumentException();
+        if (srcInfo.Width != SourceWidth)
+            throw new ArgumentException();
+        return srcInfo.Height != SourceHeight
+            ? throw new ArgumentException()
+            : dstInfo.Format != DestinationFormat
+            ? throw new ArgumentException()
+            : dstInfo.Width != DestinationWidth
             ? throw new ArgumentException()
             : dstInfo.Height != DestinationHeight ? throw new ArgumentException() : Convert(src, dst, srcInfo.Alignment, dstInfo.Alignment);
     }
@@ -338,7 +350,8 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
             throw new ArgumentException();
         if (dstPlanes.Length < dstPlaneCount)
             throw new ArgumentException();
-        if (dstLineSize.Length < dstPlaneCount) throw new ArgumentException();
+        if (dstLineSize.Length < dstPlaneCount)
+            throw new ArgumentException();
 
         fixed (void* srcPlanes_ptr = srcPlanes, srcLineSize_ptr = srcLineSize, dstPlanes_ptr = dstPlanes, dstLineSize_ptr = dstLineSize)
             return AutoGen.ffmpeg.sws_scale(context, (byte**)srcPlanes_ptr, (int*)srcLineSize_ptr, 0, SourceHeight, (byte**)dstPlanes_ptr, (int*)dstLineSize_ptr);
@@ -444,7 +457,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
 
     public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, Codecs.CodecContext dst)
     {
-        if(context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
+        if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
             context?.Dispose();

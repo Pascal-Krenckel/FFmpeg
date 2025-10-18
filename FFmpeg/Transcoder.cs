@@ -6,12 +6,7 @@ using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Logging;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace FFmpeg;
 // a one to one transcoder supporting -ss
@@ -23,11 +18,11 @@ public sealed class Transcoder : IDisposable
 
     private TimeSpan duration;
     private TimeSpan start;
-    private AVFrame readFrame = AVFrame.Allocate();
-    private AVFrame filteredFrame = AVFrame.Allocate();
-    private AVFrame convertedFrame = AVFrame.Allocate();
-    private AVPacket readPacket = AVPacket.Allocate();
-    private AVPacket writePacket = AVPacket.Allocate();
+    private readonly AVFrame readFrame = AVFrame.Allocate();
+    private readonly AVFrame filteredFrame = AVFrame.Allocate();
+    private readonly AVFrame convertedFrame = AVFrame.Allocate();
+    private readonly AVPacket readPacket = AVPacket.Allocate();
+    private readonly AVPacket writePacket = AVPacket.Allocate();
 
     // PreviewOutputStreamIndex must point to a valid audio/video stream. If the stream is just copied, the frame gets decoded every 10s, can be set see UpdateInterval
     // Only makes sense for video streams
@@ -40,11 +35,11 @@ public sealed class Transcoder : IDisposable
     private DateTime lastUpdate = DateTime.MinValue;
     // if < Zero no preview frame will additionally get decoded 
     public TimeSpan UpdateInterval { get; set; } = TimeSpan.FromSeconds(10);
-    public TimeSpan Duration => duration > TimeSpan.Zero ?  duration : OutputStream.Max(s => (s.StartTime + s.Duration) * s.TimeBase)-start;
+    public TimeSpan Duration => duration > TimeSpan.Zero ? duration : OutputStream.Max(s => (s.StartTime + s.Duration) * s.TimeBase) - start;
 
 
 
-    private Subtitles.Subtitle subtitle = new();
+    private readonly Subtitles.Subtitle subtitle = new();
 
 
     private Transcoder(MediaSource source, MediaSink sink)
@@ -67,19 +62,19 @@ public sealed class Transcoder : IDisposable
     public IReadOnlyList<CodecContext?> OutputCodecs => Sink.CodecContexts;
 
 
-    Dictionary<int, List<TranscodingMap>> transCoderMap = [];
+    private readonly Dictionary<int, List<TranscodingMap>> transCoderMap = [];
 
 
     // filter must have 1 ctx called in and 1 ctx called out
     public int MapStream(int sourceIndex, CodecContext? sinkCodec, FilterGraph? filter)
     {
         int sinkIndex = Sink.Streams.Count;
-        var stream = Sink.AddStream(sinkCodec);
+        AVStream stream = Sink.AddStream(sinkCodec);
         stream.Metadata.Init(InputStreams[sourceIndex].Metadata);
 
         if (transCoderMap.Any(kv => kv.Value.Any(map => map.OutputIndex == sinkIndex)))
             throw new ArgumentException(nameof(sinkIndex), $"The output stream #{sinkIndex} is already linked.");
-        if (!transCoderMap.TryGetValue(sourceIndex, out var list))
+        if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? list))
             transCoderMap[sourceIndex] = list = [];
         FilterContext? bfSink = null;
         if (filter != null)
@@ -91,18 +86,18 @@ public sealed class Transcoder : IDisposable
         ChannelLayout l = null!;
         if (!(bfSink?.BufferSinkChannelLayout(out l) >= 0))
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
-        using var layout = l;
-        var colorRange = bfSink?.BufferSinkColorRange() ?? InputCodecs[sourceIndex].ColorRange;
-        var colorSpace = bfSink?.BufferSinkColorSpace() ?? InputCodecs[sourceIndex].ColorSpace;
+        using ChannelLayout layout = l;
+        ColorRange colorRange = bfSink?.BufferSinkColorRange() ?? InputCodecs[sourceIndex].ColorRange;
+        ColorSpace colorSpace = bfSink?.BufferSinkColorSpace() ?? InputCodecs[sourceIndex].ColorSpace;
 
-        var frameRate =  InputCodecs[sourceIndex].FrameRate;
+        Rational frameRate = InputCodecs[sourceIndex].FrameRate;
         if (bfSink?.BufferSinkFrameRate().IsValidTimeBase == true)
             frameRate = bfSink.BufferSinkFrameRate();
 
 
-        var sampleAspectRatio = bfSink?.BufferSinkSampleAspectRatio() ?? InputCodecs[sourceIndex].SampleAspectRatio;
-        var sampleFmt = bfSink?.BufferSinkSampleFormat() ?? InputCodecs[sourceIndex].SampleFormat;
-        var sampleRate = bfSink?.BufferSinkSampleRate() ?? InputCodecs[sourceIndex].SampleRate;
+        Rational sampleAspectRatio = bfSink?.BufferSinkSampleAspectRatio() ?? InputCodecs[sourceIndex].SampleAspectRatio;
+        SampleFormat sampleFmt = bfSink?.BufferSinkSampleFormat() ?? InputCodecs[sourceIndex].SampleFormat;
+        int sampleRate = bfSink?.BufferSinkSampleRate() ?? InputCodecs[sourceIndex].SampleRate;
 
         if (sinkCodec != null)
         {
@@ -116,9 +111,9 @@ public sealed class Transcoder : IDisposable
                 sinkCodec.PixelFormat = sinkCodec.Codec.GetBestPixelFormat(pixFmt);
             if (sinkCodec.SampleFormat == SampleFormat.None)
             {
-                if (sinkCodec.Codec.SupportedSampleFormats.Contains(sampleFmt))
-                    sinkCodec.SampleFormat = sampleFmt;
-                else sinkCodec.SampleFormat = sinkCodec.Codec.SupportedSampleFormats.FirstOrDefault(SampleFormat.None);
+                sinkCodec.SampleFormat = sinkCodec.Codec.SupportedSampleFormats.Contains(sampleFmt)
+                    ? sampleFmt
+                    : sinkCodec.Codec.SupportedSampleFormats.FirstOrDefault(SampleFormat.None);
             }
             if (sinkCodec.CodecType == MediaType.Audio && (!sinkCodec.ChannelLayout.Valid || sinkCodec.ChannelLayout.Channels == 0))
                 sinkCodec.ChannelLayout.SetReferencedObject(l);
@@ -135,7 +130,10 @@ public sealed class Transcoder : IDisposable
             Sink.SetCodecContext(sinkCodec, sinkIndex);
         }
         else
+        {
             OutputStream[sinkIndex].CodecParameters.CopyFrom(InputStreams[sourceIndex].CodecParameters);
+        }
+
         if (filter != null)
         {
             if (sinkCodec == null)
@@ -143,9 +141,9 @@ public sealed class Transcoder : IDisposable
                 CodecContext encoder = CodecContext.Allocate(Codec.FindEncoder(InputCodecs[sourceIndex].CodecID));
                 if (encoder.CodecType == Utils.MediaType.Audio)
                 {
-                    var fctx = filter.Filters.First(f => f.Name=="out");
+                    FilterContext fctx = filter.Filters.First(f => f.Name == "out");
                     encoder.SampleRate = fctx.BufferSinkSampleRate();
-                    fctx.BufferSinkChannelLayout(out var ch).ThrowIfError();
+                    fctx.BufferSinkChannelLayout(out ChannelLayout? ch).ThrowIfError();
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
                     encoder.SampleFormat = fctx.BufferSinkSampleFormat();
@@ -153,7 +151,7 @@ public sealed class Transcoder : IDisposable
                 }
                 else if (encoder.CodecType == Utils.MediaType.Video)
                 {
-                    var fctx = filter.Filters.First(f => f.Name=="out");
+                    FilterContext fctx = filter.Filters.First(f => f.Name == "out");
                     encoder.TimeBase = fctx.BufferSinkTimeBase();
                     encoder.PixelFormat = fctx.BufferSinkPixelFormat();
                     encoder.FrameRate = fctx.BufferSinkFrameRate();
@@ -166,13 +164,16 @@ public sealed class Transcoder : IDisposable
             list.Add(TranscodingMap.Create(sourceIndex, sinkIndex, filter));
         }
         else
+        {
             list.Add(TranscodingMap.Create(sourceIndex, sinkIndex));
+        }
+
         return sinkIndex;
     }
     //Copy
     public int MapStream(int sourceIndex) => MapStream(sourceIndex, null, null);
     public int MapStream(int sourceIndex, CodecContext sinkCodec) => MapStream(sourceIndex, sinkCodec, null);
-    public int MapStream(int sourceIndex, FilterGraph filter) => MapStream(sourceIndex,null, filter);
+    public int MapStream(int sourceIndex, FilterGraph filter) => MapStream(sourceIndex, null, filter);
 
 
     public AVResult32 WriteTrailer() => Sink.WriteTrailer();
@@ -183,25 +184,29 @@ public sealed class Transcoder : IDisposable
         for (int i = 0; i < Source.Streams.Count; i++)
         {
             int sourceIndex = i;
-            if (!transCoderMap.TryGetValue(i, out var maps))
+            if (!transCoderMap.TryGetValue(i, out List<TranscodingMap>? maps))
+            {
                 Source.Streams[i].Discard = DiscardFlags.All;
-            else foreach (var map in maps)
+            }
+            else
+            {
+                foreach (TranscodingMap map in maps)
                 {
-                    var sourceStream = Source.Streams[sourceIndex];
-                    var sinkStream = Sink.Streams[map.OutputIndex];
-                    var sinkContext = Sink.CodecContexts[map.OutputIndex];
+                    AVStream sourceStream = Source.Streams[sourceIndex];
+                    AVStream sinkStream = Sink.Streams[map.OutputIndex];
+                    CodecContext? sinkContext = Sink.CodecContexts[map.OutputIndex];
 
                     if (sinkContext != null)
                         sinkStream.CodecParameters.CopyFrom(sinkContext);
                     if (!sinkStream.TimeBase.IsValidTimeBase)
-                        if (sinkContext?.PacketTimeBase.IsValidTimeBase == true)
-                            sinkStream.TimeBase = sinkContext!.PacketTimeBase;
-                        else if (sinkContext?.TimeBase.IsValidTimeBase == true)
-                            sinkStream.TimeBase = sinkContext!.TimeBase;
-                        else sinkStream.TimeBase = sourceStream.TimeBase;
+                    {
+                        sinkStream.TimeBase = sinkContext?.PacketTimeBase.IsValidTimeBase == true
+                            ? sinkContext!.PacketTimeBase
+                            : sinkContext?.TimeBase.IsValidTimeBase == true ? sinkContext!.TimeBase : sourceStream.TimeBase;
+                    }
 
-                    long startTB  = (long)((Rational)startTime/sinkStream.TimeBase);
-                    long durationTB = (long)((Rational)duration/sinkStream.TimeBase);
+                    long startTB = (long)((Rational)startTime / sinkStream.TimeBase);
+                    long durationTB = (long)((Rational)duration / sinkStream.TimeBase);
 
                     sinkStream.StartTime = sinkStream.TimeBase.Rescale(sourceStream.StartTime, sourceStream.TimeBase); // rescale start time
                     sinkStream.Duration = sinkStream.TimeBase.Rescale(sourceStream.Duration, sourceStream.TimeBase); // rescale duration
@@ -216,8 +221,9 @@ public sealed class Transcoder : IDisposable
                         sinkStream.Duration = durationTB;
                     }
                 }
+            }
         }
-        this.start = startTime;
+        start = startTime;
         this.duration = duration;
         Sink.OpenCodecs();
         Sink.WriteHeader();
@@ -233,10 +239,14 @@ public sealed class Transcoder : IDisposable
     private enum DrainState { None, DecoderDraining = 0b1, DecoderDrained = 0b11, FilterDraining = 0b100, FilterDrained = 0b1100, EncoderDraining = 0b10000, EncoderDrained = 0b110000 };
     private void DrainDecoders()
     {
-        if (drainState.HasFlag(DrainState.DecoderDraining)) return;
+        if (drainState.HasFlag(DrainState.DecoderDraining))
+            return;
         for (int i = 0; i < Source.CodecContexts.Count; i++)
+        {
             if (Source.CodecContexts[i].CodecType is MediaType.Video or MediaType.Audio)
                 Source.CodecContexts[i]!.DrainDecoder().ThrowIfError();
+        }
+
         drainState = DrainState.DecoderDraining;
     }
 
@@ -247,52 +257,48 @@ public sealed class Transcoder : IDisposable
         {
             res = ReadPacket();
 
-            if (res != AVResult32.EndOfFile)
-                res = ProcessPacket();
-            else res = HandleEndOfFile();
+            res = res != AVResult32.EndOfFile ? ProcessPacket() : HandleEndOfFile();
         } while (res.IsTryAgain);
         return res;
     }
 
-    private AVResult32 ProcessPacket()
-    {
-        if (Source.Streams[readPacket.StreamIndex].MediaType is MediaType.Video or MediaType.Audio)
-            return ProcessPacketAV();
-        else if (Source.Streams[readPacket.StreamIndex].MediaType is MediaType.Subtitle)
-            return ProcessPacketSubtitle();
-        else return ProcessJustCopy();
-    }
+    private AVResult32 ProcessPacket() => Source.Streams[readPacket.StreamIndex].MediaType is MediaType.Video or MediaType.Audio
+            ? ProcessPacketAV()
+            : Source.Streams[readPacket.StreamIndex].MediaType is MediaType.Subtitle ? ProcessPacketSubtitle() : ProcessJustCopy();
 
     public void Close() => Dispose();
     private AVResult32 HandleEndOfFile()
     {
         DrainDecoders();
         AVResult32 res = ReadFrameDraining();
-        if (res != AVResult32.EndOfFile)
-            if (res.IsError) return res;
-            else return ProcessFrame(res);
-        else if (!drainState.HasFlag(DrainState.FilterDrained))
-            return DrainFilters();
-        else return DrainEncoders();
+        return res != AVResult32.EndOfFile
+            ? res.IsError ? res : ProcessFrame(res)
+            : !drainState.HasFlag(DrainState.FilterDrained) ? DrainFilters() : DrainEncoders();
 
     }
 
     private AVResult32 DrainEncoders()
     {
         if (!drainState.HasFlag(DrainState.EncoderDraining))
-            foreach (var encoder in Sink.CodecContexts.Where(ctx => ctx != null))
+        {
+            foreach (CodecContext? encoder in Sink.CodecContexts.Where(ctx => ctx != null))
                 encoder!.SendFrame(null).ThrowIfError();
+        }
+
         drainState |= DrainState.EncoderDraining;
         if (drainState.HasFlag(DrainState.EncoderDrained))
             return AVResult32.EndOfFile;
 
         for (int i = 0; i < Sink.CodecContexts.Count; i++)
         {
-            if (Sink.CodecContexts[i] == null) continue;
-            var encoder = Sink.CodecContexts[i]!;
-            var res = encoder.ReceivePacket(writePacket);
-            if (res == AVResult32.EndOfFile) continue;
-            if (res.IsError) return res;
+            if (Sink.CodecContexts[i] == null)
+                continue;
+            CodecContext encoder = Sink.CodecContexts[i]!;
+            AVResult32 res = encoder.ReceivePacket(writePacket);
+            if (res == AVResult32.EndOfFile)
+                continue;
+            if (res.IsError)
+                return res;
 
             writePacket.PresentationTimestamp -= start / writePacket.TimeBase;
             writePacket.DecompressionTimestamp -= start / writePacket.TimeBase;
@@ -311,21 +317,30 @@ public sealed class Transcoder : IDisposable
     private AVResult32 DrainFilters()
     {
         if (!drainState.HasFlag(DrainState.FilterDraining))
-            foreach (var map in transCoderMap.SelectMany(kv => kv.Value)) _ = map.InputFilter?.SendFrame(null);
+        {
+            foreach (TranscodingMap map in transCoderMap.SelectMany(kv => kv.Value))
+                _ = map.InputFilter?.SendFrame(null);
+        }
+
         drainState |= DrainState.FilterDraining;
         AVResult32 res;
-        foreach (var map in transCoderMap.SelectMany(kv => kv.Value))
+        foreach (TranscodingMap map in transCoderMap.SelectMany(kv => kv.Value))
         {
             if (map.InputFilter != null)
             {
                 res = map.OutputFilter!.ReceiveFrame(filteredFrame);
-                if (res == AVResult32.EndOfFile) continue;
-                if (res.IsError) return res;
+                if (res == AVResult32.EndOfFile)
+                    continue;
+                if (res.IsError)
+                    return res;
                 res = StepConvert(map, Sink.CodecContexts[map.OutputIndex]!);
-                if (res.IsError) return res;
+                if (res.IsError)
+                    return res;
                 res = StepEncode(map, Sink.CodecContexts[map.OutputIndex]!);
-                if (res.IsTryAgain) continue;
-                if (res.IsError) return res;
+                if (res.IsTryAgain)
+                    continue;
+                if (res.IsError)
+                    return res;
                 res = Sink.WritePacket(writePacket);
                 return res;
             }
@@ -337,18 +352,20 @@ public sealed class Transcoder : IDisposable
     private AVResult32 ProcessFrame(int sourceIndex)
     {
         AVResult32 res = 0;
-        if (!transCoderMap.TryGetValue(sourceIndex, out var maps))
+        if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? maps))
             return AVResult32.TryAgain;
-        foreach (var map in maps)
+        foreach (TranscodingMap map in maps)
         {
 
-            var res2 = ProcessFrame(map);
-            if (res2.IsError) res = res2;
+            AVResult32 res2 = ProcessFrame(map);
+            if (res2.IsError)
+                res = res2;
             if (res.IsError && !res.IsTryAgain)
                 return res;
 
             res = Sink.WritePacket(writePacket);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
         }
         return res;
 
@@ -357,17 +374,22 @@ public sealed class Transcoder : IDisposable
     private AVResult32 ReadFrameDraining()
     {
         AVResult32 res = AVResult32.EndOfFile;
-        if (drainState.HasFlag(DrainState.DecoderDrained)) return AVResult32.EndOfFile;
-        foreach (var map in transCoderMap.SelectMany(kv => kv.Value))
+        if (drainState.HasFlag(DrainState.DecoderDrained))
+            return AVResult32.EndOfFile;
+        foreach (TranscodingMap map in transCoderMap.SelectMany(kv => kv.Value))
+        {
             if (Sink.CodecContexts[map.OutputIndex] != null)
             {
                 if (Source.CodecContexts[map.InputIndex].CodecType is MediaType.Video or MediaType.Video)
                     res = Source.CodecContexts[map.InputIndex].ReceiveFrame(readFrame);
-                else continue;
-                if (res == AVResult32.EndOfFile) continue;
-                if (res.IsError) return res;
-                return map.InputIndex;
+                else
+                    continue;
+                if (res == AVResult32.EndOfFile)
+                    continue;
+                return res.IsError ? res : (AVResult32)map.InputIndex;
             }
+        }
+
         drainState |= DrainState.DecoderDrained;
         return res;
     }
@@ -376,16 +398,18 @@ public sealed class Transcoder : IDisposable
     {
         AVResult32 res = 0;
         int sourceIndex = readPacket.StreamIndex;
-        if (!transCoderMap.TryGetValue(sourceIndex, out var maps))
+        if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? maps))
             return AVResult32.TryAgain;
-        foreach (var map in maps)
+        foreach (TranscodingMap map in maps)
         {
             int sinkIndex = map.OutputIndex;
             if (Sink.CodecContexts[sinkIndex] == null)
                 PrepareCopyPacket(sinkIndex);
-            else throw new NotImplementedException("Decoding/Encoding, filtering for other stream types is not supported");
+            else
+                throw new NotImplementedException("Decoding/Encoding, filtering for other stream types is not supported");
             res = Sink.WritePacket(writePacket);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
         }
         return res;
     }
@@ -394,47 +418,49 @@ public sealed class Transcoder : IDisposable
     {
         AVResult32 res = 0;
         int sourceIndex = readPacket.StreamIndex;
-        if (!transCoderMap.TryGetValue(sourceIndex, out var maps))
+        if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? maps))
             return AVResult32.TryAgain;
         bool subtitleDecoded = false;
-        foreach (var map in maps)
+        foreach (TranscodingMap map in maps)
         {
             int sinkIndex = map.OutputIndex;
             if (Sink.CodecContexts[sinkIndex] == null)
+            {
                 PrepareCopyPacket(sinkIndex);
+            }
             else
             {
                 if (!subtitleDecoded)
                 {
                     res = Source.DecodeSubtitle(readPacket, subtitle);
-                    if (res.IsError) return res;
+                    if (res.IsError)
+                        return res;
                 }
                 // decode
-                var res2 = ProcessSubtitle(map);
-                if (res2.IsError) res = res2;
+                AVResult32 res2 = ProcessSubtitle(map);
+                if (res2.IsError)
+                    res = res2;
                 if (res.IsError && !res.IsTryAgain)
                     return res;
             }
             res = Sink.WritePacket(writePacket);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
         }
         return 0;
     }
 
-    private AVResult32 ProcessSubtitle(TranscodingMap map)
-    {
-        throw new NotImplementedException("Not yet implemented"); // ToDo
-    }
+    private AVResult32 ProcessSubtitle(TranscodingMap map) => throw new NotImplementedException("Not yet implemented"); // ToDo
 
     private AVResult32 ProcessPacketAV()
     {
         AVResult32 res = 0;
         int sourceIndex = readPacket.StreamIndex;
-        if (!transCoderMap.TryGetValue(sourceIndex, out var maps))
+        if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? maps))
             return AVResult32.TryAgain;
         bool frameDecoded = false;
         int updateIndexOnCopy = -1;
-        foreach (var map in maps)
+        foreach (TranscodingMap map in maps)
         {
             int sinkIndex = map.OutputIndex;
             if (Sink.CodecContexts[sinkIndex] == null)
@@ -448,40 +474,47 @@ public sealed class Transcoder : IDisposable
                 if (!frameDecoded)
                 {
                     res = Source.Decode(readPacket, readFrame);
-                    if (res.IsError) return res;
+                    if (res.IsError)
+                        return res;
                 }
                 // decode
-                var res2 = ProcessFrame(map);
-                if (res2.IsError) res = res2;
+                AVResult32 res2 = ProcessFrame(map);
+                if (res2.IsError)
+                    res = res2;
                 if (res.IsError && !res.IsTryAgain)
                     return res;
-                if (res.IsTryAgain) continue;
+                if (res.IsTryAgain)
+                    continue;
             }
-            if(writePacket.StreamIndex == PreviewOutputStreamIndex)
+            if (writePacket.StreamIndex == PreviewOutputStreamIndex)
                 CurrentTimestamp = writePacket.PresentationTime;
             res = Sink.WritePacket(writePacket);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
         }
         if (updateIndexOnCopy >= 0)
+        {
             if (!frameDecoded)
+            {
                 UpdatePreviewDecode(updateIndexOnCopy);
+            }
             else
             {
                 PreviewFrame.Reference(readFrame);
             }
+        }
+
         return res;
     }
-    private void UpdatePreview()
-    {
-        PreviewFrame.Reference(convertedFrame);
-    }
+    private void UpdatePreview() => PreviewFrame.Reference(convertedFrame);
     private void UpdatePreviewDecode(int sourceIndex)
     {
         if (lastUpdate + UpdateInterval < DateTime.Now && UpdateInterval >= TimeSpan.Zero)
         {
             CodecContext decoder = Source.CodecContexts[sourceIndex];
-            var res = decoder.Decode(readPacket, readFrame);
-            if (res.IsError) return;
+            AVResult32 res = decoder.Decode(readPacket, readFrame);
+            if (res.IsError)
+                return;
             PreviewFrame.Reference(readFrame);
             decoder.FlushBuffers();
             lastUpdate = DateTime.Now;
@@ -490,20 +523,26 @@ public sealed class Transcoder : IDisposable
 
     private AVResult32 ProcessFrame(TranscodingMap map)
     {
-        var codecCtx = Sink.CodecContexts[map.OutputIndex]!;
+        CodecContext codecCtx = Sink.CodecContexts[map.OutputIndex]!;
         convertedFrame.Unreference();
         AVResult32 res;
         if (map.InputFilter != null)
         {
             res = map.InputFilter.SendFrame(readFrame);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
             res = map.OutputFilter!.ReceiveFrame(filteredFrame);
-            if (res.IsError) return res;
+            if (res.IsError)
+                return res;
         }
-        else filteredFrame.Reference(readFrame);
+        else
+        {
+            filteredFrame.Reference(readFrame);
+        }
 
         res = StepConvert(map, codecCtx);
-        if (res.IsError) return res;
+        if (res.IsError)
+            return res;
 
         if (!res.IsTryAgain && map.OutputIndex == PreviewOutputStreamIndex)
             UpdatePreview();
@@ -515,10 +554,12 @@ public sealed class Transcoder : IDisposable
 
     private AVResult32 StepEncode(TranscodingMap map, CodecContext codecCtx)
     {
-        var res = codecCtx.SendFrame(convertedFrame);
-        if (res.IsError) return res;
+        AVResult32 res = codecCtx.SendFrame(convertedFrame);
+        if (res.IsError)
+            return res;
         res = codecCtx.ReceivePacket(writePacket);
-        if (res.IsError) return res;
+        if (res.IsError)
+            return res;
         writePacket.PresentationTimestamp -= start / writePacket.TimeBase;
         writePacket.DecompressionTimestamp -= start / writePacket.TimeBase;
         writePacket.StreamIndex = map.OutputIndex;
@@ -543,7 +584,11 @@ public sealed class Transcoder : IDisposable
             map.AudioResampler ??= new(filteredFrame.ChannelLayout, filteredFrame.SampleFormat, filteredFrame.SampleRate, codecCtx.ChannelLayout, codecCtx.SampleFormat, codecCtx.SampleRate);
             res = map.AudioResampler.Convert(filteredFrame, convertedFrame);
         }
-        else convertedFrame.Reference(filteredFrame);
+        else
+        {
+            convertedFrame.Reference(filteredFrame);
+        }
+
         return res;
     }
 
@@ -561,7 +606,7 @@ public sealed class Transcoder : IDisposable
     {
         while (Source.Streams.Any(s => !s.Discard.HasFlag(DiscardFlags.All)))
         {
-            var res = Source.ReadPacket(readPacket);
+            AVResult32 res = Source.ReadPacket(readPacket);
             if (res.IsError)
                 return res;
             if (readPacket.DecompressionTime > start + duration && duration > TimeSpan.Zero)
@@ -570,7 +615,10 @@ public sealed class Transcoder : IDisposable
                 Source.Streams[readPacket.StreamIndex].Discard = DiscardFlags.All;
                 readPacket.Unreference();
             }
-            else if (!Source.Streams[readPacket.StreamIndex].Discard.HasFlag(DiscardFlags.All)) return res; // packet to decode <3
+            else if (!Source.Streams[readPacket.StreamIndex].Discard.HasFlag(DiscardFlags.All))
+            {
+                return res; // packet to decode <3
+            }
         }
         return AVResult32.EndOfFile;
     }
@@ -595,7 +643,8 @@ public sealed class Transcoder : IDisposable
                 writePacket.Dispose();
                 subtitle.Dispose();
                 PreviewFrame.Dispose();
-                foreach (var map in transCoderMap.SelectMany(kv => kv.Value)) map.Dispose();
+                foreach (TranscodingMap map in transCoderMap.SelectMany(kv => kv.Value))
+                    map.Dispose();
             }
 
             // TODO: Nicht verwaltete Ressourcen (nicht verwaltete Objekte) freigeben und Finalizer überschreiben
@@ -620,16 +669,12 @@ public sealed class Transcoder : IDisposable
     #endregion
 
     #region Start/End
-    Task? runningTask;
-    CancellationTokenSource? tokenSource;
-    private object sync = new();
+    private Task? runningTask;
+    private CancellationTokenSource? tokenSource;
+    private readonly object sync = new();
     // call either ProcessNextPackage or 
     public TaskStatus TaskState => runningTask?.Status ?? TaskStatus.Created;
-    public System.Runtime.CompilerServices.TaskAwaiter GetAwaiter()
-    {
-        if (runningTask == null) return Task.CompletedTask.GetAwaiter();
-        return runningTask.GetAwaiter();
-    }
+    public System.Runtime.CompilerServices.TaskAwaiter GetAwaiter() => runningTask == null ? Task.CompletedTask.GetAwaiter() : runningTask.GetAwaiter();
     public ConfiguredTaskAwaitable ConfigureAwait(bool continueOnCapturedContext) => runningTask?.ConfigureAwait(continueOnCapturedContext) ?? Task.CompletedTask.ConfigureAwait(continueOnCapturedContext);
     public void Start()
     {
@@ -640,7 +685,7 @@ public sealed class Transcoder : IDisposable
                 if (runningTask!.Status is TaskStatus.Running or TaskStatus.WaitingForActivation or TaskStatus.WaitingToRun)
                     throw new InvalidOperationException("The task is already running");
                 tokenSource.Cancel();
-                tokenSource.Dispose();                
+                tokenSource.Dispose();
             }
             tokenSource = new();
             runningTask = Task.Run(() => Run(tokenSource.Token), tokenSource.Token);
@@ -649,9 +694,9 @@ public sealed class Transcoder : IDisposable
 
     private void Run(CancellationToken token)
     {
-        while(!token.IsCancellationRequested)
+        while (!token.IsCancellationRequested)
         {
-            if(ProcessNextPacket() == AVResult32.EndOfFile) // ignore all error codes
+            if (ProcessNextPacket() == AVResult32.EndOfFile) // ignore all error codes
             {
                 WriteTrailer().ThrowIfError();
                 return;
@@ -661,9 +706,10 @@ public sealed class Transcoder : IDisposable
 
     public void Stop()
     {
-        lock(sync)
+        lock (sync)
         {
-            if (tokenSource == null) return;
+            if (tokenSource == null)
+                return;
             tokenSource.Cancel();
         }
     }
@@ -677,7 +723,7 @@ public sealed class Transcoder : IDisposable
         public int OutputIndex;
         public FilterContext? InputFilter;
         public FilterContext? OutputFilter;
-        FilterGraph? Filter;
+        private readonly FilterGraph? Filter;
         public SwsContext? ImageScaler;
         public SwrContext? AudioResampler;
         public void Dispose()
@@ -687,69 +733,51 @@ public sealed class Transcoder : IDisposable
             AudioResampler?.Dispose();
         }
 
-        public static TranscodingMap Create(int inIndex, int outIndex)
+        public static TranscodingMap Create(int inIndex, int outIndex) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+        };
 
-        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph)
+        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-                InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-                OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
+            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+        };
 
-        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph, SwsContext converter)
+        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph, SwsContext converter) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-                InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-                OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
-                ImageScaler = converter
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
+            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+            ImageScaler = converter
+        };
 
-        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph, SwrContext converter)
+        public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph, SwrContext converter) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-                InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-                OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
-                AudioResampler = converter
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
+            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+            AudioResampler = converter
+        };
 
-        public static TranscodingMap Create(int inIndex, int outIndex, SwsContext converter)
+        public static TranscodingMap Create(int inIndex, int outIndex, SwsContext converter) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-                ImageScaler = converter
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+            ImageScaler = converter
+        };
 
-        public static TranscodingMap Create(int inIndex, int outIndex, SwrContext converter)
+        public static TranscodingMap Create(int inIndex, int outIndex, SwrContext converter) => new()
         {
-            return new()
-            {
-                InputIndex = inIndex,
-                OutputIndex = outIndex,
-                AudioResampler = converter
-            };
-        }
+            InputIndex = inIndex,
+            OutputIndex = outIndex,
+            AudioResampler = converter
+        };
 
     }
 }

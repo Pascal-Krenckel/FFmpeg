@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using FFmpeg.AutoGen;
-using FFmpeg.Collections;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Options;
 using FFmpeg.Utils;
+using System.Collections;
+using System.Runtime.InteropServices;
 
 namespace FFmpeg.Filters;
 /// <summary>
@@ -127,12 +123,10 @@ public sealed unsafe class FilterGraph : IDisposable
 
         AutoGen._AVFilterInOut** inPtrs = input != null ? &@in : null;
         AutoGen._AVFilterInOut** outPtrs = output != null ? &@out : null;
-        var res = ffmpeg.avfilter_graph_parse_ptr(graph, filters,inPtrs, outPtrs, null);
-        if (input != null)
-            input.Head = @in;
-        if (output != null)
-            output.Head = @out;
-        
+        int res = ffmpeg.avfilter_graph_parse_ptr(graph, filters, inPtrs, outPtrs, null);
+        input?.Head = @in;
+        output?.Head = @out;
+
         return res;
     }
 
@@ -143,14 +137,14 @@ public sealed unsafe class FilterGraph : IDisposable
     /// <param name="filters">The filter graph description.</param>
     /// <param name="output">The output filters.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the parse operation.</returns>
-    public AVResult32 ParseAndLink(out FilterInOutList input, string filters,out FilterInOutList output)
+    public AVResult32 ParseAndLink(out FilterInOutList input, string filters, out FilterInOutList output)
     {
         input = [];
         output = [];
         AutoGen._AVFilterInOut* @in = input.Head;
         AutoGen._AVFilterInOut* @out = output.Head;
 
-        var res = ffmpeg.avfilter_graph_parse_ptr(graph, filters, &@in, &@out, null);
+        int res = ffmpeg.avfilter_graph_parse_ptr(graph, filters, &@in, &@out, null);
         input.Head = @in;
         output.Head = @out;
         return res;
@@ -171,7 +165,7 @@ public sealed unsafe class FilterGraph : IDisposable
         AutoGen._AVFilterInOut* @in = inputs.Head;
         AutoGen._AVFilterInOut* @out = outputs.Head;
 
-        var res = ffmpeg.avfilter_graph_parse2(graph, filters, &@in, &@out);
+        int res = ffmpeg.avfilter_graph_parse2(graph, filters, &@in, &@out);
         inputs.Head = @in;
         outputs.Head = @out;
         return res;
@@ -180,7 +174,7 @@ public sealed unsafe class FilterGraph : IDisposable
     public static AVResult32 TryCreate(string filter, out FilterGraph? graph)
     {
         graph = Allocate();
-        AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(graph.graph, filter, null, null,null);
+        AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(graph.graph, filter, null, null, null);
         if (res.IsError)
         {
             graph.Dispose();
@@ -196,13 +190,13 @@ public sealed unsafe class FilterGraph : IDisposable
         _ => graph!,
     };
 
-    public static AVResult32 TryCreate(out FilterInOutList? inputs,string filter, out FilterInOutList? outputs, out FilterGraph? filterGraph)
+    public static AVResult32 TryCreate(out FilterInOutList? inputs, string filter, out FilterInOutList? outputs, out FilterGraph? filterGraph)
     {
         filterGraph = Allocate();
         _AVFilterInOut* @in;
         _AVFilterInOut* @out;
         AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(filterGraph.graph, filter, &@in, &@out, null);
-        if(res.IsError)
+        if (res.IsError)
         {
             ffmpeg.avfilter_inout_free(&@in);
             ffmpeg.avfilter_inout_free(&@out);
@@ -222,9 +216,7 @@ public sealed unsafe class FilterGraph : IDisposable
     public static FilterGraph Create(out FilterInOutList? inputs, string filter, out FilterInOutList? outputs)
     {
         AVResult32 res = TryCreate(out inputs, filter, out outputs, out FilterGraph? graph);
-        if (res.IsError)
-            throw new FFmpeg.Exceptions.FFmpegException(res);
-        return graph!;
+        return res.IsError ? throw new FFmpeg.Exceptions.FFmpegException(res) : graph!;
     }
 
     // Init and Init, string may be null if no arguments are needed
@@ -240,28 +232,32 @@ public sealed unsafe class FilterGraph : IDisposable
     // Init and Init
     public FilterContext CreateFilter(string name, Filter filter, Collections.AVDictionary? args)
     {
-        var ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
-        if(args == null)
-             ((AVResult32)ffmpeg.avfilter_init_dict(ctx, null)).ThrowIfError();
+        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
+        if (args == null)
+        {
+            ((AVResult32)ffmpeg.avfilter_init_dict(ctx, null)).ThrowIfError();
+        }
         else
         {
-            var dictionary = args.dictionary;
+            _AVDictionary* dictionary = args.dictionary;
             AVResult32 res = ffmpeg.avfilter_init_dict(ctx, &dictionary);
             args.dictionary = dictionary; // Update the dictionary in case it was modified
             res.ThrowIfError();
         }
         return new(ctx);
-            
+
     }
 
     public FilterContext CreateFilter(string name, Filter filter, Collections.AVMultiDictionary? args)
     {
-        var ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
+        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
         if (args == null)
+        {
             ((AVResult32)ffmpeg.avfilter_init_dict(ctx, null)).ThrowIfError();
+        }
         else
         {
-            var dictionary = args.dictionary;
+            _AVDictionary* dictionary = args.dictionary;
             AVResult32 res = ffmpeg.avfilter_init_dict(ctx, &dictionary);
             args.dictionary = dictionary; // Update the dictionary in case it was modified
             res.ThrowIfError();
@@ -269,9 +265,10 @@ public sealed unsafe class FilterGraph : IDisposable
         return new(ctx);
 
     }
-    public FilterContext CreateFilter(string name, Filter filter, IDictionary<string,string> args)
+    public FilterContext CreateFilter(string name, Filter filter, IDictionary<string, string> args)
     {
-        if(args == null) return CreateFilter(name, filter, default(Collections.AVDictionary)!);
+        if (args == null)
+            return CreateFilter(name, filter, default(Collections.AVDictionary)!);
         using Collections.AVDictionary dictionary = new(args);
         try
         {
@@ -280,7 +277,7 @@ public sealed unsafe class FilterGraph : IDisposable
         finally
         {
             args.Clear();
-            foreach (var item in dictionary)
+            foreach (KeyValuePair<string, string> item in dictionary)
                 args.Add(item);
         }
     }
@@ -291,12 +288,10 @@ public sealed unsafe class FilterGraph : IDisposable
     /// <param name="name"></param>
     /// <param name="filter"></param>
     /// <returns></returns>
-    public FilterContext CreateFilter(string name,Filter filter)
+    public FilterContext CreateFilter(string name, Filter filter)
     {
-        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph,filter.filter,name);
-        if(ctx == null)
-            throw new OutOfMemoryException("Failed to allocate filter context.");
-        return new(ctx);
+        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
+        return ctx == null ? throw new OutOfMemoryException("Failed to allocate filter context.") : new(ctx);
     }
 
     /// <summary>
@@ -338,14 +333,16 @@ public sealed unsafe class FilterGraph : IDisposable
     {
         get
         {
-            foreach (var filter in Filters)
+            foreach (FilterContext filter in Filters)
             {
-                for(int i = 0; i < filter.OutputCount; i++)
-                    if(filter.OutputFilterLinks == null)
+                for (int i = 0; i < filter.OutputCount; i++)
+                {
+                    if (filter.OutputFilterLinks == null)
                     {
                         yield return filter;
                         break;
                     }
+                }
             }
         }
     }
@@ -354,36 +351,33 @@ public sealed unsafe class FilterGraph : IDisposable
     {
         get
         {
-            foreach (var filter in Filters)
+            foreach (FilterContext filter in Filters)
             {
                 for (int i = 0; i < filter.InputCount; i++)
+                {
                     if (filter.InputFilterLinks == null)
                     {
                         yield return filter;
                         break;
                     }
+                }
             }
         }
     }
 
 
-    public AVResult32 Insert(FilterLink link, FilterContext filter,int srcFilterPad, int destFilterPad)
-    {
-        return ffmpeg.avfilter_insert_filter(link.link, filter.context, (uint)srcFilterPad, (uint)destFilterPad);
-    }
+    public AVResult32 Insert(FilterLink link, FilterContext filter, int srcFilterPad, int destFilterPad) => ffmpeg.avfilter_insert_filter(link.link, filter.context, (uint)srcFilterPad, (uint)destFilterPad);
 
     public FilterContext? FindFilter(string name)
     {
-        var ptr = (ffmpeg.avfilter_graph_get_filter(graph, name));
-        if(ptr == null)
-            return null;
-        return new(ptr);
+        _AVFilterContext* ptr = ffmpeg.avfilter_graph_get_filter(graph, name);
+        return ptr == null ? null : new(ptr);
     }
 
     private class FilterEnumerator : IEnumerator<FilterContext>
     {
         private readonly FilterGraph filterGraph;
-        int index = -1;
+        private int index = -1;
         public FilterEnumerator(FilterGraph filterGraph) => this.filterGraph = filterGraph;
 
         public FilterContext Current => new(filterGraph.graph->filters[index]);
@@ -409,17 +403,20 @@ public sealed unsafe class FilterGraph : IDisposable
     public FilterGraph Copy()
     {
         FilterGraph copy = FilterGraph.Allocate();
-        foreach(FilterContext context in this)
+        foreach (FilterContext context in this)
         {
             using Collections.AVMultiDictionary dictionary = [];
-            foreach (var o in context.GetOptions(true))
-                if (!context.TryGetOption(o, out string? value,true).IsError && !string.IsNullOrEmpty(value))
+            foreach (Option o in context.GetOptions(true))
+            {
+                if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
                     dictionary.Add(o.Name, value!);
-            copy.CreateFilter(context.Name, context.Filter, dictionary);
+            }
+
+            _ = copy.CreateFilter(context.Name, context.Filter, dictionary);
         }
-        foreach(FilterContext context in this)
+        foreach (FilterContext context in this)
         {
-            foreach(var l in context.OutputFilterLinks)
+            foreach (FilterLink l in context.OutputFilterLinks)
             {
                 copy.Link(copy.FindFilter(l.SourceContext.Name!), l.SourcePadIndex, copy.FindFilter(l.DestinationContext.Name!), l.DestinationPadIndex).ThrowIfError();
             }

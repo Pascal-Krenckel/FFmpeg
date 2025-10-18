@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Logging;
+﻿namespace FFmpeg.Logging;
 
 /// <summary>
 /// Specifies the logging level used by FFmpeg, controlling the verbosity and type of log messages produced.

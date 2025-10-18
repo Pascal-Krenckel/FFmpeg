@@ -159,7 +159,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>
         => (long)((Rational)t / r2);
 
     ///<inheritdoc />
-    public static bool operator<(Rational left, Rational right) => (long)left.Numerator*right.Denominator < (long)right.Numerator*left.Denominator;
+    public static bool operator <(Rational left, Rational right) => (long)left.Numerator * right.Denominator < (long)right.Numerator * left.Denominator;
 
     ///<inheritdoc />
     public static bool operator >(Rational left, Rational right) => (long)left.Numerator * right.Denominator > (long)right.Numerator * left.Denominator;
@@ -189,7 +189,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>
 
     #endregion
 
-    public bool IsValidTimeBase => Numerator > 0 && Denominator > 0; 
+    public bool IsValidTimeBase => Numerator > 0 && Denominator > 0;
 
     #region HashCode
 
@@ -221,7 +221,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     /// <returns>The rescaled value in the current instance's time base units.</returns>
     public long Rescale(long value, Rational timeBaseSrc) => Rescale(value, timeBaseSrc, this);
 
-   
+
 
     /// <summary>
     /// Reduces the <see cref="Rational"/> number to its simplest form, considering a maximum value for the numerator and denominator.

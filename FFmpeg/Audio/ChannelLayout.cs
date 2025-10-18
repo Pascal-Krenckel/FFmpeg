@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
+using System.Runtime.InteropServices;
 
 namespace FFmpeg.Audio;
 /// <summary>
@@ -161,7 +161,8 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
 
         // Get the required size for the layout description.
         AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);
-        if (res.IsError) return string.Empty;
+        if (res.IsError)
+            return string.Empty;
 
         // Allocate a buffer for the description and retrieve it.
         byte* chars = stackalloc byte[res];
@@ -247,7 +248,8 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// <returns><see langword="true"/> if the current layout is equal to the other layout; otherwise, <see langword="false"/>.</returns>
     public bool Equals(ChannelLayout? other)
     {
-        if (null == other) return false;
+        if (null == other)
+            return false;
         AutoGen._AVChannelLayout left = layout;
         AutoGen._AVChannelLayout right = other.layout;
         return ffmpeg.av_channel_layout_compare(&left, &right) == 0;
@@ -260,7 +262,8 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// <returns><see langword="true"/> if the current layout is equal to the other layout; otherwise, <see langword="false"/>.</returns>
     public bool Equals(IChannelLayout? other)
     {
-        if (null == other) return false;
+        if (null == other)
+            return false;
         AutoGen._AVChannelLayout left = layout;
         AutoGen._AVChannelLayout right = other.Layout;
         return ffmpeg.av_channel_layout_compare(&left, &right) == 0;
@@ -288,16 +291,14 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// </summary>
     /// <param name="obj">The object to compare with the current instance.</param>
     /// <returns><see langword="true"/> if the current instance is equal to the other object; otherwise, <see langword="false"/>.</returns>
-    public override bool Equals(object? obj)
-    {
-        if (obj is ChannelLayout_ref ptr) return Equals(ptr);
-        return obj is ChannelLayout layout ? Equals(layout) : obj is IChannelLayout iLayout && Equals(iLayout);
-    }
+    public override bool Equals(object? obj) => obj is ChannelLayout_ref ptr
+            ? Equals(ptr)
+            : obj is ChannelLayout layout ? Equals(layout) : obj is IChannelLayout iLayout && Equals(iLayout);
 
     public static ChannelLayout CreateDefault(int channels)
     {
         ChannelLayout layout = new();
-        var p = layout.layout;
+        AutoGen._AVChannelLayout p = layout.layout;
         ffmpeg.av_channel_layout_default(&p, channels);
         layout.layout = p;
         return layout;

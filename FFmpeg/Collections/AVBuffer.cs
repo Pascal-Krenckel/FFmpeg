@@ -52,14 +52,7 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the index is out of bounds.</exception>
     public byte this[int index]
     {
-        get => CheckIndex(index) ? reference->data[index] : throw new ArgumentOutOfRangeException(nameof(index));
-        set
-        {
-            if (CheckIndex(index))
-                reference->data[index] = value;
-            else
-                throw new ArgumentOutOfRangeException(nameof(index));
-        }
+        get => CheckIndex(index) ? reference->data[index] : throw new ArgumentOutOfRangeException(nameof(index)); set => reference->data[index] = CheckIndex(index) ? value : throw new ArgumentOutOfRangeException(nameof(index));
     }
 
     private bool CheckIndex(int index) => index >= 0 && index < Length;
@@ -95,7 +88,8 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <returns><see langword="true"/> if the buffer was successfully made writable; otherwise, <see langword="false"/>.</returns>
     public bool TryMakeWriteable()
     {
-        if (IsNull) return false;
+        if (IsNull)
+            return false;
         AutoGen._AVBufferRef* @ref = reference;
         bool ret = AutoGen.ffmpeg.av_buffer_make_writable(&@ref) == 0;
         reference = @ref;
@@ -109,7 +103,8 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <exception cref="OutOfMemoryException">Thrown when the buffer could not be made writable due to memory limitations.</exception>
     public void MakeWriteable()
     {
-        if (IsNull) throw new NullReferenceException("Buffer reference is null.");
+        if (IsNull)
+            throw new NullReferenceException("Buffer reference is null.");
         if (!TryMakeWriteable())
             throw new OutOfMemoryException("Failed to make the buffer writable.");
     }
@@ -219,8 +214,9 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <exception cref="OutOfMemoryException">Thrown when the buffer could not be copied due to memory limitations.</exception>
     public AVBuffer Copy()
     {
-        if (IsNull) throw new NullReferenceException();
-        var buffer = AVBuffer.Allocate(Length); // may throw OutOfMemoryException
+        if (IsNull)
+            throw new NullReferenceException();
+        AVBuffer buffer = AVBuffer.Allocate(Length); // may throw OutOfMemoryException
         if (Length > 0)
             Buffer.MemoryCopy(reference->data, buffer.reference->data, Length, Length);
         return buffer;
@@ -234,8 +230,9 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <exception cref="OutOfMemoryException">Thrown if the replace operation fails.</exception>
     public void ReplaceWith(IBuffer src)
     {
-        if (src.IsNull) throw new NullReferenceException();
-        var @ref = reference;
+        if (src.IsNull)
+            throw new NullReferenceException();
+        AutoGen._AVBufferRef* @ref = reference;
         AVResult32 res = ffmpeg.av_buffer_replace(&@ref, src.Reference);
         res.ThrowIfError(); // may throw OutOfMemoryException
     }
@@ -247,8 +244,9 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer
     /// <returns><see langword="true"/> if the buffer was successfully replaced; otherwise, <see langword="false"/>.</returns>
     public bool TryReplaceWith(IBuffer src)
     {
-        if (src.IsNull) return false;
-        var @ref = reference;
+        if (src.IsNull)
+            return false;
+        AutoGen._AVBufferRef* @ref = reference;
         return ffmpeg.av_buffer_replace(&@ref, src.Reference) >= 0;
     }
 }

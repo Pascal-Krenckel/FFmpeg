@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
 
 namespace FFmpeg.Exceptions;
+
 public class BufferToSmallExcpetion : FFmpegException
 {
     public BufferToSmallExcpetion() : base(AVResult32.BufferTooSmall)

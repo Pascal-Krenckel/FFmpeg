@@ -1,7 +1,4 @@
 ﻿using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Audio;
 
@@ -39,7 +36,7 @@ internal readonly unsafe struct AudioBufferRef
     /// <summary>
     /// Gets the offset for the actual audio data in the buffer, depending on the format and channels.
     /// </summary>
-    private int DATA_OFFSET => LINES_SIZE_OFFSET + (Format.IsPlanar() ? Channels : 1) * (sizeof(int) + sizeof(byte*));
+    private int DATA_OFFSET => LINES_SIZE_OFFSET + ((Format.IsPlanar() ? Channels : 1) * (sizeof(int) + sizeof(byte*)));
 
     /// <summary>
     /// Computes the data offset for the buffer based on the sample format and the number of channels.
@@ -47,7 +44,7 @@ internal readonly unsafe struct AudioBufferRef
     /// <param name="format">The sample format of the audio data.</param>
     /// <param name="channels">The number of audio channels.</param>
     /// <returns>The computed data offset in the buffer.</returns>
-    public static int GET_DATA_OFFSET(SampleFormat format, int channels) => LINES_SIZE_OFFSET + (format.IsPlanar() ? channels : 1) * (sizeof(int) + sizeof(byte*));
+    public static int GET_DATA_OFFSET(SampleFormat format, int channels) => LINES_SIZE_OFFSET + ((format.IsPlanar() ? channels : 1) * (sizeof(int) + sizeof(byte*)));
 
     /// <summary>
     /// Gets or sets the sample format of the audio buffer.
@@ -123,7 +120,7 @@ internal readonly unsafe struct AudioBufferRef
     /// <summary>
     /// Gets a pointer to the raw audio data buffer.
     /// </summary>
-    public byte* Buffer => (byte*)(Reference->data + DATA_OFFSET);
+    public byte* Buffer => Reference->data + DATA_OFFSET;
 
     /// <summary>
     /// Allocates a new <see cref="AudioBufferRef"/> for the specified format, channels, alignment, and capacity.
@@ -140,10 +137,11 @@ internal readonly unsafe struct AudioBufferRef
         AVResult32 size = ffmpeg.av_samples_get_buffer_size(null, channels, capacity, (AutoGen._AVSampleFormat)format, alignment);
         size.ThrowIfError();
 
-        var buffer = ffmpeg.av_buffer_alloc((ulong)(size+dataOffset));
-        if (buffer == null) throw new OutOfMemoryException("The buffer could not be allocated");
+        AutoGen._AVBufferRef* buffer = ffmpeg.av_buffer_alloc((ulong)(size + dataOffset));
+        if (buffer == null)
+            throw new OutOfMemoryException("The buffer could not be allocated");
 
-        var abuffer = new AudioBufferRef(buffer)
+        AudioBufferRef abuffer = new(buffer)
         {
             Format = format,
             Channels = channels,

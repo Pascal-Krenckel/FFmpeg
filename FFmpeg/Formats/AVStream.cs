@@ -1,5 +1,5 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.Images;
+using FFmpeg.Codecs;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;
@@ -142,7 +142,7 @@ public unsafe class AVStream : Options.OptionQueryBase, IEquatable<AVStream?>
     {
         get => CodecParameters.MediaType; set
         {
-            var codecParameters = CodecParameters;
+            CodecParameters_ref codecParameters = CodecParameters;
             codecParameters.MediaType = value;
         }
     }
@@ -150,10 +150,7 @@ public unsafe class AVStream : Options.OptionQueryBase, IEquatable<AVStream?>
     /// <summary>
     /// Gets the specific codec ID used for the encoded data.
     /// </summary>
-    public Codecs.CodecID CodecId
-    {
-        get => CodecParameters.CodecId;
-    }
+    public Codecs.CodecID CodecId => CodecParameters.CodecId;
 
     protected override unsafe void* Pointer => stream;
 

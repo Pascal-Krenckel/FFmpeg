@@ -53,7 +53,8 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
     public bool Contains(string key)
     {
-        if (dictionary == null) return false;
+        if (dictionary == null)
+            return false;
         AutoGen._AVDictionaryEntry* entry = AutoGen.ffmpeg.av_dict_get(*dictionary, key, null, (int)Flags);
         return entry != null;
     }
@@ -66,7 +67,8 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     public bool RemoveAll(string key)
     {
         bool ret = false;
-        while (RemoveFirst(key)) ret = true;
+        while (RemoveFirst(key))
+            ret = true;
         return ret;
     }
 
@@ -78,8 +80,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     public bool RemoveFirst(string key)
     {
         bool b = Contains(key);
-        if (!b) return false;
-        return AutoGen.ffmpeg.av_dict_set(dictionary, key, null, (int)(Flags & ~AVDictionaryFlags.MultiKey)) >= 0;
+        return b && AutoGen.ffmpeg.av_dict_set(dictionary, key, null, (int)(Flags & ~AVDictionaryFlags.MultiKey)) >= 0;
     }
 
     /// <summary>
@@ -89,7 +90,8 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// <param name="value">The value of the element to add.</param>
     public void Add(string key, string value)
     {
-        if (key == null) throw new ArgumentNullException(nameof(key));
+        if (key == null)
+            throw new ArgumentNullException(nameof(key));
         FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(dictionary, key, value, (int)Flags));
     }
 
@@ -193,14 +195,18 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
 
     public AVMultiDictionary? GetReferencedObject()
     {
-        if (*dictionary == null) return null;
+        if (*dictionary == null)
+            return null;
         AutoGen._AVDictionary* copy;
         FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_dict_copy(&copy, *dictionary, (int)Flags)); // OutOfMemoryException
         return new AVMultiDictionary(copy, !Flags.HasFlag(AVDictionaryFlags.MatchCase));
     }
     public void SetReferencedObject(AVMultiDictionary? obj)
     {
-        if (obj == null) ffmpeg.av_dict_free(dictionary);
+        if (obj == null)
+        {
+            ffmpeg.av_dict_free(dictionary);
+        }
         else
         {
             FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_dict_copy(dictionary, obj.dictionary, (int)obj.Flags)); // OutOfMemoryException            

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
 
 namespace FFmpeg.Threading;
 
@@ -15,7 +10,8 @@ public static class AwaitWaitHandleExtension
 
     public static Task AsTask(this WaitHandle waitHandle, CancellationToken token = default)
     {
-        if (waitHandle.WaitOne(0)) return Task.CompletedTask;
+        if (waitHandle.WaitOne(0))
+            return Task.CompletedTask;
         token.ThrowIfCancellationRequested();
         WaitHandleState state = new(waitHandle);
         lock (state)
@@ -38,14 +34,13 @@ public static class AwaitWaitHandleExtension
 
         public WaitHandle WaitHandle { get; } = waitHandle;
 
-        public void RegisterWaitHandle()
-        {
-            WaitHandleCallback = ThreadPool.RegisterWaitForSingleObject(WaitHandle,
+        public void RegisterWaitHandle() => WaitHandleCallback = ThreadPool.RegisterWaitForSingleObject(WaitHandle,
                 (state, timeout) =>
                 {
                     lock (this)
                     {
-                        if (Finished) return;
+                        if (Finished)
+                            return;
                         Finished = true;
                         TaskCompletionSource.SetResult(0);
                         _ = WaitHandleCallback?.Unregister(null);
@@ -55,22 +50,19 @@ public static class AwaitWaitHandleExtension
                 state: null,
                 millisecondsTimeOutInterval: Timeout.Infinite,
                 executeOnlyOnce: true);
-        }
 
-        public void RegisterToken(CancellationToken token)
-        {
-            TokenRegistration = token.Register(() =>
-            {
-                lock (this)
-                {
-                    if (Finished) return;
-                    Finished = true;
-                    TaskCompletionSource.SetCanceled();
-                    _ = WaitHandleCallback?.Unregister(null);
-                    TokenRegistration.Dispose();
-                }
-            });
-        }
+        public void RegisterToken(CancellationToken token) => TokenRegistration = token.Register(() =>
+                                                                       {
+                                                                           lock (this)
+                                                                           {
+                                                                               if (Finished)
+                                                                                   return;
+                                                                               Finished = true;
+                                                                               TaskCompletionSource.SetCanceled();
+                                                                               _ = WaitHandleCallback?.Unregister(null);
+                                                                               TokenRegistration.Dispose();
+                                                                           }
+                                                                       });
     }
 }
 

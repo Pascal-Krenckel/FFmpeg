@@ -1,7 +1,6 @@
 ﻿using FFmpeg.Collections;
 using FFmpeg.IO;
 using FFmpeg.Utils;
-using System.IO;
 
 namespace FFmpeg.Formats;
 
@@ -28,19 +27,17 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     private bool isInput = false;
     internal AutoGen._AVFormatContext* Context { get; private set; }
 
-    private InputFormat? inputFormat;
-    private OutputFormat? outputFormat;
     internal AVIOContext? ioContext;
 
     /// <summary>
     /// Gets the input format associated with this context, if available.
     /// </summary>
-    public InputFormat? InputFormat => inputFormat ??= Context->iformat != null ? new(Context->iformat) : null;
+    public InputFormat? InputFormat => field ??= Context->iformat != null ? new(Context->iformat) : null;
 
     /// <summary>
     /// Gets the output format associated with this context, if available.
     /// </summary>
-    public OutputFormat? OutputFormat => outputFormat ??= Context->oformat != null ? new(Context->oformat) : null;
+    public OutputFormat? OutputFormat => field ??= Context->oformat != null ? new(Context->oformat) : null;
 
     /// <summary>
     /// Gets the flags associated with this format context.
@@ -106,7 +103,7 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
         }
     }
 
-    public AVDictionary_ref Metadata => new(&Context->metadata, true,false);
+    public AVDictionary_ref Metadata => new(&Context->metadata, true, false);
 
     /// <summary>
     /// Updates the internal stream array to reflect the current streams in the context.
@@ -118,7 +115,7 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         lock (_lock)
         {
-            var streams = this.streams;
+            AVStream[] streams = this.streams;
             if (streams.Length != StreamCount)
                 streams = new AVStream[StreamCount];
             for (int i = 0; i < streams.Length; i++)
@@ -138,9 +135,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     private bool CompareStreams()
     {
-        if (streams.Length != StreamCount) return false;
+        if (streams.Length != StreamCount)
+            return false;
         for (int i = 0; i < streams.Length; i++)
-            if (streams[i].stream != Context->streams[i]) return false;
+        {
+            if (streams[i].stream != Context->streams[i])
+                return false;
+        }
+
         return true;
     }
 
@@ -322,8 +324,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     public AVResult32 OpenInput(string? url, InputFormat? input, IDictionary<string, string>? dic)
     {
-        if (dic is Collections.AVDictionary dictionary) return OpenInput(url, input, dictionary);
-        else if (dic == null) return OpenInput(url, input, null as Collections.AVDictionary);
+        if (dic is Collections.AVDictionary dictionary)
+        {
+            return OpenInput(url, input, dictionary);
+        }
+        else if (dic == null)
+        {
+            return OpenInput(url, input, null as Collections.AVDictionary);
+        }
         else
         {
             using Collections.AVDictionary dic2 = new(dic);
@@ -365,14 +373,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, url, iFormat, &dic);
 
-        if (dictionary != null)
-            dictionary.dictionary = dic;
-        if(result.IsError)
+        dictionary?.dictionary = dic;
+        if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
             result.ThrowIfError();
         }
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return new FormatContext(context, true)
         {
@@ -408,14 +416,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, url, iFormat, &dic);
 
-        if (dictionary != null)
-            dictionary.dictionary = dic;
+        dictionary?.dictionary = dic;
         if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
             result.ThrowIfError();
         }
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return new FormatContext(context, true)
         {
@@ -446,8 +454,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     public static FormatContext OpenInput(string? url, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
     {
-        if (dic is Collections.AVDictionary dictionary) return OpenInput(url, input, dictionary);
-        else if (dic == null) return OpenInput(url, input, null as Collections.AVDictionary, findStreamInfo);
+        if (dic is Collections.AVDictionary dictionary)
+        {
+            return OpenInput(url, input, dictionary);
+        }
+        else if (dic == null)
+        {
+            return OpenInput(url, input, null as Collections.AVDictionary, findStreamInfo);
+        }
         else
         {
             using Collections.AVDictionary dic2 = new(dic);
@@ -674,7 +688,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
         AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null) throw new OutOfMemoryException();
+        if (context == null)
+            throw new OutOfMemoryException();
         FormatContext formatContext = new(context, true)
         { isInput = true };
         _ = new IOStreamContext(formatContext, stream, IOOptions.Read | IOOptions.Seek);
@@ -682,8 +697,7 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
         formatContext.Context = context;
-        if (dictionary != null)
-            dictionary.dictionary = dic;
+        dictionary?.dictionary = dic;
         if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
@@ -691,7 +705,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
             formatContext.Dispose();
             result.ThrowIfError();
         }
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return formatContext;
     }
@@ -724,15 +739,15 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
         AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null) throw new OutOfMemoryException();
+        if (context == null)
+            throw new OutOfMemoryException();
         FormatContext formatContext = new(context, true, true);
         _ = new IOStreamContext(formatContext, stream, IOOptions.Read | IOOptions.Seek);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
 
-        if (dictionary != null)
-            dictionary.dictionary = dic;
+        dictionary?.dictionary = dic;
         if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
@@ -741,7 +756,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
             result.ThrowIfError();
         }
         formatContext.Context = context;
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return formatContext;
     }
@@ -773,12 +789,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     public static FormatContext OpenInput(Stream stream, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
     {
-        if (dic is null) return OpenInput(stream, input, findStreamInfo);
-        if (dic is Collections.AVDictionary avDic) return OpenInput(stream, input, avDic, findStreamInfo);
+        if (dic is null)
+            return OpenInput(stream, input, findStreamInfo);
+        if (dic is Collections.AVDictionary avDic)
+            return OpenInput(stream, input, avDic, findStreamInfo);
         using Collections.AVDictionary dicCopy = new(dic);
-        var res = OpenInput(stream, input, dicCopy,findStreamInfo);
+        FormatContext res = OpenInput(stream, input, dicCopy, findStreamInfo);
         dic.Clear();
-        foreach (var kp in dicCopy)
+        foreach (KeyValuePair<string, string> kp in dicCopy)
             dic[kp.Key] = kp.Value;
         return res;
     }
@@ -927,14 +945,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
         AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null) throw new OutOfMemoryException();
+        if (context == null)
+            throw new OutOfMemoryException();
         FormatContext formatContext = new(context, true, true);
         ioContext.InitContext(formatContext, IOOptions.Read | IOOptions.Write);
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
 
-        if (dictionary != null)
-            dictionary.dictionary = dic;
+        dictionary?.dictionary = dic;
         if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
@@ -943,7 +961,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
             result.ThrowIfError();
         }
         formatContext.Context = context;
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return formatContext;
     }
@@ -975,15 +994,15 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
         AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null) throw new OutOfMemoryException();
+        if (context == null)
+            throw new OutOfMemoryException();
         FormatContext formatContext = new(context, true, true);
         ioContext.InitContext(formatContext, IOOptions.Read | IOOptions.Write);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
 
-        if (dictionary != null)
-            dictionary.dictionary = dic;
+        dictionary?.dictionary = dic;
         if (result.IsError)
         {
             ffmpeg.avformat_close_input(&context);
@@ -992,7 +1011,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
             result.ThrowIfError();
         }
         formatContext.Context = context;
-        if (findStreamInfo) _ = ffmpeg.avformat_find_stream_info(context, null);
+        if (findStreamInfo)
+            _ = ffmpeg.avformat_find_stream_info(context, null);
 
         return formatContext;
     }
@@ -1024,12 +1044,14 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     public static FormatContext OpenInput(IOContext ioContext, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
     {
-        if (dic is null) return OpenInput(ioContext, input, findStreamInfo);
-        if (dic is Collections.AVDictionary avDict) return OpenInput(ioContext, input, avDict, findStreamInfo);
+        if (dic is null)
+            return OpenInput(ioContext, input, findStreamInfo);
+        if (dic is Collections.AVDictionary avDict)
+            return OpenInput(ioContext, input, avDict, findStreamInfo);
         using Collections.AVDictionary dicCopy = new(dic);
-        var res = OpenInput(ioContext, input, dicCopy, findStreamInfo);
+        FormatContext res = OpenInput(ioContext, input, dicCopy, findStreamInfo);
         dic.Clear();
-        foreach (var kp in dicCopy)
+        foreach (KeyValuePair<string, string> kp in dicCopy)
             dic[kp.Key] = kp.Value;
         return res;
     }
@@ -1245,7 +1267,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     public static FormatContext? OpenOutput(string? filename, OutputFormat? format)
     {
         FormatContext? output = AllocateOutput(filename, format);
-        if (output == null) return null;
+        if (output == null)
+            return null;
         if (filename != null && !(format?.Flags == FormatFlags.NoFile))
         {
             AVResult32 result = AVIOContext.Open(&output.Context->pb, filename, ffmpeg.AVIO_FLAG_WRITE, out output.ioContext);
@@ -1276,7 +1299,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     public static FormatContext? OpenOutput(IOContext context, OutputFormat format)
     {
         FormatContext? output = AllocateOutput(null, format);
-        if (output == null) return null;
+        if (output == null)
+            return null;
         context.InitContext(output, IOOptions.Write);
         return output;
     }
@@ -1324,7 +1348,10 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 WriteHeader(IDictionary<string, string> dictionary)
     {
-        if (dictionary is Collections.AVDictionary avDict) return WriteHeader(avDict);
+        if (dictionary is Collections.AVDictionary avDict)
+        {
+            return WriteHeader(avDict);
+        }
         else
         {
             using Collections.AVDictionary dicCopy = new(dictionary);
@@ -1370,7 +1397,8 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     {
         packet.Unreference(); // av_read_frame in contrast to receive frame/packet (codec context) does not unreference the packet
         AVResult32 result = ffmpeg.av_read_frame(Context, packet.packet);
-        if (result.IsError) return result;
+        if (result.IsError)
+            return result;
         if (packet.TimeBase.Numerator == 0) // set packet time base if not set
             packet.TimeBase = Context->streams[packet.StreamIndex]->time_base;
         return result;
@@ -1387,7 +1415,7 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 Seek(Rational time)
     {
-        Rational timeBase = new Rational(1, ffmpeg.AV_TIME_BASE);
+        Rational timeBase = new(1, ffmpeg.AV_TIME_BASE);
         long l = (long)(time / timeBase);
         return ffmpeg.av_seek_frame(Context, -1, l, ffmpeg.AVSEEK_FLAG_BACKWARD);
     }
@@ -1503,18 +1531,19 @@ public sealed unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     private bool trailerWritten;
     public AVResult32 WriteTrailer()
     {
-        if (trailerWritten) return 0;
+        if (trailerWritten)
+            return 0;
         AVResult32 res = ffmpeg.av_write_trailer(Context);
         trailerWritten = !res.IsError;
         return res;
     }
 
     // ToDo: -40 if not supported
-    public AVResult32 GetOutputTimestamp(int streamIndex,out TimeSpan timestamp,out TimeSpan wallTime)
+    public AVResult32 GetOutputTimestamp(int streamIndex, out TimeSpan timestamp, out TimeSpan wallTime)
     {
         Rational timeBase = Streams[streamIndex].TimeBase;
-        long dts,wall;
-        var res = ffmpeg.av_get_output_timestamp(Context,streamIndex,&dts,&wall);
+        long dts, wall;
+        int res = ffmpeg.av_get_output_timestamp(Context, streamIndex, &dts, &wall);
         timestamp = dts * timeBase;
         wallTime = TimeSpan.FromMilliseconds(wall);
         return res;

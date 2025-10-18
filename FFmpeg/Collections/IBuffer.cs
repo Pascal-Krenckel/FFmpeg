@@ -1,6 +1,4 @@
-﻿using FFmpeg.AutoGen;
-
-namespace FFmpeg.Collections;
+﻿namespace FFmpeg.Collections;
 /// <summary>
 /// Defines the interface for buffer management, providing methods for 
 /// accessing and manipulating data, managing reference counts, and handling 

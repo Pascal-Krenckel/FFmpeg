@@ -58,7 +58,7 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// </exception>
     public static AVPacket Allocate(int size)
     {
-        var packet = ffmpeg.av_packet_alloc();
+        AutoGen._AVPacket* packet = ffmpeg.av_packet_alloc();
         if (packet == null)
             throw new OutOfMemoryException("Failed to allocate memory for the AVPacket.");
 
@@ -80,10 +80,8 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// </exception>
     public static AVPacket Allocate()
     {
-        var packet = ffmpeg.av_packet_alloc();
-        if (packet == null)
-            throw new OutOfMemoryException("Failed to allocate memory for AVPacket.");
-        return new(packet);
+        AutoGen._AVPacket* packet = ffmpeg.av_packet_alloc();
+        return packet == null ? throw new OutOfMemoryException("Failed to allocate memory for AVPacket.") : new(packet);
     }
 
     /// <summary>
@@ -284,10 +282,7 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// to the specified <see cref="IPacket"/> destination without copying the actual data.
     /// </summary>
     /// <param name="dst">The destination packet to copy the properties to.</param>
-    public void CopyProperties(IPacket dst)
-    {
-        ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
-    }
+    public void CopyProperties(IPacket dst) => ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
 
     /// <summary>
     /// Rescales the timing fields (timestamps and durations) of the current packet from its current time base to a new time base. <br/>

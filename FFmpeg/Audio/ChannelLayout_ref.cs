@@ -1,6 +1,5 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Utils;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace FFmpeg.Audio;
@@ -91,7 +90,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public void CopyFrom(ChannelLayout layout)
     {
-        if (IsReadOnly) throw new NotSupportedException();
+        if (IsReadOnly)
+            throw new NotSupportedException();
         AutoGen._AVChannelLayout l = layout.Layout;
         ((AVResult32)ffmpeg.av_channel_layout_copy(ptr, &l)).ThrowIfError();
     }
@@ -108,7 +108,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public void CopyFrom(ChannelLayout_ref layout)
     {
-        if (IsReadOnly) throw new NotSupportedException();
+        if (IsReadOnly)
+            throw new NotSupportedException();
         AutoGen._AVChannelLayout l = layout.Layout;
         ((AVResult32)ffmpeg.av_channel_layout_copy(ptr, &l)).ThrowIfError();
     }
@@ -123,11 +124,9 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// This method checks if the given <paramref name="obj"/> is of type <see cref="ChannelLayout_ref"/> or <see cref="ChannelLayout"/> or <see cref="IChannelLayout"/> 
     /// and uses the appropriate equality comparison method based on the type.
     /// </remarks>
-    public override bool Equals(object? obj)
-    {
-        if (obj is ChannelLayout_ref ptr) return Equals(ptr);
-        return obj is ChannelLayout layout ? Equals(layout) : obj is IChannelLayout iLayout && Equals(iLayout);
-    }
+    public override bool Equals(object? obj) => obj is ChannelLayout_ref ptr
+            ? Equals(ptr)
+            : obj is ChannelLayout layout ? Equals(layout) : obj is IChannelLayout iLayout && Equals(iLayout);
 
     /// <summary>
     /// Determines whether the current instance is equal to another <see cref="IChannelLayout"/> instance.
@@ -139,7 +138,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public readonly bool Equals(IChannelLayout? other)
     {
-        if (other == null) return false;
+        if (other == null)
+            return false;
         _AVChannelLayout right = other.Layout;
         return ffmpeg.av_channel_layout_compare(ptr, &right) == 0;
     }
@@ -164,7 +164,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public readonly bool Equals(ChannelLayout? other)
     {
-        if (other == null) return false;
+        if (other == null)
+            return false;
         _AVChannelLayout right = other.Layout;
         return ffmpeg.av_channel_layout_compare(ptr, &right) == 0;
     }
@@ -181,7 +182,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public readonly void Init(int nb)
     {
-        if (IsReadOnly) throw new NotSupportedException();
+        if (IsReadOnly)
+            throw new NotSupportedException();
         int res = ffmpeg.av_channel_layout_custom_init(ptr, nb);
         if (res == AVResult32.OutOfMemory)
             throw new OutOfMemoryException();
@@ -199,7 +201,8 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     public override readonly string ToString()
     {
         AVResult32 res = ffmpeg.av_channel_layout_describe(ptr, null, 0);
-        if (res.IsError) return string.Empty;
+        if (res.IsError)
+            return string.Empty;
         byte* chars = stackalloc byte[res];
         res = ffmpeg.av_channel_layout_describe(ptr, chars, (ulong)(int)res);
         return res.IsError ? string.Empty : Marshal.PtrToStringUTF8((nint)chars);
@@ -245,10 +248,12 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
         if (IsReadOnly)
             throw new NotSupportedException("The current instance is read-only and cannot be modified.");
         if (obj == null)
+        {
             ffmpeg.av_channel_layout_uninit(ptr);
+        }
         else
         {
-            var layout = obj.Layout;
+            _AVChannelLayout layout = obj.Layout;
             AVResult32 res = ffmpeg.av_channel_layout_copy(ptr, &layout);
             res.ThrowIfError(); // Throws OutOfMemoryException or other exceptions based on the result
         }

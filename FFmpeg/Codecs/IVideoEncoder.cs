@@ -61,7 +61,7 @@ public interface IVideoEncoder : IEncoderContext
     /// This property is set by libavcodec and cannot be modified by the user.
     /// </para>
     /// </summary>
-    public ReadOnlySpan<byte> Pass1StatsOutput { get; }
+    ReadOnlySpan<byte> Pass1StatsOutput { get; }
 
     /// <summary>
     /// Gets or sets the pass2 encoding statistics input buffer as a read-only span of bytes.
@@ -70,7 +70,7 @@ public interface IVideoEncoder : IEncoderContext
     /// This property can be set by the user for pass2 encoding.
     /// </para>
     /// </summary>
-    public ReadOnlySpan<byte> Pass2StatsInput { get; set; }
+    ReadOnlySpan<byte> Pass2StatsInput { get; set; }
 
     /// <summary>
     /// Gets or sets the number of threads to be used during encoding.

@@ -1,12 +1,16 @@
 ﻿namespace FFmpeg.Helper;
+
 internal static class SpanExtension
 {
     public static bool Contains<T>(this ReadOnlySpan<T> o, T value, IEqualityComparer<T>? comparer)
     {
         comparer ??= EqualityComparer<T>.Default;
         foreach (T? t in o)
+        {
             if (comparer.Equals(t, value))
                 return true;
+        }
+
         return false;
     }
     public static bool Contains<T>(this ReadOnlySpan<T> o, T value) => Contains(o, value, null);
@@ -18,8 +22,11 @@ internal static class SpanExtension
     {
         comparer ??= EqualityComparer<T>.Default;
         foreach (T? t in o)
+        {
             if (comparer.Equals(t, value))
                 return true;
+        }
+
         return false;
     }
     public static bool Contains<T>(this Span<T> o, T value) => Contains(o, value, null);

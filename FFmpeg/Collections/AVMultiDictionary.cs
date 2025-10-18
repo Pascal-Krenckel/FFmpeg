@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using FFmpeg.Utils;
+using System.Collections;
 using System.Runtime.InteropServices;
-using FFmpeg.Utils;
 
 namespace FFmpeg.Collections;
 /// <summary>
@@ -38,8 +38,10 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     public AVMultiDictionary(ILookup<string, string> values, bool ignoreCase = false)
     {
         foreach (IGrouping<string, string>? group in values)
+        {
             foreach (string value in group)
                 Add(group.Key, value);
+        }
     }
 
     public AVMultiDictionary(IDictionary<string, string> values, bool ignoreCase = false)
@@ -70,7 +72,8 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
     public bool Contains(string key)
     {
-        if (dictionary == null) return false;
+        if (dictionary == null)
+            return false;
         AutoGen._AVDictionaryEntry* entry = AutoGen.ffmpeg.av_dict_get(dictionary, key, null, (int)Flags);
         return entry != null;
     }
@@ -83,7 +86,8 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     public bool RemoveAll(string key)
     {
         bool ret = false;
-        while (RemoveFirst(key)) ret = true;
+        while (RemoveFirst(key))
+            ret = true;
         return ret;
     }
 
@@ -95,12 +99,14 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     public bool RemoveFirst(string key)
     {
         bool b = Contains(key);
-        if (!b) return false;
+        if (!b)
+            return false;
         AutoGen._AVDictionary* dictionary = this.dictionary;
         AVResult32 res = AutoGen.ffmpeg.av_dict_set(&dictionary, key, null, (int)(Flags & ~AVDictionaryFlags.MultiKey));
         if (res.IsError)
             return false;
-        unchecked { _check++; }
+        unchecked
+        { _check++; }
         this.dictionary = dictionary;
         return true;
     }
@@ -112,12 +118,14 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// <param name="value">The value of the element to add.</param>
     public void Add(string key, string value)
     {
-        if (key == null) throw new ArgumentNullException(nameof(key));
+        if (key == null)
+            throw new ArgumentNullException(nameof(key));
         AutoGen._AVDictionary* dictionary = this.dictionary;
         AVResult32 res = AutoGen.ffmpeg.av_dict_set(&dictionary, key, value, (int)Flags);
         this.dictionary = dictionary;
         res.ThrowIfError();
-        unchecked { _check++; }
+        unchecked
+        { _check++; }
     }
 
     /// <summary>
@@ -226,6 +234,6 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     }
 
     ~AVMultiDictionary() => Dispose();
-    public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',',kv)}"));
+    public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
 
 }

@@ -210,7 +210,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     public AVResult32 Config(IChannelLayout srcLayout, SampleFormat srcFormat, int srcSampleRate,
                              IChannelLayout dstLayout, SampleFormat dstFormat, int dstSampleRate)
     {
-        var context = this.context;
+        AutoGen._SwrContext* context = this.context;
         ffmpeg.swr_close(context);
 
         AutoGen._AVChannelLayout srcL = srcLayout.Layout;
@@ -237,17 +237,13 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// On success, returns the number of output samples produced. On error, returns an <see cref="AVResult32"/> error code.
     /// </returns>
     /// <exception cref="ArgumentException">Thrown if <paramref name="src"/> and <paramref name="dst"/> refer to the same instance.</exception>
-    public AVResult32 Convert(AVFrame? src, AVFrame? dst)
-    {
-        if (src == dst)
-            throw new ArgumentException("Source and destination AVFrame must not reference the same instance.", nameof(dst));
-
-        return dst == null
+    public AVResult32 Convert(AVFrame? src, AVFrame? dst) => src == dst
+            ? throw new ArgumentException("Source and destination AVFrame must not reference the same instance.", nameof(dst))
+            : dst == null
             ? (AVResult32)ffmpeg.swr_convert_frame(context, null, src!.Frame)
             : src != null
                 ? (AVResult32)ffmpeg.swr_convert_frame(context, dst.Frame, src.Frame)
                 : (AVResult32)ffmpeg.swr_convert_frame(context, dst.Frame, null);
-    }
 
     /// <summary>
     /// Converts audio from an <see cref="AVFrame"/> source to an <see cref="AudioBuffer"/> destination, starting at the specified sample index.
@@ -264,7 +260,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// </returns>
     public AVResult32 Convert(AVFrame? src, AudioBuffer dst, int dstSampleIndex)
     {
-        if (!EnsureInitialize(out var res))
+        if (!EnsureInitialize(out AVResult32 res))
             return res;
 
         byte** dstBuffer = stackalloc byte*[dst.IsPlanar ? dst.Channels : 1];
@@ -314,7 +310,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// </returns>
     public AVResult32 Convert(AudioBuffer src, int srcSampleIndex, AVFrame? dst)
     {
-        if (!EnsureInitialize(out var res))
+        if (!EnsureInitialize(out AVResult32 res))
             return res;
 
         byte** srcBuffer = stackalloc byte*[src.IsPlanar ? src.Channels : 1];
@@ -367,12 +363,12 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
             throw new ArgumentNullException("At least one of src or dst must be non-null.");
 
         if (src == null)
-            return Convert(null as AVFrame, dst, dstSampleIndex);
+            return Convert(null, dst, dstSampleIndex);
 
         if (dst == null)
-            return Convert(src, srcSampleIndex, null as AVFrame);
+            return Convert(src, srcSampleIndex, null);
 
-        if (!EnsureInitialize(out var res))
+        if (!EnsureInitialize(out AVResult32 res))
             return res;
 
         byte** srcBuffer = stackalloc byte*[src.IsPlanar ? src.Channels : 1];
@@ -427,12 +423,12 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// </exception>
     public AVResult32 Convert(AVFrame? src, IntPtr dst, int outSamplesPerChannel)
     {
-        if (!EnsureInitialize(out var res))
+        if (!EnsureInitialize(out AVResult32 res))
             return res;
 
         if (src != null)
         {
-            using var chlLayout = SourceLayout;
+            using ChannelLayout chlLayout = SourceLayout;
             if (src.ChannelLayout != chlLayout)
                 throw new ArgumentException("The source channel layout does not match the configured layout.");
             if (src.SampleRate != SourceSampleRate)
@@ -443,7 +439,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
 
         if (DestinationFormat.IsPlanar())
         {
-            using var chlLayout = DestinationLayout;
+            using ChannelLayout chlLayout = DestinationLayout;
             if (chlLayout.Channels != 1)
                 throw new ArgumentException("Only mono is accepted for planar output. Use packed output or perform channel mixing before conversion.");
         }
@@ -473,12 +469,12 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// </exception>
     public AVResult32 Convert(AVFrame? src, Span<byte> dst)
     {
-        if (!EnsureInitialize(out var res))
+        if (!EnsureInitialize(out AVResult32 res))
             return res;
 
         if (src != null)
         {
-            using var chlLayout = SourceLayout;
+            using ChannelLayout chlLayout = SourceLayout;
             if (src.ChannelLayout != chlLayout)
                 throw new ArgumentException("The source channel layout does not match the configured layout.");
             if (src.SampleRate != SourceSampleRate)
@@ -487,7 +483,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
                 throw new ArgumentException("The source sample format does not match the configured format.");
         }
 
-        using var outChlLayout = DestinationLayout;
+        using ChannelLayout outChlLayout = DestinationLayout;
 
         if (DestinationFormat.IsPlanar() && outChlLayout.Channels != 1)
             throw new ArgumentException("Only mono is accepted for planar output. Use packed output or convert channels beforehand.");
@@ -556,10 +552,7 @@ public unsafe class SwrContext : Options.OptionQueryBase, IDisposable
     /// This method clears any buffered output samples that have not yet been retrieved or converted,
     /// effectively resetting the output state of the resampler.
     /// </remarks>
-    public void Clear()
-    {
-        _ = ffmpeg.swr_drop_output(context, GetOutputSampleCount());
-    }
+    public void Clear() => _ = ffmpeg.swr_drop_output(context, GetOutputSampleCount());
 
     /// <summary>
     /// Finalizer to ensure unmanaged resources are freed if <see cref="Dispose"/> is not called.

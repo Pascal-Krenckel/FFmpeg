@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Collections;
+﻿namespace FFmpeg.Collections;
 /// <summary>
 /// Represents a reference to an AVBuffer, providing a set of operations for handling
 /// buffer memory and metadata in a safe manner, while leveraging the underlying AVBufferRef structure.
 /// </summary>
-public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, Utils.IReference<AVBuffer>
+public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, Utils.IReference<AVBuffer>
 {
     /// <summary>
     /// Internal pointer to the underlying AVBufferRef structure.
@@ -27,7 +22,8 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// <exception cref="NullReferenceException">Thrown when the buffer is null.</exception>
     internal AVBuffer_ref(AutoGen._AVBufferRef** buffer)
     {
-        if (buffer == null) throw new NullReferenceException();
+        if (buffer == null)
+            throw new NullReferenceException();
         this.buffer = buffer;
     }
 
@@ -72,16 +68,9 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of bounds.</exception>
     public byte this[int index]
     {
-        get => IsNull ? throw new NullReferenceException() : (index < 0 || index >= (int)(*buffer)->size) ? throw new ArgumentOutOfRangeException(nameof(index)) : (**buffer).data[index];
-        set
-        {
-            if (IsNull)
-                throw new NullReferenceException();
-            else if (index < 0 || index >= (int)(*buffer)->size)
-                throw new ArgumentOutOfRangeException(nameof(index));
-            else
-                (**buffer).data[index] = value;
-        }
+        get => IsNull ? throw new NullReferenceException() : (index < 0 || index >= (int)(*buffer)->size) ? throw new ArgumentOutOfRangeException(nameof(index)) : (**buffer).data[index]; set => (**buffer).data[index] = IsNull
+                                                                                                                                                                                                   ? throw new NullReferenceException()
+                                                                                                                                                                                                   : index < 0 || index >= (int)(*buffer)->size ? throw new ArgumentOutOfRangeException(nameof(index)) : value;
     }
 
     /// <summary>
@@ -101,7 +90,7 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     {
         if (this == null)
             throw new NullReferenceException();
-        var buffer = AVBuffer.Allocate(Length); // may throw OutOfMemoryException        
+        AVBuffer buffer = AVBuffer.Allocate(Length); // may throw OutOfMemoryException        
         AsSpan().CopyTo(buffer.AsSpan());
         return buffer;
     }
@@ -111,11 +100,7 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// </summary>
     /// <returns>A cloned instance of the buffer.</returns>
     /// <exception cref="NullReferenceException">Thrown when the buffer is uninitialized.</exception>
-    public AVBuffer Clone()
-    {
-        if (IsNull) throw new NullReferenceException();
-        return GetReferencedObject()!;
-    }
+    public AVBuffer Clone() => IsNull ? throw new NullReferenceException() : GetReferencedObject()!;
 
     /// <summary>
     /// Makes the buffer writable by ensuring a unique copy is made if necessary.
@@ -134,20 +119,14 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// </summary>
     /// <param name="src">The source buffer to replace with.</param>
     /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails during the replacement.</exception>
-    public void ReplaceWith(IBuffer src)
-    {
-        FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_buffer_replace(buffer, src.Reference)); // OutOfMemoryException
-    }
+    public void ReplaceWith(IBuffer src) => FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_buffer_replace(buffer, src.Reference)); // OutOfMemoryException
 
     /// <summary>
     /// Resizes the buffer to the specified size.
     /// </summary>
     /// <param name="size">The new size for the buffer.</param>
     /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails during resizing.</exception>
-    public void Resize(int size)
-    {
-        FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_buffer_realloc(buffer, (ulong)size)); // outOfMemoryException
-    }
+    public void Resize(int size) => FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_buffer_realloc(buffer, (ulong)size)); // outOfMemoryException
 
     /// <summary>
     /// Attempts to make the buffer writable. Returns true if successful.
@@ -183,11 +162,7 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// This method provides a safe way to access the buffer being referenced without exposing the underlying unmanaged pointer.
     /// If the reference is null (i.e., <see cref="IsNull"/> is <c>true</c>), it returns <c>null</c>.
     /// </remarks>
-    public AVBuffer? GetReferencedObject()
-    {
-        if (IsNull) return null;
-        return AVBuffer.FromExisting(*buffer);
-    }
+    public AVBuffer? GetReferencedObject() => IsNull ? null : AVBuffer.FromExisting(*buffer);
 
     /// <summary>
     /// Sets the reference to a new <see cref="AVBuffer"/> object or unlinks the current reference.
@@ -209,7 +184,8 @@ public unsafe readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
         if (buffer != null)
         {
             *this.buffer = ffmpeg.av_buffer_ref(buffer.reference);
-            if (IsNull) throw new OutOfMemoryException();
+            if (IsNull)
+                throw new OutOfMemoryException();
         }
     }
 

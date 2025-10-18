@@ -1,5 +1,4 @@
-﻿using FFmpeg.Codecs;
-using FFmpeg.Exceptions;
+﻿using FFmpeg.Exceptions;
 using FFmpeg.Utils;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -77,7 +76,8 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     /// <exception cref="ArgumentException">Thrown when an element with the same key already exists in the dictionary.</exception>
     public void Add(string key, string value)
     {
-        if (key == null) throw new ArgumentNullException(nameof(key));
+        if (key == null)
+            throw new ArgumentNullException(nameof(key));
         if (ContainsKey(key))
             throw new ArgumentException("An element with the same key already exists in the Dictionary<TKey,TValue>.");
         this[key] = value;
@@ -89,10 +89,7 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value to append to the existing value.</param>
     /// <exception cref="ArgumentNullException">Thrown when the key is <see langword="null"/>.</exception>
-    public void AppendText(string key, string value)
-    {
-        FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(Pointer, key, value, (int)(Flags | AVDictionaryFlags.Append)));
-    }
+    public void AppendText(string key, string value) => FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(Pointer, key, value, (int)(Flags | AVDictionaryFlags.Append)));
 
     /// <summary>
     /// Adds the specified key-value pair to the dictionary.
@@ -149,7 +146,8 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     public bool Remove(string key)
     {
         bool b = ContainsKey(key);
-        if (!b) return false;
+        if (!b)
+            return false;
         this[key] = null!;
         return true;
     }
@@ -223,7 +221,9 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     public void SetReferencedObject(AVDictionary? dict)
     {
         if (dict == null)
+        {
             Clear();
+        }
         else
         {
             FFmpeg.Exceptions.FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_copy(Pointer, dict.dictionary, (int)dict.Flags)); // May throw OutOfMemoryException if allocation fails.
@@ -231,19 +231,25 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
         }
     }
 
-    public void Init(IDictionary<string,string> metadata)
+    public void Init(IDictionary<string, string> metadata)
     {
         Clear();
-        if (metadata is AVDictionary avDict) ((AVResult32)ffmpeg.av_dict_copy(Pointer, avDict.dictionary, (int)Flags)).ThrowIfError();
-        else if(metadata is AVDictionary_ref avDictRef) ((AVResult32)ffmpeg.av_dict_copy(Pointer, *avDictRef.Pointer, (int)Flags)).ThrowIfError();
-        else foreach(var kv in metadata) this[kv.Key] = kv.Value;
+        if (metadata is AVDictionary avDict)
+            ((AVResult32)ffmpeg.av_dict_copy(Pointer, avDict.dictionary, (int)Flags)).ThrowIfError();
+        else if (metadata is AVDictionary_ref avDictRef)
+            ((AVResult32)ffmpeg.av_dict_copy(Pointer, *avDictRef.Pointer, (int)Flags)).ThrowIfError();
+        else
+        {
+            foreach (KeyValuePair<string, string> kv in metadata)
+                this[kv.Key] = kv.Value;
+        }
     }
     public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
 
     // ToDo: comments, Extract Interface
-    public void CopyFrom(IDictionary<string,string> dic)
+    public void CopyFrom(IDictionary<string, string> dic)
     {
-        foreach(var  kv in dic)
+        foreach (KeyValuePair<string, string> kv in dic)
             this[kv.Key] = kv.Value;
     }
 

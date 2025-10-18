@@ -2,12 +2,12 @@
 using System.Collections.ObjectModel;
 
 namespace FFmpeg.Devices;
+
 public static unsafe class Device
 {
     static Device() => ffmpeg.avdevice_register_all();
 
-    private static ReadOnlyCollection<InputFormat>? audioInputDevices = null;
-    public static ReadOnlyCollection<InputFormat> AudioInputDevices => audioInputDevices ??= InitAudioInputDevices();
+    public static ReadOnlyCollection<InputFormat> AudioInputDevices { get => field ??= InitAudioInputDevices(); } = null;
 
     private static ReadOnlyCollection<InputFormat> InitAudioInputDevices()
     {
@@ -18,8 +18,7 @@ public static unsafe class Device
         return new(devices);
     }
 
-    private static ReadOnlyCollection<OutputFormat>? audioOutputDevices = null;
-    public static ReadOnlyCollection<OutputFormat> AudioOutputDevices => audioOutputDevices ??= InitAudioOutputDevices();
+    public static ReadOnlyCollection<OutputFormat> AudioOutputDevices { get => field ??= InitAudioOutputDevices(); } = null;
     private static ReadOnlyCollection<OutputFormat> InitAudioOutputDevices()
     {
         List<OutputFormat> devices = [];
@@ -29,9 +28,7 @@ public static unsafe class Device
         return new(devices);
     }
 
-
-    private static ReadOnlyCollection<InputFormat>? videoInputDevices = null;
-    public static ReadOnlyCollection<InputFormat> VideoInputDevices => videoInputDevices ??= InitVideoInputDevices();
+    public static ReadOnlyCollection<InputFormat> VideoInputDevices { get => field ??= InitVideoInputDevices(); } = null;
 
     private static ReadOnlyCollection<InputFormat> InitVideoInputDevices()
     {
@@ -42,8 +39,7 @@ public static unsafe class Device
         return new(devices);
     }
 
-    private static ReadOnlyCollection<OutputFormat>? videoOutputDevices = null;
-    public static ReadOnlyCollection<OutputFormat> VideoOutputDevices => videoOutputDevices ??= InitVideoOutputDevices();
+    public static ReadOnlyCollection<OutputFormat> VideoOutputDevices { get => field ??= InitVideoOutputDevices(); } = null;
 
     private static ReadOnlyCollection<OutputFormat> InitVideoOutputDevices()
     {

@@ -181,7 +181,7 @@ public unsafe interface ICodecParameters
     /// This value indicates the number of channels in the audio stream, such as 1 for mono, 2 for stereo, or higher for surround formats.
     /// The meaning is related to the <see cref="ChannelLayout"/> property.
     /// </remarks>
-    public int Channels { get; }
+    int Channels { get; }
 
     /// <summary>
     /// Gets or sets the channel layout, which defines the spatial arrangement of audio channels (e.g., mono, stereo, 5.1 surround).
@@ -189,7 +189,7 @@ public unsafe interface ICodecParameters
     /// <remarks>
     /// The channel layout determines how audio channels are positioned and should match the number of channels and the codec in use.
     /// </remarks>
-    public ChannelLayout ChannelLayout
+    ChannelLayout ChannelLayout
     {
         get; set;
     }
@@ -200,7 +200,7 @@ public unsafe interface ICodecParameters
     /// <remarks>
     /// Ensure the assigned value is compatible with the codec and audio stream.
     /// </remarks>
-    public SampleFormat SampleFormat
+    SampleFormat SampleFormat
     {
         get;
         set;
@@ -212,7 +212,7 @@ public unsafe interface ICodecParameters
     /// <remarks>
     /// Ensure the assigned value is compatible with the codec and video stream.
     /// </remarks>
-    public PixelFormat PixelFormat
+    PixelFormat PixelFormat
     {
         get;
         set;
