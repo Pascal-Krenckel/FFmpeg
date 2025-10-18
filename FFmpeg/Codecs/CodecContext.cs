@@ -3,6 +3,7 @@ using FFmpeg.AutoGen;
 using FFmpeg.Images;
 using FFmpeg.Logging;
 using FFmpeg.Utils;
+using FFmpeg.Helper;
 using System.Runtime.InteropServices;
 using AVFrame = FFmpeg.Utils.AVFrame;
 using AVPacket = FFmpeg.Utils.AVPacket;
@@ -981,7 +982,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </para>
     /// </summary>
     public ReadOnlySpan<byte> Pass1StatsOutput => context->stats_out != null
-            ? new ReadOnlySpan<byte>(context->stats_out, StringHelper.StrLen(context->stats_out))
+            ? new ReadOnlySpan<byte>(context->stats_out, Helper.StringHelper.StrLen(context->stats_out))
             : [];
 
     /// <summary>

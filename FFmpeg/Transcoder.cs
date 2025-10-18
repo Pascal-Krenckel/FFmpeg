@@ -2,6 +2,7 @@
 using FFmpeg.Codecs;
 using FFmpeg.Filters;
 using FFmpeg.Formats;
+using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Logging;
 using FFmpeg.Utils;

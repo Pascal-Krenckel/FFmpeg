@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Utils;
 
