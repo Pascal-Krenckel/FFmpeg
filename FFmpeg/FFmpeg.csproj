@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<Nullable>enable</Nullable>
 		<LangVersion>Latest</LangVersion>
@@ -24,9 +25,11 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>FFmpeg; .net; C#</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageId>FFmpeg._AutoGen.Managed</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Include="..\README.md" Pack="true" PackagePath="\"/>
 		<PackageReference Include="System.IO.Pipelines" Version="9.0.9" />
 		<PackageReference Include="System.Security.Permissions" Version="9.0.9" />
 		<ProjectReference Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
