@@ -6,6 +6,24 @@
 		<LangVersion>Latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>FFmpeg</Title>
+		<Authors>Pascal Krenckel</Authors>
+		<Description>A .NET wrapper library for FFmpeg using FFmpeg.AutoGen. This library provides a managed interface for FFmpeg's raw C API by wrapping around the unsafe pointers and structs provided by FFmpeg.AutoGen. It offers a higher-level, object-oriented approach to access and manipulate FFmpeg's core functionality, making it easier to integrate FFmpeg into .NET applications.
+
+Simplifies working with FFmpeg by providing a safer, managed wrapper around the native FFmpeg API.
+
+Exposes FFmpeg's powerful multimedia processing capabilities in a more accessible, object-oriented format.
+
+Reduces the need to work directly with pointers and memory management, leveraging the safety of C# for easier debugging and development.
+
+Ideal for .NET developers who need to integrate FFmpeg's audio and video processing, transcoding, streaming, and encoding/decoding capabilities in their applications.</Description>
+		<Copyright>Copyright (c) 2025 Pascal Krenckel. All rights reserved.</Copyright>
+		<PackageProjectUrl>https://github.com/Pascal-Krenckel/FFmpeg</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Pascal-Krenckel/FFmpeg</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>FFmpeg; .net; C#</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
