@@ -4,7 +4,6 @@ using FFmpeg.Filters;
 using FFmpeg.Formats;
 using FFmpeg.Helper;
 using FFmpeg.Images;
-using FFmpeg.Logging;
 using FFmpeg.Utils;
 using System.Runtime.CompilerServices;
 
@@ -179,8 +178,6 @@ public sealed class Transcoder : IDisposable
     public AVResult32 WriteTrailer() => Sink.WriteTrailer();
     public void WriteHeader(TimeSpan startTime = default, TimeSpan duration = default)
     {
-
-        ExceptionLog.Reset();
         for (int i = 0; i < Source.Streams.Count; i++)
         {
             int sourceIndex = i;
@@ -227,7 +224,6 @@ public sealed class Transcoder : IDisposable
         this.duration = duration;
         Sink.OpenCodecs();
         Sink.WriteHeader();
-        ExceptionLog.Reset();
         Source.Seek(start).ThrowIfError();
         if (PreviewOutputStreamIndex < 0)
             PreviewOutputStreamIndex = Sink.FormatContext.FindBestStream(MediaType.Video);

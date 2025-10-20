@@ -2,7 +2,6 @@
 using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.HW;
-using FFmpeg.Logging;
 using FFmpeg.Utils;
 
 namespace FFmpeg;
@@ -50,7 +49,6 @@ public class MediaSource : IDisposable
                     if (this.codecContexts.Length == Streams.Count)
                         return this.codecContexts;
                     CodecContext[] codecContexts = new CodecContext[Streams.Count];
-                    ExceptionLog.Reset();
                     int old = this.codecContexts.Length;
                     Array.Resize(ref codecContexts, Streams.Count);
                     for (int i = old; i < Streams.Count; i++)
@@ -194,7 +192,6 @@ public class MediaSource : IDisposable
     {
         lock (SyncRoot)
         {
-            ExceptionLog.Reset();
             AVResult32 res = 0;
             do
             {

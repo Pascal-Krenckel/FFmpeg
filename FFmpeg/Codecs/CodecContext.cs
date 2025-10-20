@@ -2,7 +2,6 @@
 using FFmpeg.AutoGen;
 using FFmpeg.Helper;
 using FFmpeg.Images;
-using FFmpeg.Logging;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 using AVFrame = FFmpeg.Utils.AVFrame;
@@ -299,7 +298,6 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </exception>
     public static CodecContext Open(Codec codec, ICodecParameters? codecParams, HW.DeviceType deviceType)
     {
-        ExceptionLog.Reset();
         CodecContext context = Allocate(codec);
         if (codecParams != null)
             context.SetCodecParameters(codecParams);
@@ -314,7 +312,6 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     // ToDo:
     public static CodecContext OpenEncoder(Formats.AVStream stream)
     {
-        Logger.LogLevel = LogLevel.Debug;
         CodecContext ctx = CodecContext.Allocate(Codec.FindEncoder(stream.CodecId));
         ctx.SetCodecParameters(stream.CodecParameters);
         ctx.TimeBase = ctx.PacketTimeBase = stream.TimeBase;

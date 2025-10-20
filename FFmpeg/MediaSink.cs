@@ -1,7 +1,6 @@
 ﻿using FFmpeg.Codecs;
 using FFmpeg.Collections;
 using FFmpeg.Formats;
-using FFmpeg.Logging;
 using FFmpeg.Utils;
 
 namespace FFmpeg;
@@ -74,7 +73,6 @@ public class MediaSink : IDisposable
 
     public void WriteHeader()
     {
-        ExceptionLog.Reset();
         FormatContext.WriteHeader().ThrowIfError();
         for (int i = 0; i < Streams.Count; i++)
         {
@@ -87,7 +85,6 @@ public class MediaSink : IDisposable
 
     public void OpenCodecs()
     {
-        ExceptionLog.Reset();
         for (int i = 0; i < codecContexts.Count; i++)
         {
             if (codecContexts[i]?.IsOpen == false)
@@ -97,7 +94,6 @@ public class MediaSink : IDisposable
 
     public void WriteHeader(IDictionary<string, string> dic)
     {
-        ExceptionLog.Reset();
         FormatContext.WriteHeader(dic).ThrowIfError();
         for (int i = 0; i < codecContexts.Count; i++)
         {

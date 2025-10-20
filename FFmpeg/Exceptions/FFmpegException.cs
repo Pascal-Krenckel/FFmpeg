@@ -1,5 +1,4 @@
-﻿using FFmpeg.Logging;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
 
 namespace FFmpeg.Exceptions;
 /// <summary>
@@ -51,7 +50,7 @@ public class FFmpegException : Exception
         if (error == AVResult32.OutOfMemory)
             throw new OutOfMemoryException();
         if (error == AVResult32.InvalidArgument)
-            throw new ArgumentException("Invalid Argument", ExceptionLog.GetLog());
+            throw new ArgumentException("Invalid Argument");
         if (error == AVResult32.OutOfRange)
             throw new ArgumentOutOfRangeException();
         if (error == AVResult32.EndOfFile)
@@ -63,12 +62,12 @@ public class FFmpegException : Exception
         if (error == AVResult32.BitstreamFilterNotFound)
             throw new BitStreamFilterNotFoundException();
         if (error == AVResult32.Bug || error == AVResult32.Bug2)
-            throw new FFmpegException(error, ExceptionLog.GetLog());
+            throw new FFmpegException(error);
         if (error == AVResult32.BufferTooSmall)
             throw new BufferToSmallExcpetion();
         if (error == AVResult32.DecoderNotFound)
-            throw new DecoderNotFoundException(ExceptionLog.GetLog());
-        throw new FFmpegException(error, ExceptionLog.GetLog());
+            throw new DecoderNotFoundException();
+        throw new FFmpegException(error);
         // ToDo: error
 
     }
