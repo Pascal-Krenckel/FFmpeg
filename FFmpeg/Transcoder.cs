@@ -37,7 +37,6 @@ public sealed class Transcoder : IDisposable
     public TimeSpan Duration => duration > TimeSpan.Zero ? duration : OutputStream.Max(s => (s.StartTime + s.Duration) * s.TimeBase) - start;
 
 
-
     private readonly Subtitles.Subtitle subtitle = new();
 
 
@@ -47,8 +46,8 @@ public sealed class Transcoder : IDisposable
         Sink = sink;
         Sink.Metatdata.Init(source.Metadata);
     }
-
-    public Transcoder(FormatContext source, FormatContext sink) : this(new MediaSource(source), new(sink))
+       
+    private Transcoder(FormatContext source, FormatContext sink) : this(new MediaSource(source), new(sink))
     { }
 
     public static Transcoder Create(FormatContext source, HW.DeviceType hwSourceType, FormatContext sink) => new(new MediaSource(source, hwSourceType), new(sink));
@@ -63,8 +62,10 @@ public sealed class Transcoder : IDisposable
 
     private readonly Dictionary<int, List<TranscodingMap>> transCoderMap = [];
 
+    public int FindBestInputStream(MediaType mediaType) => Source.FindBestStream(mediaType);
 
-    // filter must have 1 ctx called in and 1 ctx called out
+
+    // filter must have 1 ctx for in and 1 ctx for out
     public int MapStream(int sourceIndex, CodecContext? sinkCodec, FilterGraph? filter)
     {
         int sinkIndex = Sink.Streams.Count;
@@ -77,7 +78,7 @@ public sealed class Transcoder : IDisposable
             transCoderMap[sourceIndex] = list = [];
         FilterContext? bfSink = null;
         if (filter != null)
-            bfSink = filter.Filters.Single(f => f.Name == "out");
+            bfSink = filter.OutputFilters.Single();
         int width = bfSink?.BufferSinkWidth() ?? InputCodecs[sourceIndex].Width;
         int height = bfSink?.BufferSinkHeight() ?? InputCodecs[sourceIndex].Height;
         Rational timeBase = bfSink?.BufferSinkTimeBase() ?? InputStreams[sourceIndex].TimeBase;
@@ -140,7 +141,7 @@ public sealed class Transcoder : IDisposable
                 CodecContext encoder = CodecContext.Allocate(Codec.FindEncoder(InputCodecs[sourceIndex].CodecID));
                 if (encoder.CodecType == Utils.MediaType.Audio)
                 {
-                    FilterContext fctx = filter.Filters.First(f => f.Name == "out");
+                    FilterContext fctx = filter.OutputFilters.Single();
                     encoder.SampleRate = fctx.BufferSinkSampleRate();
                     fctx.BufferSinkChannelLayout(out ChannelLayout? ch).ThrowIfError();
                     encoder.ChannelLayout.CopyFrom(ch);
@@ -150,7 +151,7 @@ public sealed class Transcoder : IDisposable
                 }
                 else if (encoder.CodecType == Utils.MediaType.Video)
                 {
-                    FilterContext fctx = filter.Filters.First(f => f.Name == "out");
+                    FilterContext fctx = filter.OutputFilters.Single();
                     encoder.TimeBase = fctx.BufferSinkTimeBase();
                     encoder.PixelFormat = fctx.BufferSinkPixelFormat();
                     encoder.FrameRate = fctx.BufferSinkFrameRate();
@@ -722,7 +723,7 @@ public sealed class Transcoder : IDisposable
         private readonly FilterGraph? Filter;
         public SwsContext? ImageScaler;
         public SwrContext? AudioResampler;
-        public void Dispose()
+        public readonly void Dispose()
         {
             Filter?.Dispose();
             ImageScaler?.Dispose();
@@ -739,16 +740,16 @@ public sealed class Transcoder : IDisposable
         {
             InputIndex = inIndex,
             OutputIndex = outIndex,
-            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+            InputFilter = graph.InputFilters.Single(),
+            OutputFilter = graph.OutputFilters.Single(),
         };
 
         public static TranscodingMap Create(int inIndex, int outIndex, FilterGraph graph, SwsContext converter) => new()
         {
             InputIndex = inIndex,
             OutputIndex = outIndex,
-            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+            InputFilter = graph.InputFilters.Single(),
+            OutputFilter = graph.OutputFilters.Single(),
             ImageScaler = converter
         };
 
@@ -756,8 +757,8 @@ public sealed class Transcoder : IDisposable
         {
             InputIndex = inIndex,
             OutputIndex = outIndex,
-            InputFilter = graph.Filters.First(ctx => ctx.Name == "in"),
-            OutputFilter = graph.Filters.First(ctx => ctx.Name == "out"),
+            InputFilter = graph.InputFilters.Single(),
+            OutputFilter = graph.OutputFilters.Single(),
             AudioResampler = converter
         };
 
