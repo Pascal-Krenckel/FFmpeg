@@ -15,5 +15,9 @@
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
 		</Using>
+		<Using Include="FFmpeg.Helper" />
+		<Using Include="System.Runtime.CompilerServices.IsExternalInit">
+		  <Static>True</Static>
+		</Using>
 	</ItemGroup>
 </Project>
