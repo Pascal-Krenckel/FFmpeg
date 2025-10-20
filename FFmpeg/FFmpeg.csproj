@@ -23,13 +23,19 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<PackageProjectUrl>https://github.com/Pascal-Krenckel/FFmpeg</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Pascal-Krenckel/FFmpeg</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>FFmpeg; .net; C#</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageId>FFmpeg._AutoGen.Managed</PackageId>
+		<PackageTags>ffmpeg</PackageTags>
+		<PackageId>FFmpegDotNet</PackageId>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\"/>
+		<None Include="..\LICENSE.txt">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
 		<PackageReference Include="System.IO.Pipelines" Version="9.0.9" />
 		<PackageReference Include="System.Security.Permissions" Version="9.0.9" />
 		<ProjectReference Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
