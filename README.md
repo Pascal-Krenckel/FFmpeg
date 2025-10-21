@@ -24,6 +24,7 @@ The **FFmpeg (.NET Wrapper)** library provides a **high-level, managed abstracti
 - [FFmpeg binaries](https://ffmpeg.org/download.html) available in your system path  
 
 #### Supported FFmpeg Versions
+FFmpeg 8.0.0 "Huffman"
 
 | Library       | Version |
 |----------------|----------|
@@ -40,6 +41,7 @@ The **FFmpeg (.NET Wrapper)** library provides a **high-level, managed abstracti
 The **`FFmpeg`** namespace includes a static helper class named `FFmpegLoader`, which is responsible for locating and initializing the native FFmpeg libraries before use.  
 If `Initialize()` is not called manually, the library will automatically attempt to locate the FFmpeg binaries using a predefined search order.
 
+Use the nuget package [FFmpegDotNet.bin.winx64](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/) to include the lgpl ffmpeg libraries automatically.
 #### Default Search Order
 
 When `FFmpegLoader.Initialize()` is called with no parameters, the following directories are searched in order:

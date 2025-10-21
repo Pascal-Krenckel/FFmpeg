@@ -28,6 +28,7 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<Version>8.0.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -36,9 +37,9 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		  <PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<PackageReference Include="System.IO.Pipelines" Version="9.0.9" />
-		<PackageReference Include="System.Security.Permissions" Version="9.0.9" />
-		<ProjectReference Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
+		<PackageReference Include="System.IO.Pipelines" Version="9.0.10" />
+		<PackageReference Include="System.Security.Permissions" Version="9.0.10" />
+		<PackageReference Include="FFmpegDotNet._AutoGen" Version="[8,9)" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
 		</Using>
