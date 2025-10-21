@@ -1,4 +1,15 @@
 <Solution>
+  <Folder Name="/FFmpeg-Binaries/">
+    <File Path="ffmpeg-binaries/avcodec-62.dll" />
+    <File Path="ffmpeg-binaries/avdevice-62.dll" />
+    <File Path="ffmpeg-binaries/avfilter-11.dll" />
+    <File Path="ffmpeg-binaries/avformat-62.dll" />
+    <File Path="ffmpeg-binaries/avutil-60.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/README.md" />
+    <File Path="ffmpeg-binaries/LICENSE.txt" />
+    <File Path="ffmpeg-binaries/swresample-6.dll" />
+    <File Path="ffmpeg-binaries/swscale-9.dll" />
+  </Folder>
   <Project Path="FFmpeg.AutoGen/FFmpeg.AutoGen/FFmpeg.AutoGen.csproj" />
   <Project Path="FFmpeg/FFmpeg.csproj" />
 </Solution>
