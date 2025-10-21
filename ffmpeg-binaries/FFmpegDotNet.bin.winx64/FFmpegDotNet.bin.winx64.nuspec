@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>FFmpegDotNet.bin.winx64</id>
+    <version>8.0.0</version>
+    <title>FFmpeg Binaries for windows (x64)</title>
+    <authors>Pascal Krenckel</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+	<readme>README.md</readme>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <description>This package contains the lgpl FFmpeg 8.0 "Huffman" binaries. Use this package with FFmpegDotNet, if you do not want to provide the ffmpeg libraries yourself.</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FFmpegDotNet" version="[8.0.0,9.0.0)" />
+      </group>
+    </dependencies>
+	 <contentFiles>
+	  <files include="any/any/ffmpeg/License.txt" buildAction="Content" copyToOutput="true"/>
+      <files include="any/any/ffmpeg/win-x64/*" buildAction="Content" copyToOutput="true"/>
+    </contentFiles>
+  </metadata>
+  	 <files>
+       <file src="ffmpeg/LICENSE.txt" target="" />
+       <file src="ffmpeg/**" target="content"/>
+       <file src="contentFiles/**" />	   
+	   <file src="README.md" />
+  </files>
+</package>
