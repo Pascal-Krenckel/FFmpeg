@@ -410,19 +410,19 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// Gets or sets the general type of the codec (e.g., video, audio).
     /// This property indicates whether the codec is handling audio, video, or other media types.
     /// </summary>
-    public MediaType CodecType => (MediaType)context->codec_type;
+    public MediaType CodecType => context != null ? (MediaType)context->codec_type : MediaType.Unknown;
 
     /// <summary>
     /// Gets the codec associated with the context.
     /// Represents the specific codec being used for encoding or decoding.
     /// </summary>
-    public Codec Codec => new(context->codec);
+    public Codec Codec => context != null ? new(context->codec) : default;
 
     /// <summary>
     /// Gets or sets the codec ID, which represents the specific codec used.
     /// This identifies the codec being used, such as H.264 or AAC.
     /// </summary>
-    public CodecID CodecID => (CodecID)context->codec_id;
+    public CodecID CodecID => context != null ? (CodecID)context->codec_id : CodecID.None;
 
     /// <summary>
     /// Gets or sets the codec tag, an additional codec identifier used to work around some encoder bugs.
@@ -437,7 +437,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public FourCC CodecTag
     {
-        get => context->codec_tag;
+        get => context != null ? context->codec_tag : default;
         set => context->codec_tag = value;
     }
 
@@ -453,7 +453,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public long BitRate
     {
-        get => context->bit_rate;
+        get => context != null ? context->bit_rate : default;
         set => context->bit_rate = value;
     }
 
@@ -469,7 +469,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public CodecFlags Flags
     {
-        get => (CodecFlags)context->flags | (CodecFlags)((ulong)context->flags2 << 32);
+        get => context != null ? (CodecFlags)context->flags | (CodecFlags)((ulong)context->flags2 << 32) : default;
         set => (context->flags, context->flags2) = ((int)((ulong)value & uint.MaxValue), (int)(((ulong)value >> 32) & uint.MaxValue));
     }
 
@@ -487,7 +487,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ReadOnlySpan<byte> ExtraData
     {
-        get => (context->extradata_size > 0 && context->extradata != null) ? new ReadOnlySpan<byte>(context->extradata, context->extradata_size) : [];
+        get => (context != null && context->extradata_size > 0 && context->extradata != null) ? new ReadOnlySpan<byte>(context->extradata, context->extradata_size) : [];
         set
         {
             if (releaseExtraData && context->extradata != null)
@@ -531,7 +531,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public Rational TimeBase
     {
-        get => context->time_base;
+        get => context != null ? context->time_base : default;
         set => context->time_base = value;
     }
 
@@ -547,7 +547,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public Rational PacketTimeBase
     {
-        get => context->pkt_timebase;
+        get => context != null ? context->pkt_timebase : default;
         set => context->pkt_timebase = value;
     }
 
@@ -563,7 +563,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public Rational FrameRate
     {
-        get => context->framerate;
+        get => context != null ? context->framerate : default;
         set => context->framerate = value;
     }
 
@@ -578,7 +578,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// <b>Decoding:</b> Notify by libavcodec.
     /// </para>
     /// </summary>
-    public int Delay => context->delay;
+    public int Delay => context != null ? context->delay : default;
 
     /// <summary>
     /// Gets or sets the width of the video frame in pixels.
@@ -593,7 +593,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int Width
     {
-        get => context->width;
+        get => context != null ? context->width : default;
         set => context->width = value;
     }
 
@@ -610,7 +610,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int Height
     {
-        get => context->height;
+        get => context != null ? context->height : default;
         set => context->height = value;
     }
 
@@ -627,7 +627,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int CodedWidth
     {
-        get => context->coded_width;
+        get => context != null ? context->coded_width : default;
         set => context->coded_width = value;
     }
 
@@ -644,7 +644,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int CodedHeight
     {
-        get => context->coded_height;
+        get => context != null ? context->coded_height : default;
         set => context->coded_height = value;
     }
 
@@ -659,7 +659,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int MinGOPSize
     {
-        get => context->keyint_min;
+        get => context != null ? context->keyint_min : default;
         set => context->keyint_min = value;
     }
 
@@ -674,7 +674,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int GOPSize
     {
-        get => context->gop_size;
+        get => context != null ? context->gop_size : default;
         set => context->gop_size = value;
     }
 
@@ -703,7 +703,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public Rational SampleAspectRatio
     {
-        get => context->sample_aspect_ratio;
+        get => context != null ? context->sample_aspect_ratio : default;
         set => context->sample_aspect_ratio = value;
     }
 
@@ -718,7 +718,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public PixelFormat PixelFormat
     {
-        get => (PixelFormat)context->pix_fmt;
+        get => context != null ? (PixelFormat)context->pix_fmt : default;
         set => context->pix_fmt = (_AVPixelFormat)value;
     }
 
@@ -731,7 +731,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// <b>Decoding:</b> Notify by libavcodec before calling the format selection function (get_format).
     /// </para>
     /// </summary>
-    public PixelFormat SoftwarePixelFormat => (PixelFormat)context->sw_pix_fmt;
+    public PixelFormat SoftwarePixelFormat => context != null ? (PixelFormat)context->sw_pix_fmt : default;
 
     /// <summary>
     /// Gets or sets the chromaticity coordinates of the source primaries, which define the red, green, and blue components of the video.
@@ -744,7 +744,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ColorPrimaries ColorPrimaries
     {
-        get => (ColorPrimaries)context->color_primaries;
+        get => context != null ? (ColorPrimaries)context->color_primaries : default;
         set => context->color_primaries = (_AVColorPrimaries)value;
     }
 
@@ -759,7 +759,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ColorTransferCharacteristic ColorTransferCharacteristic
     {
-        get => (ColorTransferCharacteristic)context->color_trc;
+        get => context != null ? (ColorTransferCharacteristic)context->color_trc : default;
         set => context->color_trc = (_AVColorTransferCharacteristic)value;
     }
 
@@ -774,7 +774,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ColorSpace ColorSpace
     {
-        get => (ColorSpace)context->colorspace;
+        get => context != null ? (ColorSpace)context->colorspace : default;
         set => context->colorspace = (_AVColorSpace)value;
     }
 
@@ -789,7 +789,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ColorRange ColorRange
     {
-        get => (ColorRange)context->color_range;
+        get => context != null ? (ColorRange)context->color_range : default;
         set => context->color_range = (_AVColorRange)value;
     }
 
@@ -804,7 +804,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ChromaLocation ChromaSampleLocation
     {
-        get => (ChromaLocation)context->chroma_sample_location;
+        get => context != null ? (ChromaLocation)context->chroma_sample_location : default;
         set => context->chroma_sample_location = (_AVChromaLocation)value;
     }
 
@@ -819,7 +819,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public FieldOrder FieldOrder
     {
-        get => (FieldOrder)context->field_order;
+        get => context != null ? (FieldOrder)context->field_order : default;
         set => context->field_order = (_AVFieldOrder)value;
     }
 
@@ -834,7 +834,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int ReferenceFrames
     {
-        get => context->refs;
+        get => context != null ? context->refs : default;
         set => context->refs = value;
     }
 
@@ -849,7 +849,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int SampleRate
     {
-        get => context->sample_rate;
+        get => context != null ? context->sample_rate : default;
         set => context->sample_rate = value;
     }
 
@@ -864,7 +864,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public SampleFormat SampleFormat
     {
-        get => (SampleFormat)context->sample_fmt;
+        get => context != null ? (SampleFormat)context->sample_fmt : default;
         set => context->sample_fmt = (_AVSampleFormat)value;
     }
 
@@ -877,7 +877,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// <b>Decoding:</b> May be set by the user if known, but the decoder may override it based on the actual stream data.
     /// </para>
     /// </summary>
-    public ChannelLayout_ref ChannelLayout => new(&context->ch_layout, true);
+    public ChannelLayout_ref ChannelLayout => context != null ? new(&context->ch_layout, true) : default;
 
     /// <summary>
     /// Gets or sets the frame size for audio encoding/decoding, which represents the number of samples per channel in each frame.
@@ -890,7 +890,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int FrameSize
     {
-        get => context->frame_size;
+        get => context != null ? context->frame_size : default;
         set => context->frame_size = value;
     }
 
@@ -905,7 +905,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public AudioServiceType AudioServiceType
     {
-        get => (AudioServiceType)context->audio_service_type;
+        get => context != null ? (AudioServiceType)context->audio_service_type : default;
         set => context->audio_service_type = (_AVAudioServiceType)value; // Notify only for encoding
     }
 
@@ -921,7 +921,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public Profile Profile
     {
-        get => new(CodecID, context->profile);
+        get => context != null ? new(CodecID, context->profile) : Profile.Unknown;
         set => context->profile = value.ProfileID; // Notify only for encoding
     }
 
@@ -936,7 +936,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int BitRateTolerance
     {
-        get => context->bit_rate_tolerance;
+        get => context != null ? context->bit_rate_tolerance : default;
         set => context->bit_rate_tolerance = value; // Notify only for encoding
     }
 
@@ -951,7 +951,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int GlobalQuality
     {
-        get => context->global_quality;
+        get => context != null ? context->global_quality : default;
         set => context->global_quality = value; // Notify only for encoding
     }
 
@@ -966,7 +966,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int CompressionLevel
     {
-        get => context->compression_level;
+        get => context != null ? context->compression_level : default;
         set => context->compression_level = value; // Notify only for encoding
     }
 
@@ -981,7 +981,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public int ThreadCount
     {
-        get => context->thread_count;
+        get => context != null ? context->thread_count : default;
         set => context->thread_count = value; // Notify for both encoding and decoding
     }
 
@@ -994,7 +994,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// This property is set by libavcodec and cannot be modified by the user.
     /// </para>
     /// </summary>
-    public ReadOnlySpan<byte> Pass1StatsOutput => context->stats_out != null
+    public ReadOnlySpan<byte> Pass1StatsOutput => context != null && context->stats_out != null
             ? new ReadOnlySpan<byte>(context->stats_out, Helper.StringHelper.StrLen(context->stats_out))
             : [];
 
@@ -1009,7 +1009,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </summary>
     public ReadOnlySpan<byte> Pass2StatsInput
     {
-        get => context->stats_in != null
+        get => context != null && context->stats_in != null
             ? new ReadOnlySpan<byte>(context->stats_in, Helper.StringHelper.StrLen(context->stats_in) + 1)
             : [];
         set
@@ -1481,6 +1481,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// </param>
     private void Dispose(bool disposing)
     {
+        // already disposed?
+        if (context == null) return;
         if (disposing)
         {
             hardwareFrame.Dispose();
@@ -1490,7 +1492,6 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         {
             handle.Free();
         }
-
         // Release extra data if needed
         if (releaseExtraData)
         {
