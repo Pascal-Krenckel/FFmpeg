@@ -29,6 +29,10 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<Version>8.0.0.1</Version>
+		<PackageReleaseNotes>BugFixes:
+1.) Disposing CodecContext does not throw an NullReferenceExcepion anymore.
+2.) Accessing disposed CodecContext's properties return default values instead of throwing a NullReferenceException
+3.) vcodec_get_supported_config does not return the length but 0 if no error. The length is provided by an output parameter.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
