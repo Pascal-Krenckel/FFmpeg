@@ -12,4 +12,5 @@
   </Folder>
   <Project Path="FFmpeg.AutoGen/FFmpeg.AutoGen/FFmpeg.AutoGen.csproj" />
   <Project Path="FFmpeg/FFmpeg.csproj" />
+  <Project Path="FFmpegTest/FFmpegTest.csproj" />
 </Solution>
