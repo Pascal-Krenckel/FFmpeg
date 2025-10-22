@@ -28,7 +28,7 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.0.0.0</Version>
+		<Version>8.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
