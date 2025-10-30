@@ -20,7 +20,7 @@ public class MediaSink : IDisposable
     /// <summary>
     /// A function to retrieve a codec by its ID. This can be set to provide custom codec retrieval logic.
     /// </summary>
-    public static Func<CodecID, Codec>? GetCodec;
+    public Func<CodecID, Codec>? GetCodec;
 
     /// <summary>
     /// Gets the list of codec contexts for the streams in this media source.

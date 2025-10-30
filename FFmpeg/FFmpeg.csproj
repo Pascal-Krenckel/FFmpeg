@@ -28,9 +28,12 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.0.0.2</Version>
+		<Version>8.0.0.3</Version>
 		<PackageReleaseNotes>
-			Added FindBestPixelFormat as an extension Method for PixelFormat
+			MediaSource:
+			Removed thread safety. It doesn't make sense to access this class from different threads. The caller should make sure the access is thread safe.
+			Added SetCodec to set a specific Codec, after the codecs got initialized.
+			GetCodec(AVStream) is now non static. (Gets called for every stream when the codecs get initialized.
 		</PackageReleaseNotes>
 </PropertyGroup>
 
