@@ -11,6 +11,7 @@ namespace FFmpeg.Formats;
 /// </remarks>
 public readonly unsafe struct OutputFormat
 {
+    static OutputFormat() => ffmpeg.avdevice_register_all();
     /// <summary>
     /// Initializes a new instance of the <see cref="OutputFormat"/> struct.
     /// </summary>

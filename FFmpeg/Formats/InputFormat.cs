@@ -10,6 +10,9 @@ namespace FFmpeg.Formats;
 /// </remarks>
 public readonly unsafe struct InputFormat
 {
+    static InputFormat() => ffmpeg.avdevice_register_all();
+
+
     /// <summary>
     /// Gets the underlying <see cref="AutoGen._AVInputFormat"/> pointer.
     /// </summary>
@@ -319,6 +322,17 @@ public readonly unsafe struct InputFormat
     /// Gets the Matroska/WebM input format (alias for MKV/WebM).
     /// </summary>
     public static InputFormat? MATROSKA => FindFormat("matroska");  // Alias for MKV/WebM
+
+    /// <summary>
+    /// Gets the direct show input device.
+    /// </summary>
+    public static InputFormat? DirectShow = FindFormat("dshow");
+
+    /// <summary>
+    /// Gets the dgigrap input device. <br />
+    /// Use "desktop", title=window_title or hwnd=window_hwnd to specify what to grap.
+    /// </summary>
+    public static InputFormat? GDIScreenGrabber = FindFormat("gdigrab");
 
     /// <param name="format">Pointer to an <see cref="AutoGen._AVInputFormat"/> instance that this struct will wrap.</param>
     internal InputFormat(AutoGen._AVInputFormat* format) => Format = format;
