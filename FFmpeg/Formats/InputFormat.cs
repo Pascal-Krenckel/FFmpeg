@@ -326,13 +326,13 @@ public readonly unsafe struct InputFormat
     /// <summary>
     /// Gets the direct show input device.
     /// </summary>
-    public static InputFormat? DirectShow = FindFormat("dshow");
+    public static InputFormat? DirectShow => FindFormat("dshow");
 
     /// <summary>
     /// Gets the dgigrap input device. <br />
     /// Use "desktop", title=window_title or hwnd=window_hwnd to specify what to grap.
     /// </summary>
-    public static InputFormat? GDIScreenGrabber = FindFormat("gdigrab");
+    public static InputFormat? GDIScreenGrabber => FindFormat("gdigrab");
 
     /// <param name="format">Pointer to an <see cref="AutoGen._AVInputFormat"/> instance that this struct will wrap.</param>
     internal InputFormat(AutoGen._AVInputFormat* format) => Format = format;
