@@ -40,7 +40,8 @@ public sealed unsafe class AVFrame : IDisposable
     }
 
     /// <summary>
-    /// Allocates a new <see cref="AVFrame"/>. Throws <see cref="OutOfMemoryException"/> if allocation fails.
+    /// Allocates a new <see cref="AVFrame"/>.  
+    /// This method only allocates the <see cref="AVFrame"/> structure itself and does not allocate any underlying image or audio buffer.
     /// </summary>
     /// <returns>A newly allocated <see cref="AVFrame"/> instance.</returns>
     /// <exception cref="OutOfMemoryException">Thrown if the frame allocation fails.</exception>
@@ -49,6 +50,90 @@ public sealed unsafe class AVFrame : IDisposable
         AutoGen._AVFrame* f = ffmpeg.av_frame_alloc();
         return f == null ? throw new OutOfMemoryException() : new AVFrame(f);
     }
+
+    /// <summary>
+    /// Allocates a new <see cref="AVFrame"/> for video with an allocated image buffer.  
+    /// This is a shortcut for creating a frame that can be written to manually.
+    /// </summary>
+    /// <param name="format">The pixel format of the frame.</param>
+    /// <param name="width">The width of the frame in pixels.</param>
+    /// <param name="height">The height of the frame in pixels.</param>
+    /// <returns>A newly allocated <see cref="AVFrame"/> with its buffer initialized.</returns>
+    /// <exception cref="OutOfMemoryException">Thrown if the frame structure allocation fails.</exception>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">Thrown if buffer allocation fails.</exception>
+    public static AVFrame Allocate(PixelFormat format, int width, int height)
+    {
+        AVFrame frame = Allocate();
+        frame.PixelFormat = format;
+        frame.Width = width;
+        frame.Height = height;
+        var error = frame.CreateBuffer();
+        if (error.IsError)
+        {
+            frame.Dispose();
+            error.ThrowIfError();
+        }
+        return frame;
+    }
+
+    /// <summary>
+    /// Allocates a new <see cref="AVFrame"/> for audio with an allocated sample buffer.  
+    /// This is a shortcut for creating a frame that can be written to manually.
+    /// </summary>
+    /// <param name="format">The sample format of the audio frame.</param>
+    /// <param name="layout">The channel layout of the audio frame.</param>
+    /// <param name="samples">The number of samples per channel.</param>
+    /// <param name="sampleRate">The sample rate (optional). If <see langword="null"/>, the frame will not set a sample rate.</param>
+    /// <returns>A newly allocated <see cref="AVFrame"/> with its audio buffer initialized.</returns>
+    /// <exception cref="OutOfMemoryException">Thrown if the frame structure allocation fails.</exception>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">Thrown if buffer allocation fails.</exception>
+    public static AVFrame Allocate(SampleFormat format, ChannelLayout layout, int samples, int? sampleRate = null)
+    {
+        AVFrame frame = Allocate();
+        frame.SampleFormat = format;
+
+        frame.ChannelLayout.SetReferencedObject(layout);
+        frame.SampleCount = samples;
+        if (sampleRate != null)
+            frame.SampleRate = sampleRate.Value;
+        var error = frame.CreateBuffer();
+        if (error.IsError)
+        {
+            frame.Dispose();
+            error.ThrowIfError();
+        }
+        return frame;
+    }
+
+    /// <summary>
+    /// Allocates a new <see cref="AVFrame"/> for audio with an allocated sample buffer.  
+    /// This overload allows specifying the number of channels directly; a default channel layout will be created.
+    /// </summary>
+    /// <param name="format">The sample format of the audio frame.</param>
+    /// <param name="channels">The number of audio channels.</param>
+    /// <param name="samples">The number of samples per channel.</param>
+    /// <param name="sampleRate">The sample rate (optional). If <see langword="null"/>, the frame will not set a sample rate.</param>
+    /// <returns>A newly allocated <see cref="AVFrame"/> with its audio buffer initialized.</returns>
+    /// <exception cref="OutOfMemoryException">Thrown if the frame structure allocation fails.</exception>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">Thrown if buffer allocation fails.</exception>
+    public static AVFrame Allocate(SampleFormat format, int channels, int samples, int? sampleRate = null)
+    {
+        AVFrame frame = Allocate();
+        frame.SampleFormat = format;
+
+        frame.ChannelLayout.SetReferencedObject(Audio.ChannelLayout.CreateDefault(channels));
+        frame.SampleCount = samples;
+        if (sampleRate != null)
+            frame.SampleRate = sampleRate.Value;
+        var error = frame.CreateBuffer();
+        if (error.IsError)
+        {
+            frame.Dispose();
+            error.ThrowIfError();
+        }
+        return frame;
+    }
+
 
     /// <summary>
     /// Gets a value indicating whether this frame represents video data.
@@ -461,9 +546,23 @@ public sealed unsafe class AVFrame : IDisposable
     /// <param name="align">Specifies the alignment requirement for the buffer. Defaults to 1.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the success or failure of the buffer allocation.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the frame already has a buffer.</exception>
+    [Obsolete("This function got renamed into CreateBuffer, as it actually create the underlying buffer based on the specified parameters.")]
     public AVResult32 GetBuffer(int align = 1) => HasBuffer
             ? throw new InvalidOperationException("The frame already has a buffer, to avoid memory leakage, this operation is not permitted.")
             : (AVResult32)ffmpeg.av_frame_get_buffer(Frame, align);
+
+    /// <summary>
+    /// Allocates new buffers for the frame. This method is required before encoding or decoding if the frame does not have any buffer.
+    /// If the frame already has a buffer, an exception will be thrown to prevent memory leakage.
+    /// Please set SampleFormat, ChannelLayout and SampleCount or PixelFormat, Width and Height before calling.
+    /// </summary>
+    /// <param name="align">Specifies the alignment requirement for the buffer. Defaults to 1.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the success or failure of the buffer allocation.</returns>
+    /// <exception cref="InvalidOperationException">Thrown if the frame already has a buffer.</exception>
+    public AVResult32 CreateBuffer(int align = 1) => HasBuffer
+            ? throw new InvalidOperationException("The frame already has a buffer, to avoid memory leakage, this operation is not permitted.")
+            : (AVResult32)ffmpeg.av_frame_get_buffer(Frame, align);
+
 
     /// <summary>
     /// Unreferences the frame, releasing any associated resources but keeping the frame structure allocated.
@@ -518,7 +617,7 @@ public sealed unsafe class AVFrame : IDisposable
         frame.Height = Height;
         frame.SampleCount = SampleCount;
         Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy_props(frame.Frame, Frame));
-        frame.GetBuffer().ThrowIfError();
+        frame.CreateBuffer().ThrowIfError();
         Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy(frame.Frame, Frame));
         return frame;
     }
