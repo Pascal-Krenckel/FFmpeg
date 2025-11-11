@@ -977,7 +977,7 @@ public unsafe class AudioFifo : IDisposable
     /// This method simply reinterprets <paramref name="data"/> as a <see cref="ReadOnlySpan{Byte}"/> and calls 
     /// <see cref="Write(ReadOnlySpan{byte})"/>.
     /// </remarks>
-    public AVResult32 Write<T>(T[] data) where T : unmanaged => Write(data.AsSpan());
+    public AVResult32 Write<T>(T[] data) where T : unmanaged => Write<T>(data.AsSpan());
 
 
     /// <summary>
