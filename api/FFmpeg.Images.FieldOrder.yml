@@ -1,0 +1,234 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.FieldOrder
+  commentId: T:FFmpeg.Images.FieldOrder
+  id: FieldOrder
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.FieldOrder.BottomCodedTopDisplayed
+  - FFmpeg.Images.FieldOrder.BottomFirst
+  - FFmpeg.Images.FieldOrder.Progressive
+  - FFmpeg.Images.FieldOrder.TopCodedBottomDisplayed
+  - FFmpeg.Images.FieldOrder.TopFirst
+  - FFmpeg.Images.FieldOrder.Unknown
+  langs:
+  - csharp
+  - vb
+  name: FieldOrder
+  nameWithType: FieldOrder
+  fullName: FFmpeg.Images.FieldOrder
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FieldOrder
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 4
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Specifies the field order of interlaced video. These values match the ones defined by various video standards.
+  example: []
+  syntax:
+    content: public enum FieldOrder
+    content.vb: Public Enum FieldOrder
+- uid: FFmpeg.Images.FieldOrder.Unknown
+  commentId: F:FFmpeg.Images.FieldOrder.Unknown
+  id: Unknown
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: FieldOrder.Unknown
+  fullName: FFmpeg.Images.FieldOrder.Unknown
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unknown
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 9
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Field order is unknown or not specified.
+  example: []
+  syntax:
+    content: Unknown = 0
+    return:
+      type: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.FieldOrder.Progressive
+  commentId: F:FFmpeg.Images.FieldOrder.Progressive
+  id: Progressive
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: Progressive
+  nameWithType: FieldOrder.Progressive
+  fullName: FFmpeg.Images.FieldOrder.Progressive
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Progressive
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 14
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: The video is progressive, meaning it is not interlaced and each frame is a complete image.
+  example: []
+  syntax:
+    content: Progressive = 1
+    return:
+      type: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.FieldOrder.TopFirst
+  commentId: F:FFmpeg.Images.FieldOrder.TopFirst
+  id: TopFirst
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: TopFirst
+  nameWithType: FieldOrder.TopFirst
+  fullName: FFmpeg.Images.FieldOrder.TopFirst
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TopFirst
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 19
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Top field is coded first and also displayed first. This is used for top-first interlacing.
+  example: []
+  syntax:
+    content: TopFirst = 2
+    return:
+      type: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.FieldOrder.BottomFirst
+  commentId: F:FFmpeg.Images.FieldOrder.BottomFirst
+  id: BottomFirst
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: BottomFirst
+  nameWithType: FieldOrder.BottomFirst
+  fullName: FFmpeg.Images.FieldOrder.BottomFirst
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BottomFirst
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Bottom field is coded first and also displayed first. This is used for bottom-first interlacing.
+  example: []
+  syntax:
+    content: BottomFirst = 3
+    return:
+      type: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.FieldOrder.TopCodedBottomDisplayed
+  commentId: F:FFmpeg.Images.FieldOrder.TopCodedBottomDisplayed
+  id: TopCodedBottomDisplayed
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: TopCodedBottomDisplayed
+  nameWithType: FieldOrder.TopCodedBottomDisplayed
+  fullName: FFmpeg.Images.FieldOrder.TopCodedBottomDisplayed
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TopCodedBottomDisplayed
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 29
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Top field is coded first, but the bottom field is displayed first. This is used in certain interlacing schemes.
+  example: []
+  syntax:
+    content: TopCodedBottomDisplayed = 4
+    return:
+      type: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.FieldOrder.BottomCodedTopDisplayed
+  commentId: F:FFmpeg.Images.FieldOrder.BottomCodedTopDisplayed
+  id: BottomCodedTopDisplayed
+  parent: FFmpeg.Images.FieldOrder
+  langs:
+  - csharp
+  - vb
+  name: BottomCodedTopDisplayed
+  nameWithType: FieldOrder.BottomCodedTopDisplayed
+  fullName: FFmpeg.Images.FieldOrder.BottomCodedTopDisplayed
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/FieldOrder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BottomCodedTopDisplayed
+    path: FFmpeg/Images/FieldOrder.cs
+    startLine: 34
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Bottom field is coded first, but the top field is displayed first. This is used in certain interlacing schemes.
+  example: []
+  syntax:
+    content: BottomCodedTopDisplayed = 5
+    return:
+      type: FFmpeg.Images.FieldOrder
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.FieldOrder
+  commentId: T:FFmpeg.Images.FieldOrder
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.FieldOrder.html
+  name: FieldOrder
+  nameWithType: FieldOrder
+  fullName: FFmpeg.Images.FieldOrder

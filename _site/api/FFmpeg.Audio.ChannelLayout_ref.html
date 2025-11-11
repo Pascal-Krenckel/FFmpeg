@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct ChannelLayout_ref | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct ChannelLayout_ref | FFmpegDotNet ">
+      
+      <meta name="description" content="Represents a reference to an FFmpeg  structure.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Audio_ChannelLayout_ref.md&amp;value=---%0Auid%3A%20FFmpeg.Audio.ChannelLayout_ref%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Audio.ChannelLayout_ref">
+
+
+
+  <h1 id="FFmpeg_Audio_ChannelLayout_ref" data-uid="FFmpeg.Audio.ChannelLayout_ref" class="text-break">
+Struct ChannelLayout_ref  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Audio.html">Audio</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a reference to an FFmpeg <span class="xref">FFmpeg.AutoGen._AVChannelLayout</span> structure.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct ChannelLayout_ref : IChannelLayout, IEquatable&lt;IChannelLayout&gt;, IEquatable&lt;ChannelLayout_ref&gt;, IEquatable&lt;ChannelLayout&gt;, IReference&lt;ChannelLayout&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a>&gt;</div>
+      <div><a class="xref" href="FFmpeg.Utils.IReference-1.html">IReference</a>&lt;<a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="FFmpeg_Audio_ChannelLayout_ref_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This struct provides a read-only or read-write reference to an FFmpeg channel layout.
+It implements <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> for accessing channel layout properties and
+supports copying and comparison operations.</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Channels_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Channels*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Channels" data-uid="FFmpeg.Audio.ChannelLayout_ref.Channels">
+  Channels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of channels in the layout.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Channels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of channels.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_IsReadOnly_" data-uid="FFmpeg.Audio.ChannelLayout_ref.IsReadOnly*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_IsReadOnly" data-uid="FFmpeg.Audio.ChannelLayout_ref.IsReadOnly">
+  IsReadOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Valid_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Valid*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Valid" data-uid="FFmpeg.Audio.ChannelLayout_ref.Valid">
+  Valid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the current <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is valid.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Valid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the channel layout is valid; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Copy_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Copy*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Copy" data-uid="FFmpeg.Audio.ChannelLayout_ref.Copy">
+  Copy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a copy of the current <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChannelLayout Copy()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> that is a copy of the current instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Copy_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_copy(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to create a new <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance
+from the current layout.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs during copying.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_" data-uid="FFmpeg.Audio.ChannelLayout_ref.CopyFrom*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_FFmpeg_Audio_ChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.CopyFrom(FFmpeg.Audio.ChannelLayout)">
+  CopyFrom(ChannelLayout)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the layout from a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance into the current <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyFrom(ChannelLayout layout)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layout</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance to copy from.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_FFmpeg_Audio_ChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method replaces the layout of the current instance with the layout from the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a>
+instance, provided the current instance is not read-only.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the current instance is read-only.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs during copying.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_" data-uid="FFmpeg.Audio.ChannelLayout_ref.CopyFrom*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_FFmpeg_Audio_ChannelLayout_ref_" data-uid="FFmpeg.Audio.ChannelLayout_ref.CopyFrom(FFmpeg.Audio.ChannelLayout_ref)">
+  CopyFrom(ChannelLayout_ref)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the layout from another <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance into the current instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyFrom(ChannelLayout_ref layout)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layout</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to copy from.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_CopyFrom_FFmpeg_Audio_ChannelLayout_ref__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method replaces the layout of the current instance with the layout from the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a>
+instance, provided the current instance is not read-only.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the current instance is read-only.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs during copying.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Equals_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals(FFmpeg.Audio.ChannelLayout)">
+  Equals(ChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the current instance is equal to another <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(ChannelLayout? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current instance is equal to the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_compare(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to compare the layout of the current instance with the layout of the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Equals_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_ref_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals(FFmpeg.Audio.ChannelLayout_ref)">
+  Equals(ChannelLayout_ref)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the current instance is equal to another <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(ChannelLayout_ref other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current instance is equal to the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_ref__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_compare(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to compare the layout of the current instance with the layout of the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Equals_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_IChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals(FFmpeg.Audio.IChannelLayout)">
+  Equals(IChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the current instance is equal to another <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(IChannelLayout? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current instance is equal to the specified <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_IChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_compare(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to compare the layout of the current instance with the layout of the specified <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a>.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Equals_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Equals_System_Object_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the current instance is equal to another object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current instance is equal to the specified object; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Equals_System_Object__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method checks if the given <code class="paramref">obj</code> is of type <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> or <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> or <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a>
+and uses the appropriate equality comparison method based on the type.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_GetHashCode_" data-uid="FFmpeg.Audio.ChannelLayout_ref.GetHashCode*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_GetHashCode" data-uid="FFmpeg.Audio.ChannelLayout_ref.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for the current instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>An <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> that represents the hash code for the current instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_GetHashCode_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The hash code is computed based on the number of channels in the channel layout using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.hashcode.combine#system-hashcode-combine-1(-0)">Combine&lt;T1&gt;(T1)</a>.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_GetReferencedObject_" data-uid="FFmpeg.Audio.ChannelLayout_ref.GetReferencedObject*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_GetReferencedObject" data-uid="FFmpeg.Audio.ChannelLayout_ref.GetReferencedObject">
+  GetReferencedObject()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L229"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> object that is a copy of the referenced channel layout.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChannelLayout? GetReferencedObject()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance representing the referenced channel layout.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_GetReferencedObject_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_copy(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to create a copy of the current channel layout and return it as a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if there is insufficient memory to perform the operation.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_Init_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Init*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_Init_System_Int32_" data-uid="FFmpeg.Audio.ChannelLayout_ref.Init(System.Int32)">
+  Init(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes the channel layout with a custom number of channels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Init(int nb)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>nb</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of channels to initialize with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_Init_System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">av_channel_layout_custom_init(_AVChannelLayout*, int)</a> to set the number of channels for the current channel layout.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the current instance is read-only.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if there is insufficient memory to perform the operation.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the <code class="paramref">nb</code> parameter is invalid.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_SetReferencedObject_" data-uid="FFmpeg.Audio.ChannelLayout_ref.SetReferencedObject*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_SetReferencedObject_FFmpeg_Audio_ChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.SetReferencedObject(FFmpeg.Audio.ChannelLayout)">
+  SetReferencedObject(ChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the referenced channel layout to a new <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetReferencedObject(ChannelLayout? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance to set as the referenced object, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to uninitialize the current layout.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_SetReferencedObject_FFmpeg_Audio_ChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_copy(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> to copy the layout from the specified <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance. If <code class="paramref">obj</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, it uses <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_uninit(FFmpeg.AutoGen._AVChannelLayout*)</span> to uninitialize the current layout.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the current instance is read-only and cannot be modified. This occurs when <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_IsReadOnly">IsReadOnly</a> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if there is insufficient memory to perform the operation. This can occur if <span class="xref">FFmpeg.AutoGen.ffmpeg.av_channel_layout_copy(FFmpeg.AutoGen._AVChannelLayout*, FFmpeg.AutoGen._AVChannelLayout*)</span> fails due to memory constraints.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_ToString_" data-uid="FFmpeg.Audio.ChannelLayout_ref.ToString*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_ToString" data-uid="FFmpeg.Audio.ChannelLayout_ref.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that describes the current channel layout.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the current channel layout, or an empty string if an error occurs.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_ToString_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">av_channel_layout_describe(_AVChannelLayout*, byte*, ulong)</a> to get a description of the current channel layout.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.ChannelLayout)">
+  operator ==(ChannelLayout_ref, ChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is equal to a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ChannelLayout_ref left, ChannelLayout? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is equal to the <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_">Equals(ChannelLayout?)</a> to determine equality between a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance and a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_ref_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.ChannelLayout_ref)">
+  operator ==(ChannelLayout_ref, ChannelLayout_ref)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instances are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ChannelLayout_ref left, ChannelLayout_ref right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the two instances are equal; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_ref__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_ref_">Equals(ChannelLayout_ref)</a> to determine equality between two <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instances.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_IChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Equality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.IChannelLayout)">
+  operator ==(ChannelLayout_ref, IChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L316"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is equal to an <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ChannelLayout_ref left, IChannelLayout? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is equal to the <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Equality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_IChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_IChannelLayout_">Equals(IChannelLayout?)</a> to determine equality between a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance and an <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.ChannelLayout)">
+  operator !=(ChannelLayout_ref, ChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ChannelLayout_ref left, ChannelLayout? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to the <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_">Equals(ChannelLayout?)</a> to determine if a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to a <a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a> instance.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_ref_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.ChannelLayout_ref)">
+  operator !=(ChannelLayout_ref, ChannelLayout_ref)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L283"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instances are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ChannelLayout_ref left, ChannelLayout_ref right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the two instances are not equal; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_ChannelLayout_ref__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_ChannelLayout_ref_">Equals(ChannelLayout_ref)</a> to determine if two <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instances are not equal.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality*"></a>
+
+  <h3 id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_IChannelLayout_" data-uid="FFmpeg.Audio.ChannelLayout_ref.op_Inequality(FFmpeg.Audio.ChannelLayout_ref,FFmpeg.Audio.IChannelLayout)">
+  operator !=(ChannelLayout_ref, IChannelLayout?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L327"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to an <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ChannelLayout_ref left, IChannelLayout? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to the <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Audio_ChannelLayout_ref_op_Inequality_FFmpeg_Audio_ChannelLayout_ref_FFmpeg_Audio_IChannelLayout__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This operator uses <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html#FFmpeg_Audio_ChannelLayout_ref_Equals_FFmpeg_Audio_IChannelLayout_">Equals(IChannelLayout?)</a> to determine if a <a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a> instance is not equal to an <a class="xref" href="FFmpeg.Audio.IChannelLayout.html">IChannelLayout</a> instance.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Audio/ChannelLayout_ref.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

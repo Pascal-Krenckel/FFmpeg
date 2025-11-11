@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IVideoDecoder | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IVideoDecoder | FFmpegDotNet ">
+      
+      <meta name="description" content="Defines the interface for a video decoder, which is responsible for decoding video streams.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Codecs_IVideoDecoder.md&amp;value=---%0Auid%3A%20FFmpeg.Codecs.IVideoDecoder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Codecs.IVideoDecoder">
+
+
+
+  <h1 id="FFmpeg_Codecs_IVideoDecoder" data-uid="FFmpeg.Codecs.IVideoDecoder" class="text-break">
+Interface IVideoDecoder  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Codecs.html">Codecs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Defines the interface for a video decoder, which is responsible for decoding video streams.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IVideoDecoder : IDecoderContext, IDisposable, IOptionQuery</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_Codec">IDecoderContext.Codec</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_CodecType">IDecoderContext.CodecType</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_CodecID">IDecoderContext.CodecID</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_CodecTag">IDecoderContext.CodecTag</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_BitRate">IDecoderContext.BitRate</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_Flags">IDecoderContext.Flags</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Codecs.IDecoderContext.html#FFmpeg_Codecs_IDecoderContext_PacketTimeBase">IDecoderContext.PacketTimeBase</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable.dispose">IDisposable.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_FindOption_System_String_System_Boolean_">IOptionQuery.FindOption(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_ResetOptions">IOptionQuery.ResetOptions()</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_GetOptions_System_Boolean_">IOptionQuery.GetOptions(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_ValueTuple_System_Int32_System_Int32__System_Boolean_">IOptionQuery.SetOption(Option, (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_FFmpeg_Images_PixelFormat_System_Boolean_">IOptionQuery.SetOption(Option, PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_FFmpeg_Audio_SampleFormat_System_Boolean_">IOptionQuery.SetOption(Option, SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Boolean_System_Boolean_">IOptionQuery.SetOption(Option, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Double_System_Boolean_">IOptionQuery.SetOption(Option, double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">IOptionQuery.SetOption(Option, IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Linq_ILookup_System_String_System_String__System_Boolean_">IOptionQuery.SetOption(Option, ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Int32_System_Int32_System_Boolean_">IOptionQuery.SetOption(Option, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Int64_System_Boolean_">IOptionQuery.SetOption(Option, long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_Object_System_Boolean_">IOptionQuery.SetOption(Option, object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_FFmpeg_Utils_Rational_System_Boolean_">IOptionQuery.SetOption(Option, Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_ReadOnlyMemory_System_Byte__System_Boolean_">IOptionQuery.SetOption(Option, ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_ReadOnlySpan_System_Byte__System_Boolean_">IOptionQuery.SetOption(Option, ReadOnlySpan&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_FFmpeg_Options_Option_System_String_System_Boolean_">IOptionQuery.SetOption(Option, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">IOptionQuery.SetOption(IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_ValueTuple_System_Int32_System_Int32__System_Boolean_">IOptionQuery.SetOption(string, (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_FFmpeg_Images_PixelFormat_System_Boolean_">IOptionQuery.SetOption(string, PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_FFmpeg_Audio_SampleFormat_System_Boolean_">IOptionQuery.SetOption(string, SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Boolean_System_Boolean_">IOptionQuery.SetOption(string, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Double_System_Boolean_">IOptionQuery.SetOption(string, double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">IOptionQuery.SetOption(string, IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Linq_ILookup_System_String_System_String__System_Boolean_">IOptionQuery.SetOption(string, ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Int32_System_Int32_System_Boolean_">IOptionQuery.SetOption(string, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Int64_System_Boolean_">IOptionQuery.SetOption(string, long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Object_System_Boolean_">IOptionQuery.SetOption(string, object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_FFmpeg_Utils_Rational_System_Boolean_">IOptionQuery.SetOption(string, Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_ReadOnlyMemory_System_Byte__System_Boolean_">IOptionQuery.SetOption(string, ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_ReadOnlySpan_System_Byte__System_Boolean_">IOptionQuery.SetOption(string, ReadOnlySpan&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_Linq_ILookup_System_String_System_String___System_Boolean_">IOptionQuery.SetOption(string, ref ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_SetOption_System_String_System_String_System_Boolean_">IOptionQuery.SetOption(string, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_ValueTuple_System_Int32_System_Int32___System_Boolean_">IOptionQuery.TryGetOption(Option, out (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_FFmpeg_Collections_AVDictionary__System_Boolean_">IOptionQuery.TryGetOption(Option, out AVDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_FFmpeg_Collections_AVMultiDictionary__System_Boolean_">IOptionQuery.TryGetOption(Option, out AVMultiDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_FFmpeg_Images_PixelFormat__System_Boolean_">IOptionQuery.TryGetOption(Option, out PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_FFmpeg_Audio_SampleFormat__System_Boolean_">IOptionQuery.TryGetOption(Option, out SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Boolean__System_Boolean_">IOptionQuery.TryGetOption(Option, out bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Byte____System_Boolean_">IOptionQuery.TryGetOption(Option, out byte[], bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Collections_Generic_Dictionary_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(Option, out Dictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Double__System_Boolean_">IOptionQuery.TryGetOption(Option, out double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Collections_Generic_IDictionary_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(Option, out IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Linq_ILookup_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(Option, out ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Int32__System_Boolean_">IOptionQuery.TryGetOption(Option, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Int32__System_Int32__System_Boolean_">IOptionQuery.TryGetOption(Option, out int, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Int64__System_Boolean_">IOptionQuery.TryGetOption(Option, out long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Memory_System_Byte___System_Boolean_">IOptionQuery.TryGetOption(Option, out Memory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Object__System_Boolean_">IOptionQuery.TryGetOption(Option, out object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_FFmpeg_Utils_Rational__System_Boolean_">IOptionQuery.TryGetOption(Option, out Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_ReadOnlyMemory_System_Byte___System_Boolean_">IOptionQuery.TryGetOption(Option, out ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_String__System_Boolean_">IOptionQuery.TryGetOption(Option, out string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_UInt32__System_Boolean_">IOptionQuery.TryGetOption(Option, out uint, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_UInt64__System_Boolean_">IOptionQuery.TryGetOption(Option, out ulong, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_FFmpeg_Options_Option_System_Span_System_Byte__System_Boolean_">IOptionQuery.TryGetOption(Option, Span&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_ValueTuple_System_Int32_System_Int32___System_Boolean_">IOptionQuery.TryGetOption(string, out (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_FFmpeg_Collections_AVDictionary__System_Boolean_">IOptionQuery.TryGetOption(string, out AVDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_FFmpeg_Collections_AVMultiDictionary__System_Boolean_">IOptionQuery.TryGetOption(string, out AVMultiDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_FFmpeg_Images_PixelFormat__System_Boolean_">IOptionQuery.TryGetOption(string, out PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_FFmpeg_Audio_SampleFormat__System_Boolean_">IOptionQuery.TryGetOption(string, out SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Boolean__System_Boolean_">IOptionQuery.TryGetOption(string, out bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Byte____System_Boolean_">IOptionQuery.TryGetOption(string, out byte[], bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Collections_Generic_Dictionary_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(string, out Dictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Double__System_Boolean_">IOptionQuery.TryGetOption(string, out double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Collections_Generic_IDictionary_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(string, out IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Linq_ILookup_System_String_System_String___System_Boolean_">IOptionQuery.TryGetOption(string, out ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Int32__System_Boolean_">IOptionQuery.TryGetOption(string, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Int32__System_Int32__System_Boolean_">IOptionQuery.TryGetOption(string, out int, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Int64__System_Boolean_">IOptionQuery.TryGetOption(string, out long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Memory_System_Byte___System_Boolean_">IOptionQuery.TryGetOption(string, out Memory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Object__System_Boolean_">IOptionQuery.TryGetOption(string, out object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_FFmpeg_Utils_Rational__System_Boolean_">IOptionQuery.TryGetOption(string, out Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_ReadOnlyMemory_System_Byte___System_Boolean_">IOptionQuery.TryGetOption(string, out ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_String__System_Boolean_">IOptionQuery.TryGetOption(string, out string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_UInt32__System_Boolean_">IOptionQuery.TryGetOption(string, out uint, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_UInt64__System_Boolean_">IOptionQuery.TryGetOption(string, out ulong, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.IOptionQuery.html#FFmpeg_Options_IOptionQuery_TryGetOption_System_String_System_Span_System_Byte__System_Boolean_">IOptionQuery.TryGetOption(string, Span&lt;byte&gt;, bool)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Codecs_IVideoDecoder_FrameRate_" data-uid="FFmpeg.Codecs.IVideoDecoder.FrameRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_IVideoDecoder_FrameRate" data-uid="FFmpeg.Codecs.IVideoDecoder.FrameRate">
+  FrameRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the frame rate of the video stream, expressed as a <a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a> value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Rational FrameRate { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd><p>The frame rate of the video stream (frames per second), as a <a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a> struct representing the frame rate as a ratio.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_IVideoDecoder_Height_" data-uid="FFmpeg.Codecs.IVideoDecoder.Height*"></a>
+
+  <h3 id="FFmpeg_Codecs_IVideoDecoder_Height" data-uid="FFmpeg.Codecs.IVideoDecoder.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the height of the video frames in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Height { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The height of the video frames in pixels.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_IVideoDecoder_PixelFormat_" data-uid="FFmpeg.Codecs.IVideoDecoder.PixelFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_IVideoDecoder_PixelFormat" data-uid="FFmpeg.Codecs.IVideoDecoder.PixelFormat">
+  PixelFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the pixel format used by the video decoder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">PixelFormat PixelFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.PixelFormat.html">PixelFormat</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Codecs.IVideoDecoder.html#FFmpeg_Codecs_IVideoDecoder_PixelFormat">PixelFormat</a> value representing the format of the pixels in the video frames.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_IVideoDecoder_Width_" data-uid="FFmpeg.Codecs.IVideoDecoder.Width*"></a>
+
+  <h3 id="FFmpeg_Codecs_IVideoDecoder_Width" data-uid="FFmpeg.Codecs.IVideoDecoder.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the width of the video frames in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The width of the video frames in pixels.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/IVideoDecoder.cs/#L8" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

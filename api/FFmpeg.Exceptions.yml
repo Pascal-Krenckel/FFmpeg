@@ -1,0 +1,74 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Exceptions
+  commentId: N:FFmpeg.Exceptions
+  id: FFmpeg.Exceptions
+  children:
+  - FFmpeg.Exceptions.BitStreamFilterNotFoundException
+  - FFmpeg.Exceptions.BufferToSmallExcpetion
+  - FFmpeg.Exceptions.DecoderNotFoundException
+  - FFmpeg.Exceptions.FFmpegException
+  - FFmpeg.Exceptions.OptionNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Exceptions
+  nameWithType: FFmpeg.Exceptions
+  fullName: FFmpeg.Exceptions
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Exceptions.BitStreamFilterNotFoundException
+  commentId: T:FFmpeg.Exceptions.BitStreamFilterNotFoundException
+  href: FFmpeg.Exceptions.BitStreamFilterNotFoundException.html
+  name: BitStreamFilterNotFoundException
+  nameWithType: BitStreamFilterNotFoundException
+  fullName: FFmpeg.Exceptions.BitStreamFilterNotFoundException
+- uid: FFmpeg.Exceptions.BufferToSmallExcpetion
+  commentId: T:FFmpeg.Exceptions.BufferToSmallExcpetion
+  href: FFmpeg.Exceptions.BufferToSmallExcpetion.html
+  name: BufferToSmallExcpetion
+  nameWithType: BufferToSmallExcpetion
+  fullName: FFmpeg.Exceptions.BufferToSmallExcpetion
+- uid: FFmpeg.Exceptions.DecoderNotFoundException
+  commentId: T:FFmpeg.Exceptions.DecoderNotFoundException
+  href: FFmpeg.Exceptions.DecoderNotFoundException.html
+  name: DecoderNotFoundException
+  nameWithType: DecoderNotFoundException
+  fullName: FFmpeg.Exceptions.DecoderNotFoundException
+- uid: FFmpeg.Exceptions.FFmpegException
+  commentId: T:FFmpeg.Exceptions.FFmpegException
+  parent: FFmpeg.Exceptions
+  href: FFmpeg.Exceptions.FFmpegException.html
+  name: FFmpegException
+  nameWithType: FFmpegException
+  fullName: FFmpeg.Exceptions.FFmpegException
+- uid: FFmpeg.Exceptions.OptionNotFoundException
+  commentId: T:FFmpeg.Exceptions.OptionNotFoundException
+  href: FFmpeg.Exceptions.OptionNotFoundException.html
+  name: OptionNotFoundException
+  nameWithType: OptionNotFoundException
+  fullName: FFmpeg.Exceptions.OptionNotFoundException
+- uid: FFmpeg.Exceptions
+  commentId: N:FFmpeg.Exceptions
+  href: FFmpeg.html
+  name: FFmpeg.Exceptions
+  nameWithType: FFmpeg.Exceptions
+  fullName: FFmpeg.Exceptions
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Exceptions
+    name: Exceptions
+    href: FFmpeg.Exceptions.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Exceptions
+    name: Exceptions
+    href: FFmpeg.Exceptions.html

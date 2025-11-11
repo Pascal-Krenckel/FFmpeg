@@ -1,0 +1,621 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.SwsFlags
+  commentId: T:FFmpeg.Images.SwsFlags
+  id: SwsFlags
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.SwsFlags.AccurateRounding
+  - FFmpeg.Images.SwsFlags.Area
+  - FFmpeg.Images.SwsFlags.Bicubic
+  - FFmpeg.Images.SwsFlags.Bicublin
+  - FFmpeg.Images.SwsFlags.Bilinear
+  - FFmpeg.Images.SwsFlags.BitExact
+  - FFmpeg.Images.SwsFlags.DirectBGR
+  - FFmpeg.Images.SwsFlags.ErrorDiffusion
+  - FFmpeg.Images.SwsFlags.Experimental
+  - FFmpeg.Images.SwsFlags.FastBilinear
+  - FFmpeg.Images.SwsFlags.FullChromaInput
+  - FFmpeg.Images.SwsFlags.FullChromaInterpolation
+  - FFmpeg.Images.SwsFlags.Gauss
+  - FFmpeg.Images.SwsFlags.Lanczos
+  - FFmpeg.Images.SwsFlags.NearestNeighbor
+  - FFmpeg.Images.SwsFlags.PrintInfo
+  - FFmpeg.Images.SwsFlags.Sinc
+  - FFmpeg.Images.SwsFlags.Spline
+  - FFmpeg.Images.SwsFlags.Strict
+  langs:
+  - csharp
+  - vb
+  name: SwsFlags
+  nameWithType: SwsFlags
+  fullName: FFmpeg.Images.SwsFlags
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SwsFlags
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Represents the various flags and scaling algorithms used in FFmpeg's libswscale for sws_getContext.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum SwsFlags
+    content.vb: >-
+      <Flags>
+
+      Public Enum SwsFlags
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.Images.SwsFlags.FastBilinear
+  commentId: F:FFmpeg.Images.SwsFlags.FastBilinear
+  id: FastBilinear
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: FastBilinear
+  nameWithType: SwsFlags.FastBilinear
+  fullName: FFmpeg.Images.SwsFlags.FastBilinear
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FastBilinear
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Fast bilinear scaling, prioritizing speed over quality.
+  example: []
+  syntax:
+    content: FastBilinear = 1
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Bilinear
+  commentId: F:FFmpeg.Images.SwsFlags.Bilinear
+  id: Bilinear
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Bilinear
+  nameWithType: SwsFlags.Bilinear
+  fullName: FFmpeg.Images.SwsFlags.Bilinear
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Bilinear
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 16
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Standard bilinear scaling, balanced quality and speed.
+  example: []
+  syntax:
+    content: Bilinear = 2
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Bicubic
+  commentId: F:FFmpeg.Images.SwsFlags.Bicubic
+  id: Bicubic
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Bicubic
+  nameWithType: SwsFlags.Bicubic
+  fullName: FFmpeg.Images.SwsFlags.Bicubic
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Bicubic
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Bicubic scaling, higher quality but slower performance.
+  example: []
+  syntax:
+    content: Bicubic = 4
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Experimental
+  commentId: F:FFmpeg.Images.SwsFlags.Experimental
+  id: Experimental
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Experimental
+  nameWithType: SwsFlags.Experimental
+  fullName: FFmpeg.Images.SwsFlags.Experimental
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Experimental
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 26
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Experimental scaling algorithm.
+  example: []
+  syntax:
+    content: Experimental = 8
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.NearestNeighbor
+  commentId: F:FFmpeg.Images.SwsFlags.NearestNeighbor
+  id: NearestNeighbor
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: NearestNeighbor
+  nameWithType: SwsFlags.NearestNeighbor
+  fullName: FFmpeg.Images.SwsFlags.NearestNeighbor
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: NearestNeighbor
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 31
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Point rescaling, or nearest neighbor, good for sharp edges.
+  example: []
+  syntax:
+    content: NearestNeighbor = 16
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Area
+  commentId: F:FFmpeg.Images.SwsFlags.Area
+  id: Area
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Area
+  nameWithType: SwsFlags.Area
+  fullName: FFmpeg.Images.SwsFlags.Area
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Area
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Area-based rescaling, typically used for downscaling.
+  example: []
+  syntax:
+    content: Area = 32
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Bicublin
+  commentId: F:FFmpeg.Images.SwsFlags.Bicublin
+  id: Bicublin
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Bicublin
+  nameWithType: SwsFlags.Bicublin
+  fullName: FFmpeg.Images.SwsFlags.Bicublin
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Bicublin
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 41
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Bicublin rescaling, a hybrid of bilinear and bicubic.
+  example: []
+  syntax:
+    content: Bicublin = 64
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Gauss
+  commentId: F:FFmpeg.Images.SwsFlags.Gauss
+  id: Gauss
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Gauss
+  nameWithType: SwsFlags.Gauss
+  fullName: FFmpeg.Images.SwsFlags.Gauss
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Gauss
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 46
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gaussian scaling filter, smoothens the output.
+  example: []
+  syntax:
+    content: Gauss = 128
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Sinc
+  commentId: F:FFmpeg.Images.SwsFlags.Sinc
+  id: Sinc
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Sinc
+  nameWithType: SwsFlags.Sinc
+  fullName: FFmpeg.Images.SwsFlags.Sinc
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Sinc
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Sinc rescaling filter, produces high-quality scaling.
+  example: []
+  syntax:
+    content: Sinc = 256
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Lanczos
+  commentId: F:FFmpeg.Images.SwsFlags.Lanczos
+  id: Lanczos
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Lanczos
+  nameWithType: SwsFlags.Lanczos
+  fullName: FFmpeg.Images.SwsFlags.Lanczos
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Lanczos
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Lanczos scaling filter, known for high-quality output.
+  example: []
+  syntax:
+    content: Lanczos = 512
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Spline
+  commentId: F:FFmpeg.Images.SwsFlags.Spline
+  id: Spline
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Spline
+  nameWithType: SwsFlags.Spline
+  fullName: FFmpeg.Images.SwsFlags.Spline
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Spline
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 61
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Spline scaling filter, offers high-quality and smooth scaling.
+  example: []
+  syntax:
+    content: Spline = 1024
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.Strict
+  commentId: F:FFmpeg.Images.SwsFlags.Strict
+  id: Strict
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: Strict
+  nameWithType: SwsFlags.Strict
+  fullName: FFmpeg.Images.SwsFlags.Strict
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Strict
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Return an error on underspecified conversions.
+  example: []
+  syntax:
+    content: Strict = 2048
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.PrintInfo
+  commentId: F:FFmpeg.Images.SwsFlags.PrintInfo
+  id: PrintInfo
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: PrintInfo
+  nameWithType: SwsFlags.PrintInfo
+  fullName: FFmpeg.Images.SwsFlags.PrintInfo
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PrintInfo
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 71
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Print additional information during scaling.
+  example: []
+  syntax:
+    content: PrintInfo = 4096
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.FullChromaInterpolation
+  commentId: F:FFmpeg.Images.SwsFlags.FullChromaInterpolation
+  id: FullChromaInterpolation
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: FullChromaInterpolation
+  nameWithType: SwsFlags.FullChromaInterpolation
+  fullName: FFmpeg.Images.SwsFlags.FullChromaInterpolation
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FullChromaInterpolation
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 76
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Use full chroma interpolation for horizontal pixels.
+  example: []
+  syntax:
+    content: FullChromaInterpolation = 8192
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.FullChromaInput
+  commentId: F:FFmpeg.Images.SwsFlags.FullChromaInput
+  id: FullChromaInput
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: FullChromaInput
+  nameWithType: SwsFlags.FullChromaInput
+  fullName: FFmpeg.Images.SwsFlags.FullChromaInput
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FullChromaInput
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 81
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Use full chroma input for horizontal pixels.
+  example: []
+  syntax:
+    content: FullChromaInput = 16384
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.AccurateRounding
+  commentId: F:FFmpeg.Images.SwsFlags.AccurateRounding
+  id: AccurateRounding
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: AccurateRounding
+  nameWithType: SwsFlags.AccurateRounding
+  fullName: FFmpeg.Images.SwsFlags.AccurateRounding
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AccurateRounding
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 86
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Use accurate rounding.
+  example: []
+  syntax:
+    content: AccurateRounding = 262144
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.BitExact
+  commentId: F:FFmpeg.Images.SwsFlags.BitExact
+  id: BitExact
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: BitExact
+  nameWithType: SwsFlags.BitExact
+  fullName: FFmpeg.Images.SwsFlags.BitExact
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitExact
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 91
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Use bit-exact scaling, useful for testing.
+  example: []
+  syntax:
+    content: BitExact = 524288
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.DirectBGR
+  commentId: F:FFmpeg.Images.SwsFlags.DirectBGR
+  id: DirectBGR
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: DirectBGR
+  nameWithType: SwsFlags.DirectBGR
+  fullName: FFmpeg.Images.SwsFlags.DirectBGR
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DirectBGR
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 96
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Output directly in BGR format.
+  example: []
+  syntax:
+    content: DirectBGR = 32768
+    return:
+      type: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images.SwsFlags.ErrorDiffusion
+  commentId: F:FFmpeg.Images.SwsFlags.ErrorDiffusion
+  id: ErrorDiffusion
+  parent: FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: ErrorDiffusion
+  nameWithType: SwsFlags.ErrorDiffusion
+  fullName: FFmpeg.Images.SwsFlags.ErrorDiffusion
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/SwsFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ErrorDiffusion
+    path: FFmpeg/Images/SwsFlags.cs
+    startLine: 101
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Apply error diffusion to the output.
+  example: []
+  syntax:
+    content: ErrorDiffusion = 8388608
+    return:
+      type: FFmpeg.Images.SwsFlags
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.SwsFlags
+  commentId: T:FFmpeg.Images.SwsFlags
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.SwsFlags.html
+  name: SwsFlags
+  nameWithType: SwsFlags
+  fullName: FFmpeg.Images.SwsFlags

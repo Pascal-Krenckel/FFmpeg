@@ -1,0 +1,53 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg
+  commentId: N:FFmpeg
+  id: FFmpeg
+  children:
+  - FFmpeg.FFmpegLoader
+  - FFmpeg.MediaSink
+  - FFmpeg.MediaSource
+  - FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg
+  nameWithType: FFmpeg
+  fullName: FFmpeg
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.FFmpegLoader
+  commentId: T:FFmpeg.FFmpegLoader
+  href: FFmpeg.FFmpegLoader.html
+  name: FFmpegLoader
+  nameWithType: FFmpegLoader
+  fullName: FFmpeg.FFmpegLoader
+- uid: FFmpeg.MediaSink
+  commentId: T:FFmpeg.MediaSink
+  parent: FFmpeg
+  href: FFmpeg.MediaSink.html
+  name: MediaSink
+  nameWithType: MediaSink
+  fullName: FFmpeg.MediaSink
+- uid: FFmpeg.MediaSource
+  commentId: T:FFmpeg.MediaSource
+  parent: FFmpeg
+  href: FFmpeg.MediaSource.html
+  name: MediaSource
+  nameWithType: MediaSource
+  fullName: FFmpeg.MediaSource
+- uid: FFmpeg.Transcoder
+  commentId: T:FFmpeg.Transcoder
+  parent: FFmpeg
+  href: FFmpeg.Transcoder.html
+  name: Transcoder
+  nameWithType: Transcoder
+  fullName: FFmpeg.Transcoder
+- uid: FFmpeg
+  commentId: N:FFmpeg
+  href: FFmpeg.html
+  name: FFmpeg
+  nameWithType: FFmpeg
+  fullName: FFmpeg

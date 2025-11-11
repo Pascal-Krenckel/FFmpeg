@@ -1,0 +1,1595 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Filters.Filter
+  commentId: T:FFmpeg.Filters.Filter
+  id: Filter
+  parent: FFmpeg.Filters
+  children:
+  - FFmpeg.Filters.Filter.AllFilters
+  - FFmpeg.Filters.Filter.AudioBufferSink
+  - FFmpeg.Filters.Filter.AudioBufferSource
+  - FFmpeg.Filters.Filter.AudioNullSink
+  - FFmpeg.Filters.Filter.AudioNullSource
+  - FFmpeg.Filters.Filter.Description
+  - FFmpeg.Filters.Filter.Equals(FFmpeg.Filters.Filter)
+  - FFmpeg.Filters.Filter.Equals(System.Object)
+  - FFmpeg.Filters.Filter.FPS
+  - FFmpeg.Filters.Filter.Flags
+  - FFmpeg.Filters.Filter.GetFilterByName(System.String)
+  - FFmpeg.Filters.Filter.GetHashCode
+  - FFmpeg.Filters.Filter.Inputs
+  - FFmpeg.Filters.Filter.IsSinkFilter
+  - FFmpeg.Filters.Filter.IsSourceFilter
+  - FFmpeg.Filters.Filter.Name
+  - FFmpeg.Filters.Filter.Outputs
+  - FFmpeg.Filters.Filter.Scale
+  - FFmpeg.Filters.Filter.ToString
+  - FFmpeg.Filters.Filter.TryGetFilterByName(System.String,FFmpeg.Filters.Filter@)
+  - FFmpeg.Filters.Filter.VideoBufferSink
+  - FFmpeg.Filters.Filter.VideoBufferSource
+  - FFmpeg.Filters.Filter.VideoNullSink
+  - FFmpeg.Filters.Filter.VideoNullSource
+  - FFmpeg.Filters.Filter.op_Equality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  - FFmpeg.Filters.Filter.op_Inequality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  langs:
+  - csharp
+  - vb
+  name: Filter
+  nameWithType: Filter
+  fullName: FFmpeg.Filters.Filter
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Filter
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Represents a filter used in FFmpeg's filter graph. Provides information about filters, including their names, descriptions, inputs, outputs, and flags.
+  example: []
+  syntax:
+    content: 'public readonly struct Filter : IEquatable<Filter>'
+    content.vb: Public Structure Filter Implements IEquatable(Of Filter)
+  implements:
+  - System.IEquatable{FFmpeg.Filters.Filter}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Filters.Filter.AllFilters
+  commentId: P:FFmpeg.Filters.Filter.AllFilters
+  id: AllFilters
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: AllFilters
+  nameWithType: Filter.AllFilters
+  fullName: FFmpeg.Filters.Filter.AllFilters
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AllFilters
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: >-
+    Gets a read-only collection of all available filters in FFmpeg.
+
+    The filters are initialized lazily and cached for future access.
+  example: []
+  syntax:
+    content: public static ReadOnlyCollection<Filter> AllFilters { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Filters.Filter}
+    content.vb: Public Shared ReadOnly Property AllFilters As ReadOnlyCollection(Of Filter)
+  overload: FFmpeg.Filters.Filter.AllFilters*
+- uid: FFmpeg.Filters.Filter.Name
+  commentId: P:FFmpeg.Filters.Filter.Name
+  id: Name
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Filter.Name
+  fullName: FFmpeg.Filters.Filter.Name
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Name
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the name of the filter.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Name As String
+  overload: FFmpeg.Filters.Filter.Name*
+- uid: FFmpeg.Filters.Filter.Description
+  commentId: P:FFmpeg.Filters.Filter.Description
+  id: Description
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: Filter.Description
+  fullName: FFmpeg.Filters.Filter.Description
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Description
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 48
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the description of the filter.
+  example: []
+  syntax:
+    content: public string Description { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Description As String
+  overload: FFmpeg.Filters.Filter.Description*
+- uid: FFmpeg.Filters.Filter.Flags
+  commentId: P:FFmpeg.Filters.Filter.Flags
+  id: Flags
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: Filter.Flags
+  fullName: FFmpeg.Filters.Filter.Flags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 53
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the filter's flags, indicating its properties and behavior.
+  example: []
+  syntax:
+    content: public FilterFlags Flags { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.FilterFlags
+    content.vb: Public ReadOnly Property Flags As FilterFlags
+  overload: FFmpeg.Filters.Filter.Flags*
+- uid: FFmpeg.Filters.Filter.Inputs
+  commentId: P:FFmpeg.Filters.Filter.Inputs
+  id: Inputs
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Inputs
+  nameWithType: Filter.Inputs
+  fullName: FFmpeg.Filters.Filter.Inputs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Inputs
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 59
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: >-
+    Gets the list of input pads for this filter.
+
+    Handles dynamic input pads if specified by the filter flags.
+  example: []
+  syntax:
+    content: public FilterPadList Inputs { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.FilterPadList
+    content.vb: Public ReadOnly Property Inputs As FilterPadList
+  overload: FFmpeg.Filters.Filter.Inputs*
+- uid: FFmpeg.Filters.Filter.Outputs
+  commentId: P:FFmpeg.Filters.Filter.Outputs
+  id: Outputs
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Outputs
+  nameWithType: Filter.Outputs
+  fullName: FFmpeg.Filters.Filter.Outputs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Outputs
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 65
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: >-
+    Gets the list of output pads for this filter.
+
+    Handles dynamic output pads if specified by the filter flags.
+  example: []
+  syntax:
+    content: public FilterPadList Outputs { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.FilterPadList
+    content.vb: Public ReadOnly Property Outputs As FilterPadList
+  overload: FFmpeg.Filters.Filter.Outputs*
+- uid: FFmpeg.Filters.Filter.TryGetFilterByName(System.String,FFmpeg.Filters.Filter@)
+  commentId: M:FFmpeg.Filters.Filter.TryGetFilterByName(System.String,FFmpeg.Filters.Filter@)
+  id: TryGetFilterByName(System.String,FFmpeg.Filters.Filter@)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: TryGetFilterByName(string, out Filter)
+  nameWithType: Filter.TryGetFilterByName(string, out Filter)
+  fullName: FFmpeg.Filters.Filter.TryGetFilterByName(string, out FFmpeg.Filters.Filter)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryGetFilterByName
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 73
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Attempts to retrieve a filter by its name.
+  example: []
+  syntax:
+    content: public static bool TryGetFilterByName(string name, out Filter filter)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the filter to retrieve.
+    - id: filter
+      type: FFmpeg.Filters.Filter
+      description: When this method returns, contains the filter if found; otherwise, contains the default value.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the filter is found; otherwise, <code>false</code>.
+    content.vb: Public Shared Function TryGetFilterByName(name As String, filter As Filter) As Boolean
+  overload: FFmpeg.Filters.Filter.TryGetFilterByName*
+  nameWithType.vb: Filter.TryGetFilterByName(String, Filter)
+  fullName.vb: FFmpeg.Filters.Filter.TryGetFilterByName(String, FFmpeg.Filters.Filter)
+  name.vb: TryGetFilterByName(String, Filter)
+- uid: FFmpeg.Filters.Filter.GetFilterByName(System.String)
+  commentId: M:FFmpeg.Filters.Filter.GetFilterByName(System.String)
+  id: GetFilterByName(System.String)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: GetFilterByName(string)
+  nameWithType: Filter.GetFilterByName(string)
+  fullName: FFmpeg.Filters.Filter.GetFilterByName(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetFilterByName
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 91
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Retrieves a filter by its name.
+  example: []
+  syntax:
+    content: public static Filter GetFilterByName(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the filter to retrieve.
+    return:
+      type: FFmpeg.Filters.Filter
+      description: The filter associated with the specified name.
+    content.vb: Public Shared Function GetFilterByName(name As String) As Filter
+  overload: FFmpeg.Filters.Filter.GetFilterByName*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the filter with the specified name is not found.
+  nameWithType.vb: Filter.GetFilterByName(String)
+  fullName.vb: FFmpeg.Filters.Filter.GetFilterByName(String)
+  name.vb: GetFilterByName(String)
+- uid: FFmpeg.Filters.Filter.VideoBufferSource
+  commentId: P:FFmpeg.Filters.Filter.VideoBufferSource
+  id: VideoBufferSource
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: VideoBufferSource
+  nameWithType: Filter.VideoBufferSource
+  fullName: FFmpeg.Filters.Filter.VideoBufferSource
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoBufferSource
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 96
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the video buffer source filter, used to create frames in filter graphs.
+  example: []
+  syntax:
+    content: public static Filter VideoBufferSource { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property VideoBufferSource As Filter
+  overload: FFmpeg.Filters.Filter.VideoBufferSource*
+- uid: FFmpeg.Filters.Filter.VideoBufferSink
+  commentId: P:FFmpeg.Filters.Filter.VideoBufferSink
+  id: VideoBufferSink
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: VideoBufferSink
+  nameWithType: Filter.VideoBufferSink
+  fullName: FFmpeg.Filters.Filter.VideoBufferSink
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoBufferSink
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 101
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the video buffer sink filter, used to receive frames in filter graphs.
+  example: []
+  syntax:
+    content: public static Filter VideoBufferSink { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property VideoBufferSink As Filter
+  overload: FFmpeg.Filters.Filter.VideoBufferSink*
+- uid: FFmpeg.Filters.Filter.Scale
+  commentId: P:FFmpeg.Filters.Filter.Scale
+  id: Scale
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: Filter.Scale
+  fullName: FFmpeg.Filters.Filter.Scale
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Scale
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 106
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the scale filter, used to resize video frames.
+  example: []
+  syntax:
+    content: public static Filter Scale { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property Scale As Filter
+  overload: FFmpeg.Filters.Filter.Scale*
+- uid: FFmpeg.Filters.Filter.FPS
+  commentId: P:FFmpeg.Filters.Filter.FPS
+  id: FPS
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: FPS
+  nameWithType: Filter.FPS
+  fullName: FFmpeg.Filters.Filter.FPS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FPS
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 111
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the FPS filter, used to change the frame rate of video streams.
+  example: []
+  syntax:
+    content: public static Filter FPS { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property FPS As Filter
+  overload: FFmpeg.Filters.Filter.FPS*
+- uid: FFmpeg.Filters.Filter.AudioBufferSource
+  commentId: P:FFmpeg.Filters.Filter.AudioBufferSource
+  id: AudioBufferSource
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: AudioBufferSource
+  nameWithType: Filter.AudioBufferSource
+  fullName: FFmpeg.Filters.Filter.AudioBufferSource
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AudioBufferSource
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 116
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the audio buffer source filter, used to create audio frames in filter graphs.
+  example: []
+  syntax:
+    content: public static Filter AudioBufferSource { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property AudioBufferSource As Filter
+  overload: FFmpeg.Filters.Filter.AudioBufferSource*
+- uid: FFmpeg.Filters.Filter.AudioBufferSink
+  commentId: P:FFmpeg.Filters.Filter.AudioBufferSink
+  id: AudioBufferSink
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: AudioBufferSink
+  nameWithType: Filter.AudioBufferSink
+  fullName: FFmpeg.Filters.Filter.AudioBufferSink
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AudioBufferSink
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 121
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the audio buffer sink filter, used to receive audio frames in filter graphs.
+  example: []
+  syntax:
+    content: public static Filter AudioBufferSink { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property AudioBufferSink As Filter
+  overload: FFmpeg.Filters.Filter.AudioBufferSink*
+- uid: FFmpeg.Filters.Filter.IsSourceFilter
+  commentId: P:FFmpeg.Filters.Filter.IsSourceFilter
+  id: IsSourceFilter
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: IsSourceFilter
+  nameWithType: Filter.IsSourceFilter
+  fullName: FFmpeg.Filters.Filter.IsSourceFilter
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsSourceFilter
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 123
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public bool IsSourceFilter { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsSourceFilter As Boolean
+  overload: FFmpeg.Filters.Filter.IsSourceFilter*
+- uid: FFmpeg.Filters.Filter.IsSinkFilter
+  commentId: P:FFmpeg.Filters.Filter.IsSinkFilter
+  id: IsSinkFilter
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: IsSinkFilter
+  nameWithType: Filter.IsSinkFilter
+  fullName: FFmpeg.Filters.Filter.IsSinkFilter
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsSinkFilter
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 125
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public bool IsSinkFilter { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsSinkFilter As Boolean
+  overload: FFmpeg.Filters.Filter.IsSinkFilter*
+- uid: FFmpeg.Filters.Filter.VideoNullSink
+  commentId: P:FFmpeg.Filters.Filter.VideoNullSink
+  id: VideoNullSink
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: VideoNullSink
+  nameWithType: Filter.VideoNullSink
+  fullName: FFmpeg.Filters.Filter.VideoNullSink
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoNullSink
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 127
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static Filter VideoNullSink { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property VideoNullSink As Filter
+  overload: FFmpeg.Filters.Filter.VideoNullSink*
+- uid: FFmpeg.Filters.Filter.AudioNullSink
+  commentId: P:FFmpeg.Filters.Filter.AudioNullSink
+  id: AudioNullSink
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: AudioNullSink
+  nameWithType: Filter.AudioNullSink
+  fullName: FFmpeg.Filters.Filter.AudioNullSink
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AudioNullSink
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 128
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static Filter AudioNullSink { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property AudioNullSink As Filter
+  overload: FFmpeg.Filters.Filter.AudioNullSink*
+- uid: FFmpeg.Filters.Filter.VideoNullSource
+  commentId: P:FFmpeg.Filters.Filter.VideoNullSource
+  id: VideoNullSource
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: VideoNullSource
+  nameWithType: Filter.VideoNullSource
+  fullName: FFmpeg.Filters.Filter.VideoNullSource
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoNullSource
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 130
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static Filter VideoNullSource { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property VideoNullSource As Filter
+  overload: FFmpeg.Filters.Filter.VideoNullSource*
+- uid: FFmpeg.Filters.Filter.AudioNullSource
+  commentId: P:FFmpeg.Filters.Filter.AudioNullSource
+  id: AudioNullSource
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: AudioNullSource
+  nameWithType: Filter.AudioNullSource
+  fullName: FFmpeg.Filters.Filter.AudioNullSource
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AudioNullSource
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 131
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static Filter AudioNullSource { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.Filter
+    content.vb: Public Shared ReadOnly Property AudioNullSource As Filter
+  overload: FFmpeg.Filters.Filter.AudioNullSource*
+- uid: FFmpeg.Filters.Filter.ToString
+  commentId: M:FFmpeg.Filters.Filter.ToString
+  id: ToString
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Filter.ToString()
+  fullName: FFmpeg.Filters.Filter.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 137
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Returns the name of the filter as a string.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The name of the filter.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Filters.Filter.ToString*
+- uid: FFmpeg.Filters.Filter.Equals(System.Object)
+  commentId: M:FFmpeg.Filters.Filter.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Filter.Equals(object?)
+  fullName: FFmpeg.Filters.Filter.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 138
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Filters.Filter.Equals*
+  nameWithType.vb: Filter.Equals(Object)
+  fullName.vb: FFmpeg.Filters.Filter.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Filters.Filter.Equals(FFmpeg.Filters.Filter)
+  commentId: M:FFmpeg.Filters.Filter.Equals(FFmpeg.Filters.Filter)
+  id: Equals(FFmpeg.Filters.Filter)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: Equals(Filter)
+  nameWithType: Filter.Equals(Filter)
+  fullName: FFmpeg.Filters.Filter.Equals(FFmpeg.Filters.Filter)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 139
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(Filter other)
+    parameters:
+    - id: other
+      type: FFmpeg.Filters.Filter
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As Filter) As Boolean
+  overload: FFmpeg.Filters.Filter.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Filters.Filter}.Equals(FFmpeg.Filters.Filter)
+- uid: FFmpeg.Filters.Filter.GetHashCode
+  commentId: M:FFmpeg.Filters.Filter.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Filter.GetHashCode()
+  fullName: FFmpeg.Filters.Filter.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 140
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Filters.Filter.GetHashCode*
+- uid: FFmpeg.Filters.Filter.op_Equality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  commentId: M:FFmpeg.Filters.Filter.op_Equality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  id: op_Equality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Filter, Filter)
+  nameWithType: Filter.operator ==(Filter, Filter)
+  fullName: FFmpeg.Filters.Filter.operator ==(FFmpeg.Filters.Filter, FFmpeg.Filters.Filter)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 142
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static bool operator ==(Filter left, Filter right)
+    parameters:
+    - id: left
+      type: FFmpeg.Filters.Filter
+    - id: right
+      type: FFmpeg.Filters.Filter
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As Filter, right As Filter) As Boolean
+  overload: FFmpeg.Filters.Filter.op_Equality*
+  nameWithType.vb: Filter.=(Filter, Filter)
+  fullName.vb: FFmpeg.Filters.Filter.=(FFmpeg.Filters.Filter, FFmpeg.Filters.Filter)
+  name.vb: =(Filter, Filter)
+- uid: FFmpeg.Filters.Filter.op_Inequality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  commentId: M:FFmpeg.Filters.Filter.op_Inequality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  id: op_Inequality(FFmpeg.Filters.Filter,FFmpeg.Filters.Filter)
+  parent: FFmpeg.Filters.Filter
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Filter, Filter)
+  nameWithType: Filter.operator !=(Filter, Filter)
+  fullName: FFmpeg.Filters.Filter.operator !=(FFmpeg.Filters.Filter, FFmpeg.Filters.Filter)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Filters/Filter.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/Filters/Filter.cs
+    startLine: 143
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public static bool operator !=(Filter left, Filter right)
+    parameters:
+    - id: left
+      type: FFmpeg.Filters.Filter
+    - id: right
+      type: FFmpeg.Filters.Filter
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As Filter, right As Filter) As Boolean
+  overload: FFmpeg.Filters.Filter.op_Inequality*
+  nameWithType.vb: Filter.<>(Filter, Filter)
+  fullName.vb: FFmpeg.Filters.Filter.<>(FFmpeg.Filters.Filter, FFmpeg.Filters.Filter)
+  name.vb: <>(Filter, Filter)
+references:
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  href: FFmpeg.html
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+- uid: System.IEquatable{FFmpeg.Filters.Filter}
+  commentId: T:System.IEquatable{FFmpeg.Filters.Filter}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Filter>
+  nameWithType: IEquatable<Filter>
+  fullName: System.IEquatable<FFmpeg.Filters.Filter>
+  nameWithType.vb: IEquatable(Of Filter)
+  fullName.vb: System.IEquatable(Of FFmpeg.Filters.Filter)
+  name.vb: IEquatable(Of Filter)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Filters.Filter.AllFilters*
+  commentId: Overload:FFmpeg.Filters.Filter.AllFilters
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_AllFilters
+  name: AllFilters
+  nameWithType: Filter.AllFilters
+  fullName: FFmpeg.Filters.Filter.AllFilters
+- uid: System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Filters.Filter}
+  commentId: T:System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Filters.Filter}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  name: ReadOnlyCollection<Filter>
+  nameWithType: ReadOnlyCollection<Filter>
+  fullName: System.Collections.ObjectModel.ReadOnlyCollection<FFmpeg.Filters.Filter>
+  nameWithType.vb: ReadOnlyCollection(Of Filter)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyCollection(Of FFmpeg.Filters.Filter)
+  name.vb: ReadOnlyCollection(Of Filter)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: <
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: )
+- uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+  commentId: T:System.Collections.ObjectModel.ReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  name: ReadOnlyCollection<T>
+  nameWithType: ReadOnlyCollection<T>
+  fullName: System.Collections.ObjectModel.ReadOnlyCollection<T>
+  nameWithType.vb: ReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyCollection(Of T)
+  name.vb: ReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: FFmpeg.Filters.Filter.Name*
+  commentId: Overload:FFmpeg.Filters.Filter.Name
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Name
+  name: Name
+  nameWithType: Filter.Name
+  fullName: FFmpeg.Filters.Filter.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Filters.Filter.Description*
+  commentId: Overload:FFmpeg.Filters.Filter.Description
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Description
+  name: Description
+  nameWithType: Filter.Description
+  fullName: FFmpeg.Filters.Filter.Description
+- uid: FFmpeg.Filters.Filter.Flags*
+  commentId: Overload:FFmpeg.Filters.Filter.Flags
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Flags
+  name: Flags
+  nameWithType: Filter.Flags
+  fullName: FFmpeg.Filters.Filter.Flags
+- uid: FFmpeg.Filters.FilterFlags
+  commentId: T:FFmpeg.Filters.FilterFlags
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterFlags.html
+  name: FilterFlags
+  nameWithType: FilterFlags
+  fullName: FFmpeg.Filters.FilterFlags
+- uid: FFmpeg.Filters.Filter.Inputs*
+  commentId: Overload:FFmpeg.Filters.Filter.Inputs
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Inputs
+  name: Inputs
+  nameWithType: Filter.Inputs
+  fullName: FFmpeg.Filters.Filter.Inputs
+- uid: FFmpeg.Filters.FilterPadList
+  commentId: T:FFmpeg.Filters.FilterPadList
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterPadList.html
+  name: FilterPadList
+  nameWithType: FilterPadList
+  fullName: FFmpeg.Filters.FilterPadList
+- uid: FFmpeg.Filters.Filter.Outputs*
+  commentId: Overload:FFmpeg.Filters.Filter.Outputs
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Outputs
+  name: Outputs
+  nameWithType: Filter.Outputs
+  fullName: FFmpeg.Filters.Filter.Outputs
+- uid: FFmpeg.Filters.Filter.TryGetFilterByName*
+  commentId: Overload:FFmpeg.Filters.Filter.TryGetFilterByName
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_TryGetFilterByName_System_String_FFmpeg_Filters_Filter__
+  name: TryGetFilterByName
+  nameWithType: Filter.TryGetFilterByName
+  fullName: FFmpeg.Filters.Filter.TryGetFilterByName
+- uid: FFmpeg.Filters.Filter
+  commentId: T:FFmpeg.Filters.Filter
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.Filter.html
+  name: Filter
+  nameWithType: Filter
+  fullName: FFmpeg.Filters.Filter
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: FFmpeg.Filters.Filter.GetFilterByName*
+  commentId: Overload:FFmpeg.Filters.Filter.GetFilterByName
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_GetFilterByName_System_String_
+  name: GetFilterByName
+  nameWithType: Filter.GetFilterByName
+  fullName: FFmpeg.Filters.Filter.GetFilterByName
+- uid: FFmpeg.Filters.Filter.VideoBufferSource*
+  commentId: Overload:FFmpeg.Filters.Filter.VideoBufferSource
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_VideoBufferSource
+  name: VideoBufferSource
+  nameWithType: Filter.VideoBufferSource
+  fullName: FFmpeg.Filters.Filter.VideoBufferSource
+- uid: FFmpeg.Filters.Filter.VideoBufferSink*
+  commentId: Overload:FFmpeg.Filters.Filter.VideoBufferSink
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_VideoBufferSink
+  name: VideoBufferSink
+  nameWithType: Filter.VideoBufferSink
+  fullName: FFmpeg.Filters.Filter.VideoBufferSink
+- uid: FFmpeg.Filters.Filter.Scale*
+  commentId: Overload:FFmpeg.Filters.Filter.Scale
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Scale
+  name: Scale
+  nameWithType: Filter.Scale
+  fullName: FFmpeg.Filters.Filter.Scale
+- uid: FFmpeg.Filters.Filter.FPS*
+  commentId: Overload:FFmpeg.Filters.Filter.FPS
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_FPS
+  name: FPS
+  nameWithType: Filter.FPS
+  fullName: FFmpeg.Filters.Filter.FPS
+- uid: FFmpeg.Filters.Filter.AudioBufferSource*
+  commentId: Overload:FFmpeg.Filters.Filter.AudioBufferSource
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_AudioBufferSource
+  name: AudioBufferSource
+  nameWithType: Filter.AudioBufferSource
+  fullName: FFmpeg.Filters.Filter.AudioBufferSource
+- uid: FFmpeg.Filters.Filter.AudioBufferSink*
+  commentId: Overload:FFmpeg.Filters.Filter.AudioBufferSink
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_AudioBufferSink
+  name: AudioBufferSink
+  nameWithType: Filter.AudioBufferSink
+  fullName: FFmpeg.Filters.Filter.AudioBufferSink
+- uid: FFmpeg.Filters.Filter.IsSourceFilter*
+  commentId: Overload:FFmpeg.Filters.Filter.IsSourceFilter
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_IsSourceFilter
+  name: IsSourceFilter
+  nameWithType: Filter.IsSourceFilter
+  fullName: FFmpeg.Filters.Filter.IsSourceFilter
+- uid: FFmpeg.Filters.Filter.IsSinkFilter*
+  commentId: Overload:FFmpeg.Filters.Filter.IsSinkFilter
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_IsSinkFilter
+  name: IsSinkFilter
+  nameWithType: Filter.IsSinkFilter
+  fullName: FFmpeg.Filters.Filter.IsSinkFilter
+- uid: FFmpeg.Filters.Filter.VideoNullSink*
+  commentId: Overload:FFmpeg.Filters.Filter.VideoNullSink
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_VideoNullSink
+  name: VideoNullSink
+  nameWithType: Filter.VideoNullSink
+  fullName: FFmpeg.Filters.Filter.VideoNullSink
+- uid: FFmpeg.Filters.Filter.AudioNullSink*
+  commentId: Overload:FFmpeg.Filters.Filter.AudioNullSink
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_AudioNullSink
+  name: AudioNullSink
+  nameWithType: Filter.AudioNullSink
+  fullName: FFmpeg.Filters.Filter.AudioNullSink
+- uid: FFmpeg.Filters.Filter.VideoNullSource*
+  commentId: Overload:FFmpeg.Filters.Filter.VideoNullSource
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_VideoNullSource
+  name: VideoNullSource
+  nameWithType: Filter.VideoNullSource
+  fullName: FFmpeg.Filters.Filter.VideoNullSource
+- uid: FFmpeg.Filters.Filter.AudioNullSource*
+  commentId: Overload:FFmpeg.Filters.Filter.AudioNullSource
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_AudioNullSource
+  name: AudioNullSource
+  nameWithType: Filter.AudioNullSource
+  fullName: FFmpeg.Filters.Filter.AudioNullSource
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Filters.Filter.ToString*
+  commentId: Overload:FFmpeg.Filters.Filter.ToString
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_ToString
+  name: ToString
+  nameWithType: Filter.ToString
+  fullName: FFmpeg.Filters.Filter.ToString
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.Filters.Filter.Equals*
+  commentId: Overload:FFmpeg.Filters.Filter.Equals
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_Equals_System_Object_
+  name: Equals
+  nameWithType: Filter.Equals
+  fullName: FFmpeg.Filters.Filter.Equals
+- uid: System.IEquatable{FFmpeg.Filters.Filter}.Equals(FFmpeg.Filters.Filter)
+  commentId: M:System.IEquatable{FFmpeg.Filters.Filter}.Equals(FFmpeg.Filters.Filter)
+  parent: System.IEquatable{FFmpeg.Filters.Filter}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Filter)
+  nameWithType: IEquatable<Filter>.Equals(Filter)
+  fullName: System.IEquatable<FFmpeg.Filters.Filter>.Equals(FFmpeg.Filters.Filter)
+  nameWithType.vb: IEquatable(Of Filter).Equals(Filter)
+  fullName.vb: System.IEquatable(Of FFmpeg.Filters.Filter).Equals(FFmpeg.Filters.Filter)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Filters.Filter}.Equals(FFmpeg.Filters.Filter)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Filters.Filter}.Equals(FFmpeg.Filters.Filter)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Filters.Filter
+    name: Filter
+    href: FFmpeg.Filters.Filter.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Filters.Filter.GetHashCode*
+  commentId: Overload:FFmpeg.Filters.Filter.GetHashCode
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_GetHashCode
+  name: GetHashCode
+  nameWithType: Filter.GetHashCode
+  fullName: FFmpeg.Filters.Filter.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Filters.Filter.op_Equality*
+  commentId: Overload:FFmpeg.Filters.Filter.op_Equality
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_op_Equality_FFmpeg_Filters_Filter_FFmpeg_Filters_Filter_
+  name: operator ==
+  nameWithType: Filter.operator ==
+  fullName: FFmpeg.Filters.Filter.operator ==
+  nameWithType.vb: Filter.=
+  fullName.vb: FFmpeg.Filters.Filter.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Filters.Filter.op_Equality*
+    name: ==
+    href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_op_Equality_FFmpeg_Filters_Filter_FFmpeg_Filters_Filter_
+- uid: FFmpeg.Filters.Filter.op_Inequality*
+  commentId: Overload:FFmpeg.Filters.Filter.op_Inequality
+  href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_op_Inequality_FFmpeg_Filters_Filter_FFmpeg_Filters_Filter_
+  name: operator !=
+  nameWithType: Filter.operator !=
+  fullName: FFmpeg.Filters.Filter.operator !=
+  nameWithType.vb: Filter.<>
+  fullName.vb: FFmpeg.Filters.Filter.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Filters.Filter.op_Inequality*
+    name: '!='
+    href: FFmpeg.Filters.Filter.html#FFmpeg_Filters_Filter_op_Inequality_FFmpeg_Filters_Filter_FFmpeg_Filters_Filter_

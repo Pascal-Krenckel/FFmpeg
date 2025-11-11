@@ -1,0 +1,699 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.ColorTransferCharacteristic
+  commentId: T:FFmpeg.Images.ColorTransferCharacteristic
+  id: ColorTransferCharacteristic
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.ColorTransferCharacteristic.ARIB_STD_B67
+  - FFmpeg.Images.ColorTransferCharacteristic.BT1361_ECG
+  - FFmpeg.Images.ColorTransferCharacteristic.BT2020_10
+  - FFmpeg.Images.ColorTransferCharacteristic.BT2020_12
+  - FFmpeg.Images.ColorTransferCharacteristic.BT709
+  - FFmpeg.Images.ColorTransferCharacteristic.Gamma22
+  - FFmpeg.Images.ColorTransferCharacteristic.Gamma28
+  - FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_1
+  - FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_4
+  - FFmpeg.Images.ColorTransferCharacteristic.Linear
+  - FFmpeg.Images.ColorTransferCharacteristic.Log
+  - FFmpeg.Images.ColorTransferCharacteristic.LogSqrt
+  - FFmpeg.Images.ColorTransferCharacteristic.Reserved
+  - FFmpeg.Images.ColorTransferCharacteristic.Reserved0
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTE170M
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTE2084
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTE240M
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTE428
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTEST2084
+  - FFmpeg.Images.ColorTransferCharacteristic.SMPTEST428_1
+  - FFmpeg.Images.ColorTransferCharacteristic.Unspecified
+  - FFmpeg.Images.ColorTransferCharacteristic.__COUNT__
+  langs:
+  - csharp
+  - vb
+  name: ColorTransferCharacteristic
+  nameWithType: ColorTransferCharacteristic
+  fullName: FFmpeg.Images.ColorTransferCharacteristic
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorTransferCharacteristic
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: >-
+    Represents the color transfer characteristics, which define how color values are encoded and transformed.
+
+    These values match the ones defined by ISO/IEC 23091-2_2019 subclause 8.2.
+  example: []
+  syntax:
+    content: public enum ColorTransferCharacteristic
+    content.vb: Public Enum ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Reserved0
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Reserved0
+  id: Reserved0
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Reserved0
+  nameWithType: ColorTransferCharacteristic.Reserved0
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Reserved0
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Reserved0
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Reserved value, not to be used.
+  example: []
+  syntax:
+    content: Reserved0 = 0
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.BT709
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.BT709
+  id: BT709
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: BT709
+  nameWithType: ColorTransferCharacteristic.BT709
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.BT709
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT709
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 15
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.709 transfer characteristics, also known as ITU-R BT1361, used for HD TV and some digital video standards.
+  example: []
+  syntax:
+    content: BT709 = 1
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Unspecified
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Unspecified
+  id: Unspecified
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Unspecified
+  nameWithType: ColorTransferCharacteristic.Unspecified
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Unspecified
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unspecified
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 20
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Unspecified transfer characteristics.
+  example: []
+  syntax:
+    content: Unspecified = 2
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Reserved
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Reserved
+  id: Reserved
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Reserved
+  nameWithType: ColorTransferCharacteristic.Reserved
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Reserved
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Reserved
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 25
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Reserved transfer characteristics for future use.
+  example: []
+  syntax:
+    content: Reserved = 3
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Gamma22
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Gamma22
+  id: Gamma22
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Gamma22
+  nameWithType: ColorTransferCharacteristic.Gamma22
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Gamma22
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Gamma22
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  syntax:
+    content: Gamma22 = 4
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Gamma28
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Gamma28
+  id: Gamma28
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Gamma28
+  nameWithType: ColorTransferCharacteristic.Gamma28
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Gamma28
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Gamma28
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.470 System B/G (625-line PAL/SECAM) transfer characteristics, also known as ITU-R BT601.
+  example: []
+  syntax:
+    content: Gamma28 = 5
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTE170M
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTE170M
+  id: SMPTE170M
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTE170M
+  nameWithType: ColorTransferCharacteristic.SMPTE170M
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTE170M
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE170M
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.601 transfer characteristics, used for standard definition video, also known as ITU-R BT1358 and ITU-R BT1700 NTSC.
+  example: []
+  syntax:
+    content: SMPTE170M = 6
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTE240M
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTE240M
+  id: SMPTE240M
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTE240M
+  nameWithType: ColorTransferCharacteristic.SMPTE240M
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTE240M
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE240M
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: SMPTE 240M transfer characteristics, used in various video systems.
+  example: []
+  syntax:
+    content: SMPTE240M = 7
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Linear
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Linear
+  id: Linear
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Linear
+  nameWithType: ColorTransferCharacteristic.Linear
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Linear
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Linear
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 50
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Linear transfer characteristics, often used for linear color encoding.
+  example: []
+  syntax:
+    content: Linear = 8
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.Log
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.Log
+  id: Log
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: Log
+  nameWithType: ColorTransferCharacteristic.Log
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.Log
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Log
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 55
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Logarithmic transfer characteristic with a 100:1 range.
+  example: []
+  syntax:
+    content: Log = 9
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.LogSqrt
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.LogSqrt
+  id: LogSqrt
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: LogSqrt
+  nameWithType: ColorTransferCharacteristic.LogSqrt
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.LogSqrt
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LogSqrt
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 60
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Logarithmic transfer characteristic with a 100 * Sqrt(10):1 range.
+  example: []
+  syntax:
+    content: LogSqrt = 10
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_4
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_4
+  id: IEC61966_2_4
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: IEC61966_2_4
+  nameWithType: ColorTransferCharacteristic.IEC61966_2_4
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_4
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IEC61966_2_4
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 65
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: IEC 61966-2-4 transfer characteristics, used in various color management systems.
+  example: []
+  syntax:
+    content: IEC61966_2_4 = 11
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.BT1361_ECG
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.BT1361_ECG
+  id: BT1361_ECG
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: BT1361_ECG
+  nameWithType: ColorTransferCharacteristic.BT1361_ECG
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.BT1361_ECG
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT1361_ECG
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 70
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.1361 Extended Colour Gamut transfer characteristics.
+  example: []
+  syntax:
+    content: BT1361_ECG = 12
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_1
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_1
+  id: IEC61966_2_1
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: IEC61966_2_1
+  nameWithType: ColorTransferCharacteristic.IEC61966_2_1
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.IEC61966_2_1
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IEC61966_2_1
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 75
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: IEC 61966-2-1 transfer characteristics, used for sRGB or sYCC color spaces.
+  example: []
+  syntax:
+    content: IEC61966_2_1 = 13
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.BT2020_10
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.BT2020_10
+  id: BT2020_10
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: BT2020_10
+  nameWithType: ColorTransferCharacteristic.BT2020_10
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.BT2020_10
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT2020_10
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 80
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.2020 transfer characteristics for 10-bit systems.
+  example: []
+  syntax:
+    content: BT2020_10 = 14
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.BT2020_12
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.BT2020_12
+  id: BT2020_12
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: BT2020_12
+  nameWithType: ColorTransferCharacteristic.BT2020_12
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.BT2020_12
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT2020_12
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 85
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.2020 transfer characteristics for 12-bit systems.
+  example: []
+  syntax:
+    content: BT2020_12 = 15
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTE2084
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTE2084
+  id: SMPTE2084
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTE2084
+  nameWithType: ColorTransferCharacteristic.SMPTE2084
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTE2084
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE2084
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 90
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: SMPTE ST 2084 transfer characteristics for 10-, 12-, 14-, and 16-bit systems.
+  example: []
+  syntax:
+    content: SMPTE2084 = 16
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTEST2084
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTEST2084
+  id: SMPTEST2084
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTEST2084
+  nameWithType: ColorTransferCharacteristic.SMPTEST2084
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTEST2084
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTEST2084
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 95
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Alias for SMPTE ST 2084 transfer characteristics.
+  example: []
+  syntax:
+    content: SMPTEST2084 = 16
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTE428
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTE428
+  id: SMPTE428
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTE428
+  nameWithType: ColorTransferCharacteristic.SMPTE428
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTE428
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE428
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 100
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: SMPTE ST 428-1 transfer characteristics.
+  example: []
+  syntax:
+    content: SMPTE428 = 17
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.SMPTEST428_1
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.SMPTEST428_1
+  id: SMPTEST428_1
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: SMPTEST428_1
+  nameWithType: ColorTransferCharacteristic.SMPTEST428_1
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.SMPTEST428_1
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTEST428_1
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 105
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Alias for SMPTE ST 428-1 transfer characteristics.
+  example: []
+  syntax:
+    content: SMPTEST428_1 = 17
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.ARIB_STD_B67
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.ARIB_STD_B67
+  id: ARIB_STD_B67
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: ARIB_STD_B67
+  nameWithType: ColorTransferCharacteristic.ARIB_STD_B67
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.ARIB_STD_B67
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ARIB_STD_B67
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 110
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ARIB STD-B67 transfer characteristics, also known as "Hybrid log-gamma".
+  example: []
+  syntax:
+    content: ARIB_STD_B67 = 18
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic.__COUNT__
+  commentId: F:FFmpeg.Images.ColorTransferCharacteristic.__COUNT__
+  id: __COUNT__
+  parent: FFmpeg.Images.ColorTransferCharacteristic
+  langs:
+  - csharp
+  - vb
+  name: __COUNT__
+  nameWithType: ColorTransferCharacteristic.__COUNT__
+  fullName: FFmpeg.Images.ColorTransferCharacteristic.__COUNT__
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorTransferCharacteristic.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: __COUNT__
+    path: FFmpeg/Images/ColorTransferCharacteristic.cs
+    startLine: 115
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Not part of ABI, represents the number of transfer characteristic options available.
+  example: []
+  syntax:
+    content: __COUNT__ = 19
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.ColorTransferCharacteristic
+  commentId: T:FFmpeg.Images.ColorTransferCharacteristic
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorTransferCharacteristic.html
+  name: ColorTransferCharacteristic
+  nameWithType: ColorTransferCharacteristic
+  fullName: FFmpeg.Images.ColorTransferCharacteristic

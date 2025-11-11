@@ -1,0 +1,390 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Audio.IChannelLayout
+  commentId: T:FFmpeg.Audio.IChannelLayout
+  id: IChannelLayout
+  parent: FFmpeg.Audio
+  children:
+  - FFmpeg.Audio.IChannelLayout.Channels
+  - FFmpeg.Audio.IChannelLayout.Copy
+  - FFmpeg.Audio.IChannelLayout.Init(System.Int32)
+  - FFmpeg.Audio.IChannelLayout.Valid
+  langs:
+  - csharp
+  - vb
+  name: IChannelLayout
+  nameWithType: IChannelLayout
+  fullName: FFmpeg.Audio.IChannelLayout
+  type: Interface
+  source:
+    remote:
+      path: FFmpeg/Audio/IChannelLayout.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IChannelLayout
+    path: FFmpeg/Audio/IChannelLayout.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Defines an interface for working with channel layouts in audio processing.
+  remarks: >-
+    Implementations of this interface should provide the ability to access channel layout properties, 
+
+    validate the layout, and copy or initialize the layout as needed.
+  example: []
+  syntax:
+    content: 'public interface IChannelLayout : IEquatable<IChannelLayout>'
+    content.vb: Public Interface IChannelLayout Inherits IEquatable(Of IChannelLayout)
+  inheritedMembers:
+  - System.IEquatable{FFmpeg.Audio.IChannelLayout}.Equals(FFmpeg.Audio.IChannelLayout)
+- uid: FFmpeg.Audio.IChannelLayout.Channels
+  commentId: P:FFmpeg.Audio.IChannelLayout.Channels
+  id: Channels
+  parent: FFmpeg.Audio.IChannelLayout
+  langs:
+  - csharp
+  - vb
+  name: Channels
+  nameWithType: IChannelLayout.Channels
+  fullName: FFmpeg.Audio.IChannelLayout.Channels
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Audio/IChannelLayout.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Channels
+    path: FFmpeg/Audio/IChannelLayout.cs
+    startLine: 16
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Gets the number of channels in the current channel layout.
+  example: []
+  syntax:
+    content: int Channels { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: The number of channels.
+    content.vb: ReadOnly Property Channels As Integer
+  overload: FFmpeg.Audio.IChannelLayout.Channels*
+- uid: FFmpeg.Audio.IChannelLayout.Valid
+  commentId: P:FFmpeg.Audio.IChannelLayout.Valid
+  id: Valid
+  parent: FFmpeg.Audio.IChannelLayout
+  langs:
+  - csharp
+  - vb
+  name: Valid
+  nameWithType: IChannelLayout.Valid
+  fullName: FFmpeg.Audio.IChannelLayout.Valid
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Audio/IChannelLayout.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Valid
+    path: FFmpeg/Audio/IChannelLayout.cs
+    startLine: 28
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Indicates whether the current channel layout is valid.
+  example: []
+  syntax:
+    content: bool Valid { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the layout is valid; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: ReadOnly Property Valid As Boolean
+  overload: FFmpeg.Audio.IChannelLayout.Valid*
+- uid: FFmpeg.Audio.IChannelLayout.Copy
+  commentId: M:FFmpeg.Audio.IChannelLayout.Copy
+  id: Copy
+  parent: FFmpeg.Audio.IChannelLayout
+  langs:
+  - csharp
+  - vb
+  name: Copy()
+  nameWithType: IChannelLayout.Copy()
+  fullName: FFmpeg.Audio.IChannelLayout.Copy()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Audio/IChannelLayout.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Copy
+    path: FFmpeg/Audio/IChannelLayout.cs
+    startLine: 34
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Creates a copy of the current channel layout.
+  example: []
+  syntax:
+    content: ChannelLayout Copy()
+    return:
+      type: FFmpeg.Audio.ChannelLayout
+      description: A new <xref href="FFmpeg.Audio.ChannelLayout" data-throw-if-not-resolved="false"></xref> that is a copy of the current layout.
+    content.vb: Function Copy() As ChannelLayout
+  overload: FFmpeg.Audio.IChannelLayout.Copy*
+- uid: FFmpeg.Audio.IChannelLayout.Init(System.Int32)
+  commentId: M:FFmpeg.Audio.IChannelLayout.Init(System.Int32)
+  id: Init(System.Int32)
+  parent: FFmpeg.Audio.IChannelLayout
+  langs:
+  - csharp
+  - vb
+  name: Init(int)
+  nameWithType: IChannelLayout.Init(int)
+  fullName: FFmpeg.Audio.IChannelLayout.Init(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Audio/IChannelLayout.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Init
+    path: FFmpeg/Audio/IChannelLayout.cs
+    startLine: 42
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Initializes the current channel layout with a specified number of channels.
+  example: []
+  syntax:
+    content: void Init(int nb)
+    parameters:
+    - id: nb
+      type: System.Int32
+      description: The number of channels to initialize the layout with.
+    content.vb: Sub Init(nb As Integer)
+  overload: FFmpeg.Audio.IChannelLayout.Init*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown when <code class="paramref">nb</code> is invalid.
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if there is insufficient memory to perform the operation.
+  nameWithType.vb: IChannelLayout.Init(Integer)
+  fullName.vb: FFmpeg.Audio.IChannelLayout.Init(Integer)
+  name.vb: Init(Integer)
+references:
+- uid: FFmpeg.Audio
+  commentId: N:FFmpeg.Audio
+  href: FFmpeg.html
+  name: FFmpeg.Audio
+  nameWithType: FFmpeg.Audio
+  fullName: FFmpeg.Audio
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+- uid: System.IEquatable{FFmpeg.Audio.IChannelLayout}.Equals(FFmpeg.Audio.IChannelLayout)
+  commentId: M:System.IEquatable{FFmpeg.Audio.IChannelLayout}.Equals(FFmpeg.Audio.IChannelLayout)
+  parent: System.IEquatable{FFmpeg.Audio.IChannelLayout}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(IChannelLayout)
+  nameWithType: IEquatable<IChannelLayout>.Equals(IChannelLayout)
+  fullName: System.IEquatable<FFmpeg.Audio.IChannelLayout>.Equals(FFmpeg.Audio.IChannelLayout)
+  nameWithType.vb: IEquatable(Of IChannelLayout).Equals(IChannelLayout)
+  fullName.vb: System.IEquatable(Of FFmpeg.Audio.IChannelLayout).Equals(FFmpeg.Audio.IChannelLayout)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Audio.IChannelLayout}.Equals(FFmpeg.Audio.IChannelLayout)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Audio.IChannelLayout
+    name: IChannelLayout
+    href: FFmpeg.Audio.IChannelLayout.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Audio.IChannelLayout}.Equals(FFmpeg.Audio.IChannelLayout)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Audio.IChannelLayout
+    name: IChannelLayout
+    href: FFmpeg.Audio.IChannelLayout.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.IEquatable{FFmpeg.Audio.IChannelLayout}
+  commentId: T:System.IEquatable{FFmpeg.Audio.IChannelLayout}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<IChannelLayout>
+  nameWithType: IEquatable<IChannelLayout>
+  fullName: System.IEquatable<FFmpeg.Audio.IChannelLayout>
+  nameWithType.vb: IEquatable(Of IChannelLayout)
+  fullName.vb: System.IEquatable(Of FFmpeg.Audio.IChannelLayout)
+  name.vb: IEquatable(Of IChannelLayout)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Audio.IChannelLayout
+    name: IChannelLayout
+    href: FFmpeg.Audio.IChannelLayout.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Audio.IChannelLayout
+    name: IChannelLayout
+    href: FFmpeg.Audio.IChannelLayout.html
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Audio.IChannelLayout.Channels*
+  commentId: Overload:FFmpeg.Audio.IChannelLayout.Channels
+  href: FFmpeg.Audio.IChannelLayout.html#FFmpeg_Audio_IChannelLayout_Channels
+  name: Channels
+  nameWithType: IChannelLayout.Channels
+  fullName: FFmpeg.Audio.IChannelLayout.Channels
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Audio.IChannelLayout.Valid*
+  commentId: Overload:FFmpeg.Audio.IChannelLayout.Valid
+  href: FFmpeg.Audio.IChannelLayout.html#FFmpeg_Audio_IChannelLayout_Valid
+  name: Valid
+  nameWithType: IChannelLayout.Valid
+  fullName: FFmpeg.Audio.IChannelLayout.Valid
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Audio.ChannelLayout
+  commentId: T:FFmpeg.Audio.ChannelLayout
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.ChannelLayout.html
+  name: ChannelLayout
+  nameWithType: ChannelLayout
+  fullName: FFmpeg.Audio.ChannelLayout
+- uid: FFmpeg.Audio.IChannelLayout.Copy*
+  commentId: Overload:FFmpeg.Audio.IChannelLayout.Copy
+  href: FFmpeg.Audio.IChannelLayout.html#FFmpeg_Audio_IChannelLayout_Copy
+  name: Copy
+  nameWithType: IChannelLayout.Copy
+  fullName: FFmpeg.Audio.IChannelLayout.Copy
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.outofmemoryexception
+  name: OutOfMemoryException
+  nameWithType: OutOfMemoryException
+  fullName: System.OutOfMemoryException
+- uid: FFmpeg.Audio.IChannelLayout.Init*
+  commentId: Overload:FFmpeg.Audio.IChannelLayout.Init
+  href: FFmpeg.Audio.IChannelLayout.html#FFmpeg_Audio_IChannelLayout_Init_System_Int32_
+  name: Init
+  nameWithType: IChannelLayout.Init
+  fullName: FFmpeg.Audio.IChannelLayout.Init

@@ -1,0 +1,2113 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.MediaSource
+  commentId: T:FFmpeg.MediaSource
+  id: MediaSource
+  parent: FFmpeg
+  children:
+  - FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext)
+  - FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  - FFmpeg.MediaSource.CodecContexts
+  - FFmpeg.MediaSource.Decode(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  - FFmpeg.MediaSource.DecodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)
+  - FFmpeg.MediaSource.Dispose
+  - FFmpeg.MediaSource.Dispose(System.Boolean)
+  - FFmpeg.MediaSource.FindBestStream(FFmpeg.Utils.MediaType)
+  - FFmpeg.MediaSource.FlushBuffers
+  - FFmpeg.MediaSource.FormatContext
+  - FFmpeg.MediaSource.GetCodec
+  - FFmpeg.MediaSource.GuessFramerate(FFmpeg.Formats.AVStream)
+  - FFmpeg.MediaSource.GuessFramerate(System.Int32)
+  - FFmpeg.MediaSource.Metadata
+  - FFmpeg.MediaSource.Open(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  - FFmpeg.MediaSource.Open(FFmpeg.IO.IOContext,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  - FFmpeg.MediaSource.Open(System.IO.Stream,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  - FFmpeg.MediaSource.Open(System.String,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  - FFmpeg.MediaSource.ReadAndDecodeAVFrame(FFmpeg.Utils.AVFrame)
+  - FFmpeg.MediaSource.ReadFrame(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  - FFmpeg.MediaSource.ReadPacket(FFmpeg.Utils.AVPacket)
+  - FFmpeg.MediaSource.Seek(System.Int64)
+  - FFmpeg.MediaSource.Seek(System.Int64,System.Int32)
+  - FFmpeg.MediaSource.Seek(System.TimeSpan)
+  - FFmpeg.MediaSource.Seek(System.TimeSpan,System.Int32)
+  - FFmpeg.MediaSource.SetCodec(FFmpeg.Codecs.Codec,System.Int32)
+  - FFmpeg.MediaSource.Streams
+  langs:
+  - csharp
+  - vb
+  name: MediaSource
+  nameWithType: MediaSource
+  fullName: FFmpeg.MediaSource
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MediaSource
+    path: FFmpeg/MediaSource.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Represents a media source that handles reading and decoding of media data from various input sources.
+  example: []
+  syntax:
+    content: 'public class MediaSource : IDisposable'
+    content.vb: Public Class MediaSource Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.MediaSource.FormatContext
+  commentId: P:FFmpeg.MediaSource.FormatContext
+  id: FormatContext
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: FormatContext
+  nameWithType: MediaSource.FormatContext
+  fullName: FFmpeg.MediaSource.FormatContext
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FormatContext
+    path: FFmpeg/MediaSource.cs
+    startLine: 15
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Gets the format context associated with this media source.
+  example: []
+  syntax:
+    content: public FormatContext FormatContext { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Formats.FormatContext
+    content.vb: Public Property FormatContext As FormatContext
+  overload: FFmpeg.MediaSource.FormatContext*
+- uid: FFmpeg.MediaSource.Streams
+  commentId: P:FFmpeg.MediaSource.Streams
+  id: Streams
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Streams
+  nameWithType: MediaSource.Streams
+  fullName: FFmpeg.MediaSource.Streams
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Streams
+    path: FFmpeg/MediaSource.cs
+    startLine: 23
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Gets the list of streams available in this media source.
+  example: []
+  syntax:
+    content: public IReadOnlyList<AVStream> Streams { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+    content.vb: Public ReadOnly Property Streams As IReadOnlyList(Of AVStream)
+  overload: FFmpeg.MediaSource.Streams*
+- uid: FFmpeg.MediaSource.GetCodec
+  commentId: F:FFmpeg.MediaSource.GetCodec
+  id: GetCodec
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: GetCodec
+  nameWithType: MediaSource.GetCodec
+  fullName: FFmpeg.MediaSource.GetCodec
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetCodec
+    path: FFmpeg/MediaSource.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: A function to retrieve a codec by its ID. This can be set to provide custom codec retrieval logic.
+  example: []
+  syntax:
+    content: public Func<AVStream, Codec?>? GetCodec
+    return:
+      type: System.Func{FFmpeg.Formats.AVStream,System.Nullable{FFmpeg.Codecs.Codec}}
+    content.vb: Public GetCodec As Func(Of AVStream, Codec?)
+- uid: FFmpeg.MediaSource.CodecContexts
+  commentId: P:FFmpeg.MediaSource.CodecContexts
+  id: CodecContexts
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: CodecContexts
+  nameWithType: MediaSource.CodecContexts
+  fullName: FFmpeg.MediaSource.CodecContexts
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecContexts
+    path: FFmpeg/MediaSource.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Gets the list of codec contexts for the streams in this media source.
+  remarks: >-
+    This property initializes codec contexts lazily based on the number of streams. It also sets up codec contexts
+
+    for each stream, guessing the frame rate for video streams and adjusting codec parameters as needed.
+  example: []
+  syntax:
+    content: public IReadOnlyList<CodecContext> CodecContexts { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+    content.vb: Public ReadOnly Property CodecContexts As IReadOnlyList(Of CodecContext)
+  overload: FFmpeg.MediaSource.CodecContexts*
+- uid: FFmpeg.MediaSource.SetCodec(FFmpeg.Codecs.Codec,System.Int32)
+  commentId: M:FFmpeg.MediaSource.SetCodec(FFmpeg.Codecs.Codec,System.Int32)
+  id: SetCodec(FFmpeg.Codecs.Codec,System.Int32)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: SetCodec(Codec, int)
+  nameWithType: MediaSource.SetCodec(Codec, int)
+  fullName: FFmpeg.MediaSource.SetCodec(FFmpeg.Codecs.Codec, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SetCodec
+    path: FFmpeg/MediaSource.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public CodecContext SetCodec(Codec codec, int streamIndex)
+    parameters:
+    - id: codec
+      type: FFmpeg.Codecs.Codec
+    - id: streamIndex
+      type: System.Int32
+    return:
+      type: FFmpeg.Codecs.CodecContext
+    content.vb: Public Function SetCodec(codec As Codec, streamIndex As Integer) As CodecContext
+  overload: FFmpeg.MediaSource.SetCodec*
+  nameWithType.vb: MediaSource.SetCodec(Codec, Integer)
+  fullName.vb: FFmpeg.MediaSource.SetCodec(FFmpeg.Codecs.Codec, Integer)
+  name.vb: SetCodec(Codec, Integer)
+- uid: FFmpeg.MediaSource.Metadata
+  commentId: P:FFmpeg.MediaSource.Metadata
+  id: Metadata
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Metadata
+  nameWithType: MediaSource.Metadata
+  fullName: FFmpeg.MediaSource.Metadata
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Metadata
+    path: FFmpeg/MediaSource.cs
+    startLine: 80
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVDictionary_ref Metadata { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Collections.AVDictionary_ref
+    content.vb: Public ReadOnly Property Metadata As AVDictionary_ref
+  overload: FFmpeg.MediaSource.Metadata*
+- uid: FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  commentId: M:FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  id: '#ctor(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)'
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: MediaSource(FormatContext, DeviceType)
+  nameWithType: MediaSource.MediaSource(FormatContext, DeviceType)
+  fullName: FFmpeg.MediaSource.MediaSource(FFmpeg.Formats.FormatContext, FFmpeg.HW.DeviceType)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/MediaSource.cs
+    startLine: 87
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Initializes a new instance of the <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> class with a specified format context and device type.
+  example: []
+  syntax:
+    content: public MediaSource(FormatContext context, DeviceType deviceType)
+    parameters:
+    - id: context
+      type: FFmpeg.Formats.FormatContext
+      description: The format context to associate with this media source.
+    - id: deviceType
+      type: FFmpeg.HW.DeviceType
+      description: The device type for hardware-accelerated decoding.
+    content.vb: Public Sub New(context As FormatContext, deviceType As DeviceType)
+  overload: FFmpeg.MediaSource.#ctor*
+  nameWithType.vb: MediaSource.New(FormatContext, DeviceType)
+  fullName.vb: FFmpeg.MediaSource.New(FFmpeg.Formats.FormatContext, FFmpeg.HW.DeviceType)
+  name.vb: New(FormatContext, DeviceType)
+- uid: FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext)
+  commentId: M:FFmpeg.MediaSource.#ctor(FFmpeg.Formats.FormatContext)
+  id: '#ctor(FFmpeg.Formats.FormatContext)'
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: MediaSource(FormatContext)
+  nameWithType: MediaSource.MediaSource(FormatContext)
+  fullName: FFmpeg.MediaSource.MediaSource(FFmpeg.Formats.FormatContext)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/MediaSource.cs
+    startLine: 97
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Initializes a new instance of the <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> class with a specified format context.
+  example: []
+  syntax:
+    content: public MediaSource(FormatContext context)
+    parameters:
+    - id: context
+      type: FFmpeg.Formats.FormatContext
+      description: The format context to associate with this media source.
+    content.vb: Public Sub New(context As FormatContext)
+  overload: FFmpeg.MediaSource.#ctor*
+  nameWithType.vb: MediaSource.New(FormatContext)
+  fullName.vb: FFmpeg.MediaSource.New(FFmpeg.Formats.FormatContext)
+  name.vb: New(FormatContext)
+- uid: FFmpeg.MediaSource.Open(System.String,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  commentId: M:FFmpeg.MediaSource.Open(System.String,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  id: Open(System.String,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Open(string, InputFormat?, IDictionary<string, string>?, DeviceType)
+  nameWithType: MediaSource.Open(string, InputFormat?, IDictionary<string, string>?, DeviceType)
+  fullName: FFmpeg.MediaSource.Open(string, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary<string, string>?, FFmpeg.HW.DeviceType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Open
+    path: FFmpeg/MediaSource.cs
+    startLine: 111
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Opens a media source from a URL.
+  example: []
+  syntax:
+    content: public static MediaSource Open(string url, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
+    parameters:
+    - id: url
+      type: System.String
+      description: The URL of the media source.
+    - id: format
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+      description: Optional input format.
+    - id: options
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: Optional options for opening the media source.
+    - id: deviceType
+      type: FFmpeg.HW.DeviceType
+      description: Optional device type for hardware-accelerated decoding.
+    return:
+      type: FFmpeg.MediaSource
+      description: A new <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> instance if successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    content.vb: Public Shared Function Open(url As String, format As InputFormat? = Nothing, options As IDictionary(Of String, String) = Nothing, deviceType As DeviceType = DeviceType.None) As MediaSource
+  overload: FFmpeg.MediaSource.Open*
+  nameWithType.vb: MediaSource.Open(String, InputFormat?, IDictionary(Of String, String), DeviceType)
+  fullName.vb: FFmpeg.MediaSource.Open(String, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary(Of String, String), FFmpeg.HW.DeviceType)
+  name.vb: Open(String, InputFormat?, IDictionary(Of String, String), DeviceType)
+- uid: FFmpeg.MediaSource.Open(System.IO.Stream,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  commentId: M:FFmpeg.MediaSource.Open(System.IO.Stream,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  id: Open(System.IO.Stream,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Open(Stream, InputFormat?, IDictionary<string, string>?, DeviceType)
+  nameWithType: MediaSource.Open(Stream, InputFormat?, IDictionary<string, string>?, DeviceType)
+  fullName: FFmpeg.MediaSource.Open(System.IO.Stream, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary<string, string>?, FFmpeg.HW.DeviceType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Open
+    path: FFmpeg/MediaSource.cs
+    startLine: 125
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Opens a media source from a stream.
+  example: []
+  syntax:
+    content: public static MediaSource Open(Stream stream, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+      description: The stream representing the media source.
+    - id: format
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+      description: Optional input format.
+    - id: options
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: Optional options for opening the media source.
+    - id: deviceType
+      type: FFmpeg.HW.DeviceType
+      description: Optional device type for hardware-accelerated decoding.
+    return:
+      type: FFmpeg.MediaSource
+      description: A new <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> instance if successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    content.vb: Public Shared Function Open(stream As Stream, format As InputFormat? = Nothing, options As IDictionary(Of String, String) = Nothing, deviceType As DeviceType = DeviceType.None) As MediaSource
+  overload: FFmpeg.MediaSource.Open*
+  nameWithType.vb: MediaSource.Open(Stream, InputFormat?, IDictionary(Of String, String), DeviceType)
+  fullName.vb: FFmpeg.MediaSource.Open(System.IO.Stream, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary(Of String, String), FFmpeg.HW.DeviceType)
+  name.vb: Open(Stream, InputFormat?, IDictionary(Of String, String), DeviceType)
+- uid: FFmpeg.MediaSource.Open(FFmpeg.IO.IOContext,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  commentId: M:FFmpeg.MediaSource.Open(FFmpeg.IO.IOContext,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  id: Open(FFmpeg.IO.IOContext,System.Nullable{FFmpeg.Formats.InputFormat},System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Open(IOContext, InputFormat?, IDictionary<string, string>?, DeviceType)
+  nameWithType: MediaSource.Open(IOContext, InputFormat?, IDictionary<string, string>?, DeviceType)
+  fullName: FFmpeg.MediaSource.Open(FFmpeg.IO.IOContext, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary<string, string>?, FFmpeg.HW.DeviceType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Open
+    path: FFmpeg/MediaSource.cs
+    startLine: 139
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Opens a media source from an I/O context.
+  example: []
+  syntax:
+    content: public static MediaSource Open(IOContext io, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
+    parameters:
+    - id: io
+      type: FFmpeg.IO.IOContext
+      description: The I/O context representing the media source.
+    - id: format
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+      description: Optional input format.
+    - id: options
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: Optional options for opening the media source.
+    - id: deviceType
+      type: FFmpeg.HW.DeviceType
+      description: Optional device type for hardware-accelerated decoding.
+    return:
+      type: FFmpeg.MediaSource
+      description: A new <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> instance if successful; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    content.vb: Public Shared Function Open(io As IOContext, format As InputFormat? = Nothing, options As IDictionary(Of String, String) = Nothing, deviceType As DeviceType = DeviceType.None) As MediaSource
+  overload: FFmpeg.MediaSource.Open*
+  nameWithType.vb: MediaSource.Open(IOContext, InputFormat?, IDictionary(Of String, String), DeviceType)
+  fullName.vb: FFmpeg.MediaSource.Open(FFmpeg.IO.IOContext, FFmpeg.Formats.InputFormat?, System.Collections.Generic.IDictionary(Of String, String), FFmpeg.HW.DeviceType)
+  name.vb: Open(IOContext, InputFormat?, IDictionary(Of String, String), DeviceType)
+- uid: FFmpeg.MediaSource.Open(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  commentId: M:FFmpeg.MediaSource.Open(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  id: Open(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Open(FormatContext, DeviceType)
+  nameWithType: MediaSource.Open(FormatContext, DeviceType)
+  fullName: FFmpeg.MediaSource.Open(FFmpeg.Formats.FormatContext, FFmpeg.HW.DeviceType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Open
+    path: FFmpeg/MediaSource.cs
+    startLine: 151
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Creates a new <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> instance from an existing format context.
+  example: []
+  syntax:
+    content: public static MediaSource Open(FormatContext file, DeviceType deviceType = DeviceType.None)
+    parameters:
+    - id: file
+      type: FFmpeg.Formats.FormatContext
+      description: The format context representing the media source.
+    - id: deviceType
+      type: FFmpeg.HW.DeviceType
+      description: The device type for hardware-accelerated decoding (default is <xref href="FFmpeg.HW.DeviceType.None" data-throw-if-not-resolved="false"></xref>).
+    return:
+      type: FFmpeg.MediaSource
+      description: A new <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> instance.
+    content.vb: Public Shared Function Open(file As FormatContext, deviceType As DeviceType = DeviceType.None) As MediaSource
+  overload: FFmpeg.MediaSource.Open*
+- uid: FFmpeg.MediaSource.FindBestStream(FFmpeg.Utils.MediaType)
+  commentId: M:FFmpeg.MediaSource.FindBestStream(FFmpeg.Utils.MediaType)
+  id: FindBestStream(FFmpeg.Utils.MediaType)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: FindBestStream(MediaType)
+  nameWithType: MediaSource.FindBestStream(MediaType)
+  fullName: FFmpeg.MediaSource.FindBestStream(FFmpeg.Utils.MediaType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FindBestStream
+    path: FFmpeg/MediaSource.cs
+    startLine: 158
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Finds the best stream of the specified media type within this media source.
+  example: []
+  syntax:
+    content: public int FindBestStream(MediaType type)
+    parameters:
+    - id: type
+      type: FFmpeg.Utils.MediaType
+      description: The media type to search for (e.g., audio or video).
+    return:
+      type: System.Int32
+      description: The index of the best stream of the specified type, or -1 if no suitable stream is found.
+    content.vb: Public Function FindBestStream(type As MediaType) As Integer
+  overload: FFmpeg.MediaSource.FindBestStream*
+- uid: FFmpeg.MediaSource.ReadPacket(FFmpeg.Utils.AVPacket)
+  commentId: M:FFmpeg.MediaSource.ReadPacket(FFmpeg.Utils.AVPacket)
+  id: ReadPacket(FFmpeg.Utils.AVPacket)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: ReadPacket(AVPacket)
+  nameWithType: MediaSource.ReadPacket(AVPacket)
+  fullName: FFmpeg.MediaSource.ReadPacket(FFmpeg.Utils.AVPacket)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReadPacket
+    path: FFmpeg/MediaSource.cs
+    startLine: 165
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Reads a packet of data from the media source into the provided <xref href="FFmpeg.Utils.AVPacket" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public AVResult32 ReadPacket(AVPacket packet)
+    parameters:
+    - id: packet
+      type: FFmpeg.Utils.AVPacket
+      description: The <xref href="FFmpeg.Utils.AVPacket" data-throw-if-not-resolved="false"></xref> instance to populate with data.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the operation.
+    content.vb: Public Function ReadPacket(packet As AVPacket) As AVResult32
+  overload: FFmpeg.MediaSource.ReadPacket*
+- uid: FFmpeg.MediaSource.ReadFrame(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  commentId: M:FFmpeg.MediaSource.ReadFrame(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  id: ReadFrame(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: ReadFrame(AVPacket, AVFrame)
+  nameWithType: MediaSource.ReadFrame(AVPacket, AVFrame)
+  fullName: FFmpeg.MediaSource.ReadFrame(FFmpeg.Utils.AVPacket, FFmpeg.Utils.AVFrame)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReadFrame
+    path: FFmpeg/MediaSource.cs
+    startLine: 173
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Sends a packet to the codec context and attempts to receive a frame.
+  example: []
+  syntax:
+    content: public AVResult32 ReadFrame(AVPacket srcPacket, AVFrame dstFrame)
+    parameters:
+    - id: srcPacket
+      type: FFmpeg.Utils.AVPacket
+      description: The <xref href="FFmpeg.Utils.AVPacket" data-throw-if-not-resolved="false"></xref> to send to the codec context.
+    - id: dstFrame
+      type: FFmpeg.Utils.AVFrame
+      description: The <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> to receive the decoded frame.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the operation.
+    content.vb: Public Function ReadFrame(srcPacket As AVPacket, dstFrame As AVFrame) As AVResult32
+  overload: FFmpeg.MediaSource.ReadFrame*
+- uid: FFmpeg.MediaSource.DecodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)
+  commentId: M:FFmpeg.MediaSource.DecodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)
+  id: DecodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: DecodeSubtitle(AVPacket, Subtitle)
+  nameWithType: MediaSource.DecodeSubtitle(AVPacket, Subtitle)
+  fullName: FFmpeg.MediaSource.DecodeSubtitle(FFmpeg.Utils.AVPacket, FFmpeg.Subtitles.Subtitle)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DecodeSubtitle
+    path: FFmpeg/MediaSource.cs
+    startLine: 180
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVResult32 DecodeSubtitle(AVPacket srcPacket, Subtitle subtitle)
+    parameters:
+    - id: srcPacket
+      type: FFmpeg.Utils.AVPacket
+    - id: subtitle
+      type: FFmpeg.Subtitles.Subtitle
+    return:
+      type: FFmpeg.Utils.AVResult32
+    content.vb: Public Function DecodeSubtitle(srcPacket As AVPacket, subtitle As Subtitle) As AVResult32
+  overload: FFmpeg.MediaSource.DecodeSubtitle*
+- uid: FFmpeg.MediaSource.ReadAndDecodeAVFrame(FFmpeg.Utils.AVFrame)
+  commentId: M:FFmpeg.MediaSource.ReadAndDecodeAVFrame(FFmpeg.Utils.AVFrame)
+  id: ReadAndDecodeAVFrame(FFmpeg.Utils.AVFrame)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: ReadAndDecodeAVFrame(AVFrame)
+  nameWithType: MediaSource.ReadAndDecodeAVFrame(AVFrame)
+  fullName: FFmpeg.MediaSource.ReadAndDecodeAVFrame(FFmpeg.Utils.AVFrame)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReadAndDecodeAVFrame
+    path: FFmpeg/MediaSource.cs
+    startLine: 192
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Reads a packet and decodes it into a frame. Continues until a frame is successfully decoded or no more frames can be read.
+  example: []
+  syntax:
+    content: public AVResult32 ReadAndDecodeAVFrame(AVFrame frame)
+    parameters:
+    - id: frame
+      type: FFmpeg.Utils.AVFrame
+      description: The <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> to populate with the decoded frame.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the operation. Returns the stream index if successful; otherwise, the error result.
+    content.vb: Public Function ReadAndDecodeAVFrame(frame As AVFrame) As AVResult32
+  overload: FFmpeg.MediaSource.ReadAndDecodeAVFrame*
+- uid: FFmpeg.MediaSource.FlushBuffers
+  commentId: M:FFmpeg.MediaSource.FlushBuffers
+  id: FlushBuffers
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: FlushBuffers()
+  nameWithType: MediaSource.FlushBuffers()
+  fullName: FFmpeg.MediaSource.FlushBuffers()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FlushBuffers
+    path: FFmpeg/MediaSource.cs
+    startLine: 248
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Flushes the buffers of all codec contexts, clearing any buffered data.
+  example: []
+  syntax:
+    content: public void FlushBuffers()
+    content.vb: Public Sub FlushBuffers()
+  overload: FFmpeg.MediaSource.FlushBuffers*
+- uid: FFmpeg.MediaSource.Seek(System.TimeSpan)
+  commentId: M:FFmpeg.MediaSource.Seek(System.TimeSpan)
+  id: Seek(System.TimeSpan)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Seek(TimeSpan)
+  nameWithType: MediaSource.Seek(TimeSpan)
+  fullName: FFmpeg.MediaSource.Seek(System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/MediaSource.cs
+    startLine: 275
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Seeks to the specified time position within the media stream.
+  example: []
+  syntax:
+    content: public AVResult32 Seek(TimeSpan time)
+    parameters:
+    - id: time
+      type: System.TimeSpan
+      description: The time position to seek to.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the seek operation.
+    content.vb: Public Function Seek(time As TimeSpan) As AVResult32
+  overload: FFmpeg.MediaSource.Seek*
+- uid: FFmpeg.MediaSource.Seek(System.TimeSpan,System.Int32)
+  commentId: M:FFmpeg.MediaSource.Seek(System.TimeSpan,System.Int32)
+  id: Seek(System.TimeSpan,System.Int32)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Seek(TimeSpan, int)
+  nameWithType: MediaSource.Seek(TimeSpan, int)
+  fullName: FFmpeg.MediaSource.Seek(System.TimeSpan, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/MediaSource.cs
+    startLine: 287
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Seeks to the specified time position within the media stream for a specific stream index.
+  example: []
+  syntax:
+    content: public AVResult32 Seek(TimeSpan time, int streamIndex)
+    parameters:
+    - id: time
+      type: System.TimeSpan
+      description: The time position to seek to.
+    - id: streamIndex
+      type: System.Int32
+      description: The index of the stream to seek within.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the seek operation.
+    content.vb: Public Function Seek(time As TimeSpan, streamIndex As Integer) As AVResult32
+  overload: FFmpeg.MediaSource.Seek*
+  nameWithType.vb: MediaSource.Seek(TimeSpan, Integer)
+  fullName.vb: FFmpeg.MediaSource.Seek(System.TimeSpan, Integer)
+  name.vb: Seek(TimeSpan, Integer)
+- uid: FFmpeg.MediaSource.Seek(System.Int64)
+  commentId: M:FFmpeg.MediaSource.Seek(System.Int64)
+  id: Seek(System.Int64)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Seek(long)
+  nameWithType: MediaSource.Seek(long)
+  fullName: FFmpeg.MediaSource.Seek(long)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/MediaSource.cs
+    startLine: 298
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Seeks to the specified frame number within the media stream.
+  example: []
+  syntax:
+    content: public AVResult32 Seek(long frame)
+    parameters:
+    - id: frame
+      type: System.Int64
+      description: The frame number to seek to.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the seek operation.
+    content.vb: Public Function Seek(frame As Long) As AVResult32
+  overload: FFmpeg.MediaSource.Seek*
+  nameWithType.vb: MediaSource.Seek(Long)
+  fullName.vb: FFmpeg.MediaSource.Seek(Long)
+  name.vb: Seek(Long)
+- uid: FFmpeg.MediaSource.Seek(System.Int64,System.Int32)
+  commentId: M:FFmpeg.MediaSource.Seek(System.Int64,System.Int32)
+  id: Seek(System.Int64,System.Int32)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Seek(long, int)
+  nameWithType: MediaSource.Seek(long, int)
+  fullName: FFmpeg.MediaSource.Seek(long, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/MediaSource.cs
+    startLine: 310
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Seeks to the specified frame number within the media stream for a specific stream index.
+  example: []
+  syntax:
+    content: public AVResult32 Seek(long frame, int streamIndex)
+    parameters:
+    - id: frame
+      type: System.Int64
+      description: The frame number to seek to.
+    - id: streamIndex
+      type: System.Int32
+      description: The index of the stream to seek within.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the result of the seek operation.
+    content.vb: Public Function Seek(frame As Long, streamIndex As Integer) As AVResult32
+  overload: FFmpeg.MediaSource.Seek*
+  nameWithType.vb: MediaSource.Seek(Long, Integer)
+  fullName.vb: FFmpeg.MediaSource.Seek(Long, Integer)
+  name.vb: Seek(Long, Integer)
+- uid: FFmpeg.MediaSource.GuessFramerate(System.Int32)
+  commentId: M:FFmpeg.MediaSource.GuessFramerate(System.Int32)
+  id: GuessFramerate(System.Int32)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: GuessFramerate(int)
+  nameWithType: MediaSource.GuessFramerate(int)
+  fullName: FFmpeg.MediaSource.GuessFramerate(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GuessFramerate
+    path: FFmpeg/MediaSource.cs
+    startLine: 317
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Guesses the frame rate of the stream at the specified index.
+  example: []
+  syntax:
+    content: public Rational GuessFramerate(int streamIndex)
+    parameters:
+    - id: streamIndex
+      type: System.Int32
+      description: The index of the stream to analyze.
+    return:
+      type: FFmpeg.Utils.Rational
+      description: A <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> representing the guessed frame rate.
+    content.vb: Public Function GuessFramerate(streamIndex As Integer) As Rational
+  overload: FFmpeg.MediaSource.GuessFramerate*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: Thrown if the stream index is out of range.
+  nameWithType.vb: MediaSource.GuessFramerate(Integer)
+  fullName.vb: FFmpeg.MediaSource.GuessFramerate(Integer)
+  name.vb: GuessFramerate(Integer)
+- uid: FFmpeg.MediaSource.GuessFramerate(FFmpeg.Formats.AVStream)
+  commentId: M:FFmpeg.MediaSource.GuessFramerate(FFmpeg.Formats.AVStream)
+  id: GuessFramerate(FFmpeg.Formats.AVStream)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: GuessFramerate(AVStream)
+  nameWithType: MediaSource.GuessFramerate(AVStream)
+  fullName: FFmpeg.MediaSource.GuessFramerate(FFmpeg.Formats.AVStream)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GuessFramerate
+    path: FFmpeg/MediaSource.cs
+    startLine: 320
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Guesses the frame rate of the given stream.
+  example: []
+  syntax:
+    content: public Rational GuessFramerate(AVStream stream)
+    parameters:
+    - id: stream
+      type: FFmpeg.Formats.AVStream
+    return:
+      type: FFmpeg.Utils.Rational
+      description: A <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> representing the guessed frame rate.
+    content.vb: Public Function GuessFramerate(stream As AVStream) As Rational
+  overload: FFmpeg.MediaSource.GuessFramerate*
+- uid: FFmpeg.MediaSource.Dispose(System.Boolean)
+  commentId: M:FFmpeg.MediaSource.Dispose(System.Boolean)
+  id: Dispose(System.Boolean)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Dispose(bool)
+  nameWithType: MediaSource.Dispose(bool)
+  fullName: FFmpeg.MediaSource.Dispose(bool)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/MediaSource.cs
+    startLine: 330
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Releases the unmanaged resources used by the <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> and optionally releases the managed resources.
+  example: []
+  syntax:
+    content: protected virtual void Dispose(bool disposing)
+    parameters:
+    - id: disposing
+      type: System.Boolean
+      description: A boolean indicating whether to release both managed and unmanaged resources (<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>), or only unmanaged resources (<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>).
+    content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
+  overload: FFmpeg.MediaSource.Dispose*
+  nameWithType.vb: MediaSource.Dispose(Boolean)
+  fullName.vb: FFmpeg.MediaSource.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+- uid: FFmpeg.MediaSource.Dispose
+  commentId: M:FFmpeg.MediaSource.Dispose
+  id: Dispose
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: MediaSource.Dispose()
+  fullName: FFmpeg.MediaSource.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/MediaSource.cs
+    startLine: 348
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Releases all resources used by the <xref href="FFmpeg.MediaSource" data-throw-if-not-resolved="false"></xref> object.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.MediaSource.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: FFmpeg.MediaSource.Decode(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  commentId: M:FFmpeg.MediaSource.Decode(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  id: Decode(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)
+  parent: FFmpeg.MediaSource
+  langs:
+  - csharp
+  - vb
+  name: Decode(AVPacket, AVFrame)
+  nameWithType: MediaSource.Decode(AVPacket, AVFrame)
+  fullName: FFmpeg.MediaSource.Decode(FFmpeg.Utils.AVPacket, FFmpeg.Utils.AVFrame)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/MediaSource.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Decode
+    path: FFmpeg/MediaSource.cs
+    startLine: 355
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVResult32 Decode(AVPacket packet, AVFrame frame)
+    parameters:
+    - id: packet
+      type: FFmpeg.Utils.AVPacket
+    - id: frame
+      type: FFmpeg.Utils.AVFrame
+    return:
+      type: FFmpeg.Utils.AVResult32
+    content.vb: Public Function Decode(packet As AVPacket, frame As AVFrame) As AVResult32
+  overload: FFmpeg.MediaSource.Decode*
+references:
+- uid: FFmpeg
+  commentId: N:FFmpeg
+  href: FFmpeg.html
+  name: FFmpeg
+  nameWithType: FFmpeg
+  fullName: FFmpeg
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.MediaSource.FormatContext*
+  commentId: Overload:FFmpeg.MediaSource.FormatContext
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_FormatContext
+  name: FormatContext
+  nameWithType: MediaSource.FormatContext
+  fullName: FFmpeg.MediaSource.FormatContext
+- uid: FFmpeg.Formats.FormatContext
+  commentId: T:FFmpeg.Formats.FormatContext
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.FormatContext.html
+  name: FormatContext
+  nameWithType: FormatContext
+  fullName: FFmpeg.Formats.FormatContext
+- uid: FFmpeg.Formats
+  commentId: N:FFmpeg.Formats
+  href: FFmpeg.html
+  name: FFmpeg.Formats
+  nameWithType: FFmpeg.Formats
+  fullName: FFmpeg.Formats
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+- uid: FFmpeg.MediaSource.Streams*
+  commentId: Overload:FFmpeg.MediaSource.Streams
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Streams
+  name: Streams
+  nameWithType: MediaSource.Streams
+  fullName: FFmpeg.MediaSource.Streams
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AVStream>
+  nameWithType: IReadOnlyList<AVStream>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Formats.AVStream>
+  nameWithType.vb: IReadOnlyList(Of AVStream)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Formats.AVStream)
+  name.vb: IReadOnlyList(Of AVStream)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Func{FFmpeg.Formats.AVStream,System.Nullable{FFmpeg.Codecs.Codec}}
+  commentId: T:System.Func{FFmpeg.Formats.AVStream,System.Nullable{FFmpeg.Codecs.Codec}}
+  parent: System
+  definition: System.Func`2
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<AVStream, Codec?>
+  nameWithType: Func<AVStream, Codec?>
+  fullName: System.Func<FFmpeg.Formats.AVStream, FFmpeg.Codecs.Codec?>
+  nameWithType.vb: Func(Of AVStream, Codec?)
+  fullName.vb: System.Func(Of FFmpeg.Formats.AVStream, FFmpeg.Codecs.Codec?)
+  name.vb: Func(Of AVStream, Codec?)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.Codecs.Codec
+    name: Codec
+    href: FFmpeg.Codecs.Codec.html
+  - name: '?'
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.Codecs.Codec
+    name: Codec
+    href: FFmpeg.Codecs.Codec.html
+  - name: '?'
+  - name: )
+- uid: System.Func`2
+  commentId: T:System.Func`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.func-2
+  name: Func<T, TResult>
+  nameWithType: Func<T, TResult>
+  fullName: System.Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
+  fullName.vb: System.Func(Of T, TResult)
+  name.vb: Func(Of T, TResult)
+  spec.csharp:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: <
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Func`2
+    name: Func
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.func-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: ','
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: FFmpeg.MediaSource.CodecContexts*
+  commentId: Overload:FFmpeg.MediaSource.CodecContexts
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_CodecContexts
+  name: CodecContexts
+  nameWithType: MediaSource.CodecContexts
+  fullName: FFmpeg.MediaSource.CodecContexts
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<CodecContext>
+  nameWithType: IReadOnlyList<CodecContext>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Codecs.CodecContext>
+  nameWithType.vb: IReadOnlyList(Of CodecContext)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Codecs.CodecContext)
+  name.vb: IReadOnlyList(Of CodecContext)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+- uid: FFmpeg.MediaSource.SetCodec*
+  commentId: Overload:FFmpeg.MediaSource.SetCodec
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_SetCodec_FFmpeg_Codecs_Codec_System_Int32_
+  name: SetCodec
+  nameWithType: MediaSource.SetCodec
+  fullName: FFmpeg.MediaSource.SetCodec
+- uid: FFmpeg.Codecs.Codec
+  commentId: T:FFmpeg.Codecs.Codec
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.Codec.html
+  name: Codec
+  nameWithType: Codec
+  fullName: FFmpeg.Codecs.Codec
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Codecs.CodecContext
+  commentId: T:FFmpeg.Codecs.CodecContext
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecContext.html
+  name: CodecContext
+  nameWithType: CodecContext
+  fullName: FFmpeg.Codecs.CodecContext
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.MediaSource.Metadata*
+  commentId: Overload:FFmpeg.MediaSource.Metadata
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Metadata
+  name: Metadata
+  nameWithType: MediaSource.Metadata
+  fullName: FFmpeg.MediaSource.Metadata
+- uid: FFmpeg.Collections.AVDictionary_ref
+  commentId: T:FFmpeg.Collections.AVDictionary_ref
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVDictionary_ref.html
+  name: AVDictionary_ref
+  nameWithType: AVDictionary_ref
+  fullName: FFmpeg.Collections.AVDictionary_ref
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: FFmpeg.MediaSource
+  commentId: T:FFmpeg.MediaSource
+  parent: FFmpeg
+  href: FFmpeg.MediaSource.html
+  name: MediaSource
+  nameWithType: MediaSource
+  fullName: FFmpeg.MediaSource
+- uid: FFmpeg.MediaSource.#ctor*
+  commentId: Overload:FFmpeg.MediaSource.#ctor
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource__ctor_FFmpeg_Formats_FormatContext_FFmpeg_HW_DeviceType_
+  name: MediaSource
+  nameWithType: MediaSource.MediaSource
+  fullName: FFmpeg.MediaSource.MediaSource
+  nameWithType.vb: MediaSource.New
+  fullName.vb: FFmpeg.MediaSource.New
+  name.vb: New
+- uid: FFmpeg.HW.DeviceType
+  commentId: T:FFmpeg.HW.DeviceType
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceType.html
+  name: DeviceType
+  nameWithType: DeviceType
+  fullName: FFmpeg.HW.DeviceType
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+- uid: FFmpeg.MediaSource.Open*
+  commentId: Overload:FFmpeg.MediaSource.Open
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Open_System_String_System_Nullable_FFmpeg_Formats_InputFormat__System_Collections_Generic_IDictionary_System_String_System_String__FFmpeg_HW_DeviceType_
+  name: Open
+  nameWithType: MediaSource.Open
+  fullName: FFmpeg.MediaSource.Open
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Nullable{FFmpeg.Formats.InputFormat}
+  commentId: T:System.Nullable{FFmpeg.Formats.InputFormat}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Formats.InputFormat.html
+  name: InputFormat?
+  nameWithType: InputFormat?
+  fullName: FFmpeg.Formats.InputFormat?
+  spec.csharp:
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: '?'
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, string>
+  nameWithType: IDictionary<string, string>
+  fullName: System.Collections.Generic.IDictionary<string, string>
+  nameWithType.vb: IDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String)
+  name.vb: IDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: FFmpeg.IO.IOContext
+  commentId: T:FFmpeg.IO.IOContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOContext.html
+  name: IOContext
+  nameWithType: IOContext
+  fullName: FFmpeg.IO.IOContext
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  href: FFmpeg.html
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+- uid: FFmpeg.HW.DeviceType.None
+  commentId: F:FFmpeg.HW.DeviceType.None
+  href: FFmpeg.HW.DeviceType.html#FFmpeg_HW_DeviceType_None
+  name: None
+  nameWithType: DeviceType.None
+  fullName: FFmpeg.HW.DeviceType.None
+- uid: FFmpeg.MediaSource.FindBestStream*
+  commentId: Overload:FFmpeg.MediaSource.FindBestStream
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_FindBestStream_FFmpeg_Utils_MediaType_
+  name: FindBestStream
+  nameWithType: MediaSource.FindBestStream
+  fullName: FFmpeg.MediaSource.FindBestStream
+- uid: FFmpeg.Utils.MediaType
+  commentId: T:FFmpeg.Utils.MediaType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.MediaType.html
+  name: MediaType
+  nameWithType: MediaType
+  fullName: FFmpeg.Utils.MediaType
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Utils.AVPacket
+  commentId: T:FFmpeg.Utils.AVPacket
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVPacket.html
+  name: AVPacket
+  nameWithType: AVPacket
+  fullName: FFmpeg.Utils.AVPacket
+- uid: FFmpeg.Utils.AVResult32
+  commentId: T:FFmpeg.Utils.AVResult32
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult32.html
+  name: AVResult32
+  nameWithType: AVResult32
+  fullName: FFmpeg.Utils.AVResult32
+- uid: FFmpeg.MediaSource.ReadPacket*
+  commentId: Overload:FFmpeg.MediaSource.ReadPacket
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_ReadPacket_FFmpeg_Utils_AVPacket_
+  name: ReadPacket
+  nameWithType: MediaSource.ReadPacket
+  fullName: FFmpeg.MediaSource.ReadPacket
+- uid: FFmpeg.Utils.AVFrame
+  commentId: T:FFmpeg.Utils.AVFrame
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVFrame.html
+  name: AVFrame
+  nameWithType: AVFrame
+  fullName: FFmpeg.Utils.AVFrame
+- uid: FFmpeg.MediaSource.ReadFrame*
+  commentId: Overload:FFmpeg.MediaSource.ReadFrame
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_ReadFrame_FFmpeg_Utils_AVPacket_FFmpeg_Utils_AVFrame_
+  name: ReadFrame
+  nameWithType: MediaSource.ReadFrame
+  fullName: FFmpeg.MediaSource.ReadFrame
+- uid: FFmpeg.MediaSource.DecodeSubtitle*
+  commentId: Overload:FFmpeg.MediaSource.DecodeSubtitle
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_DecodeSubtitle_FFmpeg_Utils_AVPacket_FFmpeg_Subtitles_Subtitle_
+  name: DecodeSubtitle
+  nameWithType: MediaSource.DecodeSubtitle
+  fullName: FFmpeg.MediaSource.DecodeSubtitle
+- uid: FFmpeg.Subtitles.Subtitle
+  commentId: T:FFmpeg.Subtitles.Subtitle
+  parent: FFmpeg.Subtitles
+  href: FFmpeg.Subtitles.Subtitle.html
+  name: Subtitle
+  nameWithType: Subtitle
+  fullName: FFmpeg.Subtitles.Subtitle
+- uid: FFmpeg.Subtitles
+  commentId: N:FFmpeg.Subtitles
+  href: FFmpeg.html
+  name: FFmpeg.Subtitles
+  nameWithType: FFmpeg.Subtitles
+  fullName: FFmpeg.Subtitles
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html
+- uid: FFmpeg.MediaSource.ReadAndDecodeAVFrame*
+  commentId: Overload:FFmpeg.MediaSource.ReadAndDecodeAVFrame
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_ReadAndDecodeAVFrame_FFmpeg_Utils_AVFrame_
+  name: ReadAndDecodeAVFrame
+  nameWithType: MediaSource.ReadAndDecodeAVFrame
+  fullName: FFmpeg.MediaSource.ReadAndDecodeAVFrame
+- uid: FFmpeg.MediaSource.FlushBuffers*
+  commentId: Overload:FFmpeg.MediaSource.FlushBuffers
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_FlushBuffers
+  name: FlushBuffers
+  nameWithType: MediaSource.FlushBuffers
+  fullName: FFmpeg.MediaSource.FlushBuffers
+- uid: FFmpeg.MediaSource.Seek*
+  commentId: Overload:FFmpeg.MediaSource.Seek
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Seek_System_TimeSpan_
+  name: Seek
+  nameWithType: MediaSource.Seek
+  fullName: FFmpeg.MediaSource.Seek
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: FFmpeg.MediaSource.GuessFramerate*
+  commentId: Overload:FFmpeg.MediaSource.GuessFramerate
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_GuessFramerate_System_Int32_
+  name: GuessFramerate
+  nameWithType: MediaSource.GuessFramerate
+  fullName: FFmpeg.MediaSource.GuessFramerate
+- uid: FFmpeg.Formats.AVStream
+  commentId: T:FFmpeg.Formats.AVStream
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.AVStream.html
+  name: AVStream
+  nameWithType: AVStream
+  fullName: FFmpeg.Formats.AVStream
+- uid: FFmpeg.MediaSource.Dispose*
+  commentId: Overload:FFmpeg.MediaSource.Dispose
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Dispose_System_Boolean_
+  name: Dispose
+  nameWithType: MediaSource.Dispose
+  fullName: FFmpeg.MediaSource.Dispose
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: FFmpeg.MediaSource.Decode*
+  commentId: Overload:FFmpeg.MediaSource.Decode
+  href: FFmpeg.MediaSource.html#FFmpeg_MediaSource_Decode_FFmpeg_Utils_AVPacket_FFmpeg_Utils_AVFrame_
+  name: Decode
+  nameWithType: MediaSource.Decode
+  fullName: FFmpeg.MediaSource.Decode

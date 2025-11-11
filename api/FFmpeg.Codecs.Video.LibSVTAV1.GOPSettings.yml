@@ -1,0 +1,1187 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  id: GOPSettings
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  children:
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary(System.Collections.Generic.IDictionary{System.String,System.String})
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(System.Object)
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  langs:
+  - csharp
+  - vb
+  name: GOPSettings
+  nameWithType: GOPSettings
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GOPSettings
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Represents the Group of Pictures (GOP) settings, controlling the interval between keyframes in video encoding.
+  example: []
+  syntax:
+    content: 'public struct GOPSettings : IEquatable<GOPSettings>'
+    content.vb: Public Structure GOPSettings Implements IEquatable(Of GOPSettings)
+  implements:
+  - System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  id: Frames
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: Frames
+  nameWithType: GOPSettings.Frames
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Frames
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 25
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Gets or sets the GOP size in frames. 
+
+    Accepts values from [-2 to (2^31)-1].
+
+    <br />
+
+    Special values:
+
+    <ul><li>-2: Approximately 5 seconds (default)</li><li>-1: Infinite GOP size, only applicable in CRF mode</li><li>0: Equivalent to -1</li></ul>
+
+    <br />
+
+    In SvtAv1EncApp, you can append the 's' suffix to use seconds instead of frames.
+
+    To set GOP size in seconds directly, use <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public int? Frames { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Frames As Integer?
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+  id: IsTimeSpan
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: IsTimeSpan
+  nameWithType: GOPSettings.IsTimeSpan
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsTimeSpan
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Indicates whether the GOP size is in seconds or frames.
+
+    <br />
+
+    True if <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan" data-throw-if-not-resolved="false"></xref> was used to set the value; false if <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames" data-throw-if-not-resolved="false"></xref> was used.
+  example: []
+  syntax:
+    content: public readonly bool IsTimeSpan { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsTimeSpan As Boolean
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  id: AsTimeSpan
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: AsTimeSpan
+  nameWithType: GOPSettings.AsTimeSpan
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AsTimeSpan
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Gets or sets the GOP size as a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>, representing the duration between keyframes in seconds.
+
+    <br />
+
+    When set, the <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames" data-throw-if-not-resolved="false"></xref> property is automatically adjusted to reflect the equivalent number of seconds.
+  example: []
+  syntax:
+    content: public TimeSpan? AsTimeSpan { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.TimeSpan}
+    content.vb: Public Property AsTimeSpan As TimeSpan?
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+  id: SceneChangeDetection
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: SceneChangeDetection
+  nameWithType: GOPSettings.SceneChangeDetection
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SceneChangeDetection
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 64
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Controls whether scene change detection is enabled.
+
+    <br />
+
+    When enabled, the encoder inserts keyframes at scene changes to enhance visual quality.
+
+    <br />
+
+    Default is false.
+  example: []
+  syntax:
+    content: public bool? SceneChangeDetection { readonly get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property SceneChangeDetection As Boolean?
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(System.Object)
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: GOPSettings.Equals(object?)
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override readonly bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals*
+  nameWithType.vb: GOPSettings.Equals(Object)
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  id: Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: Equals(GOPSettings)
+  nameWithType: GOPSettings.Equals(GOPSettings)
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 70
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public readonly bool Equals(GOPSettings other)
+    parameters:
+    - id: other
+      type: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As GOPSettings) As Boolean
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: GOPSettings.GetHashCode()
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 73
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override readonly int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary(System.Collections.Generic.IDictionary{System.String,System.String})
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary(System.Collections.Generic.IDictionary{System.String,System.String})
+  id: AddToDictionary(System.Collections.Generic.IDictionary{System.String,System.String})
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: AddToDictionary(IDictionary<string, string>)
+  nameWithType: GOPSettings.AddToDictionary(IDictionary<string, string>)
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary(System.Collections.Generic.IDictionary<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AddToDictionary
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 81
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Adds the current GOP settings to the provided dictionary in a key=value format.
+
+    <br />
+
+    <code class="paramref">dic</code> is the dictionary where the GOP settings will be added.
+  example: []
+  syntax:
+    content: public readonly void AddToDictionary(IDictionary<string, string> dic)
+    parameters:
+    - id: dic
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: The dictionary to store the settings.
+    content.vb: Public Sub AddToDictionary(dic As IDictionary(Of String, String))
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary*
+  nameWithType.vb: GOPSettings.AddToDictionary(IDictionary(Of String, String))
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary(System.Collections.Generic.IDictionary(Of String, String))
+  name.vb: AddToDictionary(IDictionary(Of String, String))
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString
+  id: ToString
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: GOPSettings.ToString()
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 94
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Returns a string representation of the GOP settings in a key=value format.
+
+    <br />
+
+    For example, it might return "keyint=48:scd=1" for a frame-based GOP with scene change detection enabled.
+  example: []
+  syntax:
+    content: public override readonly string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString*
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  id: op_Equality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: operator ==(GOPSettings, GOPSettings)
+  nameWithType: GOPSettings.operator ==(GOPSettings, GOPSettings)
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.operator ==(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings, FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 113
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Determines whether two specified <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(GOPSettings left, GOPSettings right)
+    parameters:
+    - id: left
+      type: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    - id: right
+      type: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As GOPSettings, right As GOPSettings) As Boolean
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality*
+  nameWithType.vb: GOPSettings.=(GOPSettings, GOPSettings)
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.=(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings, FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  name.vb: =(GOPSettings, GOPSettings)
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  commentId: M:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  id: op_Inequality(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings,FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  langs:
+  - csharp
+  - vb
+  name: operator !=(GOPSettings, GOPSettings)
+  nameWithType: GOPSettings.operator !=(GOPSettings, GOPSettings)
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.operator !=(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings, FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/Codecs/Video/LibSVTAV1/GOPSettings.cs
+    startLine: 118
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Determines whether two specified <xref href="FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(GOPSettings left, GOPSettings right)
+    parameters:
+    - id: left
+      type: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    - id: right
+      type: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As GOPSettings, right As GOPSettings) As Boolean
+  overload: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality*
+  nameWithType.vb: GOPSettings.<>(GOPSettings, GOPSettings)
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.<>(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings, FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  name.vb: <>(GOPSettings, GOPSettings)
+references:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+- uid: System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  commentId: T:System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<GOPSettings>
+  nameWithType: IEquatable<GOPSettings>
+  fullName: System.IEquatable<FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings>
+  nameWithType.vb: IEquatable(Of GOPSettings)
+  fullName.vb: System.IEquatable(Of FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  name.vb: IEquatable(Of GOPSettings)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_AsTimeSpan
+  name: AsTimeSpan
+  nameWithType: GOPSettings.AsTimeSpan
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_Frames
+  name: Frames
+  nameWithType: GOPSettings.Frames
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  commentId: P:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_Frames
+  name: Frames
+  nameWithType: GOPSettings.Frames
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Frames
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_IsTimeSpan
+  name: IsTimeSpan
+  nameWithType: GOPSettings.IsTimeSpan
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.IsTimeSpan
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_AsTimeSpan
+  name: AsTimeSpan
+  nameWithType: GOPSettings.AsTimeSpan
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AsTimeSpan
+- uid: System.Nullable{System.TimeSpan}
+  commentId: T:System.Nullable{System.TimeSpan}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan?
+  nameWithType: TimeSpan?
+  fullName: System.TimeSpan?
+  spec.csharp:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.timespan
+  - name: '?'
+  spec.vb:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.timespan
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_SceneChangeDetection
+  name: SceneChangeDetection
+  nameWithType: GOPSettings.SceneChangeDetection
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.SceneChangeDetection
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_Equals_System_Object_
+  name: Equals
+  nameWithType: GOPSettings.Equals
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.Equals
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  commentId: M:System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  parent: System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(GOPSettings)
+  nameWithType: IEquatable<GOPSettings>.Equals(GOPSettings)
+  fullName: System.IEquatable<FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings>.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  nameWithType.vb: IEquatable(Of GOPSettings).Equals(GOPSettings)
+  fullName.vb: System.IEquatable(Of FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings).Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}.Equals(FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: )
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  name: GOPSettings
+  nameWithType: GOPSettings
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_GetHashCode
+  name: GetHashCode
+  nameWithType: GOPSettings.GetHashCode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_AddToDictionary_System_Collections_Generic_IDictionary_System_String_System_String__
+  name: AddToDictionary
+  nameWithType: GOPSettings.AddToDictionary
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.AddToDictionary
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, string>
+  nameWithType: IDictionary<string, string>
+  fullName: System.Collections.Generic.IDictionary<string, string>
+  nameWithType.vb: IDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String)
+  name.vb: IDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_ToString
+  name: ToString
+  nameWithType: GOPSettings.ToString
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_op_Equality_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_
+  name: operator ==
+  nameWithType: GOPSettings.operator ==
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.operator ==
+  nameWithType.vb: GOPSettings.=
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Equality*
+    name: ==
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_op_Equality_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality*
+  commentId: Overload:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_op_Inequality_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_
+  name: operator !=
+  nameWithType: GOPSettings.operator !=
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.operator !=
+  nameWithType.vb: GOPSettings.<>
+  fullName.vb: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.op_Inequality*
+    name: '!='
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html#FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_op_Inequality_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_FFmpeg_Codecs_Video_LibSVTAV1_GOPSettings_

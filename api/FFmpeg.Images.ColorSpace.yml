@@ -1,0 +1,642 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.ColorSpace
+  commentId: T:FFmpeg.Images.ColorSpace
+  id: ColorSpace
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.ColorSpace.BT2020_CL
+  - FFmpeg.Images.ColorSpace.BT2020_NCL
+  - FFmpeg.Images.ColorSpace.BT470BG
+  - FFmpeg.Images.ColorSpace.BT709
+  - FFmpeg.Images.ColorSpace.ChromaDerivedCL
+  - FFmpeg.Images.ColorSpace.ChromaDerivedNCL
+  - FFmpeg.Images.ColorSpace.FCC
+  - FFmpeg.Images.ColorSpace.ICTCP
+  - FFmpeg.Images.ColorSpace.IPT_C2
+  - FFmpeg.Images.ColorSpace.RGB
+  - FFmpeg.Images.ColorSpace.Reserved
+  - FFmpeg.Images.ColorSpace.SMPTE170M
+  - FFmpeg.Images.ColorSpace.SMPTE2085
+  - FFmpeg.Images.ColorSpace.SMPTE240M
+  - FFmpeg.Images.ColorSpace.Unspecified
+  - FFmpeg.Images.ColorSpace.YCGCO
+  - FFmpeg.Images.ColorSpace.YCGCO_RE
+  - FFmpeg.Images.ColorSpace.YCGCO_RO
+  - FFmpeg.Images.ColorSpace.YCOCG
+  - FFmpeg.Images.ColorSpace.__COUNT__
+  langs:
+  - csharp
+  - vb
+  name: ColorSpace
+  nameWithType: ColorSpace
+  fullName: FFmpeg.Images.ColorSpace
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorSpace
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 6
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: >-
+    Represents various color space types.
+
+    These values are based on ISO/IEC 23091-2_2019 subclause 8.3.
+  example: []
+  syntax:
+    content: public enum ColorSpace
+    content.vb: Public Enum ColorSpace
+- uid: FFmpeg.Images.ColorSpace.RGB
+  commentId: F:FFmpeg.Images.ColorSpace.RGB
+  id: RGB
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: RGB
+  nameWithType: ColorSpace.RGB
+  fullName: FFmpeg.Images.ColorSpace.RGB
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RGB
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 9
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: order of coefficients is actually GBR, also IEC 61966-2-1 (sRGB), YZX and ST 428-1
+  example: []
+  syntax:
+    content: RGB = 0
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.BT709
+  commentId: F:FFmpeg.Images.ColorSpace.BT709
+  id: BT709
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: BT709
+  nameWithType: ColorSpace.BT709
+  fullName: FFmpeg.Images.ColorSpace.BT709
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT709
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: also ITU-R BT1361 / IEC 61966-2-4 xvYCC709 / derived in SMPTE RP 177 Annex B
+  example: []
+  syntax:
+    content: BT709 = 1
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.Unspecified
+  commentId: F:FFmpeg.Images.ColorSpace.Unspecified
+  id: Unspecified
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: Unspecified
+  nameWithType: ColorSpace.Unspecified
+  fullName: FFmpeg.Images.ColorSpace.Unspecified
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unspecified
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 15
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  example: []
+  syntax:
+    content: Unspecified = 2
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.Reserved
+  commentId: F:FFmpeg.Images.ColorSpace.Reserved
+  id: Reserved
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: Reserved
+  nameWithType: ColorSpace.Reserved
+  fullName: FFmpeg.Images.ColorSpace.Reserved
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Reserved
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: reserved for future use by ITU-T and ISO/IEC just like 15-255 are
+  example: []
+  syntax:
+    content: Reserved = 3
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.FCC
+  commentId: F:FFmpeg.Images.ColorSpace.FCC
+  id: FCC
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: FCC
+  nameWithType: ColorSpace.FCC
+  fullName: FFmpeg.Images.ColorSpace.FCC
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FCC
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: FCC Title 47 Code of Federal Regulations 73.682 (a)(20)
+  example: []
+  syntax:
+    content: FCC = 4
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.BT470BG
+  commentId: F:FFmpeg.Images.ColorSpace.BT470BG
+  id: BT470BG
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: BT470BG
+  nameWithType: ColorSpace.BT470BG
+  fullName: FFmpeg.Images.ColorSpace.BT470BG
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT470BG
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: also ITU-R BT601-6 625 / ITU-R BT1358 625 / ITU-R BT1700 625 PAL &amp; SECAM / IEC 61966-2-4 xvYCC601
+  example: []
+  syntax:
+    content: BT470BG = 5
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.SMPTE170M
+  commentId: F:FFmpeg.Images.ColorSpace.SMPTE170M
+  id: SMPTE170M
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: SMPTE170M
+  nameWithType: ColorSpace.SMPTE170M
+  fullName: FFmpeg.Images.ColorSpace.SMPTE170M
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE170M
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: also ITU-R BT601-6 525 / ITU-R BT1358 525 / ITU-R BT1700 NTSC / functionally identical to above
+  example: []
+  syntax:
+    content: SMPTE170M = 6
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.SMPTE240M
+  commentId: F:FFmpeg.Images.ColorSpace.SMPTE240M
+  id: SMPTE240M
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: SMPTE240M
+  nameWithType: ColorSpace.SMPTE240M
+  fullName: FFmpeg.Images.ColorSpace.SMPTE240M
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE240M
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: derived from 170M primaries and D65 white point, 170M is derived from BT470 System M's primaries
+  example: []
+  syntax:
+    content: SMPTE240M = 7
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.YCGCO
+  commentId: F:FFmpeg.Images.ColorSpace.YCGCO
+  id: YCGCO
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: YCGCO
+  nameWithType: ColorSpace.YCGCO
+  fullName: FFmpeg.Images.ColorSpace.YCGCO
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: YCGCO
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 33
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: used by Dirac / VC-2 and H.264 FRext, see ITU-T SG16
+  example: []
+  syntax:
+    content: YCGCO = 8
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.YCOCG
+  commentId: F:FFmpeg.Images.ColorSpace.YCOCG
+  id: YCOCG
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: YCOCG
+  nameWithType: ColorSpace.YCOCG
+  fullName: FFmpeg.Images.ColorSpace.YCOCG
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: YCOCG
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: used by Dirac / VC-2 and H.264 FRext, see ITU-T SG16
+  example: []
+  syntax:
+    content: YCOCG = 8
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.BT2020_NCL
+  commentId: F:FFmpeg.Images.ColorSpace.BT2020_NCL
+  id: BT2020_NCL
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: BT2020_NCL
+  nameWithType: ColorSpace.BT2020_NCL
+  fullName: FFmpeg.Images.ColorSpace.BT2020_NCL
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT2020_NCL
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT2020 non-constant luminance system
+  example: []
+  syntax:
+    content: BT2020_NCL = 9
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.BT2020_CL
+  commentId: F:FFmpeg.Images.ColorSpace.BT2020_CL
+  id: BT2020_CL
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: BT2020_CL
+  nameWithType: ColorSpace.BT2020_CL
+  fullName: FFmpeg.Images.ColorSpace.BT2020_CL
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BT2020_CL
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 42
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT2020 constant luminance system
+  example: []
+  syntax:
+    content: BT2020_CL = 10
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.SMPTE2085
+  commentId: F:FFmpeg.Images.ColorSpace.SMPTE2085
+  id: SMPTE2085
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: SMPTE2085
+  nameWithType: ColorSpace.SMPTE2085
+  fullName: FFmpeg.Images.ColorSpace.SMPTE2085
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SMPTE2085
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: SMPTE 2085, Y'D'zD'x
+  example: []
+  syntax:
+    content: SMPTE2085 = 11
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.ChromaDerivedNCL
+  commentId: F:FFmpeg.Images.ColorSpace.ChromaDerivedNCL
+  id: ChromaDerivedNCL
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: ChromaDerivedNCL
+  nameWithType: ColorSpace.ChromaDerivedNCL
+  fullName: FFmpeg.Images.ColorSpace.ChromaDerivedNCL
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChromaDerivedNCL
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 48
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chromaticity-derived non-constant luminance system
+  example: []
+  syntax:
+    content: ChromaDerivedNCL = 12
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.ChromaDerivedCL
+  commentId: F:FFmpeg.Images.ColorSpace.ChromaDerivedCL
+  id: ChromaDerivedCL
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: ChromaDerivedCL
+  nameWithType: ColorSpace.ChromaDerivedCL
+  fullName: FFmpeg.Images.ColorSpace.ChromaDerivedCL
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChromaDerivedCL
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chromaticity-derived constant luminance system
+  example: []
+  syntax:
+    content: ChromaDerivedCL = 13
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.ICTCP
+  commentId: F:FFmpeg.Images.ColorSpace.ICTCP
+  id: ICTCP
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: ICTCP
+  nameWithType: ColorSpace.ICTCP
+  fullName: FFmpeg.Images.ColorSpace.ICTCP
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ICTCP
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 54
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: ITU-R BT.2100-0, ICtCp
+  example: []
+  syntax:
+    content: ICTCP = 14
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.IPT_C2
+  commentId: F:FFmpeg.Images.ColorSpace.IPT_C2
+  id: IPT_C2
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: IPT_C2
+  nameWithType: ColorSpace.IPT_C2
+  fullName: FFmpeg.Images.ColorSpace.IPT_C2
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IPT_C2
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: SMPTE ST 2128, IPT-C2
+  example: []
+  syntax:
+    content: IPT_C2 = 15
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.YCGCO_RE
+  commentId: F:FFmpeg.Images.ColorSpace.YCGCO_RE
+  id: YCGCO_RE
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: YCGCO_RE
+  nameWithType: ColorSpace.YCGCO_RE
+  fullName: FFmpeg.Images.ColorSpace.YCGCO_RE
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: YCGCO_RE
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 60
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: YCgCo-R, even addition of bits
+  example: []
+  syntax:
+    content: YCGCO_RE = 16
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.YCGCO_RO
+  commentId: F:FFmpeg.Images.ColorSpace.YCGCO_RO
+  id: YCGCO_RO
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: YCGCO_RO
+  nameWithType: ColorSpace.YCGCO_RO
+  fullName: FFmpeg.Images.ColorSpace.YCGCO_RO
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: YCGCO_RO
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 63
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: YCgCo-R, odd addition of bits
+  example: []
+  syntax:
+    content: YCGCO_RO = 17
+    return:
+      type: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorSpace.__COUNT__
+  commentId: F:FFmpeg.Images.ColorSpace.__COUNT__
+  id: __COUNT__
+  parent: FFmpeg.Images.ColorSpace
+  langs:
+  - csharp
+  - vb
+  name: __COUNT__
+  nameWithType: ColorSpace.__COUNT__
+  fullName: FFmpeg.Images.ColorSpace.__COUNT__
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorSpace.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: __COUNT__
+    path: FFmpeg/Images/ColorSpace.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Not part of ABI
+  example: []
+  syntax:
+    content: __COUNT__ = 18
+    return:
+      type: FFmpeg.Images.ColorSpace
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.ColorSpace
+  commentId: T:FFmpeg.Images.ColorSpace
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorSpace.html
+  name: ColorSpace
+  nameWithType: ColorSpace
+  fullName: FFmpeg.Images.ColorSpace

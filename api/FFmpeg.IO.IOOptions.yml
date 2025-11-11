@@ -1,0 +1,178 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.IO.IOOptions
+  commentId: T:FFmpeg.IO.IOOptions
+  id: IOOptions
+  parent: FFmpeg.IO
+  children:
+  - FFmpeg.IO.IOOptions.Read
+  - FFmpeg.IO.IOOptions.Seek
+  - FFmpeg.IO.IOOptions.Write
+  langs:
+  - csharp
+  - vb
+  name: IOOptions
+  nameWithType: IOOptions
+  fullName: FFmpeg.IO.IOOptions
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/IO/IOOptions.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IOOptions
+    path: FFmpeg/IO/IOOptions.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Flags representing different input/output operations that can be performed on a stream or file.
+
+    These flags can be combined using a bitwise OR, except for <xref href="FFmpeg.IO.IOOptions.Read" data-throw-if-not-resolved="false"></xref> and <xref href="FFmpeg.IO.IOOptions.Write" data-throw-if-not-resolved="false"></xref>, which are mutually exclusive.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum IOOptions
+    content.vb: >-
+      <Flags>
+
+      Public Enum IOOptions
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.IO.IOOptions.Read
+  commentId: F:FFmpeg.IO.IOOptions.Read
+  id: Read
+  parent: FFmpeg.IO.IOOptions
+  langs:
+  - csharp
+  - vb
+  name: Read
+  nameWithType: IOOptions.Read
+  fullName: FFmpeg.IO.IOOptions.Read
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/IOOptions.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Read
+    path: FFmpeg/IO/IOOptions.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Indicates that the stream or file is open for reading.
+
+    Note: This flag cannot be combined with <xref href="FFmpeg.IO.IOOptions.Write" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Read = 1
+    return:
+      type: FFmpeg.IO.IOOptions
+- uid: FFmpeg.IO.IOOptions.Write
+  commentId: F:FFmpeg.IO.IOOptions.Write
+  id: Write
+  parent: FFmpeg.IO.IOOptions
+  langs:
+  - csharp
+  - vb
+  name: Write
+  nameWithType: IOOptions.Write
+  fullName: FFmpeg.IO.IOOptions.Write
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/IOOptions.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Write
+    path: FFmpeg/IO/IOOptions.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Indicates that the stream or file is open for writing.
+
+    Note: This flag cannot be combined with <xref href="FFmpeg.IO.IOOptions.Read" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Write = 2
+    return:
+      type: FFmpeg.IO.IOOptions
+- uid: FFmpeg.IO.IOOptions.Seek
+  commentId: F:FFmpeg.IO.IOOptions.Seek
+  id: Seek
+  parent: FFmpeg.IO.IOOptions
+  langs:
+  - csharp
+  - vb
+  name: Seek
+  nameWithType: IOOptions.Seek
+  fullName: FFmpeg.IO.IOOptions.Seek
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/IOOptions.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/IO/IOOptions.cs
+    startLine: 23
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Indicates that the stream or file supports seeking.
+  example: []
+  syntax:
+    content: Seek = 4
+    return:
+      type: FFmpeg.IO.IOOptions
+references:
+- uid: FFmpeg.IO.IOOptions.Read
+  commentId: F:FFmpeg.IO.IOOptions.Read
+  href: FFmpeg.IO.IOOptions.html#FFmpeg_IO_IOOptions_Read
+  name: Read
+  nameWithType: IOOptions.Read
+  fullName: FFmpeg.IO.IOOptions.Read
+- uid: FFmpeg.IO.IOOptions.Write
+  commentId: F:FFmpeg.IO.IOOptions.Write
+  href: FFmpeg.IO.IOOptions.html#FFmpeg_IO_IOOptions_Write
+  name: Write
+  nameWithType: IOOptions.Write
+  fullName: FFmpeg.IO.IOOptions.Write
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  href: FFmpeg.html
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+- uid: FFmpeg.IO.IOOptions
+  commentId: T:FFmpeg.IO.IOOptions
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOOptions.html
+  name: IOOptions
+  nameWithType: IOOptions
+  fullName: FFmpeg.IO.IOOptions

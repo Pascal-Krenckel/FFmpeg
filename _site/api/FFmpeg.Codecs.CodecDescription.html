@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct CodecDescription | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct CodecDescription | FFmpegDotNet ">
+      
+      <meta name="description" content="Represents a codec descriptor with various properties.  This struct is a readonly wrapper around an  pointer, providing a way to access codec descriptor properties in a safe manner.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Codecs_CodecDescription.md&amp;value=---%0Auid%3A%20FFmpeg.Codecs.CodecDescription%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Codecs.CodecDescription">
+
+
+
+  <h1 id="FFmpeg_Codecs_CodecDescription" data-uid="FFmpeg.Codecs.CodecDescription" class="text-break">
+Struct CodecDescription  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Codecs.html">Codecs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a codec descriptor with various properties.</p>
+<p>
+This struct is a readonly wrapper around an <span class="xref">FFmpeg.AutoGen._AVCodecDescriptor</span> pointer, providing a way to access codec descriptor properties in a safe manner.
+</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct CodecDescription : IEquatable&lt;CodecDescription&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Id_" data-uid="FFmpeg.Codecs.CodecDescription.Id*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Id" data-uid="FFmpeg.Codecs.CodecDescription.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the codec ID, which is a value from the <a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a> enumeration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecID Id { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a></dt>
+    <dd><p>The codec ID for this codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_LongName_" data-uid="FFmpeg.Codecs.CodecDescription.LongName*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_LongName" data-uid="FFmpeg.Codecs.CodecDescription.LongName">
+  LongName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the more descriptive name for this codec.</p>
+<p>
+This name provides additional details about the codec and may be null if not available.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? LongName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The more descriptive name of the codec, or null if not available.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_MimeTypes_" data-uid="FFmpeg.Codecs.CodecDescription.MimeTypes*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_MimeTypes" data-uid="FFmpeg.Codecs.CodecDescription.MimeTypes">
+  MimeTypes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MIME types associated with the codec.</p>
+<p>
+This property returns an array of MIME types that are associated with the codec. If no MIME types are available, it returns an empty array.
+The first item in the array is always the preferred MIME type if available.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] MimeTypes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd><p>An array of MIME types associated with the codec, or an empty array if none are available.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Name_" data-uid="FFmpeg.Codecs.CodecDescription.Name*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Name" data-uid="FFmpeg.Codecs.CodecDescription.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the name of the codec.</p>
+<p>
+This name is non-empty and unique for each codec descriptor. It is intended for identification purposes.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the codec.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Profiles_" data-uid="FFmpeg.Codecs.CodecDescription.Profiles*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Profiles" data-uid="FFmpeg.Codecs.CodecDescription.Profiles">
+  Profiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the array of profiles recognized for this codec.</p>
+<p>
+This property returns a read-only collection of profiles associated with the codec. Profiles provide additional information about codec capabilities and configurations.
+If no profiles are available, it returns an empty collection.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;Profile&gt; Profiles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="FFmpeg.Codecs.Profile.html">Profile</a>&gt;</dt>
+    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection&lt;T&gt;</a> containing the profiles recognized for this codec, or an empty collection if none are available.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Properties_" data-uid="FFmpeg.Codecs.CodecDescription.Properties*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Properties" data-uid="FFmpeg.Codecs.CodecDescription.Properties">
+  Properties
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the codec properties, which is a combination of flags from the <a class="xref" href="FFmpeg.Codecs.CodecProperties.html">CodecProperties</a> enumeration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecProperties Properties { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecProperties.html">CodecProperties</a></dt>
+    <dd><p>The properties of the codec, represented as a bit field combining various flags.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Type_" data-uid="FFmpeg.Codecs.CodecDescription.Type*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Type" data-uid="FFmpeg.Codecs.CodecDescription.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the media type of the codec, which is a value from the <a class="xref" href="FFmpeg.Utils.MediaType.html">MediaType</a> enumeration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaType Type { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.MediaType.html">MediaType</a></dt>
+    <dd><p>The media type for this codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Equals_" data-uid="FFmpeg.Codecs.CodecDescription.Equals*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Equals_FFmpeg_Codecs_CodecDescription_" data-uid="FFmpeg.Codecs.CodecDescription.Equals(FFmpeg.Codecs.CodecDescription)">
+  Equals(CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the specified <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> is equal to the current <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CodecDescription other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the specified <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> is equal to the current instance; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_Equals_" data-uid="FFmpeg.Codecs.CodecDescription.Equals*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_Equals_System_Object_" data-uid="FFmpeg.Codecs.CodecDescription.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the specified object is equal to the current <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_GetAllCodecDescriptors_" data-uid="FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_GetAllCodecDescriptors" data-uid="FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors">
+  GetAllCodecDescriptors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves an array of all available codec descriptors.</p>
+<p>
+This method iterates through all codec descriptors registered with FFmpeg and collects them into an array.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecDescription[] GetAllCodecDescriptors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>[]</dt>
+    <dd><p>An array of <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instances representing all available codec descriptors.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_FFmpeg_Codecs_Codec_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.Codec)">
+  GetCodecDescriptor(Codec)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecDescription GetCodecDescriptor(Codec codec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to get the descriptor for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>A <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance representing the codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the <code class="paramref">codec</code> does not correspond to a valid codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_FFmpeg_Codecs_CodecID_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.CodecID)">
+  GetCodecDescriptor(CodecID)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified codec ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecDescription GetCodecDescriptor(CodecID codecID)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codecID</code> <a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a></dt>
+    <dd><p>The codec ID to get the descriptor for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>A <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance representing the codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the <code class="paramref">codecID</code> does not correspond to a valid codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_System_String_" data-uid="FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(System.String)">
+  GetCodecDescriptor(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified codec name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecDescription GetCodecDescriptor(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the codec to get the descriptor for.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>A <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance representing the codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown if the <code class="paramref">name</code> does not correspond to a valid codec descriptor.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_GetHashCode_" data-uid="FFmpeg.Codecs.CodecDescription.GetHashCode*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_GetHashCode" data-uid="FFmpeg.Codecs.CodecDescription.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L175"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Serves as a hash function for the <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A hash code for the current <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_ToString_" data-uid="FFmpeg.Codecs.CodecDescription.ToString*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_ToString" data-uid="FFmpeg.Codecs.CodecDescription.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string representation of the <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The long name of the codec descriptor, providing a more descriptive name for the codec.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_FFmpeg_Codecs_Codec_FFmpeg_Codecs_CodecDescription__" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec,FFmpeg.Codecs.CodecDescription@)">
+  TryGetCodecDescriptor(Codec, out CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Attempts to retrieve a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGetCodecDescriptor(Codec codec, out CodecDescription descriptor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to get the descriptor for.</p>
+</dd>
+    <dt><code>descriptor</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>When this method returns, contains the <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance if the codec was valid; otherwise, default.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_FFmpeg_Codecs_CodecID_FFmpeg_Codecs_CodecDescription__" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID,FFmpeg.Codecs.CodecDescription@)">
+  TryGetCodecDescriptor(CodecID, out CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Attempts to retrieve a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified codec ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGetCodecDescriptor(CodecID codecID, out CodecDescription descriptor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codecID</code> <a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a></dt>
+    <dd><p>The codec ID to get the descriptor for.</p>
+</dd>
+    <dt><code>descriptor</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>When this method returns, contains the <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance if the codec ID was valid; otherwise, default.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_System_String_FFmpeg_Codecs_CodecDescription__" data-uid="FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(System.String,FFmpeg.Codecs.CodecDescription@)">
+  TryGetCodecDescriptor(string, out CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Attempts to retrieve a <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> for the specified codec name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool TryGetCodecDescriptor(string name, out CodecDescription descriptor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the codec to get the descriptor for.</p>
+</dd>
+    <dt><code>descriptor</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>When this method returns, contains the <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance if the name was valid; otherwise, default.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_op_Equality_" data-uid="FFmpeg.Codecs.CodecDescription.op_Equality*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_op_Equality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_" data-uid="FFmpeg.Codecs.CodecDescription.op_Equality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)">
+  operator ==(CodecDescription, CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L278"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instances are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(CodecDescription left, CodecDescription right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the two instances are equal; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecDescription_op_Inequality_" data-uid="FFmpeg.Codecs.CodecDescription.op_Inequality*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecDescription_op_Inequality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_" data-uid="FFmpeg.Codecs.CodecDescription.op_Inequality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)">
+  operator !=(CodecDescription, CodecDescription)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instances are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(CodecDescription left, CodecDescription right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Codecs.CodecDescription.html">CodecDescription</a> instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the two instances are not equal; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecDescription.cs/#L13" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

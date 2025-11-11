@@ -1,0 +1,994 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Audio.SampleFormat
+  commentId: T:FFmpeg.Audio.SampleFormat
+  id: SampleFormat
+  parent: FFmpeg.Audio
+  children:
+  - FFmpeg.Audio.SampleFormat.Float32
+  - FFmpeg.Audio.SampleFormat.Float32Planar
+  - FFmpeg.Audio.SampleFormat.Float64
+  - FFmpeg.Audio.SampleFormat.Float64Planar
+  - FFmpeg.Audio.SampleFormat.Int16
+  - FFmpeg.Audio.SampleFormat.Int16Planar
+  - FFmpeg.Audio.SampleFormat.Int32
+  - FFmpeg.Audio.SampleFormat.Int32Planar
+  - FFmpeg.Audio.SampleFormat.Int64
+  - FFmpeg.Audio.SampleFormat.Int64Planar
+  - FFmpeg.Audio.SampleFormat.None
+  - FFmpeg.Audio.SampleFormat.UInt8
+  - FFmpeg.Audio.SampleFormat.UInt8Planar
+  - FFmpeg.Audio.SampleFormat.__COUNT__
+  langs:
+  - csharp
+  - vb
+  name: SampleFormat
+  nameWithType: SampleFormat
+  fullName: FFmpeg.Audio.SampleFormat
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleFormat
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 4
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Defines the audio sample formats used for encoding and decoding audio data.
+  example: []
+  syntax:
+    content: public enum SampleFormat
+    content.vb: Public Enum SampleFormat
+  extensionMethods:
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.AsPacked
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.AsPlanar
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetBitsPerSample
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetBytesPerSample
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetName
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetSampleFormatType
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.IsPacked
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.IsPlanar
+  - FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.ValidateType``1
+- uid: FFmpeg.Audio.SampleFormat.None
+  commentId: F:FFmpeg.Audio.SampleFormat.None
+  id: None
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: SampleFormat.None
+  fullName: FFmpeg.Audio.SampleFormat.None
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: None
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 9
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: Invalid or unsupported sample format.
+  example: []
+  syntax:
+    content: None = -1
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.UInt8
+  commentId: F:FFmpeg.Audio.SampleFormat.UInt8
+  id: UInt8
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: UInt8
+  nameWithType: SampleFormat.UInt8
+  fullName: FFmpeg.Audio.SampleFormat.UInt8
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt8
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 15
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Unsigned 8-bit audio sample format.
+
+    Each sample is represented as an 8-bit unsigned integer.
+  example: []
+  syntax:
+    content: UInt8 = 0
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int16
+  commentId: F:FFmpeg.Audio.SampleFormat.Int16
+  id: Int16
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int16
+  nameWithType: SampleFormat.Int16
+  fullName: FFmpeg.Audio.SampleFormat.Int16
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int16
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 16-bit audio sample format.
+
+    Each sample is represented as a 16-bit signed integer.
+  example: []
+  syntax:
+    content: Int16 = 1
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int32
+  commentId: F:FFmpeg.Audio.SampleFormat.Int32
+  id: Int32
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int32
+  nameWithType: SampleFormat.Int32
+  fullName: FFmpeg.Audio.SampleFormat.Int32
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int32
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 32-bit audio sample format.
+
+    Each sample is represented as a 32-bit signed integer.
+  example: []
+  syntax:
+    content: Int32 = 2
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Float32
+  commentId: F:FFmpeg.Audio.SampleFormat.Float32
+  id: Float32
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Float32
+  nameWithType: SampleFormat.Float32
+  fullName: FFmpeg.Audio.SampleFormat.Float32
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Float32
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 33
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    32-bit floating-point audio sample format.
+
+    Each sample is represented as a 32-bit floating-point number.
+  example: []
+  syntax:
+    content: Float32 = 3
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Float64
+  commentId: F:FFmpeg.Audio.SampleFormat.Float64
+  id: Float64
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Float64
+  nameWithType: SampleFormat.Float64
+  fullName: FFmpeg.Audio.SampleFormat.Float64
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Float64
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    64-bit double precision floating-point audio sample format.
+
+    Each sample is represented as a 64-bit floating-point number.
+  example: []
+  syntax:
+    content: Float64 = 4
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.UInt8Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.UInt8Planar
+  id: UInt8Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: UInt8Planar
+  nameWithType: SampleFormat.UInt8Planar
+  fullName: FFmpeg.Audio.SampleFormat.UInt8Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt8Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Unsigned 8-bit audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as an 8-bit unsigned integer.
+  example: []
+  syntax:
+    content: UInt8Planar = 5
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int16Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.Int16Planar
+  id: Int16Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int16Planar
+  nameWithType: SampleFormat.Int16Planar
+  fullName: FFmpeg.Audio.SampleFormat.Int16Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int16Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 16-bit audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as a 16-bit signed integer.
+  example: []
+  syntax:
+    content: Int16Planar = 6
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int32Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.Int32Planar
+  id: Int32Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int32Planar
+  nameWithType: SampleFormat.Int32Planar
+  fullName: FFmpeg.Audio.SampleFormat.Int32Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int32Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 32-bit audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as a 32-bit signed integer.
+  example: []
+  syntax:
+    content: Int32Planar = 7
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Float32Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.Float32Planar
+  id: Float32Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Float32Planar
+  nameWithType: SampleFormat.Float32Planar
+  fullName: FFmpeg.Audio.SampleFormat.Float32Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Float32Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 63
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    32-bit floating-point audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as a 32-bit floating-point number.
+  example: []
+  syntax:
+    content: Float32Planar = 8
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Float64Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.Float64Planar
+  id: Float64Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Float64Planar
+  nameWithType: SampleFormat.Float64Planar
+  fullName: FFmpeg.Audio.SampleFormat.Float64Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Float64Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 69
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    64-bit double precision floating-point audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as a 64-bit floating-point number.
+  example: []
+  syntax:
+    content: Float64Planar = 9
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int64
+  commentId: F:FFmpeg.Audio.SampleFormat.Int64
+  id: Int64
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int64
+  nameWithType: SampleFormat.Int64
+  fullName: FFmpeg.Audio.SampleFormat.Int64
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int64
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 75
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 64-bit audio sample format.
+
+    Each sample is represented as a 64-bit signed integer.
+  example: []
+  syntax:
+    content: Int64 = 10
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.Int64Planar
+  commentId: F:FFmpeg.Audio.SampleFormat.Int64Planar
+  id: Int64Planar
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: Int64Planar
+  nameWithType: SampleFormat.Int64Planar
+  fullName: FFmpeg.Audio.SampleFormat.Int64Planar
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int64Planar
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 81
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Signed 64-bit audio sample format in planar layout.
+
+    Each channel is represented in a separate plane, with each sample as a 64-bit signed integer.
+  example: []
+  syntax:
+    content: Int64Planar = 11
+    return:
+      type: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat.__COUNT__
+  commentId: F:FFmpeg.Audio.SampleFormat.__COUNT__
+  id: __COUNT__
+  parent: FFmpeg.Audio.SampleFormat
+  langs:
+  - csharp
+  - vb
+  name: __COUNT__
+  nameWithType: SampleFormat.__COUNT__
+  fullName: FFmpeg.Audio.SampleFormat.__COUNT__
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Audio/SampleFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: __COUNT__
+    path: FFmpeg/Audio/SampleFormat.cs
+    startLine: 87
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Audio
+  summary: >-
+    Total number of audio sample formats supported.
+
+    This is not a valid sample format but an enumeration count. Do not use this value for actual sample format operations.
+  example: []
+  syntax:
+    content: __COUNT__ = 12
+    return:
+      type: FFmpeg.Audio.SampleFormat
+references:
+- uid: FFmpeg.Audio
+  commentId: N:FFmpeg.Audio
+  href: FFmpeg.html
+  name: FFmpeg.Audio
+  nameWithType: FFmpeg.Audio
+  fullName: FFmpeg.Audio
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.AsPacked
+  commentId: M:FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  name: AsPacked(SampleFormat)
+  nameWithType: SampleExtensions.AsPacked(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+    name: AsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+    name: AsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.AsPlanar
+  commentId: M:FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  name: AsPlanar(SampleFormat)
+  nameWithType: SampleExtensions.AsPlanar(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+    name: AsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+    name: AsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetBitsPerSample
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  name: GetBitsPerSample(SampleFormat)
+  nameWithType: SampleExtensions.GetBitsPerSample(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBitsPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBitsPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetBytesPerSample
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  name: GetBytesPerSample(SampleFormat)
+  nameWithType: SampleExtensions.GetBytesPerSample(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBytesPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBytesPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetName
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  name: GetName(SampleFormat)
+  nameWithType: SampleExtensions.GetName(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+    name: GetName
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+    name: GetName
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.GetSampleFormatType
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  name: GetSampleFormatType(SampleFormat)
+  nameWithType: SampleExtensions.GetSampleFormatType(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+    name: GetSampleFormatType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+    name: GetSampleFormatType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.IsPacked
+  commentId: M:FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  name: IsPacked(SampleFormat)
+  nameWithType: SampleExtensions.IsPacked(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+    name: IsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+    name: IsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.IsPlanar
+  commentId: M:FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  name: IsPlanar(SampleFormat)
+  nameWithType: SampleExtensions.IsPlanar(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+    name: IsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+    name: IsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat.FFmpeg.Audio.SampleExtensions.ValidateType``1
+  commentId: M:FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+  parent: FFmpeg.Audio.SampleExtensions
+  definition: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  name: ValidateType<T>(SampleFormat)
+  nameWithType: SampleExtensions.ValidateType<T>(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.ValidateType<T>(FFmpeg.Audio.SampleFormat)
+  nameWithType.vb: SampleExtensions.ValidateType(Of T)(SampleFormat)
+  fullName.vb: FFmpeg.Audio.SampleExtensions.ValidateType(Of T)(FFmpeg.Audio.SampleFormat)
+  name.vb: ValidateType(Of T)(SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+    name: ValidateType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+    name: ValidateType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  name: AsPacked(SampleFormat)
+  nameWithType: SampleExtensions.AsPacked(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+    name: AsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPacked(FFmpeg.Audio.SampleFormat)
+    name: AsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions
+  commentId: T:FFmpeg.Audio.SampleExtensions
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.SampleExtensions.html
+  name: SampleExtensions
+  nameWithType: SampleExtensions
+  fullName: FFmpeg.Audio.SampleExtensions
+- uid: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  name: AsPlanar(SampleFormat)
+  nameWithType: SampleExtensions.AsPlanar(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+    name: AsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.AsPlanar(FFmpeg.Audio.SampleFormat)
+    name: AsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_AsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  name: GetBitsPerSample(SampleFormat)
+  nameWithType: SampleExtensions.GetBitsPerSample(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBitsPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBitsPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBitsPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBitsPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  name: GetBytesPerSample(SampleFormat)
+  nameWithType: SampleExtensions.GetBytesPerSample(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBytesPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetBytesPerSample(FFmpeg.Audio.SampleFormat)
+    name: GetBytesPerSample
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetBytesPerSample_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  name: GetName(SampleFormat)
+  nameWithType: SampleExtensions.GetName(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+    name: GetName
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetName(FFmpeg.Audio.SampleFormat)
+    name: GetName
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetName_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  name: GetSampleFormatType(SampleFormat)
+  nameWithType: SampleExtensions.GetSampleFormatType(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+    name: GetSampleFormatType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.GetSampleFormatType(FFmpeg.Audio.SampleFormat)
+    name: GetSampleFormatType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_GetSampleFormatType_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  name: IsPacked(SampleFormat)
+  nameWithType: SampleExtensions.IsPacked(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+    name: IsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPacked(FFmpeg.Audio.SampleFormat)
+    name: IsPacked
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPacked_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  name: IsPlanar(SampleFormat)
+  nameWithType: SampleExtensions.IsPlanar(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+    name: IsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.IsPlanar(FFmpeg.Audio.SampleFormat)
+    name: IsPlanar
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_IsPlanar_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+  commentId: M:FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+  href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  name: ValidateType<T>(SampleFormat)
+  nameWithType: SampleExtensions.ValidateType<T>(SampleFormat)
+  fullName: FFmpeg.Audio.SampleExtensions.ValidateType<T>(FFmpeg.Audio.SampleFormat)
+  nameWithType.vb: SampleExtensions.ValidateType(Of T)(SampleFormat)
+  fullName.vb: FFmpeg.Audio.SampleExtensions.ValidateType(Of T)(FFmpeg.Audio.SampleFormat)
+  name.vb: ValidateType(Of T)(SampleFormat)
+  spec.csharp:
+  - uid: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+    name: ValidateType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Audio.SampleExtensions.ValidateType``1(FFmpeg.Audio.SampleFormat)
+    name: ValidateType
+    href: FFmpeg.Audio.SampleExtensions.html#FFmpeg_Audio_SampleExtensions_ValidateType__1_FFmpeg_Audio_SampleFormat_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - uid: FFmpeg.Audio.SampleFormat
+    name: SampleFormat
+    href: FFmpeg.Audio.SampleFormat.html
+  - name: )
+- uid: FFmpeg.Audio.SampleFormat
+  commentId: T:FFmpeg.Audio.SampleFormat
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.SampleFormat.html
+  name: SampleFormat
+  nameWithType: SampleFormat
+  fullName: FFmpeg.Audio.SampleFormat

@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  id: FFmpeg.Filters
+  children:
+  - FFmpeg.Filters.BufferSrcParameters
+  - FFmpeg.Filters.Filter
+  - FFmpeg.Filters.FilterContext
+  - FFmpeg.Filters.FilterFlags
+  - FFmpeg.Filters.FilterGraph
+  - FFmpeg.Filters.FilterInOutEntry
+  - FFmpeg.Filters.FilterInOutList
+  - FFmpeg.Filters.FilterLink
+  - FFmpeg.Filters.FilterPad
+  - FFmpeg.Filters.FilterPadList
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Filters.BufferSrcParameters
+  commentId: T:FFmpeg.Filters.BufferSrcParameters
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.BufferSrcParameters.html
+  name: BufferSrcParameters
+  nameWithType: BufferSrcParameters
+  fullName: FFmpeg.Filters.BufferSrcParameters
+- uid: FFmpeg.Filters.Filter
+  commentId: T:FFmpeg.Filters.Filter
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.Filter.html
+  name: Filter
+  nameWithType: Filter
+  fullName: FFmpeg.Filters.Filter
+- uid: FFmpeg.Filters.FilterContext
+  commentId: T:FFmpeg.Filters.FilterContext
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterContext.html
+  name: FilterContext
+  nameWithType: FilterContext
+  fullName: FFmpeg.Filters.FilterContext
+- uid: FFmpeg.Filters.FilterFlags
+  commentId: T:FFmpeg.Filters.FilterFlags
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterFlags.html
+  name: FilterFlags
+  nameWithType: FilterFlags
+  fullName: FFmpeg.Filters.FilterFlags
+- uid: FFmpeg.Filters.FilterGraph
+  commentId: T:FFmpeg.Filters.FilterGraph
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterGraph.html
+  name: FilterGraph
+  nameWithType: FilterGraph
+  fullName: FFmpeg.Filters.FilterGraph
+- uid: FFmpeg.Filters.FilterInOutEntry
+  commentId: T:FFmpeg.Filters.FilterInOutEntry
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterInOutEntry.html
+  name: FilterInOutEntry
+  nameWithType: FilterInOutEntry
+  fullName: FFmpeg.Filters.FilterInOutEntry
+- uid: FFmpeg.Filters.FilterInOutList
+  commentId: T:FFmpeg.Filters.FilterInOutList
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterInOutList.html
+  name: FilterInOutList
+  nameWithType: FilterInOutList
+  fullName: FFmpeg.Filters.FilterInOutList
+- uid: FFmpeg.Filters.FilterLink
+  commentId: T:FFmpeg.Filters.FilterLink
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterLink.html
+  name: FilterLink
+  nameWithType: FilterLink
+  fullName: FFmpeg.Filters.FilterLink
+- uid: FFmpeg.Filters.FilterPad
+  commentId: T:FFmpeg.Filters.FilterPad
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterPad.html
+  name: FilterPad
+  nameWithType: FilterPad
+  fullName: FFmpeg.Filters.FilterPad
+- uid: FFmpeg.Filters.FilterPadList
+  commentId: T:FFmpeg.Filters.FilterPadList
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterPadList.html
+  name: FilterPadList
+  nameWithType: FilterPadList
+  fullName: FFmpeg.Filters.FilterPadList
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  href: FFmpeg.html
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html

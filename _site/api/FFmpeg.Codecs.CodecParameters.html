@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CodecParameters | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CodecParameters | FFmpegDotNet ">
+      
+      <meta name="description" content="A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure, providing safe access to codec parameters.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Codecs_CodecParameters.md&amp;value=---%0Auid%3A%20FFmpeg.Codecs.CodecParameters%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Codecs.CodecParameters">
+
+
+
+  <h1 id="FFmpeg_Codecs_CodecParameters" data-uid="FFmpeg.Codecs.CodecParameters" class="text-break">
+Class CodecParameters  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Codecs.html">Codecs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure,
+providing safe access to codec parameters.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CodecParameters : IDisposable, ICodecParameters</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CodecParameters</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecParameters__ctor_" data-uid="FFmpeg.Codecs.CodecParameters.#ctor*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters__ctor" data-uid="FFmpeg.Codecs.CodecParameters.#ctor">
+  CodecParameters()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFmpeg.Codecs.CodecParameters.html">CodecParameters</a> class,
+allocating a new _AVCodecParameters structure and setting its fields to default values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecParameters()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if the underlying _AVCodecParameters cannot be allocated.</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_BitRate_" data-uid="FFmpeg.Codecs.CodecParameters.BitRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_BitRate" data-uid="FFmpeg.Codecs.CodecParameters.BitRate">
+  BitRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the average bitrate of the encoded data, in bits per second.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_BitsPerCodedSample_" data-uid="FFmpeg.Codecs.CodecParameters.BitsPerCodedSample*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_BitsPerCodedSample" data-uid="FFmpeg.Codecs.CodecParameters.BitsPerCodedSample">
+  BitsPerCodedSample
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of bits per coded sample in the bitstream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitsPerCodedSample { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_BitsPerRawSample_" data-uid="FFmpeg.Codecs.CodecParameters.BitsPerRawSample*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_BitsPerRawSample" data-uid="FFmpeg.Codecs.CodecParameters.BitsPerRawSample">
+  BitsPerRawSample
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of bits per raw sample in the output.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitsPerRawSample { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_BlockAlign_" data-uid="FFmpeg.Codecs.CodecParameters.BlockAlign*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_BlockAlign" data-uid="FFmpeg.Codecs.CodecParameters.BlockAlign">
+  BlockAlign
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of bytes per coded audio frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BlockAlign { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ChannelLayout_" data-uid="FFmpeg.Codecs.CodecParameters.ChannelLayout*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ChannelLayout" data-uid="FFmpeg.Codecs.CodecParameters.ChannelLayout">
+  ChannelLayout
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L411"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the channel layout, which defines the spatial arrangement of audio channels (e.g., mono, stereo, 5.1 surround).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChannelLayout ChannelLayout { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.ChannelLayout.html">ChannelLayout</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecParameters_ChannelLayout_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The channel layout determines how audio channels are positioned and should match the number of channels and the codec in use.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Channels_" data-uid="FFmpeg.Codecs.CodecParameters.Channels*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Channels" data-uid="FFmpeg.Codecs.CodecParameters.Channels">
+  Channels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L408"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the number of audio channels for the current codec parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Channels { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecParameters_Channels_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This value indicates the number of channels in the audio stream, such as 1 for mono, 2 for stereo, or higher for surround formats.
+The meaning is related to the <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ChannelLayout">ChannelLayout</a> property.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ChromaLocation_" data-uid="FFmpeg.Codecs.CodecParameters.ChromaLocation*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ChromaLocation" data-uid="FFmpeg.Codecs.CodecParameters.ChromaLocation">
+  ChromaLocation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L308"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the chroma location in the video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChromaLocation ChromaLocation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ChromaLocation.html">ChromaLocation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_CodecId_" data-uid="FFmpeg.Codecs.CodecParameters.CodecId*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_CodecId" data-uid="FFmpeg.Codecs.CodecParameters.CodecId">
+  CodecId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the specific codec ID used for the encoded data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecID CodecId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_CodecTag_" data-uid="FFmpeg.Codecs.CodecParameters.CodecTag*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_CodecTag" data-uid="FFmpeg.Codecs.CodecParameters.CodecTag">
+  CodecTag
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec tag, which is additional information about the codec (corresponding to the AVI FOURCC).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FourCC CodecTag { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FourCC.html">FourCC</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ColorPrimaries_" data-uid="FFmpeg.Codecs.CodecParameters.ColorPrimaries*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ColorPrimaries" data-uid="FFmpeg.Codecs.CodecParameters.ColorPrimaries">
+  ColorPrimaries
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L281"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color primaries of the video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorPrimaries ColorPrimaries { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorPrimaries.html">ColorPrimaries</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ColorRange_" data-uid="FFmpeg.Codecs.CodecParameters.ColorRange*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ColorRange" data-uid="FFmpeg.Codecs.CodecParameters.ColorRange">
+  ColorRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color range of the video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorRange ColorRange { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorRange.html">ColorRange</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ColorSpace_" data-uid="FFmpeg.Codecs.CodecParameters.ColorSpace*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ColorSpace" data-uid="FFmpeg.Codecs.CodecParameters.ColorSpace">
+  ColorSpace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color space of the video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorSpace ColorSpace { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorSpace.html">ColorSpace</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ColorTransferCharacteristic_" data-uid="FFmpeg.Codecs.CodecParameters.ColorTransferCharacteristic*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ColorTransferCharacteristic" data-uid="FFmpeg.Codecs.CodecParameters.ColorTransferCharacteristic">
+  ColorTransferCharacteristic
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color transfer characteristic of the video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorTransferCharacteristic ColorTransferCharacteristic { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorTransferCharacteristic.html">ColorTransferCharacteristic</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_ExtraData_" data-uid="FFmpeg.Codecs.CodecParameters.ExtraData*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_ExtraData" data-uid="FFmpeg.Codecs.CodecParameters.ExtraData">
+  ExtraData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the extra binary data needed for initializing the decoder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Span&lt;byte&gt; ExtraData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_FieldOrder_" data-uid="FFmpeg.Codecs.CodecParameters.FieldOrder*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_FieldOrder" data-uid="FFmpeg.Codecs.CodecParameters.FieldOrder">
+  FieldOrder
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the order of the fields in interlaced video.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FieldOrder FieldOrder { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.FieldOrder.html">FieldOrder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_FrameRate_" data-uid="FFmpeg.Codecs.CodecParameters.FrameRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_FrameRate" data-uid="FFmpeg.Codecs.CodecParameters.FrameRate">
+  FrameRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the frame rate (frames per second) for video streams with constant frame durations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational FrameRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_FrameSize_" data-uid="FFmpeg.Codecs.CodecParameters.FrameSize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_FrameSize" data-uid="FFmpeg.Codecs.CodecParameters.FrameSize">
+  FrameSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L344"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of audio samples per frame, if known.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FrameSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Height_" data-uid="FFmpeg.Codecs.CodecParameters.Height*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Height" data-uid="FFmpeg.Codecs.CodecParameters.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the height of the video frame in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Height { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_InitialPadding_" data-uid="FFmpeg.Codecs.CodecParameters.InitialPadding*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_InitialPadding" data-uid="FFmpeg.Codecs.CodecParameters.InitialPadding">
+  InitialPadding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L353"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the amount of padding inserted by the encoder at the beginning of the audio stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int InitialPadding { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Level_" data-uid="FFmpeg.Codecs.CodecParameters.Level*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Level" data-uid="FFmpeg.Codecs.CodecParameters.Level">
+  Level
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec-specific level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Level { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_MediaType_" data-uid="FFmpeg.Codecs.CodecParameters.MediaType*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_MediaType" data-uid="FFmpeg.Codecs.CodecParameters.MediaType">
+  MediaType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the general type of the encoded data (e.g., video, audio).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaType MediaType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.MediaType.html">MediaType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_PixelFormat_" data-uid="FFmpeg.Codecs.CodecParameters.PixelFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_PixelFormat" data-uid="FFmpeg.Codecs.CodecParameters.PixelFormat">
+  PixelFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L401"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the pixel format of the codec parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelFormat PixelFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.PixelFormat.html">PixelFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecParameters_PixelFormat_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The pixel format determines how video frames are stored and processed.  Ensure that the
+assigned value is compatible with the codec being used.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Profile_" data-uid="FFmpeg.Codecs.CodecParameters.Profile*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Profile" data-uid="FFmpeg.Codecs.CodecParameters.Profile">
+  Profile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L209"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec-specific profile.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Profile Profile { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.Profile.html">Profile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_SampleAspectRatio_" data-uid="FFmpeg.Codecs.CodecParameters.SampleAspectRatio*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_SampleAspectRatio" data-uid="FFmpeg.Codecs.CodecParameters.SampleAspectRatio">
+  SampleAspectRatio
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the sample aspect ratio (width/height) of a single pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational SampleAspectRatio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_SampleFormat_" data-uid="FFmpeg.Codecs.CodecParameters.SampleFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_SampleFormat" data-uid="FFmpeg.Codecs.CodecParameters.SampleFormat">
+  SampleFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the sample format of the codec parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SampleFormat SampleFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.SampleFormat.html">SampleFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecParameters_SampleFormat_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The sample format determines how audio samples are stored and processed.  Ensure that the
+assigned value is compatible with the codec being used.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_SampleRate_" data-uid="FFmpeg.Codecs.CodecParameters.SampleRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_SampleRate" data-uid="FFmpeg.Codecs.CodecParameters.SampleRate">
+  SampleRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the audio sample rate (number of samples per second).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SampleRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_SeekPreroll_" data-uid="FFmpeg.Codecs.CodecParameters.SeekPreroll*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_SeekPreroll" data-uid="FFmpeg.Codecs.CodecParameters.SeekPreroll">
+  SeekPreroll
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L371"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of samples to skip after a discontinuity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SeekPreroll { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_TrailingPadding_" data-uid="FFmpeg.Codecs.CodecParameters.TrailingPadding*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_TrailingPadding" data-uid="FFmpeg.Codecs.CodecParameters.TrailingPadding">
+  TrailingPadding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L362"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the amount of padding appended by the encoder at the end of the audio stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TrailingPadding { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_VideoDelay_" data-uid="FFmpeg.Codecs.CodecParameters.VideoDelay*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_VideoDelay" data-uid="FFmpeg.Codecs.CodecParameters.VideoDelay">
+  VideoDelay
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L317"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of frames to delay video frames.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int VideoDelay { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Width_" data-uid="FFmpeg.Codecs.CodecParameters.Width*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Width" data-uid="FFmpeg.Codecs.CodecParameters.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the width of the video frame in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_CopyFrom_" data-uid="FFmpeg.Codecs.CodecParameters.CopyFrom*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_CopyFrom_FFmpeg_Codecs_CodecContext_" data-uid="FFmpeg.Codecs.CodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)">
+  CopyFrom(CodecContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the contents of a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance to this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyFrom(CodecContext other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance to copy from.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">other</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.applicationexception">ApplicationException</a></dt>
+    <dd><p>Thrown if copying fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_CopyFrom_" data-uid="FFmpeg.Codecs.CodecParameters.CopyFrom*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_CopyFrom_FFmpeg_Codecs_ICodecParameters_" data-uid="FFmpeg.Codecs.CodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)">
+  CopyFrom(ICodecParameters)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the contents of another <a class="xref" href="FFmpeg.Codecs.CodecParameters.html">CodecParameters</a> instance to this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyFrom(ICodecParameters other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></dt>
+    <dd><p>The other <a class="xref" href="FFmpeg.Codecs.CodecParameters.html">CodecParameters</a> instance to copy from.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">other</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.applicationexception">ApplicationException</a></dt>
+    <dd><p>Thrown if copying fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_CopyTo_" data-uid="FFmpeg.Codecs.CodecParameters.CopyTo*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_CopyTo_FFmpeg_Codecs_CodecContext_" data-uid="FFmpeg.Codecs.CodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)">
+  CopyTo(CodecContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the contents of this instance to a specified <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(CodecContext other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance to copy to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown if <code class="paramref">other</code> is null.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.applicationexception">ApplicationException</a></dt>
+    <dd><p>Thrown if copying fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Dispose_" data-uid="FFmpeg.Codecs.CodecParameters.Dispose*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Dispose" data-uid="FFmpeg.Codecs.CodecParameters.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Frees the _AVCodecParameters instance and everything associated with it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_Finalize_" data-uid="FFmpeg.Codecs.CodecParameters.Finalize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_Finalize" data-uid="FFmpeg.Codecs.CodecParameters.Finalize">
+  ~CodecParameters()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finalizer for the <a class="xref" href="FFmpeg.Codecs.CodecParameters.html">CodecParameters</a> class.
+Ensures resources are freed when the object is garbage collected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~CodecParameters()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_GetAudioFrameDuration_" data-uid="FFmpeg.Codecs.CodecParameters.GetAudioFrameDuration*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_GetAudioFrameDuration_System_Int32_" data-uid="FFmpeg.Codecs.CodecParameters.GetAudioFrameDuration(System.Int32)">
+  GetAudioFrameDuration(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L383"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the duration of an audio frame, given the frame size in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetAudioFrameDuration(int frameBytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frameBytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The size of the audio frame in bytes.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The duration of the audio frame in milliseconds.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecParameters_SetExtraData_" data-uid="FFmpeg.Codecs.CodecParameters.SetExtraData*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecParameters_SetExtraData_System_ReadOnlySpan_System_Byte__" data-uid="FFmpeg.Codecs.CodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})">
+  SetExtraData(ReadOnlySpan&lt;byte&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the extra binary data needed for initializing the decoder.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetExtraData(ReadOnlySpan&lt;byte&gt; data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd><p>The extra binary data to set.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if memory allocation fails.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecParameters.cs/#L12" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

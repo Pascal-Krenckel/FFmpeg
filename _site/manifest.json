@@ -1,0 +1,2162 @@
+{
+  "source_base_path": "D:/Programme/ffmpeg",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Developer Guide.md",
+      "output": {
+        ".html": {
+          "relative_path": "Developer Guide.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.AudioBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.AudioBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.AudioBuffer",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.AudioBuffer.yml\" sourcestartlinenumber=\"1\">Represents an audio buffer that manages audio data in various formats and provides methods for\nmanipulating and accessing the buffer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.AudioBufferInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.AudioBufferInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.AudioBufferInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.AudioFifo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.AudioFifo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.AudioFifo",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.AudioFifo.yml\" sourcestartlinenumber=\"1\">Represents a managed wrapper around FFmpeg's <code>AVAudioFifo</code> for audio buffering.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.AudioServiceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.AudioServiceType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.AudioServiceType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.AudioServiceType.yml\" sourcestartlinenumber=\"1\">Specifies the type of audio service or channel. These values are used to indicate the purpose of the audio track in various multimedia applications.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.ChannelLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.ChannelLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.ChannelLayout",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.ChannelLayout.yml\" sourcestartlinenumber=\"1\">Represents a channel layout, which defines the arrangement of audio channels in a multi-channel audio format.\nThis class provides functionality to interact with and manipulate audio channel layouts using FFmpeg's <xref href=\"FFmpeg.AutoGen._AVChannelLayout\" data-throw-if-not-resolved=\"false\"></xref> structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.ChannelLayoutConstList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.ChannelLayoutConstList.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.ChannelLayoutConstList",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.ChannelLayoutConstList.yml\" sourcestartlinenumber=\"1\">Represents a read-only list of <xref href=\"FFmpeg.Audio.ChannelLayout_ref\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.ChannelLayout_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.ChannelLayout_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.ChannelLayout_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.ChannelLayout_ref.yml\" sourcestartlinenumber=\"1\">Represents a reference to an FFmpeg <xref href=\"FFmpeg.AutoGen._AVChannelLayout\" data-throw-if-not-resolved=\"false\"></xref> structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.IChannelLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.IChannelLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.IChannelLayout",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.IChannelLayout.yml\" sourcestartlinenumber=\"1\">Defines an interface for working with channel layouts in audio processing.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.SampleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.SampleExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.SampleExtensions",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.SampleExtensions.yml\" sourcestartlinenumber=\"1\">Provides extension methods for working with <xref href=\"FFmpeg.Audio.SampleFormat\" data-throw-if-not-resolved=\"false\"></xref> values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.SampleFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.SampleFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.SampleFormat",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.SampleFormat.yml\" sourcestartlinenumber=\"1\">Defines the audio sample formats used for encoding and decoding audio data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.SwrContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.SwrContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio.SwrContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Audio.SwrContext.yml\" sourcestartlinenumber=\"1\">Represents a managed wrapper for the FFmpeg SwrContext, used for audio resampling, format conversion,\nand channel layout remapping.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Audio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Audio.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Audio",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Codec.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Codec.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Codec",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Codec.yml\" sourcestartlinenumber=\"1\">Represents a codec in FFmpeg, providing access to its core information such as name, capabilities,\nsupported formats, and additional metadata. This struct allows interaction with codec details\nin a managed, type-safe manner.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecCapabilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecCapabilities.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecCapabilities",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecCapabilities.yml\" sourcestartlinenumber=\"1\">Flags representing the capabilities of codecs in FFmpeg. These capabilities describe various features or behaviors\nthat a codec can support, such as multi-threading, handling frame sizes, and experimental features.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecContext.yml\" sourcestartlinenumber=\"1\">Represents a codec context used for encoding or decoding video and audio streams using FFmpeg.</p>\n<p>\nThis class wraps the <xref href=\"FFmpeg.AutoGen._AVCodecContext\" data-throw-if-not-resolved=\"false\"></xref> structure from the FFmpeg library,\nproviding an interface for configuring and interacting with codec parameters for both encoding\nand decoding operations.\n</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecDescription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecDescription.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecDescription",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecDescription.yml\" sourcestartlinenumber=\"1\">Represents a codec descriptor with various properties.</p>\n<p>\nThis struct is a readonly wrapper around an <xref href=\"FFmpeg.AutoGen._AVCodecDescriptor\" data-throw-if-not-resolved=\"false\"></xref> pointer, providing a way to access codec descriptor properties in a safe manner.\n</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecFlags.yml\" sourcestartlinenumber=\"1\">Represents various codec flags used to control the behavior of codecs in FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecID.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecID.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecID",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecID.yml\" sourcestartlinenumber=\"1\">Identify the syntax and semantics of the bitstream. The principle is roughly:\nTwo decoders with the same ID can decode the same streams. Two encoders with the\nsame ID can encode compatible streams. There may be slight deviations from the\nprinciple due to implementation details.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecParameters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecParameters",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecParameters.yml\" sourcestartlinenumber=\"1\">A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure,\nproviding safe access to codec parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecParameters_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecParameters_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecParameters_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecParameters_ref.yml\" sourcestartlinenumber=\"1\">A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure,\nproviding safe access to codec parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecProperties.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecProperties.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecProperties",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecProperties.yml\" sourcestartlinenumber=\"1\">Enum representing codec properties (a combination of flags).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.CodecTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.CodecTag.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.CodecTag",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.CodecTag.yml\" sourcestartlinenumber=\"1\">Represents a codec tag, combining a codec ID and a FourCC (Four Character Code) tag.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.DecodeErrorFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.DecodeErrorFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.DecodeErrorFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.DecodeErrorFlags.yml\" sourcestartlinenumber=\"1\">Flags representing various decode errors.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IAudioDecoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IAudioDecoder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IAudioDecoder",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.IAudioDecoder.yml\" sourcestartlinenumber=\"1\">Represents an audio decoder providing access to various properties of the audio stream being decoded.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IAudioEncoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IAudioEncoder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IAudioEncoder",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.IAudioEncoder.yml\" sourcestartlinenumber=\"1\">Represents an interface for audio encoders, providing properties specific to audio encoding such as sample rate, format, and channel layout.\nInherits from <xref href=\"FFmpeg.Codecs.IEncoderContext\" data-throw-if-not-resolved=\"false\"></xref> for general encoding options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.ICodecParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.ICodecParameters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.ICodecParameters",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.ICodecParameters.yml\" sourcestartlinenumber=\"1\">Defines an interface for accessing and modifying codec parameters, including audio, video, and general stream properties.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IDecoderContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IDecoderContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IDecoderContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IEncoderContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IEncoderContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IEncoderContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.IEncoderContext.yml\" sourcestartlinenumber=\"1\">Represents the context for encoding operations, including codec information and encoding settings.\nThis interface manages encoding state and allows querying and setting options for the encoder.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IVideoDecoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IVideoDecoder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IVideoDecoder",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.IVideoDecoder.yml\" sourcestartlinenumber=\"1\">Defines the interface for a video decoder, which is responsible for decoding video streams.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.IVideoEncoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.IVideoEncoder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.IVideoEncoder",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.IVideoEncoder.yml\" sourcestartlinenumber=\"1\">Represents an interface for video encoders, providing properties specific to video encoding such as frame rate, resolution, and pixel format.\nInherits from <xref href=\"FFmpeg.Codecs.IEncoderContext\" data-throw-if-not-resolved=\"false\"></xref> for general encoding options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Profile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Profile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Profile",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Profile.yml\" sourcestartlinenumber=\"1\">Represents a profile in FFmpeg, providing information about the profile ID and its associated name.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.yml\" sourcestartlinenumber=\"1\">Defines the available adaptive quantization modes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.yml\" sourcestartlinenumber=\"1\">Defines the available bitrate control modes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.yml\" sourcestartlinenumber=\"1\">Represents the bitrate control settings for the SVT-AV1 encoder.\nProvides configuration options for different bitrate control modes and adaptive quantization.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.yml\" sourcestartlinenumber=\"1\">Represents the Group of Pictures (GOP) settings, controlling the interval between keyframes in video encoding.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.yml\" sourcestartlinenumber=\"1\">Specifies the mode for handling screen content in the SVT-AV1 encoder.\nScreen content refers to video content that primarily consists of static images, text, or graphical elements (such as computer-generated content).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.yml\" sourcestartlinenumber=\"1\">Specifies the metric used for tuning the encoding process to optimize quality or performance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.LibSVTAV1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.LibSVTAV1",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.SVTAV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.SVTAV1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.SVTAV1",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.SVTAV1.yml\" sourcestartlinenumber=\"1\">Represents the SVT-AV1 video codec.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.VideoCodec.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.VideoCodec.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video.VideoCodec",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Codecs.Video.VideoCodec.yml\" sourcestartlinenumber=\"1\">Represents a base class for configuring and creating video codec contexts.\nThis abstract class provides common functionality for different video codecs.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.Video.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.Video.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs.Video",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Codecs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Codecs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Codecs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVBuffer",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVBuffer.yml\" sourcestartlinenumber=\"1\">Represents a wrapper for an AVBufferRef in FFmpeg, which manages reference-counted buffers.\nProvides functionality for managing the lifetime, access, and manipulation of these buffers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVBufferPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVBufferPool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVBufferPool",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVBufferPool.yml\" sourcestartlinenumber=\"1\">Represents a pool of <xref href=\"FFmpeg.Collections.AVBuffer\" data-throw-if-not-resolved=\"false\"></xref> objects for efficient memory management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVBuffer_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVBuffer_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVBuffer_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVBuffer_ref.yml\" sourcestartlinenumber=\"1\">Represents a reference to an AVBuffer, providing a set of operations for handling\nbuffer memory and metadata in a safe manner, while leveraging the underlying AVBufferRef structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVDictionary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVDictionary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVDictionary",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVDictionary.yml\" sourcestartlinenumber=\"1\">Represents a dictionary that wraps around the FFmpeg AVDictionary structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVDictionary_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVDictionary_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVDictionary_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVDictionary_ref.yml\" sourcestartlinenumber=\"1\">Represents a dictionary that wraps around the FFmpeg AVDictionary structure, allowing for\nkey-value pair management with additional features such as case-insensitive comparisons.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVMultiDictionary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVMultiDictionary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVMultiDictionary",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVMultiDictionary.yml\" sourcestartlinenumber=\"1\">Represents a multi-dictionary that allows multiple values for a single key.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.AVMultiDictionary_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.AVMultiDictionary_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.AVMultiDictionary_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.AVMultiDictionary_ref.yml\" sourcestartlinenumber=\"1\">Represents a multi-dictionary that allows multiple values for a single key.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.IBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.IBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections.IBuffer",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Collections.IBuffer.yml\" sourcestartlinenumber=\"1\">Defines the interface for buffer management, providing methods for\naccessing and manipulating data, managing reference counts, and handling\nbuffer memory operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Collections.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Collections",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Devices.Device.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Devices.Device.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Devices.Device",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Devices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Devices.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Devices",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.BitStreamFilterNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.BitStreamFilterNotFoundException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions.BitStreamFilterNotFoundException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.BufferToSmallExcpetion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.BufferToSmallExcpetion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions.BufferToSmallExcpetion",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.DecoderNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.DecoderNotFoundException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions.DecoderNotFoundException",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.FFmpegException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.FFmpegException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions.FFmpegException",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Exceptions.FFmpegException.yml\" sourcestartlinenumber=\"1\">Represents errors that occur during FFmpeg operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.OptionNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.OptionNotFoundException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions.OptionNotFoundException",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Exceptions.OptionNotFoundException.yml\" sourcestartlinenumber=\"1\">Represents an exception that is thrown when an option is not found in an FFmpeg operation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Exceptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Exceptions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.FFmpegLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.FFmpegLoader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.FFmpegLoader",
+      "Summary": "<p sourcefile=\"api/FFmpeg.FFmpegLoader.yml\" sourcestartlinenumber=\"1\">Used to initialize the ffmpeg bindings</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.BufferSrcParameters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.BufferSrcParameters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.BufferSrcParameters",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.BufferSrcParameters.yml\" sourcestartlinenumber=\"1\">Represents the parameters used for configuring a buffer source in FFmpeg.\nProvides mechanisms to allocate, manage, and dispose of buffer source parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.Filter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.Filter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.Filter",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.Filter.yml\" sourcestartlinenumber=\"1\">Represents a filter used in FFmpeg's filter graph. Provides information about filters, including their names, descriptions, inputs, outputs, and flags.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.FilterContext.yml\" sourcestartlinenumber=\"1\">Represents a filter context in FFmpeg, which is used to manage filter instances in a filter graph.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.FilterFlags.yml\" sourcestartlinenumber=\"1\">Represents various filter flags used in FFmpeg filters.\nThese flags indicate different capabilities or behaviors of the filters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterGraph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterGraph.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterGraph",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.FilterGraph.yml\" sourcestartlinenumber=\"1\">Represents an FFmpeg filter graph, which contains multiple filter contexts and manages their connections.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterInOutEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterInOutEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterInOutEntry",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterInOutList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterInOutList.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterInOutList",
+      "Summary": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterLink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterLink.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterLink",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterPad.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterPad.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterPad",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.FilterPad.yml\" sourcestartlinenumber=\"1\">Represents a single filter pad, which is used for connecting filter inputs and outputs in an FFmpeg filter graph.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.FilterPadList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.FilterPadList.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters.FilterPadList",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Filters.FilterPadList.yml\" sourcestartlinenumber=\"1\">Represents a read-only list of <xref href=\"FFmpeg.Filters.FilterPad\" data-throw-if-not-resolved=\"false\"></xref> objects, providing access to the pads in a filter.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Filters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Filters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Filters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.AVStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.AVStream.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.AVStream",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.AVStream.yml\" sourcestartlinenumber=\"1\">Managed wrapper for the FFmpeg AVStream structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.DiscardFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.DiscardFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.DiscardFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.DiscardFlags.yml\" sourcestartlinenumber=\"1\">Flags to specify the discard behavior for frames during processing.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.FormatContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.FormatContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.FormatContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.FormatContext.yml\" sourcestartlinenumber=\"1\">Provides a managed wrapper around the native <xref href=\"FFmpeg.AutoGen._AVFormatContext\" data-throw-if-not-resolved=\"false\"></xref> structure from the FFmpeg library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.FormatContextFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.FormatContextFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.FormatContextFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.FormatContextFlags.yml\" sourcestartlinenumber=\"1\">Flags that specify the characteristics of a format context in FFmpeg.\nThese flags provide information about the presence of headers and the seekability of the stream.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.FormatFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.FormatFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.FormatFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.FormatFlags.yml\" sourcestartlinenumber=\"1\">Flags used to specify various format options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.InputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.InputFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.InputFormat",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.InputFormat.yml\" sourcestartlinenumber=\"1\">Represents an AV input format, wrapping around an <xref href=\"FFmpeg.AutoGen._AVInputFormat\" data-throw-if-not-resolved=\"false\"></xref> pointer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.OutputFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.OutputFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.OutputFormat",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.OutputFormat.yml\" sourcestartlinenumber=\"1\">Represents an output format in the FFmpeg library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.StreamDisposition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.StreamDisposition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats.StreamDisposition",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Formats.StreamDisposition.yml\" sourcestartlinenumber=\"1\">Enum representing the stream disposition flags, indicating special properties of a stream.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Formats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Formats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Formats",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.CodecHWConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.CodecHWConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.CodecHWConfig",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.CodecHWConfig.yml\" sourcestartlinenumber=\"1\">Represents a hardware configuration for a codec, wrapping around the FFmpeg _AVCodecHWConfig structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.CodecHWConfigMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.CodecHWConfigMethod.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.CodecHWConfigMethod",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.CodecHWConfigMethod.yml\" sourcestartlinenumber=\"1\">Enum representing the hardware configuration methods supported by the codec.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.DeviceContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.DeviceContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.DeviceContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.DeviceContext.yml\" sourcestartlinenumber=\"1\">Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.DeviceContext_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.DeviceContext_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.DeviceContext_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.DeviceContext_ref.yml\" sourcestartlinenumber=\"1\">Represents a pointer to an FFmpeg hardware device context buffer reference.\nThis is used to manage hardware-accelerated contexts in FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.DeviceType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.DeviceType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.DeviceType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.DeviceType.yml\" sourcestartlinenumber=\"1\">Specifies the hardware device types available for multimedia acceleration in FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.FramesContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.FramesContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.FramesContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.FramesContext.yml\" sourcestartlinenumber=\"1\">Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.FramesContext_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.FramesContext_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW.FramesContext_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.HW.FramesContext_ref.yml\" sourcestartlinenumber=\"1\">Represents a pointer to an FFmpeg hardware device context buffer reference.\nThis is used to manage hardware-accelerated contexts in FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.HW.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.HW.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.HW",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.AVIOContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.AVIOContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.AVIOContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.AVIOContext.yml\" sourcestartlinenumber=\"1\">Represents a managed wrapper for the unmanaged FFmpeg AVIOContext structure.\nThis class provides access to various properties and methods related to AVIOContext.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.AVSeek.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.AVSeek.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.AVSeek",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.AVSeek.yml\" sourcestartlinenumber=\"1\">Flags used for seeking operations within a stream or file in FFmpeg.\nThese flags can be combined using a bitwise OR to modify the behavior of seeking functions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.IOContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.IOContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.IOContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.IOContext.yml\" sourcestartlinenumber=\"1\">Represents an abstract base class for handling custom I/O operations in FFmpeg.\nThis class encapsulates an FFmpeg AVIOContext and manages its lifecycle and memory management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.IOOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.IOOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.IOOptions",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.IOOptions.yml\" sourcestartlinenumber=\"1\">Flags representing different input/output operations that can be performed on a stream or file.\nThese flags can be combined using a bitwise OR, except for <xref href=\"FFmpeg.IO.IOOptions.Read\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"FFmpeg.IO.IOOptions.Write\" data-throw-if-not-resolved=\"false\"></xref>, which are mutually exclusive.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.IOStreamContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.IOStreamContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.IOStreamContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.IOStreamContext.yml\" sourcestartlinenumber=\"1\">Represents an I/O context for interacting with a .NET <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> object.\nThis class supports reading from, writing to, and seeking within the stream.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.Protocols.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.Protocols.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO.Protocols",
+      "Summary": "<p sourcefile=\"api/FFmpeg.IO.Protocols.yml\" sourcestartlinenumber=\"1\">Provides access to the input and output protocols supported by FFmpeg for internal URL IO operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.IO.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.IO.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.IO",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ChromaLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ChromaLocation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ChromaLocation",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ChromaLocation.yml\" sourcestartlinenumber=\"1\">Specifies the location of chroma samples in the video.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ColorPrimaries.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ColorPrimaries.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ColorPrimaries",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ColorPrimaries.yml\" sourcestartlinenumber=\"1\">Represents the chromaticity coordinates of the source primaries, matching values defined by ISO/IEC 23091-2_2019 and ITU-T H.273.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ColorRange.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ColorRange.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ColorRange",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ColorRange.yml\" sourcestartlinenumber=\"1\">Represents the visual content value range.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ColorSpace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ColorSpace.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ColorSpace",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ColorSpace.yml\" sourcestartlinenumber=\"1\">Represents various color space types.\nThese values are based on ISO/IEC 23091-2_2019 subclause 8.3.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ColorTransferCharacteristic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ColorTransferCharacteristic.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ColorTransferCharacteristic",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ColorTransferCharacteristic.yml\" sourcestartlinenumber=\"1\">Represents the color transfer characteristics, which define how color values are encoded and transformed.\nThese values match the ones defined by ISO/IEC 23091-2_2019 subclause 8.2.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.FFLoss.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.FFLoss.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.FFLoss",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.FFLoss.yml\" sourcestartlinenumber=\"1\">Represents different types of data loss in video compression as flags.\nThese values are defined in the FFmpeg library (ffmpeg.FF_LOSS_*).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.FieldOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.FieldOrder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.FieldOrder",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.FieldOrder.yml\" sourcestartlinenumber=\"1\">Specifies the field order of interlaced video. These values match the ones defined by various video standards.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.Image.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.Image.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.Image",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.Image.yml\" sourcestartlinenumber=\"1\">Represents an image stored in consecutive memory with utilities for handling image data and memory buffers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.ImageInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.ImageInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.ImageInfo",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.ImageInfo.yml\" sourcestartlinenumber=\"1\">Represents image metadata including width, height, pixel format, and memory alignment.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.PixelFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.PixelFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.PixelFormat",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.PixelFormat.yml\" sourcestartlinenumber=\"1\">Represents the various pixel formats available.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.PixelFormatExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.PixelFormatExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.PixelFormatExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.SwsAlgorithm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.SwsAlgorithm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.SwsAlgorithm",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.SwsAlgorithm.yml\" sourcestartlinenumber=\"1\">Represents a scaling algorithm for use with FFmpeg's libswscale, encapsulating the algorithm flags and optional scaling parameters.\nThese parameters can tune the behavior of the scaling algorithm for finer control over image scaling quality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.SwsContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.SwsContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.SwsContext",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.SwsContext.yml\" sourcestartlinenumber=\"1\">Represents a context for scaling and converting image frames between different sizes and pixel formats.\nThis class provides an interface for configuring the source and destination image properties and performing the conversion using the FFmpeg scaling library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.SwsFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.SwsFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images.SwsFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Images.SwsFlags.yml\" sourcestartlinenumber=\"1\">Represents the various flags and scaling algorithms used in FFmpeg's libswscale for sws_getContext.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Images.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Images.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Images",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.MediaSink.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.MediaSink.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.MediaSink",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.MediaSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.MediaSource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.MediaSource",
+      "Summary": "<p sourcefile=\"api/FFmpeg.MediaSource.yml\" sourcestartlinenumber=\"1\">Represents a media source that handles reading and decoding of media data from various input sources.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Metadata.MetadataTag.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Metadata.MetadataTag.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Metadata.MetadataTag",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Metadata.MetadataTag.yml\" sourcestartlinenumber=\"1\">Enum representing metadata tags used in the FFmpeg library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Metadata.MetadataTags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Metadata.MetadataTags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Metadata.MetadataTags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Metadata.MetadataTags.yml\" sourcestartlinenumber=\"1\">Contains constant string values for metadata tags used in the FFmpeg library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Metadata.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Metadata.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Metadata",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.IOptionQuery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.IOptionQuery.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options.IOptionQuery",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Options.IOptionQuery.yml\" sourcestartlinenumber=\"1\">Defines methods for querying and setting options in a system. Provides functionality to find,\nretrieve, and modify various types of options using either <xref href=\"FFmpeg.Options.Option\" data-throw-if-not-resolved=\"false\"></xref> or option names.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.Option.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.Option.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options.Option",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Options.Option.yml\" sourcestartlinenumber=\"1\">Represents an option in the FFmpeg library's configuration system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.OptionFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.OptionFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options.OptionFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Options.OptionFlags.yml\" sourcestartlinenumber=\"1\">Represents the flags that can be applied to AVOptions in FFmpeg.\nThese flags control how options are used during encoding, decoding, filtering, and other operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.OptionQueryBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.OptionQueryBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options.OptionQueryBase",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Options.OptionQueryBase.yml\" sourcestartlinenumber=\"1\">An abstract base class for querying options from AV-option-enabled classes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.OptionType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.OptionType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options.OptionType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Options.OptionType.yml\" sourcestartlinenumber=\"1\">Represents the different types of options available in the FFmpeg library.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Options.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Options",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Subtitles.Subtitle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Subtitles.Subtitle.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Subtitles.Subtitle",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Subtitles.Subtitle.yml\" sourcestartlinenumber=\"1\">Represents a collection of subtitle rectangles and manages subtitle display timings.\nThis class wraps an FFmpeg <xref href=\"FFmpeg.AutoGen._AVSubtitle\" data-throw-if-not-resolved=\"false\"></xref> structure and provides access to subtitle properties and rectangles.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Subtitles.SubtitleRect.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Subtitles.SubtitleRect.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Subtitles.SubtitleRect",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Subtitles.SubtitleRect.yml\" sourcestartlinenumber=\"1\">Represents a rectangular subtitle area and its associated metadata, such as position, size, color count, and text or bitmap data.\nThis struct wraps an <xref href=\"FFmpeg.AutoGen._AVSubtitleRect\" data-throw-if-not-resolved=\"false\"></xref> pointer from FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Subtitles.SubtitleType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Subtitles.SubtitleType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Subtitles.SubtitleType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Subtitles.SubtitleType.yml\" sourcestartlinenumber=\"1\">Represents the type of subtitle, which defines how the subtitle data is structured or formatted.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Subtitles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Subtitles.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Subtitles",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Threading.AutoResetAllEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Threading.AutoResetAllEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Threading.AutoResetAllEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Threading.AwaitWaitHandleExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Threading.AwaitWaitHandleExtension.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Threading.AwaitWaitHandleExtension",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Threading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Threading.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Threading",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Transcoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Transcoder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Transcoder",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.AVFrame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.AVFrame.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.AVFrame",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.AVFrame.yml\" sourcestartlinenumber=\"1\">Represents a decoded audio or video frame in memory. This structure holds raw data for video frames or audio samples. <br>\nIt provides methods and properties to access and manipulate this data, as well as to manage the associated resources.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.AVPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.AVPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.AVPacket",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.AVPacket.yml\" sourcestartlinenumber=\"1\">Managed wrapper for the FFmpeg <xref href=\"FFmpeg.AutoGen._AVPacket\" data-throw-if-not-resolved=\"false\"></xref> structure.\nProvides managed access to packet data, timestamps, and operations for video and audio streaming.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.AVPacket_ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.AVPacket_ref.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.AVPacket_ref",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.AVPacket_ref.yml\" sourcestartlinenumber=\"1\">Managed wrapper for the FFmpeg <xref href=\"FFmpeg.AutoGen._AVPacket\" data-throw-if-not-resolved=\"false\"></xref> structure.\nProvides managed access to packet data, timestamps, and operations for video and audio streaming.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.AVResult32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.AVResult32.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.AVResult32",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.AVResult32.yml\" sourcestartlinenumber=\"1\">Represents a 32-bit integer result from an AV operation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.AVResult64.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.AVResult64.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.AVResult64",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.AVResult64.yml\" sourcestartlinenumber=\"1\">Represents a 64-bit integer result from an AV operation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.EightCC.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.EightCC.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.EightCC",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.EightCC.yml\" sourcestartlinenumber=\"1\">Represents an EightCC (eight-character code), which is a sequence of eight 8-bit characters\npacked into a 64-bit unsigned integer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.FrameFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.FrameFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.FrameFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.FrameFlags.yml\" sourcestartlinenumber=\"1\">Specifies flags for frames in FFmpeg.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.IPacket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.IPacket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.IPacket",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.IPacket.yml\" sourcestartlinenumber=\"1\">Managed wrapper for the FFmpeg <xref href=\"FFmpeg.AutoGen._AVPacket\" data-throw-if-not-resolved=\"false\"></xref> structure.\nProvides managed access to packet data, timestamps, and operations for video and audio streaming.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.IReference-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.IReference-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.IReference<T>",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.IReference-1.yml\" sourcestartlinenumber=\"1\">Represents an interface for managing references to unmanaged objects that must be disposed,\nsuch as FFmpeg objects, without requiring the implementing struct to handle disposal directly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.MediaType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.MediaType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.MediaType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.MediaType.yml\" sourcestartlinenumber=\"1\">Represents different types of media streams.\nMapped from FFmpeg.AutoGen._AVMediaType enum.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.PacketFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.PacketFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.PacketFlags",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.PacketFlags.yml\" sourcestartlinenumber=\"1\">Enumeration for packet flags, corresponding to AV_PKT_FLAG values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.PictureType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.PictureType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.PictureType",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.PictureType.yml\" sourcestartlinenumber=\"1\">Specifies different types of picture frames used in video coding standards.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.Quality.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.Quality.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.Quality",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.Quality.yml\" sourcestartlinenumber=\"1\">Represents quality from 1 (BEST) to FF_LAMBDA_MAX (WORST).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.Rational.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.Rational.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils.Rational",
+      "Summary": "<p sourcefile=\"api/FFmpeg.Utils.Rational.yml\" sourcestartlinenumber=\"1\">Represents a rational number with a numerator and denominator.\nThis struct is readonly for performance reasons.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.Utils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg.Utils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FFmpeg.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FFmpeg.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "FFmpeg",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "ffmpeg-binaries/FFmpegDotNet.bin.winx64/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "ffmpeg-binaries/FFmpegDotNet.bin.winx64/README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,969 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.CodecFlags
+  commentId: T:FFmpeg.Codecs.CodecFlags
+  id: CodecFlags
+  parent: FFmpeg.Codecs
+  children:
+  - FFmpeg.Codecs.CodecFlags.AdvancedIntraCoding
+  - FFmpeg.Codecs.CodecFlags.AdvancedMotionVectors
+  - FFmpeg.Codecs.CodecFlags.AllowSpeedupTricks
+  - FFmpeg.Codecs.CodecFlags.AllowUnalignedFrames
+  - FFmpeg.Codecs.CodecFlags.BitExactOperations
+  - FFmpeg.Codecs.CodecFlags.CalculatePSNR
+  - FFmpeg.Codecs.CodecFlags.ClosedGOP
+  - FFmpeg.Codecs.CodecFlags.DiscardCroppingInfo
+  - FFmpeg.Codecs.CodecFlags.ExportMotionVectors
+  - FFmpeg.Codecs.CodecFlags.ExportSkipInformation
+  - FFmpeg.Codecs.CodecFlags.FixedQuantizationScale
+  - FFmpeg.Codecs.CodecFlags.ForceLowDelay
+  - FFmpeg.Codecs.CodecFlags.GlobalHeadersAtKeyframes
+  - FFmpeg.Codecs.CodecFlags.GlobalHeadersInExtradata
+  - FFmpeg.Codecs.CodecFlags.GrayscaleOnly
+  - FFmpeg.Codecs.CodecFlags.HandleICCProfiles
+  - FFmpeg.Codecs.CodecFlags.InterlacedDCT
+  - FFmpeg.Codecs.CodecFlags.InterlacedMotionEstimation
+  - FFmpeg.Codecs.CodecFlags.KeepReadOrderOnFlush
+  - FFmpeg.Codecs.CodecFlags.None
+  - FFmpeg.Codecs.CodecFlags.OutputCorruptedFrames
+  - FFmpeg.Codecs.CodecFlags.OutputReconstructedFrames
+  - FFmpeg.Codecs.CodecFlags.PropagateOpaqueData
+  - FFmpeg.Codecs.CodecFlags.QuarterPixelMotionCompensation
+  - FFmpeg.Codecs.CodecFlags.ShowAllFramesBeforeKeyframe
+  - FFmpeg.Codecs.CodecFlags.SkipBitstreamEncoding
+  - FFmpeg.Codecs.CodecFlags.TruncateAtPacketBoundaries
+  - FFmpeg.Codecs.CodecFlags.Use2PassRateControlFirstPass
+  - FFmpeg.Codecs.CodecFlags.Use2PassRateControlSecondPass
+  - FFmpeg.Codecs.CodecFlags.UseFrameDurations
+  - FFmpeg.Codecs.CodecFlags.UseLoopFilter
+  langs:
+  - csharp
+  - vb
+  name: CodecFlags
+  nameWithType: CodecFlags
+  fullName: FFmpeg.Codecs.CodecFlags
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecFlags
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Represents various codec flags used to control the behavior of codecs in FFmpeg.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum CodecFlags : long
+    content.vb: >-
+      <Flags>
+
+      Public Enum CodecFlags As Long
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.Codecs.CodecFlags.None
+  commentId: F:FFmpeg.Codecs.CodecFlags.None
+  id: None
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: CodecFlags.None
+  fullName: FFmpeg.Codecs.CodecFlags.None
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: None
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: No codec flags set.
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.AllowUnalignedFrames
+  commentId: F:FFmpeg.Codecs.CodecFlags.AllowUnalignedFrames
+  id: AllowUnalignedFrames
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: AllowUnalignedFrames
+  nameWithType: CodecFlags.AllowUnalignedFrames
+  fullName: FFmpeg.Codecs.CodecFlags.AllowUnalignedFrames
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AllowUnalignedFrames
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 16
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Allow decoders to produce frames with data planes that are not aligned to CPU requirements (e.g., due to cropping).
+  example: []
+  syntax:
+    content: AllowUnalignedFrames = 1
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.FixedQuantizationScale
+  commentId: F:FFmpeg.Codecs.CodecFlags.FixedQuantizationScale
+  id: FixedQuantizationScale
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: FixedQuantizationScale
+  nameWithType: CodecFlags.FixedQuantizationScale
+  fullName: FFmpeg.Codecs.CodecFlags.FixedQuantizationScale
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FixedQuantizationScale
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use fixed quantization scale.
+  example: []
+  syntax:
+    content: FixedQuantizationScale = 2
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.AdvancedMotionVectors
+  commentId: F:FFmpeg.Codecs.CodecFlags.AdvancedMotionVectors
+  id: AdvancedMotionVectors
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: AdvancedMotionVectors
+  nameWithType: CodecFlags.AdvancedMotionVectors
+  fullName: FFmpeg.Codecs.CodecFlags.AdvancedMotionVectors
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdvancedMotionVectors
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 26
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Allow 4 motion vectors per macroblock / advanced prediction for H.263.
+  example: []
+  syntax:
+    content: AdvancedMotionVectors = 4
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.OutputCorruptedFrames
+  commentId: F:FFmpeg.Codecs.CodecFlags.OutputCorruptedFrames
+  id: OutputCorruptedFrames
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: OutputCorruptedFrames
+  nameWithType: CodecFlags.OutputCorruptedFrames
+  fullName: FFmpeg.Codecs.CodecFlags.OutputCorruptedFrames
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OutputCorruptedFrames
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 31
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Output even frames that might be corrupted.
+  example: []
+  syntax:
+    content: OutputCorruptedFrames = 8
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.QuarterPixelMotionCompensation
+  commentId: F:FFmpeg.Codecs.CodecFlags.QuarterPixelMotionCompensation
+  id: QuarterPixelMotionCompensation
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: QuarterPixelMotionCompensation
+  nameWithType: CodecFlags.QuarterPixelMotionCompensation
+  fullName: FFmpeg.Codecs.CodecFlags.QuarterPixelMotionCompensation
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: QuarterPixelMotionCompensation
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use quarter-pixel motion compensation.
+  example: []
+  syntax:
+    content: QuarterPixelMotionCompensation = 16
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.OutputReconstructedFrames
+  commentId: F:FFmpeg.Codecs.CodecFlags.OutputReconstructedFrames
+  id: OutputReconstructedFrames
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: OutputReconstructedFrames
+  nameWithType: CodecFlags.OutputReconstructedFrames
+  fullName: FFmpeg.Codecs.CodecFlags.OutputReconstructedFrames
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OutputReconstructedFrames
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 41
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Request the encoder to output reconstructed frames that would be produced by decoding the encoded bitstream.
+  example: []
+  syntax:
+    content: OutputReconstructedFrames = 64
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.PropagateOpaqueData
+  commentId: F:FFmpeg.Codecs.CodecFlags.PropagateOpaqueData
+  id: PropagateOpaqueData
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: PropagateOpaqueData
+  nameWithType: CodecFlags.PropagateOpaqueData
+  fullName: FFmpeg.Codecs.CodecFlags.PropagateOpaqueData
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PropagateOpaqueData
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 46
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Propagate each packet's opaque data to its corresponding output frame or each frame's opaque data to its corresponding output packet.
+  example: []
+  syntax:
+    content: PropagateOpaqueData = 128
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.UseFrameDurations
+  commentId: F:FFmpeg.Codecs.CodecFlags.UseFrameDurations
+  id: UseFrameDurations
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: UseFrameDurations
+  nameWithType: CodecFlags.UseFrameDurations
+  fullName: FFmpeg.Codecs.CodecFlags.UseFrameDurations
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UseFrameDurations
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Signal to the encoder that the values of frame durations are valid and should be used.
+  example: []
+  syntax:
+    content: UseFrameDurations = 256
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.Use2PassRateControlFirstPass
+  commentId: F:FFmpeg.Codecs.CodecFlags.Use2PassRateControlFirstPass
+  id: Use2PassRateControlFirstPass
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: Use2PassRateControlFirstPass
+  nameWithType: CodecFlags.Use2PassRateControlFirstPass
+  fullName: FFmpeg.Codecs.CodecFlags.Use2PassRateControlFirstPass
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Use2PassRateControlFirstPass
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use internal 2-pass rate control in the first pass mode.
+  example: []
+  syntax:
+    content: Use2PassRateControlFirstPass = 512
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.Use2PassRateControlSecondPass
+  commentId: F:FFmpeg.Codecs.CodecFlags.Use2PassRateControlSecondPass
+  id: Use2PassRateControlSecondPass
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: Use2PassRateControlSecondPass
+  nameWithType: CodecFlags.Use2PassRateControlSecondPass
+  fullName: FFmpeg.Codecs.CodecFlags.Use2PassRateControlSecondPass
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Use2PassRateControlSecondPass
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 61
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use internal 2-pass rate control in the second pass mode.
+  example: []
+  syntax:
+    content: Use2PassRateControlSecondPass = 1024
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.UseLoopFilter
+  commentId: F:FFmpeg.Codecs.CodecFlags.UseLoopFilter
+  id: UseLoopFilter
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: UseLoopFilter
+  nameWithType: CodecFlags.UseLoopFilter
+  fullName: FFmpeg.Codecs.CodecFlags.UseLoopFilter
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UseLoopFilter
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use loop filtering.
+  example: []
+  syntax:
+    content: UseLoopFilter = 2048
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.GrayscaleOnly
+  commentId: F:FFmpeg.Codecs.CodecFlags.GrayscaleOnly
+  id: GrayscaleOnly
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: GrayscaleOnly
+  nameWithType: CodecFlags.GrayscaleOnly
+  fullName: FFmpeg.Codecs.CodecFlags.GrayscaleOnly
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GrayscaleOnly
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 71
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Only decode or encode grayscale images.
+  example: []
+  syntax:
+    content: GrayscaleOnly = 8192
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.CalculatePSNR
+  commentId: F:FFmpeg.Codecs.CodecFlags.CalculatePSNR
+  id: CalculatePSNR
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: CalculatePSNR
+  nameWithType: CodecFlags.CalculatePSNR
+  fullName: FFmpeg.Codecs.CodecFlags.CalculatePSNR
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CalculatePSNR
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 76
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Notify PSNR (Peak Signal-to-Noise Ratio) variables during encoding.
+  example: []
+  syntax:
+    content: CalculatePSNR = 32768
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.InterlacedDCT
+  commentId: F:FFmpeg.Codecs.CodecFlags.InterlacedDCT
+  id: InterlacedDCT
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: InterlacedDCT
+  nameWithType: CodecFlags.InterlacedDCT
+  fullName: FFmpeg.Codecs.CodecFlags.InterlacedDCT
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InterlacedDCT
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 81
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use interlaced Discrete Cosine Transform (DCT).
+  example: []
+  syntax:
+    content: InterlacedDCT = 262144
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.ForceLowDelay
+  commentId: F:FFmpeg.Codecs.CodecFlags.ForceLowDelay
+  id: ForceLowDelay
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: ForceLowDelay
+  nameWithType: CodecFlags.ForceLowDelay
+  fullName: FFmpeg.Codecs.CodecFlags.ForceLowDelay
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ForceLowDelay
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 86
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Force low latency encoding/decoding.
+  example: []
+  syntax:
+    content: ForceLowDelay = 524288
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.GlobalHeadersInExtradata
+  commentId: F:FFmpeg.Codecs.CodecFlags.GlobalHeadersInExtradata
+  id: GlobalHeadersInExtradata
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: GlobalHeadersInExtradata
+  nameWithType: CodecFlags.GlobalHeadersInExtradata
+  fullName: FFmpeg.Codecs.CodecFlags.GlobalHeadersInExtradata
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GlobalHeadersInExtradata
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 91
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Place global headers in extradata instead of every keyframe.
+  example: []
+  syntax:
+    content: GlobalHeadersInExtradata = 4194304
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.BitExactOperations
+  commentId: F:FFmpeg.Codecs.CodecFlags.BitExactOperations
+  id: BitExactOperations
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: BitExactOperations
+  nameWithType: CodecFlags.BitExactOperations
+  fullName: FFmpeg.Codecs.CodecFlags.BitExactOperations
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitExactOperations
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 96
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use only bit-exact operations (except (I)DCT).
+  example: []
+  syntax:
+    content: BitExactOperations = 8388608
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.AdvancedIntraCoding
+  commentId: F:FFmpeg.Codecs.CodecFlags.AdvancedIntraCoding
+  id: AdvancedIntraCoding
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: AdvancedIntraCoding
+  nameWithType: CodecFlags.AdvancedIntraCoding
+  fullName: FFmpeg.Codecs.CodecFlags.AdvancedIntraCoding
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdvancedIntraCoding
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 101
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use advanced intra coding or MPEG-4 AC prediction.
+  example: []
+  syntax:
+    content: AdvancedIntraCoding = 16777216
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.InterlacedMotionEstimation
+  commentId: F:FFmpeg.Codecs.CodecFlags.InterlacedMotionEstimation
+  id: InterlacedMotionEstimation
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: InterlacedMotionEstimation
+  nameWithType: CodecFlags.InterlacedMotionEstimation
+  fullName: FFmpeg.Codecs.CodecFlags.InterlacedMotionEstimation
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InterlacedMotionEstimation
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 106
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use interlaced motion estimation.
+  example: []
+  syntax:
+    content: InterlacedMotionEstimation = 536870912
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.ClosedGOP
+  commentId: F:FFmpeg.Codecs.CodecFlags.ClosedGOP
+  id: ClosedGOP
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: ClosedGOP
+  nameWithType: CodecFlags.ClosedGOP
+  fullName: FFmpeg.Codecs.CodecFlags.ClosedGOP
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ClosedGOP
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 111
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Use closed Group of Pictures (GOP).
+  example: []
+  syntax:
+    content: ClosedGOP = 2147483648
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.AllowSpeedupTricks
+  commentId: F:FFmpeg.Codecs.CodecFlags.AllowSpeedupTricks
+  id: AllowSpeedupTricks
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: AllowSpeedupTricks
+  nameWithType: CodecFlags.AllowSpeedupTricks
+  fullName: FFmpeg.Codecs.CodecFlags.AllowSpeedupTricks
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AllowSpeedupTricks
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 118
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Allow non-spec compliant speedup tricks.
+  example: []
+  syntax:
+    content: AllowSpeedupTricks = 1
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.SkipBitstreamEncoding
+  commentId: F:FFmpeg.Codecs.CodecFlags.SkipBitstreamEncoding
+  id: SkipBitstreamEncoding
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: SkipBitstreamEncoding
+  nameWithType: CodecFlags.SkipBitstreamEncoding
+  fullName: FFmpeg.Codecs.CodecFlags.SkipBitstreamEncoding
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SkipBitstreamEncoding
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 123
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Skip bitstream encoding.
+  example: []
+  syntax:
+    content: SkipBitstreamEncoding = 4
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.GlobalHeadersAtKeyframes
+  commentId: F:FFmpeg.Codecs.CodecFlags.GlobalHeadersAtKeyframes
+  id: GlobalHeadersAtKeyframes
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: GlobalHeadersAtKeyframes
+  nameWithType: CodecFlags.GlobalHeadersAtKeyframes
+  fullName: FFmpeg.Codecs.CodecFlags.GlobalHeadersAtKeyframes
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GlobalHeadersAtKeyframes
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 128
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Place global headers at every keyframe instead of in extradata.
+  example: []
+  syntax:
+    content: GlobalHeadersAtKeyframes = 8
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.TruncateAtPacketBoundaries
+  commentId: F:FFmpeg.Codecs.CodecFlags.TruncateAtPacketBoundaries
+  id: TruncateAtPacketBoundaries
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: TruncateAtPacketBoundaries
+  nameWithType: CodecFlags.TruncateAtPacketBoundaries
+  fullName: FFmpeg.Codecs.CodecFlags.TruncateAtPacketBoundaries
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TruncateAtPacketBoundaries
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 133
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Allow input bitstream to be truncated at packet boundaries.
+  example: []
+  syntax:
+    content: TruncateAtPacketBoundaries = 32768
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.DiscardCroppingInfo
+  commentId: F:FFmpeg.Codecs.CodecFlags.DiscardCroppingInfo
+  id: DiscardCroppingInfo
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: DiscardCroppingInfo
+  nameWithType: CodecFlags.DiscardCroppingInfo
+  fullName: FFmpeg.Codecs.CodecFlags.DiscardCroppingInfo
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DiscardCroppingInfo
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 138
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Discard cropping information from the Sequence Parameter Notify (SPS).
+  example: []
+  syntax:
+    content: DiscardCroppingInfo = 65536
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.ShowAllFramesBeforeKeyframe
+  commentId: F:FFmpeg.Codecs.CodecFlags.ShowAllFramesBeforeKeyframe
+  id: ShowAllFramesBeforeKeyframe
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: ShowAllFramesBeforeKeyframe
+  nameWithType: CodecFlags.ShowAllFramesBeforeKeyframe
+  fullName: FFmpeg.Codecs.CodecFlags.ShowAllFramesBeforeKeyframe
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ShowAllFramesBeforeKeyframe
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 143
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Show all frames before the first keyframe.
+  example: []
+  syntax:
+    content: ShowAllFramesBeforeKeyframe = 4194304
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.ExportMotionVectors
+  commentId: F:FFmpeg.Codecs.CodecFlags.ExportMotionVectors
+  id: ExportMotionVectors
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: ExportMotionVectors
+  nameWithType: CodecFlags.ExportMotionVectors
+  fullName: FFmpeg.Codecs.CodecFlags.ExportMotionVectors
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ExportMotionVectors
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 148
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Export motion vectors through frame side data.
+  example: []
+  syntax:
+    content: ExportMotionVectors = 268435456
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.ExportSkipInformation
+  commentId: F:FFmpeg.Codecs.CodecFlags.ExportSkipInformation
+  id: ExportSkipInformation
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: ExportSkipInformation
+  nameWithType: CodecFlags.ExportSkipInformation
+  fullName: FFmpeg.Codecs.CodecFlags.ExportSkipInformation
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ExportSkipInformation
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 153
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Do not skip samples and export skip information as frame side data.
+  example: []
+  syntax:
+    content: ExportSkipInformation = 536870912
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.KeepReadOrderOnFlush
+  commentId: F:FFmpeg.Codecs.CodecFlags.KeepReadOrderOnFlush
+  id: KeepReadOrderOnFlush
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: KeepReadOrderOnFlush
+  nameWithType: CodecFlags.KeepReadOrderOnFlush
+  fullName: FFmpeg.Codecs.CodecFlags.KeepReadOrderOnFlush
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: KeepReadOrderOnFlush
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 158
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Do not reset ASS ReadOrder field on flush for subtitle decoding.
+  example: []
+  syntax:
+    content: KeepReadOrderOnFlush = 1073741824
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+- uid: FFmpeg.Codecs.CodecFlags.HandleICCProfiles
+  commentId: F:FFmpeg.Codecs.CodecFlags.HandleICCProfiles
+  id: HandleICCProfiles
+  parent: FFmpeg.Codecs.CodecFlags
+  langs:
+  - csharp
+  - vb
+  name: HandleICCProfiles
+  nameWithType: CodecFlags.HandleICCProfiles
+  fullName: FFmpeg.Codecs.CodecFlags.HandleICCProfiles
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HandleICCProfiles
+    path: FFmpeg/Codecs/CodecFlags.cs
+    startLine: 163
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Generate or parse ICC profiles on encode or decode, as appropriate.
+  example: []
+  syntax:
+    content: HandleICCProfiles = 2147483648
+    return:
+      type: FFmpeg.Codecs.CodecFlags
+references:
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.Codecs.CodecFlags
+  commentId: T:FFmpeg.Codecs.CodecFlags
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecFlags.html
+  name: CodecFlags
+  nameWithType: CodecFlags
+  fullName: FFmpeg.Codecs.CodecFlags

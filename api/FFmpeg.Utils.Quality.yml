@@ -1,0 +1,1043 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Utils.Quality
+  commentId: T:FFmpeg.Utils.Quality
+  id: Quality
+  parent: FFmpeg.Utils
+  children:
+  - FFmpeg.Utils.Quality.#ctor
+  - FFmpeg.Utils.Quality.#ctor(System.Int32)
+  - FFmpeg.Utils.Quality.BEST
+  - FFmpeg.Utils.Quality.Equals(FFmpeg.Utils.Quality)
+  - FFmpeg.Utils.Quality.Equals(System.Int32)
+  - FFmpeg.Utils.Quality.Equals(System.Object)
+  - FFmpeg.Utils.Quality.GetHashCode
+  - FFmpeg.Utils.Quality.ToString
+  - FFmpeg.Utils.Quality.WORST
+  - FFmpeg.Utils.Quality.op_Equality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  - FFmpeg.Utils.Quality.op_Implicit(FFmpeg.Utils.Quality)~System.Int32
+  - FFmpeg.Utils.Quality.op_Implicit(System.Int32)~FFmpeg.Utils.Quality
+  - FFmpeg.Utils.Quality.op_Inequality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  langs:
+  - csharp
+  - vb
+  name: Quality
+  nameWithType: Quality
+  fullName: FFmpeg.Utils.Quality
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Quality
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Represents quality from 1 (BEST) to FF_LAMBDA_MAX (WORST).
+  example: []
+  syntax:
+    content: 'public readonly struct Quality : IEquatable<Quality>, IEquatable<int>'
+    content.vb: Public Structure Quality Implements IEquatable(Of Quality), IEquatable(Of Integer)
+  implements:
+  - System.IEquatable{FFmpeg.Utils.Quality}
+  - System.IEquatable{System.Int32}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Utils.Quality.#ctor
+  commentId: M:FFmpeg.Utils.Quality.#ctor
+  id: '#ctor'
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: Quality()
+  nameWithType: Quality.Quality()
+  fullName: FFmpeg.Utils.Quality.Quality()
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Initializes a new instance of the <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> struct with the default value of 1 (BEST).
+  example: []
+  syntax:
+    content: public Quality()
+    content.vb: Public Sub New()
+  overload: FFmpeg.Utils.Quality.#ctor*
+  nameWithType.vb: Quality.New()
+  fullName.vb: FFmpeg.Utils.Quality.New()
+  name.vb: New()
+- uid: FFmpeg.Utils.Quality.#ctor(System.Int32)
+  commentId: M:FFmpeg.Utils.Quality.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: Quality(int)
+  nameWithType: Quality.Quality(int)
+  fullName: FFmpeg.Utils.Quality.Quality(int)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Initializes a new instance of the <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> struct with the specified value.
+  example: []
+  syntax:
+    content: public Quality(int value)
+    parameters:
+    - id: value
+      type: System.Int32
+      description: The quality value.
+    content.vb: Public Sub New(value As Integer)
+  overload: FFmpeg.Utils.Quality.#ctor*
+  nameWithType.vb: Quality.New(Integer)
+  fullName.vb: FFmpeg.Utils.Quality.New(Integer)
+  name.vb: New(Integer)
+- uid: FFmpeg.Utils.Quality.BEST
+  commentId: F:FFmpeg.Utils.Quality.BEST
+  id: BEST
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: BEST
+  nameWithType: Quality.BEST
+  fullName: FFmpeg.Utils.Quality.BEST
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BEST
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 23
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The best quality value.
+  example: []
+  syntax:
+    content: public const int BEST = 1
+    return:
+      type: System.Int32
+    content.vb: Public Const BEST As Integer = 1
+- uid: FFmpeg.Utils.Quality.WORST
+  commentId: F:FFmpeg.Utils.Quality.WORST
+  id: WORST
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: WORST
+  nameWithType: Quality.WORST
+  fullName: FFmpeg.Utils.Quality.WORST
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WORST
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 28
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The worst quality value.
+  example: []
+  syntax:
+    content: public const int WORST = 32767
+    return:
+      type: System.Int32
+    content.vb: Public Const WORST As Integer = 32767
+- uid: FFmpeg.Utils.Quality.op_Implicit(FFmpeg.Utils.Quality)~System.Int32
+  commentId: M:FFmpeg.Utils.Quality.op_Implicit(FFmpeg.Utils.Quality)~System.Int32
+  id: op_Implicit(FFmpeg.Utils.Quality)~System.Int32
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: implicit operator int(Quality)
+  nameWithType: Quality.implicit operator int(Quality)
+  fullName: FFmpeg.Utils.Quality.implicit operator int(FFmpeg.Utils.Quality)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 34
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> to an <xref href="System.Int32" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator int(Quality quality)
+    parameters:
+    - id: quality
+      type: FFmpeg.Utils.Quality
+      description: The <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> to convert.
+    return:
+      type: System.Int32
+    content.vb: Public Shared Widening Operator CType(quality As Quality) As Integer
+  overload: FFmpeg.Utils.Quality.op_Implicit*
+  nameWithType.vb: Quality.CType(Quality)
+  fullName.vb: FFmpeg.Utils.Quality.CType(FFmpeg.Utils.Quality)
+  name.vb: CType(Quality)
+- uid: FFmpeg.Utils.Quality.op_Implicit(System.Int32)~FFmpeg.Utils.Quality
+  commentId: M:FFmpeg.Utils.Quality.op_Implicit(System.Int32)~FFmpeg.Utils.Quality
+  id: op_Implicit(System.Int32)~FFmpeg.Utils.Quality
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Quality(int)
+  nameWithType: Quality.implicit operator Quality(int)
+  fullName: FFmpeg.Utils.Quality.implicit operator FFmpeg.Utils.Quality(int)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts an <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> to a <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator Quality(int quality)
+    parameters:
+    - id: quality
+      type: System.Int32
+      description: The <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> to convert.
+    return:
+      type: FFmpeg.Utils.Quality
+    content.vb: Public Shared Widening Operator CType(quality As Integer) As Quality
+  overload: FFmpeg.Utils.Quality.op_Implicit*
+  nameWithType.vb: Quality.CType(Integer)
+  fullName.vb: FFmpeg.Utils.Quality.CType(Integer)
+  name.vb: CType(Integer)
+- uid: FFmpeg.Utils.Quality.op_Equality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  commentId: M:FFmpeg.Utils.Quality.op_Equality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  id: op_Equality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: operator ==(Quality, Quality)
+  nameWithType: Quality.operator ==(Quality, Quality)
+  fullName: FFmpeg.Utils.Quality.operator ==(FFmpeg.Utils.Quality, FFmpeg.Utils.Quality)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 48
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether two <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(Quality left, Quality right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Quality
+      description: The left <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    - id: right
+      type: FFmpeg.Utils.Quality
+      description: The right <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the instances are equal; otherwise, <code>false</code>.
+    content.vb: Public Shared Operator =(left As Quality, right As Quality) As Boolean
+  overload: FFmpeg.Utils.Quality.op_Equality*
+  nameWithType.vb: Quality.=(Quality, Quality)
+  fullName.vb: FFmpeg.Utils.Quality.=(FFmpeg.Utils.Quality, FFmpeg.Utils.Quality)
+  name.vb: =(Quality, Quality)
+- uid: FFmpeg.Utils.Quality.op_Inequality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  commentId: M:FFmpeg.Utils.Quality.op_Inequality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  id: op_Inequality(FFmpeg.Utils.Quality,FFmpeg.Utils.Quality)
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: operator !=(Quality, Quality)
+  nameWithType: Quality.operator !=(Quality, Quality)
+  fullName: FFmpeg.Utils.Quality.operator !=(FFmpeg.Utils.Quality, FFmpeg.Utils.Quality)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether two <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(Quality left, Quality right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Quality
+      description: The left <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    - id: right
+      type: FFmpeg.Utils.Quality
+      description: The right <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the instances are not equal; otherwise, <code>false</code>.
+    content.vb: Public Shared Operator <>(left As Quality, right As Quality) As Boolean
+  overload: FFmpeg.Utils.Quality.op_Inequality*
+  nameWithType.vb: Quality.<>(Quality, Quality)
+  fullName.vb: FFmpeg.Utils.Quality.<>(FFmpeg.Utils.Quality, FFmpeg.Utils.Quality)
+  name.vb: <>(Quality, Quality)
+- uid: FFmpeg.Utils.Quality.Equals(System.Object)
+  commentId: M:FFmpeg.Utils.Quality.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Quality.Equals(object?)
+  fullName: FFmpeg.Utils.Quality.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 59
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Utils.Quality.Equals*
+  nameWithType.vb: Quality.Equals(Object)
+  fullName.vb: FFmpeg.Utils.Quality.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Utils.Quality.Equals(FFmpeg.Utils.Quality)
+  commentId: M:FFmpeg.Utils.Quality.Equals(FFmpeg.Utils.Quality)
+  id: Equals(FFmpeg.Utils.Quality)
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: Equals(Quality)
+  nameWithType: Quality.Equals(Quality)
+  fullName: FFmpeg.Utils.Quality.Equals(FFmpeg.Utils.Quality)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether the specified <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Equals(Quality other)
+    parameters:
+    - id: other
+      type: FFmpeg.Utils.Quality
+      description: The <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> to compare with the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>; otherwise, <code>false</code>.
+    content.vb: Public Function Equals(other As Quality) As Boolean
+  overload: FFmpeg.Utils.Quality.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Utils.Quality}.Equals(FFmpeg.Utils.Quality)
+- uid: FFmpeg.Utils.Quality.Equals(System.Int32)
+  commentId: M:FFmpeg.Utils.Quality.Equals(System.Int32)
+  id: Equals(System.Int32)
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: Equals(int)
+  nameWithType: Quality.Equals(int)
+  fullName: FFmpeg.Utils.Quality.Equals(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 73
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether the specified <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Equals(int other)
+    parameters:
+    - id: other
+      type: System.Int32
+      description: The <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> to compare with the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="FFmpeg.Utils.Quality" data-throw-if-not-resolved="false"></xref>; otherwise, <code>false</code>.
+    content.vb: Public Function Equals(other As Integer) As Boolean
+  overload: FFmpeg.Utils.Quality.Equals*
+  implements:
+  - System.IEquatable{System.Int32}.Equals(System.Int32)
+  nameWithType.vb: Quality.Equals(Integer)
+  fullName.vb: FFmpeg.Utils.Quality.Equals(Integer)
+  name.vb: Equals(Integer)
+- uid: FFmpeg.Utils.Quality.GetHashCode
+  commentId: M:FFmpeg.Utils.Quality.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Quality.GetHashCode()
+  fullName: FFmpeg.Utils.Quality.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 76
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Utils.Quality.GetHashCode*
+- uid: FFmpeg.Utils.Quality.ToString
+  commentId: M:FFmpeg.Utils.Quality.ToString
+  id: ToString
+  parent: FFmpeg.Utils.Quality
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Quality.ToString()
+  fullName: FFmpeg.Utils.Quality.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Quality.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Utils/Quality.cs
+    startLine: 79
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Converts the numeric value of this instance to its equivalent string representation.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The string representation of the value of this instance, consisting of a negative sign if the value is negative, and a sequence of digits ranging from 0 to 9 with no leading zeroes.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Utils.Quality.ToString*
+references:
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.IEquatable{FFmpeg.Utils.Quality}
+  commentId: T:System.IEquatable{FFmpeg.Utils.Quality}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Quality>
+  nameWithType: IEquatable<Quality>
+  fullName: System.IEquatable<FFmpeg.Utils.Quality>
+  nameWithType.vb: IEquatable(Of Quality)
+  fullName.vb: System.IEquatable(Of FFmpeg.Utils.Quality)
+  name.vb: IEquatable(Of Quality)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Utils.Quality
+    name: Quality
+    href: FFmpeg.Utils.Quality.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Utils.Quality
+    name: Quality
+    href: FFmpeg.Utils.Quality.html
+  - name: )
+- uid: System.IEquatable{System.Int32}
+  commentId: T:System.IEquatable{System.Int32}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<int>
+  nameWithType: IEquatable<int>
+  fullName: System.IEquatable<int>
+  nameWithType.vb: IEquatable(Of Integer)
+  fullName.vb: System.IEquatable(Of Integer)
+  name.vb: IEquatable(Of Integer)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Utils.Quality
+  commentId: T:FFmpeg.Utils.Quality
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Quality.html
+  name: Quality
+  nameWithType: Quality
+  fullName: FFmpeg.Utils.Quality
+- uid: FFmpeg.Utils.Quality.#ctor*
+  commentId: Overload:FFmpeg.Utils.Quality.#ctor
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality__ctor
+  name: Quality
+  nameWithType: Quality.Quality
+  fullName: FFmpeg.Utils.Quality.Quality
+  nameWithType.vb: Quality.New
+  fullName.vb: FFmpeg.Utils.Quality.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.Quality.op_Implicit*
+  commentId: Overload:FFmpeg.Utils.Quality.op_Implicit
+  name: implicit operator
+  nameWithType: Quality.implicit operator
+  fullName: FFmpeg.Utils.Quality.implicit operator
+  nameWithType.vb: Quality.CType
+  fullName.vb: FFmpeg.Utils.Quality.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: FFmpeg.Utils.Quality.op_Equality*
+  commentId: Overload:FFmpeg.Utils.Quality.op_Equality
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_op_Equality_FFmpeg_Utils_Quality_FFmpeg_Utils_Quality_
+  name: operator ==
+  nameWithType: Quality.operator ==
+  fullName: FFmpeg.Utils.Quality.operator ==
+  nameWithType.vb: Quality.=
+  fullName.vb: FFmpeg.Utils.Quality.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Quality.op_Equality*
+    name: ==
+    href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_op_Equality_FFmpeg_Utils_Quality_FFmpeg_Utils_Quality_
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Utils.Quality.op_Inequality*
+  commentId: Overload:FFmpeg.Utils.Quality.op_Inequality
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_op_Inequality_FFmpeg_Utils_Quality_FFmpeg_Utils_Quality_
+  name: operator !=
+  nameWithType: Quality.operator !=
+  fullName: FFmpeg.Utils.Quality.operator !=
+  nameWithType.vb: Quality.<>
+  fullName.vb: FFmpeg.Utils.Quality.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Quality.op_Inequality*
+    name: '!='
+    href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_op_Inequality_FFmpeg_Utils_Quality_FFmpeg_Utils_Quality_
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.Utils.Quality.Equals*
+  commentId: Overload:FFmpeg.Utils.Quality.Equals
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_Equals_System_Object_
+  name: Equals
+  nameWithType: Quality.Equals
+  fullName: FFmpeg.Utils.Quality.Equals
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.IEquatable{FFmpeg.Utils.Quality}.Equals(FFmpeg.Utils.Quality)
+  commentId: M:System.IEquatable{FFmpeg.Utils.Quality}.Equals(FFmpeg.Utils.Quality)
+  parent: System.IEquatable{FFmpeg.Utils.Quality}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Quality)
+  nameWithType: IEquatable<Quality>.Equals(Quality)
+  fullName: System.IEquatable<FFmpeg.Utils.Quality>.Equals(FFmpeg.Utils.Quality)
+  nameWithType.vb: IEquatable(Of Quality).Equals(Quality)
+  fullName.vb: System.IEquatable(Of FFmpeg.Utils.Quality).Equals(FFmpeg.Utils.Quality)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Utils.Quality}.Equals(FFmpeg.Utils.Quality)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Utils.Quality
+    name: Quality
+    href: FFmpeg.Utils.Quality.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Utils.Quality}.Equals(FFmpeg.Utils.Quality)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Utils.Quality
+    name: Quality
+    href: FFmpeg.Utils.Quality.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.IEquatable{System.Int32}.Equals(System.Int32)
+  commentId: M:System.IEquatable{System.Int32}.Equals(System.Int32)
+  parent: System.IEquatable{System.Int32}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(int)
+  nameWithType: IEquatable<int>.Equals(int)
+  fullName: System.IEquatable<int>.Equals(int)
+  nameWithType.vb: IEquatable(Of Integer).Equals(Integer)
+  fullName.vb: System.IEquatable(Of Integer).Equals(Integer)
+  name.vb: Equals(Integer)
+  spec.csharp:
+  - uid: System.IEquatable{System.Int32}.Equals(System.Int32)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{System.Int32}.Equals(System.Int32)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.Quality.GetHashCode*
+  commentId: Overload:FFmpeg.Utils.Quality.GetHashCode
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_GetHashCode
+  name: GetHashCode
+  nameWithType: Quality.GetHashCode
+  fullName: FFmpeg.Utils.Quality.GetHashCode
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.Quality.ToString*
+  commentId: Overload:FFmpeg.Utils.Quality.ToString
+  href: FFmpeg.Utils.Quality.html#FFmpeg_Utils_Quality_ToString
+  name: ToString
+  nameWithType: Quality.ToString
+  fullName: FFmpeg.Utils.Quality.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

@@ -1,0 +1,1662 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Transcoder
+  commentId: T:FFmpeg.Transcoder
+  id: Transcoder
+  parent: FFmpeg
+  children:
+  - FFmpeg.Transcoder.Close
+  - FFmpeg.Transcoder.ConfigureAwait(System.Boolean)
+  - FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.Formats.FormatContext)
+  - FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType,FFmpeg.Formats.FormatContext)
+  - FFmpeg.Transcoder.CurrentTimestamp
+  - FFmpeg.Transcoder.Dispose
+  - FFmpeg.Transcoder.Duration
+  - FFmpeg.Transcoder.FindBestInputStream(FFmpeg.Utils.MediaType)
+  - FFmpeg.Transcoder.GetAwaiter
+  - FFmpeg.Transcoder.InputCodecs
+  - FFmpeg.Transcoder.InputStreams
+  - FFmpeg.Transcoder.MapStream(System.Int32)
+  - FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext)
+  - FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext,FFmpeg.Filters.FilterGraph)
+  - FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Filters.FilterGraph)
+  - FFmpeg.Transcoder.OutputCodecs
+  - FFmpeg.Transcoder.OutputStream
+  - FFmpeg.Transcoder.PreviewFrame
+  - FFmpeg.Transcoder.PreviewOutputStreamIndex
+  - FFmpeg.Transcoder.ProcessNextPacket
+  - FFmpeg.Transcoder.Start
+  - FFmpeg.Transcoder.Stop
+  - FFmpeg.Transcoder.TaskState
+  - FFmpeg.Transcoder.UpdateInterval
+  - FFmpeg.Transcoder.WriteHeader(System.TimeSpan,System.TimeSpan)
+  - FFmpeg.Transcoder.WriteTrailer
+  langs:
+  - csharp
+  - vb
+  name: Transcoder
+  nameWithType: Transcoder
+  fullName: FFmpeg.Transcoder
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Transcoder
+    path: FFmpeg/Transcoder.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: 'public sealed class Transcoder : IDisposable'
+    content.vb: Public NotInheritable Class Transcoder Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Transcoder.PreviewFrame
+  commentId: P:FFmpeg.Transcoder.PreviewFrame
+  id: PreviewFrame
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: PreviewFrame
+  nameWithType: Transcoder.PreviewFrame
+  fullName: FFmpeg.Transcoder.PreviewFrame
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PreviewFrame
+    path: FFmpeg/Transcoder.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVFrame PreviewFrame { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.AVFrame
+    content.vb: Public ReadOnly Property PreviewFrame As AVFrame
+  overload: FFmpeg.Transcoder.PreviewFrame*
+- uid: FFmpeg.Transcoder.CurrentTimestamp
+  commentId: P:FFmpeg.Transcoder.CurrentTimestamp
+  id: CurrentTimestamp
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: CurrentTimestamp
+  nameWithType: Transcoder.CurrentTimestamp
+  fullName: FFmpeg.Transcoder.CurrentTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CurrentTimestamp
+    path: FFmpeg/Transcoder.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public TimeSpan CurrentTimestamp { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property CurrentTimestamp As TimeSpan
+  overload: FFmpeg.Transcoder.CurrentTimestamp*
+- uid: FFmpeg.Transcoder.PreviewOutputStreamIndex
+  commentId: P:FFmpeg.Transcoder.PreviewOutputStreamIndex
+  id: PreviewOutputStreamIndex
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: PreviewOutputStreamIndex
+  nameWithType: Transcoder.PreviewOutputStreamIndex
+  fullName: FFmpeg.Transcoder.PreviewOutputStreamIndex
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PreviewOutputStreamIndex
+    path: FFmpeg/Transcoder.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int PreviewOutputStreamIndex { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property PreviewOutputStreamIndex As Integer
+  overload: FFmpeg.Transcoder.PreviewOutputStreamIndex*
+- uid: FFmpeg.Transcoder.UpdateInterval
+  commentId: P:FFmpeg.Transcoder.UpdateInterval
+  id: UpdateInterval
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: UpdateInterval
+  nameWithType: Transcoder.UpdateInterval
+  fullName: FFmpeg.Transcoder.UpdateInterval
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UpdateInterval
+    path: FFmpeg/Transcoder.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public TimeSpan UpdateInterval { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public Property UpdateInterval As TimeSpan
+  overload: FFmpeg.Transcoder.UpdateInterval*
+- uid: FFmpeg.Transcoder.Duration
+  commentId: P:FFmpeg.Transcoder.Duration
+  id: Duration
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: Transcoder.Duration
+  fullName: FFmpeg.Transcoder.Duration
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Duration
+    path: FFmpeg/Transcoder.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public TimeSpan Duration { get; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Public ReadOnly Property Duration As TimeSpan
+  overload: FFmpeg.Transcoder.Duration*
+- uid: FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType,FFmpeg.Formats.FormatContext)
+  commentId: M:FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType,FFmpeg.Formats.FormatContext)
+  id: Create(FFmpeg.Formats.FormatContext,FFmpeg.HW.DeviceType,FFmpeg.Formats.FormatContext)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Create(FormatContext, DeviceType, FormatContext)
+  nameWithType: Transcoder.Create(FormatContext, DeviceType, FormatContext)
+  fullName: FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext, FFmpeg.HW.DeviceType, FFmpeg.Formats.FormatContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Create
+    path: FFmpeg/Transcoder.cs
+    startLine: 52
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public static Transcoder Create(FormatContext source, DeviceType hwSourceType, FormatContext sink)
+    parameters:
+    - id: source
+      type: FFmpeg.Formats.FormatContext
+    - id: hwSourceType
+      type: FFmpeg.HW.DeviceType
+    - id: sink
+      type: FFmpeg.Formats.FormatContext
+    return:
+      type: FFmpeg.Transcoder
+    content.vb: Public Shared Function Create(source As FormatContext, hwSourceType As DeviceType, sink As FormatContext) As Transcoder
+  overload: FFmpeg.Transcoder.Create*
+- uid: FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.Formats.FormatContext)
+  commentId: M:FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext,FFmpeg.Formats.FormatContext)
+  id: Create(FFmpeg.Formats.FormatContext,FFmpeg.Formats.FormatContext)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Create(FormatContext, FormatContext)
+  nameWithType: Transcoder.Create(FormatContext, FormatContext)
+  fullName: FFmpeg.Transcoder.Create(FFmpeg.Formats.FormatContext, FFmpeg.Formats.FormatContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Create
+    path: FFmpeg/Transcoder.cs
+    startLine: 53
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public static Transcoder Create(FormatContext source, FormatContext sink)
+    parameters:
+    - id: source
+      type: FFmpeg.Formats.FormatContext
+    - id: sink
+      type: FFmpeg.Formats.FormatContext
+    return:
+      type: FFmpeg.Transcoder
+    content.vb: Public Shared Function Create(source As FormatContext, sink As FormatContext) As Transcoder
+  overload: FFmpeg.Transcoder.Create*
+- uid: FFmpeg.Transcoder.InputStreams
+  commentId: P:FFmpeg.Transcoder.InputStreams
+  id: InputStreams
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: InputStreams
+  nameWithType: Transcoder.InputStreams
+  fullName: FFmpeg.Transcoder.InputStreams
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InputStreams
+    path: FFmpeg/Transcoder.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public IReadOnlyList<AVStream> InputStreams { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+    content.vb: Public ReadOnly Property InputStreams As IReadOnlyList(Of AVStream)
+  overload: FFmpeg.Transcoder.InputStreams*
+- uid: FFmpeg.Transcoder.InputCodecs
+  commentId: P:FFmpeg.Transcoder.InputCodecs
+  id: InputCodecs
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: InputCodecs
+  nameWithType: Transcoder.InputCodecs
+  fullName: FFmpeg.Transcoder.InputCodecs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InputCodecs
+    path: FFmpeg/Transcoder.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public IReadOnlyList<CodecContext> InputCodecs { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+    content.vb: Public ReadOnly Property InputCodecs As IReadOnlyList(Of CodecContext)
+  overload: FFmpeg.Transcoder.InputCodecs*
+- uid: FFmpeg.Transcoder.OutputStream
+  commentId: P:FFmpeg.Transcoder.OutputStream
+  id: OutputStream
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: OutputStream
+  nameWithType: Transcoder.OutputStream
+  fullName: FFmpeg.Transcoder.OutputStream
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OutputStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 58
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public IReadOnlyList<AVStream> OutputStream { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+    content.vb: Public ReadOnly Property OutputStream As IReadOnlyList(Of AVStream)
+  overload: FFmpeg.Transcoder.OutputStream*
+- uid: FFmpeg.Transcoder.OutputCodecs
+  commentId: P:FFmpeg.Transcoder.OutputCodecs
+  id: OutputCodecs
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: OutputCodecs
+  nameWithType: Transcoder.OutputCodecs
+  fullName: FFmpeg.Transcoder.OutputCodecs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OutputCodecs
+    path: FFmpeg/Transcoder.cs
+    startLine: 59
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public IReadOnlyList<CodecContext?> OutputCodecs { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+    content.vb: Public ReadOnly Property OutputCodecs As IReadOnlyList(Of CodecContext)
+  overload: FFmpeg.Transcoder.OutputCodecs*
+- uid: FFmpeg.Transcoder.FindBestInputStream(FFmpeg.Utils.MediaType)
+  commentId: M:FFmpeg.Transcoder.FindBestInputStream(FFmpeg.Utils.MediaType)
+  id: FindBestInputStream(FFmpeg.Utils.MediaType)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: FindBestInputStream(MediaType)
+  nameWithType: Transcoder.FindBestInputStream(MediaType)
+  fullName: FFmpeg.Transcoder.FindBestInputStream(FFmpeg.Utils.MediaType)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FindBestInputStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 64
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int FindBestInputStream(MediaType mediaType)
+    parameters:
+    - id: mediaType
+      type: FFmpeg.Utils.MediaType
+    return:
+      type: System.Int32
+    content.vb: Public Function FindBestInputStream(mediaType As MediaType) As Integer
+  overload: FFmpeg.Transcoder.FindBestInputStream*
+- uid: FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext,FFmpeg.Filters.FilterGraph)
+  commentId: M:FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext,FFmpeg.Filters.FilterGraph)
+  id: MapStream(System.Int32,FFmpeg.Codecs.CodecContext,FFmpeg.Filters.FilterGraph)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: MapStream(int, CodecContext?, FilterGraph?)
+  nameWithType: Transcoder.MapStream(int, CodecContext?, FilterGraph?)
+  fullName: FFmpeg.Transcoder.MapStream(int, FFmpeg.Codecs.CodecContext?, FFmpeg.Filters.FilterGraph?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MapStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 68
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int MapStream(int sourceIndex, CodecContext? sinkCodec, FilterGraph? filter)
+    parameters:
+    - id: sourceIndex
+      type: System.Int32
+    - id: sinkCodec
+      type: FFmpeg.Codecs.CodecContext
+    - id: filter
+      type: FFmpeg.Filters.FilterGraph
+    return:
+      type: System.Int32
+    content.vb: Public Function MapStream(sourceIndex As Integer, sinkCodec As CodecContext, filter As FilterGraph) As Integer
+  overload: FFmpeg.Transcoder.MapStream*
+  nameWithType.vb: Transcoder.MapStream(Integer, CodecContext, FilterGraph)
+  fullName.vb: FFmpeg.Transcoder.MapStream(Integer, FFmpeg.Codecs.CodecContext, FFmpeg.Filters.FilterGraph)
+  name.vb: MapStream(Integer, CodecContext, FilterGraph)
+- uid: FFmpeg.Transcoder.MapStream(System.Int32)
+  commentId: M:FFmpeg.Transcoder.MapStream(System.Int32)
+  id: MapStream(System.Int32)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: MapStream(int)
+  nameWithType: Transcoder.MapStream(int)
+  fullName: FFmpeg.Transcoder.MapStream(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MapStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 173
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int MapStream(int sourceIndex)
+    parameters:
+    - id: sourceIndex
+      type: System.Int32
+    return:
+      type: System.Int32
+    content.vb: Public Function MapStream(sourceIndex As Integer) As Integer
+  overload: FFmpeg.Transcoder.MapStream*
+  nameWithType.vb: Transcoder.MapStream(Integer)
+  fullName.vb: FFmpeg.Transcoder.MapStream(Integer)
+  name.vb: MapStream(Integer)
+- uid: FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Codecs.CodecContext)
+  id: MapStream(System.Int32,FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: MapStream(int, CodecContext)
+  nameWithType: Transcoder.MapStream(int, CodecContext)
+  fullName: FFmpeg.Transcoder.MapStream(int, FFmpeg.Codecs.CodecContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MapStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 174
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int MapStream(int sourceIndex, CodecContext sinkCodec)
+    parameters:
+    - id: sourceIndex
+      type: System.Int32
+    - id: sinkCodec
+      type: FFmpeg.Codecs.CodecContext
+    return:
+      type: System.Int32
+    content.vb: Public Function MapStream(sourceIndex As Integer, sinkCodec As CodecContext) As Integer
+  overload: FFmpeg.Transcoder.MapStream*
+  nameWithType.vb: Transcoder.MapStream(Integer, CodecContext)
+  fullName.vb: FFmpeg.Transcoder.MapStream(Integer, FFmpeg.Codecs.CodecContext)
+  name.vb: MapStream(Integer, CodecContext)
+- uid: FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Filters.FilterGraph)
+  commentId: M:FFmpeg.Transcoder.MapStream(System.Int32,FFmpeg.Filters.FilterGraph)
+  id: MapStream(System.Int32,FFmpeg.Filters.FilterGraph)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: MapStream(int, FilterGraph)
+  nameWithType: Transcoder.MapStream(int, FilterGraph)
+  fullName: FFmpeg.Transcoder.MapStream(int, FFmpeg.Filters.FilterGraph)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MapStream
+    path: FFmpeg/Transcoder.cs
+    startLine: 175
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public int MapStream(int sourceIndex, FilterGraph filter)
+    parameters:
+    - id: sourceIndex
+      type: System.Int32
+    - id: filter
+      type: FFmpeg.Filters.FilterGraph
+    return:
+      type: System.Int32
+    content.vb: Public Function MapStream(sourceIndex As Integer, filter As FilterGraph) As Integer
+  overload: FFmpeg.Transcoder.MapStream*
+  nameWithType.vb: Transcoder.MapStream(Integer, FilterGraph)
+  fullName.vb: FFmpeg.Transcoder.MapStream(Integer, FFmpeg.Filters.FilterGraph)
+  name.vb: MapStream(Integer, FilterGraph)
+- uid: FFmpeg.Transcoder.WriteTrailer
+  commentId: M:FFmpeg.Transcoder.WriteTrailer
+  id: WriteTrailer
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: WriteTrailer()
+  nameWithType: Transcoder.WriteTrailer()
+  fullName: FFmpeg.Transcoder.WriteTrailer()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WriteTrailer
+    path: FFmpeg/Transcoder.cs
+    startLine: 178
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVResult32 WriteTrailer()
+    return:
+      type: FFmpeg.Utils.AVResult32
+    content.vb: Public Function WriteTrailer() As AVResult32
+  overload: FFmpeg.Transcoder.WriteTrailer*
+- uid: FFmpeg.Transcoder.WriteHeader(System.TimeSpan,System.TimeSpan)
+  commentId: M:FFmpeg.Transcoder.WriteHeader(System.TimeSpan,System.TimeSpan)
+  id: WriteHeader(System.TimeSpan,System.TimeSpan)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: WriteHeader(TimeSpan, TimeSpan)
+  nameWithType: Transcoder.WriteHeader(TimeSpan, TimeSpan)
+  fullName: FFmpeg.Transcoder.WriteHeader(System.TimeSpan, System.TimeSpan)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WriteHeader
+    path: FFmpeg/Transcoder.cs
+    startLine: 179
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public void WriteHeader(TimeSpan startTime = default, TimeSpan duration = default)
+    parameters:
+    - id: startTime
+      type: System.TimeSpan
+    - id: duration
+      type: System.TimeSpan
+    content.vb: Public Sub WriteHeader(startTime As TimeSpan = Nothing, duration As TimeSpan = Nothing)
+  overload: FFmpeg.Transcoder.WriteHeader*
+- uid: FFmpeg.Transcoder.ProcessNextPacket
+  commentId: M:FFmpeg.Transcoder.ProcessNextPacket
+  id: ProcessNextPacket
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: ProcessNextPacket()
+  nameWithType: Transcoder.ProcessNextPacket()
+  fullName: FFmpeg.Transcoder.ProcessNextPacket()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ProcessNextPacket
+    path: FFmpeg/Transcoder.cs
+    startLine: 249
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public AVResult32 ProcessNextPacket()
+    return:
+      type: FFmpeg.Utils.AVResult32
+    content.vb: Public Function ProcessNextPacket() As AVResult32
+  overload: FFmpeg.Transcoder.ProcessNextPacket*
+- uid: FFmpeg.Transcoder.Close
+  commentId: M:FFmpeg.Transcoder.Close
+  id: Close
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Close()
+  nameWithType: Transcoder.Close()
+  fullName: FFmpeg.Transcoder.Close()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Close
+    path: FFmpeg/Transcoder.cs
+    startLine: 265
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public void Close()
+    content.vb: Public Sub Close()
+  overload: FFmpeg.Transcoder.Close*
+- uid: FFmpeg.Transcoder.Dispose
+  commentId: M:FFmpeg.Transcoder.Dispose
+  id: Dispose
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Transcoder.Dispose()
+  fullName: FFmpeg.Transcoder.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/Transcoder.cs
+    startLine: 659
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  summary: Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.Transcoder.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: FFmpeg.Transcoder.TaskState
+  commentId: P:FFmpeg.Transcoder.TaskState
+  id: TaskState
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: TaskState
+  nameWithType: Transcoder.TaskState
+  fullName: FFmpeg.Transcoder.TaskState
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TaskState
+    path: FFmpeg/Transcoder.cs
+    startLine: 672
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public TaskStatus TaskState { get; }
+    parameters: []
+    return:
+      type: System.Threading.Tasks.TaskStatus
+    content.vb: Public ReadOnly Property TaskState As TaskStatus
+  overload: FFmpeg.Transcoder.TaskState*
+- uid: FFmpeg.Transcoder.GetAwaiter
+  commentId: M:FFmpeg.Transcoder.GetAwaiter
+  id: GetAwaiter
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: GetAwaiter()
+  nameWithType: Transcoder.GetAwaiter()
+  fullName: FFmpeg.Transcoder.GetAwaiter()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetAwaiter
+    path: FFmpeg/Transcoder.cs
+    startLine: 673
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public TaskAwaiter GetAwaiter()
+    return:
+      type: System.Runtime.CompilerServices.TaskAwaiter
+    content.vb: Public Function GetAwaiter() As TaskAwaiter
+  overload: FFmpeg.Transcoder.GetAwaiter*
+- uid: FFmpeg.Transcoder.ConfigureAwait(System.Boolean)
+  commentId: M:FFmpeg.Transcoder.ConfigureAwait(System.Boolean)
+  id: ConfigureAwait(System.Boolean)
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: ConfigureAwait(bool)
+  nameWithType: Transcoder.ConfigureAwait(bool)
+  fullName: FFmpeg.Transcoder.ConfigureAwait(bool)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ConfigureAwait
+    path: FFmpeg/Transcoder.cs
+    startLine: 674
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public ConfiguredTaskAwaitable ConfigureAwait(bool continueOnCapturedContext)
+    parameters:
+    - id: continueOnCapturedContext
+      type: System.Boolean
+    return:
+      type: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+    content.vb: Public Function ConfigureAwait(continueOnCapturedContext As Boolean) As ConfiguredTaskAwaitable
+  overload: FFmpeg.Transcoder.ConfigureAwait*
+  nameWithType.vb: Transcoder.ConfigureAwait(Boolean)
+  fullName.vb: FFmpeg.Transcoder.ConfigureAwait(Boolean)
+  name.vb: ConfigureAwait(Boolean)
+- uid: FFmpeg.Transcoder.Start
+  commentId: M:FFmpeg.Transcoder.Start
+  id: Start
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Start()
+  nameWithType: Transcoder.Start()
+  fullName: FFmpeg.Transcoder.Start()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Start
+    path: FFmpeg/Transcoder.cs
+    startLine: 675
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public void Start()
+    content.vb: Public Sub Start()
+  overload: FFmpeg.Transcoder.Start*
+- uid: FFmpeg.Transcoder.Stop
+  commentId: M:FFmpeg.Transcoder.Stop
+  id: Stop
+  parent: FFmpeg.Transcoder
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: Transcoder.Stop()
+  fullName: FFmpeg.Transcoder.Stop()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Transcoder.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Stop
+    path: FFmpeg/Transcoder.cs
+    startLine: 703
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub [Stop]()
+  overload: FFmpeg.Transcoder.Stop*
+references:
+- uid: FFmpeg
+  commentId: N:FFmpeg
+  href: FFmpeg.html
+  name: FFmpeg
+  nameWithType: FFmpeg
+  fullName: FFmpeg
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Transcoder.PreviewFrame*
+  commentId: Overload:FFmpeg.Transcoder.PreviewFrame
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_PreviewFrame
+  name: PreviewFrame
+  nameWithType: Transcoder.PreviewFrame
+  fullName: FFmpeg.Transcoder.PreviewFrame
+- uid: FFmpeg.Utils.AVFrame
+  commentId: T:FFmpeg.Utils.AVFrame
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVFrame.html
+  name: AVFrame
+  nameWithType: AVFrame
+  fullName: FFmpeg.Utils.AVFrame
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Transcoder.CurrentTimestamp*
+  commentId: Overload:FFmpeg.Transcoder.CurrentTimestamp
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_CurrentTimestamp
+  name: CurrentTimestamp
+  nameWithType: Transcoder.CurrentTimestamp
+  fullName: FFmpeg.Transcoder.CurrentTimestamp
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FFmpeg.Transcoder.PreviewOutputStreamIndex*
+  commentId: Overload:FFmpeg.Transcoder.PreviewOutputStreamIndex
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_PreviewOutputStreamIndex
+  name: PreviewOutputStreamIndex
+  nameWithType: Transcoder.PreviewOutputStreamIndex
+  fullName: FFmpeg.Transcoder.PreviewOutputStreamIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Transcoder.UpdateInterval*
+  commentId: Overload:FFmpeg.Transcoder.UpdateInterval
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_UpdateInterval
+  name: UpdateInterval
+  nameWithType: Transcoder.UpdateInterval
+  fullName: FFmpeg.Transcoder.UpdateInterval
+- uid: FFmpeg.Transcoder.Duration*
+  commentId: Overload:FFmpeg.Transcoder.Duration
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Duration
+  name: Duration
+  nameWithType: Transcoder.Duration
+  fullName: FFmpeg.Transcoder.Duration
+- uid: FFmpeg.Transcoder.Create*
+  commentId: Overload:FFmpeg.Transcoder.Create
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Create_FFmpeg_Formats_FormatContext_FFmpeg_HW_DeviceType_FFmpeg_Formats_FormatContext_
+  name: Create
+  nameWithType: Transcoder.Create
+  fullName: FFmpeg.Transcoder.Create
+- uid: FFmpeg.Formats.FormatContext
+  commentId: T:FFmpeg.Formats.FormatContext
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.FormatContext.html
+  name: FormatContext
+  nameWithType: FormatContext
+  fullName: FFmpeg.Formats.FormatContext
+- uid: FFmpeg.HW.DeviceType
+  commentId: T:FFmpeg.HW.DeviceType
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceType.html
+  name: DeviceType
+  nameWithType: DeviceType
+  fullName: FFmpeg.HW.DeviceType
+- uid: FFmpeg.Transcoder
+  commentId: T:FFmpeg.Transcoder
+  parent: FFmpeg
+  href: FFmpeg.Transcoder.html
+  name: Transcoder
+  nameWithType: Transcoder
+  fullName: FFmpeg.Transcoder
+- uid: FFmpeg.Formats
+  commentId: N:FFmpeg.Formats
+  href: FFmpeg.html
+  name: FFmpeg.Formats
+  nameWithType: FFmpeg.Formats
+  fullName: FFmpeg.Formats
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+- uid: FFmpeg.Transcoder.InputStreams*
+  commentId: Overload:FFmpeg.Transcoder.InputStreams
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_InputStreams
+  name: InputStreams
+  nameWithType: Transcoder.InputStreams
+  fullName: FFmpeg.Transcoder.InputStreams
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.AVStream}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<AVStream>
+  nameWithType: IReadOnlyList<AVStream>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Formats.AVStream>
+  nameWithType.vb: IReadOnlyList(Of AVStream)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Formats.AVStream)
+  name.vb: IReadOnlyList(Of AVStream)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Formats.AVStream
+    name: AVStream
+    href: FFmpeg.Formats.AVStream.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FFmpeg.Transcoder.InputCodecs*
+  commentId: Overload:FFmpeg.Transcoder.InputCodecs
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_InputCodecs
+  name: InputCodecs
+  nameWithType: Transcoder.InputCodecs
+  fullName: FFmpeg.Transcoder.InputCodecs
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecContext}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<CodecContext>
+  nameWithType: IReadOnlyList<CodecContext>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Codecs.CodecContext>
+  nameWithType.vb: IReadOnlyList(Of CodecContext)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Codecs.CodecContext)
+  name.vb: IReadOnlyList(Of CodecContext)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+- uid: FFmpeg.Transcoder.OutputStream*
+  commentId: Overload:FFmpeg.Transcoder.OutputStream
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_OutputStream
+  name: OutputStream
+  nameWithType: Transcoder.OutputStream
+  fullName: FFmpeg.Transcoder.OutputStream
+- uid: FFmpeg.Transcoder.OutputCodecs*
+  commentId: Overload:FFmpeg.Transcoder.OutputCodecs
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_OutputCodecs
+  name: OutputCodecs
+  nameWithType: Transcoder.OutputCodecs
+  fullName: FFmpeg.Transcoder.OutputCodecs
+- uid: FFmpeg.Transcoder.FindBestInputStream*
+  commentId: Overload:FFmpeg.Transcoder.FindBestInputStream
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_FindBestInputStream_FFmpeg_Utils_MediaType_
+  name: FindBestInputStream
+  nameWithType: Transcoder.FindBestInputStream
+  fullName: FFmpeg.Transcoder.FindBestInputStream
+- uid: FFmpeg.Utils.MediaType
+  commentId: T:FFmpeg.Utils.MediaType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.MediaType.html
+  name: MediaType
+  nameWithType: MediaType
+  fullName: FFmpeg.Utils.MediaType
+- uid: FFmpeg.Transcoder.MapStream*
+  commentId: Overload:FFmpeg.Transcoder.MapStream
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_MapStream_System_Int32_FFmpeg_Codecs_CodecContext_FFmpeg_Filters_FilterGraph_
+  name: MapStream
+  nameWithType: Transcoder.MapStream
+  fullName: FFmpeg.Transcoder.MapStream
+- uid: FFmpeg.Codecs.CodecContext
+  commentId: T:FFmpeg.Codecs.CodecContext
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecContext.html
+  name: CodecContext
+  nameWithType: CodecContext
+  fullName: FFmpeg.Codecs.CodecContext
+- uid: FFmpeg.Filters.FilterGraph
+  commentId: T:FFmpeg.Filters.FilterGraph
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterGraph.html
+  name: FilterGraph
+  nameWithType: FilterGraph
+  fullName: FFmpeg.Filters.FilterGraph
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  href: FFmpeg.html
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+- uid: FFmpeg.Transcoder.WriteTrailer*
+  commentId: Overload:FFmpeg.Transcoder.WriteTrailer
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_WriteTrailer
+  name: WriteTrailer
+  nameWithType: Transcoder.WriteTrailer
+  fullName: FFmpeg.Transcoder.WriteTrailer
+- uid: FFmpeg.Utils.AVResult32
+  commentId: T:FFmpeg.Utils.AVResult32
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult32.html
+  name: AVResult32
+  nameWithType: AVResult32
+  fullName: FFmpeg.Utils.AVResult32
+- uid: FFmpeg.Transcoder.WriteHeader*
+  commentId: Overload:FFmpeg.Transcoder.WriteHeader
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_WriteHeader_System_TimeSpan_System_TimeSpan_
+  name: WriteHeader
+  nameWithType: Transcoder.WriteHeader
+  fullName: FFmpeg.Transcoder.WriteHeader
+- uid: FFmpeg.Transcoder.ProcessNextPacket*
+  commentId: Overload:FFmpeg.Transcoder.ProcessNextPacket
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_ProcessNextPacket
+  name: ProcessNextPacket
+  nameWithType: Transcoder.ProcessNextPacket
+  fullName: FFmpeg.Transcoder.ProcessNextPacket
+- uid: FFmpeg.Transcoder.Close*
+  commentId: Overload:FFmpeg.Transcoder.Close
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Close
+  name: Close
+  nameWithType: Transcoder.Close
+  fullName: FFmpeg.Transcoder.Close
+- uid: FFmpeg.Transcoder.Dispose*
+  commentId: Overload:FFmpeg.Transcoder.Dispose
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Dispose
+  name: Dispose
+  nameWithType: Transcoder.Dispose
+  fullName: FFmpeg.Transcoder.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: FFmpeg.Transcoder.TaskState*
+  commentId: Overload:FFmpeg.Transcoder.TaskState
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_TaskState
+  name: TaskState
+  nameWithType: Transcoder.TaskState
+  fullName: FFmpeg.Transcoder.TaskState
+- uid: System.Threading.Tasks.TaskStatus
+  commentId: T:System.Threading.Tasks.TaskStatus
+  parent: System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.taskstatus
+  name: TaskStatus
+  nameWithType: TaskStatus
+  fullName: System.Threading.Tasks.TaskStatus
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: FFmpeg.Transcoder.GetAwaiter*
+  commentId: Overload:FFmpeg.Transcoder.GetAwaiter
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_GetAwaiter
+  name: GetAwaiter
+  nameWithType: Transcoder.GetAwaiter
+  fullName: FFmpeg.Transcoder.GetAwaiter
+- uid: System.Runtime.CompilerServices.TaskAwaiter
+  commentId: T:System.Runtime.CompilerServices.TaskAwaiter
+  parent: System.Runtime.CompilerServices
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices.taskawaiter
+  name: TaskAwaiter
+  nameWithType: TaskAwaiter
+  fullName: System.Runtime.CompilerServices.TaskAwaiter
+- uid: System.Runtime.CompilerServices
+  commentId: N:System.Runtime.CompilerServices
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Runtime.CompilerServices
+  nameWithType: System.Runtime.CompilerServices
+  fullName: System.Runtime.CompilerServices
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.CompilerServices
+    name: CompilerServices
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Runtime
+    name: Runtime
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime
+  - name: .
+  - uid: System.Runtime.CompilerServices
+    name: CompilerServices
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices
+- uid: FFmpeg.Transcoder.ConfigureAwait*
+  commentId: Overload:FFmpeg.Transcoder.ConfigureAwait
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_ConfigureAwait_System_Boolean_
+  name: ConfigureAwait
+  nameWithType: Transcoder.ConfigureAwait
+  fullName: FFmpeg.Transcoder.ConfigureAwait
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+  commentId: T:System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+  parent: System.Runtime.CompilerServices
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.runtime.compilerservices.configuredtaskawaitable
+  name: ConfiguredTaskAwaitable
+  nameWithType: ConfiguredTaskAwaitable
+  fullName: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+- uid: FFmpeg.Transcoder.Start*
+  commentId: Overload:FFmpeg.Transcoder.Start
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Start
+  name: Start
+  nameWithType: Transcoder.Start
+  fullName: FFmpeg.Transcoder.Start
+- uid: FFmpeg.Transcoder.Stop*
+  commentId: Overload:FFmpeg.Transcoder.Stop
+  href: FFmpeg.Transcoder.html#FFmpeg_Transcoder_Stop
+  name: Stop
+  nameWithType: Transcoder.Stop
+  fullName: FFmpeg.Transcoder.Stop

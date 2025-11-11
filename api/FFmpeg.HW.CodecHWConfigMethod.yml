@@ -1,0 +1,248 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.HW.CodecHWConfigMethod
+  commentId: T:FFmpeg.HW.CodecHWConfigMethod
+  id: CodecHWConfigMethod
+  parent: FFmpeg.HW
+  children:
+  - FFmpeg.HW.CodecHWConfigMethod.AdHoc
+  - FFmpeg.HW.CodecHWConfigMethod.HwDeviceContext
+  - FFmpeg.HW.CodecHWConfigMethod.HwFramesContext
+  - FFmpeg.HW.CodecHWConfigMethod.Internal
+  - FFmpeg.HW.CodecHWConfigMethod.None
+  langs:
+  - csharp
+  - vb
+  name: CodecHWConfigMethod
+  nameWithType: CodecHWConfigMethod
+  fullName: FFmpeg.HW.CodecHWConfigMethod
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecHWConfigMethod
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 4
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Enum representing the hardware configuration methods supported by the codec.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum CodecHWConfigMethod
+    content.vb: >-
+      <Flags>
+
+      Public Enum CodecHWConfigMethod
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.HW.CodecHWConfigMethod.HwDeviceContext
+  commentId: F:FFmpeg.HW.CodecHWConfigMethod.HwDeviceContext
+  id: HwDeviceContext
+  parent: FFmpeg.HW.CodecHWConfigMethod
+  langs:
+  - csharp
+  - vb
+  name: HwDeviceContext
+  nameWithType: CodecHWConfigMethod.HwDeviceContext
+  fullName: FFmpeg.HW.CodecHWConfigMethod.HwDeviceContext
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HwDeviceContext
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 14
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: >-
+    The codec supports this format via the hw_device_ctx interface.
+
+
+    When selecting this format, CodecContext.HwDeviceContext should
+
+    be set to a device of the specified type before calling
+
+    CodecOpen().
+  example: []
+  syntax:
+    content: HwDeviceContext = 1
+    return:
+      type: FFmpeg.HW.CodecHWConfigMethod
+- uid: FFmpeg.HW.CodecHWConfigMethod.HwFramesContext
+  commentId: F:FFmpeg.HW.CodecHWConfigMethod.HwFramesContext
+  id: HwFramesContext
+  parent: FFmpeg.HW.CodecHWConfigMethod
+  langs:
+  - csharp
+  - vb
+  name: HwFramesContext
+  nameWithType: CodecHWConfigMethod.HwFramesContext
+  fullName: FFmpeg.HW.CodecHWConfigMethod.HwFramesContext
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HwFramesContext
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 26
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: >-
+    The codec supports this format via the hw_frames_ctx interface.
+
+
+    For decoders: When selecting this format, CodecContext.HwFramesContext
+
+    should be set to a suitable frames context within the GetFormat() callback.
+
+    The frames context must have been created on a device of the specified type.
+
+
+    For encoders: CodecContext.HwFramesContext should be set to the context
+
+    which will be used for the input frames before calling CodecOpen().
+  example: []
+  syntax:
+    content: HwFramesContext = 2
+    return:
+      type: FFmpeg.HW.CodecHWConfigMethod
+- uid: FFmpeg.HW.CodecHWConfigMethod.Internal
+  commentId: F:FFmpeg.HW.CodecHWConfigMethod.Internal
+  id: Internal
+  parent: FFmpeg.HW.CodecHWConfigMethod
+  langs:
+  - csharp
+  - vb
+  name: Internal
+  nameWithType: CodecHWConfigMethod.Internal
+  fullName: FFmpeg.HW.CodecHWConfigMethod.Internal
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Internal
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 34
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: >-
+    The codec supports this format by some internal method.
+
+
+    This format can be selected without any additional configuration -
+
+    no device or frames context is required.
+  example: []
+  syntax:
+    content: Internal = 4
+    return:
+      type: FFmpeg.HW.CodecHWConfigMethod
+- uid: FFmpeg.HW.CodecHWConfigMethod.AdHoc
+  commentId: F:FFmpeg.HW.CodecHWConfigMethod.AdHoc
+  id: AdHoc
+  parent: FFmpeg.HW.CodecHWConfigMethod
+  langs:
+  - csharp
+  - vb
+  name: AdHoc
+  nameWithType: CodecHWConfigMethod.AdHoc
+  fullName: FFmpeg.HW.CodecHWConfigMethod.AdHoc
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdHoc
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 42
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: >-
+    The codec supports this format by some ad-hoc method.
+
+
+    Additional settings and/or function calls are required.
+
+    These methods are deprecated, and alternatives should be used.
+  example: []
+  syntax:
+    content: AdHoc = 8
+    return:
+      type: FFmpeg.HW.CodecHWConfigMethod
+- uid: FFmpeg.HW.CodecHWConfigMethod.None
+  commentId: F:FFmpeg.HW.CodecHWConfigMethod.None
+  id: None
+  parent: FFmpeg.HW.CodecHWConfigMethod
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: CodecHWConfigMethod.None
+  fullName: FFmpeg.HW.CodecHWConfigMethod.None
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/HW/CodecHWConfigMethod.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: None
+    path: FFmpeg/HW/CodecHWConfigMethod.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: None
+  example: []
+  syntax:
+    content: None = 0
+    return:
+      type: FFmpeg.HW.CodecHWConfigMethod
+references:
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+- uid: FFmpeg.HW.CodecHWConfigMethod
+  commentId: T:FFmpeg.HW.CodecHWConfigMethod
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.CodecHWConfigMethod.html
+  name: CodecHWConfigMethod
+  nameWithType: CodecHWConfigMethod
+  fullName: FFmpeg.HW.CodecHWConfigMethod

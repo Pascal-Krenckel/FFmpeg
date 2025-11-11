@@ -1,0 +1,2928 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Collections.AVDictionary_ref
+  commentId: T:FFmpeg.Collections.AVDictionary_ref
+  id: AVDictionary_ref
+  parent: FFmpeg.Collections
+  children:
+  - FFmpeg.Collections.AVDictionary_ref.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  - FFmpeg.Collections.AVDictionary_ref.Add(System.String,System.String)
+  - FFmpeg.Collections.AVDictionary_ref.AppendText(System.String,System.String)
+  - FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary
+  - FFmpeg.Collections.AVDictionary_ref.Clear
+  - FFmpeg.Collections.AVDictionary_ref.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  - FFmpeg.Collections.AVDictionary_ref.ContainsKey(System.String)
+  - FFmpeg.Collections.AVDictionary_ref.CopyFrom(System.Collections.Generic.IDictionary{System.String,System.String})
+  - FFmpeg.Collections.AVDictionary_ref.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  - FFmpeg.Collections.AVDictionary_ref.Count
+  - FFmpeg.Collections.AVDictionary_ref.GetEnumerator
+  - FFmpeg.Collections.AVDictionary_ref.GetReferencedObject
+  - FFmpeg.Collections.AVDictionary_ref.Init(System.Collections.Generic.IDictionary{System.String,System.String})
+  - FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+  - FFmpeg.Collections.AVDictionary_ref.Item(System.String)
+  - FFmpeg.Collections.AVDictionary_ref.Keys
+  - FFmpeg.Collections.AVDictionary_ref.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  - FFmpeg.Collections.AVDictionary_ref.Remove(System.String)
+  - FFmpeg.Collections.AVDictionary_ref.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  - FFmpeg.Collections.AVDictionary_ref.ToString
+  - FFmpeg.Collections.AVDictionary_ref.TryGetValue(System.String,System.String@)
+  - FFmpeg.Collections.AVDictionary_ref.Values
+  langs:
+  - csharp
+  - vb
+  name: AVDictionary_ref
+  nameWithType: AVDictionary_ref
+  fullName: FFmpeg.Collections.AVDictionary_ref
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVDictionary_ref
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: >-
+    Represents a dictionary that wraps around the FFmpeg AVDictionary structure, allowing for 
+
+    key-value pair management with additional features such as case-insensitive comparisons.
+  example: []
+  syntax:
+    content: 'public struct AVDictionary_ref : IDictionary<string, string>, ICollection<KeyValuePair<string, string>>, IEnumerable<KeyValuePair<string, string>>, IEnumerable, IReference<AVDictionary>'
+    content.vb: Public Structure AVDictionary_ref Implements IDictionary(Of String, String), ICollection(Of KeyValuePair(Of String, String)), IEnumerable(Of KeyValuePair(Of String, String)), IEnumerable, IReference(Of AVDictionary)
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  - System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  - System.Collections.IEnumerable
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Collections.AVDictionary_ref.Item(System.String)
+  commentId: P:FFmpeg.Collections.AVDictionary_ref.Item(System.String)
+  id: Item(System.String)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: this[string]
+  nameWithType: AVDictionary_ref.this[string]
+  fullName: FFmpeg.Collections.AVDictionary_ref.this[string]
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: this[]
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets or sets the value associated with the specified key.
+  example: []
+  syntax:
+    content: public string this[string key] { readonly get; set; }
+    parameters:
+    - id: key
+      type: System.String
+      description: The key whose value to get or set.
+    return:
+      type: System.String
+      description: The value associated with the specified key.
+    content.vb: Public Default Property this[](key As String) As String
+  overload: FFmpeg.Collections.AVDictionary_ref.Item*
+  exceptions:
+  - type: System.Collections.Generic.KeyNotFoundException
+    commentId: T:System.Collections.Generic.KeyNotFoundException
+    description: Thrown when the key is not found in the dictionary.
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.Item(System.String)
+  nameWithType.vb: AVDictionary_ref.this[](String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.this[](String)
+  name.vb: this[](String)
+- uid: FFmpeg.Collections.AVDictionary_ref.Keys
+  commentId: P:FFmpeg.Collections.AVDictionary_ref.Keys
+  id: Keys
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Keys
+  nameWithType: AVDictionary_ref.Keys
+  fullName: FFmpeg.Collections.AVDictionary_ref.Keys
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Keys
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 52
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets a collection containing the keys in the dictionary.
+  example: []
+  syntax:
+    content: public readonly ICollection<string> Keys { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ICollection{System.String}
+    content.vb: Public ReadOnly Property Keys As ICollection(Of String)
+  overload: FFmpeg.Collections.AVDictionary_ref.Keys*
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.Keys
+- uid: FFmpeg.Collections.AVDictionary_ref.Values
+  commentId: P:FFmpeg.Collections.AVDictionary_ref.Values
+  id: Values
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Values
+  nameWithType: AVDictionary_ref.Values
+  fullName: FFmpeg.Collections.AVDictionary_ref.Values
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Values
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets a collection containing the values in the dictionary.
+  example: []
+  syntax:
+    content: public readonly ICollection<string> Values { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.ICollection{System.String}
+    content.vb: Public ReadOnly Property Values As ICollection(Of String)
+  overload: FFmpeg.Collections.AVDictionary_ref.Values*
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.Values
+- uid: FFmpeg.Collections.AVDictionary_ref.Count
+  commentId: P:FFmpeg.Collections.AVDictionary_ref.Count
+  id: Count
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Count
+  nameWithType: AVDictionary_ref.Count
+  fullName: FFmpeg.Collections.AVDictionary_ref.Count
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Count
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 62
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the number of key-value pairs contained in the dictionary.
+  example: []
+  syntax:
+    content: public readonly int Count { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Count As Integer
+  overload: FFmpeg.Collections.AVDictionary_ref.Count*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Count
+- uid: FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+  commentId: P:FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+  id: IsReadOnly
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: AVDictionary_ref.IsReadOnly
+  fullName: FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsReadOnly
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets a value indicating whether the dictionary is read-only. This implementation always returns <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+  example: []
+  syntax:
+    content: public readonly bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.IsReadOnly*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.IsReadOnly
+- uid: FFmpeg.Collections.AVDictionary_ref.Add(System.String,System.String)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Add(System.String,System.String)
+  id: Add(System.String,System.String)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Add(string, string)
+  nameWithType: AVDictionary_ref.Add(string, string)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Add(string, string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Add
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 76
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Adds the specified key and value to the dictionary.
+  example: []
+  syntax:
+    content: public void Add(string key, string value)
+    parameters:
+    - id: key
+      type: System.String
+      description: The key of the element to add.
+    - id: value
+      type: System.String
+      description: The value of the element to add.
+    content.vb: Public Sub Add(key As String, value As String)
+  overload: FFmpeg.Collections.AVDictionary_ref.Add*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when the key is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown when an element with the same key already exists in the dictionary.
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.Add(System.String,System.String)
+  nameWithType.vb: AVDictionary_ref.Add(String, String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Add(String, String)
+  name.vb: Add(String, String)
+- uid: FFmpeg.Collections.AVDictionary_ref.AppendText(System.String,System.String)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.AppendText(System.String,System.String)
+  id: AppendText(System.String,System.String)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: AppendText(string, string)
+  nameWithType: AVDictionary_ref.AppendText(string, string)
+  fullName: FFmpeg.Collections.AVDictionary_ref.AppendText(string, string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AppendText
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 91
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Appends the specified value to the existing value under the specified key. If the key doesn't exist, it is added.
+  example: []
+  syntax:
+    content: public void AppendText(string key, string value)
+    parameters:
+    - id: key
+      type: System.String
+      description: The key of the element to add.
+    - id: value
+      type: System.String
+      description: The value to append to the existing value.
+    content.vb: Public Sub AppendText(key As String, value As String)
+  overload: FFmpeg.Collections.AVDictionary_ref.AppendText*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when the key is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+  nameWithType.vb: AVDictionary_ref.AppendText(String, String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.AppendText(String, String)
+  name.vb: AppendText(String, String)
+- uid: FFmpeg.Collections.AVDictionary_ref.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  id: Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Add(KeyValuePair<string, string>)
+  nameWithType: AVDictionary_ref.Add(KeyValuePair<string, string>)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Add(System.Collections.Generic.KeyValuePair<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Add
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 97
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Adds the specified key-value pair to the dictionary.
+  example: []
+  syntax:
+    content: public void Add(KeyValuePair<string, string> item)
+    parameters:
+    - id: item
+      type: System.Collections.Generic.KeyValuePair{System.String,System.String}
+      description: The key-value pair to add.
+    content.vb: Public Sub Add(item As KeyValuePair(Of String, String))
+  overload: FFmpeg.Collections.AVDictionary_ref.Add*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  nameWithType.vb: AVDictionary_ref.Add(KeyValuePair(Of String, String))
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Add(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Add(KeyValuePair(Of String, String))
+- uid: FFmpeg.Collections.AVDictionary_ref.Clear
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Clear
+  id: Clear
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: AVDictionary_ref.Clear()
+  fullName: FFmpeg.Collections.AVDictionary_ref.Clear()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Clear
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 102
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Removes all keys and values from the dictionary.
+  example: []
+  syntax:
+    content: public void Clear()
+    content.vb: Public Sub Clear()
+  overload: FFmpeg.Collections.AVDictionary_ref.Clear*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Clear
+- uid: FFmpeg.Collections.AVDictionary_ref.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  id: Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Contains(KeyValuePair<string, string>)
+  nameWithType: AVDictionary_ref.Contains(KeyValuePair<string, string>)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Contains(System.Collections.Generic.KeyValuePair<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Contains
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 114
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Determines whether the dictionary contains a specific key-value pair.
+  example: []
+  syntax:
+    content: public readonly bool Contains(KeyValuePair<string, string> item)
+    parameters:
+    - id: item
+      type: System.Collections.Generic.KeyValuePair{System.String,System.String}
+      description: The key-value pair to locate in the dictionary.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the key-value pair is found; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Contains(item As KeyValuePair(Of String, String)) As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.Contains*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  nameWithType.vb: AVDictionary_ref.Contains(KeyValuePair(Of String, String))
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Contains(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Contains(KeyValuePair(Of String, String))
+- uid: FFmpeg.Collections.AVDictionary_ref.ContainsKey(System.String)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.ContainsKey(System.String)
+  id: ContainsKey(System.String)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: ContainsKey(string)
+  nameWithType: AVDictionary_ref.ContainsKey(string)
+  fullName: FFmpeg.Collections.AVDictionary_ref.ContainsKey(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ContainsKey
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 121
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Determines whether the dictionary contains a specific key.
+  example: []
+  syntax:
+    content: public readonly bool ContainsKey(string key)
+    parameters:
+    - id: key
+      type: System.String
+      description: The key to locate in the dictionary.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the dictionary contains an element with the specified key; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function ContainsKey(key As String) As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.ContainsKey*
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.ContainsKey(System.String)
+  nameWithType.vb: AVDictionary_ref.ContainsKey(String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.ContainsKey(String)
+  name.vb: ContainsKey(String)
+- uid: FFmpeg.Collections.AVDictionary_ref.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  id: CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(KeyValuePair<string, string>[], int)
+  nameWithType: AVDictionary_ref.CopyTo(KeyValuePair<string, string>[], int)
+  fullName: FFmpeg.Collections.AVDictionary_ref.CopyTo(System.Collections.Generic.KeyValuePair<string, string>[], int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyTo
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 128
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Copies the elements of the dictionary to an array, starting at a particular array index.
+  example: []
+  syntax:
+    content: public readonly void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
+    parameters:
+    - id: array
+      type: System.Collections.Generic.KeyValuePair{System.String,System.String}[]
+      description: The one-dimensional array that is the destination of the elements copied from the dictionary.
+    - id: arrayIndex
+      type: System.Int32
+      description: The zero-based index in the array at which copying begins.
+    content.vb: Public Sub CopyTo(array As KeyValuePair(Of String, String)(), arrayIndex As Integer)
+  overload: FFmpeg.Collections.AVDictionary_ref.CopyTo*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  nameWithType.vb: AVDictionary_ref.CopyTo(KeyValuePair(Of String, String)(), Integer)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.CopyTo(System.Collections.Generic.KeyValuePair(Of String, String)(), Integer)
+  name.vb: CopyTo(KeyValuePair(Of String, String)(), Integer)
+- uid: FFmpeg.Collections.AVDictionary_ref.GetEnumerator
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.GetEnumerator
+  id: GetEnumerator
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: AVDictionary_ref.GetEnumerator()
+  fullName: FFmpeg.Collections.AVDictionary_ref.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetEnumerator
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 138
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns an enumerator that iterates through the dictionary.
+  example: []
+  syntax:
+    content: public readonly IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+      description: An enumerator for the dictionary.
+    content.vb: Public Function GetEnumerator() As IEnumerator(Of KeyValuePair(Of String, String))
+  overload: FFmpeg.Collections.AVDictionary_ref.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}.GetEnumerator
+- uid: FFmpeg.Collections.AVDictionary_ref.Remove(System.String)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Remove(System.String)
+  id: Remove(System.String)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Remove(string)
+  nameWithType: AVDictionary_ref.Remove(string)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Remove(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Remove
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 145
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Removes the value with the specified key from the dictionary.
+  example: []
+  syntax:
+    content: public bool Remove(string key)
+    parameters:
+    - id: key
+      type: System.String
+      description: The key of the element to remove.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the element is successfully found and removed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Remove(key As String) As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.Remove*
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.Remove(System.String)
+  nameWithType.vb: AVDictionary_ref.Remove(String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Remove(String)
+  name.vb: Remove(String)
+- uid: FFmpeg.Collections.AVDictionary_ref.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  id: Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Remove(KeyValuePair<string, string>)
+  nameWithType: AVDictionary_ref.Remove(KeyValuePair<string, string>)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Remove(System.Collections.Generic.KeyValuePair<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Remove
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 159
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Removes the specified key-value pair from the dictionary.
+  example: []
+  syntax:
+    content: public bool Remove(KeyValuePair<string, string> item)
+    parameters:
+    - id: item
+      type: System.Collections.Generic.KeyValuePair{System.String,System.String}
+      description: The key-value pair to remove.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the key-value pair is successfully found and removed; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Remove(item As KeyValuePair(Of String, String)) As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.Remove*
+  implements:
+  - System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  nameWithType.vb: AVDictionary_ref.Remove(KeyValuePair(Of String, String))
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Remove(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Remove(KeyValuePair(Of String, String))
+- uid: FFmpeg.Collections.AVDictionary_ref.TryGetValue(System.String,System.String@)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.TryGetValue(System.String,System.String@)
+  id: TryGetValue(System.String,System.String@)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: TryGetValue(string, out string)
+  nameWithType: AVDictionary_ref.TryGetValue(string, out string)
+  fullName: FFmpeg.Collections.AVDictionary_ref.TryGetValue(string, out string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryGetValue
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 176
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the value associated with the specified key.
+  example: []
+  syntax:
+    content: public readonly bool TryGetValue(string key, out string value)
+    parameters:
+    - id: key
+      type: System.String
+      description: The key whose value to get.
+    - id: value
+      type: System.String
+      description: When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the value type.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the dictionary contains an element with the specified key; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function TryGetValue(key As String, value As String) As Boolean
+  overload: FFmpeg.Collections.AVDictionary_ref.TryGetValue*
+  implements:
+  - System.Collections.Generic.IDictionary{System.String,System.String}.TryGetValue(System.String,System.String@)
+  nameWithType.vb: AVDictionary_ref.TryGetValue(String, String)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.TryGetValue(String, String)
+  name.vb: TryGetValue(String, String)
+- uid: FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary
+  id: AsMultiDictionary
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: AsMultiDictionary()
+  nameWithType: AVDictionary_ref.AsMultiDictionary()
+  fullName: FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AsMultiDictionary
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 201
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns the dictionary as a multi dictionary. <xref href="FFmpeg.Collections.AVDictionaryFlags.IgnoreSuffix" data-throw-if-not-resolved="false"></xref> is not supported for <xref href="FFmpeg.Collections.AVMultiDictionary_ref" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public readonly AVMultiDictionary_ref AsMultiDictionary()
+    return:
+      type: FFmpeg.Collections.AVMultiDictionary_ref
+      description: An <xref href="FFmpeg.Collections.AVMultiDictionary_ref" data-throw-if-not-resolved="false"></xref> object representing the dictionary.
+    content.vb: Public Function AsMultiDictionary() As AVMultiDictionary_ref
+  overload: FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary*
+- uid: FFmpeg.Collections.AVDictionary_ref.GetReferencedObject
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.GetReferencedObject
+  id: GetReferencedObject
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: GetReferencedObject()
+  nameWithType: AVDictionary_ref.GetReferencedObject()
+  fullName: FFmpeg.Collections.AVDictionary_ref.GetReferencedObject()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetReferencedObject
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 207
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns a copy of the referenced AVDictionary object, not a direct reference, since AVDictionary is not reference-counted.
+  example: []
+  syntax:
+    content: public readonly AVDictionary? GetReferencedObject()
+    return:
+      type: FFmpeg.Collections.AVDictionary
+      description: A copy of the referenced <xref href="FFmpeg.Collections.AVDictionary" data-throw-if-not-resolved="false"></xref> object, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> if the pointer is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.
+    content.vb: Public Function GetReferencedObject() As AVDictionary
+  overload: FFmpeg.Collections.AVDictionary_ref.GetReferencedObject*
+  implements:
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.GetReferencedObject
+- uid: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  id: SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: SetReferencedObject(AVDictionary?)
+  nameWithType: AVDictionary_ref.SetReferencedObject(AVDictionary?)
+  fullName: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject(FFmpeg.Collections.AVDictionary?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SetReferencedObject
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 220
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Sets the referenced object to a copy of the provided AVDictionary. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the current dictionary is freed.
+  example: []
+  syntax:
+    content: public void SetReferencedObject(AVDictionary? dict)
+    parameters:
+    - id: dict
+      type: FFmpeg.Collections.AVDictionary
+      description: The dictionary to set as the referenced object, or <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> to free the current dictionary.
+    content.vb: Public Sub SetReferencedObject(dict As AVDictionary)
+  overload: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject*
+  implements:
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  nameWithType.vb: AVDictionary_ref.SetReferencedObject(AVDictionary)
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  name.vb: SetReferencedObject(AVDictionary)
+- uid: FFmpeg.Collections.AVDictionary_ref.Init(System.Collections.Generic.IDictionary{System.String,System.String})
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.Init(System.Collections.Generic.IDictionary{System.String,System.String})
+  id: Init(System.Collections.Generic.IDictionary{System.String,System.String})
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: Init(IDictionary<string, string>)
+  nameWithType: AVDictionary_ref.Init(IDictionary<string, string>)
+  fullName: FFmpeg.Collections.AVDictionary_ref.Init(System.Collections.Generic.IDictionary<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Init
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 233
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  syntax:
+    content: public void Init(IDictionary<string, string> metadata)
+    parameters:
+    - id: metadata
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+    content.vb: Public Sub Init(metadata As IDictionary(Of String, String))
+  overload: FFmpeg.Collections.AVDictionary_ref.Init*
+  nameWithType.vb: AVDictionary_ref.Init(IDictionary(Of String, String))
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.Init(System.Collections.Generic.IDictionary(Of String, String))
+  name.vb: Init(IDictionary(Of String, String))
+- uid: FFmpeg.Collections.AVDictionary_ref.ToString
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.ToString
+  id: ToString
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: AVDictionary_ref.ToString()
+  fullName: FFmpeg.Collections.AVDictionary_ref.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 246
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns the fully qualified type name of this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The fully qualified type name.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Collections.AVDictionary_ref.ToString*
+- uid: FFmpeg.Collections.AVDictionary_ref.CopyFrom(System.Collections.Generic.IDictionary{System.String,System.String})
+  commentId: M:FFmpeg.Collections.AVDictionary_ref.CopyFrom(System.Collections.Generic.IDictionary{System.String,System.String})
+  id: CopyFrom(System.Collections.Generic.IDictionary{System.String,System.String})
+  parent: FFmpeg.Collections.AVDictionary_ref
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(IDictionary<string, string>)
+  nameWithType: AVDictionary_ref.CopyFrom(IDictionary<string, string>)
+  fullName: FFmpeg.Collections.AVDictionary_ref.CopyFrom(System.Collections.Generic.IDictionary<string, string>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVDictionary_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyFrom
+    path: FFmpeg/Collections/AVDictionary_ref.cs
+    startLine: 249
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  syntax:
+    content: public void CopyFrom(IDictionary<string, string> dic)
+    parameters:
+    - id: dic
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+    content.vb: Public Sub CopyFrom(dic As IDictionary(Of String, String))
+  overload: FFmpeg.Collections.AVDictionary_ref.CopyFrom*
+  nameWithType.vb: AVDictionary_ref.CopyFrom(IDictionary(Of String, String))
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.CopyFrom(System.Collections.Generic.IDictionary(Of String, String))
+  name.vb: CopyFrom(IDictionary(Of String, String))
+references:
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, string>
+  nameWithType: IDictionary<string, string>
+  fullName: System.Collections.Generic.IDictionary<string, string>
+  nameWithType.vb: IDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String)
+  name.vb: IDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  commentId: T:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<KeyValuePair<string, string>>
+  nameWithType: ICollection<KeyValuePair<string, string>>
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: ICollection(Of KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<KeyValuePair<string, string>>
+  nameWithType: IEnumerable<KeyValuePair<string, string>>
+  fullName: System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>
+  nameWithType.vb: IEnumerable(Of KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: IEnumerable(Of KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.ienumerable
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}
+  commentId: T:FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}
+  parent: FFmpeg.Utils
+  definition: FFmpeg.Utils.IReference`1
+  href: FFmpeg.Utils.IReference-1.html
+  name: IReference<AVDictionary>
+  nameWithType: IReference<AVDictionary>
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVDictionary>
+  nameWithType.vb: IReference(Of AVDictionary)
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVDictionary)
+  name.vb: IReference(Of AVDictionary)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: <
+  - uid: FFmpeg.Collections.AVDictionary
+    name: AVDictionary
+    href: FFmpeg.Collections.AVDictionary.html
+  - name: '>'
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Collections.AVDictionary
+    name: AVDictionary
+    href: FFmpeg.Collections.AVDictionary.html
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Collections.Generic.ICollection`1
+  commentId: T:System.Collections.Generic.ICollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<T>
+  nameWithType: ICollection<T>
+  fullName: System.Collections.Generic.ICollection<T>
+  nameWithType.vb: ICollection(Of T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T)
+  name.vb: ICollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+- uid: FFmpeg.Utils.IReference`1
+  commentId: T:FFmpeg.Utils.IReference`1
+  href: FFmpeg.Utils.IReference-1.html
+  name: IReference<T>
+  nameWithType: IReference<T>
+  fullName: FFmpeg.Utils.IReference<T>
+  nameWithType.vb: IReference(Of T)
+  fullName.vb: FFmpeg.Utils.IReference(Of T)
+  name.vb: IReference(Of T)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.KeyNotFoundException
+  commentId: T:System.Collections.Generic.KeyNotFoundException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception
+  name: KeyNotFoundException
+  nameWithType: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+- uid: FFmpeg.Collections.AVDictionary_ref.Item*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Item
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Item_System_String_
+  name: this
+  nameWithType: AVDictionary_ref.this
+  fullName: FFmpeg.Collections.AVDictionary_ref.this
+  nameWithType.vb: AVDictionary_ref.this[]
+  fullName.vb: FFmpeg.Collections.AVDictionary_ref.this[]
+  name.vb: this[]
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.Item(System.String)
+  commentId: P:System.Collections.Generic.IDictionary{System.String,System.String}.Item(System.String)
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.Item(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: this[string]
+  nameWithType: IDictionary<string, string>.this[string]
+  fullName: System.Collections.Generic.IDictionary<string, string>.this[string]
+  nameWithType.vb: IDictionary(Of String, String).this[](String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).this[](String)
+  name.vb: this[](String)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.Item(System.String)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.item
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Collections.Generic.IDictionary`2.Item(`0)
+  commentId: P:System.Collections.Generic.IDictionary`2.Item(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.item
+  name: this[TKey]
+  nameWithType: IDictionary<TKey, TValue>.this[TKey]
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.this[TKey]
+  nameWithType.vb: IDictionary(Of TKey, TValue).this[](TKey)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).this[](TKey)
+  name.vb: this[](TKey)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - name: TKey
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2.Item(`0)
+    name: this[]
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.item
+  - name: (
+  - name: TKey
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.Keys*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Keys
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Keys
+  name: Keys
+  nameWithType: AVDictionary_ref.Keys
+  fullName: FFmpeg.Collections.AVDictionary_ref.Keys
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.Keys
+  commentId: P:System.Collections.Generic.IDictionary{System.String,System.String}.Keys
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.Keys
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.keys
+  name: Keys
+  nameWithType: IDictionary<string, string>.Keys
+  fullName: System.Collections.Generic.IDictionary<string, string>.Keys
+  nameWithType.vb: IDictionary(Of String, String).Keys
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).Keys
+- uid: System.Collections.Generic.ICollection{System.String}
+  commentId: T:System.Collections.Generic.ICollection{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.ICollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  name: ICollection<string>
+  nameWithType: ICollection<string>
+  fullName: System.Collections.Generic.ICollection<string>
+  nameWithType.vb: ICollection(Of String)
+  fullName.vb: System.Collections.Generic.ICollection(Of String)
+  name.vb: ICollection(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1
+    name: ICollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2.Keys
+  commentId: P:System.Collections.Generic.IDictionary`2.Keys
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.keys
+  name: Keys
+  nameWithType: IDictionary<TKey, TValue>.Keys
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.Keys
+  nameWithType.vb: IDictionary(Of TKey, TValue).Keys
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).Keys
+- uid: FFmpeg.Collections.AVDictionary_ref.Values*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Values
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Values
+  name: Values
+  nameWithType: AVDictionary_ref.Values
+  fullName: FFmpeg.Collections.AVDictionary_ref.Values
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.Values
+  commentId: P:System.Collections.Generic.IDictionary{System.String,System.String}.Values
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.Values
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.values
+  name: Values
+  nameWithType: IDictionary<string, string>.Values
+  fullName: System.Collections.Generic.IDictionary<string, string>.Values
+  nameWithType.vb: IDictionary(Of String, String).Values
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).Values
+- uid: System.Collections.Generic.IDictionary`2.Values
+  commentId: P:System.Collections.Generic.IDictionary`2.Values
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.values
+  name: Values
+  nameWithType: IDictionary<TKey, TValue>.Values
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.Values
+  nameWithType.vb: IDictionary(Of TKey, TValue).Values
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).Values
+- uid: FFmpeg.Collections.AVDictionary_ref.Count*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Count
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Count
+  name: Count
+  nameWithType: AVDictionary_ref.Count
+  fullName: FFmpeg.Collections.AVDictionary_ref.Count
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Count
+  commentId: P:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Count
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.Count
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.count
+  name: Count
+  nameWithType: ICollection<KeyValuePair<string, string>>.Count
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.Count
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).Count
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: System.Collections.Generic.ICollection`1.Count
+  commentId: P:System.Collections.Generic.ICollection`1.Count
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.count
+  name: Count
+  nameWithType: ICollection<T>.Count
+  fullName: System.Collections.Generic.ICollection<T>.Count
+  nameWithType.vb: ICollection(Of T).Count
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Count
+- uid: FFmpeg.Collections.AVDictionary_ref.IsReadOnly*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_IsReadOnly
+  name: IsReadOnly
+  nameWithType: AVDictionary_ref.IsReadOnly
+  fullName: FFmpeg.Collections.AVDictionary_ref.IsReadOnly
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.IsReadOnly
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.IsReadOnly
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly
+  name: IsReadOnly
+  nameWithType: ICollection<KeyValuePair<string, string>>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.IsReadOnly
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).IsReadOnly
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Collections.Generic.ICollection`1.IsReadOnly
+  commentId: P:System.Collections.Generic.ICollection`1.IsReadOnly
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.isreadonly
+  name: IsReadOnly
+  nameWithType: ICollection<T>.IsReadOnly
+  fullName: System.Collections.Generic.ICollection<T>.IsReadOnly
+  nameWithType.vb: ICollection(Of T).IsReadOnly
+  fullName.vb: System.Collections.Generic.ICollection(Of T).IsReadOnly
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: FFmpeg.Collections.AVDictionary_ref.Add*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Add
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Add_System_String_System_String_
+  name: Add
+  nameWithType: AVDictionary_ref.Add
+  fullName: FFmpeg.Collections.AVDictionary_ref.Add
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.Add(System.String,System.String)
+  commentId: M:System.Collections.Generic.IDictionary{System.String,System.String}.Add(System.String,System.String)
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.Add(`0,`1)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  name: Add(string, string)
+  nameWithType: IDictionary<string, string>.Add(string, string)
+  fullName: System.Collections.Generic.IDictionary<string, string>.Add(string, string)
+  nameWithType.vb: IDictionary(Of String, String).Add(String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).Add(String, String)
+  name.vb: Add(String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.Add(System.String,System.String)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.Add(System.String,System.String)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2.Add(`0,`1)
+  commentId: M:System.Collections.Generic.IDictionary`2.Add(`0,`1)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  name: Add(TKey, TValue)
+  nameWithType: IDictionary<TKey, TValue>.Add(TKey, TValue)
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.Add(TKey, TValue)
+  nameWithType.vb: IDictionary(Of TKey, TValue).Add(TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).Add(TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2.Add(`0,`1)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2.Add(`0,`1)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.add
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.AppendText*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.AppendText
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_AppendText_System_String_System_String_
+  name: AppendText
+  nameWithType: AVDictionary_ref.AppendText
+  fullName: FFmpeg.Collections.AVDictionary_ref.AppendText
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.Add(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  name: Add(KeyValuePair<string, string>)
+  nameWithType: ICollection<KeyValuePair<string, string>>.Add(KeyValuePair<string, string>)
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.Add(System.Collections.Generic.KeyValuePair<string, string>)
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).Add(KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).Add(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Add(KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.KeyValuePair{System.String,System.String}
+  commentId: T:System.Collections.Generic.KeyValuePair{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.KeyValuePair`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  name: KeyValuePair<string, string>
+  nameWithType: KeyValuePair<string, string>
+  fullName: System.Collections.Generic.KeyValuePair<string, string>
+  nameWithType.vb: KeyValuePair(Of String, String)
+  fullName.vb: System.Collections.Generic.KeyValuePair(Of String, String)
+  name.vb: KeyValuePair(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Add(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Add(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  name: Add(T)
+  nameWithType: ICollection<T>.Add(T)
+  fullName: System.Collections.Generic.ICollection<T>.Add(T)
+  nameWithType.vb: ICollection(Of T).Add(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Add(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Add(`0)
+    name: Add
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.add
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Collections.Generic.KeyValuePair`2
+  commentId: T:System.Collections.Generic.KeyValuePair`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  name: KeyValuePair<TKey, TValue>
+  nameWithType: KeyValuePair<TKey, TValue>
+  fullName: System.Collections.Generic.KeyValuePair<TKey, TValue>
+  nameWithType.vb: KeyValuePair(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.KeyValuePair(Of TKey, TValue)
+  name.vb: KeyValuePair(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.Clear*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Clear
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Clear
+  name: Clear
+  nameWithType: AVDictionary_ref.Clear
+  fullName: FFmpeg.Collections.AVDictionary_ref.Clear
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Clear
+  commentId: M:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Clear
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.Clear
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  name: Clear()
+  nameWithType: ICollection<KeyValuePair<string, string>>.Clear()
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.Clear()
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Clear
+  commentId: M:System.Collections.Generic.ICollection`1.Clear
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  name: Clear()
+  nameWithType: ICollection<T>.Clear()
+  fullName: System.Collections.Generic.ICollection<T>.Clear()
+  nameWithType.vb: ICollection(Of T).Clear()
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Clear()
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Clear
+    name: Clear
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.clear
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.Contains*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Contains
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Contains_System_Collections_Generic_KeyValuePair_System_String_System_String__
+  name: Contains
+  nameWithType: AVDictionary_ref.Contains
+  fullName: FFmpeg.Collections.AVDictionary_ref.Contains
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.Contains(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  name: Contains(KeyValuePair<string, string>)
+  nameWithType: ICollection<KeyValuePair<string, string>>.Contains(KeyValuePair<string, string>)
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.Contains(System.Collections.Generic.KeyValuePair<string, string>)
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).Contains(KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).Contains(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Contains(KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Contains(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Contains(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  name: Contains(T)
+  nameWithType: ICollection<T>.Contains(T)
+  fullName: System.Collections.Generic.ICollection<T>.Contains(T)
+  nameWithType.vb: ICollection(Of T).Contains(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Contains(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Contains(`0)
+    name: Contains
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.contains
+  - name: (
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.ContainsKey*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.ContainsKey
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_ContainsKey_System_String_
+  name: ContainsKey
+  nameWithType: AVDictionary_ref.ContainsKey
+  fullName: FFmpeg.Collections.AVDictionary_ref.ContainsKey
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.ContainsKey(System.String)
+  commentId: M:System.Collections.Generic.IDictionary{System.String,System.String}.ContainsKey(System.String)
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.ContainsKey(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  name: ContainsKey(string)
+  nameWithType: IDictionary<string, string>.ContainsKey(string)
+  fullName: System.Collections.Generic.IDictionary<string, string>.ContainsKey(string)
+  nameWithType.vb: IDictionary(Of String, String).ContainsKey(String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).ContainsKey(String)
+  name.vb: ContainsKey(String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.ContainsKey(System.String)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.ContainsKey(System.String)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2.ContainsKey(`0)
+  commentId: M:System.Collections.Generic.IDictionary`2.ContainsKey(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  name: ContainsKey(TKey)
+  nameWithType: IDictionary<TKey, TValue>.ContainsKey(TKey)
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.ContainsKey(TKey)
+  nameWithType.vb: IDictionary(Of TKey, TValue).ContainsKey(TKey)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).ContainsKey(TKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2.ContainsKey(`0)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  - name: (
+  - name: TKey
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2.ContainsKey(`0)
+    name: ContainsKey
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.containskey
+  - name: (
+  - name: TKey
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.CopyTo*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.CopyTo
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_String____System_Int32_
+  name: CopyTo
+  nameWithType: AVDictionary_ref.CopyTo
+  fullName: FFmpeg.Collections.AVDictionary_ref.CopyTo
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  name: CopyTo(KeyValuePair<string, string>[], int)
+  nameWithType: ICollection<KeyValuePair<string, string>>.CopyTo(KeyValuePair<string, string>[], int)
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.CopyTo(System.Collections.Generic.KeyValuePair<string, string>[], int)
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).CopyTo(KeyValuePair(Of String, String)(), Integer)
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).CopyTo(System.Collections.Generic.KeyValuePair(Of String, String)(), Integer)
+  name.vb: CopyTo(KeyValuePair(Of String, String)(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Collections.Generic.KeyValuePair{System.String,System.String}[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  name: KeyValuePair<string, string>[]
+  nameWithType: KeyValuePair<string, string>[]
+  fullName: System.Collections.Generic.KeyValuePair<string, string>[]
+  nameWithType.vb: KeyValuePair(Of String, String)()
+  fullName.vb: System.Collections.Generic.KeyValuePair(Of String, String)()
+  name.vb: KeyValuePair(Of String, String)()
+  spec.csharp:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  commentId: M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  name: CopyTo(T[], int)
+  nameWithType: ICollection<T>.CopyTo(T[], int)
+  fullName: System.Collections.Generic.ICollection<T>.CopyTo(T[], int)
+  nameWithType.vb: ICollection(Of T).CopyTo(T(), Integer)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).CopyTo(T(), Integer)
+  name.vb: CopyTo(T(), Integer)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - name: T
+  - name: '['
+  - name: ']'
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)
+    name: CopyTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.copyto
+  - name: (
+  - name: T
+  - name: (
+  - name: )
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.GetEnumerator*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.GetEnumerator
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_GetEnumerator
+  name: GetEnumerator
+  nameWithType: AVDictionary_ref.GetEnumerator
+  fullName: FFmpeg.Collections.AVDictionary_ref.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<KeyValuePair<string, string>>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string, string>>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of KeyValuePair(Of String, String)).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of String, String)).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}}.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  commentId: T:System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<KeyValuePair<string, string>>
+  nameWithType: IEnumerator<KeyValuePair<string, string>>
+  fullName: System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<string, string>>
+  nameWithType.vb: IEnumerator(Of KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.IEnumerator(Of System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: IEnumerator(Of KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1.getenumerator
+  - name: (
+  - name: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.Remove*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Remove
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Remove_System_String_
+  name: Remove
+  nameWithType: AVDictionary_ref.Remove
+  fullName: FFmpeg.Collections.AVDictionary_ref.Remove
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.Remove(System.String)
+  commentId: M:System.Collections.Generic.IDictionary{System.String,System.String}.Remove(System.String)
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  name: Remove(string)
+  nameWithType: IDictionary<string, string>.Remove(string)
+  fullName: System.Collections.Generic.IDictionary<string, string>.Remove(string)
+  nameWithType.vb: IDictionary(Of String, String).Remove(String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).Remove(String)
+  name.vb: Remove(String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.Remove(System.String)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.Remove(System.String)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2.Remove(`0)
+  commentId: M:System.Collections.Generic.IDictionary`2.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  name: Remove(TKey)
+  nameWithType: IDictionary<TKey, TValue>.Remove(TKey)
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.Remove(TKey)
+  nameWithType.vb: IDictionary(Of TKey, TValue).Remove(TKey)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).Remove(TKey)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  - name: (
+  - name: TKey
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.remove
+  - name: (
+  - name: TKey
+  - name: )
+- uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  commentId: M:System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+  parent: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}
+  definition: System.Collections.Generic.ICollection`1.Remove(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  name: Remove(KeyValuePair<string, string>)
+  nameWithType: ICollection<KeyValuePair<string, string>>.Remove(KeyValuePair<string, string>)
+  fullName: System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, string>>.Remove(System.Collections.Generic.KeyValuePair<string, string>)
+  nameWithType.vb: ICollection(Of KeyValuePair(Of String, String)).Remove(KeyValuePair(Of String, String))
+  fullName.vb: System.Collections.Generic.ICollection(Of System.Collections.Generic.KeyValuePair(Of String, String)).Remove(System.Collections.Generic.KeyValuePair(Of String, String))
+  name.vb: Remove(KeyValuePair(Of String, String))
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{System.String,System.String}}.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - uid: System.Collections.Generic.KeyValuePair`2
+    name: KeyValuePair
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  - name: )
+- uid: System.Collections.Generic.ICollection`1.Remove(`0)
+  commentId: M:System.Collections.Generic.ICollection`1.Remove(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  name: Remove(T)
+  nameWithType: ICollection<T>.Remove(T)
+  fullName: System.Collections.Generic.ICollection<T>.Remove(T)
+  nameWithType.vb: ICollection(Of T).Remove(T)
+  fullName.vb: System.Collections.Generic.ICollection(Of T).Remove(T)
+  spec.csharp:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.ICollection`1.Remove(`0)
+    name: Remove
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1.remove
+  - name: (
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.TryGetValue*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.TryGetValue
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_TryGetValue_System_String_System_String__
+  name: TryGetValue
+  nameWithType: AVDictionary_ref.TryGetValue
+  fullName: FFmpeg.Collections.AVDictionary_ref.TryGetValue
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}.TryGetValue(System.String,System.String@)
+  commentId: M:System.Collections.Generic.IDictionary{System.String,System.String}.TryGetValue(System.String,System.String@)
+  parent: System.Collections.Generic.IDictionary{System.String,System.String}
+  definition: System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  name: TryGetValue(string, out string)
+  nameWithType: IDictionary<string, string>.TryGetValue(string, out string)
+  fullName: System.Collections.Generic.IDictionary<string, string>.TryGetValue(string, out string)
+  nameWithType.vb: IDictionary(Of String, String).TryGetValue(String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, String).TryGetValue(String, String)
+  name.vb: TryGetValue(String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.TryGetValue(System.String,System.String@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  - name: (
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary{System.String,System.String}.TryGetValue(System.String,System.String@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  - name: (
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)
+  commentId: M:System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  name: TryGetValue(TKey, out TValue)
+  nameWithType: IDictionary<TKey, TValue>.TryGetValue(TKey, out TValue)
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>.TryGetValue(TKey, out TValue)
+  nameWithType.vb: IDictionary(Of TKey, TValue).TryGetValue(TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue).TryGetValue(TKey, TValue)
+  name.vb: TryGetValue(TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: out
+  - name: " "
+  - name: TValue
+  - name: )
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2.TryGetValue(`0,`1@)
+    name: TryGetValue
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2.trygetvalue
+  - name: (
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: FFmpeg.Collections.AVDictionaryFlags.IgnoreSuffix
+  commentId: F:FFmpeg.Collections.AVDictionaryFlags.IgnoreSuffix
+  name: IgnoreSuffix
+  nameWithType: AVDictionaryFlags.IgnoreSuffix
+  fullName: FFmpeg.Collections.AVDictionaryFlags.IgnoreSuffix
+- uid: FFmpeg.Collections.AVMultiDictionary_ref
+  commentId: T:FFmpeg.Collections.AVMultiDictionary_ref
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVMultiDictionary_ref.html
+  name: AVMultiDictionary_ref
+  nameWithType: AVMultiDictionary_ref
+  fullName: FFmpeg.Collections.AVMultiDictionary_ref
+- uid: FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_AsMultiDictionary
+  name: AsMultiDictionary
+  nameWithType: AVDictionary_ref.AsMultiDictionary
+  fullName: FFmpeg.Collections.AVDictionary_ref.AsMultiDictionary
+- uid: FFmpeg.Collections.AVDictionary
+  commentId: T:FFmpeg.Collections.AVDictionary
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVDictionary.html
+  name: AVDictionary
+  nameWithType: AVDictionary
+  fullName: FFmpeg.Collections.AVDictionary
+- uid: FFmpeg.Collections.AVDictionary_ref.GetReferencedObject*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.GetReferencedObject
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_GetReferencedObject
+  name: GetReferencedObject
+  nameWithType: AVDictionary_ref.GetReferencedObject
+  fullName: FFmpeg.Collections.AVDictionary_ref.GetReferencedObject
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.GetReferencedObject
+  commentId: M:FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.GetReferencedObject
+  parent: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}
+  definition: FFmpeg.Utils.IReference`1.GetReferencedObject
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  name: GetReferencedObject()
+  nameWithType: IReference<AVDictionary>.GetReferencedObject()
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVDictionary>.GetReferencedObject()
+  nameWithType.vb: IReference(Of AVDictionary).GetReferencedObject()
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVDictionary).GetReferencedObject()
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+  commentId: M:FFmpeg.Utils.IReference`1.GetReferencedObject
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  name: GetReferencedObject()
+  nameWithType: IReference<T>.GetReferencedObject()
+  fullName: FFmpeg.Utils.IReference<T>.GetReferencedObject()
+  nameWithType.vb: IReference(Of T).GetReferencedObject()
+  fullName.vb: FFmpeg.Utils.IReference(Of T).GetReferencedObject()
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.SetReferencedObject
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_SetReferencedObject_FFmpeg_Collections_AVDictionary_
+  name: SetReferencedObject
+  nameWithType: AVDictionary_ref.SetReferencedObject
+  fullName: FFmpeg.Collections.AVDictionary_ref.SetReferencedObject
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  commentId: M:FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  parent: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}
+  definition: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  name: SetReferencedObject(AVDictionary)
+  nameWithType: IReference<AVDictionary>.SetReferencedObject(AVDictionary)
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVDictionary>.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  nameWithType.vb: IReference(Of AVDictionary).SetReferencedObject(AVDictionary)
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVDictionary).SetReferencedObject(FFmpeg.Collections.AVDictionary)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - uid: FFmpeg.Collections.AVDictionary
+    name: AVDictionary
+    href: FFmpeg.Collections.AVDictionary.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVDictionary}.SetReferencedObject(FFmpeg.Collections.AVDictionary)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - uid: FFmpeg.Collections.AVDictionary
+    name: AVDictionary
+    href: FFmpeg.Collections.AVDictionary.html
+  - name: )
+- uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  commentId: M:FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  name: SetReferencedObject(T)
+  nameWithType: IReference<T>.SetReferencedObject(T)
+  fullName: FFmpeg.Utils.IReference<T>.SetReferencedObject(T)
+  nameWithType.vb: IReference(Of T).SetReferencedObject(T)
+  fullName.vb: FFmpeg.Utils.IReference(Of T).SetReferencedObject(T)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.Init*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.Init
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_Init_System_Collections_Generic_IDictionary_System_String_System_String__
+  name: Init
+  nameWithType: AVDictionary_ref.Init
+  fullName: FFmpeg.Collections.AVDictionary_ref.Init
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVDictionary_ref.ToString*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.ToString
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_ToString
+  name: ToString
+  nameWithType: AVDictionary_ref.ToString
+  fullName: FFmpeg.Collections.AVDictionary_ref.ToString
+- uid: FFmpeg.Collections.AVDictionary_ref.CopyFrom*
+  commentId: Overload:FFmpeg.Collections.AVDictionary_ref.CopyFrom
+  href: FFmpeg.Collections.AVDictionary_ref.html#FFmpeg_Collections_AVDictionary_ref_CopyFrom_System_Collections_Generic_IDictionary_System_String_System_String__
+  name: CopyFrom
+  nameWithType: AVDictionary_ref.CopyFrom
+  fullName: FFmpeg.Collections.AVDictionary_ref.CopyFrom

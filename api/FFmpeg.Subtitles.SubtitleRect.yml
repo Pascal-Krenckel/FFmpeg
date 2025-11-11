@@ -1,0 +1,849 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Subtitles.SubtitleRect
+  commentId: T:FFmpeg.Subtitles.SubtitleRect
+  id: SubtitleRect
+  parent: FFmpeg.Subtitles
+  children:
+  - FFmpeg.Subtitles.SubtitleRect.ASS
+  - FFmpeg.Subtitles.SubtitleRect.BitmapData
+  - FFmpeg.Subtitles.SubtitleRect.ColorCount
+  - FFmpeg.Subtitles.SubtitleRect.Height
+  - FFmpeg.Subtitles.SubtitleRect.LineSize
+  - FFmpeg.Subtitles.SubtitleRect.Text
+  - FFmpeg.Subtitles.SubtitleRect.ToString
+  - FFmpeg.Subtitles.SubtitleRect.Type
+  - FFmpeg.Subtitles.SubtitleRect.Width
+  - FFmpeg.Subtitles.SubtitleRect.X
+  - FFmpeg.Subtitles.SubtitleRect.Y
+  langs:
+  - csharp
+  - vb
+  name: SubtitleRect
+  nameWithType: SubtitleRect
+  fullName: FFmpeg.Subtitles.SubtitleRect
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SubtitleRect
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Represents a rectangular subtitle area and its associated metadata, such as position, size, color count, and text or bitmap data.
+
+    This struct wraps an <xref href="FFmpeg.AutoGen._AVSubtitleRect" data-throw-if-not-resolved="false"></xref> pointer from FFmpeg.
+  example: []
+  syntax:
+    content: public struct SubtitleRect
+    content.vb: Public Structure SubtitleRect
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Subtitles.SubtitleRect.X
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.X
+  id: X
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: X
+  nameWithType: SubtitleRect.X
+  fullName: FFmpeg.Subtitles.SubtitleRect.X
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: X
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 20
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: Gets or sets the X-coordinate of the top-left corner of the subtitle rectangle.
+  example: []
+  syntax:
+    content: public int X { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property X As Integer
+  overload: FFmpeg.Subtitles.SubtitleRect.X*
+- uid: FFmpeg.Subtitles.SubtitleRect.Y
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.Y
+  id: Y
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: Y
+  nameWithType: SubtitleRect.Y
+  fullName: FFmpeg.Subtitles.SubtitleRect.Y
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Y
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 29
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: Gets or sets the Y-coordinate of the top-left corner of the subtitle rectangle.
+  example: []
+  syntax:
+    content: public int Y { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Y As Integer
+  overload: FFmpeg.Subtitles.SubtitleRect.Y*
+- uid: FFmpeg.Subtitles.SubtitleRect.Width
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.Width
+  id: Width
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: SubtitleRect.Width
+  fullName: FFmpeg.Subtitles.SubtitleRect.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 38
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: Gets or sets the width of the subtitle rectangle.
+  example: []
+  syntax:
+    content: public int Width { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: FFmpeg.Subtitles.SubtitleRect.Width*
+- uid: FFmpeg.Subtitles.SubtitleRect.Height
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.Height
+  id: Height
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: SubtitleRect.Height
+  fullName: FFmpeg.Subtitles.SubtitleRect.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: Gets or sets the height of the subtitle rectangle.
+  example: []
+  syntax:
+    content: public int Height { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: FFmpeg.Subtitles.SubtitleRect.Height*
+- uid: FFmpeg.Subtitles.SubtitleRect.ColorCount
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.ColorCount
+  id: ColorCount
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: ColorCount
+  nameWithType: SubtitleRect.ColorCount
+  fullName: FFmpeg.Subtitles.SubtitleRect.ColorCount
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorCount
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Gets or sets the number of colors in the subtitle rectangle's color palette.
+
+    This is only applicable for bitmap subtitles.
+  example: []
+  syntax:
+    content: public int ColorCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ColorCount As Integer
+  overload: FFmpeg.Subtitles.SubtitleRect.ColorCount*
+- uid: FFmpeg.Subtitles.SubtitleRect.BitmapData
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.BitmapData
+  id: BitmapData
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: BitmapData
+  nameWithType: SubtitleRect.BitmapData
+  fullName: FFmpeg.Subtitles.SubtitleRect.BitmapData
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitmapData
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Gets a span over the bitmap data associated with the subtitle. 
+
+    This span references up to 4 planes of image data for bitmap subtitles.
+  example: []
+  syntax:
+    content: public Span<IntPtr> BitmapData { get; }
+    parameters: []
+    return:
+      type: System.Span{System.IntPtr}
+    content.vb: Public ReadOnly Property BitmapData As Span(Of IntPtr)
+  overload: FFmpeg.Subtitles.SubtitleRect.BitmapData*
+- uid: FFmpeg.Subtitles.SubtitleRect.LineSize
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.LineSize
+  id: LineSize
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: LineSize
+  nameWithType: SubtitleRect.LineSize
+  fullName: FFmpeg.Subtitles.SubtitleRect.LineSize
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LineSize
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 73
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Gets a span over the line sizes (stride) for each plane of the bitmap data.
+
+    This span is used to determine how many bytes each line of the bitmap takes.
+  example: []
+  syntax:
+    content: public Span<int> LineSize { get; }
+    parameters: []
+    return:
+      type: System.Span{System.Int32}
+    content.vb: Public ReadOnly Property LineSize As Span(Of Integer)
+  overload: FFmpeg.Subtitles.SubtitleRect.LineSize*
+- uid: FFmpeg.Subtitles.SubtitleRect.Text
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.Text
+  id: Text
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: SubtitleRect.Text
+  fullName: FFmpeg.Subtitles.SubtitleRect.Text
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Text
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 79
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Gets or sets the plain text subtitle content. 
+
+    This is typically used for simple, unformatted subtitles.
+  example: []
+  syntax:
+    content: public string Text { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Text As String
+  overload: FFmpeg.Subtitles.SubtitleRect.Text*
+- uid: FFmpeg.Subtitles.SubtitleRect.ASS
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.ASS
+  id: ASS
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: ASS
+  nameWithType: SubtitleRect.ASS
+  fullName: FFmpeg.Subtitles.SubtitleRect.ASS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ASS
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 94
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Gets or sets the ASS/SSA formatted subtitle content.
+
+    This field is used for complex, formatted subtitles (e.g., with styling, positioning).
+  example: []
+  syntax:
+    content: public string ASS { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ASS As String
+  overload: FFmpeg.Subtitles.SubtitleRect.ASS*
+- uid: FFmpeg.Subtitles.SubtitleRect.Type
+  commentId: P:FFmpeg.Subtitles.SubtitleRect.Type
+  id: Type
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: SubtitleRect.Type
+  fullName: FFmpeg.Subtitles.SubtitleRect.Type
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Type
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 108
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: Gets or sets the type of the subtitle, indicating whether the subtitle is a bitmap, plain text, or formatted text (e.g., ASS).
+  example: []
+  syntax:
+    content: public SubtitleType Type { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Subtitles.SubtitleType
+    content.vb: Public Property Type As SubtitleType
+  overload: FFmpeg.Subtitles.SubtitleRect.Type*
+- uid: FFmpeg.Subtitles.SubtitleRect.ToString
+  commentId: M:FFmpeg.Subtitles.SubtitleRect.ToString
+  id: ToString
+  parent: FFmpeg.Subtitles.SubtitleRect
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: SubtitleRect.ToString()
+  fullName: FFmpeg.Subtitles.SubtitleRect.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Subtitles/SubtitleRect.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Subtitles/SubtitleRect.cs
+    startLine: 119
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Subtitles
+  summary: >-
+    Returns a string representation of the subtitle. 
+
+    If plain text is present, it will return that; otherwise, it returns the ASS-formatted content.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The plain text or ASS subtitle content as a string.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Subtitles.SubtitleRect.ToString*
+references:
+- uid: FFmpeg.AutoGen._AVSubtitleRect
+  commentId: T:FFmpeg.AutoGen._AVSubtitleRect
+  isExternal: true
+  name: _AVSubtitleRect
+  nameWithType: _AVSubtitleRect
+  fullName: FFmpeg.AutoGen._AVSubtitleRect
+- uid: FFmpeg.Subtitles
+  commentId: N:FFmpeg.Subtitles
+  href: FFmpeg.html
+  name: FFmpeg.Subtitles
+  nameWithType: FFmpeg.Subtitles
+  fullName: FFmpeg.Subtitles
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Subtitles.SubtitleRect.X*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.X
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_X
+  name: X
+  nameWithType: SubtitleRect.X
+  fullName: FFmpeg.Subtitles.SubtitleRect.X
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Subtitles.SubtitleRect.Y*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.Y
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_Y
+  name: Y
+  nameWithType: SubtitleRect.Y
+  fullName: FFmpeg.Subtitles.SubtitleRect.Y
+- uid: FFmpeg.Subtitles.SubtitleRect.Width*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.Width
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_Width
+  name: Width
+  nameWithType: SubtitleRect.Width
+  fullName: FFmpeg.Subtitles.SubtitleRect.Width
+- uid: FFmpeg.Subtitles.SubtitleRect.Height*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.Height
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_Height
+  name: Height
+  nameWithType: SubtitleRect.Height
+  fullName: FFmpeg.Subtitles.SubtitleRect.Height
+- uid: FFmpeg.Subtitles.SubtitleRect.ColorCount*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.ColorCount
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_ColorCount
+  name: ColorCount
+  nameWithType: SubtitleRect.ColorCount
+  fullName: FFmpeg.Subtitles.SubtitleRect.ColorCount
+- uid: FFmpeg.Subtitles.SubtitleRect.BitmapData*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.BitmapData
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_BitmapData
+  name: BitmapData
+  nameWithType: SubtitleRect.BitmapData
+  fullName: FFmpeg.Subtitles.SubtitleRect.BitmapData
+- uid: System.Span{System.IntPtr}
+  commentId: T:System.Span{System.IntPtr}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<IntPtr>
+  nameWithType: Span<IntPtr>
+  fullName: System.Span<System.IntPtr>
+  nameWithType.vb: Span(Of IntPtr)
+  fullName.vb: System.Span(Of System.IntPtr)
+  name.vb: Span(Of IntPtr)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: )
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Subtitles.SubtitleRect.LineSize*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.LineSize
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_LineSize
+  name: LineSize
+  nameWithType: SubtitleRect.LineSize
+  fullName: FFmpeg.Subtitles.SubtitleRect.LineSize
+- uid: System.Span{System.Int32}
+  commentId: T:System.Span{System.Int32}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<int>
+  nameWithType: Span<int>
+  fullName: System.Span<int>
+  nameWithType.vb: Span(Of Integer)
+  fullName.vb: System.Span(Of Integer)
+  name.vb: Span(Of Integer)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: FFmpeg.Subtitles.SubtitleRect.Text*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.Text
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_Text
+  name: Text
+  nameWithType: SubtitleRect.Text
+  fullName: FFmpeg.Subtitles.SubtitleRect.Text
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Subtitles.SubtitleRect.ASS*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.ASS
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_ASS
+  name: ASS
+  nameWithType: SubtitleRect.ASS
+  fullName: FFmpeg.Subtitles.SubtitleRect.ASS
+- uid: FFmpeg.Subtitles.SubtitleRect.Type*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.Type
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_Type
+  name: Type
+  nameWithType: SubtitleRect.Type
+  fullName: FFmpeg.Subtitles.SubtitleRect.Type
+- uid: FFmpeg.Subtitles.SubtitleType
+  commentId: T:FFmpeg.Subtitles.SubtitleType
+  parent: FFmpeg.Subtitles
+  href: FFmpeg.Subtitles.SubtitleType.html
+  name: SubtitleType
+  nameWithType: SubtitleType
+  fullName: FFmpeg.Subtitles.SubtitleType
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Subtitles.SubtitleRect.ToString*
+  commentId: Overload:FFmpeg.Subtitles.SubtitleRect.ToString
+  href: FFmpeg.Subtitles.SubtitleRect.html#FFmpeg_Subtitles_SubtitleRect_ToString
+  name: ToString
+  nameWithType: SubtitleRect.ToString
+  fullName: FFmpeg.Subtitles.SubtitleRect.ToString

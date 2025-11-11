@@ -1,0 +1,78 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Options
+  commentId: N:FFmpeg.Options
+  id: FFmpeg.Options
+  children:
+  - FFmpeg.Options.IOptionQuery
+  - FFmpeg.Options.Option
+  - FFmpeg.Options.OptionFlags
+  - FFmpeg.Options.OptionQueryBase
+  - FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Options
+  nameWithType: FFmpeg.Options
+  fullName: FFmpeg.Options
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Options.IOptionQuery
+  commentId: T:FFmpeg.Options.IOptionQuery
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.IOptionQuery.html
+  name: IOptionQuery
+  nameWithType: IOptionQuery
+  fullName: FFmpeg.Options.IOptionQuery
+- uid: FFmpeg.Options.Option
+  commentId: T:FFmpeg.Options.Option
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.Option.html
+  name: Option
+  nameWithType: Option
+  fullName: FFmpeg.Options.Option
+- uid: FFmpeg.Options.OptionFlags
+  commentId: T:FFmpeg.Options.OptionFlags
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.OptionFlags.html
+  name: OptionFlags
+  nameWithType: OptionFlags
+  fullName: FFmpeg.Options.OptionFlags
+- uid: FFmpeg.Options.OptionQueryBase
+  commentId: T:FFmpeg.Options.OptionQueryBase
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.OptionQueryBase.html
+  name: OptionQueryBase
+  nameWithType: OptionQueryBase
+  fullName: FFmpeg.Options.OptionQueryBase
+- uid: FFmpeg.Options.OptionType
+  commentId: T:FFmpeg.Options.OptionType
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.OptionType.html
+  name: OptionType
+  nameWithType: OptionType
+  fullName: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options
+  commentId: N:FFmpeg.Options
+  href: FFmpeg.html
+  name: FFmpeg.Options
+  nameWithType: FFmpeg.Options
+  fullName: FFmpeg.Options
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Options
+    name: Options
+    href: FFmpeg.Options.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Options
+    name: Options
+    href: FFmpeg.Options.html

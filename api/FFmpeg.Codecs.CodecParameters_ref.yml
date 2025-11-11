@@ -1,0 +1,2425 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.CodecParameters_ref
+  commentId: T:FFmpeg.Codecs.CodecParameters_ref
+  id: CodecParameters_ref
+  parent: FFmpeg.Codecs
+  children:
+  - FFmpeg.Codecs.CodecParameters_ref.BitRate
+  - FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+  - FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+  - FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+  - FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+  - FFmpeg.Codecs.CodecParameters_ref.Channels
+  - FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+  - FFmpeg.Codecs.CodecParameters_ref.CodecId
+  - FFmpeg.Codecs.CodecParameters_ref.CodecTag
+  - FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+  - FFmpeg.Codecs.CodecParameters_ref.ColorRange
+  - FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+  - FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+  - FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.CodecContext)
+  - FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  - FFmpeg.Codecs.CodecParameters_ref.CopyTo(FFmpeg.Codecs.CodecContext)
+  - FFmpeg.Codecs.CodecParameters_ref.ExtraData
+  - FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+  - FFmpeg.Codecs.CodecParameters_ref.FrameRate
+  - FFmpeg.Codecs.CodecParameters_ref.FrameSize
+  - FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration(System.Int32)
+  - FFmpeg.Codecs.CodecParameters_ref.Height
+  - FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+  - FFmpeg.Codecs.CodecParameters_ref.Level
+  - FFmpeg.Codecs.CodecParameters_ref.MediaType
+  - FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+  - FFmpeg.Codecs.CodecParameters_ref.Profile
+  - FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+  - FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+  - FFmpeg.Codecs.CodecParameters_ref.SampleRate
+  - FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+  - FFmpeg.Codecs.CodecParameters_ref.SetExtraData(System.ReadOnlySpan{System.Byte})
+  - FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+  - FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+  - FFmpeg.Codecs.CodecParameters_ref.Width
+  langs:
+  - csharp
+  - vb
+  name: CodecParameters_ref
+  nameWithType: CodecParameters_ref
+  fullName: FFmpeg.Codecs.CodecParameters_ref
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecParameters_ref
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    A managed wrapper around the unmanaged FFmpeg _AVCodecParameters structure, 
+
+    providing safe access to codec parameters.
+  example: []
+  syntax:
+    content: 'public struct CodecParameters_ref : ICodecParameters'
+    content.vb: Public Structure CodecParameters_ref Implements ICodecParameters
+  implements:
+  - FFmpeg.Codecs.ICodecParameters
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  commentId: M:FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  id: CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(ICodecParameters)
+  nameWithType: CodecParameters_ref.CopyFrom(ICodecParameters)
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyFrom
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Copies the contents of another <xref href="FFmpeg.Codecs.CodecParameters" data-throw-if-not-resolved="false"></xref> instance to this instance.
+  example: []
+  syntax:
+    content: public void CopyFrom(ICodecParameters other)
+    parameters:
+    - id: other
+      type: FFmpeg.Codecs.ICodecParameters
+      description: The other <xref href="FFmpeg.Codecs.CodecParameters" data-throw-if-not-resolved="false"></xref> instance to copy from.
+    content.vb: Public Sub CopyFrom(other As ICodecParameters)
+  overload: FFmpeg.Codecs.CodecParameters_ref.CopyFrom*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">other</code> is null.
+  - type: System.ApplicationException
+    commentId: T:System.ApplicationException
+    description: Thrown if copying fails.
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+- uid: FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.CodecContext)
+  id: CopyFrom(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(CodecContext)
+  nameWithType: CodecParameters_ref.CopyFrom(CodecContext)
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CopyFrom(FFmpeg.Codecs.CodecContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyFrom
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 54
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Copies the contents of a <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> instance to this instance.
+  example: []
+  syntax:
+    content: public void CopyFrom(CodecContext other)
+    parameters:
+    - id: other
+      type: FFmpeg.Codecs.CodecContext
+      description: The <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> instance to copy from.
+    content.vb: Public Sub CopyFrom(other As CodecContext)
+  overload: FFmpeg.Codecs.CodecParameters_ref.CopyFrom*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">other</code> is null.
+  - type: System.ApplicationException
+    commentId: T:System.ApplicationException
+    description: Thrown if copying fails.
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+- uid: FFmpeg.Codecs.CodecParameters_ref.CopyTo(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.CodecParameters_ref.CopyTo(FFmpeg.Codecs.CodecContext)
+  id: CopyTo(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(CodecContext)
+  nameWithType: CodecParameters_ref.CopyTo(CodecContext)
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CopyTo(FFmpeg.Codecs.CodecContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyTo
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 72
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Copies the contents of this instance to a specified <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public void CopyTo(CodecContext other)
+    parameters:
+    - id: other
+      type: FFmpeg.Codecs.CodecContext
+      description: The <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> instance to copy to.
+    content.vb: Public Sub CopyTo(other As CodecContext)
+  overload: FFmpeg.Codecs.CodecParameters_ref.CopyTo*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown if <code class="paramref">other</code> is null.
+  - type: System.ApplicationException
+    commentId: T:System.ApplicationException
+    description: Thrown if copying fails.
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+- uid: FFmpeg.Codecs.CodecParameters_ref.MediaType
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.MediaType
+  id: MediaType
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: MediaType
+  nameWithType: CodecParameters_ref.MediaType
+  fullName: FFmpeg.Codecs.CodecParameters_ref.MediaType
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MediaType
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 88
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the general type of the encoded data (e.g., video, audio).
+  example: []
+  syntax:
+    content: public MediaType MediaType { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.MediaType
+    content.vb: Public Property MediaType As MediaType
+  overload: FFmpeg.Codecs.CodecParameters_ref.MediaType*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.MediaType
+- uid: FFmpeg.Codecs.CodecParameters_ref.CodecId
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.CodecId
+  id: CodecId
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: CodecId
+  nameWithType: CodecParameters_ref.CodecId
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CodecId
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecId
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 97
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the specific codec ID used for the encoded data.
+  example: []
+  syntax:
+    content: public CodecID CodecId { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.CodecID
+    content.vb: Public Property CodecId As CodecID
+  overload: FFmpeg.Codecs.CodecParameters_ref.CodecId*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.CodecId
+- uid: FFmpeg.Codecs.CodecParameters_ref.CodecTag
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.CodecTag
+  id: CodecTag
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: CodecTag
+  nameWithType: CodecParameters_ref.CodecTag
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CodecTag
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecTag
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 106
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the codec tag, which is additional information about the codec (corresponding to the AVI FOURCC).
+  example: []
+  syntax:
+    content: public FourCC CodecTag { get; set; }
+    parameters: []
+    return:
+      type: FourCC
+    content.vb: Public Property CodecTag As FourCC
+  overload: FFmpeg.Codecs.CodecParameters_ref.CodecTag*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.CodecTag
+- uid: FFmpeg.Codecs.CodecParameters_ref.ExtraData
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ExtraData
+  id: ExtraData
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ExtraData
+  nameWithType: CodecParameters_ref.ExtraData
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ExtraData
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ExtraData
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 115
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets the extra binary data needed for initializing the decoder.
+  example: []
+  syntax:
+    content: public Span<byte> ExtraData { get; }
+    parameters: []
+    return:
+      type: System.Span{System.Byte}
+    content.vb: Public ReadOnly Property ExtraData As Span(Of Byte)
+  overload: FFmpeg.Codecs.CodecParameters_ref.ExtraData*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ExtraData
+- uid: FFmpeg.Codecs.CodecParameters_ref.SetExtraData(System.ReadOnlySpan{System.Byte})
+  commentId: M:FFmpeg.Codecs.CodecParameters_ref.SetExtraData(System.ReadOnlySpan{System.Byte})
+  id: SetExtraData(System.ReadOnlySpan{System.Byte})
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: SetExtraData(ReadOnlySpan<byte>)
+  nameWithType: CodecParameters_ref.SetExtraData(ReadOnlySpan<byte>)
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SetExtraData(System.ReadOnlySpan<byte>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SetExtraData
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 124
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Sets the extra binary data needed for initializing the decoder.
+  example: []
+  syntax:
+    content: public void SetExtraData(ReadOnlySpan<byte> data)
+    parameters:
+    - id: data
+      type: System.ReadOnlySpan{System.Byte}
+      description: The extra binary data to set.
+    content.vb: Public Sub SetExtraData(data As ReadOnlySpan(Of Byte))
+  overload: FFmpeg.Codecs.CodecParameters_ref.SetExtraData*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if memory allocation fails.
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})
+  nameWithType.vb: CodecParameters_ref.SetExtraData(ReadOnlySpan(Of Byte))
+  fullName.vb: FFmpeg.Codecs.CodecParameters_ref.SetExtraData(System.ReadOnlySpan(Of Byte))
+  name.vb: SetExtraData(ReadOnlySpan(Of Byte))
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitRate
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.BitRate
+  id: BitRate
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: BitRate
+  nameWithType: CodecParameters_ref.BitRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitRate
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitRate
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 141
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the target bit rate in bits per second for the codec.
+  example: []
+  syntax:
+    content: public int BitRate { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property BitRate As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.BitRate*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.BitRate
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+  id: BitsPerCodedSample
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: BitsPerCodedSample
+  nameWithType: CodecParameters_ref.BitsPerCodedSample
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitsPerCodedSample
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 148
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the number of bits per coded sample.
+  example: []
+  syntax:
+    content: public int BitsPerCodedSample { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property BitsPerCodedSample As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.BitsPerCodedSample
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+  id: BitsPerRawSample
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: BitsPerRawSample
+  nameWithType: CodecParameters_ref.BitsPerRawSample
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitsPerRawSample
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 155
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the number of bits per raw (uncoded) sample.
+  example: []
+  syntax:
+    content: public int BitsPerRawSample { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property BitsPerRawSample As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.BitsPerRawSample
+- uid: FFmpeg.Codecs.CodecParameters_ref.Profile
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.Profile
+  id: Profile
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: Profile
+  nameWithType: CodecParameters_ref.Profile
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Profile
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Profile
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 162
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the codec profile, which defines the feature set and restrictions for the codec.
+  example: []
+  syntax:
+    content: public Profile Profile { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.Profile
+    content.vb: Public Property Profile As Profile
+  overload: FFmpeg.Codecs.CodecParameters_ref.Profile*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.Profile
+- uid: FFmpeg.Codecs.CodecParameters_ref.Level
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.Level
+  id: Level
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: Level
+  nameWithType: CodecParameters_ref.Level
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Level
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Level
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 169
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the codec level, which may indicate the complexity or feature set.
+  example: []
+  syntax:
+    content: public int Level { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Level As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.Level*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.Level
+- uid: FFmpeg.Codecs.CodecParameters_ref.Width
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.Width
+  id: Width
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: CodecParameters_ref.Width
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 176
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the width of the video frame in pixels.
+  example: []
+  syntax:
+    content: public int Width { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.Width*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.Width
+- uid: FFmpeg.Codecs.CodecParameters_ref.Height
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.Height
+  id: Height
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: CodecParameters_ref.Height
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 183
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the height of the video frame in pixels.
+  example: []
+  syntax:
+    content: public int Height { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.Height*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.Height
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+  id: SampleAspectRatio
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: SampleAspectRatio
+  nameWithType: CodecParameters_ref.SampleAspectRatio
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleAspectRatio
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 190
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the sample aspect ratio for video frames.
+  example: []
+  syntax:
+    content: public Rational SampleAspectRatio { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Property SampleAspectRatio As Rational
+  overload: FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.SampleAspectRatio
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+  id: SampleFormat
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: SampleFormat
+  nameWithType: CodecParameters_ref.SampleFormat
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleFormat
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 197
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the sample format, which specifies how audio samples are stored and processed.
+  remarks: Ensure the assigned value is compatible with the codec and audio stream.
+  example: []
+  syntax:
+    content: public SampleFormat SampleFormat { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Audio.SampleFormat
+    content.vb: Public Property SampleFormat As SampleFormat
+  overload: FFmpeg.Codecs.CodecParameters_ref.SampleFormat*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.SampleFormat
+- uid: FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+  id: PixelFormat
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: PixelFormat
+  nameWithType: CodecParameters_ref.PixelFormat
+  fullName: FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormat
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 204
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the pixel format, which specifies how video frames are stored and processed.
+  remarks: Ensure the assigned value is compatible with the codec and video stream.
+  example: []
+  syntax:
+    content: public PixelFormat PixelFormat { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.PixelFormat
+    content.vb: Public Property PixelFormat As PixelFormat
+  overload: FFmpeg.Codecs.CodecParameters_ref.PixelFormat*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.PixelFormat
+- uid: FFmpeg.Codecs.CodecParameters_ref.FrameRate
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.FrameRate
+  id: FrameRate
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: FrameRate
+  nameWithType: CodecParameters_ref.FrameRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FrameRate
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FrameRate
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 211
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the frame rate for video streams.
+  example: []
+  syntax:
+    content: public Rational FrameRate { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Property FrameRate As Rational
+  overload: FFmpeg.Codecs.CodecParameters_ref.FrameRate*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.FrameRate
+- uid: FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+  id: FieldOrder
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: FieldOrder
+  nameWithType: CodecParameters_ref.FieldOrder
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FieldOrder
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 218
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the field order for interlaced video (e.g., top field first).
+  example: []
+  syntax:
+    content: public FieldOrder FieldOrder { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.FieldOrder
+    content.vb: Public Property FieldOrder As FieldOrder
+  overload: FFmpeg.Codecs.CodecParameters_ref.FieldOrder*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.FieldOrder
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorRange
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ColorRange
+  id: ColorRange
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ColorRange
+  nameWithType: CodecParameters_ref.ColorRange
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorRange
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorRange
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 225
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the color range (e.g., limited or full) for video data.
+  example: []
+  syntax:
+    content: public ColorRange ColorRange { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorRange
+    content.vb: Public Property ColorRange As ColorRange
+  overload: FFmpeg.Codecs.CodecParameters_ref.ColorRange*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ColorRange
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+  id: ColorPrimaries
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ColorPrimaries
+  nameWithType: CodecParameters_ref.ColorPrimaries
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorPrimaries
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 232
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the color primaries used for color interpretation in video streams.
+  example: []
+  syntax:
+    content: public ColorPrimaries ColorPrimaries { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorPrimaries
+    content.vb: Public Property ColorPrimaries As ColorPrimaries
+  overload: FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ColorPrimaries
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+  id: ColorTransferCharacteristic
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ColorTransferCharacteristic
+  nameWithType: CodecParameters_ref.ColorTransferCharacteristic
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorTransferCharacteristic
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 239
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the color transfer characteristic for video data.
+  example: []
+  syntax:
+    content: public ColorTransferCharacteristic ColorTransferCharacteristic { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+    content.vb: Public Property ColorTransferCharacteristic As ColorTransferCharacteristic
+  overload: FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ColorTransferCharacteristic
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+  id: ColorSpace
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ColorSpace
+  nameWithType: CodecParameters_ref.ColorSpace
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorSpace
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 246
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the color space for video data.
+  example: []
+  syntax:
+    content: public ColorSpace ColorSpace { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorSpace
+    content.vb: Public Property ColorSpace As ColorSpace
+  overload: FFmpeg.Codecs.CodecParameters_ref.ColorSpace*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ColorSpace
+- uid: FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+  id: ChromaLocation
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ChromaLocation
+  nameWithType: CodecParameters_ref.ChromaLocation
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChromaLocation
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 252
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the chroma sample location for video data.
+  example: []
+  syntax:
+    content: public ChromaLocation ChromaLocation { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ChromaLocation
+    content.vb: Public Property ChromaLocation As ChromaLocation
+  overload: FFmpeg.Codecs.CodecParameters_ref.ChromaLocation*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ChromaLocation
+- uid: FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+  id: VideoDelay
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: VideoDelay
+  nameWithType: CodecParameters_ref.VideoDelay
+  fullName: FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoDelay
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 259
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the video delay, which is the number of frames of delay for video decoding.
+  example: []
+  syntax:
+    content: public int VideoDelay { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property VideoDelay As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.VideoDelay*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.VideoDelay
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleRate
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.SampleRate
+  id: SampleRate
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: SampleRate
+  nameWithType: CodecParameters_ref.SampleRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleRate
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleRate
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 266
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the audio sample rate in Hz.
+  example: []
+  syntax:
+    content: public int SampleRate { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SampleRate As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.SampleRate*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.SampleRate
+- uid: FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+  id: BlockAlign
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: BlockAlign
+  nameWithType: CodecParameters_ref.BlockAlign
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BlockAlign
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 273
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the block alignment (in bytes) for audio data.
+  example: []
+  syntax:
+    content: public int BlockAlign { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property BlockAlign As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.BlockAlign*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.BlockAlign
+- uid: FFmpeg.Codecs.CodecParameters_ref.FrameSize
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.FrameSize
+  id: FrameSize
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: FrameSize
+  nameWithType: CodecParameters_ref.FrameSize
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FrameSize
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FrameSize
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 280
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the frame size, such as the number of audio samples per frame.
+  example: []
+  syntax:
+    content: public int FrameSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property FrameSize As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.FrameSize*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.FrameSize
+- uid: FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+  id: InitialPadding
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: InitialPadding
+  nameWithType: CodecParameters_ref.InitialPadding
+  fullName: FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InitialPadding
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 287
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the initial padding for audio data, in samples.
+  example: []
+  syntax:
+    content: public int InitialPadding { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property InitialPadding As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.InitialPadding*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.InitialPadding
+- uid: FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+  id: TrailingPadding
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: TrailingPadding
+  nameWithType: CodecParameters_ref.TrailingPadding
+  fullName: FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TrailingPadding
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 294
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the trailing padding for audio data, in samples.
+  example: []
+  syntax:
+    content: public int TrailingPadding { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property TrailingPadding As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.TrailingPadding*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.TrailingPadding
+- uid: FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+  id: SeekPreroll
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: SeekPreroll
+  nameWithType: CodecParameters_ref.SeekPreroll
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SeekPreroll
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 301
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the seek preroll, which is the number of samples to discard before playback starts.
+  example: []
+  syntax:
+    content: public int SeekPreroll { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SeekPreroll As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.SeekPreroll*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.SeekPreroll
+- uid: FFmpeg.Codecs.CodecParameters_ref.Channels
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.Channels
+  id: Channels
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: Channels
+  nameWithType: CodecParameters_ref.Channels
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Channels
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Channels
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 308
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets the number of audio channels for the current codec parameters.
+  remarks: >-
+    This value indicates the number of channels in the audio stream, such as 1 for mono, 2 for stereo, or higher for surround formats.
+
+    The meaning is related to the <xref href="FFmpeg.Codecs.ICodecParameters.ChannelLayout" data-throw-if-not-resolved="false"></xref> property.
+  example: []
+  syntax:
+    content: public int Channels { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Channels As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.Channels*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.Channels
+- uid: FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+  commentId: P:FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+  id: ChannelLayout
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: ChannelLayout
+  nameWithType: CodecParameters_ref.ChannelLayout
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChannelLayout
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 311
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets or sets the channel layout, which defines the spatial arrangement of audio channels (e.g., mono, stereo, 5.1 surround).
+  remarks: The channel layout determines how audio channels are positioned and should match the number of channels and the codec in use.
+  example: []
+  syntax:
+    content: public ChannelLayout ChannelLayout { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Audio.ChannelLayout
+    content.vb: Public Property ChannelLayout As ChannelLayout
+  overload: FFmpeg.Codecs.CodecParameters_ref.ChannelLayout*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.ChannelLayout
+- uid: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration(System.Int32)
+  commentId: M:FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration(System.Int32)
+  id: GetAudioFrameDuration(System.Int32)
+  parent: FFmpeg.Codecs.CodecParameters_ref
+  langs:
+  - csharp
+  - vb
+  name: GetAudioFrameDuration(int)
+  nameWithType: CodecParameters_ref.GetAudioFrameDuration(int)
+  fullName: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecParameters_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetAudioFrameDuration
+    path: FFmpeg/Codecs/CodecParameters_ref.cs
+    startLine: 324
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Calculates the duration of an audio frame based on the number of bytes in the frame.
+  example: []
+  syntax:
+    content: public readonly int GetAudioFrameDuration(int frameBytes)
+    parameters:
+    - id: frameBytes
+      type: System.Int32
+      description: The number of bytes in the audio frame.
+    return:
+      type: System.Int32
+      description: The duration of the frame in samples.
+    content.vb: Public Function GetAudioFrameDuration(frameBytes As Integer) As Integer
+  overload: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration*
+  implements:
+  - FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(System.Int32)
+  nameWithType.vb: CodecParameters_ref.GetAudioFrameDuration(Integer)
+  fullName.vb: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration(Integer)
+  name.vb: GetAudioFrameDuration(Integer)
+references:
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.Codecs.ICodecParameters
+  commentId: T:FFmpeg.Codecs.ICodecParameters
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.ICodecParameters.html
+  name: ICodecParameters
+  nameWithType: ICodecParameters
+  fullName: FFmpeg.Codecs.ICodecParameters
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Codecs.CodecParameters
+  commentId: T:FFmpeg.Codecs.CodecParameters
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecParameters.html
+  name: CodecParameters
+  nameWithType: CodecParameters
+  fullName: FFmpeg.Codecs.CodecParameters
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: System.ApplicationException
+  commentId: T:System.ApplicationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.applicationexception
+  name: ApplicationException
+  nameWithType: ApplicationException
+  fullName: System.ApplicationException
+- uid: FFmpeg.Codecs.CodecParameters_ref.CopyFrom*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.CopyFrom
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_CopyFrom_FFmpeg_Codecs_ICodecParameters_
+  name: CopyFrom
+  nameWithType: CodecParameters_ref.CopyFrom
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CopyFrom
+- uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  commentId: M:FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_ICodecParameters_
+  name: CopyFrom(ICodecParameters)
+  nameWithType: ICodecParameters.CopyFrom(ICodecParameters)
+  fullName: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+  spec.csharp:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+    name: CopyFrom
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_ICodecParameters_
+  - name: (
+  - uid: FFmpeg.Codecs.ICodecParameters
+    name: ICodecParameters
+    href: FFmpeg.Codecs.ICodecParameters.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.ICodecParameters)
+    name: CopyFrom
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_ICodecParameters_
+  - name: (
+  - uid: FFmpeg.Codecs.ICodecParameters
+    name: ICodecParameters
+    href: FFmpeg.Codecs.ICodecParameters.html
+  - name: )
+- uid: FFmpeg.Codecs.CodecContext
+  commentId: T:FFmpeg.Codecs.CodecContext
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecContext.html
+  name: CodecContext
+  nameWithType: CodecContext
+  fullName: FFmpeg.Codecs.CodecContext
+- uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_CodecContext_
+  name: CopyFrom(CodecContext)
+  nameWithType: ICodecParameters.CopyFrom(CodecContext)
+  fullName: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+  spec.csharp:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+    name: CopyFrom
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyFrom(FFmpeg.Codecs.CodecContext)
+    name: CopyFrom
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyFrom_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+- uid: FFmpeg.Codecs.CodecParameters_ref.CopyTo*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.CopyTo
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_CopyTo_FFmpeg_Codecs_CodecContext_
+  name: CopyTo
+  nameWithType: CodecParameters_ref.CopyTo
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CopyTo
+- uid: FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyTo_FFmpeg_Codecs_CodecContext_
+  name: CopyTo(CodecContext)
+  nameWithType: ICodecParameters.CopyTo(CodecContext)
+  fullName: FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+  spec.csharp:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+    name: CopyTo
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyTo_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.ICodecParameters.CopyTo(FFmpeg.Codecs.CodecContext)
+    name: CopyTo
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CopyTo_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+- uid: FFmpeg.Codecs.CodecParameters_ref.MediaType*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.MediaType
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_MediaType
+  name: MediaType
+  nameWithType: CodecParameters_ref.MediaType
+  fullName: FFmpeg.Codecs.CodecParameters_ref.MediaType
+- uid: FFmpeg.Codecs.ICodecParameters.MediaType
+  commentId: P:FFmpeg.Codecs.ICodecParameters.MediaType
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_MediaType
+  name: MediaType
+  nameWithType: ICodecParameters.MediaType
+  fullName: FFmpeg.Codecs.ICodecParameters.MediaType
+- uid: FFmpeg.Utils.MediaType
+  commentId: T:FFmpeg.Utils.MediaType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.MediaType.html
+  name: MediaType
+  nameWithType: MediaType
+  fullName: FFmpeg.Utils.MediaType
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Codecs.CodecParameters_ref.CodecId*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.CodecId
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_CodecId
+  name: CodecId
+  nameWithType: CodecParameters_ref.CodecId
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CodecId
+- uid: FFmpeg.Codecs.ICodecParameters.CodecId
+  commentId: P:FFmpeg.Codecs.ICodecParameters.CodecId
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CodecId
+  name: CodecId
+  nameWithType: ICodecParameters.CodecId
+  fullName: FFmpeg.Codecs.ICodecParameters.CodecId
+- uid: FFmpeg.Codecs.CodecID
+  commentId: T:FFmpeg.Codecs.CodecID
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecID.html
+  name: CodecID
+  nameWithType: CodecID
+  fullName: FFmpeg.Codecs.CodecID
+- uid: FFmpeg.Codecs.CodecParameters_ref.CodecTag*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.CodecTag
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_CodecTag
+  name: CodecTag
+  nameWithType: CodecParameters_ref.CodecTag
+  fullName: FFmpeg.Codecs.CodecParameters_ref.CodecTag
+- uid: FFmpeg.Codecs.ICodecParameters.CodecTag
+  commentId: P:FFmpeg.Codecs.ICodecParameters.CodecTag
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_CodecTag
+  name: CodecTag
+  nameWithType: ICodecParameters.CodecTag
+  fullName: FFmpeg.Codecs.ICodecParameters.CodecTag
+- uid: FourCC
+  commentId: T:FourCC
+  href: FourCC.html
+  name: FourCC
+  nameWithType: FourCC
+  fullName: FourCC
+- uid: FFmpeg.Codecs.CodecParameters_ref.ExtraData*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ExtraData
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ExtraData
+  name: ExtraData
+  nameWithType: CodecParameters_ref.ExtraData
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ExtraData
+- uid: FFmpeg.Codecs.ICodecParameters.ExtraData
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ExtraData
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ExtraData
+  name: ExtraData
+  nameWithType: ICodecParameters.ExtraData
+  fullName: FFmpeg.Codecs.ICodecParameters.ExtraData
+- uid: System.Span{System.Byte}
+  commentId: T:System.Span{System.Byte}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<byte>
+  nameWithType: Span<byte>
+  fullName: System.Span<byte>
+  nameWithType.vb: Span(Of Byte)
+  fullName.vb: System.Span(Of Byte)
+  name.vb: Span(Of Byte)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.outofmemoryexception
+  name: OutOfMemoryException
+  nameWithType: OutOfMemoryException
+  fullName: System.OutOfMemoryException
+- uid: FFmpeg.Codecs.CodecParameters_ref.SetExtraData*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.SetExtraData
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_SetExtraData_System_ReadOnlySpan_System_Byte__
+  name: SetExtraData
+  nameWithType: CodecParameters_ref.SetExtraData
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SetExtraData
+- uid: FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})
+  commentId: M:FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})
+  parent: FFmpeg.Codecs.ICodecParameters
+  isExternal: true
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SetExtraData_System_ReadOnlySpan_System_Byte__
+  name: SetExtraData(ReadOnlySpan<byte>)
+  nameWithType: ICodecParameters.SetExtraData(ReadOnlySpan<byte>)
+  fullName: FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan<byte>)
+  nameWithType.vb: ICodecParameters.SetExtraData(ReadOnlySpan(Of Byte))
+  fullName.vb: FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan(Of Byte))
+  name.vb: SetExtraData(ReadOnlySpan(Of Byte))
+  spec.csharp:
+  - uid: FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})
+    name: SetExtraData
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SetExtraData_System_ReadOnlySpan_System_Byte__
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.ICodecParameters.SetExtraData(System.ReadOnlySpan{System.Byte})
+    name: SetExtraData
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SetExtraData_System_ReadOnlySpan_System_Byte__
+  - name: (
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: System.ReadOnlySpan{System.Byte}
+  commentId: T:System.ReadOnlySpan{System.Byte}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<byte>
+  nameWithType: ReadOnlySpan<byte>
+  fullName: System.ReadOnlySpan<byte>
+  nameWithType.vb: ReadOnlySpan(Of Byte)
+  fullName.vb: System.ReadOnlySpan(Of Byte)
+  name.vb: ReadOnlySpan(Of Byte)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitRate*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.BitRate
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_BitRate
+  name: BitRate
+  nameWithType: CodecParameters_ref.BitRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitRate
+- uid: FFmpeg.Codecs.ICodecParameters.BitRate
+  commentId: P:FFmpeg.Codecs.ICodecParameters.BitRate
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_BitRate
+  name: BitRate
+  nameWithType: ICodecParameters.BitRate
+  fullName: FFmpeg.Codecs.ICodecParameters.BitRate
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_BitsPerCodedSample
+  name: BitsPerCodedSample
+  nameWithType: CodecParameters_ref.BitsPerCodedSample
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitsPerCodedSample
+- uid: FFmpeg.Codecs.ICodecParameters.BitsPerCodedSample
+  commentId: P:FFmpeg.Codecs.ICodecParameters.BitsPerCodedSample
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_BitsPerCodedSample
+  name: BitsPerCodedSample
+  nameWithType: ICodecParameters.BitsPerCodedSample
+  fullName: FFmpeg.Codecs.ICodecParameters.BitsPerCodedSample
+- uid: FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_BitsPerRawSample
+  name: BitsPerRawSample
+  nameWithType: CodecParameters_ref.BitsPerRawSample
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BitsPerRawSample
+- uid: FFmpeg.Codecs.ICodecParameters.BitsPerRawSample
+  commentId: P:FFmpeg.Codecs.ICodecParameters.BitsPerRawSample
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_BitsPerRawSample
+  name: BitsPerRawSample
+  nameWithType: ICodecParameters.BitsPerRawSample
+  fullName: FFmpeg.Codecs.ICodecParameters.BitsPerRawSample
+- uid: FFmpeg.Codecs.CodecParameters_ref.Profile*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.Profile
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_Profile
+  name: Profile
+  nameWithType: CodecParameters_ref.Profile
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Profile
+- uid: FFmpeg.Codecs.ICodecParameters.Profile
+  commentId: P:FFmpeg.Codecs.ICodecParameters.Profile
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_Profile
+  name: Profile
+  nameWithType: ICodecParameters.Profile
+  fullName: FFmpeg.Codecs.ICodecParameters.Profile
+- uid: FFmpeg.Codecs.Profile
+  commentId: T:FFmpeg.Codecs.Profile
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.Profile.html
+  name: Profile
+  nameWithType: Profile
+  fullName: FFmpeg.Codecs.Profile
+- uid: FFmpeg.Codecs.CodecParameters_ref.Level*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.Level
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_Level
+  name: Level
+  nameWithType: CodecParameters_ref.Level
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Level
+- uid: FFmpeg.Codecs.ICodecParameters.Level
+  commentId: P:FFmpeg.Codecs.ICodecParameters.Level
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_Level
+  name: Level
+  nameWithType: ICodecParameters.Level
+  fullName: FFmpeg.Codecs.ICodecParameters.Level
+- uid: FFmpeg.Codecs.CodecParameters_ref.Width*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.Width
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_Width
+  name: Width
+  nameWithType: CodecParameters_ref.Width
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Width
+- uid: FFmpeg.Codecs.ICodecParameters.Width
+  commentId: P:FFmpeg.Codecs.ICodecParameters.Width
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_Width
+  name: Width
+  nameWithType: ICodecParameters.Width
+  fullName: FFmpeg.Codecs.ICodecParameters.Width
+- uid: FFmpeg.Codecs.CodecParameters_ref.Height*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.Height
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_Height
+  name: Height
+  nameWithType: CodecParameters_ref.Height
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Height
+- uid: FFmpeg.Codecs.ICodecParameters.Height
+  commentId: P:FFmpeg.Codecs.ICodecParameters.Height
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_Height
+  name: Height
+  nameWithType: ICodecParameters.Height
+  fullName: FFmpeg.Codecs.ICodecParameters.Height
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_SampleAspectRatio
+  name: SampleAspectRatio
+  nameWithType: CodecParameters_ref.SampleAspectRatio
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleAspectRatio
+- uid: FFmpeg.Codecs.ICodecParameters.SampleAspectRatio
+  commentId: P:FFmpeg.Codecs.ICodecParameters.SampleAspectRatio
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SampleAspectRatio
+  name: SampleAspectRatio
+  nameWithType: ICodecParameters.SampleAspectRatio
+  fullName: FFmpeg.Codecs.ICodecParameters.SampleAspectRatio
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleFormat*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_SampleFormat
+  name: SampleFormat
+  nameWithType: CodecParameters_ref.SampleFormat
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleFormat
+- uid: FFmpeg.Codecs.ICodecParameters.SampleFormat
+  commentId: P:FFmpeg.Codecs.ICodecParameters.SampleFormat
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SampleFormat
+  name: SampleFormat
+  nameWithType: ICodecParameters.SampleFormat
+  fullName: FFmpeg.Codecs.ICodecParameters.SampleFormat
+- uid: FFmpeg.Audio.SampleFormat
+  commentId: T:FFmpeg.Audio.SampleFormat
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.SampleFormat.html
+  name: SampleFormat
+  nameWithType: SampleFormat
+  fullName: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio
+  commentId: N:FFmpeg.Audio
+  href: FFmpeg.html
+  name: FFmpeg.Audio
+  nameWithType: FFmpeg.Audio
+  fullName: FFmpeg.Audio
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+- uid: FFmpeg.Codecs.CodecParameters_ref.PixelFormat*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_PixelFormat
+  name: PixelFormat
+  nameWithType: CodecParameters_ref.PixelFormat
+  fullName: FFmpeg.Codecs.CodecParameters_ref.PixelFormat
+- uid: FFmpeg.Codecs.ICodecParameters.PixelFormat
+  commentId: P:FFmpeg.Codecs.ICodecParameters.PixelFormat
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_PixelFormat
+  name: PixelFormat
+  nameWithType: ICodecParameters.PixelFormat
+  fullName: FFmpeg.Codecs.ICodecParameters.PixelFormat
+- uid: FFmpeg.Images.PixelFormat
+  commentId: T:FFmpeg.Images.PixelFormat
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormat.html
+  name: PixelFormat
+  nameWithType: PixelFormat
+  fullName: FFmpeg.Images.PixelFormat
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Codecs.CodecParameters_ref.FrameRate*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.FrameRate
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_FrameRate
+  name: FrameRate
+  nameWithType: CodecParameters_ref.FrameRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FrameRate
+- uid: FFmpeg.Codecs.ICodecParameters.FrameRate
+  commentId: P:FFmpeg.Codecs.ICodecParameters.FrameRate
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_FrameRate
+  name: FrameRate
+  nameWithType: ICodecParameters.FrameRate
+  fullName: FFmpeg.Codecs.ICodecParameters.FrameRate
+- uid: FFmpeg.Codecs.CodecParameters_ref.FieldOrder*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_FieldOrder
+  name: FieldOrder
+  nameWithType: CodecParameters_ref.FieldOrder
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FieldOrder
+- uid: FFmpeg.Codecs.ICodecParameters.FieldOrder
+  commentId: P:FFmpeg.Codecs.ICodecParameters.FieldOrder
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_FieldOrder
+  name: FieldOrder
+  nameWithType: ICodecParameters.FieldOrder
+  fullName: FFmpeg.Codecs.ICodecParameters.FieldOrder
+- uid: FFmpeg.Images.FieldOrder
+  commentId: T:FFmpeg.Images.FieldOrder
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.FieldOrder.html
+  name: FieldOrder
+  nameWithType: FieldOrder
+  fullName: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorRange*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ColorRange
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ColorRange
+  name: ColorRange
+  nameWithType: CodecParameters_ref.ColorRange
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorRange
+- uid: FFmpeg.Codecs.ICodecParameters.ColorRange
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ColorRange
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ColorRange
+  name: ColorRange
+  nameWithType: ICodecParameters.ColorRange
+  fullName: FFmpeg.Codecs.ICodecParameters.ColorRange
+- uid: FFmpeg.Images.ColorRange
+  commentId: T:FFmpeg.Images.ColorRange
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorRange.html
+  name: ColorRange
+  nameWithType: ColorRange
+  fullName: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ColorPrimaries
+  name: ColorPrimaries
+  nameWithType: CodecParameters_ref.ColorPrimaries
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorPrimaries
+- uid: FFmpeg.Codecs.ICodecParameters.ColorPrimaries
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ColorPrimaries
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ColorPrimaries
+  name: ColorPrimaries
+  nameWithType: ICodecParameters.ColorPrimaries
+  fullName: FFmpeg.Codecs.ICodecParameters.ColorPrimaries
+- uid: FFmpeg.Images.ColorPrimaries
+  commentId: T:FFmpeg.Images.ColorPrimaries
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorPrimaries.html
+  name: ColorPrimaries
+  nameWithType: ColorPrimaries
+  fullName: FFmpeg.Images.ColorPrimaries
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ColorTransferCharacteristic
+  name: ColorTransferCharacteristic
+  nameWithType: CodecParameters_ref.ColorTransferCharacteristic
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorTransferCharacteristic
+- uid: FFmpeg.Codecs.ICodecParameters.ColorTransferCharacteristic
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ColorTransferCharacteristic
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ColorTransferCharacteristic
+  name: ColorTransferCharacteristic
+  nameWithType: ICodecParameters.ColorTransferCharacteristic
+  fullName: FFmpeg.Codecs.ICodecParameters.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic
+  commentId: T:FFmpeg.Images.ColorTransferCharacteristic
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorTransferCharacteristic.html
+  name: ColorTransferCharacteristic
+  nameWithType: ColorTransferCharacteristic
+  fullName: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Codecs.CodecParameters_ref.ColorSpace*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ColorSpace
+  name: ColorSpace
+  nameWithType: CodecParameters_ref.ColorSpace
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ColorSpace
+- uid: FFmpeg.Codecs.ICodecParameters.ColorSpace
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ColorSpace
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ColorSpace
+  name: ColorSpace
+  nameWithType: ICodecParameters.ColorSpace
+  fullName: FFmpeg.Codecs.ICodecParameters.ColorSpace
+- uid: FFmpeg.Images.ColorSpace
+  commentId: T:FFmpeg.Images.ColorSpace
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorSpace.html
+  name: ColorSpace
+  nameWithType: ColorSpace
+  fullName: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Codecs.CodecParameters_ref.ChromaLocation*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ChromaLocation
+  name: ChromaLocation
+  nameWithType: CodecParameters_ref.ChromaLocation
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ChromaLocation
+- uid: FFmpeg.Codecs.ICodecParameters.ChromaLocation
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ChromaLocation
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ChromaLocation
+  name: ChromaLocation
+  nameWithType: ICodecParameters.ChromaLocation
+  fullName: FFmpeg.Codecs.ICodecParameters.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation
+  commentId: T:FFmpeg.Images.ChromaLocation
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ChromaLocation.html
+  name: ChromaLocation
+  nameWithType: ChromaLocation
+  fullName: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Codecs.CodecParameters_ref.VideoDelay*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_VideoDelay
+  name: VideoDelay
+  nameWithType: CodecParameters_ref.VideoDelay
+  fullName: FFmpeg.Codecs.CodecParameters_ref.VideoDelay
+- uid: FFmpeg.Codecs.ICodecParameters.VideoDelay
+  commentId: P:FFmpeg.Codecs.ICodecParameters.VideoDelay
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_VideoDelay
+  name: VideoDelay
+  nameWithType: ICodecParameters.VideoDelay
+  fullName: FFmpeg.Codecs.ICodecParameters.VideoDelay
+- uid: FFmpeg.Codecs.CodecParameters_ref.SampleRate*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.SampleRate
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_SampleRate
+  name: SampleRate
+  nameWithType: CodecParameters_ref.SampleRate
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SampleRate
+- uid: FFmpeg.Codecs.ICodecParameters.SampleRate
+  commentId: P:FFmpeg.Codecs.ICodecParameters.SampleRate
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SampleRate
+  name: SampleRate
+  nameWithType: ICodecParameters.SampleRate
+  fullName: FFmpeg.Codecs.ICodecParameters.SampleRate
+- uid: FFmpeg.Codecs.CodecParameters_ref.BlockAlign*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_BlockAlign
+  name: BlockAlign
+  nameWithType: CodecParameters_ref.BlockAlign
+  fullName: FFmpeg.Codecs.CodecParameters_ref.BlockAlign
+- uid: FFmpeg.Codecs.ICodecParameters.BlockAlign
+  commentId: P:FFmpeg.Codecs.ICodecParameters.BlockAlign
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_BlockAlign
+  name: BlockAlign
+  nameWithType: ICodecParameters.BlockAlign
+  fullName: FFmpeg.Codecs.ICodecParameters.BlockAlign
+- uid: FFmpeg.Codecs.CodecParameters_ref.FrameSize*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.FrameSize
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_FrameSize
+  name: FrameSize
+  nameWithType: CodecParameters_ref.FrameSize
+  fullName: FFmpeg.Codecs.CodecParameters_ref.FrameSize
+- uid: FFmpeg.Codecs.ICodecParameters.FrameSize
+  commentId: P:FFmpeg.Codecs.ICodecParameters.FrameSize
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_FrameSize
+  name: FrameSize
+  nameWithType: ICodecParameters.FrameSize
+  fullName: FFmpeg.Codecs.ICodecParameters.FrameSize
+- uid: FFmpeg.Codecs.CodecParameters_ref.InitialPadding*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_InitialPadding
+  name: InitialPadding
+  nameWithType: CodecParameters_ref.InitialPadding
+  fullName: FFmpeg.Codecs.CodecParameters_ref.InitialPadding
+- uid: FFmpeg.Codecs.ICodecParameters.InitialPadding
+  commentId: P:FFmpeg.Codecs.ICodecParameters.InitialPadding
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_InitialPadding
+  name: InitialPadding
+  nameWithType: ICodecParameters.InitialPadding
+  fullName: FFmpeg.Codecs.ICodecParameters.InitialPadding
+- uid: FFmpeg.Codecs.CodecParameters_ref.TrailingPadding*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_TrailingPadding
+  name: TrailingPadding
+  nameWithType: CodecParameters_ref.TrailingPadding
+  fullName: FFmpeg.Codecs.CodecParameters_ref.TrailingPadding
+- uid: FFmpeg.Codecs.ICodecParameters.TrailingPadding
+  commentId: P:FFmpeg.Codecs.ICodecParameters.TrailingPadding
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_TrailingPadding
+  name: TrailingPadding
+  nameWithType: ICodecParameters.TrailingPadding
+  fullName: FFmpeg.Codecs.ICodecParameters.TrailingPadding
+- uid: FFmpeg.Codecs.CodecParameters_ref.SeekPreroll*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_SeekPreroll
+  name: SeekPreroll
+  nameWithType: CodecParameters_ref.SeekPreroll
+  fullName: FFmpeg.Codecs.CodecParameters_ref.SeekPreroll
+- uid: FFmpeg.Codecs.ICodecParameters.SeekPreroll
+  commentId: P:FFmpeg.Codecs.ICodecParameters.SeekPreroll
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_SeekPreroll
+  name: SeekPreroll
+  nameWithType: ICodecParameters.SeekPreroll
+  fullName: FFmpeg.Codecs.ICodecParameters.SeekPreroll
+- uid: FFmpeg.Codecs.ICodecParameters.ChannelLayout
+  commentId: P:FFmpeg.Codecs.ICodecParameters.ChannelLayout
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_ChannelLayout
+  name: ChannelLayout
+  nameWithType: ICodecParameters.ChannelLayout
+  fullName: FFmpeg.Codecs.ICodecParameters.ChannelLayout
+- uid: FFmpeg.Codecs.CodecParameters_ref.Channels*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.Channels
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_Channels
+  name: Channels
+  nameWithType: CodecParameters_ref.Channels
+  fullName: FFmpeg.Codecs.CodecParameters_ref.Channels
+- uid: FFmpeg.Codecs.ICodecParameters.Channels
+  commentId: P:FFmpeg.Codecs.ICodecParameters.Channels
+  parent: FFmpeg.Codecs.ICodecParameters
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_Channels
+  name: Channels
+  nameWithType: ICodecParameters.Channels
+  fullName: FFmpeg.Codecs.ICodecParameters.Channels
+- uid: FFmpeg.Codecs.CodecParameters_ref.ChannelLayout*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_ChannelLayout
+  name: ChannelLayout
+  nameWithType: CodecParameters_ref.ChannelLayout
+  fullName: FFmpeg.Codecs.CodecParameters_ref.ChannelLayout
+- uid: FFmpeg.Audio.ChannelLayout
+  commentId: T:FFmpeg.Audio.ChannelLayout
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.ChannelLayout.html
+  name: ChannelLayout
+  nameWithType: ChannelLayout
+  fullName: FFmpeg.Audio.ChannelLayout
+- uid: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration*
+  commentId: Overload:FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration
+  href: FFmpeg.Codecs.CodecParameters_ref.html#FFmpeg_Codecs_CodecParameters_ref_GetAudioFrameDuration_System_Int32_
+  name: GetAudioFrameDuration
+  nameWithType: CodecParameters_ref.GetAudioFrameDuration
+  fullName: FFmpeg.Codecs.CodecParameters_ref.GetAudioFrameDuration
+- uid: FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(System.Int32)
+  commentId: M:FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(System.Int32)
+  parent: FFmpeg.Codecs.ICodecParameters
+  isExternal: true
+  href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_GetAudioFrameDuration_System_Int32_
+  name: GetAudioFrameDuration(int)
+  nameWithType: ICodecParameters.GetAudioFrameDuration(int)
+  fullName: FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(int)
+  nameWithType.vb: ICodecParameters.GetAudioFrameDuration(Integer)
+  fullName.vb: FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(Integer)
+  name.vb: GetAudioFrameDuration(Integer)
+  spec.csharp:
+  - uid: FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(System.Int32)
+    name: GetAudioFrameDuration
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_GetAudioFrameDuration_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.ICodecParameters.GetAudioFrameDuration(System.Int32)
+    name: GetAudioFrameDuration
+    href: FFmpeg.Codecs.ICodecParameters.html#FFmpeg_Codecs_ICodecParameters_GetAudioFrameDuration_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )

@@ -1,0 +1,431 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Filters.FilterPad
+  commentId: T:FFmpeg.Filters.FilterPad
+  id: FilterPad
+  parent: FFmpeg.Filters
+  children:
+  - FFmpeg.Filters.FilterPad.MediaType
+  - FFmpeg.Filters.FilterPad.Name
+  - FFmpeg.Filters.FilterPad.ToString
+  langs:
+  - csharp
+  - vb
+  name: FilterPad
+  nameWithType: FilterPad
+  fullName: FFmpeg.Filters.FilterPad
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterPad.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FilterPad
+    path: FFmpeg/Filters/FilterPad.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Represents a single filter pad, which is used for connecting filter inputs and outputs in an FFmpeg filter graph.
+  example: []
+  syntax:
+    content: public readonly struct FilterPad
+    content.vb: Public Structure FilterPad
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Filters.FilterPad.MediaType
+  commentId: P:FFmpeg.Filters.FilterPad.MediaType
+  id: MediaType
+  parent: FFmpeg.Filters.FilterPad
+  langs:
+  - csharp
+  - vb
+  name: MediaType
+  nameWithType: FilterPad.MediaType
+  fullName: FFmpeg.Filters.FilterPad.MediaType
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterPad.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MediaType
+    path: FFmpeg/Filters/FilterPad.cs
+    startLine: 33
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the media type handled by this filter pad (e.g., video, audio).
+  example: []
+  syntax:
+    content: public MediaType MediaType { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.MediaType
+    content.vb: Public ReadOnly Property MediaType As MediaType
+  overload: FFmpeg.Filters.FilterPad.MediaType*
+- uid: FFmpeg.Filters.FilterPad.Name
+  commentId: P:FFmpeg.Filters.FilterPad.Name
+  id: Name
+  parent: FFmpeg.Filters.FilterPad
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: FilterPad.Name
+  fullName: FFmpeg.Filters.FilterPad.Name
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterPad.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Name
+    path: FFmpeg/Filters/FilterPad.cs
+    startLine: 38
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Gets the name of this filter pad.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Name As String
+  overload: FFmpeg.Filters.FilterPad.Name*
+- uid: FFmpeg.Filters.FilterPad.ToString
+  commentId: M:FFmpeg.Filters.FilterPad.ToString
+  id: ToString
+  parent: FFmpeg.Filters.FilterPad
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: FilterPad.ToString()
+  fullName: FFmpeg.Filters.FilterPad.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterPad.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Filters/FilterPad.cs
+    startLine: 44
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  summary: Returns the name of the filter pad as a string.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The name of the filter pad.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Filters.FilterPad.ToString*
+references:
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  href: FFmpeg.html
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Filters.FilterPad.MediaType*
+  commentId: Overload:FFmpeg.Filters.FilterPad.MediaType
+  href: FFmpeg.Filters.FilterPad.html#FFmpeg_Filters_FilterPad_MediaType
+  name: MediaType
+  nameWithType: FilterPad.MediaType
+  fullName: FFmpeg.Filters.FilterPad.MediaType
+- uid: FFmpeg.Utils.MediaType
+  commentId: T:FFmpeg.Utils.MediaType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.MediaType.html
+  name: MediaType
+  nameWithType: MediaType
+  fullName: FFmpeg.Utils.MediaType
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Filters.FilterPad.Name*
+  commentId: Overload:FFmpeg.Filters.FilterPad.Name
+  href: FFmpeg.Filters.FilterPad.html#FFmpeg_Filters_FilterPad_Name
+  name: Name
+  nameWithType: FilterPad.Name
+  fullName: FFmpeg.Filters.FilterPad.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Filters.FilterPad.ToString*
+  commentId: Overload:FFmpeg.Filters.FilterPad.ToString
+  href: FFmpeg.Filters.FilterPad.html#FFmpeg_Filters_FilterPad_ToString
+  name: ToString
+  nameWithType: FilterPad.ToString
+  fullName: FFmpeg.Filters.FilterPad.ToString

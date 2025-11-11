@@ -1,0 +1,2346 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Formats.OutputFormat
+  commentId: T:FFmpeg.Formats.OutputFormat
+  id: OutputFormat
+  parent: FFmpeg.Formats
+  children:
+  - FFmpeg.Formats.OutputFormat.AAC
+  - FFmpeg.Formats.OutputFormat.ALAC
+  - FFmpeg.Formats.OutputFormat.APNG
+  - FFmpeg.Formats.OutputFormat.ASS
+  - FFmpeg.Formats.OutputFormat.AVI
+  - FFmpeg.Formats.OutputFormat.AVIF
+  - FFmpeg.Formats.OutputFormat.BMP
+  - FFmpeg.Formats.OutputFormat.BMP_Pipe
+  - FFmpeg.Formats.OutputFormat.DASH
+  - FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+  - FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+  - FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+  - FFmpeg.Formats.OutputFormat.Extensions
+  - FFmpeg.Formats.OutputFormat.FLAC
+  - FFmpeg.Formats.OutputFormat.FLV
+  - FFmpeg.Formats.OutputFormat.FindFormat(System.String)
+  - FFmpeg.Formats.OutputFormat.Flags
+  - FFmpeg.Formats.OutputFormat.GIF
+  - FFmpeg.Formats.OutputFormat.GetOutputFormats
+  - FFmpeg.Formats.OutputFormat.GuessOutputFormat(System.String,System.String,System.String)
+  - FFmpeg.Formats.OutputFormat.HLS
+  - FFmpeg.Formats.OutputFormat.JPEG
+  - FFmpeg.Formats.OutputFormat.JPEGXL
+  - FFmpeg.Formats.OutputFormat.JPEG_Pipe
+  - FFmpeg.Formats.OutputFormat.LongName
+  - FFmpeg.Formats.OutputFormat.MKV
+  - FFmpeg.Formats.OutputFormat.MOV
+  - FFmpeg.Formats.OutputFormat.MP3
+  - FFmpeg.Formats.OutputFormat.MP4
+  - FFmpeg.Formats.OutputFormat.MPEG
+  - FFmpeg.Formats.OutputFormat.MPEGTS
+  - FFmpeg.Formats.OutputFormat.MimeTypes
+  - FFmpeg.Formats.OutputFormat.OGA
+  - FFmpeg.Formats.OutputFormat.OGG
+  - FFmpeg.Formats.OutputFormat.OGV
+  - FFmpeg.Formats.OutputFormat.PNG
+  - FFmpeg.Formats.OutputFormat.PNG_Pipe
+  - FFmpeg.Formats.OutputFormat.SRT
+  - FFmpeg.Formats.OutputFormat.ShortName
+  - FFmpeg.Formats.OutputFormat.SupportedCodecs
+  - FFmpeg.Formats.OutputFormat.TIFF
+  - FFmpeg.Formats.OutputFormat.TIFF_Pipe
+  - FFmpeg.Formats.OutputFormat.ToString
+  - FFmpeg.Formats.OutputFormat.WAV
+  - FFmpeg.Formats.OutputFormat.WEBM
+  - FFmpeg.Formats.OutputFormat.WebP
+  langs:
+  - csharp
+  - vb
+  name: OutputFormat
+  nameWithType: OutputFormat
+  fullName: FFmpeg.Formats.OutputFormat
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OutputFormat
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Represents an output format in the FFmpeg library.
+  remarks: >-
+    This struct provides access to various properties and methods related to output formats,
+
+    including supported codecs, default codecs, and format flags.
+  example: []
+  syntax:
+    content: public readonly struct OutputFormat
+    content.vb: Public Structure OutputFormat
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Formats.OutputFormat.ShortName
+  commentId: P:FFmpeg.Formats.OutputFormat.ShortName
+  id: ShortName
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: ShortName
+  nameWithType: OutputFormat.ShortName
+  fullName: FFmpeg.Formats.OutputFormat.ShortName
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ShortName
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 31
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the short name of the output format.
+  remarks: The short name is a concise identifier for the format, often used for quick reference.
+  example: []
+  syntax:
+    content: public string ShortName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property ShortName As String
+  overload: FFmpeg.Formats.OutputFormat.ShortName*
+- uid: FFmpeg.Formats.OutputFormat.LongName
+  commentId: P:FFmpeg.Formats.OutputFormat.LongName
+  id: LongName
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: LongName
+  nameWithType: OutputFormat.LongName
+  fullName: FFmpeg.Formats.OutputFormat.LongName
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LongName
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the long name of the output format.
+  remarks: The long name provides a more descriptive name for the format compared to the short name.
+  example: []
+  syntax:
+    content: public string LongName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property LongName As String
+  overload: FFmpeg.Formats.OutputFormat.LongName*
+- uid: FFmpeg.Formats.OutputFormat.MimeTypes
+  commentId: P:FFmpeg.Formats.OutputFormat.MimeTypes
+  id: MimeTypes
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MimeTypes
+  nameWithType: OutputFormat.MimeTypes
+  fullName: FFmpeg.Formats.OutputFormat.MimeTypes
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MimeTypes
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 48
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets a read-only list of MIME types associated with the output format.
+  remarks: >-
+    MIME types represent the media type of the format and are useful for content negotiation.
+
+    This property retrieves and splits the MIME types from a comma-separated string.
+  example: []
+  syntax:
+    content: public IReadOnlyList<string> MimeTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public ReadOnly Property MimeTypes As IReadOnlyList(Of String)
+  overload: FFmpeg.Formats.OutputFormat.MimeTypes*
+- uid: FFmpeg.Formats.OutputFormat.Extensions
+  commentId: P:FFmpeg.Formats.OutputFormat.Extensions
+  id: Extensions
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: Extensions
+  nameWithType: OutputFormat.Extensions
+  fullName: FFmpeg.Formats.OutputFormat.Extensions
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Extensions
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets a read-only list of file extensions associated with the output format.
+  remarks: >-
+    File extensions are used to identify files of this format. This property retrieves and splits
+
+    the extensions from a comma-separated string. Returns an empty list if no extensions are available.
+  example: []
+  syntax:
+    content: public IReadOnlyList<string> Extensions { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public ReadOnly Property Extensions As IReadOnlyList(Of String)
+  overload: FFmpeg.Formats.OutputFormat.Extensions*
+- uid: FFmpeg.Formats.OutputFormat.SupportedCodecs
+  commentId: P:FFmpeg.Formats.OutputFormat.SupportedCodecs
+  id: SupportedCodecs
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: SupportedCodecs
+  nameWithType: OutputFormat.SupportedCodecs
+  fullName: FFmpeg.Formats.OutputFormat.SupportedCodecs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SupportedCodecs
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 66
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the list of supported codecs for this output format.
+  remarks: >-
+    This property iterates through the codec tags associated with the format to collect the supported
+
+    codec IDs.
+  example: []
+  syntax:
+    content: public IReadOnlyList<CodecTag> SupportedCodecs { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+    content.vb: Public ReadOnly Property SupportedCodecs As IReadOnlyList(Of CodecTag)
+  overload: FFmpeg.Formats.OutputFormat.SupportedCodecs*
+- uid: FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+  commentId: P:FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+  id: DefaultAudioCodec
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: DefaultAudioCodec
+  nameWithType: OutputFormat.DefaultAudioCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DefaultAudioCodec
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 87
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the default audio codec for this output format.
+  remarks: This represents the codec used for audio streams by default when the format is selected.
+  example: []
+  syntax:
+    content: public _AVCodecID DefaultAudioCodec { get; }
+    parameters: []
+    return:
+      type: FFmpeg.AutoGen._AVCodecID
+    content.vb: Public ReadOnly Property DefaultAudioCodec As _AVCodecID
+  overload: FFmpeg.Formats.OutputFormat.DefaultAudioCodec*
+- uid: FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+  commentId: P:FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+  id: DefaultVideoCodec
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: DefaultVideoCodec
+  nameWithType: OutputFormat.DefaultVideoCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DefaultVideoCodec
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 95
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the default video codec for this output format.
+  remarks: This represents the codec used for video streams by default when the format is selected.
+  example: []
+  syntax:
+    content: public _AVCodecID DefaultVideoCodec { get; }
+    parameters: []
+    return:
+      type: FFmpeg.AutoGen._AVCodecID
+    content.vb: Public ReadOnly Property DefaultVideoCodec As _AVCodecID
+  overload: FFmpeg.Formats.OutputFormat.DefaultVideoCodec*
+- uid: FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+  commentId: P:FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+  id: DefaultSubtitleCodec
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: DefaultSubtitleCodec
+  nameWithType: OutputFormat.DefaultSubtitleCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DefaultSubtitleCodec
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 103
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the default subtitle codec for this output format.
+  remarks: This represents the codec used for subtitle streams by default when the format is selected.
+  example: []
+  syntax:
+    content: public _AVCodecID DefaultSubtitleCodec { get; }
+    parameters: []
+    return:
+      type: FFmpeg.AutoGen._AVCodecID
+    content.vb: Public ReadOnly Property DefaultSubtitleCodec As _AVCodecID
+  overload: FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec*
+- uid: FFmpeg.Formats.OutputFormat.Flags
+  commentId: P:FFmpeg.Formats.OutputFormat.Flags
+  id: Flags
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: OutputFormat.Flags
+  fullName: FFmpeg.Formats.OutputFormat.Flags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 112
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the flags associated with this output format.
+  remarks: >-
+    Format flags provide information about the capabilities and properties of the format, such as
+
+    whether it supports certain features or has specific characteristics.
+  example: []
+  syntax:
+    content: public FormatFlags Flags { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Formats.FormatFlags
+    content.vb: Public ReadOnly Property Flags As FormatFlags
+  overload: FFmpeg.Formats.OutputFormat.Flags*
+- uid: FFmpeg.Formats.OutputFormat.FindFormat(System.String)
+  commentId: M:FFmpeg.Formats.OutputFormat.FindFormat(System.String)
+  id: FindFormat(System.String)
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: FindFormat(string)
+  nameWithType: OutputFormat.FindFormat(string)
+  fullName: FFmpeg.Formats.OutputFormat.FindFormat(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FindFormat
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 121
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Finds an output format by its short name.
+  example: []
+  syntax:
+    content: public static OutputFormat? FindFormat(string short_name)
+    parameters:
+    - id: short_name
+      type: System.String
+      description: The short name of the output format.
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+      description: An <xref href="FFmpeg.Formats.OutputFormat" data-throw-if-not-resolved="false"></xref> instance if found; otherwise, <code>null</code>.
+    content.vb: Public Shared Function FindFormat(short_name As String) As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.FindFormat*
+  nameWithType.vb: OutputFormat.FindFormat(String)
+  fullName.vb: FFmpeg.Formats.OutputFormat.FindFormat(String)
+  name.vb: FindFormat(String)
+- uid: FFmpeg.Formats.OutputFormat.GuessOutputFormat(System.String,System.String,System.String)
+  commentId: M:FFmpeg.Formats.OutputFormat.GuessOutputFormat(System.String,System.String,System.String)
+  id: GuessOutputFormat(System.String,System.String,System.String)
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: GuessOutputFormat(string?, string?, string?)
+  nameWithType: OutputFormat.GuessOutputFormat(string?, string?, string?)
+  fullName: FFmpeg.Formats.OutputFormat.GuessOutputFormat(string?, string?, string?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GuessOutputFormat
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 132
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Guesses an output format based on the provided parameters.
+  example: []
+  syntax:
+    content: public static OutputFormat? GuessOutputFormat(string? short_name = null, string? filename = null, string? mime_type = null)
+    parameters:
+    - id: short_name
+      type: System.String
+      description: The short name of the format.
+    - id: filename
+      type: System.String
+      description: The filename to guess the format from.
+    - id: mime_type
+      type: System.String
+      description: The MIME type to guess the format from.
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+      description: An <xref href="FFmpeg.Formats.OutputFormat" data-throw-if-not-resolved="false"></xref> instance if found; otherwise, <code>null</code>.
+    content.vb: Public Shared Function GuessOutputFormat(short_name As String = Nothing, filename As String = Nothing, mime_type As String = Nothing) As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.GuessOutputFormat*
+  nameWithType.vb: OutputFormat.GuessOutputFormat(String, String, String)
+  fullName.vb: FFmpeg.Formats.OutputFormat.GuessOutputFormat(String, String, String)
+  name.vb: GuessOutputFormat(String, String, String)
+- uid: FFmpeg.Formats.OutputFormat.GetOutputFormats
+  commentId: M:FFmpeg.Formats.OutputFormat.GetOutputFormats
+  id: GetOutputFormats
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: GetOutputFormats()
+  nameWithType: OutputFormat.GetOutputFormats()
+  fullName: FFmpeg.Formats.OutputFormat.GetOutputFormats()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetOutputFormats
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 153
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Retrieves a collection of available AV output formats.
+  remarks: >-
+    This method uses the FFmpeg library to iterate through all available muxers and collects
+
+    them into a list of <xref href="FFmpeg.Formats.OutputFormat" data-throw-if-not-resolved="false"></xref> objects.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<OutputFormat> GetOutputFormats()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.OutputFormat}
+      description: An <xref href="System.Collections.Generic.IReadOnlyList%601" data-throw-if-not-resolved="false"></xref> containing all available output formats.
+    content.vb: Public Shared Function GetOutputFormats() As IReadOnlyList(Of OutputFormat)
+  overload: FFmpeg.Formats.OutputFormat.GetOutputFormats*
+- uid: FFmpeg.Formats.OutputFormat.ToString
+  commentId: M:FFmpeg.Formats.OutputFormat.ToString
+  id: ToString
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: OutputFormat.ToString()
+  fullName: FFmpeg.Formats.OutputFormat.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 169
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Returns a string representation of the output format.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The <xref href="FFmpeg.Formats.OutputFormat.LongName" data-throw-if-not-resolved="false"></xref> of the output format.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Formats.OutputFormat.ToString*
+- uid: FFmpeg.Formats.OutputFormat.AVI
+  commentId: P:FFmpeg.Formats.OutputFormat.AVI
+  id: AVI
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: AVI
+  nameWithType: OutputFormat.AVI
+  fullName: FFmpeg.Formats.OutputFormat.AVI
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVI
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 176
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the AVI output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? AVI { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property AVI As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.AVI*
+- uid: FFmpeg.Formats.OutputFormat.MP4
+  commentId: P:FFmpeg.Formats.OutputFormat.MP4
+  id: MP4
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MP4
+  nameWithType: OutputFormat.MP4
+  fullName: FFmpeg.Formats.OutputFormat.MP4
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MP4
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 181
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MP4 output format (MPEG-4 Part 14).
+  example: []
+  syntax:
+    content: public static OutputFormat? MP4 { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MP4 As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MP4*
+- uid: FFmpeg.Formats.OutputFormat.MOV
+  commentId: P:FFmpeg.Formats.OutputFormat.MOV
+  id: MOV
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MOV
+  nameWithType: OutputFormat.MOV
+  fullName: FFmpeg.Formats.OutputFormat.MOV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MOV
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 186
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MOV output format (QuickTime / MOV).
+  example: []
+  syntax:
+    content: public static OutputFormat? MOV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MOV As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MOV*
+- uid: FFmpeg.Formats.OutputFormat.MKV
+  commentId: P:FFmpeg.Formats.OutputFormat.MKV
+  id: MKV
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MKV
+  nameWithType: OutputFormat.MKV
+  fullName: FFmpeg.Formats.OutputFormat.MKV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MKV
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 191
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Matroska output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? MKV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MKV As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MKV*
+- uid: FFmpeg.Formats.OutputFormat.WEBM
+  commentId: P:FFmpeg.Formats.OutputFormat.WEBM
+  id: WEBM
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: WEBM
+  nameWithType: OutputFormat.WEBM
+  fullName: FFmpeg.Formats.OutputFormat.WEBM
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WEBM
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 196
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WebM output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? WEBM { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property WEBM As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.WEBM*
+- uid: FFmpeg.Formats.OutputFormat.FLV
+  commentId: P:FFmpeg.Formats.OutputFormat.FLV
+  id: FLV
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: FLV
+  nameWithType: OutputFormat.FLV
+  fullName: FFmpeg.Formats.OutputFormat.FLV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FLV
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 201
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Flash Video output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? FLV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property FLV As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.FLV*
+- uid: FFmpeg.Formats.OutputFormat.MPEG
+  commentId: P:FFmpeg.Formats.OutputFormat.MPEG
+  id: MPEG
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MPEG
+  nameWithType: OutputFormat.MPEG
+  fullName: FFmpeg.Formats.OutputFormat.MPEG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MPEG
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 206
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MPEG output format (MPEG-1 Systems / MPEG program stream).
+  example: []
+  syntax:
+    content: public static OutputFormat? MPEG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MPEG As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MPEG*
+- uid: FFmpeg.Formats.OutputFormat.MPEGTS
+  commentId: P:FFmpeg.Formats.OutputFormat.MPEGTS
+  id: MPEGTS
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MPEGTS
+  nameWithType: OutputFormat.MPEGTS
+  fullName: FFmpeg.Formats.OutputFormat.MPEGTS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MPEGTS
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 211
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MPEG-TS output format (MPEG-2 Transport Stream).
+  example: []
+  syntax:
+    content: public static OutputFormat? MPEGTS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MPEGTS As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MPEGTS*
+- uid: FFmpeg.Formats.OutputFormat.OGG
+  commentId: P:FFmpeg.Formats.OutputFormat.OGG
+  id: OGG
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGG
+  nameWithType: OutputFormat.OGG
+  fullName: FFmpeg.Formats.OutputFormat.OGG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGG
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 216
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Ogg output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? OGG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property OGG As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.OGG*
+- uid: FFmpeg.Formats.OutputFormat.OGA
+  commentId: P:FFmpeg.Formats.OutputFormat.OGA
+  id: OGA
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGA
+  nameWithType: OutputFormat.OGA
+  fullName: FFmpeg.Formats.OutputFormat.OGA
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGA
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 221
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Oga output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? OGA { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property OGA As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.OGA*
+- uid: FFmpeg.Formats.OutputFormat.OGV
+  commentId: P:FFmpeg.Formats.OutputFormat.OGV
+  id: OGV
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGV
+  nameWithType: OutputFormat.OGV
+  fullName: FFmpeg.Formats.OutputFormat.OGV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGV
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 226
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Ogv output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? OGV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property OGV As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.OGV*
+- uid: FFmpeg.Formats.OutputFormat.MP3
+  commentId: P:FFmpeg.Formats.OutputFormat.MP3
+  id: MP3
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: MP3
+  nameWithType: OutputFormat.MP3
+  fullName: FFmpeg.Formats.OutputFormat.MP3
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MP3
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 233
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MP3 output format (MPEG audio layer 3).
+  example: []
+  syntax:
+    content: public static OutputFormat? MP3 { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property MP3 As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.MP3*
+- uid: FFmpeg.Formats.OutputFormat.WAV
+  commentId: P:FFmpeg.Formats.OutputFormat.WAV
+  id: WAV
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: WAV
+  nameWithType: OutputFormat.WAV
+  fullName: FFmpeg.Formats.OutputFormat.WAV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WAV
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 238
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WAV output format (Waveform Audio).
+  example: []
+  syntax:
+    content: public static OutputFormat? WAV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property WAV As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.WAV*
+- uid: FFmpeg.Formats.OutputFormat.AAC
+  commentId: P:FFmpeg.Formats.OutputFormat.AAC
+  id: AAC
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: AAC
+  nameWithType: OutputFormat.AAC
+  fullName: FFmpeg.Formats.OutputFormat.AAC
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AAC
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 243
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the ADTS AAC output format (Advanced Audio Coding).
+  example: []
+  syntax:
+    content: public static OutputFormat? AAC { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property AAC As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.AAC*
+- uid: FFmpeg.Formats.OutputFormat.FLAC
+  commentId: P:FFmpeg.Formats.OutputFormat.FLAC
+  id: FLAC
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: FLAC
+  nameWithType: OutputFormat.FLAC
+  fullName: FFmpeg.Formats.OutputFormat.FLAC
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FLAC
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 248
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the FLAC output format (Free Lossless Audio Codec).
+  example: []
+  syntax:
+    content: public static OutputFormat? FLAC { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property FLAC As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.FLAC*
+- uid: FFmpeg.Formats.OutputFormat.ALAC
+  commentId: P:FFmpeg.Formats.OutputFormat.ALAC
+  id: ALAC
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: ALAC
+  nameWithType: OutputFormat.ALAC
+  fullName: FFmpeg.Formats.OutputFormat.ALAC
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ALAC
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 253
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Apple Lossless Audio Codec (ALAC) output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? ALAC { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property ALAC As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.ALAC*
+- uid: FFmpeg.Formats.OutputFormat.PNG
+  commentId: P:FFmpeg.Formats.OutputFormat.PNG
+  id: PNG
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: PNG
+  nameWithType: OutputFormat.PNG
+  fullName: FFmpeg.Formats.OutputFormat.PNG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PNG
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 260
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the PNG output format (Portable Network Graphics).
+  example: []
+  syntax:
+    content: public static OutputFormat? PNG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property PNG As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.PNG*
+- uid: FFmpeg.Formats.OutputFormat.JPEG
+  commentId: P:FFmpeg.Formats.OutputFormat.JPEG
+  id: JPEG
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: JPEG
+  nameWithType: OutputFormat.JPEG
+  fullName: FFmpeg.Formats.OutputFormat.JPEG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEG
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 265
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the JPEG output format (Joint Photographic Experts Group).
+  example: []
+  syntax:
+    content: public static OutputFormat? JPEG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property JPEG As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.JPEG*
+- uid: FFmpeg.Formats.OutputFormat.BMP
+  commentId: P:FFmpeg.Formats.OutputFormat.BMP
+  id: BMP
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: BMP
+  nameWithType: OutputFormat.BMP
+  fullName: FFmpeg.Formats.OutputFormat.BMP
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BMP
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 270
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the BMP output format (Bitmap).
+  example: []
+  syntax:
+    content: public static OutputFormat? BMP { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property BMP As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.BMP*
+- uid: FFmpeg.Formats.OutputFormat.TIFF
+  commentId: P:FFmpeg.Formats.OutputFormat.TIFF
+  id: TIFF
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: TIFF
+  nameWithType: OutputFormat.TIFF
+  fullName: FFmpeg.Formats.OutputFormat.TIFF
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TIFF
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 275
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the TIFF output format (Tagged Image File Format).
+  example: []
+  syntax:
+    content: public static OutputFormat? TIFF { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property TIFF As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.TIFF*
+- uid: FFmpeg.Formats.OutputFormat.GIF
+  commentId: P:FFmpeg.Formats.OutputFormat.GIF
+  id: GIF
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: GIF
+  nameWithType: OutputFormat.GIF
+  fullName: FFmpeg.Formats.OutputFormat.GIF
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GIF
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 280
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the GIF output format (CompuServe Graphics Interchange Format).
+  example: []
+  syntax:
+    content: public static OutputFormat? GIF { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property GIF As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.GIF*
+- uid: FFmpeg.Formats.OutputFormat.AVIF
+  commentId: P:FFmpeg.Formats.OutputFormat.AVIF
+  id: AVIF
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: AVIF
+  nameWithType: OutputFormat.AVIF
+  fullName: FFmpeg.Formats.OutputFormat.AVIF
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVIF
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 285
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the AVIF output format (AV1 Image File Format).
+  example: []
+  syntax:
+    content: public static OutputFormat? AVIF { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property AVIF As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.AVIF*
+- uid: FFmpeg.Formats.OutputFormat.WebP
+  commentId: P:FFmpeg.Formats.OutputFormat.WebP
+  id: WebP
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: WebP
+  nameWithType: OutputFormat.WebP
+  fullName: FFmpeg.Formats.OutputFormat.WebP
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WebP
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 290
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WebP output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? WebP { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property WebP As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.WebP*
+- uid: FFmpeg.Formats.OutputFormat.JPEGXL
+  commentId: P:FFmpeg.Formats.OutputFormat.JPEGXL
+  id: JPEGXL
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: JPEGXL
+  nameWithType: OutputFormat.JPEGXL
+  fullName: FFmpeg.Formats.OutputFormat.JPEGXL
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEGXL
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 295
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the JPEG XL output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? JPEGXL { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property JPEGXL As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.JPEGXL*
+- uid: FFmpeg.Formats.OutputFormat.APNG
+  commentId: P:FFmpeg.Formats.OutputFormat.APNG
+  id: APNG
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: APNG
+  nameWithType: OutputFormat.APNG
+  fullName: FFmpeg.Formats.OutputFormat.APNG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: APNG
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 300
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the APNG output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? APNG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property APNG As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.APNG*
+- uid: FFmpeg.Formats.OutputFormat.PNG_Pipe
+  commentId: P:FFmpeg.Formats.OutputFormat.PNG_Pipe
+  id: PNG_Pipe
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: PNG_Pipe
+  nameWithType: OutputFormat.PNG_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.PNG_Pipe
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PNG_Pipe
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 307
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped PNG output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? PNG_Pipe { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property PNG_Pipe As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.PNG_Pipe*
+- uid: FFmpeg.Formats.OutputFormat.JPEG_Pipe
+  commentId: P:FFmpeg.Formats.OutputFormat.JPEG_Pipe
+  id: JPEG_Pipe
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: JPEG_Pipe
+  nameWithType: OutputFormat.JPEG_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.JPEG_Pipe
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEG_Pipe
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 312
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped JPEG output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? JPEG_Pipe { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property JPEG_Pipe As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.JPEG_Pipe*
+- uid: FFmpeg.Formats.OutputFormat.BMP_Pipe
+  commentId: P:FFmpeg.Formats.OutputFormat.BMP_Pipe
+  id: BMP_Pipe
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: BMP_Pipe
+  nameWithType: OutputFormat.BMP_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.BMP_Pipe
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BMP_Pipe
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 317
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped BMP output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? BMP_Pipe { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property BMP_Pipe As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.BMP_Pipe*
+- uid: FFmpeg.Formats.OutputFormat.TIFF_Pipe
+  commentId: P:FFmpeg.Formats.OutputFormat.TIFF_Pipe
+  id: TIFF_Pipe
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: TIFF_Pipe
+  nameWithType: OutputFormat.TIFF_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.TIFF_Pipe
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TIFF_Pipe
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 322
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped TIFF output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? TIFF_Pipe { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property TIFF_Pipe As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.TIFF_Pipe*
+- uid: FFmpeg.Formats.OutputFormat.ASS
+  commentId: P:FFmpeg.Formats.OutputFormat.ASS
+  id: ASS
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: ASS
+  nameWithType: OutputFormat.ASS
+  fullName: FFmpeg.Formats.OutputFormat.ASS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ASS
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 329
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the SSA (SubStation Alpha) subtitle output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? ASS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property ASS As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.ASS*
+- uid: FFmpeg.Formats.OutputFormat.SRT
+  commentId: P:FFmpeg.Formats.OutputFormat.SRT
+  id: SRT
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: SRT
+  nameWithType: OutputFormat.SRT
+  fullName: FFmpeg.Formats.OutputFormat.SRT
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SRT
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 334
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the SubRip subtitle output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? SRT { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property SRT As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.SRT*
+- uid: FFmpeg.Formats.OutputFormat.HLS
+  commentId: P:FFmpeg.Formats.OutputFormat.HLS
+  id: HLS
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: HLS
+  nameWithType: OutputFormat.HLS
+  fullName: FFmpeg.Formats.OutputFormat.HLS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HLS
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 339
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the HTTP Live Streaming (HLS) output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? HLS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property HLS As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.HLS*
+- uid: FFmpeg.Formats.OutputFormat.DASH
+  commentId: P:FFmpeg.Formats.OutputFormat.DASH
+  id: DASH
+  parent: FFmpeg.Formats.OutputFormat
+  langs:
+  - csharp
+  - vb
+  name: DASH
+  nameWithType: OutputFormat.DASH
+  fullName: FFmpeg.Formats.OutputFormat.DASH
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/OutputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DASH
+    path: FFmpeg/Formats/OutputFormat.cs
+    startLine: 344
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the DASH (Dynamic Adaptive Streaming over HTTP) output format.
+  example: []
+  syntax:
+    content: public static OutputFormat? DASH { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.OutputFormat}
+    content.vb: Public Shared ReadOnly Property DASH As OutputFormat?
+  overload: FFmpeg.Formats.OutputFormat.DASH*
+references:
+- uid: FFmpeg.Formats
+  commentId: N:FFmpeg.Formats
+  href: FFmpeg.html
+  name: FFmpeg.Formats
+  nameWithType: FFmpeg.Formats
+  fullName: FFmpeg.Formats
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Formats.OutputFormat.ShortName*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.ShortName
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_ShortName
+  name: ShortName
+  nameWithType: OutputFormat.ShortName
+  fullName: FFmpeg.Formats.OutputFormat.ShortName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Formats.OutputFormat.LongName*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.LongName
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_LongName
+  name: LongName
+  nameWithType: OutputFormat.LongName
+  fullName: FFmpeg.Formats.OutputFormat.LongName
+- uid: FFmpeg.Formats.OutputFormat.MimeTypes*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MimeTypes
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MimeTypes
+  name: MimeTypes
+  nameWithType: OutputFormat.MimeTypes
+  fullName: FFmpeg.Formats.OutputFormat.MimeTypes
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FFmpeg.Formats.OutputFormat.Extensions*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.Extensions
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_Extensions
+  name: Extensions
+  nameWithType: OutputFormat.Extensions
+  fullName: FFmpeg.Formats.OutputFormat.Extensions
+- uid: FFmpeg.Formats.OutputFormat.SupportedCodecs*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.SupportedCodecs
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_SupportedCodecs
+  name: SupportedCodecs
+  nameWithType: OutputFormat.SupportedCodecs
+  fullName: FFmpeg.Formats.OutputFormat.SupportedCodecs
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<CodecTag>
+  nameWithType: IReadOnlyList<CodecTag>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Codecs.CodecTag>
+  nameWithType.vb: IReadOnlyList(Of CodecTag)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Codecs.CodecTag)
+  name.vb: IReadOnlyList(Of CodecTag)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Codecs.CodecTag
+    name: CodecTag
+    href: FFmpeg.Codecs.CodecTag.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecTag
+    name: CodecTag
+    href: FFmpeg.Codecs.CodecTag.html
+  - name: )
+- uid: FFmpeg.Formats.OutputFormat.DefaultAudioCodec*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_DefaultAudioCodec
+  name: DefaultAudioCodec
+  nameWithType: OutputFormat.DefaultAudioCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultAudioCodec
+- uid: FFmpeg.AutoGen._AVCodecID
+  commentId: T:FFmpeg.AutoGen._AVCodecID
+  parent: FFmpeg.AutoGen
+  isExternal: true
+  name: _AVCodecID
+  nameWithType: _AVCodecID
+  fullName: FFmpeg.AutoGen._AVCodecID
+- uid: FFmpeg.AutoGen
+  commentId: N:FFmpeg.AutoGen
+  isExternal: true
+  name: FFmpeg.AutoGen
+  nameWithType: FFmpeg.AutoGen
+  fullName: FFmpeg.AutoGen
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+- uid: FFmpeg.Formats.OutputFormat.DefaultVideoCodec*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_DefaultVideoCodec
+  name: DefaultVideoCodec
+  nameWithType: OutputFormat.DefaultVideoCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultVideoCodec
+- uid: FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_DefaultSubtitleCodec
+  name: DefaultSubtitleCodec
+  nameWithType: OutputFormat.DefaultSubtitleCodec
+  fullName: FFmpeg.Formats.OutputFormat.DefaultSubtitleCodec
+- uid: FFmpeg.Formats.OutputFormat.Flags*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.Flags
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_Flags
+  name: Flags
+  nameWithType: OutputFormat.Flags
+  fullName: FFmpeg.Formats.OutputFormat.Flags
+- uid: FFmpeg.Formats.FormatFlags
+  commentId: T:FFmpeg.Formats.FormatFlags
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.FormatFlags.html
+  name: FormatFlags
+  nameWithType: FormatFlags
+  fullName: FFmpeg.Formats.FormatFlags
+- uid: FFmpeg.Formats.OutputFormat
+  commentId: T:FFmpeg.Formats.OutputFormat
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.OutputFormat.html
+  name: OutputFormat
+  nameWithType: OutputFormat
+  fullName: FFmpeg.Formats.OutputFormat
+- uid: FFmpeg.Formats.OutputFormat.FindFormat*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.FindFormat
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_FindFormat_System_String_
+  name: FindFormat
+  nameWithType: OutputFormat.FindFormat
+  fullName: FFmpeg.Formats.OutputFormat.FindFormat
+- uid: System.Nullable{FFmpeg.Formats.OutputFormat}
+  commentId: T:System.Nullable{FFmpeg.Formats.OutputFormat}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Formats.OutputFormat.html
+  name: OutputFormat?
+  nameWithType: OutputFormat?
+  fullName: FFmpeg.Formats.OutputFormat?
+  spec.csharp:
+  - uid: FFmpeg.Formats.OutputFormat
+    name: OutputFormat
+    href: FFmpeg.Formats.OutputFormat.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Formats.OutputFormat
+    name: OutputFormat
+    href: FFmpeg.Formats.OutputFormat.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Formats.OutputFormat.GuessOutputFormat*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.GuessOutputFormat
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_GuessOutputFormat_System_String_System_String_System_String_
+  name: GuessOutputFormat
+  nameWithType: OutputFormat.GuessOutputFormat
+  fullName: FFmpeg.Formats.OutputFormat.GuessOutputFormat
+- uid: FFmpeg.Formats.OutputFormat.GetOutputFormats*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.GetOutputFormats
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_GetOutputFormats
+  name: GetOutputFormats
+  nameWithType: OutputFormat.GetOutputFormats
+  fullName: FFmpeg.Formats.OutputFormat.GetOutputFormats
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.OutputFormat}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.OutputFormat}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<OutputFormat>
+  nameWithType: IReadOnlyList<OutputFormat>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Formats.OutputFormat>
+  nameWithType.vb: IReadOnlyList(Of OutputFormat)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Formats.OutputFormat)
+  name.vb: IReadOnlyList(Of OutputFormat)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Formats.OutputFormat
+    name: OutputFormat
+    href: FFmpeg.Formats.OutputFormat.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Formats.OutputFormat
+    name: OutputFormat
+    href: FFmpeg.Formats.OutputFormat.html
+  - name: )
+- uid: FFmpeg.Formats.OutputFormat.LongName
+  commentId: P:FFmpeg.Formats.OutputFormat.LongName
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_LongName
+  name: LongName
+  nameWithType: OutputFormat.LongName
+  fullName: FFmpeg.Formats.OutputFormat.LongName
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Formats.OutputFormat.ToString*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.ToString
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_ToString
+  name: ToString
+  nameWithType: OutputFormat.ToString
+  fullName: FFmpeg.Formats.OutputFormat.ToString
+- uid: FFmpeg.Formats.OutputFormat.AVI*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.AVI
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_AVI
+  name: AVI
+  nameWithType: OutputFormat.AVI
+  fullName: FFmpeg.Formats.OutputFormat.AVI
+- uid: FFmpeg.Formats.OutputFormat.MP4*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MP4
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MP4
+  name: MP4
+  nameWithType: OutputFormat.MP4
+  fullName: FFmpeg.Formats.OutputFormat.MP4
+- uid: FFmpeg.Formats.OutputFormat.MOV*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MOV
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MOV
+  name: MOV
+  nameWithType: OutputFormat.MOV
+  fullName: FFmpeg.Formats.OutputFormat.MOV
+- uid: FFmpeg.Formats.OutputFormat.MKV*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MKV
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MKV
+  name: MKV
+  nameWithType: OutputFormat.MKV
+  fullName: FFmpeg.Formats.OutputFormat.MKV
+- uid: FFmpeg.Formats.OutputFormat.WEBM*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.WEBM
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_WEBM
+  name: WEBM
+  nameWithType: OutputFormat.WEBM
+  fullName: FFmpeg.Formats.OutputFormat.WEBM
+- uid: FFmpeg.Formats.OutputFormat.FLV*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.FLV
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_FLV
+  name: FLV
+  nameWithType: OutputFormat.FLV
+  fullName: FFmpeg.Formats.OutputFormat.FLV
+- uid: FFmpeg.Formats.OutputFormat.MPEG*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MPEG
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MPEG
+  name: MPEG
+  nameWithType: OutputFormat.MPEG
+  fullName: FFmpeg.Formats.OutputFormat.MPEG
+- uid: FFmpeg.Formats.OutputFormat.MPEGTS*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MPEGTS
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MPEGTS
+  name: MPEGTS
+  nameWithType: OutputFormat.MPEGTS
+  fullName: FFmpeg.Formats.OutputFormat.MPEGTS
+- uid: FFmpeg.Formats.OutputFormat.OGG*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.OGG
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_OGG
+  name: OGG
+  nameWithType: OutputFormat.OGG
+  fullName: FFmpeg.Formats.OutputFormat.OGG
+- uid: FFmpeg.Formats.OutputFormat.OGA*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.OGA
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_OGA
+  name: OGA
+  nameWithType: OutputFormat.OGA
+  fullName: FFmpeg.Formats.OutputFormat.OGA
+- uid: FFmpeg.Formats.OutputFormat.OGV*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.OGV
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_OGV
+  name: OGV
+  nameWithType: OutputFormat.OGV
+  fullName: FFmpeg.Formats.OutputFormat.OGV
+- uid: FFmpeg.Formats.OutputFormat.MP3*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.MP3
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_MP3
+  name: MP3
+  nameWithType: OutputFormat.MP3
+  fullName: FFmpeg.Formats.OutputFormat.MP3
+- uid: FFmpeg.Formats.OutputFormat.WAV*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.WAV
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_WAV
+  name: WAV
+  nameWithType: OutputFormat.WAV
+  fullName: FFmpeg.Formats.OutputFormat.WAV
+- uid: FFmpeg.Formats.OutputFormat.AAC*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.AAC
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_AAC
+  name: AAC
+  nameWithType: OutputFormat.AAC
+  fullName: FFmpeg.Formats.OutputFormat.AAC
+- uid: FFmpeg.Formats.OutputFormat.FLAC*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.FLAC
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_FLAC
+  name: FLAC
+  nameWithType: OutputFormat.FLAC
+  fullName: FFmpeg.Formats.OutputFormat.FLAC
+- uid: FFmpeg.Formats.OutputFormat.ALAC*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.ALAC
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_ALAC
+  name: ALAC
+  nameWithType: OutputFormat.ALAC
+  fullName: FFmpeg.Formats.OutputFormat.ALAC
+- uid: FFmpeg.Formats.OutputFormat.PNG*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.PNG
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_PNG
+  name: PNG
+  nameWithType: OutputFormat.PNG
+  fullName: FFmpeg.Formats.OutputFormat.PNG
+- uid: FFmpeg.Formats.OutputFormat.JPEG*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.JPEG
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_JPEG
+  name: JPEG
+  nameWithType: OutputFormat.JPEG
+  fullName: FFmpeg.Formats.OutputFormat.JPEG
+- uid: FFmpeg.Formats.OutputFormat.BMP*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.BMP
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_BMP
+  name: BMP
+  nameWithType: OutputFormat.BMP
+  fullName: FFmpeg.Formats.OutputFormat.BMP
+- uid: FFmpeg.Formats.OutputFormat.TIFF*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.TIFF
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_TIFF
+  name: TIFF
+  nameWithType: OutputFormat.TIFF
+  fullName: FFmpeg.Formats.OutputFormat.TIFF
+- uid: FFmpeg.Formats.OutputFormat.GIF*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.GIF
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_GIF
+  name: GIF
+  nameWithType: OutputFormat.GIF
+  fullName: FFmpeg.Formats.OutputFormat.GIF
+- uid: FFmpeg.Formats.OutputFormat.AVIF*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.AVIF
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_AVIF
+  name: AVIF
+  nameWithType: OutputFormat.AVIF
+  fullName: FFmpeg.Formats.OutputFormat.AVIF
+- uid: FFmpeg.Formats.OutputFormat.WebP*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.WebP
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_WebP
+  name: WebP
+  nameWithType: OutputFormat.WebP
+  fullName: FFmpeg.Formats.OutputFormat.WebP
+- uid: FFmpeg.Formats.OutputFormat.JPEGXL*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.JPEGXL
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_JPEGXL
+  name: JPEGXL
+  nameWithType: OutputFormat.JPEGXL
+  fullName: FFmpeg.Formats.OutputFormat.JPEGXL
+- uid: FFmpeg.Formats.OutputFormat.APNG*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.APNG
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_APNG
+  name: APNG
+  nameWithType: OutputFormat.APNG
+  fullName: FFmpeg.Formats.OutputFormat.APNG
+- uid: FFmpeg.Formats.OutputFormat.PNG_Pipe*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.PNG_Pipe
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_PNG_Pipe
+  name: PNG_Pipe
+  nameWithType: OutputFormat.PNG_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.PNG_Pipe
+- uid: FFmpeg.Formats.OutputFormat.JPEG_Pipe*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.JPEG_Pipe
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_JPEG_Pipe
+  name: JPEG_Pipe
+  nameWithType: OutputFormat.JPEG_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.JPEG_Pipe
+- uid: FFmpeg.Formats.OutputFormat.BMP_Pipe*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.BMP_Pipe
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_BMP_Pipe
+  name: BMP_Pipe
+  nameWithType: OutputFormat.BMP_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.BMP_Pipe
+- uid: FFmpeg.Formats.OutputFormat.TIFF_Pipe*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.TIFF_Pipe
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_TIFF_Pipe
+  name: TIFF_Pipe
+  nameWithType: OutputFormat.TIFF_Pipe
+  fullName: FFmpeg.Formats.OutputFormat.TIFF_Pipe
+- uid: FFmpeg.Formats.OutputFormat.ASS*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.ASS
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_ASS
+  name: ASS
+  nameWithType: OutputFormat.ASS
+  fullName: FFmpeg.Formats.OutputFormat.ASS
+- uid: FFmpeg.Formats.OutputFormat.SRT*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.SRT
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_SRT
+  name: SRT
+  nameWithType: OutputFormat.SRT
+  fullName: FFmpeg.Formats.OutputFormat.SRT
+- uid: FFmpeg.Formats.OutputFormat.HLS*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.HLS
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_HLS
+  name: HLS
+  nameWithType: OutputFormat.HLS
+  fullName: FFmpeg.Formats.OutputFormat.HLS
+- uid: FFmpeg.Formats.OutputFormat.DASH*
+  commentId: Overload:FFmpeg.Formats.OutputFormat.DASH
+  href: FFmpeg.Formats.OutputFormat.html#FFmpeg_Formats_OutputFormat_DASH
+  name: DASH
+  nameWithType: OutputFormat.DASH
+  fullName: FFmpeg.Formats.OutputFormat.DASH

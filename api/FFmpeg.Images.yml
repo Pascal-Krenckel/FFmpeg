@@ -1,0 +1,150 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  id: FFmpeg.Images
+  children:
+  - FFmpeg.Images.ChromaLocation
+  - FFmpeg.Images.ColorPrimaries
+  - FFmpeg.Images.ColorRange
+  - FFmpeg.Images.ColorSpace
+  - FFmpeg.Images.ColorTransferCharacteristic
+  - FFmpeg.Images.FFLoss
+  - FFmpeg.Images.FieldOrder
+  - FFmpeg.Images.Image
+  - FFmpeg.Images.ImageInfo
+  - FFmpeg.Images.PixelFormat
+  - FFmpeg.Images.PixelFormatExtensions
+  - FFmpeg.Images.SwsAlgorithm
+  - FFmpeg.Images.SwsContext
+  - FFmpeg.Images.SwsFlags
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Images.ChromaLocation
+  commentId: T:FFmpeg.Images.ChromaLocation
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ChromaLocation.html
+  name: ChromaLocation
+  nameWithType: ChromaLocation
+  fullName: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ColorPrimaries
+  commentId: T:FFmpeg.Images.ColorPrimaries
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorPrimaries.html
+  name: ColorPrimaries
+  nameWithType: ColorPrimaries
+  fullName: FFmpeg.Images.ColorPrimaries
+- uid: FFmpeg.Images.ColorRange
+  commentId: T:FFmpeg.Images.ColorRange
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorRange.html
+  name: ColorRange
+  nameWithType: ColorRange
+  fullName: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Images.ColorSpace
+  commentId: T:FFmpeg.Images.ColorSpace
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorSpace.html
+  name: ColorSpace
+  nameWithType: ColorSpace
+  fullName: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Images.ColorTransferCharacteristic
+  commentId: T:FFmpeg.Images.ColorTransferCharacteristic
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorTransferCharacteristic.html
+  name: ColorTransferCharacteristic
+  nameWithType: ColorTransferCharacteristic
+  fullName: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Images.FFLoss
+  commentId: T:FFmpeg.Images.FFLoss
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.FFLoss.html
+  name: FFLoss
+  nameWithType: FFLoss
+  fullName: FFmpeg.Images.FFLoss
+- uid: FFmpeg.Images.FieldOrder
+  commentId: T:FFmpeg.Images.FieldOrder
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.FieldOrder.html
+  name: FieldOrder
+  nameWithType: FieldOrder
+  fullName: FFmpeg.Images.FieldOrder
+- uid: FFmpeg.Images.Image
+  commentId: T:FFmpeg.Images.Image
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.Image.html
+  name: Image
+  nameWithType: Image
+  fullName: FFmpeg.Images.Image
+- uid: FFmpeg.Images.ImageInfo
+  commentId: T:FFmpeg.Images.ImageInfo
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ImageInfo.html
+  name: ImageInfo
+  nameWithType: ImageInfo
+  fullName: FFmpeg.Images.ImageInfo
+- uid: FFmpeg.Images.PixelFormat
+  commentId: T:FFmpeg.Images.PixelFormat
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormat.html
+  name: PixelFormat
+  nameWithType: PixelFormat
+  fullName: FFmpeg.Images.PixelFormat
+- uid: FFmpeg.Images.PixelFormatExtensions
+  commentId: T:FFmpeg.Images.PixelFormatExtensions
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormatExtensions.html
+  name: PixelFormatExtensions
+  nameWithType: PixelFormatExtensions
+  fullName: FFmpeg.Images.PixelFormatExtensions
+- uid: FFmpeg.Images.SwsAlgorithm
+  commentId: T:FFmpeg.Images.SwsAlgorithm
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.SwsAlgorithm.html
+  name: SwsAlgorithm
+  nameWithType: SwsAlgorithm
+  fullName: FFmpeg.Images.SwsAlgorithm
+- uid: FFmpeg.Images.SwsContext
+  commentId: T:FFmpeg.Images.SwsContext
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.SwsContext.html
+  name: SwsContext
+  nameWithType: SwsContext
+  fullName: FFmpeg.Images.SwsContext
+- uid: FFmpeg.Images.SwsFlags
+  commentId: T:FFmpeg.Images.SwsFlags
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.SwsFlags.html
+  name: SwsFlags
+  nameWithType: SwsFlags
+  fullName: FFmpeg.Images.SwsFlags
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html

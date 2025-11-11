@@ -1,0 +1,175 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.ColorRange
+  commentId: T:FFmpeg.Images.ColorRange
+  id: ColorRange
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.ColorRange.JPEG
+  - FFmpeg.Images.ColorRange.MPEG
+  - FFmpeg.Images.ColorRange.Unspecified
+  - FFmpeg.Images.ColorRange.__COUNT__
+  langs:
+  - csharp
+  - vb
+  name: ColorRange
+  nameWithType: ColorRange
+  fullName: FFmpeg.Images.ColorRange
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/ColorRange.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorRange
+    path: FFmpeg/Images/ColorRange.cs
+    startLine: 4
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Represents the visual content value range.
+  example: []
+  syntax:
+    content: public enum ColorRange
+    content.vb: Public Enum ColorRange
+- uid: FFmpeg.Images.ColorRange.Unspecified
+  commentId: F:FFmpeg.Images.ColorRange.Unspecified
+  id: Unspecified
+  parent: FFmpeg.Images.ColorRange
+  langs:
+  - csharp
+  - vb
+  name: Unspecified
+  nameWithType: ColorRange.Unspecified
+  fullName: FFmpeg.Images.ColorRange.Unspecified
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorRange.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unspecified
+    path: FFmpeg/Images/ColorRange.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  example: []
+  syntax:
+    content: Unspecified = 0
+    return:
+      type: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Images.ColorRange.MPEG
+  commentId: F:FFmpeg.Images.ColorRange.MPEG
+  id: MPEG
+  parent: FFmpeg.Images.ColorRange
+  langs:
+  - csharp
+  - vb
+  name: MPEG
+  nameWithType: ColorRange.MPEG
+  fullName: FFmpeg.Images.ColorRange.MPEG
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorRange.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MPEG
+    path: FFmpeg/Images/ColorRange.cs
+    startLine: 13
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Narrow or limited range content.
+  example: []
+  syntax:
+    content: MPEG = 1
+    return:
+      type: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Images.ColorRange.JPEG
+  commentId: F:FFmpeg.Images.ColorRange.JPEG
+  id: JPEG
+  parent: FFmpeg.Images.ColorRange
+  langs:
+  - csharp
+  - vb
+  name: JPEG
+  nameWithType: ColorRange.JPEG
+  fullName: FFmpeg.Images.ColorRange.JPEG
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorRange.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEG
+    path: FFmpeg/Images/ColorRange.cs
+    startLine: 19
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Full range content.
+  example: []
+  syntax:
+    content: JPEG = 2
+    return:
+      type: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Images.ColorRange.__COUNT__
+  commentId: F:FFmpeg.Images.ColorRange.__COUNT__
+  id: __COUNT__
+  parent: FFmpeg.Images.ColorRange
+  langs:
+  - csharp
+  - vb
+  name: __COUNT__
+  nameWithType: ColorRange.__COUNT__
+  fullName: FFmpeg.Images.ColorRange.__COUNT__
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ColorRange.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: __COUNT__
+    path: FFmpeg/Images/ColorRange.cs
+    startLine: 22
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Not part of ABI
+  example: []
+  syntax:
+    content: __COUNT__ = 3
+    return:
+      type: FFmpeg.Images.ColorRange
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.ColorRange
+  commentId: T:FFmpeg.Images.ColorRange
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorRange.html
+  name: ColorRange
+  nameWithType: ColorRange
+  fullName: FFmpeg.Images.ColorRange

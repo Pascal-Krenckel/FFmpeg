@@ -1,0 +1,460 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Filters.FilterLink
+  commentId: T:FFmpeg.Filters.FilterLink
+  id: FilterLink
+  parent: FFmpeg.Filters
+  children:
+  - FFmpeg.Filters.FilterLink.DestinationContext
+  - FFmpeg.Filters.FilterLink.DestinationPadIndex
+  - FFmpeg.Filters.FilterLink.SourceContext
+  - FFmpeg.Filters.FilterLink.SourcePadIndex
+  langs:
+  - csharp
+  - vb
+  name: FilterLink
+  nameWithType: FilterLink
+  fullName: FFmpeg.Filters.FilterLink
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterLink.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FilterLink
+    path: FFmpeg/Filters/FilterLink.cs
+    startLine: 4
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public class FilterLink
+    content.vb: Public Class FilterLink
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Filters.FilterLink.SourceContext
+  commentId: P:FFmpeg.Filters.FilterLink.SourceContext
+  id: SourceContext
+  parent: FFmpeg.Filters.FilterLink
+  langs:
+  - csharp
+  - vb
+  name: SourceContext
+  nameWithType: FilterLink.SourceContext
+  fullName: FFmpeg.Filters.FilterLink.SourceContext
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterLink.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SourceContext
+    path: FFmpeg/Filters/FilterLink.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public FilterContext SourceContext { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.FilterContext
+    content.vb: Public ReadOnly Property SourceContext As FilterContext
+  overload: FFmpeg.Filters.FilterLink.SourceContext*
+- uid: FFmpeg.Filters.FilterLink.DestinationContext
+  commentId: P:FFmpeg.Filters.FilterLink.DestinationContext
+  id: DestinationContext
+  parent: FFmpeg.Filters.FilterLink
+  langs:
+  - csharp
+  - vb
+  name: DestinationContext
+  nameWithType: FilterLink.DestinationContext
+  fullName: FFmpeg.Filters.FilterLink.DestinationContext
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterLink.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DestinationContext
+    path: FFmpeg/Filters/FilterLink.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public FilterContext DestinationContext { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Filters.FilterContext
+    content.vb: Public ReadOnly Property DestinationContext As FilterContext
+  overload: FFmpeg.Filters.FilterLink.DestinationContext*
+- uid: FFmpeg.Filters.FilterLink.SourcePadIndex
+  commentId: P:FFmpeg.Filters.FilterLink.SourcePadIndex
+  id: SourcePadIndex
+  parent: FFmpeg.Filters.FilterLink
+  langs:
+  - csharp
+  - vb
+  name: SourcePadIndex
+  nameWithType: FilterLink.SourcePadIndex
+  fullName: FFmpeg.Filters.FilterLink.SourcePadIndex
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterLink.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SourcePadIndex
+    path: FFmpeg/Filters/FilterLink.cs
+    startLine: 13
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public int SourcePadIndex { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SourcePadIndex As Integer
+  overload: FFmpeg.Filters.FilterLink.SourcePadIndex*
+- uid: FFmpeg.Filters.FilterLink.DestinationPadIndex
+  commentId: P:FFmpeg.Filters.FilterLink.DestinationPadIndex
+  id: DestinationPadIndex
+  parent: FFmpeg.Filters.FilterLink
+  langs:
+  - csharp
+  - vb
+  name: DestinationPadIndex
+  nameWithType: FilterLink.DestinationPadIndex
+  fullName: FFmpeg.Filters.FilterLink.DestinationPadIndex
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Filters/FilterLink.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DestinationPadIndex
+    path: FFmpeg/Filters/FilterLink.cs
+    startLine: 14
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Filters
+  syntax:
+    content: public int DestinationPadIndex { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property DestinationPadIndex As Integer
+  overload: FFmpeg.Filters.FilterLink.DestinationPadIndex*
+references:
+- uid: FFmpeg.Filters
+  commentId: N:FFmpeg.Filters
+  href: FFmpeg.html
+  name: FFmpeg.Filters
+  nameWithType: FFmpeg.Filters
+  fullName: FFmpeg.Filters
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Filters
+    name: Filters
+    href: FFmpeg.Filters.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Filters.FilterLink.SourceContext*
+  commentId: Overload:FFmpeg.Filters.FilterLink.SourceContext
+  href: FFmpeg.Filters.FilterLink.html#FFmpeg_Filters_FilterLink_SourceContext
+  name: SourceContext
+  nameWithType: FilterLink.SourceContext
+  fullName: FFmpeg.Filters.FilterLink.SourceContext
+- uid: FFmpeg.Filters.FilterContext
+  commentId: T:FFmpeg.Filters.FilterContext
+  parent: FFmpeg.Filters
+  href: FFmpeg.Filters.FilterContext.html
+  name: FilterContext
+  nameWithType: FilterContext
+  fullName: FFmpeg.Filters.FilterContext
+- uid: FFmpeg.Filters.FilterLink.DestinationContext*
+  commentId: Overload:FFmpeg.Filters.FilterLink.DestinationContext
+  href: FFmpeg.Filters.FilterLink.html#FFmpeg_Filters_FilterLink_DestinationContext
+  name: DestinationContext
+  nameWithType: FilterLink.DestinationContext
+  fullName: FFmpeg.Filters.FilterLink.DestinationContext
+- uid: FFmpeg.Filters.FilterLink.SourcePadIndex*
+  commentId: Overload:FFmpeg.Filters.FilterLink.SourcePadIndex
+  href: FFmpeg.Filters.FilterLink.html#FFmpeg_Filters_FilterLink_SourcePadIndex
+  name: SourcePadIndex
+  nameWithType: FilterLink.SourcePadIndex
+  fullName: FFmpeg.Filters.FilterLink.SourcePadIndex
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Filters.FilterLink.DestinationPadIndex*
+  commentId: Overload:FFmpeg.Filters.FilterLink.DestinationPadIndex
+  href: FFmpeg.Filters.FilterLink.html#FFmpeg_Filters_FilterLink_DestinationPadIndex
+  name: DestinationPadIndex
+  nameWithType: FilterLink.DestinationPadIndex
+  fullName: FFmpeg.Filters.FilterLink.DestinationPadIndex

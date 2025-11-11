@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AVPacket | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AVPacket | FFmpegDotNet ">
+      
+      <meta name="description" content="Managed wrapper for the FFmpeg  structure. Provides managed access to packet data, timestamps, and operations for video and audio streaming.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Utils_AVPacket.md&amp;value=---%0Auid%3A%20FFmpeg.Utils.AVPacket%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Utils.AVPacket">
+
+
+
+  <h1 id="FFmpeg_Utils_AVPacket" data-uid="FFmpeg.Utils.AVPacket" class="text-break">
+Class AVPacket  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Utils.html">Utils</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Managed wrapper for the FFmpeg <span class="xref">FFmpeg.AutoGen._AVPacket</span> structure.
+Provides managed access to packet data, timestamps, and operations for video and audio streaming.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AVPacket : IDisposable, IPacket</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AVPacket</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVPacket_Data_" data-uid="FFmpeg.Utils.AVPacket.Data*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Data" data-uid="FFmpeg.Utils.AVPacket.Data">
+  Data
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the raw data contained in the packet as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span&lt;T&gt;</a> of <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Span&lt;byte&gt; Data { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.span-1">Span</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_DecompressionTime_" data-uid="FFmpeg.Utils.AVPacket.DecompressionTime*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_DecompressionTime" data-uid="FFmpeg.Utils.AVPacket.DecompressionTime">
+  DecompressionTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the decompression timestamp (DTS) as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a>.
+The <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_DecompressionTimestamp">DecompressionTimestamp</a> is calculated using the <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_TimeBase">TimeBase</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan DecompressionTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_DecompressionTimestamp_" data-uid="FFmpeg.Utils.AVPacket.DecompressionTimestamp*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_DecompressionTimestamp" data-uid="FFmpeg.Utils.AVPacket.DecompressionTimestamp">
+  DecompressionTimestamp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the decompression timestamp (DTS) of the packet, in stream time base units.
+This timestamp indicates when the packet should be decompressed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long DecompressionTimestamp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Duration_" data-uid="FFmpeg.Utils.AVPacket.Duration*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Duration" data-uid="FFmpeg.Utils.AVPacket.Duration">
+  Duration
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the duration of the packet in stream time base units.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Duration { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Flags_" data-uid="FFmpeg.Utils.AVPacket.Flags*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Flags" data-uid="FFmpeg.Utils.AVPacket.Flags">
+  Flags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the packet flags, which are a combination of <a class="xref" href="FFmpeg.Utils.PacketFlags.html">PacketFlags</a> values.
+These flags indicate specific characteristics of the packet (e.g., key frame, corrupted data).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PacketFlags Flags { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.PacketFlags.html">PacketFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Position_" data-uid="FFmpeg.Utils.AVPacket.Position*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Position" data-uid="FFmpeg.Utils.AVPacket.Position">
+  Position
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the byte position of the packet in the stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long Position { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_PresentationTime_" data-uid="FFmpeg.Utils.AVPacket.PresentationTime*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_PresentationTime" data-uid="FFmpeg.Utils.AVPacket.PresentationTime">
+  PresentationTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the presentation timestamp (PTS) as a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a>.
+The <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_PresentationTimestamp">PresentationTimestamp</a> is calculated using the <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_TimeBase">TimeBase</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimeSpan PresentationTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_PresentationTimestamp_" data-uid="FFmpeg.Utils.AVPacket.PresentationTimestamp*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_PresentationTimestamp" data-uid="FFmpeg.Utils.AVPacket.PresentationTimestamp">
+  PresentationTimestamp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the presentation timestamp (PTS) of the packet, in stream time base units.
+This timestamp indicates when the packet should be presented to the user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long PresentationTimestamp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Size_" data-uid="FFmpeg.Utils.AVPacket.Size*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Size" data-uid="FFmpeg.Utils.AVPacket.Size">
+  Size
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the size of the packet's data in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Size { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_StreamIndex_" data-uid="FFmpeg.Utils.AVPacket.StreamIndex*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_StreamIndex" data-uid="FFmpeg.Utils.AVPacket.StreamIndex">
+  StreamIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the index of the stream this packet belongs to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int StreamIndex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_TimeBase_" data-uid="FFmpeg.Utils.AVPacket.TimeBase*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_TimeBase" data-uid="FFmpeg.Utils.AVPacket.TimeBase">
+  TimeBase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the time base used for the packet's timestamps, represented as a <a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a> value.
+This value defines the unit of time for the <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_PresentationTimestamp">PresentationTimestamp</a> and <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_DecompressionTimestamp">DecompressionTimestamp</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational TimeBase { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVPacket_Allocate_" data-uid="FFmpeg.Utils.AVPacket.Allocate*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Allocate" data-uid="FFmpeg.Utils.AVPacket.Allocate">
+  Allocate()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Allocates a new instance of the <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> class without specifying a payload size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AVPacket Allocate()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>A newly allocated <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown when memory allocation for the <span class="xref">FFmpeg.AutoGen._AVPacket</span> fails.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Allocate_" data-uid="FFmpeg.Utils.AVPacket.Allocate*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Allocate_System_Int32_" data-uid="FFmpeg.Utils.AVPacket.Allocate(System.Int32)">
+  Allocate(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Allocates a new instance of the <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> class with a specified payload size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AVPacket Allocate(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The size of the packet's payload, in bytes.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>A newly allocated <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown when memory allocation fails for either the <span class="xref">FFmpeg.AutoGen._AVPacket</span> or its payload.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Clone_" data-uid="FFmpeg.Utils.AVPacket.Clone*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Clone" data-uid="FFmpeg.Utils.AVPacket.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> that references the same data as this packet.
+This creates a shallow copy, meaning the new packet will point to the same underlying data buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVPacket Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> instance that references the same data.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown when the clone operation fails due to insufficient memory allocation.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_CloneTo_" data-uid="FFmpeg.Utils.AVPacket.CloneTo*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_CloneTo_FFmpeg_Utils_IPacket_" data-uid="FFmpeg.Utils.AVPacket.CloneTo(FFmpeg.Utils.IPacket)">
+  CloneTo(IPacket)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L273"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clones the contents of this packet to the specified <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a> destination.
+This creates a deep copy of the packet, including its data and properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CloneTo(IPacket dst)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dst</code> <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a></dt>
+    <dd><p>The destination packet to clone the data to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_CopyProperties_" data-uid="FFmpeg.Utils.AVPacket.CopyProperties*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_CopyProperties_FFmpeg_Utils_IPacket_" data-uid="FFmpeg.Utils.AVPacket.CopyProperties(FFmpeg.Utils.IPacket)">
+  CopyProperties(IPacket)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the properties of this packet, such as stream index and timestamps,
+to the specified <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a> destination without copying the actual data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyProperties(IPacket dst)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dst</code> <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a></dt>
+    <dd><p>The destination packet to copy the properties to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Dispose_" data-uid="FFmpeg.Utils.AVPacket.Dispose*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Dispose" data-uid="FFmpeg.Utils.AVPacket.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> and frees the allocated memory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Finalize_" data-uid="FFmpeg.Utils.AVPacket.Finalize*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Finalize" data-uid="FFmpeg.Utils.AVPacket.Finalize">
+  ~AVPacket()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L202"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finalizer to ensure that unmanaged resources are properly released when the object is garbage collected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~AVPacket()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_MoveTo_" data-uid="FFmpeg.Utils.AVPacket.MoveTo*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_MoveTo_FFmpeg_Utils_IPacket_" data-uid="FFmpeg.Utils.AVPacket.MoveTo(FFmpeg.Utils.IPacket)">
+  MoveTo(IPacket)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves the contents of this packet to the specified <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a> destination,
+effectively transferring ownership of the data without copying it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveTo(IPacket dst)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dst</code> <a class="xref" href="FFmpeg.Utils.IPacket.html">IPacket</a></dt>
+    <dd><p>The destination packet to move the data to.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_RescaleTS_" data-uid="FFmpeg.Utils.AVPacket.RescaleTS*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_RescaleTS_FFmpeg_Utils_Rational_" data-uid="FFmpeg.Utils.AVPacket.RescaleTS(FFmpeg.Utils.Rational)">
+  RescaleTS(Rational)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L296"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rescales the timing fields (timestamps and durations) of the current packet from its current time base to a new time base. <br>
+This operation modifies the packet's timing fields to express them in the new time base.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RescaleTS(Rational newTimeBase)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newTimeBase</code> <a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd><p>The destination time base to which the timing fields of the packet will be converted.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Utils_AVPacket_RescaleTS_FFmpeg_Utils_Rational__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If any of the packet's timestamps have unknown values (such as <span class="xref">FFmpeg.AutoGen.ffmpeg.AV_NOPTS_VALUE</span>), they will be ignored during the conversion.
+The method also updates the packet's time base to the new time base after rescaling.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Resize_" data-uid="FFmpeg.Utils.AVPacket.Resize*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Resize_System_Int32_" data-uid="FFmpeg.Utils.AVPacket.Resize(System.Int32)">
+  Resize(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L237"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resizes the packet's data buffer to the specified size, either growing or shrinking it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resize(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The new size of the packet's data buffer in bytes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if the packet cannot be resized due to insufficient memory during growth.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Utils_AVPacket_Unreference_" data-uid="FFmpeg.Utils.AVPacket.Unreference*"></a>
+
+  <h3 id="FFmpeg_Utils_AVPacket_Unreference" data-uid="FFmpeg.Utils.AVPacket.Unreference">
+  Unreference()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unreferences the packet, decrementing the reference count and releasing associated resources if no references remain.
+This should be called when the packet is no longer needed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unreference()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVPacket.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

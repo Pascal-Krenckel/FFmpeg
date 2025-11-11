@@ -1,0 +1,292 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.ChromaLocation
+  commentId: T:FFmpeg.Images.ChromaLocation
+  id: ChromaLocation
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.ChromaLocation.Bottom
+  - FFmpeg.Images.ChromaLocation.BottomLeft
+  - FFmpeg.Images.ChromaLocation.Center
+  - FFmpeg.Images.ChromaLocation.Left
+  - FFmpeg.Images.ChromaLocation.Top
+  - FFmpeg.Images.ChromaLocation.TopLeft
+  - FFmpeg.Images.ChromaLocation.Unspecified
+  - FFmpeg.Images.ChromaLocation.__COUNT__
+  langs:
+  - csharp
+  - vb
+  name: ChromaLocation
+  nameWithType: ChromaLocation
+  fullName: FFmpeg.Images.ChromaLocation
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChromaLocation
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Specifies the location of chroma samples in the video.
+  example: []
+  syntax:
+    content: public enum ChromaLocation
+    content.vb: Public Enum ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.Unspecified
+  commentId: F:FFmpeg.Images.ChromaLocation.Unspecified
+  id: Unspecified
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: Unspecified
+  nameWithType: ChromaLocation.Unspecified
+  fullName: FFmpeg.Images.ChromaLocation.Unspecified
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unspecified
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Unspecified chroma location.
+  example: []
+  syntax:
+    content: Unspecified = 0
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.Left
+  commentId: F:FFmpeg.Images.ChromaLocation.Left
+  id: Left
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: Left
+  nameWithType: ChromaLocation.Left
+  fullName: FFmpeg.Images.ChromaLocation.Left
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Left
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 15
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the left of the luma samples. This is used in MPEG-2/4 4:2:0 and is the default for 4:2:0 in H.264.
+  example: []
+  syntax:
+    content: Left = 1
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.Center
+  commentId: F:FFmpeg.Images.ChromaLocation.Center
+  id: Center
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: ChromaLocation.Center
+  fullName: FFmpeg.Images.ChromaLocation.Center
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Center
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 20
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the center of the luma samples. This is used in MPEG-1 4:2:0, JPEG 4:2:0, and H.263 4:2:0.
+  example: []
+  syntax:
+    content: Center = 2
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.TopLeft
+  commentId: F:FFmpeg.Images.ChromaLocation.TopLeft
+  id: TopLeft
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: TopLeft
+  nameWithType: ChromaLocation.TopLeft
+  fullName: FFmpeg.Images.ChromaLocation.TopLeft
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TopLeft
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 25
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the top-left corner of the luma samples. This location is used in ITU-R 601, SMPTE 274M, 296M, S314M (DV 4:1:1), and MPEG2 4:2:2.
+  example: []
+  syntax:
+    content: TopLeft = 3
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.Top
+  commentId: F:FFmpeg.Images.ChromaLocation.Top
+  id: Top
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: Top
+  nameWithType: ChromaLocation.Top
+  fullName: FFmpeg.Images.ChromaLocation.Top
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Top
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the top of the luma samples.
+  example: []
+  syntax:
+    content: Top = 4
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.BottomLeft
+  commentId: F:FFmpeg.Images.ChromaLocation.BottomLeft
+  id: BottomLeft
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: BottomLeft
+  nameWithType: ChromaLocation.BottomLeft
+  fullName: FFmpeg.Images.ChromaLocation.BottomLeft
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BottomLeft
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the bottom-left corner of the luma samples.
+  example: []
+  syntax:
+    content: BottomLeft = 5
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.Bottom
+  commentId: F:FFmpeg.Images.ChromaLocation.Bottom
+  id: Bottom
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: Bottom
+  nameWithType: ChromaLocation.Bottom
+  fullName: FFmpeg.Images.ChromaLocation.Bottom
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Bottom
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Chroma samples are located at the bottom of the luma samples.
+  example: []
+  syntax:
+    content: Bottom = 6
+    return:
+      type: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation.__COUNT__
+  commentId: F:FFmpeg.Images.ChromaLocation.__COUNT__
+  id: __COUNT__
+  parent: FFmpeg.Images.ChromaLocation
+  langs:
+  - csharp
+  - vb
+  name: __COUNT__
+  nameWithType: ChromaLocation.__COUNT__
+  fullName: FFmpeg.Images.ChromaLocation.__COUNT__
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Images/ChromaLocation.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: __COUNT__
+    path: FFmpeg/Images/ChromaLocation.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Not part of ABI, represents the number of chroma location options available.
+  example: []
+  syntax:
+    content: __COUNT__ = 7
+    return:
+      type: FFmpeg.Images.ChromaLocation
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Images.ChromaLocation
+  commentId: T:FFmpeg.Images.ChromaLocation
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ChromaLocation.html
+  name: ChromaLocation
+  nameWithType: ChromaLocation
+  fullName: FFmpeg.Images.ChromaLocation

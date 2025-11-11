@@ -1,0 +1,94 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  id: FFmpeg.HW
+  children:
+  - FFmpeg.HW.CodecHWConfig
+  - FFmpeg.HW.CodecHWConfigMethod
+  - FFmpeg.HW.DeviceContext
+  - FFmpeg.HW.DeviceContext_ref
+  - FFmpeg.HW.DeviceType
+  - FFmpeg.HW.FramesContext
+  - FFmpeg.HW.FramesContext_ref
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.HW.CodecHWConfig
+  commentId: T:FFmpeg.HW.CodecHWConfig
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.CodecHWConfig.html
+  name: CodecHWConfig
+  nameWithType: CodecHWConfig
+  fullName: FFmpeg.HW.CodecHWConfig
+- uid: FFmpeg.HW.CodecHWConfigMethod
+  commentId: T:FFmpeg.HW.CodecHWConfigMethod
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.CodecHWConfigMethod.html
+  name: CodecHWConfigMethod
+  nameWithType: CodecHWConfigMethod
+  fullName: FFmpeg.HW.CodecHWConfigMethod
+- uid: FFmpeg.HW.DeviceContext
+  commentId: T:FFmpeg.HW.DeviceContext
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceContext.html
+  name: DeviceContext
+  nameWithType: DeviceContext
+  fullName: FFmpeg.HW.DeviceContext
+- uid: FFmpeg.HW.DeviceContext_ref
+  commentId: T:FFmpeg.HW.DeviceContext_ref
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceContext_ref.html
+  name: DeviceContext_ref
+  nameWithType: DeviceContext_ref
+  fullName: FFmpeg.HW.DeviceContext_ref
+- uid: FFmpeg.HW.DeviceType
+  commentId: T:FFmpeg.HW.DeviceType
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceType.html
+  name: DeviceType
+  nameWithType: DeviceType
+  fullName: FFmpeg.HW.DeviceType
+- uid: FFmpeg.HW.FramesContext
+  commentId: T:FFmpeg.HW.FramesContext
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.FramesContext.html
+  name: FramesContext
+  nameWithType: FramesContext
+  fullName: FFmpeg.HW.FramesContext
+- uid: FFmpeg.HW.FramesContext_ref
+  commentId: T:FFmpeg.HW.FramesContext_ref
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.FramesContext_ref.html
+  name: FramesContext_ref
+  nameWithType: FramesContext_ref
+  fullName: FFmpeg.HW.FramesContext_ref
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html

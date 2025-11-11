@@ -1,0 +1,1531 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.CodecDescription
+  commentId: T:FFmpeg.Codecs.CodecDescription
+  id: CodecDescription
+  parent: FFmpeg.Codecs
+  children:
+  - FFmpeg.Codecs.CodecDescription.Equals(FFmpeg.Codecs.CodecDescription)
+  - FFmpeg.Codecs.CodecDescription.Equals(System.Object)
+  - FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors
+  - FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.Codec)
+  - FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.CodecID)
+  - FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(System.String)
+  - FFmpeg.Codecs.CodecDescription.GetHashCode
+  - FFmpeg.Codecs.CodecDescription.Id
+  - FFmpeg.Codecs.CodecDescription.LongName
+  - FFmpeg.Codecs.CodecDescription.MimeTypes
+  - FFmpeg.Codecs.CodecDescription.Name
+  - FFmpeg.Codecs.CodecDescription.Profiles
+  - FFmpeg.Codecs.CodecDescription.Properties
+  - FFmpeg.Codecs.CodecDescription.ToString
+  - FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec,FFmpeg.Codecs.CodecDescription@)
+  - FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID,FFmpeg.Codecs.CodecDescription@)
+  - FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(System.String,FFmpeg.Codecs.CodecDescription@)
+  - FFmpeg.Codecs.CodecDescription.Type
+  - FFmpeg.Codecs.CodecDescription.op_Equality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  - FFmpeg.Codecs.CodecDescription.op_Inequality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  langs:
+  - csharp
+  - vb
+  name: CodecDescription
+  nameWithType: CodecDescription
+  fullName: FFmpeg.Codecs.CodecDescription
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CodecDescription
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Represents a codec descriptor with various properties.
+
+    <p>
+
+    This struct is a readonly wrapper around an <xref href="FFmpeg.AutoGen._AVCodecDescriptor" data-throw-if-not-resolved="false"></xref> pointer, providing a way to access codec descriptor properties in a safe manner.
+
+    </p>
+  example: []
+  syntax:
+    content: 'public readonly struct CodecDescription : IEquatable<CodecDescription>'
+    content.vb: Public Structure CodecDescription Implements IEquatable(Of CodecDescription)
+  implements:
+  - System.IEquatable{FFmpeg.Codecs.CodecDescription}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.CodecID)
+  commentId: M:FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.CodecID)
+  id: GetCodecDescriptor(FFmpeg.Codecs.CodecID)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: GetCodecDescriptor(CodecID)
+  nameWithType: CodecDescription.GetCodecDescriptor(CodecID)
+  fullName: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.CodecID)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 28
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Retrieves a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified codec ID.
+  example: []
+  syntax:
+    content: public static CodecDescription GetCodecDescriptor(CodecID codecID)
+    parameters:
+    - id: codecID
+      type: FFmpeg.Codecs.CodecID
+      description: The codec ID to get the descriptor for.
+    return:
+      type: FFmpeg.Codecs.CodecDescription
+      description: A <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance representing the codec descriptor.
+    content.vb: Public Shared Function GetCodecDescriptor(codecID As CodecID) As CodecDescription
+  overload: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the <code class="paramref">codecID</code> does not correspond to a valid codec descriptor.
+- uid: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(System.String)
+  commentId: M:FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(System.String)
+  id: GetCodecDescriptor(System.String)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: GetCodecDescriptor(string)
+  nameWithType: CodecDescription.GetCodecDescriptor(string)
+  fullName: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Retrieves a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified codec name.
+  example: []
+  syntax:
+    content: public static CodecDescription GetCodecDescriptor(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the codec to get the descriptor for.
+    return:
+      type: FFmpeg.Codecs.CodecDescription
+      description: A <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance representing the codec descriptor.
+    content.vb: Public Shared Function GetCodecDescriptor(name As String) As CodecDescription
+  overload: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the <code class="paramref">name</code> does not correspond to a valid codec descriptor.
+  nameWithType.vb: CodecDescription.GetCodecDescriptor(String)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(String)
+  name.vb: GetCodecDescriptor(String)
+- uid: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.Codec)
+  commentId: M:FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.Codec)
+  id: GetCodecDescriptor(FFmpeg.Codecs.Codec)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: GetCodecDescriptor(Codec)
+  nameWithType: CodecDescription.GetCodecDescriptor(Codec)
+  fullName: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor(FFmpeg.Codecs.Codec)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 58
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Retrieves a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified <xref href="FFmpeg.Codecs.Codec" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static CodecDescription GetCodecDescriptor(Codec codec)
+    parameters:
+    - id: codec
+      type: FFmpeg.Codecs.Codec
+      description: The codec to get the descriptor for.
+    return:
+      type: FFmpeg.Codecs.CodecDescription
+      description: A <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance representing the codec descriptor.
+    content.vb: Public Shared Function GetCodecDescriptor(codec As Codec) As CodecDescription
+  overload: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: Thrown if the <code class="paramref">codec</code> does not correspond to a valid codec descriptor.
+- uid: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID,FFmpeg.Codecs.CodecDescription@)
+  commentId: M:FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID,FFmpeg.Codecs.CodecDescription@)
+  id: TryGetCodecDescriptor(FFmpeg.Codecs.CodecID,FFmpeg.Codecs.CodecDescription@)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: TryGetCodecDescriptor(CodecID, out CodecDescription)
+  nameWithType: CodecDescription.TryGetCodecDescriptor(CodecID, out CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID, out FFmpeg.Codecs.CodecDescription)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryGetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 73
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Attempts to retrieve a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified codec ID.
+  example: []
+  syntax:
+    content: public static bool TryGetCodecDescriptor(CodecID codecID, out CodecDescription descriptor)
+    parameters:
+    - id: codecID
+      type: FFmpeg.Codecs.CodecID
+      description: The codec ID to get the descriptor for.
+    - id: descriptor
+      type: FFmpeg.Codecs.CodecDescription
+      description: When this method returns, contains the <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance if the codec ID was valid; otherwise, default.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.
+    content.vb: Public Shared Function TryGetCodecDescriptor(codecID As CodecID, descriptor As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*
+  nameWithType.vb: CodecDescription.TryGetCodecDescriptor(CodecID, CodecDescription)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.CodecID, FFmpeg.Codecs.CodecDescription)
+  name.vb: TryGetCodecDescriptor(CodecID, CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec,FFmpeg.Codecs.CodecDescription@)
+  commentId: M:FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec,FFmpeg.Codecs.CodecDescription@)
+  id: TryGetCodecDescriptor(FFmpeg.Codecs.Codec,FFmpeg.Codecs.CodecDescription@)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: TryGetCodecDescriptor(Codec, out CodecDescription)
+  nameWithType: CodecDescription.TryGetCodecDescriptor(Codec, out CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec, out FFmpeg.Codecs.CodecDescription)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryGetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 98
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Attempts to retrieve a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified <xref href="FFmpeg.Codecs.Codec" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static bool TryGetCodecDescriptor(Codec codec, out CodecDescription descriptor)
+    parameters:
+    - id: codec
+      type: FFmpeg.Codecs.Codec
+      description: The codec to get the descriptor for.
+    - id: descriptor
+      type: FFmpeg.Codecs.CodecDescription
+      description: When this method returns, contains the <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance if the codec was valid; otherwise, default.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.
+    content.vb: Public Shared Function TryGetCodecDescriptor(codec As Codec, descriptor As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*
+  nameWithType.vb: CodecDescription.TryGetCodecDescriptor(Codec, CodecDescription)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(FFmpeg.Codecs.Codec, FFmpeg.Codecs.CodecDescription)
+  name.vb: TryGetCodecDescriptor(Codec, CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(System.String,FFmpeg.Codecs.CodecDescription@)
+  commentId: M:FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(System.String,FFmpeg.Codecs.CodecDescription@)
+  id: TryGetCodecDescriptor(System.String,FFmpeg.Codecs.CodecDescription@)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: TryGetCodecDescriptor(string, out CodecDescription)
+  nameWithType: CodecDescription.TryGetCodecDescriptor(string, out CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(string, out FFmpeg.Codecs.CodecDescription)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryGetCodecDescriptor
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 111
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Attempts to retrieve a <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> for the specified codec name.
+  example: []
+  syntax:
+    content: public static bool TryGetCodecDescriptor(string name, out CodecDescription descriptor)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the codec to get the descriptor for.
+    - id: descriptor
+      type: FFmpeg.Codecs.CodecDescription
+      description: When this method returns, contains the <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance if the name was valid; otherwise, default.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the descriptor was successfully retrieved; otherwise, <code>false</code>.
+    content.vb: Public Shared Function TryGetCodecDescriptor(name As String, descriptor As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*
+  nameWithType.vb: CodecDescription.TryGetCodecDescriptor(String, CodecDescription)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor(String, FFmpeg.Codecs.CodecDescription)
+  name.vb: TryGetCodecDescriptor(String, CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors
+  commentId: M:FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors
+  id: GetAllCodecDescriptors
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: GetAllCodecDescriptors()
+  nameWithType: CodecDescription.GetAllCodecDescriptors()
+  fullName: FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetAllCodecDescriptors
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 135
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Retrieves an array of all available codec descriptors.
+
+    <p>
+
+    This method iterates through all codec descriptors registered with FFmpeg and collects them into an array.
+
+    </p>
+  example: []
+  syntax:
+    content: public static CodecDescription[] GetAllCodecDescriptors()
+    return:
+      type: FFmpeg.Codecs.CodecDescription[]
+      description: An array of <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instances representing all available codec descriptors.
+    content.vb: Public Shared Function GetAllCodecDescriptors() As CodecDescription()
+  overload: FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors*
+- uid: FFmpeg.Codecs.CodecDescription.Equals(System.Object)
+  commentId: M:FFmpeg.Codecs.CodecDescription.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: CodecDescription.Equals(object?)
+  fullName: FFmpeg.Codecs.CodecDescription.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 153
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Determines whether the specified object is equal to the current <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified object is equal to the current <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>; otherwise, <code>false</code>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Codecs.CodecDescription.Equals*
+  nameWithType.vb: CodecDescription.Equals(Object)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Codecs.CodecDescription.Equals(FFmpeg.Codecs.CodecDescription)
+  commentId: M:FFmpeg.Codecs.CodecDescription.Equals(FFmpeg.Codecs.CodecDescription)
+  id: Equals(FFmpeg.Codecs.CodecDescription)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Equals(CodecDescription)
+  nameWithType: CodecDescription.Equals(CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.Equals(FFmpeg.Codecs.CodecDescription)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 165
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Determines whether the specified <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Equals(CodecDescription other)
+    parameters:
+    - id: other
+      type: FFmpeg.Codecs.CodecDescription
+      description: The <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the specified <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> is equal to the current instance; otherwise, <code>false</code>.
+    content.vb: Public Function Equals(other As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Codecs.CodecDescription}.Equals(FFmpeg.Codecs.CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.GetHashCode
+  commentId: M:FFmpeg.Codecs.CodecDescription.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: CodecDescription.GetHashCode()
+  fullName: FFmpeg.Codecs.CodecDescription.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 174
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Serves as a hash function for the <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> type.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for the current <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Codecs.CodecDescription.GetHashCode*
+- uid: FFmpeg.Codecs.CodecDescription.Id
+  commentId: P:FFmpeg.Codecs.CodecDescription.Id
+  id: Id
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: CodecDescription.Id
+  fullName: FFmpeg.Codecs.CodecDescription.Id
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Id
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 183
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets the codec ID, which is a value from the <xref href="FFmpeg.Codecs.CodecID" data-throw-if-not-resolved="false"></xref> enumeration.
+  example: []
+  syntax:
+    content: public CodecID Id { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.CodecID
+      description: The codec ID for this codec descriptor.
+    content.vb: Public ReadOnly Property Id As CodecID
+  overload: FFmpeg.Codecs.CodecDescription.Id*
+- uid: FFmpeg.Codecs.CodecDescription.Type
+  commentId: P:FFmpeg.Codecs.CodecDescription.Type
+  id: Type
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: CodecDescription.Type
+  fullName: FFmpeg.Codecs.CodecDescription.Type
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Type
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 191
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets the media type of the codec, which is a value from the <xref href="FFmpeg.Utils.MediaType" data-throw-if-not-resolved="false"></xref> enumeration.
+  example: []
+  syntax:
+    content: public MediaType Type { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.MediaType
+      description: The media type for this codec descriptor.
+    content.vb: Public ReadOnly Property Type As MediaType
+  overload: FFmpeg.Codecs.CodecDescription.Type*
+- uid: FFmpeg.Codecs.CodecDescription.Name
+  commentId: P:FFmpeg.Codecs.CodecDescription.Name
+  id: Name
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: CodecDescription.Name
+  fullName: FFmpeg.Codecs.CodecDescription.Name
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Name
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 202
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Gets the name of the codec.
+
+    <p>
+
+    This name is non-empty and unique for each codec descriptor. It is intended for identification purposes.
+
+    </p>
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The name of the codec.
+    content.vb: Public ReadOnly Property Name As String
+  overload: FFmpeg.Codecs.CodecDescription.Name*
+- uid: FFmpeg.Codecs.CodecDescription.LongName
+  commentId: P:FFmpeg.Codecs.CodecDescription.LongName
+  id: LongName
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: LongName
+  nameWithType: CodecDescription.LongName
+  fullName: FFmpeg.Codecs.CodecDescription.LongName
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LongName
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 213
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Gets the more descriptive name for this codec.
+
+    <p>
+
+    This name provides additional details about the codec and may be null if not available.
+
+    </p>
+  example: []
+  syntax:
+    content: public string? LongName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: The more descriptive name of the codec, or null if not available.
+    content.vb: Public ReadOnly Property LongName As String
+  overload: FFmpeg.Codecs.CodecDescription.LongName*
+- uid: FFmpeg.Codecs.CodecDescription.Properties
+  commentId: P:FFmpeg.Codecs.CodecDescription.Properties
+  id: Properties
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Properties
+  nameWithType: CodecDescription.Properties
+  fullName: FFmpeg.Codecs.CodecDescription.Properties
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Properties
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 221
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Gets the codec properties, which is a combination of flags from the <xref href="FFmpeg.Codecs.CodecProperties" data-throw-if-not-resolved="false"></xref> enumeration.
+  example: []
+  syntax:
+    content: public CodecProperties Properties { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.CodecProperties
+      description: The properties of the codec, represented as a bit field combining various flags.
+    content.vb: Public ReadOnly Property Properties As CodecProperties
+  overload: FFmpeg.Codecs.CodecDescription.Properties*
+- uid: FFmpeg.Codecs.CodecDescription.MimeTypes
+  commentId: P:FFmpeg.Codecs.CodecDescription.MimeTypes
+  id: MimeTypes
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: MimeTypes
+  nameWithType: CodecDescription.MimeTypes
+  fullName: FFmpeg.Codecs.CodecDescription.MimeTypes
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MimeTypes
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 233
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Gets the MIME types associated with the codec.
+
+    <p>
+
+    This property returns an array of MIME types that are associated with the codec. If no MIME types are available, it returns an empty array.
+
+    The first item in the array is always the preferred MIME type if available.
+
+    </p>
+  example: []
+  syntax:
+    content: public string[] MimeTypes { get; }
+    parameters: []
+    return:
+      type: System.String[]
+      description: An array of MIME types associated with the codec, or an empty array if none are available.
+    content.vb: Public ReadOnly Property MimeTypes As String()
+  overload: FFmpeg.Codecs.CodecDescription.MimeTypes*
+- uid: FFmpeg.Codecs.CodecDescription.Profiles
+  commentId: P:FFmpeg.Codecs.CodecDescription.Profiles
+  id: Profiles
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: Profiles
+  nameWithType: CodecDescription.Profiles
+  fullName: FFmpeg.Codecs.CodecDescription.Profiles
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Profiles
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 256
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: >-
+    Gets the array of profiles recognized for this codec.
+
+    <p>
+
+    This property returns a read-only collection of profiles associated with the codec. Profiles provide additional information about codec capabilities and configurations.
+
+    If no profiles are available, it returns an empty collection.
+
+    </p>
+  example: []
+  syntax:
+    content: public ReadOnlyCollection<Profile> Profiles { get; }
+    parameters: []
+    return:
+      type: System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Codecs.Profile}
+      description: A <xref href="System.Collections.ObjectModel.ReadOnlyCollection%601" data-throw-if-not-resolved="false"></xref> containing the profiles recognized for this codec, or an empty collection if none are available.
+    content.vb: Public ReadOnly Property Profiles As ReadOnlyCollection(Of Profile)
+  overload: FFmpeg.Codecs.CodecDescription.Profiles*
+- uid: FFmpeg.Codecs.CodecDescription.op_Equality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  commentId: M:FFmpeg.Codecs.CodecDescription.op_Equality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  id: op_Equality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: operator ==(CodecDescription, CodecDescription)
+  nameWithType: CodecDescription.operator ==(CodecDescription, CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.operator ==(FFmpeg.Codecs.CodecDescription, FFmpeg.Codecs.CodecDescription)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 277
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Determines whether two <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(CodecDescription left, CodecDescription right)
+    parameters:
+    - id: left
+      type: FFmpeg.Codecs.CodecDescription
+      description: The first <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance.
+    - id: right
+      type: FFmpeg.Codecs.CodecDescription
+      description: The second <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the two instances are equal; otherwise, <code>false</code>.
+    content.vb: Public Shared Operator =(left As CodecDescription, right As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.op_Equality*
+  nameWithType.vb: CodecDescription.=(CodecDescription, CodecDescription)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.=(FFmpeg.Codecs.CodecDescription, FFmpeg.Codecs.CodecDescription)
+  name.vb: =(CodecDescription, CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.op_Inequality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  commentId: M:FFmpeg.Codecs.CodecDescription.op_Inequality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  id: op_Inequality(FFmpeg.Codecs.CodecDescription,FFmpeg.Codecs.CodecDescription)
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: operator !=(CodecDescription, CodecDescription)
+  nameWithType: CodecDescription.operator !=(CodecDescription, CodecDescription)
+  fullName: FFmpeg.Codecs.CodecDescription.operator !=(FFmpeg.Codecs.CodecDescription, FFmpeg.Codecs.CodecDescription)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 285
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Determines whether two <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(CodecDescription left, CodecDescription right)
+    parameters:
+    - id: left
+      type: FFmpeg.Codecs.CodecDescription
+      description: The first <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance.
+    - id: right
+      type: FFmpeg.Codecs.CodecDescription
+      description: The second <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref> instance.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the two instances are not equal; otherwise, <code>false</code>.
+    content.vb: Public Shared Operator <>(left As CodecDescription, right As CodecDescription) As Boolean
+  overload: FFmpeg.Codecs.CodecDescription.op_Inequality*
+  nameWithType.vb: CodecDescription.<>(CodecDescription, CodecDescription)
+  fullName.vb: FFmpeg.Codecs.CodecDescription.<>(FFmpeg.Codecs.CodecDescription, FFmpeg.Codecs.CodecDescription)
+  name.vb: <>(CodecDescription, CodecDescription)
+- uid: FFmpeg.Codecs.CodecDescription.ToString
+  commentId: M:FFmpeg.Codecs.CodecDescription.ToString
+  id: ToString
+  parent: FFmpeg.Codecs.CodecDescription
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: CodecDescription.ToString()
+  fullName: FFmpeg.Codecs.CodecDescription.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/CodecDescription.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Codecs/CodecDescription.cs
+    startLine: 291
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs
+  summary: Returns a string representation of the <xref href="FFmpeg.Codecs.CodecDescription" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The long name of the codec descriptor, providing a more descriptive name for the codec.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Codecs.CodecDescription.ToString*
+references:
+- uid: FFmpeg.AutoGen._AVCodecDescriptor
+  commentId: T:FFmpeg.AutoGen._AVCodecDescriptor
+  isExternal: true
+  name: _AVCodecDescriptor
+  nameWithType: _AVCodecDescriptor
+  fullName: FFmpeg.AutoGen._AVCodecDescriptor
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: System.IEquatable{FFmpeg.Codecs.CodecDescription}
+  commentId: T:System.IEquatable{FFmpeg.Codecs.CodecDescription}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<CodecDescription>
+  nameWithType: IEquatable<CodecDescription>
+  fullName: System.IEquatable<FFmpeg.Codecs.CodecDescription>
+  nameWithType.vb: IEquatable(Of CodecDescription)
+  fullName.vb: System.IEquatable(Of FFmpeg.Codecs.CodecDescription)
+  name.vb: IEquatable(Of CodecDescription)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Codecs.CodecDescription
+  commentId: T:FFmpeg.Codecs.CodecDescription
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecDescription.html
+  name: CodecDescription
+  nameWithType: CodecDescription
+  fullName: FFmpeg.Codecs.CodecDescription
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.GetCodecDescriptor
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_GetCodecDescriptor_FFmpeg_Codecs_CodecID_
+  name: GetCodecDescriptor
+  nameWithType: CodecDescription.GetCodecDescriptor
+  fullName: FFmpeg.Codecs.CodecDescription.GetCodecDescriptor
+- uid: FFmpeg.Codecs.CodecID
+  commentId: T:FFmpeg.Codecs.CodecID
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecID.html
+  name: CodecID
+  nameWithType: CodecID
+  fullName: FFmpeg.Codecs.CodecID
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Codecs.Codec
+  commentId: T:FFmpeg.Codecs.Codec
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.Codec.html
+  name: Codec
+  nameWithType: Codec
+  fullName: FFmpeg.Codecs.Codec
+- uid: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_TryGetCodecDescriptor_FFmpeg_Codecs_CodecID_FFmpeg_Codecs_CodecDescription__
+  name: TryGetCodecDescriptor
+  nameWithType: CodecDescription.TryGetCodecDescriptor
+  fullName: FFmpeg.Codecs.CodecDescription.TryGetCodecDescriptor
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_GetAllCodecDescriptors
+  name: GetAllCodecDescriptors
+  nameWithType: CodecDescription.GetAllCodecDescriptors
+  fullName: FFmpeg.Codecs.CodecDescription.GetAllCodecDescriptors
+- uid: FFmpeg.Codecs.CodecDescription[]
+  isExternal: true
+  href: FFmpeg.Codecs.CodecDescription.html
+  name: CodecDescription[]
+  nameWithType: CodecDescription[]
+  fullName: FFmpeg.Codecs.CodecDescription[]
+  nameWithType.vb: CodecDescription()
+  fullName.vb: FFmpeg.Codecs.CodecDescription()
+  name.vb: CodecDescription()
+  spec.csharp:
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: (
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.Codecs.CodecDescription.Equals*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Equals
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Equals_System_Object_
+  name: Equals
+  nameWithType: CodecDescription.Equals
+  fullName: FFmpeg.Codecs.CodecDescription.Equals
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.IEquatable{FFmpeg.Codecs.CodecDescription}.Equals(FFmpeg.Codecs.CodecDescription)
+  commentId: M:System.IEquatable{FFmpeg.Codecs.CodecDescription}.Equals(FFmpeg.Codecs.CodecDescription)
+  parent: System.IEquatable{FFmpeg.Codecs.CodecDescription}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(CodecDescription)
+  nameWithType: IEquatable<CodecDescription>.Equals(CodecDescription)
+  fullName: System.IEquatable<FFmpeg.Codecs.CodecDescription>.Equals(FFmpeg.Codecs.CodecDescription)
+  nameWithType.vb: IEquatable(Of CodecDescription).Equals(CodecDescription)
+  fullName.vb: System.IEquatable(Of FFmpeg.Codecs.CodecDescription).Equals(FFmpeg.Codecs.CodecDescription)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Codecs.CodecDescription}.Equals(FFmpeg.Codecs.CodecDescription)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Codecs.CodecDescription}.Equals(FFmpeg.Codecs.CodecDescription)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Codecs.CodecDescription
+    name: CodecDescription
+    href: FFmpeg.Codecs.CodecDescription.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.CodecDescription.GetHashCode*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.GetHashCode
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_GetHashCode
+  name: GetHashCode
+  nameWithType: CodecDescription.GetHashCode
+  fullName: FFmpeg.Codecs.CodecDescription.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Codecs.CodecDescription.Id*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Id
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Id
+  name: Id
+  nameWithType: CodecDescription.Id
+  fullName: FFmpeg.Codecs.CodecDescription.Id
+- uid: FFmpeg.Utils.MediaType
+  commentId: T:FFmpeg.Utils.MediaType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.MediaType.html
+  name: MediaType
+  nameWithType: MediaType
+  fullName: FFmpeg.Utils.MediaType
+- uid: FFmpeg.Codecs.CodecDescription.Type*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Type
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Type
+  name: Type
+  nameWithType: CodecDescription.Type
+  fullName: FFmpeg.Codecs.CodecDescription.Type
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Codecs.CodecDescription.Name*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Name
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Name
+  name: Name
+  nameWithType: CodecDescription.Name
+  fullName: FFmpeg.Codecs.CodecDescription.Name
+- uid: FFmpeg.Codecs.CodecDescription.LongName*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.LongName
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_LongName
+  name: LongName
+  nameWithType: CodecDescription.LongName
+  fullName: FFmpeg.Codecs.CodecDescription.LongName
+- uid: FFmpeg.Codecs.CodecProperties
+  commentId: T:FFmpeg.Codecs.CodecProperties
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecProperties.html
+  name: CodecProperties
+  nameWithType: CodecProperties
+  fullName: FFmpeg.Codecs.CodecProperties
+- uid: FFmpeg.Codecs.CodecDescription.Properties*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Properties
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Properties
+  name: Properties
+  nameWithType: CodecDescription.Properties
+  fullName: FFmpeg.Codecs.CodecDescription.Properties
+- uid: FFmpeg.Codecs.CodecDescription.MimeTypes*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.MimeTypes
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_MimeTypes
+  name: MimeTypes
+  nameWithType: CodecDescription.MimeTypes
+  fullName: FFmpeg.Codecs.CodecDescription.MimeTypes
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+  commentId: T:System.Collections.ObjectModel.ReadOnlyCollection`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  name: ReadOnlyCollection<T>
+  nameWithType: ReadOnlyCollection<T>
+  fullName: System.Collections.ObjectModel.ReadOnlyCollection<T>
+  nameWithType.vb: ReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyCollection(Of T)
+  name.vb: ReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Codecs.CodecDescription.Profiles*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.Profiles
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_Profiles
+  name: Profiles
+  nameWithType: CodecDescription.Profiles
+  fullName: FFmpeg.Codecs.CodecDescription.Profiles
+- uid: System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Codecs.Profile}
+  commentId: T:System.Collections.ObjectModel.ReadOnlyCollection{FFmpeg.Codecs.Profile}
+  parent: System.Collections.ObjectModel
+  definition: System.Collections.ObjectModel.ReadOnlyCollection`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  name: ReadOnlyCollection<Profile>
+  nameWithType: ReadOnlyCollection<Profile>
+  fullName: System.Collections.ObjectModel.ReadOnlyCollection<FFmpeg.Codecs.Profile>
+  nameWithType.vb: ReadOnlyCollection(Of Profile)
+  fullName.vb: System.Collections.ObjectModel.ReadOnlyCollection(Of FFmpeg.Codecs.Profile)
+  name.vb: ReadOnlyCollection(Of Profile)
+  spec.csharp:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: <
+  - uid: FFmpeg.Codecs.Profile
+    name: Profile
+    href: FFmpeg.Codecs.Profile.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.ObjectModel.ReadOnlyCollection`1
+    name: ReadOnlyCollection
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.Profile
+    name: Profile
+    href: FFmpeg.Codecs.Profile.html
+  - name: )
+- uid: System.Collections.ObjectModel
+  commentId: N:System.Collections.ObjectModel
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.ObjectModel
+  nameWithType: System.Collections.ObjectModel
+  fullName: System.Collections.ObjectModel
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.ObjectModel
+    name: ObjectModel
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.objectmodel
+- uid: FFmpeg.Codecs.CodecDescription.op_Equality*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.op_Equality
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_op_Equality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_
+  name: operator ==
+  nameWithType: CodecDescription.operator ==
+  fullName: FFmpeg.Codecs.CodecDescription.operator ==
+  nameWithType.vb: CodecDescription.=
+  fullName.vb: FFmpeg.Codecs.CodecDescription.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecDescription.op_Equality*
+    name: ==
+    href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_op_Equality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_
+- uid: FFmpeg.Codecs.CodecDescription.op_Inequality*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.op_Inequality
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_op_Inequality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_
+  name: operator !=
+  nameWithType: CodecDescription.operator !=
+  fullName: FFmpeg.Codecs.CodecDescription.operator !=
+  nameWithType.vb: CodecDescription.<>
+  fullName.vb: FFmpeg.Codecs.CodecDescription.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecDescription.op_Inequality*
+    name: '!='
+    href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_op_Inequality_FFmpeg_Codecs_CodecDescription_FFmpeg_Codecs_CodecDescription_
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.CodecDescription.ToString*
+  commentId: Overload:FFmpeg.Codecs.CodecDescription.ToString
+  href: FFmpeg.Codecs.CodecDescription.html#FFmpeg_Codecs_CodecDescription_ToString
+  name: ToString
+  nameWithType: CodecDescription.ToString
+  fullName: FFmpeg.Codecs.CodecDescription.ToString

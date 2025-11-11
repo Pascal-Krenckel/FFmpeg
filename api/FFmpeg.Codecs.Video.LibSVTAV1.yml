@@ -1,0 +1,134 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  id: FFmpeg.Codecs.Video.LibSVTAV1
+  children:
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  - FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  - FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  - FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl
+  nameWithType: BitrateControl
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl.BitrateControlMode
+  nameWithType: BitrateControl.BitrateControlMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+    name: BitrateControlMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.html
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+    name: BitrateControlMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.html
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl.AdaptiveQuantization
+  nameWithType: BitrateControl.AdaptiveQuantization
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+    name: AdaptiveQuantization
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.html
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+    name: AdaptiveQuantization
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.html
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  name: GOPSettings
+  nameWithType: GOPSettings
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html
+  name: ScreenContentMode
+  nameWithType: ScreenContentMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.html
+  name: TuningMetric
+  nameWithType: TuningMetric
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html

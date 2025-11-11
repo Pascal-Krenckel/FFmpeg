@@ -1,0 +1,535 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Collections.AVBufferPool
+  commentId: T:FFmpeg.Collections.AVBufferPool
+  id: AVBufferPool
+  parent: FFmpeg.Collections
+  children:
+  - FFmpeg.Collections.AVBufferPool.#ctor(System.Int32)
+  - FFmpeg.Collections.AVBufferPool.Dispose
+  - FFmpeg.Collections.AVBufferPool.Finalize
+  - FFmpeg.Collections.AVBufferPool.Rent
+  langs:
+  - csharp
+  - vb
+  name: AVBufferPool
+  nameWithType: AVBufferPool
+  fullName: FFmpeg.Collections.AVBufferPool
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBufferPool.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVBufferPool
+    path: FFmpeg/Collections/AVBufferPool.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Represents a pool of <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> objects for efficient memory management.
+  remarks: >-
+    This class is a wrapper around the FFmpeg `AVBufferPool` structure, providing a mechanism to
+
+    allocate and manage a pool of buffers. It implements <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to ensure that
+
+    resources are properly released when the pool is no longer needed.
+  example: []
+  syntax:
+    content: 'public sealed class AVBufferPool : IDisposable'
+    content.vb: Public NotInheritable Class AVBufferPool Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Collections.AVBufferPool.#ctor(System.Int32)
+  commentId: M:FFmpeg.Collections.AVBufferPool.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: FFmpeg.Collections.AVBufferPool
+  langs:
+  - csharp
+  - vb
+  name: AVBufferPool(int)
+  nameWithType: AVBufferPool.AVBufferPool(int)
+  fullName: FFmpeg.Collections.AVBufferPool.AVBufferPool(int)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBufferPool.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Collections/AVBufferPool.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Represents a pool of <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> objects for efficient memory management.
+  remarks: >-
+    This class is a wrapper around the FFmpeg `AVBufferPool` structure, providing a mechanism to
+
+    allocate and manage a pool of buffers. It implements <xref href="System.IDisposable" data-throw-if-not-resolved="false"></xref> to ensure that
+
+    resources are properly released when the pool is no longer needed.
+  example: []
+  syntax:
+    content: public AVBufferPool(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The size of each buffer in the pool, in bytes.
+    content.vb: Public Sub New(size As Integer)
+  overload: FFmpeg.Collections.AVBufferPool.#ctor*
+  nameWithType.vb: AVBufferPool.New(Integer)
+  fullName.vb: FFmpeg.Collections.AVBufferPool.New(Integer)
+  name.vb: New(Integer)
+- uid: FFmpeg.Collections.AVBufferPool.Rent
+  commentId: M:FFmpeg.Collections.AVBufferPool.Rent
+  id: Rent
+  parent: FFmpeg.Collections.AVBufferPool
+  langs:
+  - csharp
+  - vb
+  name: Rent()
+  nameWithType: AVBufferPool.Rent()
+  fullName: FFmpeg.Collections.AVBufferPool.Rent()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBufferPool.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Rent
+    path: FFmpeg/Collections/AVBufferPool.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Rents a buffer from the pool.
+  remarks: >-
+    This method retrieves a buffer from the pool using FFmpeg's `av_buffer_pool_get` function.
+
+    The caller is responsible for managing the lifecycle of the returned buffer.
+  example: []
+  syntax:
+    content: public AVBuffer Rent()
+    return:
+      type: FFmpeg.Collections.AVBuffer
+      description: An <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> instance representing the rented buffer.
+    content.vb: Public Function Rent() As AVBuffer
+  overload: FFmpeg.Collections.AVBufferPool.Rent*
+- uid: FFmpeg.Collections.AVBufferPool.Dispose
+  commentId: M:FFmpeg.Collections.AVBufferPool.Dispose
+  id: Dispose
+  parent: FFmpeg.Collections.AVBufferPool
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: AVBufferPool.Dispose()
+  fullName: FFmpeg.Collections.AVBufferPool.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBufferPool.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/Collections/AVBufferPool.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Releases all resources used by the <xref href="FFmpeg.Collections.AVBufferPool" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    This method is called when the pool is no longer needed, either explicitly through a call to
+
+    <xref href="FFmpeg.Collections.AVBufferPool.Dispose" data-throw-if-not-resolved="false"></xref> or implicitly via the finalizer. It calls FFmpeg's `av_buffer_pool_uninit`
+
+    function to free the memory associated with the buffer pool.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.Collections.AVBufferPool.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: FFmpeg.Collections.AVBufferPool.Finalize
+  commentId: M:FFmpeg.Collections.AVBufferPool.Finalize
+  id: Finalize
+  parent: FFmpeg.Collections.AVBufferPool
+  langs:
+  - csharp
+  - vb
+  name: ~AVBufferPool()
+  nameWithType: AVBufferPool.~AVBufferPool()
+  fullName: FFmpeg.Collections.AVBufferPool.~AVBufferPool()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBufferPool.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Finalize
+    path: FFmpeg/Collections/AVBufferPool.cs
+    startLine: 54
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Finalizes an instance of the <xref href="FFmpeg.Collections.AVBufferPool" data-throw-if-not-resolved="false"></xref> class.
+  remarks: The finalizer ensures that resources are released if <xref href="FFmpeg.Collections.AVBufferPool.Dispose" data-throw-if-not-resolved="false"></xref> is not called.
+  example: []
+  syntax:
+    content: protected ~AVBufferPool()
+    content.vb: 'Protected '
+  overload: FFmpeg.Collections.AVBufferPool.Finalize*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+references:
+- uid: FFmpeg.Collections.AVBuffer
+  commentId: T:FFmpeg.Collections.AVBuffer
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVBuffer.html
+  name: AVBuffer
+  nameWithType: AVBuffer
+  fullName: FFmpeg.Collections.AVBuffer
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: FFmpeg.Collections.AVBufferPool
+  commentId: T:FFmpeg.Collections.AVBufferPool
+  href: FFmpeg.Collections.AVBufferPool.html
+  name: AVBufferPool
+  nameWithType: AVBufferPool
+  fullName: FFmpeg.Collections.AVBufferPool
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Collections.AVBufferPool.#ctor*
+  commentId: Overload:FFmpeg.Collections.AVBufferPool.#ctor
+  href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool__ctor_System_Int32_
+  name: AVBufferPool
+  nameWithType: AVBufferPool.AVBufferPool
+  fullName: FFmpeg.Collections.AVBufferPool.AVBufferPool
+  nameWithType.vb: AVBufferPool.New
+  fullName.vb: FFmpeg.Collections.AVBufferPool.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Collections.AVBufferPool.Rent*
+  commentId: Overload:FFmpeg.Collections.AVBufferPool.Rent
+  href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Rent
+  name: Rent
+  nameWithType: AVBufferPool.Rent
+  fullName: FFmpeg.Collections.AVBufferPool.Rent
+- uid: FFmpeg.Collections.AVBufferPool.Dispose
+  commentId: M:FFmpeg.Collections.AVBufferPool.Dispose
+  href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Dispose
+  name: Dispose()
+  nameWithType: AVBufferPool.Dispose()
+  fullName: FFmpeg.Collections.AVBufferPool.Dispose()
+  spec.csharp:
+  - uid: FFmpeg.Collections.AVBufferPool.Dispose
+    name: Dispose
+    href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.AVBufferPool.Dispose
+    name: Dispose
+    href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Dispose
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBufferPool.Dispose*
+  commentId: Overload:FFmpeg.Collections.AVBufferPool.Dispose
+  href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Dispose
+  name: Dispose
+  nameWithType: AVBufferPool.Dispose
+  fullName: FFmpeg.Collections.AVBufferPool.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBufferPool.Finalize*
+  commentId: Overload:FFmpeg.Collections.AVBufferPool.Finalize
+  href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Finalize
+  name: ~AVBufferPool
+  nameWithType: AVBufferPool.~AVBufferPool
+  fullName: FFmpeg.Collections.AVBufferPool.~AVBufferPool
+  spec.csharp:
+  - name: "~"
+  - uid: FFmpeg.Collections.AVBufferPool.Finalize*
+    name: AVBufferPool
+    href: FFmpeg.Collections.AVBufferPool.html#FFmpeg_Collections_AVBufferPool_Finalize

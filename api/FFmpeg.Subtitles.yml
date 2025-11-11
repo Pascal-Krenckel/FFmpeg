@@ -1,0 +1,62 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Subtitles
+  commentId: N:FFmpeg.Subtitles
+  id: FFmpeg.Subtitles
+  children:
+  - FFmpeg.Subtitles.Subtitle
+  - FFmpeg.Subtitles.SubtitleRect
+  - FFmpeg.Subtitles.SubtitleType
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Subtitles
+  nameWithType: FFmpeg.Subtitles
+  fullName: FFmpeg.Subtitles
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Subtitles.Subtitle
+  commentId: T:FFmpeg.Subtitles.Subtitle
+  parent: FFmpeg.Subtitles
+  href: FFmpeg.Subtitles.Subtitle.html
+  name: Subtitle
+  nameWithType: Subtitle
+  fullName: FFmpeg.Subtitles.Subtitle
+- uid: FFmpeg.Subtitles.SubtitleRect
+  commentId: T:FFmpeg.Subtitles.SubtitleRect
+  parent: FFmpeg.Subtitles
+  href: FFmpeg.Subtitles.SubtitleRect.html
+  name: SubtitleRect
+  nameWithType: SubtitleRect
+  fullName: FFmpeg.Subtitles.SubtitleRect
+- uid: FFmpeg.Subtitles.SubtitleType
+  commentId: T:FFmpeg.Subtitles.SubtitleType
+  parent: FFmpeg.Subtitles
+  href: FFmpeg.Subtitles.SubtitleType.html
+  name: SubtitleType
+  nameWithType: SubtitleType
+  fullName: FFmpeg.Subtitles.SubtitleType
+- uid: FFmpeg.Subtitles
+  commentId: N:FFmpeg.Subtitles
+  href: FFmpeg.html
+  name: FFmpeg.Subtitles
+  nameWithType: FFmpeg.Subtitles
+  fullName: FFmpeg.Subtitles
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Subtitles
+    name: Subtitles
+    href: FFmpeg.Subtitles.html

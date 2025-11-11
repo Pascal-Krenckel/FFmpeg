@@ -1,0 +1,179 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  id: BitrateControl.BitrateControlMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  children:
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CBR
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CRF
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.VBR
+  langs:
+  - csharp
+  - vb
+  name: BitrateControl.BitrateControlMode
+  nameWithType: BitrateControl.BitrateControlMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitrateControlMode
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 14
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Defines the available bitrate control modes.
+  example: []
+  syntax:
+    content: public enum BitrateControl.BitrateControlMode
+    content.vb: Public Enum BitrateControl.BitrateControlMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CRF
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CRF
+  id: CRF
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  langs:
+  - csharp
+  - vb
+  name: CRF
+  nameWithType: BitrateControl.BitrateControlMode.CRF
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CRF
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CRF
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 19
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Constant Rate Factor (CRF) or Constant Quantization Parameter (CQP).
+  example: []
+  syntax:
+    content: CRF = 0
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.VBR
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.VBR
+  id: VBR
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  langs:
+  - csharp
+  - vb
+  name: VBR
+  nameWithType: BitrateControl.BitrateControlMode.VBR
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.VBR
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VBR
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Variable Bitrate (VBR).
+  example: []
+  syntax:
+    content: VBR = 1
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CBR
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CBR
+  id: CBR
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  langs:
+  - csharp
+  - vb
+  name: CBR
+  nameWithType: BitrateControl.BitrateControlMode.CBR
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.CBR
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CBR
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 29
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Constant Bitrate (CBR).
+  example: []
+  syntax:
+    content: CBR = 2
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+references:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl.BitrateControlMode
+  nameWithType: BitrateControl.BitrateControlMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+    name: BitrateControlMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.html
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode
+    name: BitrateControlMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.BitrateControlMode.html

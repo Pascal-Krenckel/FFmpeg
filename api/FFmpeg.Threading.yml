@@ -1,0 +1,37 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Threading
+  commentId: N:FFmpeg.Threading
+  id: FFmpeg.Threading
+  children:
+  - FFmpeg.Threading.AutoResetAllEvent
+  - FFmpeg.Threading.AwaitWaitHandleExtension
+  - FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.Threading
+  nameWithType: FFmpeg.Threading
+  fullName: FFmpeg.Threading
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.Threading.AutoResetAllEvent
+  commentId: T:FFmpeg.Threading.AutoResetAllEvent
+  href: FFmpeg.Threading.AutoResetAllEvent.html
+  name: AutoResetAllEvent
+  nameWithType: AutoResetAllEvent
+  fullName: FFmpeg.Threading.AutoResetAllEvent
+- uid: FFmpeg.Threading.AwaitWaitHandleExtension
+  commentId: T:FFmpeg.Threading.AwaitWaitHandleExtension
+  href: FFmpeg.Threading.AwaitWaitHandleExtension.html
+  name: AwaitWaitHandleExtension
+  nameWithType: AwaitWaitHandleExtension
+  fullName: FFmpeg.Threading.AwaitWaitHandleExtension
+- uid: FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler
+  commentId: T:FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler
+  href: FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler.html
+  name: LimitedConcurrencyLevelTaskScheduler
+  nameWithType: LimitedConcurrencyLevelTaskScheduler
+  fullName: FFmpeg.Threading.LimitedConcurrencyLevelTaskScheduler

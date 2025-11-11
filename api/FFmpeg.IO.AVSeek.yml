@@ -1,0 +1,224 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.IO.AVSeek
+  commentId: T:FFmpeg.IO.AVSeek
+  id: AVSeek
+  parent: FFmpeg.IO
+  children:
+  - FFmpeg.IO.AVSeek.Begin
+  - FFmpeg.IO.AVSeek.Current
+  - FFmpeg.IO.AVSeek.End
+  - FFmpeg.IO.AVSeek.Force
+  - FFmpeg.IO.AVSeek.Size
+  langs:
+  - csharp
+  - vb
+  name: AVSeek
+  nameWithType: AVSeek
+  fullName: FFmpeg.IO.AVSeek
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVSeek
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Flags used for seeking operations within a stream or file in FFmpeg.
+
+    These flags can be combined using a bitwise OR to modify the behavior of seeking functions.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum AVSeek
+    content.vb: >-
+      <Flags>
+
+      Public Enum AVSeek
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.IO.AVSeek.Size
+  commentId: F:FFmpeg.IO.AVSeek.Size
+  id: Size
+  parent: FFmpeg.IO.AVSeek
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: AVSeek.Size
+  fullName: FFmpeg.IO.AVSeek.Size
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Size
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    ORing this as the "whence" parameter to a seek function causes it to return the filesize without actually seeking anywhere.
+
+    Supporting this is optional; if not supported, the seek function will return a negative value.
+  example: []
+  syntax:
+    content: Size = 65536
+    return:
+      type: FFmpeg.IO.AVSeek
+- uid: FFmpeg.IO.AVSeek.Force
+  commentId: F:FFmpeg.IO.AVSeek.Force
+  id: Force
+  parent: FFmpeg.IO.AVSeek
+  langs:
+  - csharp
+  - vb
+  name: Force
+  nameWithType: AVSeek.Force
+  fullName: FFmpeg.IO.AVSeek.Force
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Force
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Passing this flag as the "whence" parameter to a seek function allows seeking by any means necessary.
+
+    This can include reopening, linear reading, or other normally unreasonable methods that can be extremely slow.
+  example: []
+  syntax:
+    content: Force = 131072
+    return:
+      type: FFmpeg.IO.AVSeek
+- uid: FFmpeg.IO.AVSeek.Begin
+  commentId: F:FFmpeg.IO.AVSeek.Begin
+  id: Begin
+  parent: FFmpeg.IO.AVSeek
+  langs:
+  - csharp
+  - vb
+  name: Begin
+  nameWithType: AVSeek.Begin
+  fullName: FFmpeg.IO.AVSeek.Begin
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Begin
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Specifies the beginning of the stream as the reference point for the seek operation.
+  example: []
+  syntax:
+    content: Begin = 0
+    return:
+      type: FFmpeg.IO.AVSeek
+- uid: FFmpeg.IO.AVSeek.End
+  commentId: F:FFmpeg.IO.AVSeek.End
+  id: End
+  parent: FFmpeg.IO.AVSeek
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: AVSeek.End
+  fullName: FFmpeg.IO.AVSeek.End
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: End
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Specifies the end of the stream as the reference point for the seek operation.
+  example: []
+  syntax:
+    content: End = 2
+    return:
+      type: FFmpeg.IO.AVSeek
+- uid: FFmpeg.IO.AVSeek.Current
+  commentId: F:FFmpeg.IO.AVSeek.Current
+  id: Current
+  parent: FFmpeg.IO.AVSeek
+  langs:
+  - csharp
+  - vb
+  name: Current
+  nameWithType: AVSeek.Current
+  fullName: FFmpeg.IO.AVSeek.Current
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/IO/AVSeek.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Current
+    path: FFmpeg/IO/AVSeek.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Specifies the current position within the stream as the reference point for the seek operation.
+  example: []
+  syntax:
+    content: Current = 1
+    return:
+      type: FFmpeg.IO.AVSeek
+references:
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  href: FFmpeg.html
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+- uid: FFmpeg.IO.AVSeek
+  commentId: T:FFmpeg.IO.AVSeek
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.AVSeek.html
+  name: AVSeek
+  nameWithType: AVSeek
+  fullName: FFmpeg.IO.AVSeek

@@ -1,0 +1,753 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.HW.DeviceContext
+  commentId: T:FFmpeg.HW.DeviceContext
+  id: DeviceContext
+  parent: FFmpeg.HW
+  children:
+  - FFmpeg.HW.DeviceContext.Dispose
+  - FFmpeg.HW.DeviceContext.Equals(FFmpeg.HW.DeviceContext)
+  - FFmpeg.HW.DeviceContext.Equals(System.Object)
+  - FFmpeg.HW.DeviceContext.GetHashCode
+  - FFmpeg.HW.DeviceContext.op_Equality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  - FFmpeg.HW.DeviceContext.op_Inequality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  langs:
+  - csharp
+  - vb
+  name: DeviceContext
+  nameWithType: DeviceContext
+  fullName: FFmpeg.HW.DeviceContext
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DeviceContext
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.
+  example: []
+  syntax:
+    content: 'public class DeviceContext : IDisposable, IEquatable<DeviceContext?>'
+    content.vb: Public Class DeviceContext Implements IDisposable, IEquatable(Of DeviceContext)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  - System.IEquatable{FFmpeg.HW.DeviceContext}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.HW.DeviceContext.Dispose
+  commentId: M:FFmpeg.HW.DeviceContext.Dispose
+  id: Dispose
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: DeviceContext.Dispose()
+  fullName: FFmpeg.HW.DeviceContext.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 23
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Releases the resources used by this <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> instance and un-references the buffer.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.HW.DeviceContext.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: FFmpeg.HW.DeviceContext.Equals(System.Object)
+  commentId: M:FFmpeg.HW.DeviceContext.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: DeviceContext.Equals(object?)
+  fullName: FFmpeg.HW.DeviceContext.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 36
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Determines whether the specified object is equal to the current <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: true if the specified object is equal to the current <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref>; otherwise, false.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.Object.Equals(System.Object)
+  overload: FFmpeg.HW.DeviceContext.Equals*
+  nameWithType.vb: DeviceContext.Equals(Object)
+  fullName.vb: FFmpeg.HW.DeviceContext.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.HW.DeviceContext.Equals(FFmpeg.HW.DeviceContext)
+  commentId: M:FFmpeg.HW.DeviceContext.Equals(FFmpeg.HW.DeviceContext)
+  id: Equals(FFmpeg.HW.DeviceContext)
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: Equals(DeviceContext?)
+  nameWithType: DeviceContext.Equals(DeviceContext?)
+  fullName: FFmpeg.HW.DeviceContext.Equals(FFmpeg.HW.DeviceContext?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Determines whether the specified <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> is equal to the current one.
+  example: []
+  syntax:
+    content: public bool Equals(DeviceContext? other)
+    parameters:
+    - id: other
+      type: FFmpeg.HW.DeviceContext
+      description: The <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> to compare with.
+    return:
+      type: System.Boolean
+      description: true if the specified <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> is equal to the current one; otherwise, false.
+    content.vb: Public Function Equals(other As DeviceContext) As Boolean
+  overload: FFmpeg.HW.DeviceContext.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.HW.DeviceContext}.Equals(FFmpeg.HW.DeviceContext)
+  nameWithType.vb: DeviceContext.Equals(DeviceContext)
+  fullName.vb: FFmpeg.HW.DeviceContext.Equals(FFmpeg.HW.DeviceContext)
+  name.vb: Equals(DeviceContext)
+- uid: FFmpeg.HW.DeviceContext.GetHashCode
+  commentId: M:FFmpeg.HW.DeviceContext.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: DeviceContext.GetHashCode()
+  fullName: FFmpeg.HW.DeviceContext.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Returns a hash code for the current <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for the current <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.Object.GetHashCode
+  overload: FFmpeg.HW.DeviceContext.GetHashCode*
+- uid: FFmpeg.HW.DeviceContext.op_Equality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  commentId: M:FFmpeg.HW.DeviceContext.op_Equality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  id: op_Equality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: operator ==(DeviceContext?, DeviceContext?)
+  nameWithType: DeviceContext.operator ==(DeviceContext?, DeviceContext?)
+  fullName: FFmpeg.HW.DeviceContext.operator ==(FFmpeg.HW.DeviceContext?, FFmpeg.HW.DeviceContext?)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 59
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Determines whether two <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(DeviceContext? left, DeviceContext? right)
+    parameters:
+    - id: left
+      type: FFmpeg.HW.DeviceContext
+      description: The first <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> to compare.
+    - id: right
+      type: FFmpeg.HW.DeviceContext
+      description: The second <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> to compare.
+    return:
+      type: System.Boolean
+      description: true if the specified instances are equal; otherwise, false.
+    content.vb: Public Shared Operator =(left As DeviceContext, right As DeviceContext) As Boolean
+  overload: FFmpeg.HW.DeviceContext.op_Equality*
+  nameWithType.vb: DeviceContext.=(DeviceContext, DeviceContext)
+  fullName.vb: FFmpeg.HW.DeviceContext.=(FFmpeg.HW.DeviceContext, FFmpeg.HW.DeviceContext)
+  name.vb: =(DeviceContext, DeviceContext)
+- uid: FFmpeg.HW.DeviceContext.op_Inequality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  commentId: M:FFmpeg.HW.DeviceContext.op_Inequality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  id: op_Inequality(FFmpeg.HW.DeviceContext,FFmpeg.HW.DeviceContext)
+  parent: FFmpeg.HW.DeviceContext
+  langs:
+  - csharp
+  - vb
+  name: operator !=(DeviceContext?, DeviceContext?)
+  nameWithType: DeviceContext.operator !=(DeviceContext?, DeviceContext?)
+  fullName: FFmpeg.HW.DeviceContext.operator !=(FFmpeg.HW.DeviceContext?, FFmpeg.HW.DeviceContext?)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/HW/DeviceContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/HW/DeviceContext.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.HW
+  summary: Determines whether two <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(DeviceContext? left, DeviceContext? right)
+    parameters:
+    - id: left
+      type: FFmpeg.HW.DeviceContext
+      description: The first <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> to compare.
+    - id: right
+      type: FFmpeg.HW.DeviceContext
+      description: The second <xref href="FFmpeg.HW.DeviceContext" data-throw-if-not-resolved="false"></xref> to compare.
+    return:
+      type: System.Boolean
+      description: true if the specified instances are not equal; otherwise, false.
+    content.vb: Public Shared Operator <>(left As DeviceContext, right As DeviceContext) As Boolean
+  overload: FFmpeg.HW.DeviceContext.op_Inequality*
+  nameWithType.vb: DeviceContext.<>(DeviceContext, DeviceContext)
+  fullName.vb: FFmpeg.HW.DeviceContext.<>(FFmpeg.HW.DeviceContext, FFmpeg.HW.DeviceContext)
+  name.vb: <>(DeviceContext, DeviceContext)
+references:
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.IEquatable{FFmpeg.HW.DeviceContext}
+  commentId: T:System.IEquatable{FFmpeg.HW.DeviceContext}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<DeviceContext>
+  nameWithType: IEquatable<DeviceContext>
+  fullName: System.IEquatable<FFmpeg.HW.DeviceContext>
+  nameWithType.vb: IEquatable(Of DeviceContext)
+  fullName.vb: System.IEquatable(Of FFmpeg.HW.DeviceContext)
+  name.vb: IEquatable(Of DeviceContext)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.HW.DeviceContext
+    name: DeviceContext
+    href: FFmpeg.HW.DeviceContext.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.HW.DeviceContext
+    name: DeviceContext
+    href: FFmpeg.HW.DeviceContext.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.HW.DeviceContext
+  commentId: T:FFmpeg.HW.DeviceContext
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.DeviceContext.html
+  name: DeviceContext
+  nameWithType: DeviceContext
+  fullName: FFmpeg.HW.DeviceContext
+- uid: FFmpeg.HW.DeviceContext.Dispose*
+  commentId: Overload:FFmpeg.HW.DeviceContext.Dispose
+  href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_Dispose
+  name: Dispose
+  nameWithType: DeviceContext.Dispose
+  fullName: FFmpeg.HW.DeviceContext.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.HW.DeviceContext.Equals*
+  commentId: Overload:FFmpeg.HW.DeviceContext.Equals
+  href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_Equals_System_Object_
+  name: Equals
+  nameWithType: DeviceContext.Equals
+  fullName: FFmpeg.HW.DeviceContext.Equals
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.IEquatable{FFmpeg.HW.DeviceContext}.Equals(FFmpeg.HW.DeviceContext)
+  commentId: M:System.IEquatable{FFmpeg.HW.DeviceContext}.Equals(FFmpeg.HW.DeviceContext)
+  parent: System.IEquatable{FFmpeg.HW.DeviceContext}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(DeviceContext)
+  nameWithType: IEquatable<DeviceContext>.Equals(DeviceContext)
+  fullName: System.IEquatable<FFmpeg.HW.DeviceContext>.Equals(FFmpeg.HW.DeviceContext)
+  nameWithType.vb: IEquatable(Of DeviceContext).Equals(DeviceContext)
+  fullName.vb: System.IEquatable(Of FFmpeg.HW.DeviceContext).Equals(FFmpeg.HW.DeviceContext)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.HW.DeviceContext}.Equals(FFmpeg.HW.DeviceContext)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.HW.DeviceContext
+    name: DeviceContext
+    href: FFmpeg.HW.DeviceContext.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.HW.DeviceContext}.Equals(FFmpeg.HW.DeviceContext)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.HW.DeviceContext
+    name: DeviceContext
+    href: FFmpeg.HW.DeviceContext.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.HW.DeviceContext.GetHashCode*
+  commentId: Overload:FFmpeg.HW.DeviceContext.GetHashCode
+  href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_GetHashCode
+  name: GetHashCode
+  nameWithType: DeviceContext.GetHashCode
+  fullName: FFmpeg.HW.DeviceContext.GetHashCode
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.HW.DeviceContext.op_Equality*
+  commentId: Overload:FFmpeg.HW.DeviceContext.op_Equality
+  href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_op_Equality_FFmpeg_HW_DeviceContext_FFmpeg_HW_DeviceContext_
+  name: operator ==
+  nameWithType: DeviceContext.operator ==
+  fullName: FFmpeg.HW.DeviceContext.operator ==
+  nameWithType.vb: DeviceContext.=
+  fullName.vb: FFmpeg.HW.DeviceContext.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.HW.DeviceContext.op_Equality*
+    name: ==
+    href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_op_Equality_FFmpeg_HW_DeviceContext_FFmpeg_HW_DeviceContext_
+- uid: FFmpeg.HW.DeviceContext.op_Inequality*
+  commentId: Overload:FFmpeg.HW.DeviceContext.op_Inequality
+  href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_op_Inequality_FFmpeg_HW_DeviceContext_FFmpeg_HW_DeviceContext_
+  name: operator !=
+  nameWithType: DeviceContext.operator !=
+  fullName: FFmpeg.HW.DeviceContext.operator !=
+  nameWithType.vb: DeviceContext.<>
+  fullName.vb: FFmpeg.HW.DeviceContext.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.HW.DeviceContext.op_Inequality*
+    name: '!='
+    href: FFmpeg.HW.DeviceContext.html#FFmpeg_HW_DeviceContext_op_Inequality_FFmpeg_HW_DeviceContext_FFmpeg_HW_DeviceContext_

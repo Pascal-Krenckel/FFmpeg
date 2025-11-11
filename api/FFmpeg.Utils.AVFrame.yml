@@ -1,0 +1,3406 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Utils.AVFrame
+  commentId: T:FFmpeg.Utils.AVFrame
+  id: AVFrame
+  parent: FFmpeg.Utils
+  children:
+  - FFmpeg.Utils.AVFrame.Allocate
+  - FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,FFmpeg.Audio.ChannelLayout,System.Int32,System.Nullable{System.Int32})
+  - FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,System.Int32,System.Int32,System.Nullable{System.Int32})
+  - FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Images.PixelFormat,System.Int32,System.Int32)
+  - FFmpeg.Utils.AVFrame.BestEffortTimestamp
+  - FFmpeg.Utils.AVFrame.ChannelLayout
+  - FFmpeg.Utils.AVFrame.ChromaLocation
+  - FFmpeg.Utils.AVFrame.Clone
+  - FFmpeg.Utils.AVFrame.ColorPrimaries
+  - FFmpeg.Utils.AVFrame.ColorRange
+  - FFmpeg.Utils.AVFrame.ColorSpace
+  - FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+  - FFmpeg.Utils.AVFrame.Copy
+  - FFmpeg.Utils.AVFrame.CopyPropertiesTo(FFmpeg.Utils.AVFrame)
+  - FFmpeg.Utils.AVFrame.CreateBuffer(System.Int32)
+  - FFmpeg.Utils.AVFrame.CropBottom
+  - FFmpeg.Utils.AVFrame.CropLeft
+  - FFmpeg.Utils.AVFrame.CropRight
+  - FFmpeg.Utils.AVFrame.CropTop
+  - FFmpeg.Utils.AVFrame.CroppedHeight
+  - FFmpeg.Utils.AVFrame.CroppedWidth
+  - FFmpeg.Utils.AVFrame.Data
+  - FFmpeg.Utils.AVFrame.DecodeErrorFlags
+  - FFmpeg.Utils.AVFrame.Dispose
+  - FFmpeg.Utils.AVFrame.Duration
+  - FFmpeg.Utils.AVFrame.Finalize
+  - FFmpeg.Utils.AVFrame.Flags
+  - FFmpeg.Utils.AVFrame.Format
+  - FFmpeg.Utils.AVFrame.FramesContext
+  - FFmpeg.Utils.AVFrame.Free
+  - FFmpeg.Utils.AVFrame.FreeSideData
+  - FFmpeg.Utils.AVFrame.GetBuffer(System.Int32)
+  - FFmpeg.Utils.AVFrame.GetBufferCapacity(System.Int32)
+  - FFmpeg.Utils.AVFrame.GetBufferSpan(System.Int32)
+  - FFmpeg.Utils.AVFrame.GetData(System.Int32)
+  - FFmpeg.Utils.AVFrame.GetPresentationTimestamp
+  - FFmpeg.Utils.AVFrame.HasBuffer
+  - FFmpeg.Utils.AVFrame.Height
+  - FFmpeg.Utils.AVFrame.IsAudio
+  - FFmpeg.Utils.AVFrame.IsReadOnly
+  - FFmpeg.Utils.AVFrame.IsVideo
+  - FFmpeg.Utils.AVFrame.LineSize
+  - FFmpeg.Utils.AVFrame.MakeWriteable
+  - FFmpeg.Utils.AVFrame.MediaType
+  - FFmpeg.Utils.AVFrame.Metadata
+  - FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  - FFmpeg.Utils.AVFrame.PictureType
+  - FFmpeg.Utils.AVFrame.PixelAspectRatio
+  - FFmpeg.Utils.AVFrame.PixelFormat
+  - FFmpeg.Utils.AVFrame.PresentationTimestamp
+  - FFmpeg.Utils.AVFrame.Quality
+  - FFmpeg.Utils.AVFrame.Reference(FFmpeg.Utils.AVFrame)
+  - FFmpeg.Utils.AVFrame.RepeatPicture
+  - FFmpeg.Utils.AVFrame.SampleCount
+  - FFmpeg.Utils.AVFrame.SampleFormat
+  - FFmpeg.Utils.AVFrame.SampleRate
+  - FFmpeg.Utils.AVFrame.TimeBase
+  - FFmpeg.Utils.AVFrame.Unreference
+  - FFmpeg.Utils.AVFrame.Width
+  langs:
+  - csharp
+  - vb
+  name: AVFrame
+  nameWithType: AVFrame
+  fullName: FFmpeg.Utils.AVFrame
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVFrame
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Represents a decoded audio or video frame in memory. This structure holds raw data for video frames or audio samples. <br />
+
+    It provides methods and properties to access and manipulate this data, as well as to manage the associated resources.
+  example: []
+  syntax:
+    content: 'public sealed class AVFrame : IDisposable'
+    content.vb: Public NotInheritable Class AVFrame Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Utils.AVFrame.GetBufferCapacity(System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.GetBufferCapacity(System.Int32)
+  id: GetBufferCapacity(System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: GetBufferCapacity(int)
+  nameWithType: AVFrame.GetBufferCapacity(int)
+  fullName: FFmpeg.Utils.AVFrame.GetBufferCapacity(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetBufferCapacity
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 30
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the capacity (in bytes) of the specified buffer index in the frame.  
+
+    Returns 0 if the buffer is not set or the index is out of range.
+  example: []
+  syntax:
+    content: public int GetBufferCapacity(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+      description: >-
+        The index of the buffer to retrieve.  
+
+        Indices 0–7 refer to <code>buf</code>, and indices 8 and above refer to <code>extended_buf</code>.
+    return:
+      type: System.Int32
+      description: The size of the buffer in bytes, or 0 if not available.
+    content.vb: Public Function GetBufferCapacity(index As Integer) As Integer
+  overload: FFmpeg.Utils.AVFrame.GetBufferCapacity*
+  nameWithType.vb: AVFrame.GetBufferCapacity(Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.GetBufferCapacity(Integer)
+  name.vb: GetBufferCapacity(Integer)
+- uid: FFmpeg.Utils.AVFrame.Allocate
+  commentId: M:FFmpeg.Utils.AVFrame.Allocate
+  id: Allocate
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Allocate()
+  nameWithType: AVFrame.Allocate()
+  fullName: FFmpeg.Utils.AVFrame.Allocate()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Allocate
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates a new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref>.  
+
+    This method only allocates the <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> structure itself and does not allocate any underlying image or audio buffer.
+  example: []
+  syntax:
+    content: public static AVFrame Allocate()
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A newly allocated <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> instance.
+    content.vb: Public Shared Function Allocate() As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Allocate*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the frame allocation fails.
+- uid: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Images.PixelFormat,System.Int32,System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Images.PixelFormat,System.Int32,System.Int32)
+  id: Allocate(FFmpeg.Images.PixelFormat,System.Int32,System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Allocate(PixelFormat, int, int)
+  nameWithType: AVFrame.Allocate(PixelFormat, int, int)
+  fullName: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Images.PixelFormat, int, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Allocate
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 63
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates a new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> for video with an allocated image buffer.  
+
+    This is a shortcut for creating a frame that can be written to manually.
+  example: []
+  syntax:
+    content: public static AVFrame Allocate(PixelFormat format, int width, int height)
+    parameters:
+    - id: format
+      type: FFmpeg.Images.PixelFormat
+      description: The pixel format of the frame.
+    - id: width
+      type: System.Int32
+      description: The width of the frame in pixels.
+    - id: height
+      type: System.Int32
+      description: The height of the frame in pixels.
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A newly allocated <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> with its buffer initialized.
+    content.vb: Public Shared Function Allocate(format As PixelFormat, width As Integer, height As Integer) As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Allocate*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the frame structure allocation fails.
+  - type: FFmpeg.Exceptions.FFmpegException
+    commentId: T:FFmpeg.Exceptions.FFmpegException
+    description: Thrown if buffer allocation fails.
+  nameWithType.vb: AVFrame.Allocate(PixelFormat, Integer, Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Images.PixelFormat, Integer, Integer)
+  name.vb: Allocate(PixelFormat, Integer, Integer)
+- uid: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,FFmpeg.Audio.ChannelLayout,System.Int32,System.Nullable{System.Int32})
+  commentId: M:FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,FFmpeg.Audio.ChannelLayout,System.Int32,System.Nullable{System.Int32})
+  id: Allocate(FFmpeg.Audio.SampleFormat,FFmpeg.Audio.ChannelLayout,System.Int32,System.Nullable{System.Int32})
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Allocate(SampleFormat, ChannelLayout, int, int?)
+  nameWithType: AVFrame.Allocate(SampleFormat, ChannelLayout, int, int?)
+  fullName: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat, FFmpeg.Audio.ChannelLayout, int, int?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Allocate
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 89
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates a new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> for audio with an allocated sample buffer.  
+
+    This is a shortcut for creating a frame that can be written to manually.
+  example: []
+  syntax:
+    content: public static AVFrame Allocate(SampleFormat format, ChannelLayout layout, int samples, int? sampleRate = null)
+    parameters:
+    - id: format
+      type: FFmpeg.Audio.SampleFormat
+      description: The sample format of the audio frame.
+    - id: layout
+      type: FFmpeg.Audio.ChannelLayout
+      description: The channel layout of the audio frame.
+    - id: samples
+      type: System.Int32
+      description: The number of samples per channel.
+    - id: sampleRate
+      type: System.Nullable{System.Int32}
+      description: The sample rate (optional). If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the frame will not set a sample rate.
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A newly allocated <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> with its audio buffer initialized.
+    content.vb: Public Shared Function Allocate(format As SampleFormat, layout As ChannelLayout, samples As Integer, sampleRate As Integer? = Nothing) As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Allocate*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the frame structure allocation fails.
+  - type: FFmpeg.Exceptions.FFmpegException
+    commentId: T:FFmpeg.Exceptions.FFmpegException
+    description: Thrown if buffer allocation fails.
+  nameWithType.vb: AVFrame.Allocate(SampleFormat, ChannelLayout, Integer, Integer?)
+  fullName.vb: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat, FFmpeg.Audio.ChannelLayout, Integer, Integer?)
+  name.vb: Allocate(SampleFormat, ChannelLayout, Integer, Integer?)
+- uid: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,System.Int32,System.Int32,System.Nullable{System.Int32})
+  commentId: M:FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat,System.Int32,System.Int32,System.Nullable{System.Int32})
+  id: Allocate(FFmpeg.Audio.SampleFormat,System.Int32,System.Int32,System.Nullable{System.Int32})
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Allocate(SampleFormat, int, int, int?)
+  nameWithType: AVFrame.Allocate(SampleFormat, int, int, int?)
+  fullName: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat, int, int, int?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Allocate
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 118
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates a new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> for audio with an allocated sample buffer.  
+
+    This overload allows specifying the number of channels directly; a default channel layout will be created.
+  example: []
+  syntax:
+    content: public static AVFrame Allocate(SampleFormat format, int channels, int samples, int? sampleRate = null)
+    parameters:
+    - id: format
+      type: FFmpeg.Audio.SampleFormat
+      description: The sample format of the audio frame.
+    - id: channels
+      type: System.Int32
+      description: The number of audio channels.
+    - id: samples
+      type: System.Int32
+      description: The number of samples per channel.
+    - id: sampleRate
+      type: System.Nullable{System.Int32}
+      description: The sample rate (optional). If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the frame will not set a sample rate.
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A newly allocated <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> with its audio buffer initialized.
+    content.vb: Public Shared Function Allocate(format As SampleFormat, channels As Integer, samples As Integer, sampleRate As Integer? = Nothing) As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Allocate*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the frame structure allocation fails.
+  - type: FFmpeg.Exceptions.FFmpegException
+    commentId: T:FFmpeg.Exceptions.FFmpegException
+    description: Thrown if buffer allocation fails.
+  nameWithType.vb: AVFrame.Allocate(SampleFormat, Integer, Integer, Integer?)
+  fullName.vb: FFmpeg.Utils.AVFrame.Allocate(FFmpeg.Audio.SampleFormat, Integer, Integer, Integer?)
+  name.vb: Allocate(SampleFormat, Integer, Integer, Integer?)
+- uid: FFmpeg.Utils.AVFrame.IsVideo
+  commentId: P:FFmpeg.Utils.AVFrame.IsVideo
+  id: IsVideo
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: IsVideo
+  nameWithType: AVFrame.IsVideo
+  fullName: FFmpeg.Utils.AVFrame.IsVideo
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsVideo
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 140
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets a value indicating whether this frame represents video data.
+  example: []
+  syntax:
+    content: public bool IsVideo { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsVideo As Boolean
+  overload: FFmpeg.Utils.AVFrame.IsVideo*
+- uid: FFmpeg.Utils.AVFrame.IsAudio
+  commentId: P:FFmpeg.Utils.AVFrame.IsAudio
+  id: IsAudio
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: IsAudio
+  nameWithType: AVFrame.IsAudio
+  fullName: FFmpeg.Utils.AVFrame.IsAudio
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsAudio
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 145
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets a value indicating whether this frame represents audio data.
+  example: []
+  syntax:
+    content: public bool IsAudio { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsAudio As Boolean
+  overload: FFmpeg.Utils.AVFrame.IsAudio*
+- uid: FFmpeg.Utils.AVFrame.HasBuffer
+  commentId: P:FFmpeg.Utils.AVFrame.HasBuffer
+  id: HasBuffer
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: HasBuffer
+  nameWithType: AVFrame.HasBuffer
+  fullName: FFmpeg.Utils.AVFrame.HasBuffer
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HasBuffer
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 150
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets a value indicating whether this frame has an associated buffer.
+  example: []
+  syntax:
+    content: public bool HasBuffer { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property HasBuffer As Boolean
+  overload: FFmpeg.Utils.AVFrame.HasBuffer*
+- uid: FFmpeg.Utils.AVFrame.Data
+  commentId: P:FFmpeg.Utils.AVFrame.Data
+  id: Data
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: AVFrame.Data
+  fullName: FFmpeg.Utils.AVFrame.Data
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Data
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 164
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the data buffers for the frame, represented as a span of pointers. <br />
+
+    For video frames, the span contains pointers to pixel planes. <br />
+
+    For audio frames, it contains pointers to audio channels.
+  example: []
+  syntax:
+    content: public ReadOnlySpan<IntPtr> Data { get; }
+    parameters: []
+    return:
+      type: System.ReadOnlySpan{System.IntPtr}
+    content.vb: Public ReadOnly Property Data As ReadOnlySpan(Of IntPtr)
+  overload: FFmpeg.Utils.AVFrame.Data*
+- uid: FFmpeg.Utils.AVFrame.GetData(System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.GetData(System.Int32)
+  id: GetData(System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: GetData(int)
+  nameWithType: AVFrame.GetData(int)
+  fullName: FFmpeg.Utils.AVFrame.GetData(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetData
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 179
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public Span<byte> GetData(int index)
+    parameters:
+    - id: index
+      type: System.Int32
+    return:
+      type: System.Span{System.Byte}
+    content.vb: Public Function GetData(index As Integer) As Span(Of Byte)
+  overload: FFmpeg.Utils.AVFrame.GetData*
+  nameWithType.vb: AVFrame.GetData(Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.GetData(Integer)
+  name.vb: GetData(Integer)
+- uid: FFmpeg.Utils.AVFrame.GetBufferSpan(System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.GetBufferSpan(System.Int32)
+  id: GetBufferSpan(System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: GetBufferSpan(int)
+  nameWithType: AVFrame.GetBufferSpan(int)
+  fullName: FFmpeg.Utils.AVFrame.GetBufferSpan(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetBufferSpan
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 201
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public Span<byte> GetBufferSpan(int bufferIndex)
+    parameters:
+    - id: bufferIndex
+      type: System.Int32
+    return:
+      type: System.Span{System.Byte}
+    content.vb: Public Function GetBufferSpan(bufferIndex As Integer) As Span(Of Byte)
+  overload: FFmpeg.Utils.AVFrame.GetBufferSpan*
+  nameWithType.vb: AVFrame.GetBufferSpan(Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.GetBufferSpan(Integer)
+  name.vb: GetBufferSpan(Integer)
+- uid: FFmpeg.Utils.AVFrame.LineSize
+  commentId: P:FFmpeg.Utils.AVFrame.LineSize
+  id: LineSize
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: LineSize
+  nameWithType: AVFrame.LineSize
+  fullName: FFmpeg.Utils.AVFrame.LineSize
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LineSize
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 222
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets a reference to the array of line sizes for each data buffer in the frame. <br />
+
+    For video frames, this usually indicates the size in bytes of each picture line (stride). <br />
+
+    For audio frames, this may indicate the size of each channel buffer.
+  example: []
+  syntax:
+    content: public ref int_array8 LineSize { get; }
+    parameters: []
+    return:
+      type: FFmpeg.AutoGen.int_array8
+    content.vb: Public ReadOnly ByRef Property LineSize As int_array8
+  overload: FFmpeg.Utils.AVFrame.LineSize*
+- uid: FFmpeg.Utils.AVFrame.Width
+  commentId: P:FFmpeg.Utils.AVFrame.Width
+  id: Width
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: AVFrame.Width
+  fullName: FFmpeg.Utils.AVFrame.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 234
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the coded width (in pixels) of the video frame. <br />
+
+    This represents the width of the rectangle that contains meaningful pixel data.
+  example: []
+  syntax:
+    content: public int Width { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: FFmpeg.Utils.AVFrame.Width*
+- uid: FFmpeg.Utils.AVFrame.CroppedWidth
+  commentId: P:FFmpeg.Utils.AVFrame.CroppedWidth
+  id: CroppedWidth
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CroppedWidth
+  nameWithType: AVFrame.CroppedWidth
+  fullName: FFmpeg.Utils.AVFrame.CroppedWidth
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CroppedWidth
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 241
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets the width of the cropped frame in pixels.
+  remarks: >-
+    The cropped width is calculated by subtracting the left and right crop offsets from the
+        original frame width.
+  example: []
+  syntax:
+    content: public int CroppedWidth { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property CroppedWidth As Integer
+  overload: FFmpeg.Utils.AVFrame.CroppedWidth*
+- uid: FFmpeg.Utils.AVFrame.Height
+  commentId: P:FFmpeg.Utils.AVFrame.Height
+  id: Height
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: AVFrame.Height
+  fullName: FFmpeg.Utils.AVFrame.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 247
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the coded height (in pixels) of the video frame. <br />
+
+    This represents the height of the rectangle that contains meaningful pixel data.
+  example: []
+  syntax:
+    content: public int Height { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: FFmpeg.Utils.AVFrame.Height*
+- uid: FFmpeg.Utils.AVFrame.CroppedHeight
+  commentId: P:FFmpeg.Utils.AVFrame.CroppedHeight
+  id: CroppedHeight
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CroppedHeight
+  nameWithType: AVFrame.CroppedHeight
+  fullName: FFmpeg.Utils.AVFrame.CroppedHeight
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CroppedHeight
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 254
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets the height of the video frame after applying the top and bottom cropping offsets.
+  remarks: >-
+    The cropped height is calculated by subtracting the top and bottom crop offsets from the
+        original frame height.
+  example: []
+  syntax:
+    content: public int CroppedHeight { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property CroppedHeight As Integer
+  overload: FFmpeg.Utils.AVFrame.CroppedHeight*
+- uid: FFmpeg.Utils.AVFrame.SampleCount
+  commentId: P:FFmpeg.Utils.AVFrame.SampleCount
+  id: SampleCount
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: SampleCount
+  nameWithType: AVFrame.SampleCount
+  fullName: FFmpeg.Utils.AVFrame.SampleCount
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleCount
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 259
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the number of audio samples per channel described by this frame.
+  example: []
+  syntax:
+    content: public int SampleCount { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SampleCount As Integer
+  overload: FFmpeg.Utils.AVFrame.SampleCount*
+- uid: FFmpeg.Utils.AVFrame.Format
+  commentId: P:FFmpeg.Utils.AVFrame.Format
+  id: Format
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Format
+  nameWithType: AVFrame.Format
+  fullName: FFmpeg.Utils.AVFrame.Format
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Format
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 265
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the format of the frame. <br />
+
+    Values correspond to <xref href="FFmpeg.AutoGen._AVPixelFormat" data-throw-if-not-resolved="false"></xref> for video frames or <xref href="FFmpeg.AutoGen._AVSampleFormat" data-throw-if-not-resolved="false"></xref> for audio frames.
+  example: []
+  syntax:
+    content: public int Format { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Format As Integer
+  overload: FFmpeg.Utils.AVFrame.Format*
+- uid: FFmpeg.Utils.AVFrame.PixelFormat
+  commentId: P:FFmpeg.Utils.AVFrame.PixelFormat
+  id: PixelFormat
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: PixelFormat
+  nameWithType: AVFrame.PixelFormat
+  fullName: FFmpeg.Utils.AVFrame.PixelFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormat
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 271
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the pixel format of the video frame. <br />
+
+    This is a strongly-typed version of <xref href="FFmpeg.Utils.AVFrame.Format" data-throw-if-not-resolved="false"></xref> when working with video frames.
+  example: []
+  syntax:
+    content: public PixelFormat PixelFormat { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.PixelFormat
+    content.vb: Public Property PixelFormat As PixelFormat
+  overload: FFmpeg.Utils.AVFrame.PixelFormat*
+- uid: FFmpeg.Utils.AVFrame.SampleFormat
+  commentId: P:FFmpeg.Utils.AVFrame.SampleFormat
+  id: SampleFormat
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: SampleFormat
+  nameWithType: AVFrame.SampleFormat
+  fullName: FFmpeg.Utils.AVFrame.SampleFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleFormat
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 281
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the sample format of the audio frame. <br />
+
+    This is a strongly-typed version of <xref href="FFmpeg.Utils.AVFrame.Format" data-throw-if-not-resolved="false"></xref> when working with audio frames.
+  example: []
+  syntax:
+    content: public SampleFormat SampleFormat { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Audio.SampleFormat
+    content.vb: Public Property SampleFormat As SampleFormat
+  overload: FFmpeg.Utils.AVFrame.SampleFormat*
+- uid: FFmpeg.Utils.AVFrame.PictureType
+  commentId: P:FFmpeg.Utils.AVFrame.PictureType
+  id: PictureType
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: PictureType
+  nameWithType: AVFrame.PictureType
+  fullName: FFmpeg.Utils.AVFrame.PictureType
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PictureType
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 290
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the type of the picture in the video frame, such as I-frame, P-frame, or B-frame.
+  example: []
+  syntax:
+    content: public PictureType PictureType { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.PictureType
+    content.vb: Public Property PictureType As PictureType
+  overload: FFmpeg.Utils.AVFrame.PictureType*
+- uid: FFmpeg.Utils.AVFrame.PixelAspectRatio
+  commentId: P:FFmpeg.Utils.AVFrame.PixelAspectRatio
+  id: PixelAspectRatio
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: PixelAspectRatio
+  nameWithType: AVFrame.PixelAspectRatio
+  fullName: FFmpeg.Utils.AVFrame.PixelAspectRatio
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelAspectRatio
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 301
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the sample aspect ratio for the video frame. A value of 0/1 indicates an unspecified aspect ratio.
+  example: []
+  syntax:
+    content: public Rational PixelAspectRatio { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Property PixelAspectRatio As Rational
+  overload: FFmpeg.Utils.AVFrame.PixelAspectRatio*
+- uid: FFmpeg.Utils.AVFrame.PresentationTimestamp
+  commentId: P:FFmpeg.Utils.AVFrame.PresentationTimestamp
+  id: PresentationTimestamp
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: PresentationTimestamp
+  nameWithType: AVFrame.PresentationTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PresentationTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PresentationTimestamp
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 311
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the presentation timestamp (PTS) of the frame, in time base units. 
+
+    This timestamp indicates when the frame should be displayed to the user.
+  example: []
+  syntax:
+    content: public long PresentationTimestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property PresentationTimestamp As Long
+  overload: FFmpeg.Utils.AVFrame.PresentationTimestamp*
+- uid: FFmpeg.Utils.AVFrame.GetPresentationTimestamp
+  commentId: M:FFmpeg.Utils.AVFrame.GetPresentationTimestamp
+  id: GetPresentationTimestamp
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: GetPresentationTimestamp()
+  nameWithType: AVFrame.GetPresentationTimestamp()
+  fullName: FFmpeg.Utils.AVFrame.GetPresentationTimestamp()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetPresentationTimestamp
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 325
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the presentation timestamp (PTS) of the frame, if available. 
+
+    If the PTS is unavailable, returns the best-effort timestamp as a fallback.
+  example: []
+  syntax:
+    content: public long GetPresentationTimestamp()
+    return:
+      type: System.Int64
+      description: >-
+        A timestamp (in stream time base units) representing when the frame should be presented. 
+
+        This is typically the PTS; if the PTS is not set, the best-effort timestamp is returned instead.
+    content.vb: Public Function GetPresentationTimestamp() As Long
+  overload: FFmpeg.Utils.AVFrame.GetPresentationTimestamp*
+- uid: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  commentId: P:FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  id: PacketDecoderTimestamp
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: PacketDecoderTimestamp
+  nameWithType: AVFrame.PacketDecoderTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PacketDecoderTimestamp
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 331
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the decoding timestamp (DTS) of the packet that triggered the return of this frame.
+
+    The DTS is used to order frames before they are presented.
+  example: []
+  syntax:
+    content: public long PacketDecoderTimestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property PacketDecoderTimestamp As Long
+  overload: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp*
+- uid: FFmpeg.Utils.AVFrame.TimeBase
+  commentId: P:FFmpeg.Utils.AVFrame.TimeBase
+  id: TimeBase
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: TimeBase
+  nameWithType: AVFrame.TimeBase
+  fullName: FFmpeg.Utils.AVFrame.TimeBase
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TimeBase
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 341
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the time base for the timestamps in this frame. The time base defines the unit of time for
+
+    <xref href="FFmpeg.Utils.AVFrame.PresentationTimestamp" data-throw-if-not-resolved="false"></xref> and <xref href="FFmpeg.Utils.AVFrame.PacketDecoderTimestamp" data-throw-if-not-resolved="false"></xref> and is typically set by decoders or filters.
+  example: []
+  syntax:
+    content: public Rational TimeBase { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Property TimeBase As Rational
+  overload: FFmpeg.Utils.AVFrame.TimeBase*
+- uid: FFmpeg.Utils.AVFrame.Quality
+  commentId: P:FFmpeg.Utils.AVFrame.Quality
+  id: Quality
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Quality
+  nameWithType: AVFrame.Quality
+  fullName: FFmpeg.Utils.AVFrame.Quality
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Quality
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 350
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the quality of the frame. Valid values range from 1 (high quality) to <code>FF_LAMBDA_MAX</code> (low quality).
+  example: []
+  syntax:
+    content: public Quality Quality { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Quality
+    content.vb: Public Property Quality As Quality
+  overload: FFmpeg.Utils.AVFrame.Quality*
+- uid: FFmpeg.Utils.AVFrame.RepeatPicture
+  commentId: P:FFmpeg.Utils.AVFrame.RepeatPicture
+  id: RepeatPicture
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: RepeatPicture
+  nameWithType: AVFrame.RepeatPicture
+  fullName: FFmpeg.Utils.AVFrame.RepeatPicture
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RepeatPicture
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 360
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the number of fields in this frame that should be repeated.
+
+    The total duration of the frame should be the normal duration plus the number of repeated fields.
+  example: []
+  syntax:
+    content: public int RepeatPicture { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property RepeatPicture As Integer
+  overload: FFmpeg.Utils.AVFrame.RepeatPicture*
+- uid: FFmpeg.Utils.AVFrame.SampleRate
+  commentId: P:FFmpeg.Utils.AVFrame.SampleRate
+  id: SampleRate
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: SampleRate
+  nameWithType: AVFrame.SampleRate
+  fullName: FFmpeg.Utils.AVFrame.SampleRate
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleRate
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 370
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the sample rate of the audio data in this frame, in Hz.
+  example: []
+  syntax:
+    content: public int SampleRate { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property SampleRate As Integer
+  overload: FFmpeg.Utils.AVFrame.SampleRate*
+- uid: FFmpeg.Utils.AVFrame.Flags
+  commentId: P:FFmpeg.Utils.AVFrame.Flags
+  id: Flags
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: AVFrame.Flags
+  fullName: FFmpeg.Utils.AVFrame.Flags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 380
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the flags associated with this frame, represented as a combination of <xref href="FFmpeg.Utils.FrameFlags" data-throw-if-not-resolved="false"></xref> values.
+
+    These flags provide additional metadata for the frame.
+  example: []
+  syntax:
+    content: public FrameFlags Flags { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.FrameFlags
+    content.vb: Public Property Flags As FrameFlags
+  overload: FFmpeg.Utils.AVFrame.Flags*
+- uid: FFmpeg.Utils.AVFrame.ColorRange
+  commentId: P:FFmpeg.Utils.AVFrame.ColorRange
+  id: ColorRange
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ColorRange
+  nameWithType: AVFrame.ColorRange
+  fullName: FFmpeg.Utils.AVFrame.ColorRange
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorRange
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 392
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the YUV range (color range) for the frame. This specifies the range of color values used in YUV encoding.
+
+    For video frames, this can differentiate between MPEG (full range) and JPEG (limited range) YUV encoding.
+
+    - Encoding: Notify by user.
+
+    - Decoding: Notify by <xref href="FFmpeg.AutoGen.ffmpeg" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public ColorRange ColorRange { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorRange
+    content.vb: Public Property ColorRange As ColorRange
+  overload: FFmpeg.Utils.AVFrame.ColorRange*
+- uid: FFmpeg.Utils.AVFrame.ColorPrimaries
+  commentId: P:FFmpeg.Utils.AVFrame.ColorPrimaries
+  id: ColorPrimaries
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ColorPrimaries
+  nameWithType: AVFrame.ColorPrimaries
+  fullName: FFmpeg.Utils.AVFrame.ColorPrimaries
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorPrimaries
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 401
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the color primaries for the frame, describing the chromaticity coordinates of the source's red, green, and blue components.
+  example: []
+  syntax:
+    content: public ColorPrimaries ColorPrimaries { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorPrimaries
+    content.vb: Public Property ColorPrimaries As ColorPrimaries
+  overload: FFmpeg.Utils.AVFrame.ColorPrimaries*
+- uid: FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+  commentId: P:FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+  id: ColorTransferCharacteristic
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ColorTransferCharacteristic
+  nameWithType: AVFrame.ColorTransferCharacteristic
+  fullName: FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorTransferCharacteristic
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 411
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the transfer characteristic of the frame, which describes the non-linear transfer function 
+
+    used to encode and decode color values. This can affect how brightness and contrast are handled in the frame.
+  example: []
+  syntax:
+    content: public ColorTransferCharacteristic ColorTransferCharacteristic { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorTransferCharacteristic
+    content.vb: Public Property ColorTransferCharacteristic As ColorTransferCharacteristic
+  overload: FFmpeg.Utils.AVFrame.ColorTransferCharacteristic*
+- uid: FFmpeg.Utils.AVFrame.ColorSpace
+  commentId: P:FFmpeg.Utils.AVFrame.ColorSpace
+  id: ColorSpace
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ColorSpace
+  nameWithType: AVFrame.ColorSpace
+  fullName: FFmpeg.Utils.AVFrame.ColorSpace
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorSpace
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 422
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the YUV colorspace type of the frame. The colorspace determines how the YUV color model is applied to the frame.
+
+    - Encoding: Notify by user.
+
+    - Decoding: Notify by <xref href="FFmpeg.AutoGen.ffmpeg" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public ColorSpace ColorSpace { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ColorSpace
+    content.vb: Public Property ColorSpace As ColorSpace
+  overload: FFmpeg.Utils.AVFrame.ColorSpace*
+- uid: FFmpeg.Utils.AVFrame.ChromaLocation
+  commentId: P:FFmpeg.Utils.AVFrame.ChromaLocation
+  id: ChromaLocation
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ChromaLocation
+  nameWithType: AVFrame.ChromaLocation
+  fullName: FFmpeg.Utils.AVFrame.ChromaLocation
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChromaLocation
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 431
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the chroma subsampling location, which defines the position of chroma samples in relation to the luma samples.
+  example: []
+  syntax:
+    content: public ChromaLocation ChromaLocation { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ChromaLocation
+    content.vb: Public Property ChromaLocation As ChromaLocation
+  overload: FFmpeg.Utils.AVFrame.ChromaLocation*
+- uid: FFmpeg.Utils.AVFrame.BestEffortTimestamp
+  commentId: P:FFmpeg.Utils.AVFrame.BestEffortTimestamp
+  id: BestEffortTimestamp
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: BestEffortTimestamp
+  nameWithType: AVFrame.BestEffortTimestamp
+  fullName: FFmpeg.Utils.AVFrame.BestEffortTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BestEffortTimestamp
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 441
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the timestamp of the frame, estimated using various heuristics, in the stream's time base.
+
+    - <langword>Encoding</langword>: Unused.
+
+    - <langword>Decoding</langword>: Notify by libavcodec, read by the user.
+  example: []
+  syntax:
+    content: public long BestEffortTimestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property BestEffortTimestamp As Long
+  overload: FFmpeg.Utils.AVFrame.BestEffortTimestamp*
+- uid: FFmpeg.Utils.AVFrame.Metadata
+  commentId: P:FFmpeg.Utils.AVFrame.Metadata
+  id: Metadata
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Metadata
+  nameWithType: AVFrame.Metadata
+  fullName: FFmpeg.Utils.AVFrame.Metadata
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Metadata
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 452
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the metadata associated with the frame.
+
+    - <langword>Encoding</langword>: Notify by the user.
+
+    - <langword>Decoding</langword>: Notify by libavcodec.
+  example: []
+  syntax:
+    content: public AVDictionary_ref Metadata { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Collections.AVDictionary_ref
+    content.vb: Public ReadOnly Property Metadata As AVDictionary_ref
+  overload: FFmpeg.Utils.AVFrame.Metadata*
+- uid: FFmpeg.Utils.AVFrame.DecodeErrorFlags
+  commentId: P:FFmpeg.Utils.AVFrame.DecodeErrorFlags
+  id: DecodeErrorFlags
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: DecodeErrorFlags
+  nameWithType: AVFrame.DecodeErrorFlags
+  fullName: FFmpeg.Utils.AVFrame.DecodeErrorFlags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DecodeErrorFlags
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 460
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the decode error flags for the frame, indicating errors that occurred during decoding.
+
+    This is set to a combination of <code>FF_DECODE_ERROR_xxx</code> flags if the decoder produced a frame but encountered errors.
+
+    - <langword>Encoding</langword>: Unused.
+
+    - <langword>Decoding</langword>: Notify by libavcodec, read by the user.
+  example: []
+  syntax:
+    content: public DecodeErrorFlags DecodeErrorFlags { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.DecodeErrorFlags
+    content.vb: Public Property DecodeErrorFlags As DecodeErrorFlags
+  overload: FFmpeg.Utils.AVFrame.DecodeErrorFlags*
+- uid: FFmpeg.Utils.AVFrame.FramesContext
+  commentId: P:FFmpeg.Utils.AVFrame.FramesContext
+  id: FramesContext
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: FramesContext
+  nameWithType: AVFrame.FramesContext
+  fullName: FFmpeg.Utils.AVFrame.FramesContext
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FramesContext
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 470
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets a reference to the <xref href="FFmpeg.HW.FramesContext" data-throw-if-not-resolved="false"></xref> for hardware-accelerated frames.
+
+    This context describes the frame when using hardware acceleration.
+  example: []
+  syntax:
+    content: public FramesContext_ref FramesContext { get; }
+    parameters: []
+    return:
+      type: FFmpeg.HW.FramesContext_ref
+    content.vb: Public ReadOnly Property FramesContext As FramesContext_ref
+  overload: FFmpeg.Utils.AVFrame.FramesContext*
+- uid: FFmpeg.Utils.AVFrame.CropTop
+  commentId: P:FFmpeg.Utils.AVFrame.CropTop
+  id: CropTop
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CropTop
+  nameWithType: AVFrame.CropTop
+  fullName: FFmpeg.Utils.AVFrame.CropTop
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CropTop
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 476
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the number of pixels to crop from the top border of the video frame. 
+
+    This is used to discard pixels from the frame and obtain a sub-rectangle intended for presentation.
+  example: []
+  syntax:
+    content: public ulong CropTop { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property CropTop As ULong
+  overload: FFmpeg.Utils.AVFrame.CropTop*
+- uid: FFmpeg.Utils.AVFrame.CropBottom
+  commentId: P:FFmpeg.Utils.AVFrame.CropBottom
+  id: CropBottom
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CropBottom
+  nameWithType: AVFrame.CropBottom
+  fullName: FFmpeg.Utils.AVFrame.CropBottom
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CropBottom
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 486
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the number of pixels to crop from the bottom border of the video frame. 
+
+    This is used to discard pixels from the frame and obtain a sub-rectangle intended for presentation.
+  example: []
+  syntax:
+    content: public ulong CropBottom { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property CropBottom As ULong
+  overload: FFmpeg.Utils.AVFrame.CropBottom*
+- uid: FFmpeg.Utils.AVFrame.CropLeft
+  commentId: P:FFmpeg.Utils.AVFrame.CropLeft
+  id: CropLeft
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CropLeft
+  nameWithType: AVFrame.CropLeft
+  fullName: FFmpeg.Utils.AVFrame.CropLeft
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CropLeft
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 496
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the number of pixels to crop from the left border of the video frame. 
+
+    This is used to discard pixels from the frame and obtain a sub-rectangle intended for presentation.
+  example: []
+  syntax:
+    content: public ulong CropLeft { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property CropLeft As ULong
+  overload: FFmpeg.Utils.AVFrame.CropLeft*
+- uid: FFmpeg.Utils.AVFrame.CropRight
+  commentId: P:FFmpeg.Utils.AVFrame.CropRight
+  id: CropRight
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CropRight
+  nameWithType: AVFrame.CropRight
+  fullName: FFmpeg.Utils.AVFrame.CropRight
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CropRight
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 506
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the number of pixels to crop from the right border of the video frame. 
+
+    This is used to discard pixels from the frame and obtain a sub-rectangle intended for presentation.
+  example: []
+  syntax:
+    content: public ulong CropRight { get; set; }
+    parameters: []
+    return:
+      type: System.UInt64
+    content.vb: Public Property CropRight As ULong
+  overload: FFmpeg.Utils.AVFrame.CropRight*
+- uid: FFmpeg.Utils.AVFrame.ChannelLayout
+  commentId: P:FFmpeg.Utils.AVFrame.ChannelLayout
+  id: ChannelLayout
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ChannelLayout
+  nameWithType: AVFrame.ChannelLayout
+  fullName: FFmpeg.Utils.AVFrame.ChannelLayout
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChannelLayout
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 516
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the channel layout of the audio data in the frame.
+
+    The channel layout defines the spatial positioning of audio channels (e.g., mono, stereo).
+  example: []
+  syntax:
+    content: public ChannelLayout_ref ChannelLayout { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Audio.ChannelLayout_ref
+    content.vb: Public ReadOnly Property ChannelLayout As ChannelLayout_ref
+  overload: FFmpeg.Utils.AVFrame.ChannelLayout*
+- uid: FFmpeg.Utils.AVFrame.Duration
+  commentId: P:FFmpeg.Utils.AVFrame.Duration
+  id: Duration
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: AVFrame.Duration
+  fullName: FFmpeg.Utils.AVFrame.Duration
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Duration
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 522
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the duration of the frame, in the same units as <xref href="FFmpeg.Utils.AVFrame.PresentationTimestamp" data-throw-if-not-resolved="false"></xref>.
+
+    A value of 0 indicates an unknown duration.
+  example: []
+  syntax:
+    content: public long Duration { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public Property Duration As Long
+  overload: FFmpeg.Utils.AVFrame.Duration*
+- uid: FFmpeg.Utils.AVFrame.MakeWriteable
+  commentId: M:FFmpeg.Utils.AVFrame.MakeWriteable
+  id: MakeWriteable
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: MakeWriteable()
+  nameWithType: AVFrame.MakeWriteable()
+  fullName: FFmpeg.Utils.AVFrame.MakeWriteable()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MakeWriteable
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 533
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Makes the frame writeable, ensuring that it can be modified. 
+
+    If the frame is shared, this will create a writable copy of the frame.
+  example: []
+  syntax:
+    content: public AVResult32 MakeWriteable()
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating success or failure of the operation.
+    content.vb: Public Function MakeWriteable() As AVResult32
+  overload: FFmpeg.Utils.AVFrame.MakeWriteable*
+- uid: FFmpeg.Utils.AVFrame.IsReadOnly
+  commentId: P:FFmpeg.Utils.AVFrame.IsReadOnly
+  id: IsReadOnly
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: AVFrame.IsReadOnly
+  fullName: FFmpeg.Utils.AVFrame.IsReadOnly
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsReadOnly
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 539
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets a value indicating whether the frame is read-only. 
+
+    If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>, the frame cannot be modified.
+  example: []
+  syntax:
+    content: public bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: FFmpeg.Utils.AVFrame.IsReadOnly*
+- uid: FFmpeg.Utils.AVFrame.GetBuffer(System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.GetBuffer(System.Int32)
+  id: GetBuffer(System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: GetBuffer(int)
+  nameWithType: AVFrame.GetBuffer(int)
+  fullName: FFmpeg.Utils.AVFrame.GetBuffer(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetBuffer
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 548
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates new buffers for the frame. This method is required before encoding or decoding if the frame does not have any buffer.
+
+    If the frame already has a buffer, an exception will be thrown to prevent memory leakage.
+  example: []
+  syntax:
+    content: >-
+      [Obsolete("This function got renamed into CreateBuffer, as it actually create the underlying buffer based on the specified parameters.")]
+
+      public AVResult32 GetBuffer(int align = 1)
+    parameters:
+    - id: align
+      type: System.Int32
+      description: Specifies the alignment requirement for the buffer. Defaults to 1.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the success or failure of the buffer allocation.
+    content.vb: >-
+      <Obsolete("This function got renamed into CreateBuffer, as it actually create the underlying buffer based on the specified parameters.")>
+
+      Public Function GetBuffer(align As Integer = 1) As AVResult32
+  overload: FFmpeg.Utils.AVFrame.GetBuffer*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the frame already has a buffer.
+  attributes:
+  - type: System.ObsoleteAttribute
+    ctor: System.ObsoleteAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: This function got renamed into CreateBuffer, as it actually create the underlying buffer based on the specified parameters.
+  nameWithType.vb: AVFrame.GetBuffer(Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.GetBuffer(Integer)
+  name.vb: GetBuffer(Integer)
+- uid: FFmpeg.Utils.AVFrame.CreateBuffer(System.Int32)
+  commentId: M:FFmpeg.Utils.AVFrame.CreateBuffer(System.Int32)
+  id: CreateBuffer(System.Int32)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CreateBuffer(int)
+  nameWithType: AVFrame.CreateBuffer(int)
+  fullName: FFmpeg.Utils.AVFrame.CreateBuffer(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CreateBuffer
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 561
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Allocates new buffers for the frame. This method is required before encoding or decoding if the frame does not have any buffer.
+
+    If the frame already has a buffer, an exception will be thrown to prevent memory leakage.
+
+    Please set SampleFormat, ChannelLayout and SampleCount or PixelFormat, Width and Height before calling.
+  example: []
+  syntax:
+    content: public AVResult32 CreateBuffer(int align = 1)
+    parameters:
+    - id: align
+      type: System.Int32
+      description: Specifies the alignment requirement for the buffer. Defaults to 1.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> indicating the success or failure of the buffer allocation.
+    content.vb: Public Function CreateBuffer(align As Integer = 1) As AVResult32
+  overload: FFmpeg.Utils.AVFrame.CreateBuffer*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if the frame already has a buffer.
+  nameWithType.vb: AVFrame.CreateBuffer(Integer)
+  fullName.vb: FFmpeg.Utils.AVFrame.CreateBuffer(Integer)
+  name.vb: CreateBuffer(Integer)
+- uid: FFmpeg.Utils.AVFrame.Unreference
+  commentId: M:FFmpeg.Utils.AVFrame.Unreference
+  id: Unreference
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Unreference()
+  nameWithType: AVFrame.Unreference()
+  fullName: FFmpeg.Utils.AVFrame.Unreference()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unreference
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 570
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Unreferences the frame, releasing any associated resources but keeping the frame structure allocated.
+
+    This effectively resets the frame for reuse.
+  example: []
+  syntax:
+    content: public void Unreference()
+    content.vb: Public Sub Unreference()
+  overload: FFmpeg.Utils.AVFrame.Unreference*
+- uid: FFmpeg.Utils.AVFrame.Reference(FFmpeg.Utils.AVFrame)
+  commentId: M:FFmpeg.Utils.AVFrame.Reference(FFmpeg.Utils.AVFrame)
+  id: Reference(FFmpeg.Utils.AVFrame)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Reference(AVFrame)
+  nameWithType: AVFrame.Reference(AVFrame)
+  fullName: FFmpeg.Utils.AVFrame.Reference(FFmpeg.Utils.AVFrame)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Reference
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 572
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public void Reference(AVFrame src)
+    parameters:
+    - id: src
+      type: FFmpeg.Utils.AVFrame
+    content.vb: Public Sub Reference(src As AVFrame)
+  overload: FFmpeg.Utils.AVFrame.Reference*
+- uid: FFmpeg.Utils.AVFrame.Free
+  commentId: M:FFmpeg.Utils.AVFrame.Free
+  id: Free
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Free()
+  nameWithType: AVFrame.Free()
+  fullName: FFmpeg.Utils.AVFrame.Free()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Free
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 581
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Frees the frame by disposing of any allocated resources.
+  example: []
+  syntax:
+    content: public void Free()
+    content.vb: Public Sub Free()
+  overload: FFmpeg.Utils.AVFrame.Free*
+- uid: FFmpeg.Utils.AVFrame.MediaType
+  commentId: P:FFmpeg.Utils.AVFrame.MediaType
+  id: MediaType
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: MediaType
+  nameWithType: AVFrame.MediaType
+  fullName: FFmpeg.Utils.AVFrame.MediaType
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MediaType
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 589
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets the media type of the frame based on its dimensions and sample count.
+
+    - If the frame has width and height set and no samples, it's video.
+
+    - If the frame has samples and no dimensions, it's audio.
+
+    - Otherwise, the type is unknown.
+  example: []
+  syntax:
+    content: public _AVMediaType MediaType { get; }
+    parameters: []
+    return:
+      type: FFmpeg.AutoGen._AVMediaType
+    content.vb: Public ReadOnly Property MediaType As _AVMediaType
+  overload: FFmpeg.Utils.AVFrame.MediaType*
+- uid: FFmpeg.Utils.AVFrame.Clone
+  commentId: M:FFmpeg.Utils.AVFrame.Clone
+  id: Clone
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: AVFrame.Clone()
+  fullName: FFmpeg.Utils.AVFrame.Clone()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Clone
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 599
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Creates a clone of the current frame. The cloned frame is an exact duplicate but with separate memory allocation.
+  example: []
+  syntax:
+    content: public AVFrame Clone()
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> that is a clone of the current frame.
+    content.vb: Public Function Clone() As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Clone*
+- uid: FFmpeg.Utils.AVFrame.Copy
+  commentId: M:FFmpeg.Utils.AVFrame.Copy
+  id: Copy
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Copy()
+  nameWithType: AVFrame.Copy()
+  fullName: FFmpeg.Utils.AVFrame.Copy()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Copy
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 611
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Copies the current frame's data and properties to a new frame. 
+
+    This includes copying the frame's format, dimensions, and any other associated properties.
+  example: []
+  syntax:
+    content: public AVFrame Copy()
+    return:
+      type: FFmpeg.Utils.AVFrame
+      description: A new <xref href="FFmpeg.Utils.AVFrame" data-throw-if-not-resolved="false"></xref> with the same properties and data as the current frame.
+    content.vb: Public Function Copy() As AVFrame
+  overload: FFmpeg.Utils.AVFrame.Copy*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: Thrown if an error occurs during the copy process.
+- uid: FFmpeg.Utils.AVFrame.CopyPropertiesTo(FFmpeg.Utils.AVFrame)
+  commentId: M:FFmpeg.Utils.AVFrame.CopyPropertiesTo(FFmpeg.Utils.AVFrame)
+  id: CopyPropertiesTo(FFmpeg.Utils.AVFrame)
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: CopyPropertiesTo(AVFrame)
+  nameWithType: AVFrame.CopyPropertiesTo(AVFrame)
+  fullName: FFmpeg.Utils.AVFrame.CopyPropertiesTo(FFmpeg.Utils.AVFrame)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyPropertiesTo
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 624
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public void CopyPropertiesTo(AVFrame dst)
+    parameters:
+    - id: dst
+      type: FFmpeg.Utils.AVFrame
+    content.vb: Public Sub CopyPropertiesTo(dst As AVFrame)
+  overload: FFmpeg.Utils.AVFrame.CopyPropertiesTo*
+- uid: FFmpeg.Utils.AVFrame.Finalize
+  commentId: M:FFmpeg.Utils.AVFrame.Finalize
+  id: Finalize
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: ~AVFrame()
+  nameWithType: AVFrame.~AVFrame()
+  fullName: FFmpeg.Utils.AVFrame.~AVFrame()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Finalize
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 656
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Finalizer for the frame, ensures that unmanaged resources are cleaned up if <xref href="FFmpeg.Utils.AVFrame.Dispose(System.Boolean)" data-throw-if-not-resolved="false"></xref> was not called.
+  example: []
+  syntax:
+    content: protected ~AVFrame()
+    content.vb: 'Protected '
+  overload: FFmpeg.Utils.AVFrame.Finalize*
+  nameWithType.vb: ''
+  fullName.vb: ''
+  name.vb: ''
+- uid: FFmpeg.Utils.AVFrame.Dispose
+  commentId: M:FFmpeg.Utils.AVFrame.Dispose
+  id: Dispose
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: AVFrame.Dispose()
+  fullName: FFmpeg.Utils.AVFrame.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 665
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Releases the resources associated with the frame. 
+
+    This method should be called when the frame is no longer needed to prevent memory leaks.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.Utils.AVFrame.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+- uid: FFmpeg.Utils.AVFrame.FreeSideData
+  commentId: M:FFmpeg.Utils.AVFrame.FreeSideData
+  id: FreeSideData
+  parent: FFmpeg.Utils.AVFrame
+  langs:
+  - csharp
+  - vb
+  name: FreeSideData()
+  nameWithType: AVFrame.FreeSideData()
+  fullName: FFmpeg.Utils.AVFrame.FreeSideData()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/AVFrame.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FreeSideData
+    path: FFmpeg/Utils/AVFrame.cs
+    startLine: 674
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Frees any side data associated with the frame, releasing the allocated memory.
+  example: []
+  syntax:
+    content: public void FreeSideData()
+    content.vb: Public Sub FreeSideData()
+  overload: FFmpeg.Utils.AVFrame.FreeSideData*
+references:
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Utils.AVFrame.GetBufferCapacity*
+  commentId: Overload:FFmpeg.Utils.AVFrame.GetBufferCapacity
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_GetBufferCapacity_System_Int32_
+  name: GetBufferCapacity
+  nameWithType: AVFrame.GetBufferCapacity
+  fullName: FFmpeg.Utils.AVFrame.GetBufferCapacity
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.AVFrame
+  commentId: T:FFmpeg.Utils.AVFrame
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVFrame.html
+  name: AVFrame
+  nameWithType: AVFrame
+  fullName: FFmpeg.Utils.AVFrame
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.outofmemoryexception
+  name: OutOfMemoryException
+  nameWithType: OutOfMemoryException
+  fullName: System.OutOfMemoryException
+- uid: FFmpeg.Utils.AVFrame.Allocate*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Allocate
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Allocate
+  name: Allocate
+  nameWithType: AVFrame.Allocate
+  fullName: FFmpeg.Utils.AVFrame.Allocate
+- uid: FFmpeg.Exceptions.FFmpegException
+  commentId: T:FFmpeg.Exceptions.FFmpegException
+  parent: FFmpeg.Exceptions
+  href: FFmpeg.Exceptions.FFmpegException.html
+  name: FFmpegException
+  nameWithType: FFmpegException
+  fullName: FFmpeg.Exceptions.FFmpegException
+- uid: FFmpeg.Images.PixelFormat
+  commentId: T:FFmpeg.Images.PixelFormat
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormat.html
+  name: PixelFormat
+  nameWithType: PixelFormat
+  fullName: FFmpeg.Images.PixelFormat
+- uid: FFmpeg.Exceptions
+  commentId: N:FFmpeg.Exceptions
+  href: FFmpeg.html
+  name: FFmpeg.Exceptions
+  nameWithType: FFmpeg.Exceptions
+  fullName: FFmpeg.Exceptions
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Exceptions
+    name: Exceptions
+    href: FFmpeg.Exceptions.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Exceptions
+    name: Exceptions
+    href: FFmpeg.Exceptions.html
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Audio.SampleFormat
+  commentId: T:FFmpeg.Audio.SampleFormat
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.SampleFormat.html
+  name: SampleFormat
+  nameWithType: SampleFormat
+  fullName: FFmpeg.Audio.SampleFormat
+- uid: FFmpeg.Audio.ChannelLayout
+  commentId: T:FFmpeg.Audio.ChannelLayout
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.ChannelLayout.html
+  name: ChannelLayout
+  nameWithType: ChannelLayout
+  fullName: FFmpeg.Audio.ChannelLayout
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: FFmpeg.Audio
+  commentId: N:FFmpeg.Audio
+  href: FFmpeg.html
+  name: FFmpeg.Audio
+  nameWithType: FFmpeg.Audio
+  fullName: FFmpeg.Audio
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Audio
+    name: Audio
+    href: FFmpeg.Audio.html
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils.AVFrame.IsVideo*
+  commentId: Overload:FFmpeg.Utils.AVFrame.IsVideo
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_IsVideo
+  name: IsVideo
+  nameWithType: AVFrame.IsVideo
+  fullName: FFmpeg.Utils.AVFrame.IsVideo
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Utils.AVFrame.IsAudio*
+  commentId: Overload:FFmpeg.Utils.AVFrame.IsAudio
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_IsAudio
+  name: IsAudio
+  nameWithType: AVFrame.IsAudio
+  fullName: FFmpeg.Utils.AVFrame.IsAudio
+- uid: FFmpeg.Utils.AVFrame.HasBuffer*
+  commentId: Overload:FFmpeg.Utils.AVFrame.HasBuffer
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_HasBuffer
+  name: HasBuffer
+  nameWithType: AVFrame.HasBuffer
+  fullName: FFmpeg.Utils.AVFrame.HasBuffer
+- uid: FFmpeg.Utils.AVFrame.Data*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Data
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Data
+  name: Data
+  nameWithType: AVFrame.Data
+  fullName: FFmpeg.Utils.AVFrame.Data
+- uid: System.ReadOnlySpan{System.IntPtr}
+  commentId: T:System.ReadOnlySpan{System.IntPtr}
+  parent: System
+  definition: System.ReadOnlySpan`1
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<IntPtr>
+  nameWithType: ReadOnlySpan<IntPtr>
+  fullName: System.ReadOnlySpan<System.IntPtr>
+  nameWithType.vb: ReadOnlySpan(Of IntPtr)
+  fullName.vb: System.ReadOnlySpan(Of System.IntPtr)
+  name.vb: ReadOnlySpan(Of IntPtr)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: )
+- uid: System.ReadOnlySpan`1
+  commentId: T:System.ReadOnlySpan`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  name: ReadOnlySpan<T>
+  nameWithType: ReadOnlySpan<T>
+  fullName: System.ReadOnlySpan<T>
+  nameWithType.vb: ReadOnlySpan(Of T)
+  fullName.vb: System.ReadOnlySpan(Of T)
+  name.vb: ReadOnlySpan(Of T)
+  spec.csharp:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.ReadOnlySpan`1
+    name: ReadOnlySpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.readonlyspan-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils.AVFrame.GetData*
+  commentId: Overload:FFmpeg.Utils.AVFrame.GetData
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_GetData_System_Int32_
+  name: GetData
+  nameWithType: AVFrame.GetData
+  fullName: FFmpeg.Utils.AVFrame.GetData
+- uid: System.Span{System.Byte}
+  commentId: T:System.Span{System.Byte}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<byte>
+  nameWithType: Span<byte>
+  fullName: System.Span<byte>
+  nameWithType.vb: Span(Of Byte)
+  fullName.vb: System.Span(Of Byte)
+  name.vb: Span(Of Byte)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils.AVFrame.GetBufferSpan*
+  commentId: Overload:FFmpeg.Utils.AVFrame.GetBufferSpan
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_GetBufferSpan_System_Int32_
+  name: GetBufferSpan
+  nameWithType: AVFrame.GetBufferSpan
+  fullName: FFmpeg.Utils.AVFrame.GetBufferSpan
+- uid: FFmpeg.Utils.AVFrame.LineSize*
+  commentId: Overload:FFmpeg.Utils.AVFrame.LineSize
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_LineSize
+  name: LineSize
+  nameWithType: AVFrame.LineSize
+  fullName: FFmpeg.Utils.AVFrame.LineSize
+- uid: FFmpeg.AutoGen.int_array8
+  commentId: T:FFmpeg.AutoGen.int_array8
+  parent: FFmpeg.AutoGen
+  isExternal: true
+  name: int_array8
+  nameWithType: int_array8
+  fullName: FFmpeg.AutoGen.int_array8
+- uid: FFmpeg.AutoGen
+  commentId: N:FFmpeg.AutoGen
+  isExternal: true
+  name: FFmpeg.AutoGen
+  nameWithType: FFmpeg.AutoGen
+  fullName: FFmpeg.AutoGen
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+- uid: FFmpeg.Utils.AVFrame.Width*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Width
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Width
+  name: Width
+  nameWithType: AVFrame.Width
+  fullName: FFmpeg.Utils.AVFrame.Width
+- uid: FFmpeg.Utils.AVFrame.CroppedWidth*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CroppedWidth
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CroppedWidth
+  name: CroppedWidth
+  nameWithType: AVFrame.CroppedWidth
+  fullName: FFmpeg.Utils.AVFrame.CroppedWidth
+- uid: FFmpeg.Utils.AVFrame.Height*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Height
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Height
+  name: Height
+  nameWithType: AVFrame.Height
+  fullName: FFmpeg.Utils.AVFrame.Height
+- uid: FFmpeg.Utils.AVFrame.CroppedHeight*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CroppedHeight
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CroppedHeight
+  name: CroppedHeight
+  nameWithType: AVFrame.CroppedHeight
+  fullName: FFmpeg.Utils.AVFrame.CroppedHeight
+- uid: FFmpeg.Utils.AVFrame.SampleCount*
+  commentId: Overload:FFmpeg.Utils.AVFrame.SampleCount
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_SampleCount
+  name: SampleCount
+  nameWithType: AVFrame.SampleCount
+  fullName: FFmpeg.Utils.AVFrame.SampleCount
+- uid: FFmpeg.AutoGen._AVPixelFormat
+  commentId: T:FFmpeg.AutoGen._AVPixelFormat
+  isExternal: true
+  name: _AVPixelFormat
+  nameWithType: _AVPixelFormat
+  fullName: FFmpeg.AutoGen._AVPixelFormat
+- uid: FFmpeg.AutoGen._AVSampleFormat
+  commentId: T:FFmpeg.AutoGen._AVSampleFormat
+  isExternal: true
+  name: _AVSampleFormat
+  nameWithType: _AVSampleFormat
+  fullName: FFmpeg.AutoGen._AVSampleFormat
+- uid: FFmpeg.Utils.AVFrame.Format*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Format
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Format
+  name: Format
+  nameWithType: AVFrame.Format
+  fullName: FFmpeg.Utils.AVFrame.Format
+- uid: FFmpeg.Utils.AVFrame.Format
+  commentId: P:FFmpeg.Utils.AVFrame.Format
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Format
+  name: Format
+  nameWithType: AVFrame.Format
+  fullName: FFmpeg.Utils.AVFrame.Format
+- uid: FFmpeg.Utils.AVFrame.PixelFormat*
+  commentId: Overload:FFmpeg.Utils.AVFrame.PixelFormat
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PixelFormat
+  name: PixelFormat
+  nameWithType: AVFrame.PixelFormat
+  fullName: FFmpeg.Utils.AVFrame.PixelFormat
+- uid: FFmpeg.Utils.AVFrame.SampleFormat*
+  commentId: Overload:FFmpeg.Utils.AVFrame.SampleFormat
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_SampleFormat
+  name: SampleFormat
+  nameWithType: AVFrame.SampleFormat
+  fullName: FFmpeg.Utils.AVFrame.SampleFormat
+- uid: FFmpeg.Utils.AVFrame.PictureType*
+  commentId: Overload:FFmpeg.Utils.AVFrame.PictureType
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PictureType
+  name: PictureType
+  nameWithType: AVFrame.PictureType
+  fullName: FFmpeg.Utils.AVFrame.PictureType
+- uid: FFmpeg.Utils.PictureType
+  commentId: T:FFmpeg.Utils.PictureType
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.PictureType.html
+  name: PictureType
+  nameWithType: PictureType
+  fullName: FFmpeg.Utils.PictureType
+- uid: FFmpeg.Utils.AVFrame.PixelAspectRatio*
+  commentId: Overload:FFmpeg.Utils.AVFrame.PixelAspectRatio
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PixelAspectRatio
+  name: PixelAspectRatio
+  nameWithType: AVFrame.PixelAspectRatio
+  fullName: FFmpeg.Utils.AVFrame.PixelAspectRatio
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Utils.AVFrame.PresentationTimestamp*
+  commentId: Overload:FFmpeg.Utils.AVFrame.PresentationTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PresentationTimestamp
+  name: PresentationTimestamp
+  nameWithType: AVFrame.PresentationTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PresentationTimestamp
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FFmpeg.Utils.AVFrame.GetPresentationTimestamp*
+  commentId: Overload:FFmpeg.Utils.AVFrame.GetPresentationTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_GetPresentationTimestamp
+  name: GetPresentationTimestamp
+  nameWithType: AVFrame.GetPresentationTimestamp
+  fullName: FFmpeg.Utils.AVFrame.GetPresentationTimestamp
+- uid: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp*
+  commentId: Overload:FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PacketDecoderTimestamp
+  name: PacketDecoderTimestamp
+  nameWithType: AVFrame.PacketDecoderTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+- uid: FFmpeg.Utils.AVFrame.PresentationTimestamp
+  commentId: P:FFmpeg.Utils.AVFrame.PresentationTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PresentationTimestamp
+  name: PresentationTimestamp
+  nameWithType: AVFrame.PresentationTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PresentationTimestamp
+- uid: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  commentId: P:FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_PacketDecoderTimestamp
+  name: PacketDecoderTimestamp
+  nameWithType: AVFrame.PacketDecoderTimestamp
+  fullName: FFmpeg.Utils.AVFrame.PacketDecoderTimestamp
+- uid: FFmpeg.Utils.AVFrame.TimeBase*
+  commentId: Overload:FFmpeg.Utils.AVFrame.TimeBase
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_TimeBase
+  name: TimeBase
+  nameWithType: AVFrame.TimeBase
+  fullName: FFmpeg.Utils.AVFrame.TimeBase
+- uid: FFmpeg.Utils.AVFrame.Quality*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Quality
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Quality
+  name: Quality
+  nameWithType: AVFrame.Quality
+  fullName: FFmpeg.Utils.AVFrame.Quality
+- uid: FFmpeg.Utils.Quality
+  commentId: T:FFmpeg.Utils.Quality
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Quality.html
+  name: Quality
+  nameWithType: Quality
+  fullName: FFmpeg.Utils.Quality
+- uid: FFmpeg.Utils.AVFrame.RepeatPicture*
+  commentId: Overload:FFmpeg.Utils.AVFrame.RepeatPicture
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_RepeatPicture
+  name: RepeatPicture
+  nameWithType: AVFrame.RepeatPicture
+  fullName: FFmpeg.Utils.AVFrame.RepeatPicture
+- uid: FFmpeg.Utils.AVFrame.SampleRate*
+  commentId: Overload:FFmpeg.Utils.AVFrame.SampleRate
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_SampleRate
+  name: SampleRate
+  nameWithType: AVFrame.SampleRate
+  fullName: FFmpeg.Utils.AVFrame.SampleRate
+- uid: FFmpeg.Utils.FrameFlags
+  commentId: T:FFmpeg.Utils.FrameFlags
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.FrameFlags.html
+  name: FrameFlags
+  nameWithType: FrameFlags
+  fullName: FFmpeg.Utils.FrameFlags
+- uid: FFmpeg.Utils.AVFrame.Flags*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Flags
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Flags
+  name: Flags
+  nameWithType: AVFrame.Flags
+  fullName: FFmpeg.Utils.AVFrame.Flags
+- uid: FFmpeg.AutoGen.ffmpeg
+  commentId: T:FFmpeg.AutoGen.ffmpeg
+  isExternal: true
+  name: ffmpeg
+  nameWithType: ffmpeg
+  fullName: FFmpeg.AutoGen.ffmpeg
+- uid: FFmpeg.Utils.AVFrame.ColorRange*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ColorRange
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ColorRange
+  name: ColorRange
+  nameWithType: AVFrame.ColorRange
+  fullName: FFmpeg.Utils.AVFrame.ColorRange
+- uid: FFmpeg.Images.ColorRange
+  commentId: T:FFmpeg.Images.ColorRange
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorRange.html
+  name: ColorRange
+  nameWithType: ColorRange
+  fullName: FFmpeg.Images.ColorRange
+- uid: FFmpeg.Utils.AVFrame.ColorPrimaries*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ColorPrimaries
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ColorPrimaries
+  name: ColorPrimaries
+  nameWithType: AVFrame.ColorPrimaries
+  fullName: FFmpeg.Utils.AVFrame.ColorPrimaries
+- uid: FFmpeg.Images.ColorPrimaries
+  commentId: T:FFmpeg.Images.ColorPrimaries
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorPrimaries.html
+  name: ColorPrimaries
+  nameWithType: ColorPrimaries
+  fullName: FFmpeg.Images.ColorPrimaries
+- uid: FFmpeg.Utils.AVFrame.ColorTransferCharacteristic*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ColorTransferCharacteristic
+  name: ColorTransferCharacteristic
+  nameWithType: AVFrame.ColorTransferCharacteristic
+  fullName: FFmpeg.Utils.AVFrame.ColorTransferCharacteristic
+- uid: FFmpeg.Images.ColorTransferCharacteristic
+  commentId: T:FFmpeg.Images.ColorTransferCharacteristic
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorTransferCharacteristic.html
+  name: ColorTransferCharacteristic
+  nameWithType: ColorTransferCharacteristic
+  fullName: FFmpeg.Images.ColorTransferCharacteristic
+- uid: FFmpeg.Utils.AVFrame.ColorSpace*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ColorSpace
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ColorSpace
+  name: ColorSpace
+  nameWithType: AVFrame.ColorSpace
+  fullName: FFmpeg.Utils.AVFrame.ColorSpace
+- uid: FFmpeg.Images.ColorSpace
+  commentId: T:FFmpeg.Images.ColorSpace
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ColorSpace.html
+  name: ColorSpace
+  nameWithType: ColorSpace
+  fullName: FFmpeg.Images.ColorSpace
+- uid: FFmpeg.Utils.AVFrame.ChromaLocation*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ChromaLocation
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ChromaLocation
+  name: ChromaLocation
+  nameWithType: AVFrame.ChromaLocation
+  fullName: FFmpeg.Utils.AVFrame.ChromaLocation
+- uid: FFmpeg.Images.ChromaLocation
+  commentId: T:FFmpeg.Images.ChromaLocation
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ChromaLocation.html
+  name: ChromaLocation
+  nameWithType: ChromaLocation
+  fullName: FFmpeg.Images.ChromaLocation
+- uid: FFmpeg.Utils.AVFrame.BestEffortTimestamp*
+  commentId: Overload:FFmpeg.Utils.AVFrame.BestEffortTimestamp
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_BestEffortTimestamp
+  name: BestEffortTimestamp
+  nameWithType: AVFrame.BestEffortTimestamp
+  fullName: FFmpeg.Utils.AVFrame.BestEffortTimestamp
+- uid: FFmpeg.Utils.AVFrame.Metadata*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Metadata
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Metadata
+  name: Metadata
+  nameWithType: AVFrame.Metadata
+  fullName: FFmpeg.Utils.AVFrame.Metadata
+- uid: FFmpeg.Collections.AVDictionary_ref
+  commentId: T:FFmpeg.Collections.AVDictionary_ref
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVDictionary_ref.html
+  name: AVDictionary_ref
+  nameWithType: AVDictionary_ref
+  fullName: FFmpeg.Collections.AVDictionary_ref
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: FFmpeg.Utils.AVFrame.DecodeErrorFlags*
+  commentId: Overload:FFmpeg.Utils.AVFrame.DecodeErrorFlags
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_DecodeErrorFlags
+  name: DecodeErrorFlags
+  nameWithType: AVFrame.DecodeErrorFlags
+  fullName: FFmpeg.Utils.AVFrame.DecodeErrorFlags
+- uid: FFmpeg.Codecs.DecodeErrorFlags
+  commentId: T:FFmpeg.Codecs.DecodeErrorFlags
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.DecodeErrorFlags.html
+  name: DecodeErrorFlags
+  nameWithType: DecodeErrorFlags
+  fullName: FFmpeg.Codecs.DecodeErrorFlags
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.HW.FramesContext
+  commentId: T:FFmpeg.HW.FramesContext
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.FramesContext.html
+  name: FramesContext
+  nameWithType: FramesContext
+  fullName: FFmpeg.HW.FramesContext
+- uid: FFmpeg.Utils.AVFrame.FramesContext*
+  commentId: Overload:FFmpeg.Utils.AVFrame.FramesContext
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_FramesContext
+  name: FramesContext
+  nameWithType: AVFrame.FramesContext
+  fullName: FFmpeg.Utils.AVFrame.FramesContext
+- uid: FFmpeg.HW.FramesContext_ref
+  commentId: T:FFmpeg.HW.FramesContext_ref
+  parent: FFmpeg.HW
+  href: FFmpeg.HW.FramesContext_ref.html
+  name: FramesContext_ref
+  nameWithType: FramesContext_ref
+  fullName: FFmpeg.HW.FramesContext_ref
+- uid: FFmpeg.HW
+  commentId: N:FFmpeg.HW
+  href: FFmpeg.html
+  name: FFmpeg.HW
+  nameWithType: FFmpeg.HW
+  fullName: FFmpeg.HW
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.HW
+    name: HW
+    href: FFmpeg.HW.html
+- uid: FFmpeg.Utils.AVFrame.CropTop*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CropTop
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CropTop
+  name: CropTop
+  nameWithType: AVFrame.CropTop
+  fullName: FFmpeg.Utils.AVFrame.CropTop
+- uid: System.UInt64
+  commentId: T:System.UInt64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.uint64
+  name: ulong
+  nameWithType: ulong
+  fullName: ulong
+  nameWithType.vb: ULong
+  fullName.vb: ULong
+  name.vb: ULong
+- uid: FFmpeg.Utils.AVFrame.CropBottom*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CropBottom
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CropBottom
+  name: CropBottom
+  nameWithType: AVFrame.CropBottom
+  fullName: FFmpeg.Utils.AVFrame.CropBottom
+- uid: FFmpeg.Utils.AVFrame.CropLeft*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CropLeft
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CropLeft
+  name: CropLeft
+  nameWithType: AVFrame.CropLeft
+  fullName: FFmpeg.Utils.AVFrame.CropLeft
+- uid: FFmpeg.Utils.AVFrame.CropRight*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CropRight
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CropRight
+  name: CropRight
+  nameWithType: AVFrame.CropRight
+  fullName: FFmpeg.Utils.AVFrame.CropRight
+- uid: FFmpeg.Utils.AVFrame.ChannelLayout*
+  commentId: Overload:FFmpeg.Utils.AVFrame.ChannelLayout
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_ChannelLayout
+  name: ChannelLayout
+  nameWithType: AVFrame.ChannelLayout
+  fullName: FFmpeg.Utils.AVFrame.ChannelLayout
+- uid: FFmpeg.Audio.ChannelLayout_ref
+  commentId: T:FFmpeg.Audio.ChannelLayout_ref
+  parent: FFmpeg.Audio
+  href: FFmpeg.Audio.ChannelLayout_ref.html
+  name: ChannelLayout_ref
+  nameWithType: ChannelLayout_ref
+  fullName: FFmpeg.Audio.ChannelLayout_ref
+- uid: FFmpeg.Utils.AVFrame.Duration*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Duration
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Duration
+  name: Duration
+  nameWithType: AVFrame.Duration
+  fullName: FFmpeg.Utils.AVFrame.Duration
+- uid: FFmpeg.Utils.AVResult32
+  commentId: T:FFmpeg.Utils.AVResult32
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult32.html
+  name: AVResult32
+  nameWithType: AVResult32
+  fullName: FFmpeg.Utils.AVResult32
+- uid: FFmpeg.Utils.AVFrame.MakeWriteable*
+  commentId: Overload:FFmpeg.Utils.AVFrame.MakeWriteable
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_MakeWriteable
+  name: MakeWriteable
+  nameWithType: AVFrame.MakeWriteable
+  fullName: FFmpeg.Utils.AVFrame.MakeWriteable
+- uid: FFmpeg.Utils.AVFrame.IsReadOnly*
+  commentId: Overload:FFmpeg.Utils.AVFrame.IsReadOnly
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_IsReadOnly
+  name: IsReadOnly
+  nameWithType: AVFrame.IsReadOnly
+  fullName: FFmpeg.Utils.AVFrame.IsReadOnly
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: FFmpeg.Utils.AVFrame.GetBuffer*
+  commentId: Overload:FFmpeg.Utils.AVFrame.GetBuffer
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_GetBuffer_System_Int32_
+  name: GetBuffer
+  nameWithType: AVFrame.GetBuffer
+  fullName: FFmpeg.Utils.AVFrame.GetBuffer
+- uid: FFmpeg.Utils.AVFrame.CreateBuffer*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CreateBuffer
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CreateBuffer_System_Int32_
+  name: CreateBuffer
+  nameWithType: AVFrame.CreateBuffer
+  fullName: FFmpeg.Utils.AVFrame.CreateBuffer
+- uid: FFmpeg.Utils.AVFrame.Unreference*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Unreference
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Unreference
+  name: Unreference
+  nameWithType: AVFrame.Unreference
+  fullName: FFmpeg.Utils.AVFrame.Unreference
+- uid: FFmpeg.Utils.AVFrame.Reference*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Reference
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Reference_FFmpeg_Utils_AVFrame_
+  name: Reference
+  nameWithType: AVFrame.Reference
+  fullName: FFmpeg.Utils.AVFrame.Reference
+- uid: FFmpeg.Utils.AVFrame.Free*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Free
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Free
+  name: Free
+  nameWithType: AVFrame.Free
+  fullName: FFmpeg.Utils.AVFrame.Free
+- uid: FFmpeg.Utils.AVFrame.MediaType*
+  commentId: Overload:FFmpeg.Utils.AVFrame.MediaType
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_MediaType
+  name: MediaType
+  nameWithType: AVFrame.MediaType
+  fullName: FFmpeg.Utils.AVFrame.MediaType
+- uid: FFmpeg.AutoGen._AVMediaType
+  commentId: T:FFmpeg.AutoGen._AVMediaType
+  parent: FFmpeg.AutoGen
+  isExternal: true
+  name: _AVMediaType
+  nameWithType: _AVMediaType
+  fullName: FFmpeg.AutoGen._AVMediaType
+- uid: FFmpeg.Utils.AVFrame.Clone*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Clone
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Clone
+  name: Clone
+  nameWithType: AVFrame.Clone
+  fullName: FFmpeg.Utils.AVFrame.Clone
+- uid: FFmpeg.Utils.AVFrame.Copy*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Copy
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Copy
+  name: Copy
+  nameWithType: AVFrame.Copy
+  fullName: FFmpeg.Utils.AVFrame.Copy
+- uid: FFmpeg.Utils.AVFrame.CopyPropertiesTo*
+  commentId: Overload:FFmpeg.Utils.AVFrame.CopyPropertiesTo
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_CopyPropertiesTo_FFmpeg_Utils_AVFrame_
+  name: CopyPropertiesTo
+  nameWithType: AVFrame.CopyPropertiesTo
+  fullName: FFmpeg.Utils.AVFrame.CopyPropertiesTo
+- uid: FFmpeg.Utils.AVFrame.Dispose(System.Boolean)
+  commentId: M:FFmpeg.Utils.AVFrame.Dispose(System.Boolean)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: Dispose(bool)
+  nameWithType: AVFrame.Dispose(bool)
+  fullName: FFmpeg.Utils.AVFrame.Dispose(bool)
+  nameWithType.vb: AVFrame.Dispose(Boolean)
+  fullName.vb: FFmpeg.Utils.AVFrame.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: FFmpeg.Utils.AVFrame.Dispose(System.Boolean)
+    name: Dispose
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.AVFrame.Dispose(System.Boolean)
+    name: Dispose
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FFmpeg.Utils.AVFrame.Finalize*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Finalize
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Finalize
+  name: ~AVFrame
+  nameWithType: AVFrame.~AVFrame
+  fullName: FFmpeg.Utils.AVFrame.~AVFrame
+  spec.csharp:
+  - name: "~"
+  - uid: FFmpeg.Utils.AVFrame.Finalize*
+    name: AVFrame
+    href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Finalize
+- uid: FFmpeg.Utils.AVFrame.Dispose*
+  commentId: Overload:FFmpeg.Utils.AVFrame.Dispose
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_Dispose
+  name: Dispose
+  nameWithType: AVFrame.Dispose
+  fullName: FFmpeg.Utils.AVFrame.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.AVFrame.FreeSideData*
+  commentId: Overload:FFmpeg.Utils.AVFrame.FreeSideData
+  href: FFmpeg.Utils.AVFrame.html#FFmpeg_Utils_AVFrame_FreeSideData
+  name: FreeSideData
+  nameWithType: AVFrame.FreeSideData
+  fullName: FFmpeg.Utils.AVFrame.FreeSideData

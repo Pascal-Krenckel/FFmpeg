@@ -1,0 +1,2411 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Formats.InputFormat
+  commentId: T:FFmpeg.Formats.InputFormat
+  id: InputFormat
+  parent: FFmpeg.Formats
+  children:
+  - FFmpeg.Formats.InputFormat.AAC
+  - FFmpeg.Formats.InputFormat.AAX
+  - FFmpeg.Formats.InputFormat.AC3
+  - FFmpeg.Formats.InputFormat.ASF
+  - FFmpeg.Formats.InputFormat.ASS
+  - FFmpeg.Formats.InputFormat.AVI
+  - FFmpeg.Formats.InputFormat.BMP_PIPE
+  - FFmpeg.Formats.InputFormat.DASH
+  - FFmpeg.Formats.InputFormat.DirectShow
+  - FFmpeg.Formats.InputFormat.Extensions
+  - FFmpeg.Formats.InputFormat.FLAC
+  - FFmpeg.Formats.InputFormat.FLV
+  - FFmpeg.Formats.InputFormat.FindFormat(System.String)
+  - FFmpeg.Formats.InputFormat.Flags
+  - FFmpeg.Formats.InputFormat.GDIScreenGrabber
+  - FFmpeg.Formats.InputFormat.GetInputFormats
+  - FFmpeg.Formats.InputFormat.HLS
+  - FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+  - FFmpeg.Formats.InputFormat.JPEG_PIPE
+  - FFmpeg.Formats.InputFormat.LongName
+  - FFmpeg.Formats.InputFormat.M4A
+  - FFmpeg.Formats.InputFormat.MATROSKA
+  - FFmpeg.Formats.InputFormat.MKV
+  - FFmpeg.Formats.InputFormat.MOV
+  - FFmpeg.Formats.InputFormat.MP3
+  - FFmpeg.Formats.InputFormat.MP4
+  - FFmpeg.Formats.InputFormat.MPEG
+  - FFmpeg.Formats.InputFormat.MPEGTS
+  - FFmpeg.Formats.InputFormat.MimeTypes
+  - FFmpeg.Formats.InputFormat.OGA
+  - FFmpeg.Formats.InputFormat.OGG
+  - FFmpeg.Formats.InputFormat.OGV
+  - FFmpeg.Formats.InputFormat.PNG_PIPE
+  - FFmpeg.Formats.InputFormat.RAWVIDEO
+  - FFmpeg.Formats.InputFormat.RTP
+  - FFmpeg.Formats.InputFormat.RTSP
+  - FFmpeg.Formats.InputFormat.SRT
+  - FFmpeg.Formats.InputFormat.SSA
+  - FFmpeg.Formats.InputFormat.ShortNames
+  - FFmpeg.Formats.InputFormat.SupportedCodecs
+  - FFmpeg.Formats.InputFormat.TIFF_PIPE
+  - FFmpeg.Formats.InputFormat.ToString
+  - FFmpeg.Formats.InputFormat.WAV
+  - FFmpeg.Formats.InputFormat.WEBM
+  - FFmpeg.Formats.InputFormat.WEBP_PIPE
+  - FFmpeg.Formats.InputFormat.WMA
+  - FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+  langs:
+  - csharp
+  - vb
+  name: InputFormat
+  nameWithType: InputFormat
+  fullName: FFmpeg.Formats.InputFormat
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: InputFormat
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 10
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Represents an AV input format, wrapping around an <xref href="FFmpeg.AutoGen._AVInputFormat" data-throw-if-not-resolved="false"></xref> pointer.
+  remarks: This struct provides access to the properties and methods associated with an AV input format.
+  example: []
+  syntax:
+    content: public readonly struct InputFormat
+    content.vb: Public Structure InputFormat
+  inheritedMembers:
+  - System.ValueType.Equals(System.Object)
+  - System.ValueType.GetHashCode
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Formats.InputFormat.ShortNames
+  commentId: P:FFmpeg.Formats.InputFormat.ShortNames
+  id: ShortNames
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: ShortNames
+  nameWithType: InputFormat.ShortNames
+  fullName: FFmpeg.Formats.InputFormat.ShortNames
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ShortNames
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the short names associated with the input format.
+  remarks: >-
+    Short names are often used as identifiers or abbreviations for the format. This property retrieves
+
+    and splits the short names from a comma-separated string.
+  example: []
+  syntax:
+    content: public IEnumerable<string> ShortNames { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.String}
+    content.vb: Public ReadOnly Property ShortNames As IEnumerable(Of String)
+  overload: FFmpeg.Formats.InputFormat.ShortNames*
+- uid: FFmpeg.Formats.InputFormat.LongName
+  commentId: P:FFmpeg.Formats.InputFormat.LongName
+  id: LongName
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: LongName
+  nameWithType: InputFormat.LongName
+  fullName: FFmpeg.Formats.InputFormat.LongName
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LongName
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the long name of the input format.
+  remarks: The long name provides a more descriptive name for the format compared to the short names.
+  example: []
+  syntax:
+    content: public string LongName { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property LongName As String
+  overload: FFmpeg.Formats.InputFormat.LongName*
+- uid: FFmpeg.Formats.InputFormat.Extensions
+  commentId: P:FFmpeg.Formats.InputFormat.Extensions
+  id: Extensions
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: Extensions
+  nameWithType: InputFormat.Extensions
+  fullName: FFmpeg.Formats.InputFormat.Extensions
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Extensions
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 44
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the file extensions associated with the input format.
+  remarks: >-
+    File extensions are used to identify files of this format. This property retrieves and splits
+
+    the extensions from a comma-separated string. Returns an empty list if no extensions are available.
+  example: []
+  syntax:
+    content: public IReadOnlyList<string> Extensions { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public ReadOnly Property Extensions As IReadOnlyList(Of String)
+  overload: FFmpeg.Formats.InputFormat.Extensions*
+- uid: FFmpeg.Formats.InputFormat.Flags
+  commentId: P:FFmpeg.Formats.InputFormat.Flags
+  id: Flags
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: InputFormat.Flags
+  fullName: FFmpeg.Formats.InputFormat.Flags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 53
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the flags associated with the input format.
+  remarks: >-
+    Flags represent various properties and capabilities of the format, such as whether it supports
+
+    seeking or demuxing.
+  example: []
+  syntax:
+    content: public FormatFlags Flags { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Formats.FormatFlags
+    content.vb: Public ReadOnly Property Flags As FormatFlags
+  overload: FFmpeg.Formats.InputFormat.Flags*
+- uid: FFmpeg.Formats.InputFormat.MimeTypes
+  commentId: P:FFmpeg.Formats.InputFormat.MimeTypes
+  id: MimeTypes
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MimeTypes
+  nameWithType: InputFormat.MimeTypes
+  fullName: FFmpeg.Formats.InputFormat.MimeTypes
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MimeTypes
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 62
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MIME types associated with the input format.
+  remarks: >-
+    MIME types are used to indicate the media type of the format. This property retrieves and splits
+
+    the MIME types from a comma-separated string. Returns an empty list if no MIME types are available.
+  example: []
+  syntax:
+    content: public IReadOnlyList<string> MimeTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{System.String}
+    content.vb: Public ReadOnly Property MimeTypes As IReadOnlyList(Of String)
+  overload: FFmpeg.Formats.InputFormat.MimeTypes*
+- uid: FFmpeg.Formats.InputFormat.SupportedCodecs
+  commentId: P:FFmpeg.Formats.InputFormat.SupportedCodecs
+  id: SupportedCodecs
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: SupportedCodecs
+  nameWithType: InputFormat.SupportedCodecs
+  fullName: FFmpeg.Formats.InputFormat.SupportedCodecs
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SupportedCodecs
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 71
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the list of supported codecs for this input format.
+  remarks: >-
+    This property iterates through the codec tags associated with the format to collect the supported
+
+    codec IDs.
+  example: []
+  syntax:
+    content: public IReadOnlyList<CodecTag> SupportedCodecs { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+    content.vb: Public ReadOnly Property SupportedCodecs As IReadOnlyList(Of CodecTag)
+  overload: FFmpeg.Formats.InputFormat.SupportedCodecs*
+- uid: FFmpeg.Formats.InputFormat.FindFormat(System.String)
+  commentId: M:FFmpeg.Formats.InputFormat.FindFormat(System.String)
+  id: FindFormat(System.String)
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: FindFormat(string)
+  nameWithType: InputFormat.FindFormat(string)
+  fullName: FFmpeg.Formats.InputFormat.FindFormat(string)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FindFormat
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 94
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Finds an <xref href="FFmpeg.Formats.InputFormat" data-throw-if-not-resolved="false"></xref> by its short name.
+  example: []
+  syntax:
+    content: public static InputFormat? FindFormat(string short_name)
+    parameters:
+    - id: short_name
+      type: System.String
+      description: The short name of the input format to find.
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+      description: An instance of <xref href="FFmpeg.Formats.InputFormat" data-throw-if-not-resolved="false"></xref> if found; otherwise, null.
+    content.vb: Public Shared Function FindFormat(short_name As String) As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.FindFormat*
+  nameWithType.vb: InputFormat.FindFormat(String)
+  fullName.vb: FFmpeg.Formats.InputFormat.FindFormat(String)
+  name.vb: FindFormat(String)
+- uid: FFmpeg.Formats.InputFormat.GetInputFormats
+  commentId: M:FFmpeg.Formats.InputFormat.GetInputFormats
+  id: GetInputFormats
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: GetInputFormats()
+  nameWithType: InputFormat.GetInputFormats()
+  fullName: FFmpeg.Formats.InputFormat.GetInputFormats()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetInputFormats
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 115
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Retrieves a collection of all available AV input formats.
+  remarks: >-
+    This method uses the FFmpeg library to iterate through all available demuxers and collects
+
+    them into a list of <xref href="FFmpeg.Formats.InputFormat" data-throw-if-not-resolved="false"></xref> objects.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<InputFormat> GetInputFormats()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.InputFormat}
+      description: An <xref href="System.Collections.Generic.IReadOnlyList%601" data-throw-if-not-resolved="false"></xref> containing all available input formats.
+    content.vb: Public Shared Function GetInputFormats() As IReadOnlyList(Of InputFormat)
+  overload: FFmpeg.Formats.InputFormat.GetInputFormats*
+- uid: FFmpeg.Formats.InputFormat.ToString
+  commentId: M:FFmpeg.Formats.InputFormat.ToString
+  id: ToString
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: InputFormat.ToString()
+  fullName: FFmpeg.Formats.InputFormat.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 131
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Returns a string representation of the input format.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The <xref href="FFmpeg.Formats.InputFormat.LongName" data-throw-if-not-resolved="false"></xref> of the input format.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Formats.InputFormat.ToString*
+- uid: FFmpeg.Formats.InputFormat.MKV
+  commentId: P:FFmpeg.Formats.InputFormat.MKV
+  id: MKV
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MKV
+  nameWithType: InputFormat.MKV
+  fullName: FFmpeg.Formats.InputFormat.MKV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MKV
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 138
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Matroska/WebM input format.
+  example: []
+  syntax:
+    content: public static InputFormat? MKV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MKV As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MKV*
+- uid: FFmpeg.Formats.InputFormat.MP4
+  commentId: P:FFmpeg.Formats.InputFormat.MP4
+  id: MP4
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MP4
+  nameWithType: InputFormat.MP4
+  fullName: FFmpeg.Formats.InputFormat.MP4
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MP4
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 143
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MP4 input format (QuickTime / MOV / MP4 / 3GP / M4A / 3G2 / MJ2).
+  example: []
+  syntax:
+    content: public static InputFormat? MP4 { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MP4 As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MP4*
+- uid: FFmpeg.Formats.InputFormat.AVI
+  commentId: P:FFmpeg.Formats.InputFormat.AVI
+  id: AVI
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: AVI
+  nameWithType: InputFormat.AVI
+  fullName: FFmpeg.Formats.InputFormat.AVI
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVI
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 148
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the AVI input format.
+  example: []
+  syntax:
+    content: public static InputFormat? AVI { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property AVI As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.AVI*
+- uid: FFmpeg.Formats.InputFormat.FLV
+  commentId: P:FFmpeg.Formats.InputFormat.FLV
+  id: FLV
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: FLV
+  nameWithType: InputFormat.FLV
+  fullName: FFmpeg.Formats.InputFormat.FLV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FLV
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 153
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Flash Video input format.
+  example: []
+  syntax:
+    content: public static InputFormat? FLV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property FLV As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.FLV*
+- uid: FFmpeg.Formats.InputFormat.MOV
+  commentId: P:FFmpeg.Formats.InputFormat.MOV
+  id: MOV
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MOV
+  nameWithType: InputFormat.MOV
+  fullName: FFmpeg.Formats.InputFormat.MOV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MOV
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 158
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MOV input format (alias for MP4).
+  example: []
+  syntax:
+    content: public static InputFormat? MOV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MOV As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MOV*
+- uid: FFmpeg.Formats.InputFormat.WEBM
+  commentId: P:FFmpeg.Formats.InputFormat.WEBM
+  id: WEBM
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: WEBM
+  nameWithType: InputFormat.WEBM
+  fullName: FFmpeg.Formats.InputFormat.WEBM
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WEBM
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 163
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WebM input format (alias for Matroska).
+  example: []
+  syntax:
+    content: public static InputFormat? WEBM { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property WEBM As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.WEBM*
+- uid: FFmpeg.Formats.InputFormat.MPEG
+  commentId: P:FFmpeg.Formats.InputFormat.MPEG
+  id: MPEG
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MPEG
+  nameWithType: InputFormat.MPEG
+  fullName: FFmpeg.Formats.InputFormat.MPEG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MPEG
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 168
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MPEG-PS input format.
+  example: []
+  syntax:
+    content: public static InputFormat? MPEG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MPEG As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MPEG*
+- uid: FFmpeg.Formats.InputFormat.MPEGTS
+  commentId: P:FFmpeg.Formats.InputFormat.MPEGTS
+  id: MPEGTS
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MPEGTS
+  nameWithType: InputFormat.MPEGTS
+  fullName: FFmpeg.Formats.InputFormat.MPEGTS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MPEGTS
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 173
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MPEG-TS input format.
+  example: []
+  syntax:
+    content: public static InputFormat? MPEGTS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MPEGTS As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MPEGTS*
+- uid: FFmpeg.Formats.InputFormat.ASF
+  commentId: P:FFmpeg.Formats.InputFormat.ASF
+  id: ASF
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: ASF
+  nameWithType: InputFormat.ASF
+  fullName: FFmpeg.Formats.InputFormat.ASF
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ASF
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 178
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the ASF input format.
+  example: []
+  syntax:
+    content: public static InputFormat? ASF { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property ASF As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.ASF*
+- uid: FFmpeg.Formats.InputFormat.RAWVIDEO
+  commentId: P:FFmpeg.Formats.InputFormat.RAWVIDEO
+  id: RAWVIDEO
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: RAWVIDEO
+  nameWithType: InputFormat.RAWVIDEO
+  fullName: FFmpeg.Formats.InputFormat.RAWVIDEO
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RAWVIDEO
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 183
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the raw video input format.
+  example: []
+  syntax:
+    content: public static InputFormat? RAWVIDEO { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property RAWVIDEO As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.RAWVIDEO*
+- uid: FFmpeg.Formats.InputFormat.MP3
+  commentId: P:FFmpeg.Formats.InputFormat.MP3
+  id: MP3
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MP3
+  nameWithType: InputFormat.MP3
+  fullName: FFmpeg.Formats.InputFormat.MP3
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MP3
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 190
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the MP3 input format (MP2/MP3).
+  example: []
+  syntax:
+    content: public static InputFormat? MP3 { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MP3 As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MP3*
+- uid: FFmpeg.Formats.InputFormat.WAV
+  commentId: P:FFmpeg.Formats.InputFormat.WAV
+  id: WAV
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: WAV
+  nameWithType: InputFormat.WAV
+  fullName: FFmpeg.Formats.InputFormat.WAV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WAV
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 195
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WAV input format.
+  example: []
+  syntax:
+    content: public static InputFormat? WAV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property WAV As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.WAV*
+- uid: FFmpeg.Formats.InputFormat.FLAC
+  commentId: P:FFmpeg.Formats.InputFormat.FLAC
+  id: FLAC
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: FLAC
+  nameWithType: InputFormat.FLAC
+  fullName: FFmpeg.Formats.InputFormat.FLAC
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FLAC
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 200
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the FLAC input format.
+  example: []
+  syntax:
+    content: public static InputFormat? FLAC { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property FLAC As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.FLAC*
+- uid: FFmpeg.Formats.InputFormat.AAC
+  commentId: P:FFmpeg.Formats.InputFormat.AAC
+  id: AAC
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: AAC
+  nameWithType: InputFormat.AAC
+  fullName: FFmpeg.Formats.InputFormat.AAC
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AAC
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 205
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the AAC input format.
+  example: []
+  syntax:
+    content: public static InputFormat? AAC { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property AAC As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.AAC*
+- uid: FFmpeg.Formats.InputFormat.OGG
+  commentId: P:FFmpeg.Formats.InputFormat.OGG
+  id: OGG
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGG
+  nameWithType: InputFormat.OGG
+  fullName: FFmpeg.Formats.InputFormat.OGG
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGG
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 210
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Ogg input format.
+  example: []
+  syntax:
+    content: public static InputFormat? OGG { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property OGG As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.OGG*
+- uid: FFmpeg.Formats.InputFormat.OGA
+  commentId: P:FFmpeg.Formats.InputFormat.OGA
+  id: OGA
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGA
+  nameWithType: InputFormat.OGA
+  fullName: FFmpeg.Formats.InputFormat.OGA
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGA
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 215
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Ogg input format (alias for Ogg).
+  example: []
+  syntax:
+    content: public static InputFormat? OGA { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property OGA As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.OGA*
+- uid: FFmpeg.Formats.InputFormat.OGV
+  commentId: P:FFmpeg.Formats.InputFormat.OGV
+  id: OGV
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: OGV
+  nameWithType: InputFormat.OGV
+  fullName: FFmpeg.Formats.InputFormat.OGV
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OGV
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 220
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Ogg input format (alias for Ogg).
+  example: []
+  syntax:
+    content: public static InputFormat? OGV { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property OGV As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.OGV*
+- uid: FFmpeg.Formats.InputFormat.AC3
+  commentId: P:FFmpeg.Formats.InputFormat.AC3
+  id: AC3
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: AC3
+  nameWithType: InputFormat.AC3
+  fullName: FFmpeg.Formats.InputFormat.AC3
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AC3
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 225
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the raw AC-3 input format.
+  example: []
+  syntax:
+    content: public static InputFormat? AC3 { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property AC3 As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.AC3*
+- uid: FFmpeg.Formats.InputFormat.M4A
+  commentId: P:FFmpeg.Formats.InputFormat.M4A
+  id: M4A
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: M4A
+  nameWithType: InputFormat.M4A
+  fullName: FFmpeg.Formats.InputFormat.M4A
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: M4A
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 230
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the M4A input format (alias for MP4/MOV).
+  example: []
+  syntax:
+    content: public static InputFormat? M4A { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property M4A As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.M4A*
+- uid: FFmpeg.Formats.InputFormat.AAX
+  commentId: P:FFmpeg.Formats.InputFormat.AAX
+  id: AAX
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: AAX
+  nameWithType: InputFormat.AAX
+  fullName: FFmpeg.Formats.InputFormat.AAX
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AAX
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 235
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the CRI AAX input format.
+  example: []
+  syntax:
+    content: public static InputFormat? AAX { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property AAX As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.AAX*
+- uid: FFmpeg.Formats.InputFormat.WMA
+  commentId: P:FFmpeg.Formats.InputFormat.WMA
+  id: WMA
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: WMA
+  nameWithType: InputFormat.WMA
+  fullName: FFmpeg.Formats.InputFormat.WMA
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WMA
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 240
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the WMA input format (inside ASF).
+  example: []
+  syntax:
+    content: public static InputFormat? WMA { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property WMA As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.WMA*
+- uid: FFmpeg.Formats.InputFormat.HLS
+  commentId: P:FFmpeg.Formats.InputFormat.HLS
+  id: HLS
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: HLS
+  nameWithType: InputFormat.HLS
+  fullName: FFmpeg.Formats.InputFormat.HLS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: HLS
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 247
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the HTTP Live Streaming input format.
+  example: []
+  syntax:
+    content: public static InputFormat? HLS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property HLS As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.HLS*
+- uid: FFmpeg.Formats.InputFormat.RTSP
+  commentId: P:FFmpeg.Formats.InputFormat.RTSP
+  id: RTSP
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: RTSP
+  nameWithType: InputFormat.RTSP
+  fullName: FFmpeg.Formats.InputFormat.RTSP
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RTSP
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 252
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the RTSP input format.
+  example: []
+  syntax:
+    content: public static InputFormat? RTSP { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property RTSP As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.RTSP*
+- uid: FFmpeg.Formats.InputFormat.DASH
+  commentId: P:FFmpeg.Formats.InputFormat.DASH
+  id: DASH
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: DASH
+  nameWithType: InputFormat.DASH
+  fullName: FFmpeg.Formats.InputFormat.DASH
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DASH
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 257
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the DASH input format.
+  example: []
+  syntax:
+    content: public static InputFormat? DASH { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property DASH As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.DASH*
+- uid: FFmpeg.Formats.InputFormat.RTP
+  commentId: P:FFmpeg.Formats.InputFormat.RTP
+  id: RTP
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: RTP
+  nameWithType: InputFormat.RTP
+  fullName: FFmpeg.Formats.InputFormat.RTP
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RTP
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 262
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the RTP input format.
+  example: []
+  syntax:
+    content: public static InputFormat? RTP { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property RTP As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.RTP*
+- uid: FFmpeg.Formats.InputFormat.SRT
+  commentId: P:FFmpeg.Formats.InputFormat.SRT
+  id: SRT
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: SRT
+  nameWithType: InputFormat.SRT
+  fullName: FFmpeg.Formats.InputFormat.SRT
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SRT
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 269
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the SubRip subtitle input format.
+  example: []
+  syntax:
+    content: public static InputFormat? SRT { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property SRT As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.SRT*
+- uid: FFmpeg.Formats.InputFormat.ASS
+  commentId: P:FFmpeg.Formats.InputFormat.ASS
+  id: ASS
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: ASS
+  nameWithType: InputFormat.ASS
+  fullName: FFmpeg.Formats.InputFormat.ASS
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ASS
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 274
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the SSA/ASS subtitle input format.
+  example: []
+  syntax:
+    content: public static InputFormat? ASS { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property ASS As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.ASS*
+- uid: FFmpeg.Formats.InputFormat.SSA
+  commentId: P:FFmpeg.Formats.InputFormat.SSA
+  id: SSA
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: SSA
+  nameWithType: InputFormat.SSA
+  fullName: FFmpeg.Formats.InputFormat.SSA
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SSA
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 279
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the SSA subtitle input format (alias for ASS).
+  example: []
+  syntax:
+    content: public static InputFormat? SSA { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property SSA As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.SSA*
+- uid: FFmpeg.Formats.InputFormat.BMP_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.BMP_PIPE
+  id: BMP_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: BMP_PIPE
+  nameWithType: InputFormat.BMP_PIPE
+  fullName: FFmpeg.Formats.InputFormat.BMP_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BMP_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 286
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped BMP sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? BMP_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property BMP_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.BMP_PIPE*
+- uid: FFmpeg.Formats.InputFormat.PNG_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.PNG_PIPE
+  id: PNG_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: PNG_PIPE
+  nameWithType: InputFormat.PNG_PIPE
+  fullName: FFmpeg.Formats.InputFormat.PNG_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PNG_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 291
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped PNG sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? PNG_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property PNG_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.PNG_PIPE*
+- uid: FFmpeg.Formats.InputFormat.JPEG_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.JPEG_PIPE
+  id: JPEG_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: JPEG_PIPE
+  nameWithType: InputFormat.JPEG_PIPE
+  fullName: FFmpeg.Formats.InputFormat.JPEG_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEG_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 296
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped JPEG sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? JPEG_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property JPEG_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.JPEG_PIPE*
+- uid: FFmpeg.Formats.InputFormat.TIFF_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.TIFF_PIPE
+  id: TIFF_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: TIFF_PIPE
+  nameWithType: InputFormat.TIFF_PIPE
+  fullName: FFmpeg.Formats.InputFormat.TIFF_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TIFF_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 301
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped TIFF sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? TIFF_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property TIFF_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.TIFF_PIPE*
+- uid: FFmpeg.Formats.InputFormat.WEBP_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.WEBP_PIPE
+  id: WEBP_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: WEBP_PIPE
+  nameWithType: InputFormat.WEBP_PIPE
+  fullName: FFmpeg.Formats.InputFormat.WEBP_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WEBP_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 306
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped WEBP sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? WEBP_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property WEBP_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.WEBP_PIPE*
+- uid: FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+  commentId: P:FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+  id: JPEGXL_PIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: JPEGXL_PIPE
+  nameWithType: InputFormat.JPEGXL_PIPE
+  fullName: FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: JPEGXL_PIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 311
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the piped JPEG XL sequence input format.
+  example: []
+  syntax:
+    content: public static InputFormat? JPEGXL_PIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property JPEGXL_PIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.JPEGXL_PIPE*
+- uid: FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+  commentId: P:FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+  id: YUV4MPEGPIPE
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: YUV4MPEGPIPE
+  nameWithType: InputFormat.YUV4MPEGPIPE
+  fullName: FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: YUV4MPEGPIPE
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 318
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the YUV4MPEG input format.
+  example: []
+  syntax:
+    content: public static InputFormat? YUV4MPEGPIPE { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property YUV4MPEGPIPE As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.YUV4MPEGPIPE*
+- uid: FFmpeg.Formats.InputFormat.MATROSKA
+  commentId: P:FFmpeg.Formats.InputFormat.MATROSKA
+  id: MATROSKA
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: MATROSKA
+  nameWithType: InputFormat.MATROSKA
+  fullName: FFmpeg.Formats.InputFormat.MATROSKA
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MATROSKA
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 323
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the Matroska/WebM input format (alias for MKV/WebM).
+  example: []
+  syntax:
+    content: public static InputFormat? MATROSKA { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property MATROSKA As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.MATROSKA*
+- uid: FFmpeg.Formats.InputFormat.DirectShow
+  commentId: P:FFmpeg.Formats.InputFormat.DirectShow
+  id: DirectShow
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: DirectShow
+  nameWithType: InputFormat.DirectShow
+  fullName: FFmpeg.Formats.InputFormat.DirectShow
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DirectShow
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 328
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: Gets the direct show input device.
+  example: []
+  syntax:
+    content: public static InputFormat? DirectShow { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property DirectShow As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.DirectShow*
+- uid: FFmpeg.Formats.InputFormat.GDIScreenGrabber
+  commentId: P:FFmpeg.Formats.InputFormat.GDIScreenGrabber
+  id: GDIScreenGrabber
+  parent: FFmpeg.Formats.InputFormat
+  langs:
+  - csharp
+  - vb
+  name: GDIScreenGrabber
+  nameWithType: InputFormat.GDIScreenGrabber
+  fullName: FFmpeg.Formats.InputFormat.GDIScreenGrabber
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Formats/InputFormat.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GDIScreenGrabber
+    path: FFmpeg/Formats/InputFormat.cs
+    startLine: 334
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Formats
+  summary: >-
+    Gets the dgigrap input device. <br />
+
+    Use "desktop", title=window_title or hwnd=window_hwnd to specify what to grap.
+  example: []
+  syntax:
+    content: public static InputFormat? GDIScreenGrabber { get; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Formats.InputFormat}
+    content.vb: Public Shared ReadOnly Property GDIScreenGrabber As InputFormat?
+  overload: FFmpeg.Formats.InputFormat.GDIScreenGrabber*
+references:
+- uid: FFmpeg.AutoGen._AVInputFormat
+  commentId: T:FFmpeg.AutoGen._AVInputFormat
+  isExternal: true
+  name: _AVInputFormat
+  nameWithType: _AVInputFormat
+  fullName: FFmpeg.AutoGen._AVInputFormat
+- uid: FFmpeg.Formats
+  commentId: N:FFmpeg.Formats
+  href: FFmpeg.html
+  name: FFmpeg.Formats
+  nameWithType: FFmpeg.Formats
+  fullName: FFmpeg.Formats
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Formats.InputFormat.ShortNames*
+  commentId: Overload:FFmpeg.Formats.InputFormat.ShortNames
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_ShortNames
+  name: ShortNames
+  nameWithType: InputFormat.ShortNames
+  fullName: FFmpeg.Formats.InputFormat.ShortNames
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<string>
+  nameWithType: IEnumerable<string>
+  fullName: System.Collections.Generic.IEnumerable<string>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: FFmpeg.Formats.InputFormat.LongName*
+  commentId: Overload:FFmpeg.Formats.InputFormat.LongName
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_LongName
+  name: LongName
+  nameWithType: InputFormat.LongName
+  fullName: FFmpeg.Formats.InputFormat.LongName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Formats.InputFormat.Extensions*
+  commentId: Overload:FFmpeg.Formats.InputFormat.Extensions
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_Extensions
+  name: Extensions
+  nameWithType: InputFormat.Extensions
+  fullName: FFmpeg.Formats.InputFormat.Extensions
+- uid: System.Collections.Generic.IReadOnlyList{System.String}
+  commentId: T:System.Collections.Generic.IReadOnlyList{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<string>
+  nameWithType: IReadOnlyList<string>
+  fullName: System.Collections.Generic.IReadOnlyList<string>
+  nameWithType.vb: IReadOnlyList(Of String)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of String)
+  name.vb: IReadOnlyList(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Formats.InputFormat.Flags*
+  commentId: Overload:FFmpeg.Formats.InputFormat.Flags
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_Flags
+  name: Flags
+  nameWithType: InputFormat.Flags
+  fullName: FFmpeg.Formats.InputFormat.Flags
+- uid: FFmpeg.Formats.FormatFlags
+  commentId: T:FFmpeg.Formats.FormatFlags
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.FormatFlags.html
+  name: FormatFlags
+  nameWithType: FormatFlags
+  fullName: FFmpeg.Formats.FormatFlags
+- uid: FFmpeg.Formats.InputFormat.MimeTypes*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MimeTypes
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MimeTypes
+  name: MimeTypes
+  nameWithType: InputFormat.MimeTypes
+  fullName: FFmpeg.Formats.InputFormat.MimeTypes
+- uid: FFmpeg.Formats.InputFormat.SupportedCodecs*
+  commentId: Overload:FFmpeg.Formats.InputFormat.SupportedCodecs
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_SupportedCodecs
+  name: SupportedCodecs
+  nameWithType: InputFormat.SupportedCodecs
+  fullName: FFmpeg.Formats.InputFormat.SupportedCodecs
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Codecs.CodecTag}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<CodecTag>
+  nameWithType: IReadOnlyList<CodecTag>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Codecs.CodecTag>
+  nameWithType.vb: IReadOnlyList(Of CodecTag)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Codecs.CodecTag)
+  name.vb: IReadOnlyList(Of CodecTag)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Codecs.CodecTag
+    name: CodecTag
+    href: FFmpeg.Codecs.CodecTag.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Codecs.CodecTag
+    name: CodecTag
+    href: FFmpeg.Codecs.CodecTag.html
+  - name: )
+- uid: FFmpeg.Formats.InputFormat
+  commentId: T:FFmpeg.Formats.InputFormat
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.InputFormat.html
+  name: InputFormat
+  nameWithType: InputFormat
+  fullName: FFmpeg.Formats.InputFormat
+- uid: FFmpeg.Formats.InputFormat.FindFormat*
+  commentId: Overload:FFmpeg.Formats.InputFormat.FindFormat
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_FindFormat_System_String_
+  name: FindFormat
+  nameWithType: InputFormat.FindFormat
+  fullName: FFmpeg.Formats.InputFormat.FindFormat
+- uid: System.Nullable{FFmpeg.Formats.InputFormat}
+  commentId: T:System.Nullable{FFmpeg.Formats.InputFormat}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Formats.InputFormat.html
+  name: InputFormat?
+  nameWithType: InputFormat?
+  fullName: FFmpeg.Formats.InputFormat?
+  spec.csharp:
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Formats.InputFormat.GetInputFormats*
+  commentId: Overload:FFmpeg.Formats.InputFormat.GetInputFormats
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_GetInputFormats
+  name: GetInputFormats
+  nameWithType: InputFormat.GetInputFormats
+  fullName: FFmpeg.Formats.InputFormat.GetInputFormats
+- uid: System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.InputFormat}
+  commentId: T:System.Collections.Generic.IReadOnlyList{FFmpeg.Formats.InputFormat}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<InputFormat>
+  nameWithType: IReadOnlyList<InputFormat>
+  fullName: System.Collections.Generic.IReadOnlyList<FFmpeg.Formats.InputFormat>
+  nameWithType.vb: IReadOnlyList(Of InputFormat)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of FFmpeg.Formats.InputFormat)
+  name.vb: IReadOnlyList(Of InputFormat)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Formats.InputFormat
+    name: InputFormat
+    href: FFmpeg.Formats.InputFormat.html
+  - name: )
+- uid: FFmpeg.Formats.InputFormat.LongName
+  commentId: P:FFmpeg.Formats.InputFormat.LongName
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_LongName
+  name: LongName
+  nameWithType: InputFormat.LongName
+  fullName: FFmpeg.Formats.InputFormat.LongName
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Formats.InputFormat.ToString*
+  commentId: Overload:FFmpeg.Formats.InputFormat.ToString
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_ToString
+  name: ToString
+  nameWithType: InputFormat.ToString
+  fullName: FFmpeg.Formats.InputFormat.ToString
+- uid: FFmpeg.Formats.InputFormat.MKV*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MKV
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MKV
+  name: MKV
+  nameWithType: InputFormat.MKV
+  fullName: FFmpeg.Formats.InputFormat.MKV
+- uid: FFmpeg.Formats.InputFormat.MP4*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MP4
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MP4
+  name: MP4
+  nameWithType: InputFormat.MP4
+  fullName: FFmpeg.Formats.InputFormat.MP4
+- uid: FFmpeg.Formats.InputFormat.AVI*
+  commentId: Overload:FFmpeg.Formats.InputFormat.AVI
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_AVI
+  name: AVI
+  nameWithType: InputFormat.AVI
+  fullName: FFmpeg.Formats.InputFormat.AVI
+- uid: FFmpeg.Formats.InputFormat.FLV*
+  commentId: Overload:FFmpeg.Formats.InputFormat.FLV
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_FLV
+  name: FLV
+  nameWithType: InputFormat.FLV
+  fullName: FFmpeg.Formats.InputFormat.FLV
+- uid: FFmpeg.Formats.InputFormat.MOV*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MOV
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MOV
+  name: MOV
+  nameWithType: InputFormat.MOV
+  fullName: FFmpeg.Formats.InputFormat.MOV
+- uid: FFmpeg.Formats.InputFormat.WEBM*
+  commentId: Overload:FFmpeg.Formats.InputFormat.WEBM
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_WEBM
+  name: WEBM
+  nameWithType: InputFormat.WEBM
+  fullName: FFmpeg.Formats.InputFormat.WEBM
+- uid: FFmpeg.Formats.InputFormat.MPEG*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MPEG
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MPEG
+  name: MPEG
+  nameWithType: InputFormat.MPEG
+  fullName: FFmpeg.Formats.InputFormat.MPEG
+- uid: FFmpeg.Formats.InputFormat.MPEGTS*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MPEGTS
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MPEGTS
+  name: MPEGTS
+  nameWithType: InputFormat.MPEGTS
+  fullName: FFmpeg.Formats.InputFormat.MPEGTS
+- uid: FFmpeg.Formats.InputFormat.ASF*
+  commentId: Overload:FFmpeg.Formats.InputFormat.ASF
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_ASF
+  name: ASF
+  nameWithType: InputFormat.ASF
+  fullName: FFmpeg.Formats.InputFormat.ASF
+- uid: FFmpeg.Formats.InputFormat.RAWVIDEO*
+  commentId: Overload:FFmpeg.Formats.InputFormat.RAWVIDEO
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_RAWVIDEO
+  name: RAWVIDEO
+  nameWithType: InputFormat.RAWVIDEO
+  fullName: FFmpeg.Formats.InputFormat.RAWVIDEO
+- uid: FFmpeg.Formats.InputFormat.MP3*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MP3
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MP3
+  name: MP3
+  nameWithType: InputFormat.MP3
+  fullName: FFmpeg.Formats.InputFormat.MP3
+- uid: FFmpeg.Formats.InputFormat.WAV*
+  commentId: Overload:FFmpeg.Formats.InputFormat.WAV
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_WAV
+  name: WAV
+  nameWithType: InputFormat.WAV
+  fullName: FFmpeg.Formats.InputFormat.WAV
+- uid: FFmpeg.Formats.InputFormat.FLAC*
+  commentId: Overload:FFmpeg.Formats.InputFormat.FLAC
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_FLAC
+  name: FLAC
+  nameWithType: InputFormat.FLAC
+  fullName: FFmpeg.Formats.InputFormat.FLAC
+- uid: FFmpeg.Formats.InputFormat.AAC*
+  commentId: Overload:FFmpeg.Formats.InputFormat.AAC
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_AAC
+  name: AAC
+  nameWithType: InputFormat.AAC
+  fullName: FFmpeg.Formats.InputFormat.AAC
+- uid: FFmpeg.Formats.InputFormat.OGG*
+  commentId: Overload:FFmpeg.Formats.InputFormat.OGG
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_OGG
+  name: OGG
+  nameWithType: InputFormat.OGG
+  fullName: FFmpeg.Formats.InputFormat.OGG
+- uid: FFmpeg.Formats.InputFormat.OGA*
+  commentId: Overload:FFmpeg.Formats.InputFormat.OGA
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_OGA
+  name: OGA
+  nameWithType: InputFormat.OGA
+  fullName: FFmpeg.Formats.InputFormat.OGA
+- uid: FFmpeg.Formats.InputFormat.OGV*
+  commentId: Overload:FFmpeg.Formats.InputFormat.OGV
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_OGV
+  name: OGV
+  nameWithType: InputFormat.OGV
+  fullName: FFmpeg.Formats.InputFormat.OGV
+- uid: FFmpeg.Formats.InputFormat.AC3*
+  commentId: Overload:FFmpeg.Formats.InputFormat.AC3
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_AC3
+  name: AC3
+  nameWithType: InputFormat.AC3
+  fullName: FFmpeg.Formats.InputFormat.AC3
+- uid: FFmpeg.Formats.InputFormat.M4A*
+  commentId: Overload:FFmpeg.Formats.InputFormat.M4A
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_M4A
+  name: M4A
+  nameWithType: InputFormat.M4A
+  fullName: FFmpeg.Formats.InputFormat.M4A
+- uid: FFmpeg.Formats.InputFormat.AAX*
+  commentId: Overload:FFmpeg.Formats.InputFormat.AAX
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_AAX
+  name: AAX
+  nameWithType: InputFormat.AAX
+  fullName: FFmpeg.Formats.InputFormat.AAX
+- uid: FFmpeg.Formats.InputFormat.WMA*
+  commentId: Overload:FFmpeg.Formats.InputFormat.WMA
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_WMA
+  name: WMA
+  nameWithType: InputFormat.WMA
+  fullName: FFmpeg.Formats.InputFormat.WMA
+- uid: FFmpeg.Formats.InputFormat.HLS*
+  commentId: Overload:FFmpeg.Formats.InputFormat.HLS
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_HLS
+  name: HLS
+  nameWithType: InputFormat.HLS
+  fullName: FFmpeg.Formats.InputFormat.HLS
+- uid: FFmpeg.Formats.InputFormat.RTSP*
+  commentId: Overload:FFmpeg.Formats.InputFormat.RTSP
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_RTSP
+  name: RTSP
+  nameWithType: InputFormat.RTSP
+  fullName: FFmpeg.Formats.InputFormat.RTSP
+- uid: FFmpeg.Formats.InputFormat.DASH*
+  commentId: Overload:FFmpeg.Formats.InputFormat.DASH
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_DASH
+  name: DASH
+  nameWithType: InputFormat.DASH
+  fullName: FFmpeg.Formats.InputFormat.DASH
+- uid: FFmpeg.Formats.InputFormat.RTP*
+  commentId: Overload:FFmpeg.Formats.InputFormat.RTP
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_RTP
+  name: RTP
+  nameWithType: InputFormat.RTP
+  fullName: FFmpeg.Formats.InputFormat.RTP
+- uid: FFmpeg.Formats.InputFormat.SRT*
+  commentId: Overload:FFmpeg.Formats.InputFormat.SRT
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_SRT
+  name: SRT
+  nameWithType: InputFormat.SRT
+  fullName: FFmpeg.Formats.InputFormat.SRT
+- uid: FFmpeg.Formats.InputFormat.ASS*
+  commentId: Overload:FFmpeg.Formats.InputFormat.ASS
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_ASS
+  name: ASS
+  nameWithType: InputFormat.ASS
+  fullName: FFmpeg.Formats.InputFormat.ASS
+- uid: FFmpeg.Formats.InputFormat.SSA*
+  commentId: Overload:FFmpeg.Formats.InputFormat.SSA
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_SSA
+  name: SSA
+  nameWithType: InputFormat.SSA
+  fullName: FFmpeg.Formats.InputFormat.SSA
+- uid: FFmpeg.Formats.InputFormat.BMP_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.BMP_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_BMP_PIPE
+  name: BMP_PIPE
+  nameWithType: InputFormat.BMP_PIPE
+  fullName: FFmpeg.Formats.InputFormat.BMP_PIPE
+- uid: FFmpeg.Formats.InputFormat.PNG_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.PNG_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_PNG_PIPE
+  name: PNG_PIPE
+  nameWithType: InputFormat.PNG_PIPE
+  fullName: FFmpeg.Formats.InputFormat.PNG_PIPE
+- uid: FFmpeg.Formats.InputFormat.JPEG_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.JPEG_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_JPEG_PIPE
+  name: JPEG_PIPE
+  nameWithType: InputFormat.JPEG_PIPE
+  fullName: FFmpeg.Formats.InputFormat.JPEG_PIPE
+- uid: FFmpeg.Formats.InputFormat.TIFF_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.TIFF_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_TIFF_PIPE
+  name: TIFF_PIPE
+  nameWithType: InputFormat.TIFF_PIPE
+  fullName: FFmpeg.Formats.InputFormat.TIFF_PIPE
+- uid: FFmpeg.Formats.InputFormat.WEBP_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.WEBP_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_WEBP_PIPE
+  name: WEBP_PIPE
+  nameWithType: InputFormat.WEBP_PIPE
+  fullName: FFmpeg.Formats.InputFormat.WEBP_PIPE
+- uid: FFmpeg.Formats.InputFormat.JPEGXL_PIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_JPEGXL_PIPE
+  name: JPEGXL_PIPE
+  nameWithType: InputFormat.JPEGXL_PIPE
+  fullName: FFmpeg.Formats.InputFormat.JPEGXL_PIPE
+- uid: FFmpeg.Formats.InputFormat.YUV4MPEGPIPE*
+  commentId: Overload:FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_YUV4MPEGPIPE
+  name: YUV4MPEGPIPE
+  nameWithType: InputFormat.YUV4MPEGPIPE
+  fullName: FFmpeg.Formats.InputFormat.YUV4MPEGPIPE
+- uid: FFmpeg.Formats.InputFormat.MATROSKA*
+  commentId: Overload:FFmpeg.Formats.InputFormat.MATROSKA
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_MATROSKA
+  name: MATROSKA
+  nameWithType: InputFormat.MATROSKA
+  fullName: FFmpeg.Formats.InputFormat.MATROSKA
+- uid: FFmpeg.Formats.InputFormat.DirectShow*
+  commentId: Overload:FFmpeg.Formats.InputFormat.DirectShow
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_DirectShow
+  name: DirectShow
+  nameWithType: InputFormat.DirectShow
+  fullName: FFmpeg.Formats.InputFormat.DirectShow
+- uid: FFmpeg.Formats.InputFormat.GDIScreenGrabber*
+  commentId: Overload:FFmpeg.Formats.InputFormat.GDIScreenGrabber
+  href: FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_GDIScreenGrabber
+  name: GDIScreenGrabber
+  nameWithType: InputFormat.GDIScreenGrabber
+  fullName: FFmpeg.Formats.InputFormat.GDIScreenGrabber

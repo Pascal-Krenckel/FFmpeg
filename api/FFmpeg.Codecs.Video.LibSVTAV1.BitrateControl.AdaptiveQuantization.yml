@@ -1,0 +1,179 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  id: BitrateControl.AdaptiveQuantization
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  children:
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.DeltaQPredEfficiency
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.Off
+  - FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.VarianceBased
+  langs:
+  - csharp
+  - vb
+  name: BitrateControl.AdaptiveQuantization
+  nameWithType: BitrateControl.AdaptiveQuantization
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdaptiveQuantization
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Defines the available adaptive quantization modes.
+  example: []
+  syntax:
+    content: public enum BitrateControl.AdaptiveQuantization
+    content.vb: Public Enum BitrateControl.AdaptiveQuantization
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.Off
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.Off
+  id: Off
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  langs:
+  - csharp
+  - vb
+  name: Off
+  nameWithType: BitrateControl.AdaptiveQuantization.Off
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.Off
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Off
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 40
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Disables adaptive quantization.
+  example: []
+  syntax:
+    content: Off = 0
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.VarianceBased
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.VarianceBased
+  id: VarianceBased
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  langs:
+  - csharp
+  - vb
+  name: VarianceBased
+  nameWithType: BitrateControl.AdaptiveQuantization.VarianceBased
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.VarianceBased
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VarianceBased
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Variance-based adaptive quantization.
+  example: []
+  syntax:
+    content: VarianceBased = 1
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.DeltaQPredEfficiency
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.DeltaQPredEfficiency
+  id: DeltaQPredEfficiency
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  langs:
+  - csharp
+  - vb
+  name: DeltaQPredEfficiency
+  nameWithType: BitrateControl.AdaptiveQuantization.DeltaQPredEfficiency
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.DeltaQPredEfficiency
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DeltaQPredEfficiency
+    path: FFmpeg/Codecs/Video/LibSVTAV1/BitrateControl.cs
+    startLine: 50
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Delta Q prediction efficiency mode.
+  example: []
+  syntax:
+    content: DeltaQPredEfficiency = 2
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+references:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl.AdaptiveQuantization
+  nameWithType: BitrateControl.AdaptiveQuantization
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+    name: AdaptiveQuantization
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.html
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization
+    name: AdaptiveQuantization
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.AdaptiveQuantization.html

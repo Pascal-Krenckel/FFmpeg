@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  id: ScreenContentMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  children:
+  - FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.ContentAdaptive
+  - FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.Off
+  - FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.On
+  langs:
+  - csharp
+  - vb
+  name: ScreenContentMode
+  nameWithType: ScreenContentMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ScreenContentMode
+    path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+    startLine: 6
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: >-
+    Specifies the mode for handling screen content in the SVT-AV1 encoder.
+
+    Screen content refers to video content that primarily consists of static images, text, or graphical elements (such as computer-generated content).
+  example: []
+  syntax:
+    content: public enum ScreenContentMode
+    content.vb: Public Enum ScreenContentMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.Off
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.Off
+  id: Off
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  langs:
+  - csharp
+  - vb
+  name: Off
+  nameWithType: ScreenContentMode.Off
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.Off
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Off
+    path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Screen content optimizations are disabled.
+  example: []
+  syntax:
+    content: Off = 0
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.On
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.On
+  id: On
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  langs:
+  - csharp
+  - vb
+  name: On
+  nameWithType: ScreenContentMode.On
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.On
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: On
+    path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+    startLine: 16
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Screen content optimizations are enabled, improving encoding efficiency for static and graphical content.
+  example: []
+  syntax:
+    content: On = 1
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.ContentAdaptive
+  commentId: F:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.ContentAdaptive
+  id: ContentAdaptive
+  parent: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  langs:
+  - csharp
+  - vb
+  name: ContentAdaptive
+  nameWithType: ScreenContentMode.ContentAdaptive
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.ContentAdaptive
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ContentAdaptive
+    path: FFmpeg/Codecs/Video/LibSVTAV1/ScreenContentMode.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video.LibSVTAV1
+  summary: Enables content-adaptive screen mode, where the encoder automatically decides whether to apply screen content optimizations based on the input.
+  example: []
+  syntax:
+    content: ContentAdaptive = 2
+    return:
+      type: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+references:
+- uid: FFmpeg.Codecs.Video.LibSVTAV1
+  commentId: N:FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video.LibSVTAV1
+  nameWithType: FFmpeg.Codecs.Video.LibSVTAV1
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1
+    name: LibSVTAV1
+    href: FFmpeg.Codecs.Video.LibSVTAV1.html
+- uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  commentId: T:FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+  parent: FFmpeg.Codecs.Video.LibSVTAV1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html
+  name: ScreenContentMode
+  nameWithType: ScreenContentMode
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode

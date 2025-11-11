@@ -1,0 +1,922 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.VideoCodec
+  commentId: T:FFmpeg.Codecs.Video.VideoCodec
+  id: VideoCodec
+  parent: FFmpeg.Codecs.Video
+  children:
+  - FFmpeg.Codecs.Video.VideoCodec.#ctor(FFmpeg.Codecs.Codec,System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  - FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  - FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  - FFmpeg.Codecs.Video.VideoCodec.Codec
+  - FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  - FFmpeg.Codecs.Video.VideoCodec.Height
+  - FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  - FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  - FFmpeg.Codecs.Video.VideoCodec.Width
+  langs:
+  - csharp
+  - vb
+  name: VideoCodec
+  nameWithType: VideoCodec
+  fullName: FFmpeg.Codecs.Video.VideoCodec
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoCodec
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Represents a base class for configuring and creating video codec contexts.
+
+    This abstract class provides common functionality for different video codecs.
+  remarks: Initializes a new instance of the <xref href="FFmpeg.Codecs.Video.VideoCodec" data-throw-if-not-resolved="false"></xref> class with specified codec, width, height, and time base.
+  example: []
+  syntax:
+    content: public abstract class VideoCodec
+    content.vb: Public MustInherit Class VideoCodec
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - FFmpeg.Codecs.Video.SVTAV1
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Codecs.Video.VideoCodec.#ctor(FFmpeg.Codecs.Codec,System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Codecs.Video.VideoCodec.#ctor(FFmpeg.Codecs.Codec,System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  id: '#ctor(FFmpeg.Codecs.Codec,System.Int32,System.Int32,FFmpeg.Utils.Rational)'
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: VideoCodec(Codec, int, int, Rational)
+  nameWithType: VideoCodec.VideoCodec(Codec, int, int, Rational)
+  fullName: FFmpeg.Codecs.Video.VideoCodec.VideoCodec(FFmpeg.Codecs.Codec, int, int, FFmpeg.Utils.Rational)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Represents a base class for configuring and creating video codec contexts.
+
+    This abstract class provides common functionality for different video codecs.
+  remarks: Initializes a new instance of the <xref href="FFmpeg.Codecs.Video.VideoCodec" data-throw-if-not-resolved="false"></xref> class with specified codec, width, height, and time base.
+  example: []
+  syntax:
+    content: protected VideoCodec(Codec codec, int width, int height, Rational timeBase)
+    parameters:
+    - id: codec
+      type: FFmpeg.Codecs.Codec
+      description: The codec associated with this video codec configuration.
+    - id: width
+      type: System.Int32
+      description: The width of the video frame in pixels.
+    - id: height
+      type: System.Int32
+      description: The height of the video frame in pixels.
+    - id: timeBase
+      type: FFmpeg.Utils.Rational
+      description: The time base used for timestamp calculations.
+    content.vb: Protected Sub New(codec As Codec, width As Integer, height As Integer, timeBase As Rational)
+  overload: FFmpeg.Codecs.Video.VideoCodec.#ctor*
+  nameWithType.vb: VideoCodec.New(Codec, Integer, Integer, Rational)
+  fullName.vb: FFmpeg.Codecs.Video.VideoCodec.New(FFmpeg.Codecs.Codec, Integer, Integer, FFmpeg.Utils.Rational)
+  name.vb: New(Codec, Integer, Integer, Rational)
+- uid: FFmpeg.Codecs.Video.VideoCodec.Width
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Width
+  id: Width
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: VideoCodec.Width
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 22
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the width of the video frame in pixels.
+  example: []
+  syntax:
+    content: public int Width { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Width As Integer
+  overload: FFmpeg.Codecs.Video.VideoCodec.Width*
+- uid: FFmpeg.Codecs.Video.VideoCodec.Height
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Height
+  id: Height
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: VideoCodec.Height
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the height of the video frame in pixels.
+  example: []
+  syntax:
+    content: public int Height { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Height As Integer
+  overload: FFmpeg.Codecs.Video.VideoCodec.Height*
+- uid: FFmpeg.Codecs.Video.VideoCodec.Codec
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Codec
+  id: Codec
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: Codec
+  nameWithType: VideoCodec.Codec
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Codec
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Codec
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets the codec associated with this video codec configuration.
+  example: []
+  syntax:
+    content: public Codec Codec { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Codecs.Codec
+    content.vb: Public Property Codec As Codec
+  overload: FFmpeg.Codecs.Video.VideoCodec.Codec*
+- uid: FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  id: TimeBase
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: TimeBase
+  nameWithType: VideoCodec.TimeBase
+  fullName: FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TimeBase
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 37
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the time base used for timestamp calculations in the video stream.
+  example: []
+  syntax:
+    content: public Rational TimeBase { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Property TimeBase As Rational
+  overload: FFmpeg.Codecs.Video.VideoCodec.TimeBase*
+- uid: FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  id: PixelFormat
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: PixelFormat
+  nameWithType: VideoCodec.PixelFormat
+  fullName: FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormat
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets or sets the pixel format used for encoding or decoding the video frames.
+
+    Defaults to <xref href="FFmpeg.Images.PixelFormat.None" data-throw-if-not-resolved="false"></xref> if not specified.
+  example: []
+  syntax:
+    content: public PixelFormat PixelFormat { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.PixelFormat
+    content.vb: Public Property PixelFormat As PixelFormat
+  overload: FFmpeg.Codecs.Video.VideoCodec.PixelFormat*
+- uid: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  id: AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: AddCodecOptions(CodecContext)
+  nameWithType: VideoCodec.AddCodecOptions(CodecContext)
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AddCodecOptions
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 50
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Adds codec-specific options to the codec context.
+
+    This method must be implemented by derived classes to specify additional codec options.
+  example: []
+  syntax:
+    content: protected abstract void AddCodecOptions(CodecContext context)
+    parameters:
+    - id: context
+      type: FFmpeg.Codecs.CodecContext
+      description: The codec context to which options will be added.
+    content.vb: Protected MustOverride Sub AddCodecOptions(context As CodecContext)
+  overload: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions*
+- uid: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  commentId: M:FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  id: CreateCodecContext
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: CreateCodecContext()
+  nameWithType: VideoCodec.CreateCodecContext()
+  fullName: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CreateCodecContext
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Creates a new <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> configured with the current settings.
+  example: []
+  syntax:
+    content: public CodecContext CreateCodecContext()
+    return:
+      type: FFmpeg.Codecs.CodecContext
+      description: A configured <xref href="FFmpeg.Codecs.CodecContext" data-throw-if-not-resolved="false"></xref> instance.
+    content.vb: Public Function CreateCodecContext() As CodecContext
+  overload: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext*
+- uid: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  id: AdditionalParameters
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  langs:
+  - csharp
+  - vb
+  name: AdditionalParameters
+  nameWithType: VideoCodec.AdditionalParameters
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/VideoCodec.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdditionalParameters
+    path: FFmpeg/Codecs/Video/VideoCodec.cs
+    startLine: 76
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets a dictionary of additional parameters to be set on the codec context.
+
+    Parameters set here will be applied during the creation of the codec context.
+  example: []
+  syntax:
+    content: public Dictionary<string, string> AdditionalParameters { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property AdditionalParameters As Dictionary(Of String, String)
+  overload: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters*
+references:
+- uid: FFmpeg.Codecs.Video.VideoCodec
+  commentId: T:FFmpeg.Codecs.Video.VideoCodec
+  parent: FFmpeg.Codecs.Video
+  href: FFmpeg.Codecs.Video.VideoCodec.html
+  name: VideoCodec
+  nameWithType: VideoCodec
+  fullName: FFmpeg.Codecs.Video.VideoCodec
+- uid: FFmpeg.Codecs.Video
+  commentId: N:FFmpeg.Codecs.Video
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video
+  nameWithType: FFmpeg.Codecs.Video
+  fullName: FFmpeg.Codecs.Video
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Codecs.Video.VideoCodec.#ctor*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.#ctor
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec__ctor_FFmpeg_Codecs_Codec_System_Int32_System_Int32_FFmpeg_Utils_Rational_
+  name: VideoCodec
+  nameWithType: VideoCodec.VideoCodec
+  fullName: FFmpeg.Codecs.Video.VideoCodec.VideoCodec
+  nameWithType.vb: VideoCodec.New
+  fullName.vb: FFmpeg.Codecs.Video.VideoCodec.New
+  name.vb: New
+- uid: FFmpeg.Codecs.Codec
+  commentId: T:FFmpeg.Codecs.Codec
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.Codec.html
+  name: Codec
+  nameWithType: Codec
+  fullName: FFmpeg.Codecs.Codec
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Codecs.Video.VideoCodec.Width*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.Width
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Width
+  name: Width
+  nameWithType: VideoCodec.Width
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Width
+- uid: FFmpeg.Codecs.Video.VideoCodec.Height*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.Height
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Height
+  name: Height
+  nameWithType: VideoCodec.Height
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Height
+- uid: FFmpeg.Codecs.Video.VideoCodec.Codec*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.Codec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Codec
+  name: Codec
+  nameWithType: VideoCodec.Codec
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Codec
+- uid: FFmpeg.Codecs.Video.VideoCodec.TimeBase*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_TimeBase
+  name: TimeBase
+  nameWithType: VideoCodec.TimeBase
+  fullName: FFmpeg.Codecs.Video.VideoCodec.TimeBase
+- uid: FFmpeg.Images.PixelFormat.None
+  commentId: F:FFmpeg.Images.PixelFormat.None
+  href: FFmpeg.Images.PixelFormat.html#FFmpeg_Images_PixelFormat_None
+  name: None
+  nameWithType: PixelFormat.None
+  fullName: FFmpeg.Images.PixelFormat.None
+- uid: FFmpeg.Codecs.Video.VideoCodec.PixelFormat*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_PixelFormat
+  name: PixelFormat
+  nameWithType: VideoCodec.PixelFormat
+  fullName: FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+- uid: FFmpeg.Images.PixelFormat
+  commentId: T:FFmpeg.Images.PixelFormat
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormat.html
+  name: PixelFormat
+  nameWithType: PixelFormat
+  fullName: FFmpeg.Images.PixelFormat
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AddCodecOptions_FFmpeg_Codecs_CodecContext_
+  name: AddCodecOptions
+  nameWithType: VideoCodec.AddCodecOptions
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions
+- uid: FFmpeg.Codecs.CodecContext
+  commentId: T:FFmpeg.Codecs.CodecContext
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecContext.html
+  name: CodecContext
+  nameWithType: CodecContext
+  fullName: FFmpeg.Codecs.CodecContext
+- uid: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_CreateCodecContext
+  name: CreateCodecContext
+  nameWithType: VideoCodec.CreateCodecContext
+  fullName: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+- uid: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters*
+  commentId: Overload:FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AdditionalParameters
+  name: AdditionalParameters
+  nameWithType: VideoCodec.AdditionalParameters
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, string>
+  nameWithType: Dictionary<string, string>
+  fullName: System.Collections.Generic.Dictionary<string, string>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

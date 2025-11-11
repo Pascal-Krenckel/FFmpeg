@@ -1,0 +1,1220 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Options.OptionType
+  commentId: T:FFmpeg.Options.OptionType
+  id: OptionType
+  parent: FFmpeg.Options
+  children:
+  - FFmpeg.Options.OptionType.ArrayFlag
+  - FFmpeg.Options.OptionType.Binary
+  - FFmpeg.Options.OptionType.BinaryArray
+  - FFmpeg.Options.OptionType.Bool
+  - FFmpeg.Options.OptionType.BoolArray
+  - FFmpeg.Options.OptionType.ChannelLayout
+  - FFmpeg.Options.OptionType.ChannelLayoutArray
+  - FFmpeg.Options.OptionType.Color
+  - FFmpeg.Options.OptionType.ColorArray
+  - FFmpeg.Options.OptionType.Constant
+  - FFmpeg.Options.OptionType.ConstantArray
+  - FFmpeg.Options.OptionType.Dictionary
+  - FFmpeg.Options.OptionType.DictionaryArray
+  - FFmpeg.Options.OptionType.Double
+  - FFmpeg.Options.OptionType.DoubleArray
+  - FFmpeg.Options.OptionType.Duration
+  - FFmpeg.Options.OptionType.DurationArray
+  - FFmpeg.Options.OptionType.Flags
+  - FFmpeg.Options.OptionType.Float
+  - FFmpeg.Options.OptionType.FloatArray
+  - FFmpeg.Options.OptionType.ImageSize
+  - FFmpeg.Options.OptionType.ImageSizeArray
+  - FFmpeg.Options.OptionType.Int32
+  - FFmpeg.Options.OptionType.Int32Array
+  - FFmpeg.Options.OptionType.Int64
+  - FFmpeg.Options.OptionType.Int64Array
+  - FFmpeg.Options.OptionType.PixelFormat
+  - FFmpeg.Options.OptionType.PixelFormatArray
+  - FFmpeg.Options.OptionType.Rational
+  - FFmpeg.Options.OptionType.RationalArray
+  - FFmpeg.Options.OptionType.SampleFormat
+  - FFmpeg.Options.OptionType.SampleFormatArray
+  - FFmpeg.Options.OptionType.String
+  - FFmpeg.Options.OptionType.StringArray
+  - FFmpeg.Options.OptionType.UInt32
+  - FFmpeg.Options.OptionType.UInt32Array
+  - FFmpeg.Options.OptionType.UInt64
+  - FFmpeg.Options.OptionType.UInt64Array
+  - FFmpeg.Options.OptionType.VideoRate
+  - FFmpeg.Options.OptionType.VideoRateArray
+  langs:
+  - csharp
+  - vb
+  name: OptionType
+  nameWithType: OptionType
+  fullName: FFmpeg.Options.OptionType
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OptionType
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 7
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: Represents the different types of options available in the FFmpeg library.
+  example: []
+  syntax:
+    content: public enum OptionType
+    content.vb: Public Enum OptionType
+- uid: FFmpeg.Options.OptionType.Flags
+  commentId: F:FFmpeg.Options.OptionType.Flags
+  id: Flags
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: OptionType.Flags
+  fullName: FFmpeg.Options.OptionType.Flags
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A set of bit flags.
+  example: []
+  syntax:
+    content: Flags = 1
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Int32
+  commentId: F:FFmpeg.Options.OptionType.Int32
+  id: Int32
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Int32
+  nameWithType: OptionType.Int32
+  fullName: FFmpeg.Options.OptionType.Int32
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int32
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A 32-bit integer value.
+  example: []
+  syntax:
+    content: Int32 = 2
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Int64
+  commentId: F:FFmpeg.Options.OptionType.Int64
+  id: Int64
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Int64
+  nameWithType: OptionType.Int64
+  fullName: FFmpeg.Options.OptionType.Int64
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int64
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 22
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A 64-bit integer value.
+  example: []
+  syntax:
+    content: Int64 = 3
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Double
+  commentId: F:FFmpeg.Options.OptionType.Double
+  id: Double
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Double
+  nameWithType: OptionType.Double
+  fullName: FFmpeg.Options.OptionType.Double
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Double
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A double-precision floating-point value.
+  example: []
+  syntax:
+    content: Double = 4
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Float
+  commentId: F:FFmpeg.Options.OptionType.Float
+  id: Float
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Float
+  nameWithType: OptionType.Float
+  fullName: FFmpeg.Options.OptionType.Float
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Float
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A single-precision floating-point value.
+  example: []
+  syntax:
+    content: Float = 5
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.String
+  commentId: F:FFmpeg.Options.OptionType.String
+  id: String
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: String
+  nameWithType: OptionType.String
+  fullName: FFmpeg.Options.OptionType.String
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: String
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 37
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A string of characters.
+  example: []
+  syntax:
+    content: String = 6
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Rational
+  commentId: F:FFmpeg.Options.OptionType.Rational
+  id: Rational
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Rational
+  nameWithType: OptionType.Rational
+  fullName: FFmpeg.Options.OptionType.Rational
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Rational
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 42
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A rational number, represented as a pair of integers (numerator and denominator).
+  example: []
+  syntax:
+    content: Rational = 7
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Binary
+  commentId: F:FFmpeg.Options.OptionType.Binary
+  id: Binary
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Binary
+  nameWithType: OptionType.Binary
+  fullName: FFmpeg.Options.OptionType.Binary
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Binary
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: Binary data, with length specified by an integer following a pointer.
+  example: []
+  syntax:
+    content: Binary = 8
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Dictionary
+  commentId: F:FFmpeg.Options.OptionType.Dictionary
+  id: Dictionary
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Dictionary
+  nameWithType: OptionType.Dictionary
+  fullName: FFmpeg.Options.OptionType.Dictionary
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dictionary
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 52
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A dictionary of key-value pairs.
+  example: []
+  syntax:
+    content: Dictionary = 9
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.UInt64
+  commentId: F:FFmpeg.Options.OptionType.UInt64
+  id: UInt64
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: UInt64
+  nameWithType: OptionType.UInt64
+  fullName: FFmpeg.Options.OptionType.UInt64
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt64
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 57
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A 64-bit unsigned integer value.
+  example: []
+  syntax:
+    content: UInt64 = 10
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Constant
+  commentId: F:FFmpeg.Options.OptionType.Constant
+  id: Constant
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Constant
+  nameWithType: OptionType.Constant
+  fullName: FFmpeg.Options.OptionType.Constant
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Constant
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 62
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A constant value.
+  example: []
+  syntax:
+    content: Constant = 11
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ImageSize
+  commentId: F:FFmpeg.Options.OptionType.ImageSize
+  id: ImageSize
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ImageSize
+  nameWithType: OptionType.ImageSize
+  fullName: FFmpeg.Options.OptionType.ImageSize
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ImageSize
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An image size, where the offset points to two consecutive integers.
+  example: []
+  syntax:
+    content: ImageSize = 12
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.PixelFormat
+  commentId: F:FFmpeg.Options.OptionType.PixelFormat
+  id: PixelFormat
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: PixelFormat
+  nameWithType: OptionType.PixelFormat
+  fullName: FFmpeg.Options.OptionType.PixelFormat
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormat
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 72
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A pixel format.
+  example: []
+  syntax:
+    content: PixelFormat = 13
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.SampleFormat
+  commentId: F:FFmpeg.Options.OptionType.SampleFormat
+  id: SampleFormat
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: SampleFormat
+  nameWithType: OptionType.SampleFormat
+  fullName: FFmpeg.Options.OptionType.SampleFormat
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleFormat
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 77
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A sample format.
+  example: []
+  syntax:
+    content: SampleFormat = 14
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.VideoRate
+  commentId: F:FFmpeg.Options.OptionType.VideoRate
+  id: VideoRate
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: VideoRate
+  nameWithType: OptionType.VideoRate
+  fullName: FFmpeg.Options.OptionType.VideoRate
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoRate
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 82
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A video rate, where the offset points to an _AVRational structure.
+  example: []
+  syntax:
+    content: VideoRate = 15
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Duration
+  commentId: F:FFmpeg.Options.OptionType.Duration
+  id: Duration
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: OptionType.Duration
+  fullName: FFmpeg.Options.OptionType.Duration
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Duration
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 87
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A duration value.
+  example: []
+  syntax:
+    content: Duration = 16
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Color
+  commentId: F:FFmpeg.Options.OptionType.Color
+  id: Color
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Color
+  nameWithType: OptionType.Color
+  fullName: FFmpeg.Options.OptionType.Color
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Color
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 92
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A color value.
+  example: []
+  syntax:
+    content: Color = 17
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Bool
+  commentId: F:FFmpeg.Options.OptionType.Bool
+  id: Bool
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Bool
+  nameWithType: OptionType.Bool
+  fullName: FFmpeg.Options.OptionType.Bool
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Bool
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 97
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A boolean value (true/false).
+  example: []
+  syntax:
+    content: Bool = 18
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ChannelLayout
+  commentId: F:FFmpeg.Options.OptionType.ChannelLayout
+  id: ChannelLayout
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ChannelLayout
+  nameWithType: OptionType.ChannelLayout
+  fullName: FFmpeg.Options.OptionType.ChannelLayout
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChannelLayout
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 102
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: A channel layout.
+  example: []
+  syntax:
+    content: ChannelLayout = 19
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.UInt32
+  commentId: F:FFmpeg.Options.OptionType.UInt32
+  id: UInt32
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: UInt32
+  nameWithType: OptionType.UInt32
+  fullName: FFmpeg.Options.OptionType.UInt32
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt32
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 107
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An unsigned integer value.
+  example: []
+  syntax:
+    content: UInt32 = 20
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ArrayFlag
+  commentId: F:FFmpeg.Options.OptionType.ArrayFlag
+  id: ArrayFlag
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ArrayFlag
+  nameWithType: OptionType.ArrayFlag
+  fullName: FFmpeg.Options.OptionType.ArrayFlag
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ArrayFlag
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 112
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: Indicates that the option type is an array of the described type.
+  example: []
+  syntax:
+    content: ArrayFlag = 65536
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Int32Array
+  commentId: F:FFmpeg.Options.OptionType.Int32Array
+  id: Int32Array
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Int32Array
+  nameWithType: OptionType.Int32Array
+  fullName: FFmpeg.Options.OptionType.Int32Array
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int32Array
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 117
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of 32-bit integers.
+  example: []
+  syntax:
+    content: Int32Array = 65538
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.Int64Array
+  commentId: F:FFmpeg.Options.OptionType.Int64Array
+  id: Int64Array
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: Int64Array
+  nameWithType: OptionType.Int64Array
+  fullName: FFmpeg.Options.OptionType.Int64Array
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Int64Array
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 122
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of 64-bit integers.
+  example: []
+  syntax:
+    content: Int64Array = 65539
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.DoubleArray
+  commentId: F:FFmpeg.Options.OptionType.DoubleArray
+  id: DoubleArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: DoubleArray
+  nameWithType: OptionType.DoubleArray
+  fullName: FFmpeg.Options.OptionType.DoubleArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DoubleArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 127
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of double-precision floating-point values.
+  example: []
+  syntax:
+    content: DoubleArray = 65540
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.FloatArray
+  commentId: F:FFmpeg.Options.OptionType.FloatArray
+  id: FloatArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: FloatArray
+  nameWithType: OptionType.FloatArray
+  fullName: FFmpeg.Options.OptionType.FloatArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FloatArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 132
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of single-precision floating-point values.
+  example: []
+  syntax:
+    content: FloatArray = 65541
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.StringArray
+  commentId: F:FFmpeg.Options.OptionType.StringArray
+  id: StringArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: StringArray
+  nameWithType: OptionType.StringArray
+  fullName: FFmpeg.Options.OptionType.StringArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: StringArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 137
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of strings.
+  example: []
+  syntax:
+    content: StringArray = 65542
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.RationalArray
+  commentId: F:FFmpeg.Options.OptionType.RationalArray
+  id: RationalArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: RationalArray
+  nameWithType: OptionType.RationalArray
+  fullName: FFmpeg.Options.OptionType.RationalArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: RationalArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 142
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of rational numbers.
+  example: []
+  syntax:
+    content: RationalArray = 65543
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.BinaryArray
+  commentId: F:FFmpeg.Options.OptionType.BinaryArray
+  id: BinaryArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: BinaryArray
+  nameWithType: OptionType.BinaryArray
+  fullName: FFmpeg.Options.OptionType.BinaryArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BinaryArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 147
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of binary data.
+  example: []
+  syntax:
+    content: BinaryArray = 65544
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.DictionaryArray
+  commentId: F:FFmpeg.Options.OptionType.DictionaryArray
+  id: DictionaryArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: DictionaryArray
+  nameWithType: OptionType.DictionaryArray
+  fullName: FFmpeg.Options.OptionType.DictionaryArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DictionaryArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 152
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of dictionary values.
+  example: []
+  syntax:
+    content: DictionaryArray = 65545
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.UInt64Array
+  commentId: F:FFmpeg.Options.OptionType.UInt64Array
+  id: UInt64Array
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: UInt64Array
+  nameWithType: OptionType.UInt64Array
+  fullName: FFmpeg.Options.OptionType.UInt64Array
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt64Array
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 157
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of 64-bit unsigned integers.
+  example: []
+  syntax:
+    content: UInt64Array = 65546
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ConstantArray
+  commentId: F:FFmpeg.Options.OptionType.ConstantArray
+  id: ConstantArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ConstantArray
+  nameWithType: OptionType.ConstantArray
+  fullName: FFmpeg.Options.OptionType.ConstantArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ConstantArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 162
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of constants.
+  example: []
+  syntax:
+    content: ConstantArray = 65547
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ImageSizeArray
+  commentId: F:FFmpeg.Options.OptionType.ImageSizeArray
+  id: ImageSizeArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ImageSizeArray
+  nameWithType: OptionType.ImageSizeArray
+  fullName: FFmpeg.Options.OptionType.ImageSizeArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ImageSizeArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 167
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of image sizes.
+  example: []
+  syntax:
+    content: ImageSizeArray = 65548
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.PixelFormatArray
+  commentId: F:FFmpeg.Options.OptionType.PixelFormatArray
+  id: PixelFormatArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: PixelFormatArray
+  nameWithType: OptionType.PixelFormatArray
+  fullName: FFmpeg.Options.OptionType.PixelFormatArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormatArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 172
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of pixel formats.
+  example: []
+  syntax:
+    content: PixelFormatArray = 65549
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.SampleFormatArray
+  commentId: F:FFmpeg.Options.OptionType.SampleFormatArray
+  id: SampleFormatArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: SampleFormatArray
+  nameWithType: OptionType.SampleFormatArray
+  fullName: FFmpeg.Options.OptionType.SampleFormatArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SampleFormatArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 177
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of sample formats.
+  example: []
+  syntax:
+    content: SampleFormatArray = 65550
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.VideoRateArray
+  commentId: F:FFmpeg.Options.OptionType.VideoRateArray
+  id: VideoRateArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: VideoRateArray
+  nameWithType: OptionType.VideoRateArray
+  fullName: FFmpeg.Options.OptionType.VideoRateArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: VideoRateArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 182
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of video rates.
+  example: []
+  syntax:
+    content: VideoRateArray = 65551
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.DurationArray
+  commentId: F:FFmpeg.Options.OptionType.DurationArray
+  id: DurationArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: DurationArray
+  nameWithType: OptionType.DurationArray
+  fullName: FFmpeg.Options.OptionType.DurationArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DurationArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 187
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of duration values.
+  example: []
+  syntax:
+    content: DurationArray = 65552
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ColorArray
+  commentId: F:FFmpeg.Options.OptionType.ColorArray
+  id: ColorArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ColorArray
+  nameWithType: OptionType.ColorArray
+  fullName: FFmpeg.Options.OptionType.ColorArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ColorArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 192
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of color values.
+  example: []
+  syntax:
+    content: ColorArray = 65553
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.BoolArray
+  commentId: F:FFmpeg.Options.OptionType.BoolArray
+  id: BoolArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: BoolArray
+  nameWithType: OptionType.BoolArray
+  fullName: FFmpeg.Options.OptionType.BoolArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BoolArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 197
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of boolean values.
+  example: []
+  syntax:
+    content: BoolArray = 65554
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.ChannelLayoutArray
+  commentId: F:FFmpeg.Options.OptionType.ChannelLayoutArray
+  id: ChannelLayoutArray
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: ChannelLayoutArray
+  nameWithType: OptionType.ChannelLayoutArray
+  fullName: FFmpeg.Options.OptionType.ChannelLayoutArray
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ChannelLayoutArray
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 202
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of channel layouts.
+  example: []
+  syntax:
+    content: ChannelLayoutArray = 65555
+    return:
+      type: FFmpeg.Options.OptionType
+- uid: FFmpeg.Options.OptionType.UInt32Array
+  commentId: F:FFmpeg.Options.OptionType.UInt32Array
+  id: UInt32Array
+  parent: FFmpeg.Options.OptionType
+  langs:
+  - csharp
+  - vb
+  name: UInt32Array
+  nameWithType: OptionType.UInt32Array
+  fullName: FFmpeg.Options.OptionType.UInt32Array
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Options/OptionType.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: UInt32Array
+    path: FFmpeg/Options/OptionType.cs
+    startLine: 207
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Options
+  summary: An array of unsigned integer values.
+  example: []
+  syntax:
+    content: UInt32Array = 65556
+    return:
+      type: FFmpeg.Options.OptionType
+references:
+- uid: FFmpeg.Options
+  commentId: N:FFmpeg.Options
+  href: FFmpeg.html
+  name: FFmpeg.Options
+  nameWithType: FFmpeg.Options
+  fullName: FFmpeg.Options
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Options
+    name: Options
+    href: FFmpeg.Options.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Options
+    name: Options
+    href: FFmpeg.Options.html
+- uid: FFmpeg.Options.OptionType
+  commentId: T:FFmpeg.Options.OptionType
+  parent: FFmpeg.Options
+  href: FFmpeg.Options.OptionType.html
+  name: OptionType
+  nameWithType: OptionType
+  fullName: FFmpeg.Options.OptionType

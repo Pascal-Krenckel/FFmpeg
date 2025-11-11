@@ -1,0 +1,2831 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct AVResult32 | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct AVResult32 | FFmpegDotNet ">
+      
+      <meta name="description" content="Represents a 32-bit integer result from an AV operation.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Utils_AVResult32.md&amp;value=---%0Auid%3A%20FFmpeg.Utils.AVResult32%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Utils.AVResult32">
+
+
+
+  <h1 id="FFmpeg_Utils_AVResult32" data-uid="FFmpeg.Utils.AVResult32" class="text-break">
+Struct AVResult32  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Utils.html">Utils</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a 32-bit integer result from an AV operation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct AVResult32 : IEquatable&lt;AVResult32&gt;, IEquatable&lt;int&gt;</code></pre>
+  </div>
+
+
+
+
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVResult32__ctor_" data-uid="FFmpeg.Utils.AVResult32.#ctor*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32__ctor" data-uid="FFmpeg.Utils.AVResult32.#ctor">
+  AVResult32()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> class with a value of 0.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32__ctor_" data-uid="FFmpeg.Utils.AVResult32.#ctor*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32__ctor_System_Int32_" data-uid="FFmpeg.Utils.AVResult32.#ctor(System.Int32)">
+  AVResult32(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> class with the specified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32(int value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The 32-bit integer value to initialize with.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVResult32_ArgumentListTooLong_" data-uid="FFmpeg.Utils.AVResult32.ArgumentListTooLong*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ArgumentListTooLong" data-uid="FFmpeg.Utils.AVResult32.ArgumentListTooLong">
+  ArgumentListTooLong
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Argument list too long (E2BIG)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ArgumentListTooLong { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BadAddress_" data-uid="FFmpeg.Utils.AVResult32.BadAddress*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BadAddress" data-uid="FFmpeg.Utils.AVResult32.BadAddress">
+  BadAddress
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bad address (EFAULT)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BadAddress { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BadFileDescriptor_" data-uid="FFmpeg.Utils.AVResult32.BadFileDescriptor*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BadFileDescriptor" data-uid="FFmpeg.Utils.AVResult32.BadFileDescriptor">
+  BadFileDescriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bad file descriptor (EBADF)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BadFileDescriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BitstreamFilterNotFound_" data-uid="FFmpeg.Utils.AVResult32.BitstreamFilterNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BitstreamFilterNotFound" data-uid="FFmpeg.Utils.AVResult32.BitstreamFilterNotFound">
+  BitstreamFilterNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Bitstream filter not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BitstreamFilterNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BlockDeviceRequired_" data-uid="FFmpeg.Utils.AVResult32.BlockDeviceRequired*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BlockDeviceRequired" data-uid="FFmpeg.Utils.AVResult32.BlockDeviceRequired">
+  BlockDeviceRequired
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Block device required (ENOTBLK)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BlockDeviceRequired { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BrokenPipe_" data-uid="FFmpeg.Utils.AVResult32.BrokenPipe*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BrokenPipe" data-uid="FFmpeg.Utils.AVResult32.BrokenPipe">
+  BrokenPipe
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Broken pipe (EPIPE)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BrokenPipe { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_BufferTooSmall_" data-uid="FFmpeg.Utils.AVResult32.BufferTooSmall*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_BufferTooSmall" data-uid="FFmpeg.Utils.AVResult32.BufferTooSmall">
+  BufferTooSmall
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L230"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Buffer too small.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int BufferTooSmall { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_Bug_" data-uid="FFmpeg.Utils.AVResult32.Bug*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_Bug" data-uid="FFmpeg.Utils.AVResult32.Bug">
+  Bug
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L220"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Internal bug, also see <a class="xref" href="FFmpeg.Utils.AVResult32.html#FFmpeg_Utils_AVResult32_Bug2">Bug2</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Bug { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_Bug2_" data-uid="FFmpeg.Utils.AVResult32.Bug2*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_Bug2" data-uid="FFmpeg.Utils.AVResult32.Bug2">
+  Bug2
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>This is semantically identical to <a class="xref" href="FFmpeg.Utils.AVResult32.html#FFmpeg_Utils_AVResult32_Bug">Bug</a> it has been introduced in Libav after our AVERROR_BUG and with a modified value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Bug2 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_CrossDeviceLink_" data-uid="FFmpeg.Utils.AVResult32.CrossDeviceLink*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_CrossDeviceLink" data-uid="FFmpeg.Utils.AVResult32.CrossDeviceLink">
+  CrossDeviceLink
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Cross-device link (EXDEV)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int CrossDeviceLink { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_DecoderNotFound_" data-uid="FFmpeg.Utils.AVResult32.DecoderNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_DecoderNotFound" data-uid="FFmpeg.Utils.AVResult32.DecoderNotFound">
+  DecoderNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L235"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decoder not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int DecoderNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_DemuxerNotFound_" data-uid="FFmpeg.Utils.AVResult32.DemuxerNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_DemuxerNotFound" data-uid="FFmpeg.Utils.AVResult32.DemuxerNotFound">
+  DemuxerNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Demuxer not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int DemuxerNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_DeviceOrResourceBusy_" data-uid="FFmpeg.Utils.AVResult32.DeviceOrResourceBusy*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_DeviceOrResourceBusy" data-uid="FFmpeg.Utils.AVResult32.DeviceOrResourceBusy">
+  DeviceOrResourceBusy
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Device or resource busy (EBUSY)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int DeviceOrResourceBusy { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_EncoderNotFound_" data-uid="FFmpeg.Utils.AVResult32.EncoderNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_EncoderNotFound" data-uid="FFmpeg.Utils.AVResult32.EncoderNotFound">
+  EncoderNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L245"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encoder not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int EncoderNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_EndOfFile_" data-uid="FFmpeg.Utils.AVResult32.EndOfFile*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_EndOfFile" data-uid="FFmpeg.Utils.AVResult32.EndOfFile">
+  EndOfFile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>End of file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int EndOfFile { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ExecFormatError_" data-uid="FFmpeg.Utils.AVResult32.ExecFormatError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ExecFormatError" data-uid="FFmpeg.Utils.AVResult32.ExecFormatError">
+  ExecFormatError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Exec format error (ENOEXEC)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ExecFormatError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_Exit_" data-uid="FFmpeg.Utils.AVResult32.Exit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_Exit" data-uid="FFmpeg.Utils.AVResult32.Exit">
+  Exit
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Immediate exit was requested; the called function should not be restarted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int Exit { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ExperimentalFeature_" data-uid="FFmpeg.Utils.AVResult32.ExperimentalFeature*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ExperimentalFeature" data-uid="FFmpeg.Utils.AVResult32.ExperimentalFeature">
+  ExperimentalFeature
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Requested feature is flagged experimental. Notify strict_std_compliance if you really want to use it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ExperimentalFeature { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ExternalError_" data-uid="FFmpeg.Utils.AVResult32.ExternalError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ExternalError" data-uid="FFmpeg.Utils.AVResult32.ExternalError">
+  ExternalError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L260"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generic error in an external library.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ExternalError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_FileExists_" data-uid="FFmpeg.Utils.AVResult32.FileExists*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_FileExists" data-uid="FFmpeg.Utils.AVResult32.FileExists">
+  FileExists
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>File exists (EEXIST)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int FileExists { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_FileTooLarge_" data-uid="FFmpeg.Utils.AVResult32.FileTooLarge*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_FileTooLarge" data-uid="FFmpeg.Utils.AVResult32.FileTooLarge">
+  FileTooLarge
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L189"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>File too large (EFBIG)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int FileTooLarge { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_FilterNotFound_" data-uid="FFmpeg.Utils.AVResult32.FilterNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_FilterNotFound" data-uid="FFmpeg.Utils.AVResult32.FilterNotFound">
+  FilterNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Filter not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int FilterNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpBadRequest_" data-uid="FFmpeg.Utils.AVResult32.HttpBadRequest*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpBadRequest" data-uid="FFmpeg.Utils.AVResult32.HttpBadRequest">
+  HttpBadRequest
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP 400 Bad Request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpBadRequest { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpForbidden_" data-uid="FFmpeg.Utils.AVResult32.HttpForbidden*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpForbidden" data-uid="FFmpeg.Utils.AVResult32.HttpForbidden">
+  HttpForbidden
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L330"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP 403 Forbidden.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpForbidden { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpNotFound_" data-uid="FFmpeg.Utils.AVResult32.HttpNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpNotFound" data-uid="FFmpeg.Utils.AVResult32.HttpNotFound">
+  HttpNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP 404 Not Found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpOther4xx_" data-uid="FFmpeg.Utils.AVResult32.HttpOther4xx*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpOther4xx" data-uid="FFmpeg.Utils.AVResult32.HttpOther4xx">
+  HttpOther4xx
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP other 4xx errors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpOther4xx { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpServerError_" data-uid="FFmpeg.Utils.AVResult32.HttpServerError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpServerError" data-uid="FFmpeg.Utils.AVResult32.HttpServerError">
+  HttpServerError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L350"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP server error (5xx).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpServerError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpTooManyRequests_" data-uid="FFmpeg.Utils.AVResult32.HttpTooManyRequests*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpTooManyRequests" data-uid="FFmpeg.Utils.AVResult32.HttpTooManyRequests">
+  HttpTooManyRequests
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L340"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP 429 Too Many Requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpTooManyRequests { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_HttpUnauthorized_" data-uid="FFmpeg.Utils.AVResult32.HttpUnauthorized*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_HttpUnauthorized" data-uid="FFmpeg.Utils.AVResult32.HttpUnauthorized">
+  HttpUnauthorized
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HTTP 401 Unauthorized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int HttpUnauthorized { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_IOError_" data-uid="FFmpeg.Utils.AVResult32.IOError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_IOError" data-uid="FFmpeg.Utils.AVResult32.IOError">
+  IOError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>I/O error (EIO)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int IOError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_IllegalSeek_" data-uid="FFmpeg.Utils.AVResult32.IllegalSeek*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_IllegalSeek" data-uid="FFmpeg.Utils.AVResult32.IllegalSeek">
+  IllegalSeek
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L195"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Illegal seek (ESPIPE)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int IllegalSeek { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_InputChanged_" data-uid="FFmpeg.Utils.AVResult32.InputChanged*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_InputChanged" data-uid="FFmpeg.Utils.AVResult32.InputChanged">
+  InputChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L310"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Input changed between calls. Reconfiguration is required. (can be OR-ed with <a class="xref" href="FFmpeg.Utils.AVResult32.html#FFmpeg_Utils_AVResult32_OutputChanged">OutputChanged</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int InputChanged { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_InterruptedSystemCall_" data-uid="FFmpeg.Utils.AVResult32.InterruptedSystemCall*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_InterruptedSystemCall" data-uid="FFmpeg.Utils.AVResult32.InterruptedSystemCall">
+  InterruptedSystemCall
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Interrupted system call (EINTR)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int InterruptedSystemCall { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_InvalidArgument_" data-uid="FFmpeg.Utils.AVResult32.InvalidArgument*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_InvalidArgument" data-uid="FFmpeg.Utils.AVResult32.InvalidArgument">
+  InvalidArgument
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invalid argument (EINVAL)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int InvalidArgument { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_InvalidData_" data-uid="FFmpeg.Utils.AVResult32.InvalidData*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_InvalidData" data-uid="FFmpeg.Utils.AVResult32.InvalidData">
+  InvalidData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invalid data found when processing input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int InvalidData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_IsADirectory_" data-uid="FFmpeg.Utils.AVResult32.IsADirectory*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_IsADirectory" data-uid="FFmpeg.Utils.AVResult32.IsADirectory">
+  IsADirectory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Is a directory (EISDIR)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int IsADirectory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_IsError_" data-uid="FFmpeg.Utils.AVResult32.IsError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_IsError" data-uid="FFmpeg.Utils.AVResult32.IsError">
+  IsError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the result represents an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the result is less than 0 or (EAGAIN); otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_IsTryAgain_" data-uid="FFmpeg.Utils.AVResult32.IsTryAgain*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_IsTryAgain" data-uid="FFmpeg.Utils.AVResult32.IsTryAgain">
+  IsTryAgain
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L355"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True if, <code><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/this">this</a> == <a class="xref" href="FFmpeg.Utils.AVResult32.html#FFmpeg_Utils_AVResult32_TryAgain">TryAgain</a></code></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTryAgain { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_MuxerNotFound_" data-uid="FFmpeg.Utils.AVResult32.MuxerNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_MuxerNotFound" data-uid="FFmpeg.Utils.AVResult32.MuxerNotFound">
+  MuxerNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Muxer not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int MuxerNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoChildProcesses_" data-uid="FFmpeg.Utils.AVResult32.NoChildProcesses*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoChildProcesses" data-uid="FFmpeg.Utils.AVResult32.NoChildProcesses">
+  NoChildProcesses
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No child processes (ECHILD)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoChildProcesses { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoSpaceLeftOnDevice_" data-uid="FFmpeg.Utils.AVResult32.NoSpaceLeftOnDevice*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoSpaceLeftOnDevice" data-uid="FFmpeg.Utils.AVResult32.NoSpaceLeftOnDevice">
+  NoSpaceLeftOnDevice
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No space left on device (ENOSPC)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoSpaceLeftOnDevice { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoSuchDevice_" data-uid="FFmpeg.Utils.AVResult32.NoSuchDevice*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoSuchDevice" data-uid="FFmpeg.Utils.AVResult32.NoSuchDevice">
+  NoSuchDevice
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No such device (ENODEV)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoSuchDevice { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoSuchDeviceOrAddress_" data-uid="FFmpeg.Utils.AVResult32.NoSuchDeviceOrAddress*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoSuchDeviceOrAddress" data-uid="FFmpeg.Utils.AVResult32.NoSuchDeviceOrAddress">
+  NoSuchDeviceOrAddress
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No such device or address (ENXIO)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoSuchDeviceOrAddress { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoSuchFileOrDirectory_" data-uid="FFmpeg.Utils.AVResult32.NoSuchFileOrDirectory*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoSuchFileOrDirectory" data-uid="FFmpeg.Utils.AVResult32.NoSuchFileOrDirectory">
+  NoSuchFileOrDirectory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No such file or directory (ENOENT)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoSuchFileOrDirectory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NoSuchProcess_" data-uid="FFmpeg.Utils.AVResult32.NoSuchProcess*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NoSuchProcess" data-uid="FFmpeg.Utils.AVResult32.NoSuchProcess">
+  NoSuchProcess
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>No such process (ESRCH)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NoSuchProcess { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NotADirectory_" data-uid="FFmpeg.Utils.AVResult32.NotADirectory*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NotADirectory" data-uid="FFmpeg.Utils.AVResult32.NotADirectory">
+  NotADirectory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Not a directory (ENOTDIR)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NotADirectory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_NotATypewriter_" data-uid="FFmpeg.Utils.AVResult32.NotATypewriter*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_NotATypewriter" data-uid="FFmpeg.Utils.AVResult32.NotATypewriter">
+  NotATypewriter
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Not a typewriter (ENOTTY)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int NotATypewriter { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_OperationNotPermitted_" data-uid="FFmpeg.Utils.AVResult32.OperationNotPermitted*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_OperationNotPermitted" data-uid="FFmpeg.Utils.AVResult32.OperationNotPermitted">
+  OperationNotPermitted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Operation not permitted (EPERM)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OperationNotPermitted { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_OptionNotFound_" data-uid="FFmpeg.Utils.AVResult32.OptionNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_OptionNotFound" data-uid="FFmpeg.Utils.AVResult32.OptionNotFound">
+  OptionNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Option not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OptionNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_OutOfMemory_" data-uid="FFmpeg.Utils.AVResult32.OutOfMemory*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_OutOfMemory" data-uid="FFmpeg.Utils.AVResult32.OutOfMemory">
+  OutOfMemory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Out of memory (ENOMEM)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OutOfMemory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_OutOfRange_" data-uid="FFmpeg.Utils.AVResult32.OutOfRange*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_OutOfRange" data-uid="FFmpeg.Utils.AVResult32.OutOfRange">
+  OutOfRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L208"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The value was out of range (ERANGE)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OutOfRange { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_OutputChanged_" data-uid="FFmpeg.Utils.AVResult32.OutputChanged*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_OutputChanged" data-uid="FFmpeg.Utils.AVResult32.OutputChanged">
+  OutputChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Output changed between calls. Reconfiguration is required. (can be OR-ed with <a class="xref" href="FFmpeg.Utils.AVResult32.html#FFmpeg_Utils_AVResult32_InputChanged">InputChanged</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int OutputChanged { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_PatchWelcome_" data-uid="FFmpeg.Utils.AVResult32.PatchWelcome*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_PatchWelcome" data-uid="FFmpeg.Utils.AVResult32.PatchWelcome">
+  PatchWelcome
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Not yet implemented in FFmpeg, patches welcome.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int PatchWelcome { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_PermissionDenied_" data-uid="FFmpeg.Utils.AVResult32.PermissionDenied*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_PermissionDenied" data-uid="FFmpeg.Utils.AVResult32.PermissionDenied">
+  PermissionDenied
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Permission denied (EACCES)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int PermissionDenied { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ProtocolNotFound_" data-uid="FFmpeg.Utils.AVResult32.ProtocolNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ProtocolNotFound" data-uid="FFmpeg.Utils.AVResult32.ProtocolNotFound">
+  ProtocolNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Protocol not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ProtocolNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ReadOnlyFileSystem_" data-uid="FFmpeg.Utils.AVResult32.ReadOnlyFileSystem*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ReadOnlyFileSystem" data-uid="FFmpeg.Utils.AVResult32.ReadOnlyFileSystem">
+  ReadOnlyFileSystem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L198"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Read-only file system (EROFS)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int ReadOnlyFileSystem { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_StreamNotFound_" data-uid="FFmpeg.Utils.AVResult32.StreamNotFound*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_StreamNotFound" data-uid="FFmpeg.Utils.AVResult32.StreamNotFound">
+  StreamNotFound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L295"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Stream not found.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int StreamNotFound { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_TextFileBusy_" data-uid="FFmpeg.Utils.AVResult32.TextFileBusy*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_TextFileBusy" data-uid="FFmpeg.Utils.AVResult32.TextFileBusy">
+  TextFileBusy
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Text file busy (ETXTBSY)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TextFileBusy { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_TooManyLinks_" data-uid="FFmpeg.Utils.AVResult32.TooManyLinks*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_TooManyLinks" data-uid="FFmpeg.Utils.AVResult32.TooManyLinks">
+  TooManyLinks
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Too many links (EMLINK)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TooManyLinks { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_TooManyOpenFiles_" data-uid="FFmpeg.Utils.AVResult32.TooManyOpenFiles*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_TooManyOpenFiles" data-uid="FFmpeg.Utils.AVResult32.TooManyOpenFiles">
+  TooManyOpenFiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Too many open files (EMFILE)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TooManyOpenFiles { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_TooManyOpenFilesInSystem_" data-uid="FFmpeg.Utils.AVResult32.TooManyOpenFilesInSystem*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_TooManyOpenFilesInSystem" data-uid="FFmpeg.Utils.AVResult32.TooManyOpenFilesInSystem">
+  TooManyOpenFilesInSystem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Too many open files in system (ENFILE)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TooManyOpenFilesInSystem { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_TryAgain_" data-uid="FFmpeg.Utils.AVResult32.TryAgain*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_TryAgain" data-uid="FFmpeg.Utils.AVResult32.TryAgain">
+  TryAgain
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Try again (EAGAIN)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int TryAgain { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_UnknownError_" data-uid="FFmpeg.Utils.AVResult32.UnknownError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_UnknownError" data-uid="FFmpeg.Utils.AVResult32.UnknownError">
+  UnknownError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L300"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unknown error, typically from an external library.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int UnknownError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVResult32_Equals_" data-uid="FFmpeg.Utils.AVResult32.Equals*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_Equals_FFmpeg_Utils_AVResult32_" data-uid="FFmpeg.Utils.AVResult32.Equals(FFmpeg.Utils.AVResult32)">
+  Equals(AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L364"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether the current object is equal to another object of the same type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(AVResult32 other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An object to compare with this object.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_Equals_" data-uid="FFmpeg.Utils.AVResult32.Equals*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_Equals_System_Object_" data-uid="FFmpeg.Utils.AVResult32.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L361"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Indicates whether this instance and a specified object are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The object to compare with the current instance.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_GetHashCode_" data-uid="FFmpeg.Utils.AVResult32.GetHashCode*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_GetHashCode" data-uid="FFmpeg.Utils.AVResult32.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L367"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the hash code for this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>A 32-bit signed integer that is the hash code for this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ThrowIfError_" data-uid="FFmpeg.Utils.AVResult32.ThrowIfError*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ThrowIfError" data-uid="FFmpeg.Utils.AVResult32.ThrowIfError">
+  ThrowIfError()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Throws an exception if the result represents an error.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ThrowIfError()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Exceptions.FFmpegException.html">FFmpegException</a></dt>
+    <dd><p>Thrown when the result represents an error.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_ToString_" data-uid="FFmpeg.Utils.AVResult32.ToString*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_ToString" data-uid="FFmpeg.Utils.AVResult32.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L373"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the numeric value of this instance to its equivalent string representation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string representation of the value of this instance, consisting of a negative sign if the value is negative, and a sequence of digits ranging from 0 to 9 with no leading zeroes.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Equality_" data-uid="FFmpeg.Utils.AVResult32.op_Equality*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Equality_FFmpeg_Utils_AVResult32_FFmpeg_Utils_AVResult32_" data-uid="FFmpeg.Utils.AVResult32.op_Equality(FFmpeg.Utils.AVResult32,FFmpeg.Utils.AVResult32)">
+  operator ==(AVResult32, AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instances are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(AVResult32 left, AVResult32 right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the two instances are equal; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Explicit_" data-uid="FFmpeg.Utils.AVResult32.op_Explicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Explicit_FFmpeg_Utils_AVResult32__System_UInt32" data-uid="FFmpeg.Utils.AVResult32.op_Explicit(FFmpeg.Utils.AVResult32)~System.UInt32">
+  explicit operator uint(AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator uint(AVResult32 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The underlying integer value of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance, cast to uint.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Explicit_" data-uid="FFmpeg.Utils.AVResult32.op_Explicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Explicit_FFmpeg_Utils_AVResult32__System_UInt64" data-uid="FFmpeg.Utils.AVResult32.op_Explicit(FFmpeg.Utils.AVResult32)~System.UInt64">
+  explicit operator ulong(AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static explicit operator ulong(AVResult32 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The underlying integer value of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance, cast to ulong.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_FFmpeg_Utils_AVResult32__System_Int32" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(FFmpeg.Utils.AVResult32)~System.Int32">
+  implicit operator int(AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator int(AVResult32 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The underlying integer value of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_FFmpeg_Utils_AVResult32__System_Int64" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(FFmpeg.Utils.AVResult32)~System.Int64">
+  implicit operator long(AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator long(AVResult32 result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>The underlying int value of the <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_System_Int32__FFmpeg_Utils_AVResult32" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(System.Int32)~FFmpeg.Utils.AVResult32">
+  implicit operator AVResult32(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicitly converts an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> to an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator AVResult32(int result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The integer value to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance initialized with the specified value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_System_Int64__FFmpeg_Utils_AVResult32" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(System.Int64)~FFmpeg.Utils.AVResult32">
+  implicit operator AVResult32(long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a> to an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator AVResult32(long result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>The long value to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance initialized with the specified value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_System_UInt32__FFmpeg_Utils_AVResult32" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(System.UInt32)~FFmpeg.Utils.AVResult32">
+  implicit operator AVResult32(uint)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a> to an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator AVResult32(uint result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>The unsigned integer value to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance initialized with the specified value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Implicit_" data-uid="FFmpeg.Utils.AVResult32.op_Implicit*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Implicit_System_UInt64__FFmpeg_Utils_AVResult32" data-uid="FFmpeg.Utils.AVResult32.op_Implicit(System.UInt64)~FFmpeg.Utils.AVResult32">
+  implicit operator AVResult32(ulong)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Explicitly converts an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a> to an <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator AVResult32(ulong result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd><p>The unsigned long value to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance initialized with the specified value.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Utils_AVResult32_op_Inequality_" data-uid="FFmpeg.Utils.AVResult32.op_Inequality*"></a>
+
+  <h3 id="FFmpeg_Utils_AVResult32_op_Inequality_FFmpeg_Utils_AVResult32_FFmpeg_Utils_AVResult32_" data-uid="FFmpeg.Utils.AVResult32.op_Inequality(FFmpeg.Utils.AVResult32,FFmpeg.Utils.AVResult32)">
+  operator !=(AVResult32, AVResult32)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether two <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instances are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(AVResult32 left, AVResult32 right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The first <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to compare.</p>
+</dd>
+    <dt><code>right</code> <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The second <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> instance to compare.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the two instances are not equal; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Utils/AVResult.cs/#L7" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

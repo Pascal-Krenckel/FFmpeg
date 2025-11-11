@@ -1,0 +1,2016 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Collections.AVBuffer_ref
+  commentId: T:FFmpeg.Collections.AVBuffer_ref
+  id: AVBuffer_ref
+  parent: FFmpeg.Collections
+  children:
+  - FFmpeg.Collections.AVBuffer_ref.AsSpan
+  - FFmpeg.Collections.AVBuffer_ref.Clone
+  - FFmpeg.Collections.AVBuffer_ref.Copy
+  - FFmpeg.Collections.AVBuffer_ref.Data
+  - FFmpeg.Collections.AVBuffer_ref.Equals(FFmpeg.Collections.AVBuffer_ref)
+  - FFmpeg.Collections.AVBuffer_ref.Equals(System.Object)
+  - FFmpeg.Collections.AVBuffer_ref.GetHashCode
+  - FFmpeg.Collections.AVBuffer_ref.GetReferencedObject
+  - FFmpeg.Collections.AVBuffer_ref.IsNull
+  - FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+  - FFmpeg.Collections.AVBuffer_ref.Item(System.Int32)
+  - FFmpeg.Collections.AVBuffer_ref.Length
+  - FFmpeg.Collections.AVBuffer_ref.LongLength
+  - FFmpeg.Collections.AVBuffer_ref.MakeWriteable
+  - FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+  - FFmpeg.Collections.AVBuffer_ref.ReplaceWith(FFmpeg.Collections.IBuffer)
+  - FFmpeg.Collections.AVBuffer_ref.Resize(System.Int32)
+  - FFmpeg.Collections.AVBuffer_ref.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  - FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable
+  - FFmpeg.Collections.AVBuffer_ref.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  - FFmpeg.Collections.AVBuffer_ref.TryResize(System.Int32)
+  - FFmpeg.Collections.AVBuffer_ref.op_Equality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  - FFmpeg.Collections.AVBuffer_ref.op_Inequality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  langs:
+  - csharp
+  - vb
+  name: AVBuffer_ref
+  nameWithType: AVBuffer_ref
+  fullName: FFmpeg.Collections.AVBuffer_ref
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AVBuffer_ref
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: >-
+    Represents a reference to an AVBuffer, providing a set of operations for handling
+
+    buffer memory and metadata in a safe manner, while leveraging the underlying AVBufferRef structure.
+  example: []
+  syntax:
+    content: 'public readonly struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, IReference<AVBuffer>'
+    content.vb: Public Structure AVBuffer_ref Implements IBuffer, IEquatable(Of AVBuffer_ref), IReference(Of AVBuffer)
+  implements:
+  - FFmpeg.Collections.IBuffer
+  - System.IEquatable{FFmpeg.Collections.AVBuffer_ref}
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}
+  inheritedMembers:
+  - System.ValueType.ToString
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+  id: IsReadOnly
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: IsReadOnly
+  nameWithType: AVBuffer_ref.IsReadOnly
+  fullName: FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsReadOnly
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 33
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets a value indicating whether the buffer is read-only.
+  example: []
+  syntax:
+    content: public bool IsReadOnly { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReadOnly As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.IsReadOnly*
+- uid: FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+  id: ReferenceCount
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: ReferenceCount
+  nameWithType: AVBuffer_ref.ReferenceCount
+  fullName: FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReferenceCount
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the reference count of the buffer.
+  example: []
+  syntax:
+    content: public int ReferenceCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: Number of references held to the buffer, or -1 if the buffer is null.
+    content.vb: Public ReadOnly Property ReferenceCount As Integer
+  overload: FFmpeg.Collections.AVBuffer_ref.ReferenceCount*
+  implements:
+  - FFmpeg.Collections.IBuffer.ReferenceCount
+- uid: FFmpeg.Collections.AVBuffer_ref.IsNull
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.IsNull
+  id: IsNull
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: IsNull
+  nameWithType: AVBuffer_ref.IsNull
+  fullName: FFmpeg.Collections.AVBuffer_ref.IsNull
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsNull
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 44
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets a value indicating whether the buffer is uninitialized (null).
+  example: []
+  syntax:
+    content: public bool IsNull { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsNull As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.IsNull*
+  implements:
+  - FFmpeg.Collections.IBuffer.IsNull
+- uid: FFmpeg.Collections.AVBuffer_ref.Data
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.Data
+  id: Data
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: AVBuffer_ref.Data
+  fullName: FFmpeg.Collections.AVBuffer_ref.Data
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Data
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 49
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the pointer to the buffer's data.
+  example: []
+  syntax:
+    content: public nint Data { get; }
+    parameters: []
+    return:
+      type: System.IntPtr
+    content.vb: Public ReadOnly Property Data As IntPtr
+  overload: FFmpeg.Collections.AVBuffer_ref.Data*
+  implements:
+  - FFmpeg.Collections.IBuffer.Data
+- uid: FFmpeg.Collections.AVBuffer_ref.Length
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.Length
+  id: Length
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Length
+  nameWithType: AVBuffer_ref.Length
+  fullName: FFmpeg.Collections.AVBuffer_ref.Length
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Length
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 54
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the size of the buffer's data in bytes.
+  example: []
+  syntax:
+    content: public int Length { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Length As Integer
+  overload: FFmpeg.Collections.AVBuffer_ref.Length*
+  implements:
+  - FFmpeg.Collections.IBuffer.Length
+- uid: FFmpeg.Collections.AVBuffer_ref.LongLength
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.LongLength
+  id: LongLength
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: LongLength
+  nameWithType: AVBuffer_ref.LongLength
+  fullName: FFmpeg.Collections.AVBuffer_ref.LongLength
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: LongLength
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 59
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Gets the size of the buffer's data in long format.
+  example: []
+  syntax:
+    content: public long LongLength { get; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Public ReadOnly Property LongLength As Long
+  overload: FFmpeg.Collections.AVBuffer_ref.LongLength*
+- uid: FFmpeg.Collections.AVBuffer_ref.Item(System.Int32)
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.Item(System.Int32)
+  id: Item(System.Int32)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: this[int]
+  nameWithType: AVBuffer_ref.this[int]
+  fullName: FFmpeg.Collections.AVBuffer_ref.this[int]
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: this[]
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 68
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Provides indexed access to the buffer's byte data.
+  example: []
+  syntax:
+    content: public byte this[int index] { get; set; }
+    parameters:
+    - id: index
+      type: System.Int32
+      description: The zero-based index into the buffer.
+    return:
+      type: System.Byte
+      description: The byte value at the specified index.
+    content.vb: Public Default Property this[](index As Integer) As Byte
+  overload: FFmpeg.Collections.AVBuffer_ref.Item*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown when the buffer is uninitialized.
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: Thrown when the index is out of bounds.
+  implements:
+  - FFmpeg.Collections.IBuffer.Item(System.Int32)
+  nameWithType.vb: AVBuffer_ref.this[](Integer)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.this[](Integer)
+  name.vb: this[](Integer)
+- uid: FFmpeg.Collections.AVBuffer_ref.AsSpan
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.AsSpan
+  id: AsSpan
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: AsSpan()
+  nameWithType: AVBuffer_ref.AsSpan()
+  fullName: FFmpeg.Collections.AVBuffer_ref.AsSpan()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AsSpan
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 80
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns the buffer's data as a span of bytes.
+  example: []
+  syntax:
+    content: public Span<byte> AsSpan()
+    return:
+      type: System.Span{System.Byte}
+      description: A <xref href="System.Span%601" data-throw-if-not-resolved="false"></xref> representing the buffer's data.
+    content.vb: Public Function AsSpan() As Span(Of Byte)
+  overload: FFmpeg.Collections.AVBuffer_ref.AsSpan*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown when the buffer is uninitialized.
+  implements:
+  - FFmpeg.Collections.IBuffer.AsSpan
+- uid: FFmpeg.Collections.AVBuffer_ref.Copy
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.Copy
+  id: Copy
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Copy()
+  nameWithType: AVBuffer_ref.Copy()
+  fullName: FFmpeg.Collections.AVBuffer_ref.Copy()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Copy
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 88
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Copies the buffer data to a new <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public AVBuffer Copy()
+    return:
+      type: FFmpeg.Collections.AVBuffer
+      description: A new <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> containing the copied data.
+    content.vb: Public Function Copy() As AVBuffer
+  overload: FFmpeg.Collections.AVBuffer_ref.Copy*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown when the buffer is uninitialized.
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown when memory allocation fails.
+  implements:
+  - FFmpeg.Collections.IBuffer.Copy
+- uid: FFmpeg.Collections.AVBuffer_ref.Clone
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.Clone
+  id: Clone
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: AVBuffer_ref.Clone()
+  fullName: FFmpeg.Collections.AVBuffer_ref.Clone()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Clone
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 102
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Clones the current buffer reference into a new <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public AVBuffer Clone()
+    return:
+      type: FFmpeg.Collections.AVBuffer
+      description: A cloned instance of the buffer.
+    content.vb: Public Function Clone() As AVBuffer
+  overload: FFmpeg.Collections.AVBuffer_ref.Clone*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown when the buffer is uninitialized.
+  implements:
+  - FFmpeg.Collections.IBuffer.Clone
+- uid: FFmpeg.Collections.AVBuffer_ref.MakeWriteable
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.MakeWriteable
+  id: MakeWriteable
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: MakeWriteable()
+  nameWithType: AVBuffer_ref.MakeWriteable()
+  fullName: FFmpeg.Collections.AVBuffer_ref.MakeWriteable()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MakeWriteable
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 109
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Makes the buffer writable by ensuring a unique copy is made if necessary.
+  example: []
+  syntax:
+    content: public void MakeWriteable()
+    content.vb: Public Sub MakeWriteable()
+  overload: FFmpeg.Collections.AVBuffer_ref.MakeWriteable*
+  exceptions:
+  - type: System.NullReferenceException
+    commentId: T:System.NullReferenceException
+    description: Thrown when the buffer is uninitialized.
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown when memory allocation fails during write preparation.
+  implements:
+  - FFmpeg.Collections.IBuffer.MakeWriteable
+- uid: FFmpeg.Collections.AVBuffer_ref.ReplaceWith(FFmpeg.Collections.IBuffer)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.ReplaceWith(FFmpeg.Collections.IBuffer)
+  id: ReplaceWith(FFmpeg.Collections.IBuffer)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: ReplaceWith(IBuffer)
+  nameWithType: AVBuffer_ref.ReplaceWith(IBuffer)
+  fullName: FFmpeg.Collections.AVBuffer_ref.ReplaceWith(FFmpeg.Collections.IBuffer)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReplaceWith
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 121
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Replaces the current buffer with another buffer.
+  example: []
+  syntax:
+    content: public void ReplaceWith(IBuffer src)
+    parameters:
+    - id: src
+      type: FFmpeg.Collections.IBuffer
+      description: The source buffer to replace with.
+    content.vb: Public Sub ReplaceWith(src As IBuffer)
+  overload: FFmpeg.Collections.AVBuffer_ref.ReplaceWith*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown when memory allocation fails during the replacement.
+  implements:
+  - FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+- uid: FFmpeg.Collections.AVBuffer_ref.Resize(System.Int32)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.Resize(System.Int32)
+  id: Resize(System.Int32)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Resize(int)
+  nameWithType: AVBuffer_ref.Resize(int)
+  fullName: FFmpeg.Collections.AVBuffer_ref.Resize(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Resize
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 128
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Resizes the buffer to the specified size.
+  example: []
+  syntax:
+    content: public void Resize(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The new size for the buffer.
+    content.vb: Public Sub Resize(size As Integer)
+  overload: FFmpeg.Collections.AVBuffer_ref.Resize*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown when memory allocation fails during resizing.
+  implements:
+  - FFmpeg.Collections.IBuffer.Resize(System.Int32)
+  nameWithType.vb: AVBuffer_ref.Resize(Integer)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.Resize(Integer)
+  name.vb: Resize(Integer)
+- uid: FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable
+  id: TryMakeWriteable
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: TryMakeWriteable()
+  nameWithType: AVBuffer_ref.TryMakeWriteable()
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryMakeWriteable
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 133
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Attempts to make the buffer writable. Returns true if successful.
+  example: []
+  syntax:
+    content: public bool TryMakeWriteable()
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryMakeWriteable() As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable*
+  implements:
+  - FFmpeg.Collections.IBuffer.TryMakeWriteable
+- uid: FFmpeg.Collections.AVBuffer_ref.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  id: TryReplaceWith(FFmpeg.Collections.IBuffer)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: TryReplaceWith(IBuffer)
+  nameWithType: AVBuffer_ref.TryReplaceWith(IBuffer)
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryReplaceWith
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 138
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Attempts to replace the current buffer with another buffer. Returns true if successful.
+  example: []
+  syntax:
+    content: public bool TryReplaceWith(IBuffer src)
+    parameters:
+    - id: src
+      type: FFmpeg.Collections.IBuffer
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryReplaceWith(src As IBuffer) As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.TryReplaceWith*
+  implements:
+  - FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+- uid: FFmpeg.Collections.AVBuffer_ref.TryResize(System.Int32)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.TryResize(System.Int32)
+  id: TryResize(System.Int32)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: TryResize(int)
+  nameWithType: AVBuffer_ref.TryResize(int)
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryResize(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TryResize
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 143
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Attempts to resize the buffer to the specified size. Returns true if successful.
+  example: []
+  syntax:
+    content: public bool TryResize(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function TryResize(size As Integer) As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.TryResize*
+  implements:
+  - FFmpeg.Collections.IBuffer.TryResize(System.Int32)
+  nameWithType.vb: AVBuffer_ref.TryResize(Integer)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.TryResize(Integer)
+  name.vb: TryResize(Integer)
+- uid: FFmpeg.Collections.AVBuffer_ref.Equals(System.Object)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: AVBuffer_ref.Equals(object?)
+  fullName: FFmpeg.Collections.AVBuffer_ref.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 146
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Collections.AVBuffer_ref.Equals*
+  nameWithType.vb: AVBuffer_ref.Equals(Object)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Collections.AVBuffer_ref.Equals(FFmpeg.Collections.AVBuffer_ref)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.Equals(FFmpeg.Collections.AVBuffer_ref)
+  id: Equals(FFmpeg.Collections.AVBuffer_ref)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: Equals(AVBuffer_ref)
+  nameWithType: AVBuffer_ref.Equals(AVBuffer_ref)
+  fullName: FFmpeg.Collections.AVBuffer_ref.Equals(FFmpeg.Collections.AVBuffer_ref)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 149
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(AVBuffer_ref other)
+    parameters:
+    - id: other
+      type: FFmpeg.Collections.AVBuffer_ref
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As AVBuffer_ref) As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Collections.AVBuffer_ref}.Equals(FFmpeg.Collections.AVBuffer_ref)
+- uid: FFmpeg.Collections.AVBuffer_ref.GetHashCode
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: AVBuffer_ref.GetHashCode()
+  fullName: FFmpeg.Collections.AVBuffer_ref.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 152
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Collections.AVBuffer_ref.GetHashCode*
+- uid: FFmpeg.Collections.AVBuffer_ref.GetReferencedObject
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.GetReferencedObject
+  id: GetReferencedObject
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: GetReferencedObject()
+  nameWithType: AVBuffer_ref.GetReferencedObject()
+  fullName: FFmpeg.Collections.AVBuffer_ref.GetReferencedObject()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetReferencedObject
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 164
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Retrieves the <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> object currently referenced by this <xref href="FFmpeg.Collections.AVBuffer_ref" data-throw-if-not-resolved="false"></xref>.
+  remarks: >-
+    This method provides a safe way to access the buffer being referenced without exposing the underlying unmanaged pointer.
+
+    If the reference is null (i.e., <xref href="FFmpeg.Collections.AVBuffer_ref.IsNull" data-throw-if-not-resolved="false"></xref> is <code>true</code>), it returns <code>null</code>.
+  example: []
+  syntax:
+    content: public AVBuffer? GetReferencedObject()
+    return:
+      type: FFmpeg.Collections.AVBuffer
+      description: The <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> if the buffer reference is valid; otherwise, <code>null</code> if the reference is null or uninitialized.
+    content.vb: Public Function GetReferencedObject() As AVBuffer
+  overload: FFmpeg.Collections.AVBuffer_ref.GetReferencedObject*
+  implements:
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.GetReferencedObject
+- uid: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  id: SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: SetReferencedObject(AVBuffer?)
+  nameWithType: AVBuffer_ref.SetReferencedObject(AVBuffer?)
+  fullName: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject(FFmpeg.Collections.AVBuffer?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SetReferencedObject
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 180
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Sets the reference to a new <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> object or unlinks the current reference.
+  remarks: >-
+    This method updates the underlying AVBufferRef pointer to reference a new buffer object.
+
+    If <code class="paramref">buffer</code> is <code>null</code>, the current reference is unlinked using <code>ffmpeg.av_buffer_unref</code>.
+
+    If a new object is provided, the reference is updated with <code>ffmpeg.av_buffer_ref</code>, and an <xref href="System.OutOfMemoryException" data-throw-if-not-resolved="false"></xref> is thrown if the allocation fails.
+  example: []
+  syntax:
+    content: public void SetReferencedObject(AVBuffer? buffer)
+    parameters:
+    - id: buffer
+      type: FFmpeg.Collections.AVBuffer
+      description: The new <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> object to reference, or <code>null</code> to release the current reference.
+    content.vb: Public Sub SetReferencedObject(buffer As AVBuffer)
+  overload: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the system cannot allocate enough memory to create a new buffer reference when setting a non-null object.
+  implements:
+  - FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  nameWithType.vb: AVBuffer_ref.SetReferencedObject(AVBuffer)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  name.vb: SetReferencedObject(AVBuffer)
+- uid: FFmpeg.Collections.AVBuffer_ref.op_Equality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.op_Equality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  id: op_Equality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: operator ==(AVBuffer_ref, AVBuffer_ref)
+  nameWithType: AVBuffer_ref.operator ==(AVBuffer_ref, AVBuffer_ref)
+  fullName: FFmpeg.Collections.AVBuffer_ref.operator ==(FFmpeg.Collections.AVBuffer_ref, FFmpeg.Collections.AVBuffer_ref)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Equality
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 196
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Determines if two <xref href="FFmpeg.Collections.AVBuffer_ref" data-throw-if-not-resolved="false"></xref> instances are equal.
+  example: []
+  syntax:
+    content: public static bool operator ==(AVBuffer_ref left, AVBuffer_ref right)
+    parameters:
+    - id: left
+      type: FFmpeg.Collections.AVBuffer_ref
+    - id: right
+      type: FFmpeg.Collections.AVBuffer_ref
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(left As AVBuffer_ref, right As AVBuffer_ref) As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.op_Equality*
+  nameWithType.vb: AVBuffer_ref.=(AVBuffer_ref, AVBuffer_ref)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.=(FFmpeg.Collections.AVBuffer_ref, FFmpeg.Collections.AVBuffer_ref)
+  name.vb: =(AVBuffer_ref, AVBuffer_ref)
+- uid: FFmpeg.Collections.AVBuffer_ref.op_Inequality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  commentId: M:FFmpeg.Collections.AVBuffer_ref.op_Inequality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  id: op_Inequality(FFmpeg.Collections.AVBuffer_ref,FFmpeg.Collections.AVBuffer_ref)
+  parent: FFmpeg.Collections.AVBuffer_ref
+  langs:
+  - csharp
+  - vb
+  name: operator !=(AVBuffer_ref, AVBuffer_ref)
+  nameWithType: AVBuffer_ref.operator !=(AVBuffer_ref, AVBuffer_ref)
+  fullName: FFmpeg.Collections.AVBuffer_ref.operator !=(FFmpeg.Collections.AVBuffer_ref, FFmpeg.Collections.AVBuffer_ref)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Collections/AVBuffer_ref.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Inequality
+    path: FFmpeg/Collections/AVBuffer_ref.cs
+    startLine: 201
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Collections
+  summary: Determines if two <xref href="FFmpeg.Collections.AVBuffer_ref" data-throw-if-not-resolved="false"></xref> instances are not equal.
+  example: []
+  syntax:
+    content: public static bool operator !=(AVBuffer_ref left, AVBuffer_ref right)
+    parameters:
+    - id: left
+      type: FFmpeg.Collections.AVBuffer_ref
+    - id: right
+      type: FFmpeg.Collections.AVBuffer_ref
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(left As AVBuffer_ref, right As AVBuffer_ref) As Boolean
+  overload: FFmpeg.Collections.AVBuffer_ref.op_Inequality*
+  nameWithType.vb: AVBuffer_ref.<>(AVBuffer_ref, AVBuffer_ref)
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.<>(FFmpeg.Collections.AVBuffer_ref, FFmpeg.Collections.AVBuffer_ref)
+  name.vb: <>(AVBuffer_ref, AVBuffer_ref)
+references:
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: FFmpeg.Collections.IBuffer
+  commentId: T:FFmpeg.Collections.IBuffer
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.IBuffer.html
+  name: IBuffer
+  nameWithType: IBuffer
+  fullName: FFmpeg.Collections.IBuffer
+- uid: System.IEquatable{FFmpeg.Collections.AVBuffer_ref}
+  commentId: T:System.IEquatable{FFmpeg.Collections.AVBuffer_ref}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<AVBuffer_ref>
+  nameWithType: IEquatable<AVBuffer_ref>
+  fullName: System.IEquatable<FFmpeg.Collections.AVBuffer_ref>
+  nameWithType.vb: IEquatable(Of AVBuffer_ref)
+  fullName.vb: System.IEquatable(Of FFmpeg.Collections.AVBuffer_ref)
+  name.vb: IEquatable(Of AVBuffer_ref)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Collections.AVBuffer_ref
+    name: AVBuffer_ref
+    href: FFmpeg.Collections.AVBuffer_ref.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Collections.AVBuffer_ref
+    name: AVBuffer_ref
+    href: FFmpeg.Collections.AVBuffer_ref.html
+  - name: )
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}
+  commentId: T:FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}
+  parent: FFmpeg.Utils
+  definition: FFmpeg.Utils.IReference`1
+  href: FFmpeg.Utils.IReference-1.html
+  name: IReference<AVBuffer>
+  nameWithType: IReference<AVBuffer>
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVBuffer>
+  nameWithType.vb: IReference(Of AVBuffer)
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVBuffer)
+  name.vb: IReference(Of AVBuffer)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: <
+  - uid: FFmpeg.Collections.AVBuffer
+    name: AVBuffer
+    href: FFmpeg.Collections.AVBuffer.html
+  - name: '>'
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Collections.AVBuffer
+    name: AVBuffer
+    href: FFmpeg.Collections.AVBuffer.html
+  - name: )
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Utils.IReference`1
+  commentId: T:FFmpeg.Utils.IReference`1
+  href: FFmpeg.Utils.IReference-1.html
+  name: IReference<T>
+  nameWithType: IReference<T>
+  fullName: FFmpeg.Utils.IReference<T>
+  nameWithType.vb: IReference(Of T)
+  fullName.vb: FFmpeg.Utils.IReference(Of T)
+  name.vb: IReference(Of T)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1
+    name: IReference
+    href: FFmpeg.Utils.IReference-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Collections.AVBuffer_ref.IsReadOnly*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_IsReadOnly
+  name: IsReadOnly
+  nameWithType: AVBuffer_ref.IsReadOnly
+  fullName: FFmpeg.Collections.AVBuffer_ref.IsReadOnly
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Collections.AVBuffer_ref.ReferenceCount*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_ReferenceCount
+  name: ReferenceCount
+  nameWithType: AVBuffer_ref.ReferenceCount
+  fullName: FFmpeg.Collections.AVBuffer_ref.ReferenceCount
+- uid: FFmpeg.Collections.IBuffer.ReferenceCount
+  commentId: P:FFmpeg.Collections.IBuffer.ReferenceCount
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_ReferenceCount
+  name: ReferenceCount
+  nameWithType: IBuffer.ReferenceCount
+  fullName: FFmpeg.Collections.IBuffer.ReferenceCount
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Collections.AVBuffer_ref.IsNull*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.IsNull
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_IsNull
+  name: IsNull
+  nameWithType: AVBuffer_ref.IsNull
+  fullName: FFmpeg.Collections.AVBuffer_ref.IsNull
+- uid: FFmpeg.Collections.IBuffer.IsNull
+  commentId: P:FFmpeg.Collections.IBuffer.IsNull
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_IsNull
+  name: IsNull
+  nameWithType: IBuffer.IsNull
+  fullName: FFmpeg.Collections.IBuffer.IsNull
+- uid: FFmpeg.Collections.AVBuffer_ref.Data*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Data
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Data
+  name: Data
+  nameWithType: AVBuffer_ref.Data
+  fullName: FFmpeg.Collections.AVBuffer_ref.Data
+- uid: FFmpeg.Collections.IBuffer.Data
+  commentId: P:FFmpeg.Collections.IBuffer.Data
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Data
+  name: Data
+  nameWithType: IBuffer.Data
+  fullName: FFmpeg.Collections.IBuffer.Data
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: IntPtr
+  nameWithType: IntPtr
+  fullName: System.IntPtr
+- uid: FFmpeg.Collections.AVBuffer_ref.Length*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Length
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Length
+  name: Length
+  nameWithType: AVBuffer_ref.Length
+  fullName: FFmpeg.Collections.AVBuffer_ref.Length
+- uid: FFmpeg.Collections.IBuffer.Length
+  commentId: P:FFmpeg.Collections.IBuffer.Length
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Length
+  name: Length
+  nameWithType: IBuffer.Length
+  fullName: FFmpeg.Collections.IBuffer.Length
+- uid: FFmpeg.Collections.AVBuffer_ref.LongLength*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.LongLength
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_LongLength
+  name: LongLength
+  nameWithType: AVBuffer_ref.LongLength
+  fullName: FFmpeg.Collections.AVBuffer_ref.LongLength
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: System.NullReferenceException
+  commentId: T:System.NullReferenceException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullreferenceexception
+  name: NullReferenceException
+  nameWithType: NullReferenceException
+  fullName: System.NullReferenceException
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception
+  name: ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+- uid: FFmpeg.Collections.AVBuffer_ref.Item*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Item
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Item_System_Int32_
+  name: this
+  nameWithType: AVBuffer_ref.this
+  fullName: FFmpeg.Collections.AVBuffer_ref.this
+  nameWithType.vb: AVBuffer_ref.this[]
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.this[]
+  name.vb: this[]
+- uid: FFmpeg.Collections.IBuffer.Item(System.Int32)
+  commentId: P:FFmpeg.Collections.IBuffer.Item(System.Int32)
+  parent: FFmpeg.Collections.IBuffer
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: this[int]
+  nameWithType: IBuffer.this[int]
+  fullName: FFmpeg.Collections.IBuffer.this[int]
+  nameWithType.vb: IBuffer.this[](Integer)
+  fullName.vb: FFmpeg.Collections.IBuffer.this[](Integer)
+  name.vb: this[](Integer)
+  spec.csharp:
+  - name: this
+  - name: '['
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ']'
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.Item(System.Int32)
+    name: this[]
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Item_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.AsSpan*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.AsSpan
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_AsSpan
+  name: AsSpan
+  nameWithType: AVBuffer_ref.AsSpan
+  fullName: FFmpeg.Collections.AVBuffer_ref.AsSpan
+- uid: FFmpeg.Collections.IBuffer.AsSpan
+  commentId: M:FFmpeg.Collections.IBuffer.AsSpan
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_AsSpan
+  name: AsSpan()
+  nameWithType: IBuffer.AsSpan()
+  fullName: FFmpeg.Collections.IBuffer.AsSpan()
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.AsSpan
+    name: AsSpan
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_AsSpan
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.AsSpan
+    name: AsSpan
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_AsSpan
+  - name: (
+  - name: )
+- uid: System.Span{System.Byte}
+  commentId: T:System.Span{System.Byte}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<byte>
+  nameWithType: Span<byte>
+  fullName: System.Span<byte>
+  nameWithType.vb: Span(Of Byte)
+  fullName.vb: System.Span(Of Byte)
+  name.vb: Span(Of Byte)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer
+  commentId: T:FFmpeg.Collections.AVBuffer
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVBuffer.html
+  name: AVBuffer
+  nameWithType: AVBuffer
+  fullName: FFmpeg.Collections.AVBuffer
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.outofmemoryexception
+  name: OutOfMemoryException
+  nameWithType: OutOfMemoryException
+  fullName: System.OutOfMemoryException
+- uid: FFmpeg.Collections.AVBuffer_ref.Copy*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Copy
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Copy
+  name: Copy
+  nameWithType: AVBuffer_ref.Copy
+  fullName: FFmpeg.Collections.AVBuffer_ref.Copy
+- uid: FFmpeg.Collections.IBuffer.Copy
+  commentId: M:FFmpeg.Collections.IBuffer.Copy
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Copy
+  name: Copy()
+  nameWithType: IBuffer.Copy()
+  fullName: FFmpeg.Collections.IBuffer.Copy()
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.Copy
+    name: Copy
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Copy
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.Copy
+    name: Copy
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Copy
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.Clone*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Clone
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Clone
+  name: Clone
+  nameWithType: AVBuffer_ref.Clone
+  fullName: FFmpeg.Collections.AVBuffer_ref.Clone
+- uid: FFmpeg.Collections.IBuffer.Clone
+  commentId: M:FFmpeg.Collections.IBuffer.Clone
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Clone
+  name: Clone()
+  nameWithType: IBuffer.Clone()
+  fullName: FFmpeg.Collections.IBuffer.Clone()
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.Clone
+    name: Clone
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Clone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.Clone
+    name: Clone
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Clone
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.MakeWriteable*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.MakeWriteable
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_MakeWriteable
+  name: MakeWriteable
+  nameWithType: AVBuffer_ref.MakeWriteable
+  fullName: FFmpeg.Collections.AVBuffer_ref.MakeWriteable
+- uid: FFmpeg.Collections.IBuffer.MakeWriteable
+  commentId: M:FFmpeg.Collections.IBuffer.MakeWriteable
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_MakeWriteable
+  name: MakeWriteable()
+  nameWithType: IBuffer.MakeWriteable()
+  fullName: FFmpeg.Collections.IBuffer.MakeWriteable()
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.MakeWriteable
+    name: MakeWriteable
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_MakeWriteable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.MakeWriteable
+    name: MakeWriteable
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_MakeWriteable
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.ReplaceWith*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.ReplaceWith
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_ReplaceWith_FFmpeg_Collections_IBuffer_
+  name: ReplaceWith
+  nameWithType: AVBuffer_ref.ReplaceWith
+  fullName: FFmpeg.Collections.AVBuffer_ref.ReplaceWith
+- uid: FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+  commentId: M:FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_ReplaceWith_FFmpeg_Collections_IBuffer_
+  name: ReplaceWith(IBuffer)
+  nameWithType: IBuffer.ReplaceWith(IBuffer)
+  fullName: FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+    name: ReplaceWith
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_ReplaceWith_FFmpeg_Collections_IBuffer_
+  - name: (
+  - uid: FFmpeg.Collections.IBuffer
+    name: IBuffer
+    href: FFmpeg.Collections.IBuffer.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.ReplaceWith(FFmpeg.Collections.IBuffer)
+    name: ReplaceWith
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_ReplaceWith_FFmpeg_Collections_IBuffer_
+  - name: (
+  - uid: FFmpeg.Collections.IBuffer
+    name: IBuffer
+    href: FFmpeg.Collections.IBuffer.html
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.Resize*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Resize
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Resize_System_Int32_
+  name: Resize
+  nameWithType: AVBuffer_ref.Resize
+  fullName: FFmpeg.Collections.AVBuffer_ref.Resize
+- uid: FFmpeg.Collections.IBuffer.Resize(System.Int32)
+  commentId: M:FFmpeg.Collections.IBuffer.Resize(System.Int32)
+  parent: FFmpeg.Collections.IBuffer
+  isExternal: true
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Resize_System_Int32_
+  name: Resize(int)
+  nameWithType: IBuffer.Resize(int)
+  fullName: FFmpeg.Collections.IBuffer.Resize(int)
+  nameWithType.vb: IBuffer.Resize(Integer)
+  fullName.vb: FFmpeg.Collections.IBuffer.Resize(Integer)
+  name.vb: Resize(Integer)
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.Resize(System.Int32)
+    name: Resize
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Resize_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.Resize(System.Int32)
+    name: Resize
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_Resize_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_TryMakeWriteable
+  name: TryMakeWriteable
+  nameWithType: AVBuffer_ref.TryMakeWriteable
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryMakeWriteable
+- uid: FFmpeg.Collections.IBuffer.TryMakeWriteable
+  commentId: M:FFmpeg.Collections.IBuffer.TryMakeWriteable
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryMakeWriteable
+  name: TryMakeWriteable()
+  nameWithType: IBuffer.TryMakeWriteable()
+  fullName: FFmpeg.Collections.IBuffer.TryMakeWriteable()
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.TryMakeWriteable
+    name: TryMakeWriteable
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryMakeWriteable
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.TryMakeWriteable
+    name: TryMakeWriteable
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryMakeWriteable
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.TryReplaceWith*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.TryReplaceWith
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_TryReplaceWith_FFmpeg_Collections_IBuffer_
+  name: TryReplaceWith
+  nameWithType: AVBuffer_ref.TryReplaceWith
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryReplaceWith
+- uid: FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  commentId: M:FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  parent: FFmpeg.Collections.IBuffer
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryReplaceWith_FFmpeg_Collections_IBuffer_
+  name: TryReplaceWith(IBuffer)
+  nameWithType: IBuffer.TryReplaceWith(IBuffer)
+  fullName: FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+    name: TryReplaceWith
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryReplaceWith_FFmpeg_Collections_IBuffer_
+  - name: (
+  - uid: FFmpeg.Collections.IBuffer
+    name: IBuffer
+    href: FFmpeg.Collections.IBuffer.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.TryReplaceWith(FFmpeg.Collections.IBuffer)
+    name: TryReplaceWith
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryReplaceWith_FFmpeg_Collections_IBuffer_
+  - name: (
+  - uid: FFmpeg.Collections.IBuffer
+    name: IBuffer
+    href: FFmpeg.Collections.IBuffer.html
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.TryResize*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.TryResize
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_TryResize_System_Int32_
+  name: TryResize
+  nameWithType: AVBuffer_ref.TryResize
+  fullName: FFmpeg.Collections.AVBuffer_ref.TryResize
+- uid: FFmpeg.Collections.IBuffer.TryResize(System.Int32)
+  commentId: M:FFmpeg.Collections.IBuffer.TryResize(System.Int32)
+  parent: FFmpeg.Collections.IBuffer
+  isExternal: true
+  href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryResize_System_Int32_
+  name: TryResize(int)
+  nameWithType: IBuffer.TryResize(int)
+  fullName: FFmpeg.Collections.IBuffer.TryResize(int)
+  nameWithType.vb: IBuffer.TryResize(Integer)
+  fullName.vb: FFmpeg.Collections.IBuffer.TryResize(Integer)
+  name.vb: TryResize(Integer)
+  spec.csharp:
+  - uid: FFmpeg.Collections.IBuffer.TryResize(System.Int32)
+    name: TryResize
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryResize_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Collections.IBuffer.TryResize(System.Int32)
+    name: TryResize
+    href: FFmpeg.Collections.IBuffer.html#FFmpeg_Collections_IBuffer_TryResize_System_Int32_
+  - name: (
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.Equals*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.Equals
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_Equals_System_Object_
+  name: Equals
+  nameWithType: AVBuffer_ref.Equals
+  fullName: FFmpeg.Collections.AVBuffer_ref.Equals
+- uid: System.IEquatable{FFmpeg.Collections.AVBuffer_ref}.Equals(FFmpeg.Collections.AVBuffer_ref)
+  commentId: M:System.IEquatable{FFmpeg.Collections.AVBuffer_ref}.Equals(FFmpeg.Collections.AVBuffer_ref)
+  parent: System.IEquatable{FFmpeg.Collections.AVBuffer_ref}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(AVBuffer_ref)
+  nameWithType: IEquatable<AVBuffer_ref>.Equals(AVBuffer_ref)
+  fullName: System.IEquatable<FFmpeg.Collections.AVBuffer_ref>.Equals(FFmpeg.Collections.AVBuffer_ref)
+  nameWithType.vb: IEquatable(Of AVBuffer_ref).Equals(AVBuffer_ref)
+  fullName.vb: System.IEquatable(Of FFmpeg.Collections.AVBuffer_ref).Equals(FFmpeg.Collections.AVBuffer_ref)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Collections.AVBuffer_ref}.Equals(FFmpeg.Collections.AVBuffer_ref)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Collections.AVBuffer_ref
+    name: AVBuffer_ref
+    href: FFmpeg.Collections.AVBuffer_ref.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Collections.AVBuffer_ref}.Equals(FFmpeg.Collections.AVBuffer_ref)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Collections.AVBuffer_ref
+    name: AVBuffer_ref
+    href: FFmpeg.Collections.AVBuffer_ref.html
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref
+  commentId: T:FFmpeg.Collections.AVBuffer_ref
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVBuffer_ref.html
+  name: AVBuffer_ref
+  nameWithType: AVBuffer_ref
+  fullName: FFmpeg.Collections.AVBuffer_ref
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.GetHashCode*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.GetHashCode
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_GetHashCode
+  name: GetHashCode
+  nameWithType: AVBuffer_ref.GetHashCode
+  fullName: FFmpeg.Collections.AVBuffer_ref.GetHashCode
+- uid: FFmpeg.Collections.AVBuffer_ref.IsNull
+  commentId: P:FFmpeg.Collections.AVBuffer_ref.IsNull
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_IsNull
+  name: IsNull
+  nameWithType: AVBuffer_ref.IsNull
+  fullName: FFmpeg.Collections.AVBuffer_ref.IsNull
+- uid: FFmpeg.Collections.AVBuffer_ref.GetReferencedObject*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.GetReferencedObject
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_GetReferencedObject
+  name: GetReferencedObject
+  nameWithType: AVBuffer_ref.GetReferencedObject
+  fullName: FFmpeg.Collections.AVBuffer_ref.GetReferencedObject
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.GetReferencedObject
+  commentId: M:FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.GetReferencedObject
+  parent: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}
+  definition: FFmpeg.Utils.IReference`1.GetReferencedObject
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  name: GetReferencedObject()
+  nameWithType: IReference<AVBuffer>.GetReferencedObject()
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVBuffer>.GetReferencedObject()
+  nameWithType.vb: IReference(Of AVBuffer).GetReferencedObject()
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVBuffer).GetReferencedObject()
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+  commentId: M:FFmpeg.Utils.IReference`1.GetReferencedObject
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  name: GetReferencedObject()
+  nameWithType: IReference<T>.GetReferencedObject()
+  fullName: FFmpeg.Utils.IReference<T>.GetReferencedObject()
+  nameWithType.vb: IReference(Of T).GetReferencedObject()
+  fullName.vb: FFmpeg.Utils.IReference(Of T).GetReferencedObject()
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1.GetReferencedObject
+    name: GetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_GetReferencedObject
+  - name: (
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.SetReferencedObject
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_SetReferencedObject_FFmpeg_Collections_AVBuffer_
+  name: SetReferencedObject
+  nameWithType: AVBuffer_ref.SetReferencedObject
+  fullName: FFmpeg.Collections.AVBuffer_ref.SetReferencedObject
+- uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  commentId: M:FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  parent: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}
+  definition: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  name: SetReferencedObject(AVBuffer)
+  nameWithType: IReference<AVBuffer>.SetReferencedObject(AVBuffer)
+  fullName: FFmpeg.Utils.IReference<FFmpeg.Collections.AVBuffer>.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  nameWithType.vb: IReference(Of AVBuffer).SetReferencedObject(AVBuffer)
+  fullName.vb: FFmpeg.Utils.IReference(Of FFmpeg.Collections.AVBuffer).SetReferencedObject(FFmpeg.Collections.AVBuffer)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - uid: FFmpeg.Collections.AVBuffer
+    name: AVBuffer
+    href: FFmpeg.Collections.AVBuffer.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference{FFmpeg.Collections.AVBuffer}.SetReferencedObject(FFmpeg.Collections.AVBuffer)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - uid: FFmpeg.Collections.AVBuffer
+    name: AVBuffer
+    href: FFmpeg.Collections.AVBuffer.html
+  - name: )
+- uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  commentId: M:FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+  href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  name: SetReferencedObject(T)
+  nameWithType: IReference<T>.SetReferencedObject(T)
+  fullName: FFmpeg.Utils.IReference<T>.SetReferencedObject(T)
+  nameWithType.vb: IReference(Of T).SetReferencedObject(T)
+  fullName.vb: FFmpeg.Utils.IReference(Of T).SetReferencedObject(T)
+  spec.csharp:
+  - uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Utils.IReference`1.SetReferencedObject(`0)
+    name: SetReferencedObject
+    href: FFmpeg.Utils.IReference-1.html#FFmpeg_Utils_IReference_1_SetReferencedObject__0_
+  - name: (
+  - name: T
+  - name: )
+- uid: FFmpeg.Collections.AVBuffer_ref.op_Equality*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.op_Equality
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_op_Equality_FFmpeg_Collections_AVBuffer_ref_FFmpeg_Collections_AVBuffer_ref_
+  name: operator ==
+  nameWithType: AVBuffer_ref.operator ==
+  fullName: FFmpeg.Collections.AVBuffer_ref.operator ==
+  nameWithType.vb: AVBuffer_ref.=
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Collections.AVBuffer_ref.op_Equality*
+    name: ==
+    href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_op_Equality_FFmpeg_Collections_AVBuffer_ref_FFmpeg_Collections_AVBuffer_ref_
+- uid: FFmpeg.Collections.AVBuffer_ref.op_Inequality*
+  commentId: Overload:FFmpeg.Collections.AVBuffer_ref.op_Inequality
+  href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_op_Inequality_FFmpeg_Collections_AVBuffer_ref_FFmpeg_Collections_AVBuffer_ref_
+  name: operator !=
+  nameWithType: AVBuffer_ref.operator !=
+  fullName: FFmpeg.Collections.AVBuffer_ref.operator !=
+  nameWithType.vb: AVBuffer_ref.<>
+  fullName.vb: FFmpeg.Collections.AVBuffer_ref.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Collections.AVBuffer_ref.op_Inequality*
+    name: '!='
+    href: FFmpeg.Collections.AVBuffer_ref.html#FFmpeg_Collections_AVBuffer_ref_op_Inequality_FFmpeg_Collections_AVBuffer_ref_FFmpeg_Collections_AVBuffer_ref_

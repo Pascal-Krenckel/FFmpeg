@@ -1,0 +1,1081 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Images.Image
+  commentId: T:FFmpeg.Images.Image
+  id: Image
+  parent: FFmpeg.Images
+  children:
+  - FFmpeg.Images.Image.ConvertTo(FFmpeg.Images.ImageInfo)
+  - FFmpeg.Images.Image.Create(FFmpeg.Images.ImageInfo)
+  - FFmpeg.Images.Image.Data
+  - FFmpeg.Images.Image.Dispose
+  - FFmpeg.Images.Image.FromPixelCopy(FFmpeg.Images.ImageInfo,System.IntPtr)
+  - FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,FFmpeg.Collections.AVBuffer)
+  - FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,System.IntPtr)
+  - FFmpeg.Images.Image.GetLineSize(System.Span{System.Int32})
+  - FFmpeg.Images.Image.GetPlanePointers(System.Span{System.IntPtr})
+  - FFmpeg.Images.Image.GetPlanes(System.Span{System.IntPtr},System.Span{System.Int32})
+  - FFmpeg.Images.Image.Height
+  - FFmpeg.Images.Image.Info
+  - FFmpeg.Images.Image.PixelFormat
+  - FFmpeg.Images.Image.Width
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: Image
+  fullName: FFmpeg.Images.Image
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Image
+    path: FFmpeg/Images/Image.cs
+    startLine: 8
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Represents an image stored in consecutive memory with utilities for handling image data and memory buffers.
+  example: []
+  syntax:
+    content: 'public sealed class Image : IDisposable'
+    content.vb: Public NotInheritable Class Image Implements IDisposable
+  inheritance:
+  - System.Object
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.Images.Image.Info
+  commentId: P:FFmpeg.Images.Image.Info
+  id: Info
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Info
+  nameWithType: Image.Info
+  fullName: FFmpeg.Images.Image.Info
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Info
+    path: FFmpeg/Images/Image.cs
+    startLine: 38
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gets the information about the image, such as its dimensions, format, and alignment.
+  example: []
+  syntax:
+    content: public ImageInfo Info { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.ImageInfo
+    content.vb: Public ReadOnly Property Info As ImageInfo
+  overload: FFmpeg.Images.Image.Info*
+- uid: FFmpeg.Images.Image.PixelFormat
+  commentId: P:FFmpeg.Images.Image.PixelFormat
+  id: PixelFormat
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: PixelFormat
+  nameWithType: Image.PixelFormat
+  fullName: FFmpeg.Images.Image.PixelFormat
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PixelFormat
+    path: FFmpeg/Images/Image.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gets the pixel format of the image.
+  example: []
+  syntax:
+    content: public PixelFormat PixelFormat { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Images.PixelFormat
+    content.vb: Public ReadOnly Property PixelFormat As PixelFormat
+  overload: FFmpeg.Images.Image.PixelFormat*
+- uid: FFmpeg.Images.Image.Width
+  commentId: P:FFmpeg.Images.Image.Width
+  id: Width
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: Image.Width
+  fullName: FFmpeg.Images.Image.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Images/Image.cs
+    startLine: 48
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gets the width of the image in pixels.
+  example: []
+  syntax:
+    content: public int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Width As Integer
+  overload: FFmpeg.Images.Image.Width*
+- uid: FFmpeg.Images.Image.Height
+  commentId: P:FFmpeg.Images.Image.Height
+  id: Height
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: Image.Height
+  fullName: FFmpeg.Images.Image.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Images/Image.cs
+    startLine: 53
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gets the height of the image in pixels.
+  example: []
+  syntax:
+    content: public int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Height As Integer
+  overload: FFmpeg.Images.Image.Height*
+- uid: FFmpeg.Images.Image.Data
+  commentId: P:FFmpeg.Images.Image.Data
+  id: Data
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: Image.Data
+  fullName: FFmpeg.Images.Image.Data
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Data
+    path: FFmpeg/Images/Image.cs
+    startLine: 58
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Gets the pointer to the raw image data.
+  example: []
+  syntax:
+    content: public IntPtr Data { get; }
+    parameters: []
+    return:
+      type: System.IntPtr
+    content.vb: Public ReadOnly Property Data As IntPtr
+  overload: FFmpeg.Images.Image.Data*
+- uid: FFmpeg.Images.Image.GetLineSize(System.Span{System.Int32})
+  commentId: M:FFmpeg.Images.Image.GetLineSize(System.Span{System.Int32})
+  id: GetLineSize(System.Span{System.Int32})
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: GetLineSize(Span<int>)
+  nameWithType: Image.GetLineSize(Span<int>)
+  fullName: FFmpeg.Images.Image.GetLineSize(System.Span<int>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetLineSize
+    path: FFmpeg/Images/Image.cs
+    startLine: 67
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Retrieves the line sizes for each plane of the image and stores them in the provided span.
+  example: []
+  syntax:
+    content: public AVResult32 GetLineSize(Span<int> lineSizes)
+    parameters:
+    - id: lineSizes
+      type: System.Span{System.Int32}
+      description: The span to hold the line sizes for each plane of the image.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> result indicating success or failure. If successful, the number of planes is returned.
+    content.vb: Public Function GetLineSize(lineSizes As Span(Of Integer)) As AVResult32
+  overload: FFmpeg.Images.Image.GetLineSize*
+  nameWithType.vb: Image.GetLineSize(Span(Of Integer))
+  fullName.vb: FFmpeg.Images.Image.GetLineSize(System.Span(Of Integer))
+  name.vb: GetLineSize(Span(Of Integer))
+- uid: FFmpeg.Images.Image.GetPlanes(System.Span{System.IntPtr},System.Span{System.Int32})
+  commentId: M:FFmpeg.Images.Image.GetPlanes(System.Span{System.IntPtr},System.Span{System.Int32})
+  id: GetPlanes(System.Span{System.IntPtr},System.Span{System.Int32})
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: GetPlanes(Span<IntPtr>, Span<int>)
+  nameWithType: Image.GetPlanes(Span<IntPtr>, Span<int>)
+  fullName: FFmpeg.Images.Image.GetPlanes(System.Span<System.IntPtr>, System.Span<int>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetPlanes
+    path: FFmpeg/Images/Image.cs
+    startLine: 85
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Retrieves the pointers to each plane and their respective line sizes.
+  example: []
+  syntax:
+    content: public AVResult32 GetPlanes(Span<IntPtr> planePtrs, Span<int> lineSizes)
+    parameters:
+    - id: planePtrs
+      type: System.Span{System.IntPtr}
+      description: The span to hold pointers to each plane of the image.
+    - id: lineSizes
+      type: System.Span{System.Int32}
+      description: The span to hold the line sizes for each plane of the image.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> result indicating success or failure. If successful, the number of planes is returned.
+    content.vb: Public Function GetPlanes(planePtrs As Span(Of IntPtr), lineSizes As Span(Of Integer)) As AVResult32
+  overload: FFmpeg.Images.Image.GetPlanes*
+  nameWithType.vb: Image.GetPlanes(Span(Of IntPtr), Span(Of Integer))
+  fullName.vb: FFmpeg.Images.Image.GetPlanes(System.Span(Of System.IntPtr), System.Span(Of Integer))
+  name.vb: GetPlanes(Span(Of IntPtr), Span(Of Integer))
+- uid: FFmpeg.Images.Image.GetPlanePointers(System.Span{System.IntPtr})
+  commentId: M:FFmpeg.Images.Image.GetPlanePointers(System.Span{System.IntPtr})
+  id: GetPlanePointers(System.Span{System.IntPtr})
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: GetPlanePointers(Span<IntPtr>)
+  nameWithType: Image.GetPlanePointers(Span<IntPtr>)
+  fullName: FFmpeg.Images.Image.GetPlanePointers(System.Span<System.IntPtr>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetPlanePointers
+    path: FFmpeg/Images/Image.cs
+    startLine: 110
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Retrieves the pointers to each plane of the image.
+  example: []
+  syntax:
+    content: public AVResult32 GetPlanePointers(Span<IntPtr> planePtrs)
+    parameters:
+    - id: planePtrs
+      type: System.Span{System.IntPtr}
+      description: The span to hold pointers to each plane of the image.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: An <xref href="FFmpeg.Utils.AVResult32" data-throw-if-not-resolved="false"></xref> result indicating success or failure. If successful, the number of planes is returned.
+    content.vb: Public Function GetPlanePointers(planePtrs As Span(Of IntPtr)) As AVResult32
+  overload: FFmpeg.Images.Image.GetPlanePointers*
+  nameWithType.vb: Image.GetPlanePointers(Span(Of IntPtr))
+  fullName.vb: FFmpeg.Images.Image.GetPlanePointers(System.Span(Of System.IntPtr))
+  name.vb: GetPlanePointers(Span(Of IntPtr))
+- uid: FFmpeg.Images.Image.Create(FFmpeg.Images.ImageInfo)
+  commentId: M:FFmpeg.Images.Image.Create(FFmpeg.Images.ImageInfo)
+  id: Create(FFmpeg.Images.ImageInfo)
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Create(ImageInfo)
+  nameWithType: Image.Create(ImageInfo)
+  fullName: FFmpeg.Images.Image.Create(FFmpeg.Images.ImageInfo)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Create
+    path: FFmpeg/Images/Image.cs
+    startLine: 130
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Creates a new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> with an allocated buffer based on the specified <xref href="FFmpeg.Images.ImageInfo" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static Image Create(ImageInfo info)
+    parameters:
+    - id: info
+      type: FFmpeg.Images.ImageInfo
+      description: The information used to describe the image.
+    return:
+      type: FFmpeg.Images.Image
+      description: A new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> with an allocated buffer.
+    content.vb: Public Shared Function Create(info As ImageInfo) As Image
+  overload: FFmpeg.Images.Image.Create*
+- uid: FFmpeg.Images.Image.FromPixelCopy(FFmpeg.Images.ImageInfo,System.IntPtr)
+  commentId: M:FFmpeg.Images.Image.FromPixelCopy(FFmpeg.Images.ImageInfo,System.IntPtr)
+  id: FromPixelCopy(FFmpeg.Images.ImageInfo,System.IntPtr)
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: FromPixelCopy(ImageInfo, IntPtr)
+  nameWithType: Image.FromPixelCopy(ImageInfo, IntPtr)
+  fullName: FFmpeg.Images.Image.FromPixelCopy(FFmpeg.Images.ImageInfo, System.IntPtr)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FromPixelCopy
+    path: FFmpeg/Images/Image.cs
+    startLine: 142
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Creates a new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> by copying pixel data from the specified pointer.
+  example: []
+  syntax:
+    content: public static Image FromPixelCopy(ImageInfo info, IntPtr data)
+    parameters:
+    - id: info
+      type: FFmpeg.Images.ImageInfo
+      description: The image information such as dimensions and pixel format.
+    - id: data
+      type: System.IntPtr
+      description: A pointer to the source pixel data to be copied.
+    return:
+      type: FFmpeg.Images.Image
+      description: A new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> with copied pixel data.
+    content.vb: Public Shared Function FromPixelCopy(info As ImageInfo, data As IntPtr) As Image
+  overload: FFmpeg.Images.Image.FromPixelCopy*
+- uid: FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,FFmpeg.Collections.AVBuffer)
+  commentId: M:FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,FFmpeg.Collections.AVBuffer)
+  id: FromPixels(FFmpeg.Images.ImageInfo,FFmpeg.Collections.AVBuffer)
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: FromPixels(ImageInfo, AVBuffer)
+  nameWithType: Image.FromPixels(ImageInfo, AVBuffer)
+  fullName: FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo, FFmpeg.Collections.AVBuffer)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FromPixels
+    path: FFmpeg/Images/Image.cs
+    startLine: 155
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Creates a new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> from an <xref href="FFmpeg.Collections.AVBuffer" data-throw-if-not-resolved="false"></xref> containing pixel data.
+  example: []
+  syntax:
+    content: public static Image FromPixels(ImageInfo info, AVBuffer data)
+    parameters:
+    - id: info
+      type: FFmpeg.Images.ImageInfo
+      description: The image information such as dimensions and pixel format.
+    - id: data
+      type: FFmpeg.Collections.AVBuffer
+      description: The buffer that contains the pixel data.
+    return:
+      type: FFmpeg.Images.Image
+      description: A new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> with the specified pixel data.
+    content.vb: Public Shared Function FromPixels(info As ImageInfo, data As AVBuffer) As Image
+  overload: FFmpeg.Images.Image.FromPixels*
+- uid: FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,System.IntPtr)
+  commentId: M:FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo,System.IntPtr)
+  id: FromPixels(FFmpeg.Images.ImageInfo,System.IntPtr)
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: FromPixels(ImageInfo, IntPtr)
+  nameWithType: Image.FromPixels(ImageInfo, IntPtr)
+  fullName: FFmpeg.Images.Image.FromPixels(FFmpeg.Images.ImageInfo, System.IntPtr)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FromPixels
+    path: FFmpeg/Images/Image.cs
+    startLine: 167
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Creates a new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> using the provided pixel data pointer.
+  example: []
+  syntax:
+    content: public static Image FromPixels(ImageInfo info, IntPtr data)
+    parameters:
+    - id: info
+      type: FFmpeg.Images.ImageInfo
+      description: The image information such as dimensions and pixel format.
+    - id: data
+      type: System.IntPtr
+      description: A pointer to the pixel data.
+    return:
+      type: FFmpeg.Images.Image
+      description: A new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> using the specified pixel data pointer.
+    content.vb: Public Shared Function FromPixels(info As ImageInfo, data As IntPtr) As Image
+  overload: FFmpeg.Images.Image.FromPixels*
+- uid: FFmpeg.Images.Image.ConvertTo(FFmpeg.Images.ImageInfo)
+  commentId: M:FFmpeg.Images.Image.ConvertTo(FFmpeg.Images.ImageInfo)
+  id: ConvertTo(FFmpeg.Images.ImageInfo)
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: ConvertTo(ImageInfo)
+  nameWithType: Image.ConvertTo(ImageInfo)
+  fullName: FFmpeg.Images.Image.ConvertTo(FFmpeg.Images.ImageInfo)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ConvertTo
+    path: FFmpeg/Images/Image.cs
+    startLine: 175
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Converts the current image to a different pixel format and returns the result as a new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public Image ConvertTo(ImageInfo dstFormat)
+    parameters:
+    - id: dstFormat
+      type: FFmpeg.Images.ImageInfo
+      description: The desired destination format for the conversion.
+    return:
+      type: FFmpeg.Images.Image
+      description: A new <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref> in the specified format.
+    content.vb: Public Function ConvertTo(dstFormat As ImageInfo) As Image
+  overload: FFmpeg.Images.Image.ConvertTo*
+- uid: FFmpeg.Images.Image.Dispose
+  commentId: M:FFmpeg.Images.Image.Dispose
+  id: Dispose
+  parent: FFmpeg.Images.Image
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: Image.Dispose()
+  fullName: FFmpeg.Images.Image.Dispose()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Images/Image.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/Images/Image.cs
+    startLine: 190
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Images
+  summary: Releases the resources used by the <xref href="FFmpeg.Images.Image" data-throw-if-not-resolved="false"></xref>, including the underlying buffer.
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose()
+  overload: FFmpeg.Images.Image.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+references:
+- uid: FFmpeg.Images
+  commentId: N:FFmpeg.Images
+  href: FFmpeg.html
+  name: FFmpeg.Images
+  nameWithType: FFmpeg.Images
+  fullName: FFmpeg.Images
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Images
+    name: Images
+    href: FFmpeg.Images.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Images.Image.Info*
+  commentId: Overload:FFmpeg.Images.Image.Info
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Info
+  name: Info
+  nameWithType: Image.Info
+  fullName: FFmpeg.Images.Image.Info
+- uid: FFmpeg.Images.ImageInfo
+  commentId: T:FFmpeg.Images.ImageInfo
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.ImageInfo.html
+  name: ImageInfo
+  nameWithType: ImageInfo
+  fullName: FFmpeg.Images.ImageInfo
+- uid: FFmpeg.Images.Image.PixelFormat*
+  commentId: Overload:FFmpeg.Images.Image.PixelFormat
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_PixelFormat
+  name: PixelFormat
+  nameWithType: Image.PixelFormat
+  fullName: FFmpeg.Images.Image.PixelFormat
+- uid: FFmpeg.Images.PixelFormat
+  commentId: T:FFmpeg.Images.PixelFormat
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.PixelFormat.html
+  name: PixelFormat
+  nameWithType: PixelFormat
+  fullName: FFmpeg.Images.PixelFormat
+- uid: FFmpeg.Images.Image.Width*
+  commentId: Overload:FFmpeg.Images.Image.Width
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Width
+  name: Width
+  nameWithType: Image.Width
+  fullName: FFmpeg.Images.Image.Width
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Images.Image.Height*
+  commentId: Overload:FFmpeg.Images.Image.Height
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Height
+  name: Height
+  nameWithType: Image.Height
+  fullName: FFmpeg.Images.Image.Height
+- uid: FFmpeg.Images.Image.Data*
+  commentId: Overload:FFmpeg.Images.Image.Data
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Data
+  name: Data
+  nameWithType: Image.Data
+  fullName: FFmpeg.Images.Image.Data
+- uid: System.IntPtr
+  commentId: T:System.IntPtr
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.intptr
+  name: IntPtr
+  nameWithType: IntPtr
+  fullName: System.IntPtr
+- uid: FFmpeg.Utils.AVResult32
+  commentId: T:FFmpeg.Utils.AVResult32
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult32.html
+  name: AVResult32
+  nameWithType: AVResult32
+  fullName: FFmpeg.Utils.AVResult32
+- uid: FFmpeg.Images.Image.GetLineSize*
+  commentId: Overload:FFmpeg.Images.Image.GetLineSize
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_GetLineSize_System_Span_System_Int32__
+  name: GetLineSize
+  nameWithType: Image.GetLineSize
+  fullName: FFmpeg.Images.Image.GetLineSize
+- uid: System.Span{System.Int32}
+  commentId: T:System.Span{System.Int32}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<int>
+  nameWithType: Span<int>
+  fullName: System.Span<int>
+  nameWithType.vb: Span(Of Integer)
+  fullName.vb: System.Span(Of Integer)
+  name.vb: Span(Of Integer)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Images.Image.GetPlanes*
+  commentId: Overload:FFmpeg.Images.Image.GetPlanes
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_GetPlanes_System_Span_System_IntPtr__System_Span_System_Int32__
+  name: GetPlanes
+  nameWithType: Image.GetPlanes
+  fullName: FFmpeg.Images.Image.GetPlanes
+- uid: System.Span{System.IntPtr}
+  commentId: T:System.Span{System.IntPtr}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<IntPtr>
+  nameWithType: Span<IntPtr>
+  fullName: System.Span<System.IntPtr>
+  nameWithType.vb: Span(Of IntPtr)
+  fullName.vb: System.Span(Of System.IntPtr)
+  name.vb: Span(Of IntPtr)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.IntPtr
+    name: IntPtr
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.intptr
+  - name: )
+- uid: FFmpeg.Images.Image.GetPlanePointers*
+  commentId: Overload:FFmpeg.Images.Image.GetPlanePointers
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_GetPlanePointers_System_Span_System_IntPtr__
+  name: GetPlanePointers
+  nameWithType: Image.GetPlanePointers
+  fullName: FFmpeg.Images.Image.GetPlanePointers
+- uid: FFmpeg.Images.Image
+  commentId: T:FFmpeg.Images.Image
+  parent: FFmpeg.Images
+  href: FFmpeg.Images.Image.html
+  name: Image
+  nameWithType: Image
+  fullName: FFmpeg.Images.Image
+- uid: FFmpeg.Images.Image.Create*
+  commentId: Overload:FFmpeg.Images.Image.Create
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Create_FFmpeg_Images_ImageInfo_
+  name: Create
+  nameWithType: Image.Create
+  fullName: FFmpeg.Images.Image.Create
+- uid: FFmpeg.Images.Image.FromPixelCopy*
+  commentId: Overload:FFmpeg.Images.Image.FromPixelCopy
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_FromPixelCopy_FFmpeg_Images_ImageInfo_System_IntPtr_
+  name: FromPixelCopy
+  nameWithType: Image.FromPixelCopy
+  fullName: FFmpeg.Images.Image.FromPixelCopy
+- uid: FFmpeg.Collections.AVBuffer
+  commentId: T:FFmpeg.Collections.AVBuffer
+  parent: FFmpeg.Collections
+  href: FFmpeg.Collections.AVBuffer.html
+  name: AVBuffer
+  nameWithType: AVBuffer
+  fullName: FFmpeg.Collections.AVBuffer
+- uid: FFmpeg.Images.Image.FromPixels*
+  commentId: Overload:FFmpeg.Images.Image.FromPixels
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_FromPixels_FFmpeg_Images_ImageInfo_FFmpeg_Collections_AVBuffer_
+  name: FromPixels
+  nameWithType: Image.FromPixels
+  fullName: FFmpeg.Images.Image.FromPixels
+- uid: FFmpeg.Collections
+  commentId: N:FFmpeg.Collections
+  href: FFmpeg.html
+  name: FFmpeg.Collections
+  nameWithType: FFmpeg.Collections
+  fullName: FFmpeg.Collections
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Collections
+    name: Collections
+    href: FFmpeg.Collections.html
+- uid: FFmpeg.Images.Image.ConvertTo*
+  commentId: Overload:FFmpeg.Images.Image.ConvertTo
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_ConvertTo_FFmpeg_Images_ImageInfo_
+  name: ConvertTo
+  nameWithType: Image.ConvertTo
+  fullName: FFmpeg.Images.Image.ConvertTo
+- uid: FFmpeg.Images.Image.Dispose*
+  commentId: Overload:FFmpeg.Images.Image.Dispose
+  href: FFmpeg.Images.Image.html#FFmpeg_Images_Image_Dispose
+  name: Dispose
+  nameWithType: Image.Dispose
+  fullName: FFmpeg.Images.Image.Dispose
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.idisposable.dispose
+  - name: (
+  - name: )

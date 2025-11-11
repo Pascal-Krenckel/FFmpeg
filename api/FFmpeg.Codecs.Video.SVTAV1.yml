@@ -1,0 +1,1645 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Codecs.Video.SVTAV1
+  commentId: T:FFmpeg.Codecs.Video.SVTAV1
+  id: SVTAV1
+  parent: FFmpeg.Codecs.Video
+  children:
+  - FFmpeg.Codecs.Video.SVTAV1.#ctor(System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  - FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  - FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+  - FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+  - FFmpeg.Codecs.Video.SVTAV1.CRF
+  - FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+  - FFmpeg.Codecs.Video.SVTAV1.FastDecode
+  - FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+  - FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+  - FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+  - FFmpeg.Codecs.Video.SVTAV1.IsSupported
+  - FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  - FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  - FFmpeg.Codecs.Video.SVTAV1.Preset
+  - FFmpeg.Codecs.Video.SVTAV1.Profile
+  - FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+  - FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+  - FFmpeg.Codecs.Video.SVTAV1.Threads
+  - FFmpeg.Codecs.Video.SVTAV1.ToString
+  - FFmpeg.Codecs.Video.SVTAV1.Tune
+  langs:
+  - csharp
+  - vb
+  name: SVTAV1
+  nameWithType: SVTAV1
+  fullName: FFmpeg.Codecs.Video.SVTAV1
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SVTAV1
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Represents the SVT-AV1 video codec.
+  remarks: Initializes a new instance of the <xref href="FFmpeg.Codecs.Video.SVTAV1" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: 'public class SVTAV1 : VideoCodec'
+    content.vb: Public Class SVTAV1 Inherits VideoCodec
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Thrown when the SVT-AV1 encoder is not found.
+  inheritance:
+  - System.Object
+  - FFmpeg.Codecs.Video.VideoCodec
+  inheritedMembers:
+  - FFmpeg.Codecs.Video.VideoCodec.Width
+  - FFmpeg.Codecs.Video.VideoCodec.Height
+  - FFmpeg.Codecs.Video.VideoCodec.Codec
+  - FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  - FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  - FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  - FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Codecs.Video.SVTAV1.#ctor(System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Codecs.Video.SVTAV1.#ctor(System.Int32,System.Int32,FFmpeg.Utils.Rational)
+  id: '#ctor(System.Int32,System.Int32,FFmpeg.Utils.Rational)'
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: SVTAV1(int, int, Rational)
+  nameWithType: SVTAV1.SVTAV1(int, int, Rational)
+  fullName: FFmpeg.Codecs.Video.SVTAV1.SVTAV1(int, int, FFmpeg.Utils.Rational)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 18
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Represents the SVT-AV1 video codec.
+  remarks: Initializes a new instance of the <xref href="FFmpeg.Codecs.Video.SVTAV1" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public SVTAV1(int width, int height, Rational timeBase)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The width of the video.
+    - id: height
+      type: System.Int32
+      description: The height of the video.
+    - id: timeBase
+      type: FFmpeg.Utils.Rational
+      description: The time base for the video.
+    content.vb: Public Sub New(width As Integer, height As Integer, timeBase As Rational)
+  overload: FFmpeg.Codecs.Video.SVTAV1.#ctor*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: Thrown when the SVT-AV1 encoder is not found.
+  nameWithType.vb: SVTAV1.New(Integer, Integer, Rational)
+  fullName.vb: FFmpeg.Codecs.Video.SVTAV1.New(Integer, Integer, FFmpeg.Utils.Rational)
+  name.vb: New(Integer, Integer, Rational)
+- uid: FFmpeg.Codecs.Video.SVTAV1.IsSupported
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.IsSupported
+  id: IsSupported
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: IsSupported
+  nameWithType: SVTAV1.IsSupported
+  fullName: FFmpeg.Codecs.Video.SVTAV1.IsSupported
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsSupported
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets a value indicating whether the SVT-AV1 encoder is supported.
+  example: []
+  syntax:
+    content: public static bool IsSupported { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Shared ReadOnly Property IsSupported As Boolean
+  overload: FFmpeg.Codecs.Video.SVTAV1.IsSupported*
+- uid: FFmpeg.Codecs.Video.SVTAV1.Profile
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.Profile
+  id: Profile
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: Profile
+  nameWithType: SVTAV1.Profile
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Profile
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Profile
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 29
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the profile to be used for encoding.
+  example: []
+  syntax:
+    content: public Profile? Profile { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Codecs.Profile}
+    content.vb: Public Property Profile As Profile?
+  overload: FFmpeg.Codecs.Video.SVTAV1.Profile*
+- uid: FFmpeg.Codecs.Video.SVTAV1.Preset
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.Preset
+  id: Preset
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: Preset
+  nameWithType: SVTAV1.Preset
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Preset
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Preset
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 34
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the encoding preset.
+  example: []
+  syntax:
+    content: public int? Preset { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Preset As Integer?
+  overload: FFmpeg.Codecs.Video.SVTAV1.Preset*
+- uid: FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+  id: BitrateControl
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: BitrateControl
+  nameWithType: SVTAV1.BitrateControl
+  fullName: FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: BitrateControl
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 39
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the bitrate control settings.
+  example: []
+  syntax:
+    content: public BitrateControl? BitrateControl { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl}
+    content.vb: Public Property BitrateControl As BitrateControl?
+  overload: FFmpeg.Codecs.Video.SVTAV1.BitrateControl*
+- uid: FFmpeg.Codecs.Video.SVTAV1.CRF
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.CRF
+  id: CRF
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: CRF
+  nameWithType: SVTAV1.CRF
+  fullName: FFmpeg.Codecs.Video.SVTAV1.CRF
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CRF
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets or sets the Constant Rate Factor (CRF) value.
+
+    Setting this value is equivalent to `--rc 0 --aq-mode 2 --qp x [1-63]`.
+  example: []
+  syntax:
+    content: >-
+      [DisallowNull]
+
+      public int? CRF { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <DisallowNull>
+
+      Public Property CRF As Integer?
+  overload: FFmpeg.Codecs.Video.SVTAV1.CRF*
+  attributes:
+  - type: System.Diagnostics.CodeAnalysis.DisallowNullAttribute
+    ctor: System.Diagnostics.CodeAnalysis.DisallowNullAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.Codecs.Video.SVTAV1.Tune
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.Tune
+  id: Tune
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: Tune
+  nameWithType: SVTAV1.Tune
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Tune
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Tune
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 60
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Specifies whether to use PSNR or VQ or SSIM as the tuning metric.
+  example: []
+  syntax:
+    content: public TuningMetric? Tune { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric}
+    content.vb: Public Property Tune As TuningMetric?
+  overload: FFmpeg.Codecs.Video.SVTAV1.Tune*
+- uid: FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+  id: GOPSettings
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: GOPSettings
+  nameWithType: SVTAV1.GOPSettings
+  fullName: FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GOPSettings
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 65
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the GOP (Group of Pictures) settings.
+  example: []
+  syntax:
+    content: public GOPSettings? GOPSettings { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+    content.vb: Public Property GOPSettings As GOPSettings?
+  overload: FFmpeg.Codecs.Video.SVTAV1.GOPSettings*
+- uid: FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+  id: SceneChangeDetection
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: SceneChangeDetection
+  nameWithType: SVTAV1.SceneChangeDetection
+  fullName: FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: SceneChangeDetection
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 70
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets whether scene change detection is enabled.
+  example: []
+  syntax:
+    content: public bool? SceneChangeDetection { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property SceneChangeDetection As Boolean?
+  overload: FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection*
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  id: KeyFrameInterval
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: KeyFrameInterval
+  nameWithType: SVTAV1.KeyFrameInterval
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: KeyFrameInterval
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 85
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets or sets the GOP size in frames.
+
+    Use <xref href="FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan" data-throw-if-not-resolved="false"></xref> for seconds.
+  example: []
+  syntax:
+    content: public int? KeyFrameInterval { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property KeyFrameInterval As Integer?
+  overload: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval*
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  id: KeyFrameIntervalAsTimeSpan
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: KeyFrameIntervalAsTimeSpan
+  nameWithType: SVTAV1.KeyFrameIntervalAsTimeSpan
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: KeyFrameIntervalAsTimeSpan
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 100
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets or sets the GOP size as a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>.
+
+    Use <xref href="FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval" data-throw-if-not-resolved="false"></xref> for frames.
+  example: []
+  syntax:
+    content: public TimeSpan? KeyFrameIntervalAsTimeSpan { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.TimeSpan}
+    content.vb: Public Property KeyFrameIntervalAsTimeSpan As TimeSpan?
+  overload: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan*
+- uid: FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+  id: EnableOverlays
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: EnableOverlays
+  nameWithType: SVTAV1.EnableOverlays
+  fullName: FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: EnableOverlays
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 114
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets whether overlay pictures are enabled.
+  example: []
+  syntax:
+    content: public bool? EnableOverlays { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property EnableOverlays As Boolean?
+  overload: FFmpeg.Codecs.Video.SVTAV1.EnableOverlays*
+- uid: FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+  id: ScreenContentMode
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: ScreenContentMode
+  nameWithType: SVTAV1.ScreenContentMode
+  fullName: FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ScreenContentMode
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 119
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the screen content detection level.
+  example: []
+  syntax:
+    content: public ScreenContentMode? ScreenContentMode { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode}
+    content.vb: Public Property ScreenContentMode As ScreenContentMode?
+  overload: FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode*
+- uid: FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+  id: FilmGrain
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: FilmGrain
+  nameWithType: SVTAV1.FilmGrain
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FilmGrain
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 124
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets the level of film grain.
+  example: []
+  syntax:
+    content: public int? FilmGrain { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property FilmGrain As Integer?
+  overload: FFmpeg.Codecs.Video.SVTAV1.FilmGrain*
+- uid: FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+  id: FilmGrainDenoise
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: FilmGrainDenoise
+  nameWithType: SVTAV1.FilmGrainDenoise
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FilmGrainDenoise
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 129
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets whether denoising is applied when film grain is enabled.
+  example: []
+  syntax:
+    content: public bool? FilmGrainDenoise { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property FilmGrainDenoise As Boolean?
+  overload: FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise*
+- uid: FFmpeg.Codecs.Video.SVTAV1.FastDecode
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.FastDecode
+  id: FastDecode
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: FastDecode
+  nameWithType: SVTAV1.FastDecode
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FastDecode
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: FastDecode
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 134
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets or sets whether fast decoding is enabled.
+  example: []
+  syntax:
+    content: public bool? FastDecode { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Boolean}
+    content.vb: Public Property FastDecode As Boolean?
+  overload: FFmpeg.Codecs.Video.SVTAV1.FastDecode*
+- uid: FFmpeg.Codecs.Video.SVTAV1.Threads
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.Threads
+  id: Threads
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: Threads
+  nameWithType: SVTAV1.Threads
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Threads
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Threads
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 140
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Gets or sets the number of logical processors used for encoding.
+
+    A value of 0 means all processors are used.
+  example: []
+  syntax:
+    content: public int? Threads { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property Threads As Integer?
+  overload: FFmpeg.Codecs.Video.SVTAV1.Threads*
+- uid: FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+  id: AdditionalSVTParameters
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: AdditionalSVTParameters
+  nameWithType: SVTAV1.AdditionalSVTParameters
+  fullName: FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AdditionalSVTParameters
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 145
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Gets additional SVT parameters that are not directly exposed through properties.
+  example: []
+  syntax:
+    content: public Dictionary<string, string> AdditionalSVTParameters { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,System.String}
+    content.vb: Public ReadOnly Property AdditionalSVTParameters As Dictionary(Of String, String)
+  overload: FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters*
+- uid: FFmpeg.Codecs.Video.SVTAV1.ToString
+  commentId: M:FFmpeg.Codecs.Video.SVTAV1.ToString
+  id: ToString
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: SVTAV1.ToString()
+  fullName: FFmpeg.Codecs.Video.SVTAV1.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 148
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: Returns a string that represents the current object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the current object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: FFmpeg.Codecs.Video.SVTAV1.ToString*
+- uid: FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  id: AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.Video.SVTAV1
+  langs:
+  - csharp
+  - vb
+  name: AddCodecOptions(CodecContext)
+  nameWithType: SVTAV1.AddCodecOptions(CodecContext)
+  fullName: FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Codecs/Video/SVTAV1.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: AddCodecOptions
+    path: FFmpeg/Codecs/Video/SVTAV1.cs
+    startLine: 195
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Codecs.Video
+  summary: >-
+    Adds codec-specific options to the codec context.
+
+    This method must be implemented by derived classes to specify additional codec options.
+  example: []
+  syntax:
+    content: protected override void AddCodecOptions(CodecContext context)
+    parameters:
+    - id: context
+      type: FFmpeg.Codecs.CodecContext
+      description: The codec context to which options will be added.
+    content.vb: Protected Overrides Sub AddCodecOptions(context As CodecContext)
+  overridden: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  overload: FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions*
+references:
+- uid: FFmpeg.Codecs.Video.SVTAV1
+  commentId: T:FFmpeg.Codecs.Video.SVTAV1
+  href: FFmpeg.Codecs.Video.SVTAV1.html
+  name: SVTAV1
+  nameWithType: SVTAV1
+  fullName: FFmpeg.Codecs.Video.SVTAV1
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notsupportedexception
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: FFmpeg.Codecs.Video
+  commentId: N:FFmpeg.Codecs.Video
+  href: FFmpeg.html
+  name: FFmpeg.Codecs.Video
+  nameWithType: FFmpeg.Codecs.Video
+  fullName: FFmpeg.Codecs.Video
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  - name: .
+  - uid: FFmpeg.Codecs.Video
+    name: Video
+    href: FFmpeg.Codecs.Video.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Codecs.Video.VideoCodec
+  commentId: T:FFmpeg.Codecs.Video.VideoCodec
+  parent: FFmpeg.Codecs.Video
+  href: FFmpeg.Codecs.Video.VideoCodec.html
+  name: VideoCodec
+  nameWithType: VideoCodec
+  fullName: FFmpeg.Codecs.Video.VideoCodec
+- uid: FFmpeg.Codecs.Video.VideoCodec.Width
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Width
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Width
+  name: Width
+  nameWithType: VideoCodec.Width
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Width
+- uid: FFmpeg.Codecs.Video.VideoCodec.Height
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Height
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Height
+  name: Height
+  nameWithType: VideoCodec.Height
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Height
+- uid: FFmpeg.Codecs.Video.VideoCodec.Codec
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.Codec
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_Codec
+  name: Codec
+  nameWithType: VideoCodec.Codec
+  fullName: FFmpeg.Codecs.Video.VideoCodec.Codec
+- uid: FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.TimeBase
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_TimeBase
+  name: TimeBase
+  nameWithType: VideoCodec.TimeBase
+  fullName: FFmpeg.Codecs.Video.VideoCodec.TimeBase
+- uid: FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_PixelFormat
+  name: PixelFormat
+  nameWithType: VideoCodec.PixelFormat
+  fullName: FFmpeg.Codecs.Video.VideoCodec.PixelFormat
+- uid: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  commentId: M:FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_CreateCodecContext
+  name: CreateCodecContext()
+  nameWithType: VideoCodec.CreateCodecContext()
+  fullName: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext()
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+    name: CreateCodecContext
+    href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_CreateCodecContext
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.VideoCodec.CreateCodecContext
+    name: CreateCodecContext
+    href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_CreateCodecContext
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  commentId: P:FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AdditionalParameters
+  name: AdditionalParameters
+  nameWithType: VideoCodec.AdditionalParameters
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AdditionalParameters
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.Codecs.Video.SVTAV1.#ctor*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.#ctor
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1__ctor_System_Int32_System_Int32_FFmpeg_Utils_Rational_
+  name: SVTAV1
+  nameWithType: SVTAV1.SVTAV1
+  fullName: FFmpeg.Codecs.Video.SVTAV1.SVTAV1
+  nameWithType.vb: SVTAV1.New
+  fullName.vb: FFmpeg.Codecs.Video.SVTAV1.New
+  name.vb: New
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Codecs.Video.SVTAV1.IsSupported*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.IsSupported
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_IsSupported
+  name: IsSupported
+  nameWithType: SVTAV1.IsSupported
+  fullName: FFmpeg.Codecs.Video.SVTAV1.IsSupported
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Codecs.Video.SVTAV1.Profile*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.Profile
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_Profile
+  name: Profile
+  nameWithType: SVTAV1.Profile
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Profile
+- uid: System.Nullable{FFmpeg.Codecs.Profile}
+  commentId: T:System.Nullable{FFmpeg.Codecs.Profile}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Codecs.Profile.html
+  name: Profile?
+  nameWithType: Profile?
+  fullName: FFmpeg.Codecs.Profile?
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Profile
+    name: Profile
+    href: FFmpeg.Codecs.Profile.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Codecs.Profile
+    name: Profile
+    href: FFmpeg.Codecs.Profile.html
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Codecs.Video.SVTAV1.Preset*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.Preset
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_Preset
+  name: Preset
+  nameWithType: SVTAV1.Preset
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Preset
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int?
+  nameWithType: int?
+  fullName: int?
+  nameWithType.vb: Integer?
+  fullName.vb: Integer?
+  name.vb: Integer?
+  spec.csharp:
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+  spec.vb:
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.BitrateControl*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_BitrateControl
+  name: BitrateControl
+  nameWithType: SVTAV1.BitrateControl
+  fullName: FFmpeg.Codecs.Video.SVTAV1.BitrateControl
+- uid: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl}
+  commentId: T:System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  name: BitrateControl?
+  nameWithType: BitrateControl?
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl?
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl
+    name: BitrateControl
+    href: FFmpeg.Codecs.Video.LibSVTAV1.BitrateControl.html
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.CRF*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.CRF
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_CRF
+  name: CRF
+  nameWithType: SVTAV1.CRF
+  fullName: FFmpeg.Codecs.Video.SVTAV1.CRF
+- uid: FFmpeg.Codecs.Video.SVTAV1.Tune*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.Tune
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_Tune
+  name: Tune
+  nameWithType: SVTAV1.Tune
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Tune
+- uid: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric}
+  commentId: T:System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.html
+  name: TuningMetric?
+  nameWithType: TuningMetric?
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric?
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+    name: TuningMetric
+    href: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric
+    name: TuningMetric
+    href: FFmpeg.Codecs.Video.LibSVTAV1.TuningMetric.html
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.GOPSettings*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_GOPSettings
+  name: GOPSettings
+  nameWithType: SVTAV1.GOPSettings
+  fullName: FFmpeg.Codecs.Video.SVTAV1.GOPSettings
+- uid: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  commentId: T:System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  name: GOPSettings?
+  nameWithType: GOPSettings?
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings?
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings
+    name: GOPSettings
+    href: FFmpeg.Codecs.Video.LibSVTAV1.GOPSettings.html
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_SceneChangeDetection
+  name: SceneChangeDetection
+  nameWithType: SVTAV1.SceneChangeDetection
+  fullName: FFmpeg.Codecs.Video.SVTAV1.SceneChangeDetection
+- uid: System.Nullable{System.Boolean}
+  commentId: T:System.Nullable{System.Boolean}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool?
+  nameWithType: bool?
+  fullName: bool?
+  nameWithType.vb: Boolean?
+  fullName.vb: Boolean?
+  name.vb: Boolean?
+  spec.csharp:
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+  spec.vb:
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_KeyFrameIntervalAsTimeSpan
+  name: KeyFrameIntervalAsTimeSpan
+  nameWithType: SVTAV1.KeyFrameIntervalAsTimeSpan
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_KeyFrameInterval
+  name: KeyFrameInterval
+  nameWithType: SVTAV1.KeyFrameInterval
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  commentId: P:FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_KeyFrameInterval
+  name: KeyFrameInterval
+  nameWithType: SVTAV1.KeyFrameInterval
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameInterval
+- uid: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_KeyFrameIntervalAsTimeSpan
+  name: KeyFrameIntervalAsTimeSpan
+  nameWithType: SVTAV1.KeyFrameIntervalAsTimeSpan
+  fullName: FFmpeg.Codecs.Video.SVTAV1.KeyFrameIntervalAsTimeSpan
+- uid: System.Nullable{System.TimeSpan}
+  commentId: T:System.Nullable{System.TimeSpan}
+  parent: System
+  definition: System.Nullable`1
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan?
+  nameWithType: TimeSpan?
+  fullName: System.TimeSpan?
+  spec.csharp:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.timespan
+  - name: '?'
+  spec.vb:
+  - uid: System.TimeSpan
+    name: TimeSpan
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.timespan
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.EnableOverlays*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_EnableOverlays
+  name: EnableOverlays
+  nameWithType: SVTAV1.EnableOverlays
+  fullName: FFmpeg.Codecs.Video.SVTAV1.EnableOverlays
+- uid: FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_ScreenContentMode
+  name: ScreenContentMode
+  nameWithType: SVTAV1.ScreenContentMode
+  fullName: FFmpeg.Codecs.Video.SVTAV1.ScreenContentMode
+- uid: System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode}
+  commentId: T:System.Nullable{FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode}
+  parent: System
+  definition: System.Nullable`1
+  href: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html
+  name: ScreenContentMode?
+  nameWithType: ScreenContentMode?
+  fullName: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode?
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+    name: ScreenContentMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html
+  - name: '?'
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode
+    name: ScreenContentMode
+    href: FFmpeg.Codecs.Video.LibSVTAV1.ScreenContentMode.html
+  - name: '?'
+- uid: FFmpeg.Codecs.Video.SVTAV1.FilmGrain*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_FilmGrain
+  name: FilmGrain
+  nameWithType: SVTAV1.FilmGrain
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FilmGrain
+- uid: FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_FilmGrainDenoise
+  name: FilmGrainDenoise
+  nameWithType: SVTAV1.FilmGrainDenoise
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FilmGrainDenoise
+- uid: FFmpeg.Codecs.Video.SVTAV1.FastDecode*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.FastDecode
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_FastDecode
+  name: FastDecode
+  nameWithType: SVTAV1.FastDecode
+  fullName: FFmpeg.Codecs.Video.SVTAV1.FastDecode
+- uid: FFmpeg.Codecs.Video.SVTAV1.Threads*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.Threads
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_Threads
+  name: Threads
+  nameWithType: SVTAV1.Threads
+  fullName: FFmpeg.Codecs.Video.SVTAV1.Threads
+- uid: FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_AdditionalSVTParameters
+  name: AdditionalSVTParameters
+  nameWithType: SVTAV1.AdditionalSVTParameters
+  fullName: FFmpeg.Codecs.Video.SVTAV1.AdditionalSVTParameters
+- uid: System.Collections.Generic.Dictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, string>
+  nameWithType: Dictionary<string, string>
+  fullName: System.Collections.Generic.Dictionary<string, string>
+  nameWithType.vb: Dictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, String)
+  name.vb: Dictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Codecs.Video.SVTAV1.ToString*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.ToString
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_ToString
+  name: ToString
+  nameWithType: SVTAV1.ToString
+  fullName: FFmpeg.Codecs.Video.SVTAV1.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  commentId: M:FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  parent: FFmpeg.Codecs.Video.VideoCodec
+  href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AddCodecOptions_FFmpeg_Codecs_CodecContext_
+  name: AddCodecOptions(CodecContext)
+  nameWithType: VideoCodec.AddCodecOptions(CodecContext)
+  fullName: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+  spec.csharp:
+  - uid: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+    name: AddCodecOptions
+    href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AddCodecOptions_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.Codecs.Video.VideoCodec.AddCodecOptions(FFmpeg.Codecs.CodecContext)
+    name: AddCodecOptions
+    href: FFmpeg.Codecs.Video.VideoCodec.html#FFmpeg_Codecs_Video_VideoCodec_AddCodecOptions_FFmpeg_Codecs_CodecContext_
+  - name: (
+  - uid: FFmpeg.Codecs.CodecContext
+    name: CodecContext
+    href: FFmpeg.Codecs.CodecContext.html
+  - name: )
+- uid: FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions*
+  commentId: Overload:FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions
+  href: FFmpeg.Codecs.Video.SVTAV1.html#FFmpeg_Codecs_Video_SVTAV1_AddCodecOptions_FFmpeg_Codecs_CodecContext_
+  name: AddCodecOptions
+  nameWithType: SVTAV1.AddCodecOptions
+  fullName: FFmpeg.Codecs.Video.SVTAV1.AddCodecOptions
+- uid: FFmpeg.Codecs.CodecContext
+  commentId: T:FFmpeg.Codecs.CodecContext
+  parent: FFmpeg.Codecs
+  href: FFmpeg.Codecs.CodecContext.html
+  name: CodecContext
+  nameWithType: CodecContext
+  fullName: FFmpeg.Codecs.CodecContext
+- uid: FFmpeg.Codecs
+  commentId: N:FFmpeg.Codecs
+  href: FFmpeg.html
+  name: FFmpeg.Codecs
+  nameWithType: FFmpeg.Codecs
+  fullName: FFmpeg.Codecs
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Codecs
+    name: Codecs
+    href: FFmpeg.Codecs.html

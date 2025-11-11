@@ -1,0 +1,917 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Utils.IPacket
+  commentId: T:FFmpeg.Utils.IPacket
+  id: IPacket
+  parent: FFmpeg.Utils
+  children:
+  - FFmpeg.Utils.IPacket.Clone
+  - FFmpeg.Utils.IPacket.CloneTo(FFmpeg.Utils.IPacket)
+  - FFmpeg.Utils.IPacket.CopyProperties(FFmpeg.Utils.IPacket)
+  - FFmpeg.Utils.IPacket.Data
+  - FFmpeg.Utils.IPacket.DecompressionTime
+  - FFmpeg.Utils.IPacket.DecompressionTimestamp
+  - FFmpeg.Utils.IPacket.Duration
+  - FFmpeg.Utils.IPacket.Flags
+  - FFmpeg.Utils.IPacket.MoveTo(FFmpeg.Utils.IPacket)
+  - FFmpeg.Utils.IPacket.Position
+  - FFmpeg.Utils.IPacket.PresentationTime
+  - FFmpeg.Utils.IPacket.PresentationTimestamp
+  - FFmpeg.Utils.IPacket.Resize(System.Int32)
+  - FFmpeg.Utils.IPacket.Size
+  - FFmpeg.Utils.IPacket.StreamIndex
+  - FFmpeg.Utils.IPacket.TimeBase
+  - FFmpeg.Utils.IPacket.Unreference
+  langs:
+  - csharp
+  - vb
+  name: IPacket
+  nameWithType: IPacket
+  fullName: FFmpeg.Utils.IPacket
+  type: Interface
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IPacket
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 2
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Managed wrapper for the FFmpeg <xref href="FFmpeg.AutoGen._AVPacket" data-throw-if-not-resolved="false"></xref> structure.
+
+    Provides managed access to packet data, timestamps, and operations for video and audio streaming.
+  example: []
+  syntax:
+    content: public interface IPacket
+    content.vb: Public Interface IPacket
+- uid: FFmpeg.Utils.IPacket.Data
+  commentId: P:FFmpeg.Utils.IPacket.Data
+  id: Data
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Data
+  nameWithType: IPacket.Data
+  fullName: FFmpeg.Utils.IPacket.Data
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Data
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 8
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets the raw data contained in the packet as a <xref href="System.Span%601" data-throw-if-not-resolved="false"></xref> of <xref href="System.Byte" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Span<byte> Data { get; }
+    parameters: []
+    return:
+      type: System.Span{System.Byte}
+    content.vb: ReadOnly Property Data As Span(Of Byte)
+  overload: FFmpeg.Utils.IPacket.Data*
+- uid: FFmpeg.Utils.IPacket.DecompressionTime
+  commentId: P:FFmpeg.Utils.IPacket.DecompressionTime
+  id: DecompressionTime
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: DecompressionTime
+  nameWithType: IPacket.DecompressionTime
+  fullName: FFmpeg.Utils.IPacket.DecompressionTime
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DecompressionTime
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the decompression timestamp (DTS) as a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>.
+
+    The <xref href="FFmpeg.Utils.AVPacket.DecompressionTimestamp" data-throw-if-not-resolved="false"></xref> is calculated using the <xref href="FFmpeg.Utils.AVPacket.TimeBase" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: TimeSpan DecompressionTime { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Property DecompressionTime As TimeSpan
+  overload: FFmpeg.Utils.IPacket.DecompressionTime*
+- uid: FFmpeg.Utils.IPacket.DecompressionTimestamp
+  commentId: P:FFmpeg.Utils.IPacket.DecompressionTimestamp
+  id: DecompressionTimestamp
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: DecompressionTimestamp
+  nameWithType: IPacket.DecompressionTimestamp
+  fullName: FFmpeg.Utils.IPacket.DecompressionTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: DecompressionTimestamp
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 14
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the decompression timestamp (DTS) of the packet, in stream time base units.
+
+    This timestamp indicates when the packet should be decompressed.
+  example: []
+  syntax:
+    content: long DecompressionTimestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Property DecompressionTimestamp As Long
+  overload: FFmpeg.Utils.IPacket.DecompressionTimestamp*
+- uid: FFmpeg.Utils.IPacket.Duration
+  commentId: P:FFmpeg.Utils.IPacket.Duration
+  id: Duration
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Duration
+  nameWithType: IPacket.Duration
+  fullName: FFmpeg.Utils.IPacket.Duration
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Duration
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the duration of the packet in stream time base units.
+  example: []
+  syntax:
+    content: long Duration { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Property Duration As Long
+  overload: FFmpeg.Utils.IPacket.Duration*
+- uid: FFmpeg.Utils.IPacket.Flags
+  commentId: P:FFmpeg.Utils.IPacket.Flags
+  id: Flags
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Flags
+  nameWithType: IPacket.Flags
+  fullName: FFmpeg.Utils.IPacket.Flags
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Flags
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 20
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the packet flags, which are a combination of <xref href="FFmpeg.Utils.PacketFlags" data-throw-if-not-resolved="false"></xref> values.
+
+    These flags indicate specific characteristics of the packet (e.g., key frame, corrupted data).
+  example: []
+  syntax:
+    content: PacketFlags Flags { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.PacketFlags
+    content.vb: Property Flags As PacketFlags
+  overload: FFmpeg.Utils.IPacket.Flags*
+- uid: FFmpeg.Utils.IPacket.Position
+  commentId: P:FFmpeg.Utils.IPacket.Position
+  id: Position
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: IPacket.Position
+  fullName: FFmpeg.Utils.IPacket.Position
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Position
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 23
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the byte position of the packet in the stream.
+  example: []
+  syntax:
+    content: long Position { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Property Position As Long
+  overload: FFmpeg.Utils.IPacket.Position*
+- uid: FFmpeg.Utils.IPacket.PresentationTime
+  commentId: P:FFmpeg.Utils.IPacket.PresentationTime
+  id: PresentationTime
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: PresentationTime
+  nameWithType: IPacket.PresentationTime
+  fullName: FFmpeg.Utils.IPacket.PresentationTime
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PresentationTime
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 26
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the presentation timestamp (PTS) as a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>.
+
+    The <xref href="FFmpeg.Utils.AVPacket.PresentationTimestamp" data-throw-if-not-resolved="false"></xref> is calculated using the <xref href="FFmpeg.Utils.AVPacket.TimeBase" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: TimeSpan PresentationTime { get; set; }
+    parameters: []
+    return:
+      type: System.TimeSpan
+    content.vb: Property PresentationTime As TimeSpan
+  overload: FFmpeg.Utils.IPacket.PresentationTime*
+- uid: FFmpeg.Utils.IPacket.PresentationTimestamp
+  commentId: P:FFmpeg.Utils.IPacket.PresentationTimestamp
+  id: PresentationTimestamp
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: PresentationTimestamp
+  nameWithType: IPacket.PresentationTimestamp
+  fullName: FFmpeg.Utils.IPacket.PresentationTimestamp
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PresentationTimestamp
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 29
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the presentation timestamp (PTS) of the packet, in stream time base units.
+
+    This timestamp indicates when the packet should be presented to the user.
+  example: []
+  syntax:
+    content: long PresentationTimestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: Property PresentationTimestamp As Long
+  overload: FFmpeg.Utils.IPacket.PresentationTimestamp*
+- uid: FFmpeg.Utils.IPacket.Size
+  commentId: P:FFmpeg.Utils.IPacket.Size
+  id: Size
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Size
+  nameWithType: IPacket.Size
+  fullName: FFmpeg.Utils.IPacket.Size
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Size
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the size of the packet's data in bytes.
+  example: []
+  syntax:
+    content: int Size { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property Size As Integer
+  overload: FFmpeg.Utils.IPacket.Size*
+- uid: FFmpeg.Utils.IPacket.StreamIndex
+  commentId: P:FFmpeg.Utils.IPacket.StreamIndex
+  id: StreamIndex
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: StreamIndex
+  nameWithType: IPacket.StreamIndex
+  fullName: FFmpeg.Utils.IPacket.StreamIndex
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: StreamIndex
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 35
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Gets or sets the index of the stream this packet belongs to.
+  example: []
+  syntax:
+    content: int StreamIndex { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Property StreamIndex As Integer
+  overload: FFmpeg.Utils.IPacket.StreamIndex*
+- uid: FFmpeg.Utils.IPacket.TimeBase
+  commentId: P:FFmpeg.Utils.IPacket.TimeBase
+  id: TimeBase
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: TimeBase
+  nameWithType: IPacket.TimeBase
+  fullName: FFmpeg.Utils.IPacket.TimeBase
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TimeBase
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 38
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Gets or sets the time base used for the packet's timestamps, represented as a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> value.
+
+    This value defines the unit of time for the <xref href="FFmpeg.Utils.AVPacket.PresentationTimestamp" data-throw-if-not-resolved="false"></xref> and <xref href="FFmpeg.Utils.AVPacket.DecompressionTimestamp" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Rational TimeBase { get; set; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Property TimeBase As Rational
+  overload: FFmpeg.Utils.IPacket.TimeBase*
+- uid: FFmpeg.Utils.IPacket.Unreference
+  commentId: M:FFmpeg.Utils.IPacket.Unreference
+  id: Unreference
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Unreference()
+  nameWithType: IPacket.Unreference()
+  fullName: FFmpeg.Utils.IPacket.Unreference()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Unreference
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 41
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Unreferences the packet, decrementing the reference count and releasing associated resources if no references remain.
+
+    This should be called when the packet is no longer needed.
+  example: []
+  syntax:
+    content: void Unreference()
+    content.vb: Sub Unreference()
+  overload: FFmpeg.Utils.IPacket.Unreference*
+- uid: FFmpeg.Utils.IPacket.Clone
+  commentId: M:FFmpeg.Utils.IPacket.Clone
+  id: Clone
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: IPacket.Clone()
+  fullName: FFmpeg.Utils.IPacket.Clone()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Clone
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 44
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Creates a new <xref href="FFmpeg.Utils.AVPacket" data-throw-if-not-resolved="false"></xref> that references the same data as this packet.
+
+    This creates a shallow copy, meaning the new packet will point to the same underlying data buffer.
+  example: []
+  syntax:
+    content: AVPacket Clone()
+    return:
+      type: FFmpeg.Utils.AVPacket
+      description: A new <xref href="FFmpeg.Utils.AVPacket" data-throw-if-not-resolved="false"></xref> instance that references the same data.
+    content.vb: Function Clone() As AVPacket
+  overload: FFmpeg.Utils.IPacket.Clone*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown when the clone operation fails due to insufficient memory allocation.
+- uid: FFmpeg.Utils.IPacket.Resize(System.Int32)
+  commentId: M:FFmpeg.Utils.IPacket.Resize(System.Int32)
+  id: Resize(System.Int32)
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: Resize(int)
+  nameWithType: IPacket.Resize(int)
+  fullName: FFmpeg.Utils.IPacket.Resize(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Resize
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 47
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Resizes the packet's data buffer to the specified size, either growing or shrinking it.
+  example: []
+  syntax:
+    content: void Resize(int size)
+    parameters:
+    - id: size
+      type: System.Int32
+      description: The new size of the packet's data buffer in bytes.
+    content.vb: Sub Resize(size As Integer)
+  overload: FFmpeg.Utils.IPacket.Resize*
+  exceptions:
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: Thrown if the packet cannot be resized due to insufficient memory during growth.
+  nameWithType.vb: IPacket.Resize(Integer)
+  fullName.vb: FFmpeg.Utils.IPacket.Resize(Integer)
+  name.vb: Resize(Integer)
+- uid: FFmpeg.Utils.IPacket.MoveTo(FFmpeg.Utils.IPacket)
+  commentId: M:FFmpeg.Utils.IPacket.MoveTo(FFmpeg.Utils.IPacket)
+  id: MoveTo(FFmpeg.Utils.IPacket)
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: MoveTo(IPacket)
+  nameWithType: IPacket.MoveTo(IPacket)
+  fullName: FFmpeg.Utils.IPacket.MoveTo(FFmpeg.Utils.IPacket)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: MoveTo
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 50
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Moves the contents of this packet to the specified <xref href="FFmpeg.Utils.IPacket" data-throw-if-not-resolved="false"></xref> destination,
+
+    effectively transferring ownership of the data without copying it.
+  example: []
+  syntax:
+    content: void MoveTo(IPacket dst)
+    parameters:
+    - id: dst
+      type: FFmpeg.Utils.IPacket
+      description: The destination packet to move the data to.
+    content.vb: Sub MoveTo(dst As IPacket)
+  overload: FFmpeg.Utils.IPacket.MoveTo*
+- uid: FFmpeg.Utils.IPacket.CloneTo(FFmpeg.Utils.IPacket)
+  commentId: M:FFmpeg.Utils.IPacket.CloneTo(FFmpeg.Utils.IPacket)
+  id: CloneTo(FFmpeg.Utils.IPacket)
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: CloneTo(IPacket)
+  nameWithType: IPacket.CloneTo(IPacket)
+  fullName: FFmpeg.Utils.IPacket.CloneTo(FFmpeg.Utils.IPacket)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CloneTo
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 53
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Clones the contents of this packet to the specified <xref href="FFmpeg.Utils.IPacket" data-throw-if-not-resolved="false"></xref> destination.
+
+    This creates a deep copy of the packet, including its data and properties.
+  example: []
+  syntax:
+    content: void CloneTo(IPacket dst)
+    parameters:
+    - id: dst
+      type: FFmpeg.Utils.IPacket
+      description: The destination packet to clone the data to.
+    content.vb: Sub CloneTo(dst As IPacket)
+  overload: FFmpeg.Utils.IPacket.CloneTo*
+- uid: FFmpeg.Utils.IPacket.CopyProperties(FFmpeg.Utils.IPacket)
+  commentId: M:FFmpeg.Utils.IPacket.CopyProperties(FFmpeg.Utils.IPacket)
+  id: CopyProperties(FFmpeg.Utils.IPacket)
+  parent: FFmpeg.Utils.IPacket
+  langs:
+  - csharp
+  - vb
+  name: CopyProperties(IPacket)
+  nameWithType: IPacket.CopyProperties(IPacket)
+  fullName: FFmpeg.Utils.IPacket.CopyProperties(FFmpeg.Utils.IPacket)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/IPacket.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: CopyProperties
+    path: FFmpeg/Utils/IPacket.cs
+    startLine: 56
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Copies the properties of this packet, such as stream index and timestamps,
+
+    to the specified <xref href="FFmpeg.Utils.IPacket" data-throw-if-not-resolved="false"></xref> destination without copying the actual data.
+  example: []
+  syntax:
+    content: void CopyProperties(IPacket dst)
+    parameters:
+    - id: dst
+      type: FFmpeg.Utils.IPacket
+      description: The destination packet to copy the properties to.
+    content.vb: Sub CopyProperties(dst As IPacket)
+  overload: FFmpeg.Utils.IPacket.CopyProperties*
+references:
+- uid: FFmpeg.AutoGen._AVPacket
+  commentId: T:FFmpeg.AutoGen._AVPacket
+  isExternal: true
+  name: _AVPacket
+  nameWithType: _AVPacket
+  fullName: FFmpeg.AutoGen._AVPacket
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Byte
+  commentId: T:System.Byte
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.byte
+  name: byte
+  nameWithType: byte
+  fullName: byte
+  nameWithType.vb: Byte
+  fullName.vb: Byte
+  name.vb: Byte
+- uid: FFmpeg.Utils.IPacket.Data*
+  commentId: Overload:FFmpeg.Utils.IPacket.Data
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Data
+  name: Data
+  nameWithType: IPacket.Data
+  fullName: FFmpeg.Utils.IPacket.Data
+- uid: System.Span{System.Byte}
+  commentId: T:System.Span{System.Byte}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<byte>
+  nameWithType: Span<byte>
+  fullName: System.Span<byte>
+  nameWithType.vb: Span(Of Byte)
+  fullName.vb: System.Span(Of Byte)
+  name.vb: Span(Of Byte)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: FFmpeg.Utils.AVPacket.DecompressionTimestamp
+  commentId: P:FFmpeg.Utils.AVPacket.DecompressionTimestamp
+  href: FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_DecompressionTimestamp
+  name: DecompressionTimestamp
+  nameWithType: AVPacket.DecompressionTimestamp
+  fullName: FFmpeg.Utils.AVPacket.DecompressionTimestamp
+- uid: FFmpeg.Utils.AVPacket.TimeBase
+  commentId: P:FFmpeg.Utils.AVPacket.TimeBase
+  href: FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_TimeBase
+  name: TimeBase
+  nameWithType: AVPacket.TimeBase
+  fullName: FFmpeg.Utils.AVPacket.TimeBase
+- uid: FFmpeg.Utils.IPacket.DecompressionTime*
+  commentId: Overload:FFmpeg.Utils.IPacket.DecompressionTime
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_DecompressionTime
+  name: DecompressionTime
+  nameWithType: IPacket.DecompressionTime
+  fullName: FFmpeg.Utils.IPacket.DecompressionTime
+- uid: FFmpeg.Utils.IPacket.DecompressionTimestamp*
+  commentId: Overload:FFmpeg.Utils.IPacket.DecompressionTimestamp
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_DecompressionTimestamp
+  name: DecompressionTimestamp
+  nameWithType: IPacket.DecompressionTimestamp
+  fullName: FFmpeg.Utils.IPacket.DecompressionTimestamp
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FFmpeg.Utils.IPacket.Duration*
+  commentId: Overload:FFmpeg.Utils.IPacket.Duration
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Duration
+  name: Duration
+  nameWithType: IPacket.Duration
+  fullName: FFmpeg.Utils.IPacket.Duration
+- uid: FFmpeg.Utils.PacketFlags
+  commentId: T:FFmpeg.Utils.PacketFlags
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.PacketFlags.html
+  name: PacketFlags
+  nameWithType: PacketFlags
+  fullName: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.IPacket.Flags*
+  commentId: Overload:FFmpeg.Utils.IPacket.Flags
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Flags
+  name: Flags
+  nameWithType: IPacket.Flags
+  fullName: FFmpeg.Utils.IPacket.Flags
+- uid: FFmpeg.Utils.IPacket.Position*
+  commentId: Overload:FFmpeg.Utils.IPacket.Position
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Position
+  name: Position
+  nameWithType: IPacket.Position
+  fullName: FFmpeg.Utils.IPacket.Position
+- uid: FFmpeg.Utils.AVPacket.PresentationTimestamp
+  commentId: P:FFmpeg.Utils.AVPacket.PresentationTimestamp
+  href: FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_PresentationTimestamp
+  name: PresentationTimestamp
+  nameWithType: AVPacket.PresentationTimestamp
+  fullName: FFmpeg.Utils.AVPacket.PresentationTimestamp
+- uid: FFmpeg.Utils.IPacket.PresentationTime*
+  commentId: Overload:FFmpeg.Utils.IPacket.PresentationTime
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_PresentationTime
+  name: PresentationTime
+  nameWithType: IPacket.PresentationTime
+  fullName: FFmpeg.Utils.IPacket.PresentationTime
+- uid: FFmpeg.Utils.IPacket.PresentationTimestamp*
+  commentId: Overload:FFmpeg.Utils.IPacket.PresentationTimestamp
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_PresentationTimestamp
+  name: PresentationTimestamp
+  nameWithType: IPacket.PresentationTimestamp
+  fullName: FFmpeg.Utils.IPacket.PresentationTimestamp
+- uid: FFmpeg.Utils.IPacket.Size*
+  commentId: Overload:FFmpeg.Utils.IPacket.Size
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Size
+  name: Size
+  nameWithType: IPacket.Size
+  fullName: FFmpeg.Utils.IPacket.Size
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.IPacket.StreamIndex*
+  commentId: Overload:FFmpeg.Utils.IPacket.StreamIndex
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_StreamIndex
+  name: StreamIndex
+  nameWithType: IPacket.StreamIndex
+  fullName: FFmpeg.Utils.IPacket.StreamIndex
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Utils.IPacket.TimeBase*
+  commentId: Overload:FFmpeg.Utils.IPacket.TimeBase
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_TimeBase
+  name: TimeBase
+  nameWithType: IPacket.TimeBase
+  fullName: FFmpeg.Utils.IPacket.TimeBase
+- uid: FFmpeg.Utils.IPacket.Unreference*
+  commentId: Overload:FFmpeg.Utils.IPacket.Unreference
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Unreference
+  name: Unreference
+  nameWithType: IPacket.Unreference
+  fullName: FFmpeg.Utils.IPacket.Unreference
+- uid: FFmpeg.Utils.AVPacket
+  commentId: T:FFmpeg.Utils.AVPacket
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVPacket.html
+  name: AVPacket
+  nameWithType: AVPacket
+  fullName: FFmpeg.Utils.AVPacket
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.outofmemoryexception
+  name: OutOfMemoryException
+  nameWithType: OutOfMemoryException
+  fullName: System.OutOfMemoryException
+- uid: FFmpeg.Utils.IPacket.Clone*
+  commentId: Overload:FFmpeg.Utils.IPacket.Clone
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Clone
+  name: Clone
+  nameWithType: IPacket.Clone
+  fullName: FFmpeg.Utils.IPacket.Clone
+- uid: FFmpeg.Utils.IPacket.Resize*
+  commentId: Overload:FFmpeg.Utils.IPacket.Resize
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_Resize_System_Int32_
+  name: Resize
+  nameWithType: IPacket.Resize
+  fullName: FFmpeg.Utils.IPacket.Resize
+- uid: FFmpeg.Utils.IPacket
+  commentId: T:FFmpeg.Utils.IPacket
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.IPacket.html
+  name: IPacket
+  nameWithType: IPacket
+  fullName: FFmpeg.Utils.IPacket
+- uid: FFmpeg.Utils.IPacket.MoveTo*
+  commentId: Overload:FFmpeg.Utils.IPacket.MoveTo
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_MoveTo_FFmpeg_Utils_IPacket_
+  name: MoveTo
+  nameWithType: IPacket.MoveTo
+  fullName: FFmpeg.Utils.IPacket.MoveTo
+- uid: FFmpeg.Utils.IPacket.CloneTo*
+  commentId: Overload:FFmpeg.Utils.IPacket.CloneTo
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_CloneTo_FFmpeg_Utils_IPacket_
+  name: CloneTo
+  nameWithType: IPacket.CloneTo
+  fullName: FFmpeg.Utils.IPacket.CloneTo
+- uid: FFmpeg.Utils.IPacket.CopyProperties*
+  commentId: Overload:FFmpeg.Utils.IPacket.CopyProperties
+  href: FFmpeg.Utils.IPacket.html#FFmpeg_Utils_IPacket_CopyProperties_FFmpeg_Utils_IPacket_
+  name: CopyProperties
+  nameWithType: IPacket.CopyProperties
+  fullName: FFmpeg.Utils.IPacket.CopyProperties

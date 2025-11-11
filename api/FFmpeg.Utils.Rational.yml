@@ -1,0 +1,1940 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  id: Rational
+  parent: FFmpeg.Utils
+  children:
+  - FFmpeg.Utils.Rational.#ctor
+  - FFmpeg.Utils.Rational.#ctor(System.Int32,System.Int32)
+  - FFmpeg.Utils.Rational.#ctor(System.Int64,System.Int64)
+  - FFmpeg.Utils.Rational.Denominator
+  - FFmpeg.Utils.Rational.Equals(FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.Equals(System.Object)
+  - FFmpeg.Utils.Rational.GetHashCode
+  - FFmpeg.Utils.Rational.Height
+  - FFmpeg.Utils.Rational.IsValidTimeBase
+  - FFmpeg.Utils.Rational.Numerator
+  - FFmpeg.Utils.Rational.Reduce(System.Int32)
+  - FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.TIME_BASE
+  - FFmpeg.Utils.Rational.ToString
+  - FFmpeg.Utils.Rational.Width
+  - FFmpeg.Utils.Rational.op_Division(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_Division(System.TimeSpan,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_GreaterThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_GreaterThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_Implicit(FFmpeg.AutoGen._AVRational)~FFmpeg.Utils.Rational
+  - FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~FFmpeg.AutoGen._AVRational
+  - FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.Double
+  - FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.TimeSpan
+  - FFmpeg.Utils.Rational.op_Implicit(System.Double)~FFmpeg.Utils.Rational
+  - FFmpeg.Utils.Rational.op_Implicit(System.TimeSpan)~FFmpeg.Utils.Rational
+  - FFmpeg.Utils.Rational.op_Implicit(System.ValueTuple{System.Int32,System.Int32})~FFmpeg.Utils.Rational
+  - FFmpeg.Utils.Rational.op_LessThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_LessThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_Multiply(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_Multiply(System.Int32,FFmpeg.Utils.Rational)
+  - FFmpeg.Utils.Rational.op_Multiply(System.Int64,FFmpeg.Utils.Rational)
+  langs:
+  - csharp
+  - vb
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+  type: Struct
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Rational
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 9
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Represents a rational number with a numerator and denominator.
+
+    This struct is readonly for performance reasons.
+  example: []
+  syntax:
+    content: 'public readonly struct Rational : IEquatable<Rational>'
+    content.vb: Public Structure Rational Implements IEquatable(Of Rational)
+  implements:
+  - System.IEquatable{FFmpeg.Utils.Rational}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+- uid: FFmpeg.Utils.Rational.TIME_BASE
+  commentId: P:FFmpeg.Utils.Rational.TIME_BASE
+  id: TIME_BASE
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: TIME_BASE
+  nameWithType: Rational.TIME_BASE
+  fullName: FFmpeg.Utils.Rational.TIME_BASE
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: TIME_BASE
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 11
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public static Rational TIME_BASE { get; }
+    parameters: []
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared ReadOnly Property TIME_BASE As Rational
+  overload: FFmpeg.Utils.Rational.TIME_BASE*
+- uid: FFmpeg.Utils.Rational.Numerator
+  commentId: P:FFmpeg.Utils.Rational.Numerator
+  id: Numerator
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Numerator
+  nameWithType: Rational.Numerator
+  fullName: FFmpeg.Utils.Rational.Numerator
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Numerator
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Numerator of the rational number.
+  example: []
+  syntax:
+    content: public int Numerator { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Numerator As Integer
+  overload: FFmpeg.Utils.Rational.Numerator*
+- uid: FFmpeg.Utils.Rational.Width
+  commentId: P:FFmpeg.Utils.Rational.Width
+  id: Width
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Width
+  nameWithType: Rational.Width
+  fullName: FFmpeg.Utils.Rational.Width
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Width
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 22
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Width represented by the numerator.
+  example: []
+  syntax:
+    content: public int Width { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Width As Integer
+  overload: FFmpeg.Utils.Rational.Width*
+- uid: FFmpeg.Utils.Rational.Height
+  commentId: P:FFmpeg.Utils.Rational.Height
+  id: Height
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Height
+  nameWithType: Rational.Height
+  fullName: FFmpeg.Utils.Rational.Height
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Height
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Height represented by the denominator.
+  example: []
+  syntax:
+    content: public int Height { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Height As Integer
+  overload: FFmpeg.Utils.Rational.Height*
+- uid: FFmpeg.Utils.Rational.Denominator
+  commentId: P:FFmpeg.Utils.Rational.Denominator
+  id: Denominator
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Denominator
+  nameWithType: Rational.Denominator
+  fullName: FFmpeg.Utils.Rational.Denominator
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Denominator
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Denominator of the rational number.
+  example: []
+  syntax:
+    content: public int Denominator { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property Denominator As Integer
+  overload: FFmpeg.Utils.Rational.Denominator*
+- uid: FFmpeg.Utils.Rational.#ctor
+  commentId: M:FFmpeg.Utils.Rational.#ctor
+  id: '#ctor'
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Rational()
+  nameWithType: Rational.Rational()
+  fullName: FFmpeg.Utils.Rational.Rational()
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 37
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Initializes a new instance of the <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> struct with a value of 0/1.
+  example: []
+  syntax:
+    content: public Rational()
+    content.vb: Public Sub New()
+  overload: FFmpeg.Utils.Rational.#ctor*
+  nameWithType.vb: Rational.New()
+  fullName.vb: FFmpeg.Utils.Rational.New()
+  name.vb: New()
+- uid: FFmpeg.Utils.Rational.#ctor(System.Int32,System.Int32)
+  commentId: M:FFmpeg.Utils.Rational.#ctor(System.Int32,System.Int32)
+  id: '#ctor(System.Int32,System.Int32)'
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Rational(int, int)
+  nameWithType: Rational.Rational(int, int)
+  fullName: FFmpeg.Utils.Rational.Rational(int, int)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 45
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Initializes a new instance of the <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> struct with the specified numerator and denominator.
+  example: []
+  syntax:
+    content: public Rational(int numerator, int denominator)
+    parameters:
+    - id: numerator
+      type: System.Int32
+      description: The numerator.
+    - id: denominator
+      type: System.Int32
+      description: The denominator.
+    content.vb: Public Sub New(numerator As Integer, denominator As Integer)
+  overload: FFmpeg.Utils.Rational.#ctor*
+  exceptions:
+  - type: System.DivideByZeroException
+    commentId: T:System.DivideByZeroException
+    description: Thrown when the denominator is zero.
+  nameWithType.vb: Rational.New(Integer, Integer)
+  fullName.vb: FFmpeg.Utils.Rational.New(Integer, Integer)
+  name.vb: New(Integer, Integer)
+- uid: FFmpeg.Utils.Rational.#ctor(System.Int64,System.Int64)
+  commentId: M:FFmpeg.Utils.Rational.#ctor(System.Int64,System.Int64)
+  id: '#ctor(System.Int64,System.Int64)'
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Rational(long, long)
+  nameWithType: Rational.Rational(long, long)
+  fullName: FFmpeg.Utils.Rational.Rational(long, long)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 72
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Initializes a new instance of the <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> struct using a long numerator and denominator, reducing the result.
+  example: []
+  syntax:
+    content: public Rational(long numerator, long denominator)
+    parameters:
+    - id: numerator
+      type: System.Int64
+      description: The numerator.
+    - id: denominator
+      type: System.Int64
+      description: The denominator.
+    content.vb: Public Sub New(numerator As Long, denominator As Long)
+  overload: FFmpeg.Utils.Rational.#ctor*
+  nameWithType.vb: Rational.New(Long, Long)
+  fullName.vb: FFmpeg.Utils.Rational.New(Long, Long)
+  name.vb: New(Long, Long)
+- uid: FFmpeg.Utils.Rational.op_Implicit(System.ValueTuple{System.Int32,System.Int32})~FFmpeg.Utils.Rational
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(System.ValueTuple{System.Int32,System.Int32})~FFmpeg.Utils.Rational
+  id: op_Implicit(System.ValueTuple{System.Int32,System.Int32})~FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Rational((int numerator, int denominator))
+  nameWithType: Rational.implicit operator Rational((int numerator, int denominator))
+  fullName: FFmpeg.Utils.Rational.implicit operator FFmpeg.Utils.Rational((int numerator, int denominator))
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 86
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a tuple of (numerator, denominator) to a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator Rational((int numerator, int denominator) value)
+    parameters:
+    - id: value
+      type: System.ValueTuple{System.Int32,System.Int32}
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Widening Operator CType(value As (numerator As Integer, denominator As Integer)) As Rational
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType((numerator As Integer, denominator As Integer))
+  fullName.vb: FFmpeg.Utils.Rational.CType((numerator As Integer, denominator As Integer))
+  name.vb: CType((numerator As Integer, denominator As Integer))
+- uid: FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~FFmpeg.AutoGen._AVRational
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~FFmpeg.AutoGen._AVRational
+  id: op_Implicit(FFmpeg.Utils.Rational)~FFmpeg.AutoGen._AVRational
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator _AVRational(Rational)
+  nameWithType: Rational.implicit operator _AVRational(Rational)
+  fullName: FFmpeg.Utils.Rational.implicit operator FFmpeg.AutoGen._AVRational(FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 92
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> to an <xref href="FFmpeg.AutoGen._AVRational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator _AVRational(Rational r)
+    parameters:
+    - id: r
+      type: FFmpeg.Utils.Rational
+    return:
+      type: FFmpeg.AutoGen._AVRational
+    content.vb: Public Shared Widening Operator CType(r As Rational) As _AVRational
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(Rational)
+  fullName.vb: FFmpeg.Utils.Rational.CType(FFmpeg.Utils.Rational)
+  name.vb: CType(Rational)
+- uid: FFmpeg.Utils.Rational.op_Implicit(FFmpeg.AutoGen._AVRational)~FFmpeg.Utils.Rational
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(FFmpeg.AutoGen._AVRational)~FFmpeg.Utils.Rational
+  id: op_Implicit(FFmpeg.AutoGen._AVRational)~FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Rational(_AVRational)
+  nameWithType: Rational.implicit operator Rational(_AVRational)
+  fullName: FFmpeg.Utils.Rational.implicit operator FFmpeg.Utils.Rational(FFmpeg.AutoGen._AVRational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 99
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts an <xref href="FFmpeg.AutoGen._AVRational" data-throw-if-not-resolved="false"></xref> to a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator Rational(_AVRational r)
+    parameters:
+    - id: r
+      type: FFmpeg.AutoGen._AVRational
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Widening Operator CType(r As _AVRational) As Rational
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(_AVRational)
+  fullName.vb: FFmpeg.Utils.Rational.CType(FFmpeg.AutoGen._AVRational)
+  name.vb: CType(_AVRational)
+- uid: FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.TimeSpan
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.TimeSpan
+  id: op_Implicit(FFmpeg.Utils.Rational)~System.TimeSpan
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator TimeSpan(Rational)
+  nameWithType: Rational.implicit operator TimeSpan(Rational)
+  fullName: FFmpeg.Utils.Rational.implicit operator System.TimeSpan(FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 105
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> to a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator TimeSpan(Rational r)
+    parameters:
+    - id: r
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.TimeSpan
+    content.vb: Public Shared Widening Operator CType(r As Rational) As TimeSpan
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(Rational)
+  fullName.vb: FFmpeg.Utils.Rational.CType(FFmpeg.Utils.Rational)
+  name.vb: CType(Rational)
+- uid: FFmpeg.Utils.Rational.op_Implicit(System.TimeSpan)~FFmpeg.Utils.Rational
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(System.TimeSpan)~FFmpeg.Utils.Rational
+  id: op_Implicit(System.TimeSpan)~FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Rational(TimeSpan)
+  nameWithType: Rational.implicit operator Rational(TimeSpan)
+  fullName: FFmpeg.Utils.Rational.implicit operator FFmpeg.Utils.Rational(System.TimeSpan)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 111
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> to a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator Rational(TimeSpan timeSpan)
+    parameters:
+    - id: timeSpan
+      type: System.TimeSpan
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Widening Operator CType(timeSpan As TimeSpan) As Rational
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(TimeSpan)
+  fullName.vb: FFmpeg.Utils.Rational.CType(System.TimeSpan)
+  name.vb: CType(TimeSpan)
+- uid: FFmpeg.Utils.Rational.op_Implicit(System.Double)~FFmpeg.Utils.Rational
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(System.Double)~FFmpeg.Utils.Rational
+  id: op_Implicit(System.Double)~FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Rational(double)
+  nameWithType: Rational.implicit operator Rational(double)
+  fullName: FFmpeg.Utils.Rational.implicit operator FFmpeg.Utils.Rational(double)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 117
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="System.Double" data-throw-if-not-resolved="false"></xref> to a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator Rational(double value)
+    parameters:
+    - id: value
+      type: System.Double
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Widening Operator CType(value As Double) As Rational
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(Double)
+  fullName.vb: FFmpeg.Utils.Rational.CType(Double)
+  name.vb: CType(Double)
+- uid: FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.Double
+  commentId: M:FFmpeg.Utils.Rational.op_Implicit(FFmpeg.Utils.Rational)~System.Double
+  id: op_Implicit(FFmpeg.Utils.Rational)~System.Double
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: implicit operator double(Rational)
+  nameWithType: Rational.implicit operator double(Rational)
+  fullName: FFmpeg.Utils.Rational.implicit operator double(FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Implicit
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 123
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Implicitly converts a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> to a <xref href="System.Double" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static implicit operator double(Rational r)
+    parameters:
+    - id: r
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Double
+    content.vb: Public Shared Widening Operator CType(r As Rational) As Double
+  overload: FFmpeg.Utils.Rational.op_Implicit*
+  nameWithType.vb: Rational.CType(Rational)
+  fullName.vb: FFmpeg.Utils.Rational.CType(FFmpeg.Utils.Rational)
+  name.vb: CType(Rational)
+- uid: FFmpeg.Utils.Rational.op_Multiply(System.Int32,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_Multiply(System.Int32,FFmpeg.Utils.Rational)
+  id: op_Multiply(System.Int32,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator *(int, Rational)
+  nameWithType: Rational.operator *(int, Rational)
+  fullName: FFmpeg.Utils.Rational.operator *(int, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Multiply
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 133
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Multiplies an integer by a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static Rational operator *(int value, Rational r)
+    parameters:
+    - id: value
+      type: System.Int32
+    - id: r
+      type: FFmpeg.Utils.Rational
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Operator *(value As Integer, r As Rational) As Rational
+  overload: FFmpeg.Utils.Rational.op_Multiply*
+  nameWithType.vb: Rational.*(Integer, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.*(Integer, FFmpeg.Utils.Rational)
+  name.vb: '*(Integer, Rational)'
+- uid: FFmpeg.Utils.Rational.op_Multiply(System.Int64,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_Multiply(System.Int64,FFmpeg.Utils.Rational)
+  id: op_Multiply(System.Int64,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator *(long, Rational)
+  nameWithType: Rational.operator *(long, Rational)
+  fullName: FFmpeg.Utils.Rational.operator *(long, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Multiply
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 139
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Multiplies a long integer by a <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public static Rational operator *(long value, Rational r)
+    parameters:
+    - id: value
+      type: System.Int64
+    - id: r
+      type: FFmpeg.Utils.Rational
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Operator *(value As Long, r As Rational) As Rational
+  overload: FFmpeg.Utils.Rational.op_Multiply*
+  nameWithType.vb: Rational.*(Long, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.*(Long, FFmpeg.Utils.Rational)
+  name.vb: '*(Long, Rational)'
+- uid: FFmpeg.Utils.Rational.op_Multiply(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_Multiply(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_Multiply(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator *(Rational, Rational)
+  nameWithType: Rational.operator *(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator *(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Multiply
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 145
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Multiplies two <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> numbers.
+  example: []
+  syntax:
+    content: public static Rational operator *(Rational r1, Rational r2)
+    parameters:
+    - id: r1
+      type: FFmpeg.Utils.Rational
+    - id: r2
+      type: FFmpeg.Utils.Rational
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Operator *(r1 As Rational, r2 As Rational) As Rational
+  overload: FFmpeg.Utils.Rational.op_Multiply*
+  nameWithType.vb: Rational.*(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.*(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: '*(Rational, Rational)'
+- uid: FFmpeg.Utils.Rational.op_Division(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_Division(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_Division(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator /(Rational, Rational)
+  nameWithType: Rational.operator /(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator /(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Division
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 151
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Divides one <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> number by another.
+  example: []
+  syntax:
+    content: public static Rational operator /(Rational r1, Rational r2)
+    parameters:
+    - id: r1
+      type: FFmpeg.Utils.Rational
+    - id: r2
+      type: FFmpeg.Utils.Rational
+    return:
+      type: FFmpeg.Utils.Rational
+    content.vb: Public Shared Operator /(r1 As Rational, r2 As Rational) As Rational
+  overload: FFmpeg.Utils.Rational.op_Division*
+  nameWithType.vb: Rational./(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational./(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: /(Rational, Rational)
+- uid: FFmpeg.Utils.Rational.op_Division(System.TimeSpan,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_Division(System.TimeSpan,FFmpeg.Utils.Rational)
+  id: op_Division(System.TimeSpan,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator /(TimeSpan, Rational)
+  nameWithType: Rational.operator /(TimeSpan, Rational)
+  fullName: FFmpeg.Utils.Rational.operator /(System.TimeSpan, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_Division
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 157
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Divides one <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> number by another.
+  example: []
+  syntax:
+    content: public static long operator /(TimeSpan t, Rational r2)
+    parameters:
+    - id: t
+      type: System.TimeSpan
+    - id: r2
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Int64
+    content.vb: Public Shared Operator /(t As TimeSpan, r2 As Rational) As Long
+  overload: FFmpeg.Utils.Rational.op_Division*
+  nameWithType.vb: Rational./(TimeSpan, Rational)
+  fullName.vb: FFmpeg.Utils.Rational./(System.TimeSpan, FFmpeg.Utils.Rational)
+  name.vb: /(TimeSpan, Rational)
+- uid: FFmpeg.Utils.Rational.op_LessThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_LessThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_LessThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator <(Rational, Rational)
+  nameWithType: Rational.operator <(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator <(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_LessThan
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 161
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  example: []
+  syntax:
+    content: public static bool operator <(Rational left, Rational right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Rational
+    - id: right
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <(left As Rational, right As Rational) As Boolean
+  overload: FFmpeg.Utils.Rational.op_LessThan*
+  nameWithType.vb: Rational.<(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.<(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: <(Rational, Rational)
+- uid: FFmpeg.Utils.Rational.op_GreaterThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_GreaterThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_GreaterThan(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator >(Rational, Rational)
+  nameWithType: Rational.operator >(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator >(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_GreaterThan
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 164
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  example: []
+  syntax:
+    content: public static bool operator >(Rational left, Rational right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Rational
+    - id: right
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator >(left As Rational, right As Rational) As Boolean
+  overload: FFmpeg.Utils.Rational.op_GreaterThan*
+  nameWithType.vb: Rational.>(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.>(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: '>(Rational, Rational)'
+- uid: FFmpeg.Utils.Rational.op_LessThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_LessThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_LessThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator <=(Rational, Rational)
+  nameWithType: Rational.operator <=(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator <=(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_LessThanOrEqual
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 167
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  example: []
+  syntax:
+    content: public static bool operator <=(Rational left, Rational right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Rational
+    - id: right
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <=(left As Rational, right As Rational) As Boolean
+  overload: FFmpeg.Utils.Rational.op_LessThanOrEqual*
+  nameWithType.vb: Rational.<=(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.<=(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: <=(Rational, Rational)
+- uid: FFmpeg.Utils.Rational.op_GreaterThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.op_GreaterThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: op_GreaterThanOrEqual(FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: operator >=(Rational, Rational)
+  nameWithType: Rational.operator >=(Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.operator >=(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Operator
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: op_GreaterThanOrEqual
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 170
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  example: []
+  syntax:
+    content: public static bool operator >=(Rational left, Rational right)
+    parameters:
+    - id: left
+      type: FFmpeg.Utils.Rational
+    - id: right
+      type: FFmpeg.Utils.Rational
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator >=(left As Rational, right As Rational) As Boolean
+  overload: FFmpeg.Utils.Rational.op_GreaterThanOrEqual*
+  nameWithType.vb: Rational.>=(Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.>=(FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: '>=(Rational, Rational)'
+- uid: FFmpeg.Utils.Rational.Equals(FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.Equals(FFmpeg.Utils.Rational)
+  id: Equals(FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Equals(Rational)
+  nameWithType: Rational.Equals(Rational)
+  fullName: FFmpeg.Utils.Rational.Equals(FFmpeg.Utils.Rational)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 180
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> is equal to another <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: public bool Equals(Rational other)
+    parameters:
+    - id: other
+      type: FFmpeg.Utils.Rational
+      description: The <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> to compare with the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: true if the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> is equal to the other parameter; otherwise, false.
+    content.vb: Public Function Equals(other As Rational) As Boolean
+  overload: FFmpeg.Utils.Rational.Equals*
+  implements:
+  - System.IEquatable{FFmpeg.Utils.Rational}.Equals(FFmpeg.Utils.Rational)
+- uid: FFmpeg.Utils.Rational.Equals(System.Object)
+  commentId: M:FFmpeg.Utils.Rational.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Equals(object?)
+  nameWithType: Rational.Equals(object?)
+  fullName: FFmpeg.Utils.Rational.Equals(object?)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Equals
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 187
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Determines whether the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> is equal to another object.
+  example: []
+  syntax:
+    content: public override bool Equals(object? obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+    return:
+      type: System.Boolean
+      description: true if the specified object is equal to the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>; otherwise, false.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: FFmpeg.Utils.Rational.Equals*
+  nameWithType.vb: Rational.Equals(Object)
+  fullName.vb: FFmpeg.Utils.Rational.Equals(Object)
+  name.vb: Equals(Object)
+- uid: FFmpeg.Utils.Rational.IsValidTimeBase
+  commentId: P:FFmpeg.Utils.Rational.IsValidTimeBase
+  id: IsValidTimeBase
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: IsValidTimeBase
+  nameWithType: Rational.IsValidTimeBase
+  fullName: FFmpeg.Utils.Rational.IsValidTimeBase
+  type: Property
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IsValidTimeBase
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 191
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: public bool IsValidTimeBase { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsValidTimeBase As Boolean
+  overload: FFmpeg.Utils.Rational.IsValidTimeBase*
+- uid: FFmpeg.Utils.Rational.GetHashCode
+  commentId: M:FFmpeg.Utils.Rational.GetHashCode
+  id: GetHashCode
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: Rational.GetHashCode()
+  fullName: FFmpeg.Utils.Rational.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: GetHashCode
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 199
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Serves as the default hash function.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A hash code for the current <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref>.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: FFmpeg.Utils.Rational.GetHashCode*
+- uid: FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  id: Rescale(System.Int64,FFmpeg.Utils.Rational,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Rescale(long, Rational, Rational)
+  nameWithType: Rational.Rescale(long, Rational, Rational)
+  fullName: FFmpeg.Utils.Rational.Rescale(long, FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Rescale
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 211
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Rescales a 64-bit integer according to two rational time bases. <br />
+
+    This operation is mathematically equivalent to <code>value * timeBaseSrc / timeBaseDst</code>.
+  example: []
+  syntax:
+    content: public static long Rescale(long value, Rational timeBaseSrc, Rational timeBaseDst)
+    parameters:
+    - id: value
+      type: System.Int64
+      description: The 64-bit integer value to be rescaled.
+    - id: timeBaseSrc
+      type: FFmpeg.Utils.Rational
+      description: The source time base (rational number).
+    - id: timeBaseDst
+      type: FFmpeg.Utils.Rational
+      description: The destination time base (rational number).
+    return:
+      type: System.Int64
+      description: The rescaled value in the destination time base units.
+    content.vb: Public Shared Function Rescale(value As Long, timeBaseSrc As Rational, timeBaseDst As Rational) As Long
+  overload: FFmpeg.Utils.Rational.Rescale*
+  nameWithType.vb: Rational.Rescale(Long, Rational, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.Rescale(Long, FFmpeg.Utils.Rational, FFmpeg.Utils.Rational)
+  name.vb: Rescale(Long, Rational, Rational)
+- uid: FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational)
+  commentId: M:FFmpeg.Utils.Rational.Rescale(System.Int64,FFmpeg.Utils.Rational)
+  id: Rescale(System.Int64,FFmpeg.Utils.Rational)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Rescale(long, Rational)
+  nameWithType: Rational.Rescale(long, Rational)
+  fullName: FFmpeg.Utils.Rational.Rescale(long, FFmpeg.Utils.Rational)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Rescale
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 221
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: >-
+    Rescales a 64-bit integer from a specific source time base to the current instance's time base. <br />
+
+    This operation is mathematically equivalent to <code>value * timeBaseSrc / <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/this">this</a></code>, 
+
+    where <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/this">this</a> refers to the current time base.
+  example: []
+  syntax:
+    content: public long Rescale(long value, Rational timeBaseSrc)
+    parameters:
+    - id: value
+      type: System.Int64
+      description: The 64-bit integer value to be rescaled.
+    - id: timeBaseSrc
+      type: FFmpeg.Utils.Rational
+      description: The source time base (rational number).
+    return:
+      type: System.Int64
+      description: The rescaled value in the current instance's time base units.
+    content.vb: Public Function Rescale(value As Long, timeBaseSrc As Rational) As Long
+  overload: FFmpeg.Utils.Rational.Rescale*
+  nameWithType.vb: Rational.Rescale(Long, Rational)
+  fullName.vb: FFmpeg.Utils.Rational.Rescale(Long, FFmpeg.Utils.Rational)
+  name.vb: Rescale(Long, Rational)
+- uid: FFmpeg.Utils.Rational.Reduce(System.Int32)
+  commentId: M:FFmpeg.Utils.Rational.Reduce(System.Int32)
+  id: Reduce(System.Int32)
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: Reduce(int)
+  nameWithType: Rational.Reduce(int)
+  fullName: FFmpeg.Utils.Rational.Reduce(int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Reduce
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 230
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Reduces the <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> number to its simplest form, considering a maximum value for the numerator and denominator.
+  example: []
+  syntax:
+    content: public Rational Reduce(int max)
+    parameters:
+    - id: max
+      type: System.Int32
+      description: The maximum allowed value for the numerator and denominator.
+    return:
+      type: FFmpeg.Utils.Rational
+      description: A reduced <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> number.
+    content.vb: Public Function Reduce(max As Integer) As Rational
+  overload: FFmpeg.Utils.Rational.Reduce*
+  nameWithType.vb: Rational.Reduce(Integer)
+  fullName.vb: FFmpeg.Utils.Rational.Reduce(Integer)
+  name.vb: Reduce(Integer)
+- uid: FFmpeg.Utils.Rational.ToString
+  commentId: M:FFmpeg.Utils.Rational.ToString
+  id: ToString
+  parent: FFmpeg.Utils.Rational
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Rational.ToString()
+  fullName: FFmpeg.Utils.Rational.ToString()
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/Utils/Rational.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ToString
+    path: FFmpeg/Utils/Rational.cs
+    startLine: 242
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Returns a string representation of the <xref href="FFmpeg.Utils.Rational" data-throw-if-not-resolved="false"></xref> number.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string in the format "numerator/denominator".
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: FFmpeg.Utils.Rational.ToString*
+references:
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: System.IEquatable{FFmpeg.Utils.Rational}
+  commentId: T:System.IEquatable{FFmpeg.Utils.Rational}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Rational>
+  nameWithType: IEquatable<Rational>
+  fullName: System.IEquatable<FFmpeg.Utils.Rational>
+  nameWithType.vb: IEquatable(Of Rational)
+  fullName.vb: System.IEquatable(Of FFmpeg.Utils.Rational)
+  name.vb: IEquatable(Of Rational)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: FFmpeg.Utils.Rational
+    name: Rational
+    href: FFmpeg.Utils.Rational.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: FFmpeg.Utils.Rational
+    name: Rational
+    href: FFmpeg.Utils.Rational.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.Utils.Rational.TIME_BASE*
+  commentId: Overload:FFmpeg.Utils.Rational.TIME_BASE
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_TIME_BASE
+  name: TIME_BASE
+  nameWithType: Rational.TIME_BASE
+  fullName: FFmpeg.Utils.Rational.TIME_BASE
+- uid: FFmpeg.Utils.Rational
+  commentId: T:FFmpeg.Utils.Rational
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.Rational.html
+  name: Rational
+  nameWithType: Rational
+  fullName: FFmpeg.Utils.Rational
+- uid: FFmpeg.Utils.Rational.Numerator*
+  commentId: Overload:FFmpeg.Utils.Rational.Numerator
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Numerator
+  name: Numerator
+  nameWithType: Rational.Numerator
+  fullName: FFmpeg.Utils.Rational.Numerator
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Utils.Rational.Width*
+  commentId: Overload:FFmpeg.Utils.Rational.Width
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Width
+  name: Width
+  nameWithType: Rational.Width
+  fullName: FFmpeg.Utils.Rational.Width
+- uid: FFmpeg.Utils.Rational.Height*
+  commentId: Overload:FFmpeg.Utils.Rational.Height
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Height
+  name: Height
+  nameWithType: Rational.Height
+  fullName: FFmpeg.Utils.Rational.Height
+- uid: FFmpeg.Utils.Rational.Denominator*
+  commentId: Overload:FFmpeg.Utils.Rational.Denominator
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Denominator
+  name: Denominator
+  nameWithType: Rational.Denominator
+  fullName: FFmpeg.Utils.Rational.Denominator
+- uid: FFmpeg.Utils.Rational.#ctor*
+  commentId: Overload:FFmpeg.Utils.Rational.#ctor
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational__ctor
+  name: Rational
+  nameWithType: Rational.Rational
+  fullName: FFmpeg.Utils.Rational.Rational
+  nameWithType.vb: Rational.New
+  fullName.vb: FFmpeg.Utils.Rational.New
+  name.vb: New
+- uid: System.DivideByZeroException
+  commentId: T:System.DivideByZeroException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.dividebyzeroexception
+  name: DivideByZeroException
+  nameWithType: DivideByZeroException
+  fullName: System.DivideByZeroException
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FFmpeg.Utils.Rational.op_Implicit*
+  commentId: Overload:FFmpeg.Utils.Rational.op_Implicit
+  name: implicit operator
+  nameWithType: Rational.implicit operator
+  fullName: FFmpeg.Utils.Rational.implicit operator
+  nameWithType.vb: Rational.CType
+  fullName.vb: FFmpeg.Utils.Rational.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: System.ValueTuple{System.Int32,System.Int32}
+  commentId: T:System.ValueTuple{System.Int32,System.Int32}
+  parent: System
+  definition: System.ValueTuple`2
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: (int Width, int Height)
+  nameWithType: (int Width, int Height)
+  fullName: (int Width, int Height)
+  nameWithType.vb: (Width As Integer, Height As Integer)
+  fullName.vb: (Width As Integer, Height As Integer)
+  name.vb: (Width As Integer, Height As Integer)
+  spec.csharp:
+  - name: (
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Width
+    name: Width
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.width
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Height
+    name: Height
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.height
+  - name: )
+  spec.vb:
+  - name: (
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Width
+    name: Width
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.width
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: ','
+  - name: " "
+  - uid: System.ValueTuple{System.Int32,System.Int32}.Height
+    name: Height
+    href: https://learn.microsoft.com/dotnet/api/system.valuetuple-system.int32,system.int32-.height
+  - name: " "
+  - name: As
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: System.ValueTuple`2
+  commentId: T:System.ValueTuple`2
+  name: (T1, T2)
+  nameWithType: (T1, T2)
+  fullName: (T1, T2)
+  spec.csharp:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+  spec.vb:
+  - name: (
+  - name: T1
+  - name: ','
+  - name: " "
+  - name: T2
+  - name: )
+- uid: FFmpeg.AutoGen._AVRational
+  commentId: T:FFmpeg.AutoGen._AVRational
+  parent: FFmpeg.AutoGen
+  isExternal: true
+  name: _AVRational
+  nameWithType: _AVRational
+  fullName: FFmpeg.AutoGen._AVRational
+- uid: FFmpeg.AutoGen
+  commentId: N:FFmpeg.AutoGen
+  isExternal: true
+  name: FFmpeg.AutoGen
+  nameWithType: FFmpeg.AutoGen
+  fullName: FFmpeg.AutoGen
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    isExternal: true
+  - name: .
+  - uid: FFmpeg.AutoGen
+    name: AutoGen
+    isExternal: true
+- uid: System.TimeSpan
+  commentId: T:System.TimeSpan
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.timespan
+  name: TimeSpan
+  nameWithType: TimeSpan
+  fullName: System.TimeSpan
+- uid: System.Double
+  commentId: T:System.Double
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.double
+  name: double
+  nameWithType: double
+  fullName: double
+  nameWithType.vb: Double
+  fullName.vb: Double
+  name.vb: Double
+- uid: FFmpeg.Utils.Rational.op_Multiply*
+  commentId: Overload:FFmpeg.Utils.Rational.op_Multiply
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_Multiply_System_Int32_FFmpeg_Utils_Rational_
+  name: operator *
+  nameWithType: Rational.operator *
+  fullName: FFmpeg.Utils.Rational.operator *
+  nameWithType.vb: Rational.*
+  fullName.vb: FFmpeg.Utils.Rational.*
+  name.vb: '*'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_Multiply*
+    name: '*'
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_Multiply_System_Int32_FFmpeg_Utils_Rational_
+- uid: FFmpeg.Utils.Rational.op_Division*
+  commentId: Overload:FFmpeg.Utils.Rational.op_Division
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_Division_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: operator /
+  nameWithType: Rational.operator /
+  fullName: FFmpeg.Utils.Rational.operator /
+  nameWithType.vb: Rational./
+  fullName.vb: FFmpeg.Utils.Rational./
+  name.vb: /
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_Division*
+    name: /
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_Division_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+- uid: FFmpeg.Utils.Rational.op_LessThan*
+  commentId: Overload:FFmpeg.Utils.Rational.op_LessThan
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_LessThan_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: operator <
+  nameWithType: Rational.operator <
+  fullName: FFmpeg.Utils.Rational.operator <
+  nameWithType.vb: Rational.<
+  fullName.vb: FFmpeg.Utils.Rational.<
+  name.vb: <
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_LessThan*
+    name: <
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_LessThan_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: FFmpeg.Utils.Rational.op_GreaterThan*
+  commentId: Overload:FFmpeg.Utils.Rational.op_GreaterThan
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_GreaterThan_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: operator >
+  nameWithType: Rational.operator >
+  fullName: FFmpeg.Utils.Rational.operator >
+  nameWithType.vb: Rational.>
+  fullName.vb: FFmpeg.Utils.Rational.>
+  name.vb: '>'
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_GreaterThan*
+    name: '>'
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_GreaterThan_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+- uid: FFmpeg.Utils.Rational.op_LessThanOrEqual*
+  commentId: Overload:FFmpeg.Utils.Rational.op_LessThanOrEqual
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_LessThanOrEqual_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: operator <=
+  nameWithType: Rational.operator <=
+  fullName: FFmpeg.Utils.Rational.operator <=
+  nameWithType.vb: Rational.<=
+  fullName.vb: FFmpeg.Utils.Rational.<=
+  name.vb: <=
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_LessThanOrEqual*
+    name: <=
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_LessThanOrEqual_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+- uid: FFmpeg.Utils.Rational.op_GreaterThanOrEqual*
+  commentId: Overload:FFmpeg.Utils.Rational.op_GreaterThanOrEqual
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_GreaterThanOrEqual_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: operator >=
+  nameWithType: Rational.operator >=
+  fullName: FFmpeg.Utils.Rational.operator >=
+  nameWithType.vb: Rational.>=
+  fullName.vb: FFmpeg.Utils.Rational.>=
+  name.vb: '>='
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: FFmpeg.Utils.Rational.op_GreaterThanOrEqual*
+    name: '>='
+    href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_op_GreaterThanOrEqual_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+- uid: FFmpeg.Utils.Rational.Equals*
+  commentId: Overload:FFmpeg.Utils.Rational.Equals
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Equals_FFmpeg_Utils_Rational_
+  name: Equals
+  nameWithType: Rational.Equals
+  fullName: FFmpeg.Utils.Rational.Equals
+- uid: System.IEquatable{FFmpeg.Utils.Rational}.Equals(FFmpeg.Utils.Rational)
+  commentId: M:System.IEquatable{FFmpeg.Utils.Rational}.Equals(FFmpeg.Utils.Rational)
+  parent: System.IEquatable{FFmpeg.Utils.Rational}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(Rational)
+  nameWithType: IEquatable<Rational>.Equals(Rational)
+  fullName: System.IEquatable<FFmpeg.Utils.Rational>.Equals(FFmpeg.Utils.Rational)
+  nameWithType.vb: IEquatable(Of Rational).Equals(Rational)
+  fullName.vb: System.IEquatable(Of FFmpeg.Utils.Rational).Equals(FFmpeg.Utils.Rational)
+  spec.csharp:
+  - uid: System.IEquatable{FFmpeg.Utils.Rational}.Equals(FFmpeg.Utils.Rational)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Utils.Rational
+    name: Rational
+    href: FFmpeg.Utils.Rational.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{FFmpeg.Utils.Rational}.Equals(FFmpeg.Utils.Rational)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: FFmpeg.Utils.Rational
+    name: Rational
+    href: FFmpeg.Utils.Rational.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: FFmpeg.Utils.Rational.IsValidTimeBase*
+  commentId: Overload:FFmpeg.Utils.Rational.IsValidTimeBase
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_IsValidTimeBase
+  name: IsValidTimeBase
+  nameWithType: Rational.IsValidTimeBase
+  fullName: FFmpeg.Utils.Rational.IsValidTimeBase
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.Rational.GetHashCode*
+  commentId: Overload:FFmpeg.Utils.Rational.GetHashCode
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_GetHashCode
+  name: GetHashCode
+  nameWithType: Rational.GetHashCode
+  fullName: FFmpeg.Utils.Rational.GetHashCode
+- uid: FFmpeg.Utils.Rational.Rescale*
+  commentId: Overload:FFmpeg.Utils.Rational.Rescale
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Rescale_System_Int64_FFmpeg_Utils_Rational_FFmpeg_Utils_Rational_
+  name: Rescale
+  nameWithType: Rational.Rescale
+  fullName: FFmpeg.Utils.Rational.Rescale
+- uid: FFmpeg.Utils.Rational.Reduce*
+  commentId: Overload:FFmpeg.Utils.Rational.Reduce
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_Reduce_System_Int32_
+  name: Reduce
+  nameWithType: Rational.Reduce
+  fullName: FFmpeg.Utils.Rational.Reduce
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: FFmpeg.Utils.Rational.ToString*
+  commentId: Overload:FFmpeg.Utils.Rational.ToString
+  href: FFmpeg.Utils.Rational.html#FFmpeg_Utils_Rational_ToString
+  name: ToString
+  nameWithType: Rational.ToString
+  fullName: FFmpeg.Utils.Rational.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

@@ -1,0 +1,1219 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.IO.IOStreamContext
+  commentId: T:FFmpeg.IO.IOStreamContext
+  id: IOStreamContext
+  parent: FFmpeg.IO
+  children:
+  - FFmpeg.IO.IOStreamContext.#ctor(FFmpeg.Formats.FormatContext,System.IO.Stream,FFmpeg.IO.IOOptions,System.Int32)
+  - FFmpeg.IO.IOStreamContext.#ctor(System.IO.Stream)
+  - FFmpeg.IO.IOStreamContext.Dispose(System.Boolean)
+  - FFmpeg.IO.IOStreamContext.OpenRead(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  - FFmpeg.IO.IOStreamContext.OpenWrite(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  - FFmpeg.IO.IOStreamContext.ReadPacket(System.Span{System.Byte})
+  - FFmpeg.IO.IOStreamContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  - FFmpeg.IO.IOStreamContext.WritePacket(System.Span{System.Byte})
+  langs:
+  - csharp
+  - vb
+  name: IOStreamContext
+  nameWithType: IOStreamContext
+  fullName: FFmpeg.IO.IOStreamContext
+  type: Class
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: IOStreamContext
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 9
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: >-
+    Represents an I/O context for interacting with a .NET <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> object.
+
+    This class supports reading from, writing to, and seeking within the stream.
+  example: []
+  syntax:
+    content: 'public class IOStreamContext : IOContext, IDisposable'
+    content.vb: Public Class IOStreamContext Inherits IOContext Implements IDisposable
+  inheritance:
+  - System.Object
+  - FFmpeg.IO.AVIOContext
+  - FFmpeg.IO.IOContext
+  implements:
+  - System.IDisposable
+  inheritedMembers:
+  - FFmpeg.IO.IOContext.FormatContext
+  - FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext,FFmpeg.IO.IOOptions,System.Int32)
+  - FFmpeg.IO.AVIOContext.EOF
+  - FFmpeg.IO.AVIOContext.ErrorCode
+  - FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+  - FFmpeg.IO.AVIOContext.Dispose
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: FFmpeg.IO.IOStreamContext.#ctor(FFmpeg.Formats.FormatContext,System.IO.Stream,FFmpeg.IO.IOOptions,System.Int32)
+  commentId: M:FFmpeg.IO.IOStreamContext.#ctor(FFmpeg.Formats.FormatContext,System.IO.Stream,FFmpeg.IO.IOOptions,System.Int32)
+  id: '#ctor(FFmpeg.Formats.FormatContext,System.IO.Stream,FFmpeg.IO.IOOptions,System.Int32)'
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: IOStreamContext(FormatContext, Stream, IOOptions, int)
+  nameWithType: IOStreamContext.IOStreamContext(FormatContext, Stream, IOOptions, int)
+  fullName: FFmpeg.IO.IOStreamContext.IOStreamContext(FFmpeg.Formats.FormatContext, System.IO.Stream, FFmpeg.IO.IOOptions, int)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 21
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Initializes a new instance of the <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref> class.
+  example: []
+  syntax:
+    content: public IOStreamContext(FormatContext context, Stream stream, IOOptions options, int bufferSize = 32768)
+    parameters:
+    - id: context
+      type: FFmpeg.Formats.FormatContext
+      description: The <xref href="FFmpeg.Formats.FormatContext" data-throw-if-not-resolved="false"></xref> to associate with this I/O context.
+    - id: stream
+      type: System.IO.Stream
+      description: The .NET <xref href="System.IO.Stream" data-throw-if-not-resolved="false"></xref> to use for I/O operations.
+    - id: options
+      type: FFmpeg.IO.IOOptions
+      description: The I/O operations to support (reading, writing, seeking).
+    - id: bufferSize
+      type: System.Int32
+      description: The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.
+    content.vb: Public Sub New(context As FormatContext, stream As Stream, options As IOOptions, bufferSize As Integer = 32768)
+  overload: FFmpeg.IO.IOStreamContext.#ctor*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: Thrown when the <code class="paramref">stream</code> is <code>null</code>.
+  nameWithType.vb: IOStreamContext.New(FormatContext, Stream, IOOptions, Integer)
+  fullName.vb: FFmpeg.IO.IOStreamContext.New(FFmpeg.Formats.FormatContext, System.IO.Stream, FFmpeg.IO.IOOptions, Integer)
+  name.vb: New(FormatContext, Stream, IOOptions, Integer)
+- uid: FFmpeg.IO.IOStreamContext.#ctor(System.IO.Stream)
+  commentId: M:FFmpeg.IO.IOStreamContext.#ctor(System.IO.Stream)
+  id: '#ctor(System.IO.Stream)'
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: IOStreamContext(Stream)
+  nameWithType: IOStreamContext.IOStreamContext(Stream)
+  fullName: FFmpeg.IO.IOStreamContext.IOStreamContext(System.IO.Stream)
+  type: Constructor
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: .ctor
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 24
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  syntax:
+    content: public IOStreamContext(Stream stream)
+    parameters:
+    - id: stream
+      type: System.IO.Stream
+    content.vb: Public Sub New(stream As Stream)
+  overload: FFmpeg.IO.IOStreamContext.#ctor*
+  nameWithType.vb: IOStreamContext.New(Stream)
+  fullName.vb: FFmpeg.IO.IOStreamContext.New(System.IO.Stream)
+  name.vb: New(Stream)
+- uid: FFmpeg.IO.IOStreamContext.OpenRead(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  commentId: M:FFmpeg.IO.IOStreamContext.OpenRead(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  id: OpenRead(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: OpenRead(FormatContext, Stream, int)
+  nameWithType: IOStreamContext.OpenRead(FormatContext, Stream, int)
+  fullName: FFmpeg.IO.IOStreamContext.OpenRead(FFmpeg.Formats.FormatContext, System.IO.Stream, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OpenRead
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 33
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Creates an <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref> for reading from the specified stream.
+  example: []
+  syntax:
+    content: public static IOStreamContext OpenRead(FormatContext context, Stream stream, int bufferSize = 32768)
+    parameters:
+    - id: context
+      type: FFmpeg.Formats.FormatContext
+      description: The <xref href="FFmpeg.Formats.FormatContext" data-throw-if-not-resolved="false"></xref> to associate with this I/O context.
+    - id: stream
+      type: System.IO.Stream
+      description: The stream to read from.
+    - id: bufferSize
+      type: System.Int32
+      description: The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.
+    return:
+      type: FFmpeg.IO.IOStreamContext
+      description: A new <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref> instance configured for reading.
+    content.vb: Public Shared Function OpenRead(context As FormatContext, stream As Stream, bufferSize As Integer = 32768) As IOStreamContext
+  overload: FFmpeg.IO.IOStreamContext.OpenRead*
+  nameWithType.vb: IOStreamContext.OpenRead(FormatContext, Stream, Integer)
+  fullName.vb: FFmpeg.IO.IOStreamContext.OpenRead(FFmpeg.Formats.FormatContext, System.IO.Stream, Integer)
+  name.vb: OpenRead(FormatContext, Stream, Integer)
+- uid: FFmpeg.IO.IOStreamContext.OpenWrite(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  commentId: M:FFmpeg.IO.IOStreamContext.OpenWrite(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  id: OpenWrite(FFmpeg.Formats.FormatContext,System.IO.Stream,System.Int32)
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: OpenWrite(FormatContext, Stream, int)
+  nameWithType: IOStreamContext.OpenWrite(FormatContext, Stream, int)
+  fullName: FFmpeg.IO.IOStreamContext.OpenWrite(FFmpeg.Formats.FormatContext, System.IO.Stream, int)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: OpenWrite
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 43
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Creates an <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref> for writing to the specified stream.
+  example: []
+  syntax:
+    content: public static IOStreamContext OpenWrite(FormatContext context, Stream stream, int bufferSize = 32768)
+    parameters:
+    - id: context
+      type: FFmpeg.Formats.FormatContext
+      description: The <xref href="FFmpeg.Formats.FormatContext" data-throw-if-not-resolved="false"></xref> to associate with this I/O context.
+    - id: stream
+      type: System.IO.Stream
+      description: The stream to write to.
+    - id: bufferSize
+      type: System.Int32
+      description: The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.
+    return:
+      type: FFmpeg.IO.IOStreamContext
+      description: A new <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref> instance configured for writing.
+    content.vb: Public Shared Function OpenWrite(context As FormatContext, stream As Stream, bufferSize As Integer = 32768) As IOStreamContext
+  overload: FFmpeg.IO.IOStreamContext.OpenWrite*
+  nameWithType.vb: IOStreamContext.OpenWrite(FormatContext, Stream, Integer)
+  fullName.vb: FFmpeg.IO.IOStreamContext.OpenWrite(FFmpeg.Formats.FormatContext, System.IO.Stream, Integer)
+  name.vb: OpenWrite(FormatContext, Stream, Integer)
+- uid: FFmpeg.IO.IOStreamContext.ReadPacket(System.Span{System.Byte})
+  commentId: M:FFmpeg.IO.IOStreamContext.ReadPacket(System.Span{System.Byte})
+  id: ReadPacket(System.Span{System.Byte})
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: ReadPacket(Span<byte>)
+  nameWithType: IOStreamContext.ReadPacket(Span<byte>)
+  fullName: FFmpeg.IO.IOStreamContext.ReadPacket(System.Span<byte>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: ReadPacket
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 51
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Reads data from the stream into the provided buffer.
+  example: []
+  syntax:
+    content: protected override AVResult32 ReadPacket(Span<byte> buffer)
+    parameters:
+    - id: buffer
+      type: System.Span{System.Byte}
+      description: The buffer to read data into.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: The number of bytes read. Returns a non-negative value on success.
+    content.vb: Protected Overrides Function ReadPacket(buffer As Span(Of Byte)) As AVResult32
+  overridden: FFmpeg.IO.IOContext.ReadPacket(System.Span{System.Byte})
+  overload: FFmpeg.IO.IOStreamContext.ReadPacket*
+  nameWithType.vb: IOStreamContext.ReadPacket(Span(Of Byte))
+  fullName.vb: FFmpeg.IO.IOStreamContext.ReadPacket(System.Span(Of Byte))
+  name.vb: ReadPacket(Span(Of Byte))
+- uid: FFmpeg.IO.IOStreamContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  commentId: M:FFmpeg.IO.IOStreamContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  id: Seek(System.Int64,FFmpeg.IO.AVSeek)
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: Seek(long, AVSeek)
+  nameWithType: IOStreamContext.Seek(long, AVSeek)
+  fullName: FFmpeg.IO.IOStreamContext.Seek(long, FFmpeg.IO.AVSeek)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Seek
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 63
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Seeks to the specified offset in the stream.
+  example: []
+  syntax:
+    content: protected override AVResult64 Seek(long offset, AVSeek whence)
+    parameters:
+    - id: offset
+      type: System.Int64
+      description: The offset to seek to.
+    - id: whence
+      type: FFmpeg.IO.AVSeek
+      description: The seek mode (e.g., from the start, current position, etc.).
+    return:
+      type: FFmpeg.Utils.AVResult64
+      description: The new position within the stream. Returns a non-negative value on success.
+    content.vb: Protected Overrides Function Seek(offset As Long, whence As AVSeek) As AVResult64
+  overridden: FFmpeg.IO.IOContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  overload: FFmpeg.IO.IOStreamContext.Seek*
+  nameWithType.vb: IOStreamContext.Seek(Long, AVSeek)
+  fullName.vb: FFmpeg.IO.IOStreamContext.Seek(Long, FFmpeg.IO.AVSeek)
+  name.vb: Seek(Long, AVSeek)
+- uid: FFmpeg.IO.IOStreamContext.WritePacket(System.Span{System.Byte})
+  commentId: M:FFmpeg.IO.IOStreamContext.WritePacket(System.Span{System.Byte})
+  id: WritePacket(System.Span{System.Byte})
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: WritePacket(Span<byte>)
+  nameWithType: IOStreamContext.WritePacket(Span<byte>)
+  fullName: FFmpeg.IO.IOStreamContext.WritePacket(System.Span<byte>)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: WritePacket
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 79
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Writes data from the provided buffer into the stream.
+  example: []
+  syntax:
+    content: protected override AVResult32 WritePacket(Span<byte> buffer)
+    parameters:
+    - id: buffer
+      type: System.Span{System.Byte}
+      description: The buffer containing the data to write.
+    return:
+      type: FFmpeg.Utils.AVResult32
+      description: The number of bytes written. Returns a non-negative value on success.
+    content.vb: Protected Overrides Function WritePacket(buffer As Span(Of Byte)) As AVResult32
+  overridden: FFmpeg.IO.IOContext.WritePacket(System.Span{System.Byte})
+  overload: FFmpeg.IO.IOStreamContext.WritePacket*
+  nameWithType.vb: IOStreamContext.WritePacket(Span(Of Byte))
+  fullName.vb: FFmpeg.IO.IOStreamContext.WritePacket(System.Span(Of Byte))
+  name.vb: WritePacket(Span(Of Byte))
+- uid: FFmpeg.IO.IOStreamContext.Dispose(System.Boolean)
+  commentId: M:FFmpeg.IO.IOStreamContext.Dispose(System.Boolean)
+  id: Dispose(System.Boolean)
+  parent: FFmpeg.IO.IOStreamContext
+  langs:
+  - csharp
+  - vb
+  name: Dispose(bool)
+  nameWithType: IOStreamContext.Dispose(bool)
+  fullName: FFmpeg.IO.IOStreamContext.Dispose(bool)
+  type: Method
+  source:
+    remote:
+      path: FFmpeg/IO/IOStreamContext.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Dispose
+    path: FFmpeg/IO/IOStreamContext.cs
+    startLine: 89
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.IO
+  summary: Releases the resources used by this instance of <xref href="FFmpeg.IO.IOStreamContext" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: protected override void Dispose(bool disposing)
+    parameters:
+    - id: disposing
+      type: System.Boolean
+      description: Indicates whether to release both managed and unmanaged resources.
+    content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
+  overridden: FFmpeg.IO.IOContext.Dispose(System.Boolean)
+  overload: FFmpeg.IO.IOStreamContext.Dispose*
+  nameWithType.vb: IOStreamContext.Dispose(Boolean)
+  fullName.vb: FFmpeg.IO.IOStreamContext.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+references:
+- uid: System.IO.Stream
+  commentId: T:System.IO.Stream
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.stream
+  name: Stream
+  nameWithType: Stream
+  fullName: System.IO.Stream
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  href: FFmpeg.html
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: FFmpeg.IO.AVIOContext
+  commentId: T:FFmpeg.IO.AVIOContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.AVIOContext.html
+  name: AVIOContext
+  nameWithType: AVIOContext
+  fullName: FFmpeg.IO.AVIOContext
+- uid: FFmpeg.IO.IOContext
+  commentId: T:FFmpeg.IO.IOContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOContext.html
+  name: IOContext
+  nameWithType: IOContext
+  fullName: FFmpeg.IO.IOContext
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.idisposable
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: FFmpeg.IO.IOContext.FormatContext
+  commentId: P:FFmpeg.IO.IOContext.FormatContext
+  parent: FFmpeg.IO.IOContext
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_FormatContext
+  name: FormatContext
+  nameWithType: IOContext.FormatContext
+  fullName: FFmpeg.IO.IOContext.FormatContext
+- uid: FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext,FFmpeg.IO.IOOptions,System.Int32)
+  commentId: M:FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext,FFmpeg.IO.IOOptions,System.Int32)
+  parent: FFmpeg.IO.IOContext
+  isExternal: true
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_InitContext_FFmpeg_Formats_FormatContext_FFmpeg_IO_IOOptions_System_Int32_
+  name: InitContext(FormatContext, IOOptions, int)
+  nameWithType: IOContext.InitContext(FormatContext, IOOptions, int)
+  fullName: FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext, FFmpeg.IO.IOOptions, int)
+  nameWithType.vb: IOContext.InitContext(FormatContext, IOOptions, Integer)
+  fullName.vb: FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext, FFmpeg.IO.IOOptions, Integer)
+  name.vb: InitContext(FormatContext, IOOptions, Integer)
+  spec.csharp:
+  - uid: FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext,FFmpeg.IO.IOOptions,System.Int32)
+    name: InitContext
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_InitContext_FFmpeg_Formats_FormatContext_FFmpeg_IO_IOOptions_System_Int32_
+  - name: (
+  - uid: FFmpeg.Formats.FormatContext
+    name: FormatContext
+    href: FFmpeg.Formats.FormatContext.html
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.IO.IOOptions
+    name: IOOptions
+    href: FFmpeg.IO.IOOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.IOContext.InitContext(FFmpeg.Formats.FormatContext,FFmpeg.IO.IOOptions,System.Int32)
+    name: InitContext
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_InitContext_FFmpeg_Formats_FormatContext_FFmpeg_IO_IOOptions_System_Int32_
+  - name: (
+  - uid: FFmpeg.Formats.FormatContext
+    name: FormatContext
+    href: FFmpeg.Formats.FormatContext.html
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.IO.IOOptions
+    name: IOOptions
+    href: FFmpeg.IO.IOOptions.html
+  - name: ','
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: FFmpeg.IO.AVIOContext.EOF
+  commentId: P:FFmpeg.IO.AVIOContext.EOF
+  parent: FFmpeg.IO.AVIOContext
+  href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_EOF
+  name: EOF
+  nameWithType: AVIOContext.EOF
+  fullName: FFmpeg.IO.AVIOContext.EOF
+- uid: FFmpeg.IO.AVIOContext.ErrorCode
+  commentId: P:FFmpeg.IO.AVIOContext.ErrorCode
+  parent: FFmpeg.IO.AVIOContext
+  href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_ErrorCode
+  name: ErrorCode
+  nameWithType: AVIOContext.ErrorCode
+  fullName: FFmpeg.IO.AVIOContext.ErrorCode
+- uid: FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+  commentId: M:FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+  parent: FFmpeg.IO.AVIOContext
+  isExternal: true
+  href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_SetContext_FFmpeg_AutoGen__AVIOContext___
+  name: SetContext(_AVIOContext**)
+  nameWithType: AVIOContext.SetContext(_AVIOContext**)
+  fullName: FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+  spec.csharp:
+  - uid: FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+    name: SetContext
+    href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_SetContext_FFmpeg_AutoGen__AVIOContext___
+  - name: (
+  - uid: FFmpeg.AutoGen._AVIOContext
+    name: _AVIOContext
+    isExternal: true
+  - name: '*'
+  - name: '*'
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.AVIOContext.SetContext(FFmpeg.AutoGen._AVIOContext**)
+    name: SetContext
+    href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_SetContext_FFmpeg_AutoGen__AVIOContext___
+  - name: (
+  - uid: FFmpeg.AutoGen._AVIOContext
+    name: _AVIOContext
+    isExternal: true
+  - name: '*'
+  - name: '*'
+  - name: )
+- uid: FFmpeg.IO.AVIOContext.Dispose
+  commentId: M:FFmpeg.IO.AVIOContext.Dispose
+  parent: FFmpeg.IO.AVIOContext
+  href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_Dispose
+  name: Dispose()
+  nameWithType: AVIOContext.Dispose()
+  fullName: FFmpeg.IO.AVIOContext.Dispose()
+  spec.csharp:
+  - uid: FFmpeg.IO.AVIOContext.Dispose
+    name: Dispose
+    href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_Dispose
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.AVIOContext.Dispose
+    name: Dispose
+    href: FFmpeg.IO.AVIOContext.html#FFmpeg_IO_AVIOContext_Dispose
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FFmpeg.IO.IOStreamContext
+  commentId: T:FFmpeg.IO.IOStreamContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOStreamContext.html
+  name: IOStreamContext
+  nameWithType: IOStreamContext
+  fullName: FFmpeg.IO.IOStreamContext
+- uid: FFmpeg.Formats.FormatContext
+  commentId: T:FFmpeg.Formats.FormatContext
+  parent: FFmpeg.Formats
+  href: FFmpeg.Formats.FormatContext.html
+  name: FormatContext
+  nameWithType: FormatContext
+  fullName: FFmpeg.Formats.FormatContext
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentnullexception
+  name: ArgumentNullException
+  nameWithType: ArgumentNullException
+  fullName: System.ArgumentNullException
+- uid: FFmpeg.IO.IOStreamContext.#ctor*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.#ctor
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext__ctor_FFmpeg_Formats_FormatContext_System_IO_Stream_FFmpeg_IO_IOOptions_System_Int32_
+  name: IOStreamContext
+  nameWithType: IOStreamContext.IOStreamContext
+  fullName: FFmpeg.IO.IOStreamContext.IOStreamContext
+  nameWithType.vb: IOStreamContext.New
+  fullName.vb: FFmpeg.IO.IOStreamContext.New
+  name.vb: New
+- uid: FFmpeg.IO.IOOptions
+  commentId: T:FFmpeg.IO.IOOptions
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOOptions.html
+  name: IOOptions
+  nameWithType: IOOptions
+  fullName: FFmpeg.IO.IOOptions
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: FFmpeg.Formats
+  commentId: N:FFmpeg.Formats
+  href: FFmpeg.html
+  name: FFmpeg.Formats
+  nameWithType: FFmpeg.Formats
+  fullName: FFmpeg.Formats
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Formats
+    name: Formats
+    href: FFmpeg.Formats.html
+- uid: FFmpeg.IO.IOStreamContext.OpenRead*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.OpenRead
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_OpenRead_FFmpeg_Formats_FormatContext_System_IO_Stream_System_Int32_
+  name: OpenRead
+  nameWithType: IOStreamContext.OpenRead
+  fullName: FFmpeg.IO.IOStreamContext.OpenRead
+- uid: FFmpeg.IO.IOStreamContext.OpenWrite*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.OpenWrite
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_OpenWrite_FFmpeg_Formats_FormatContext_System_IO_Stream_System_Int32_
+  name: OpenWrite
+  nameWithType: IOStreamContext.OpenWrite
+  fullName: FFmpeg.IO.IOStreamContext.OpenWrite
+- uid: FFmpeg.IO.IOContext.ReadPacket(System.Span{System.Byte})
+  commentId: M:FFmpeg.IO.IOContext.ReadPacket(System.Span{System.Byte})
+  parent: FFmpeg.IO.IOContext
+  isExternal: true
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_ReadPacket_System_Span_System_Byte__
+  name: ReadPacket(Span<byte>)
+  nameWithType: IOContext.ReadPacket(Span<byte>)
+  fullName: FFmpeg.IO.IOContext.ReadPacket(System.Span<byte>)
+  nameWithType.vb: IOContext.ReadPacket(Span(Of Byte))
+  fullName.vb: FFmpeg.IO.IOContext.ReadPacket(System.Span(Of Byte))
+  name.vb: ReadPacket(Span(Of Byte))
+  spec.csharp:
+  - uid: FFmpeg.IO.IOContext.ReadPacket(System.Span{System.Byte})
+    name: ReadPacket
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_ReadPacket_System_Span_System_Byte__
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.IOContext.ReadPacket(System.Span{System.Byte})
+    name: ReadPacket
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_ReadPacket_System_Span_System_Byte__
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: FFmpeg.IO.IOStreamContext.ReadPacket*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.ReadPacket
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_ReadPacket_System_Span_System_Byte__
+  name: ReadPacket
+  nameWithType: IOStreamContext.ReadPacket
+  fullName: FFmpeg.IO.IOStreamContext.ReadPacket
+- uid: System.Span{System.Byte}
+  commentId: T:System.Span{System.Byte}
+  parent: System
+  definition: System.Span`1
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<byte>
+  nameWithType: Span<byte>
+  fullName: System.Span<byte>
+  nameWithType.vb: Span(Of Byte)
+  fullName.vb: System.Span(Of Byte)
+  name.vb: Span(Of Byte)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+- uid: FFmpeg.Utils.AVResult32
+  commentId: T:FFmpeg.Utils.AVResult32
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult32.html
+  name: AVResult32
+  nameWithType: AVResult32
+  fullName: FFmpeg.Utils.AVResult32
+- uid: System.Span`1
+  commentId: T:System.Span`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.span-1
+  name: Span<T>
+  nameWithType: Span<T>
+  fullName: System.Span<T>
+  nameWithType.vb: Span(Of T)
+  fullName.vb: System.Span(Of T)
+  name.vb: Span(Of T)
+  spec.csharp:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.IO.IOContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  commentId: M:FFmpeg.IO.IOContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+  parent: FFmpeg.IO.IOContext
+  isExternal: true
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Seek_System_Int64_FFmpeg_IO_AVSeek_
+  name: Seek(long, AVSeek)
+  nameWithType: IOContext.Seek(long, AVSeek)
+  fullName: FFmpeg.IO.IOContext.Seek(long, FFmpeg.IO.AVSeek)
+  nameWithType.vb: IOContext.Seek(Long, AVSeek)
+  fullName.vb: FFmpeg.IO.IOContext.Seek(Long, FFmpeg.IO.AVSeek)
+  name.vb: Seek(Long, AVSeek)
+  spec.csharp:
+  - uid: FFmpeg.IO.IOContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+    name: Seek
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Seek_System_Int64_FFmpeg_IO_AVSeek_
+  - name: (
+  - uid: System.Int64
+    name: long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.IO.AVSeek
+    name: AVSeek
+    href: FFmpeg.IO.AVSeek.html
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.IOContext.Seek(System.Int64,FFmpeg.IO.AVSeek)
+    name: Seek
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Seek_System_Int64_FFmpeg_IO_AVSeek_
+  - name: (
+  - uid: System.Int64
+    name: Long
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int64
+  - name: ','
+  - name: " "
+  - uid: FFmpeg.IO.AVSeek
+    name: AVSeek
+    href: FFmpeg.IO.AVSeek.html
+  - name: )
+- uid: FFmpeg.IO.IOStreamContext.Seek*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.Seek
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_Seek_System_Int64_FFmpeg_IO_AVSeek_
+  name: Seek
+  nameWithType: IOStreamContext.Seek
+  fullName: FFmpeg.IO.IOStreamContext.Seek
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int64
+  name: long
+  nameWithType: long
+  fullName: long
+  nameWithType.vb: Long
+  fullName.vb: Long
+  name.vb: Long
+- uid: FFmpeg.IO.AVSeek
+  commentId: T:FFmpeg.IO.AVSeek
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.AVSeek.html
+  name: AVSeek
+  nameWithType: AVSeek
+  fullName: FFmpeg.IO.AVSeek
+- uid: FFmpeg.Utils.AVResult64
+  commentId: T:FFmpeg.Utils.AVResult64
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.AVResult64.html
+  name: AVResult64
+  nameWithType: AVResult64
+  fullName: FFmpeg.Utils.AVResult64
+- uid: FFmpeg.IO.IOContext.WritePacket(System.Span{System.Byte})
+  commentId: M:FFmpeg.IO.IOContext.WritePacket(System.Span{System.Byte})
+  parent: FFmpeg.IO.IOContext
+  isExternal: true
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_WritePacket_System_Span_System_Byte__
+  name: WritePacket(Span<byte>)
+  nameWithType: IOContext.WritePacket(Span<byte>)
+  fullName: FFmpeg.IO.IOContext.WritePacket(System.Span<byte>)
+  nameWithType.vb: IOContext.WritePacket(Span(Of Byte))
+  fullName.vb: FFmpeg.IO.IOContext.WritePacket(System.Span(Of Byte))
+  name.vb: WritePacket(Span(Of Byte))
+  spec.csharp:
+  - uid: FFmpeg.IO.IOContext.WritePacket(System.Span{System.Byte})
+    name: WritePacket
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_WritePacket_System_Span_System_Byte__
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: <
+  - uid: System.Byte
+    name: byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: '>'
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.IOContext.WritePacket(System.Span{System.Byte})
+    name: WritePacket
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_WritePacket_System_Span_System_Byte__
+  - name: (
+  - uid: System.Span`1
+    name: Span
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.span-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Byte
+    name: Byte
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.byte
+  - name: )
+  - name: )
+- uid: FFmpeg.IO.IOStreamContext.WritePacket*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.WritePacket
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_WritePacket_System_Span_System_Byte__
+  name: WritePacket
+  nameWithType: IOStreamContext.WritePacket
+  fullName: FFmpeg.IO.IOStreamContext.WritePacket
+- uid: FFmpeg.IO.IOContext.Dispose(System.Boolean)
+  commentId: M:FFmpeg.IO.IOContext.Dispose(System.Boolean)
+  parent: FFmpeg.IO.IOContext
+  isExternal: true
+  href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Dispose_System_Boolean_
+  name: Dispose(bool)
+  nameWithType: IOContext.Dispose(bool)
+  fullName: FFmpeg.IO.IOContext.Dispose(bool)
+  nameWithType.vb: IOContext.Dispose(Boolean)
+  fullName.vb: FFmpeg.IO.IOContext.Dispose(Boolean)
+  name.vb: Dispose(Boolean)
+  spec.csharp:
+  - uid: FFmpeg.IO.IOContext.Dispose(System.Boolean)
+    name: Dispose
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Dispose_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: bool
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+  spec.vb:
+  - uid: FFmpeg.IO.IOContext.Dispose(System.Boolean)
+    name: Dispose
+    href: FFmpeg.IO.IOContext.html#FFmpeg_IO_IOContext_Dispose_System_Boolean_
+  - name: (
+  - uid: System.Boolean
+    name: Boolean
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.boolean
+  - name: )
+- uid: FFmpeg.IO.IOStreamContext.Dispose*
+  commentId: Overload:FFmpeg.IO.IOStreamContext.Dispose
+  href: FFmpeg.IO.IOStreamContext.html#FFmpeg_IO_IOStreamContext_Dispose_System_Boolean_
+  name: Dispose
+  nameWithType: IOStreamContext.Dispose
+  fullName: FFmpeg.IO.IOStreamContext.Dispose
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

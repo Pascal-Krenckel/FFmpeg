@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  id: FFmpeg.IO
+  children:
+  - FFmpeg.IO.AVIOContext
+  - FFmpeg.IO.AVSeek
+  - FFmpeg.IO.IOContext
+  - FFmpeg.IO.IOOptions
+  - FFmpeg.IO.IOStreamContext
+  - FFmpeg.IO.Protocols
+  langs:
+  - csharp
+  - vb
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  type: Namespace
+  assemblies:
+  - FFmpeg
+references:
+- uid: FFmpeg.IO.AVIOContext
+  commentId: T:FFmpeg.IO.AVIOContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.AVIOContext.html
+  name: AVIOContext
+  nameWithType: AVIOContext
+  fullName: FFmpeg.IO.AVIOContext
+- uid: FFmpeg.IO.AVSeek
+  commentId: T:FFmpeg.IO.AVSeek
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.AVSeek.html
+  name: AVSeek
+  nameWithType: AVSeek
+  fullName: FFmpeg.IO.AVSeek
+- uid: FFmpeg.IO.IOContext
+  commentId: T:FFmpeg.IO.IOContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOContext.html
+  name: IOContext
+  nameWithType: IOContext
+  fullName: FFmpeg.IO.IOContext
+- uid: FFmpeg.IO.IOOptions
+  commentId: T:FFmpeg.IO.IOOptions
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOOptions.html
+  name: IOOptions
+  nameWithType: IOOptions
+  fullName: FFmpeg.IO.IOOptions
+- uid: FFmpeg.IO.IOStreamContext
+  commentId: T:FFmpeg.IO.IOStreamContext
+  parent: FFmpeg.IO
+  href: FFmpeg.IO.IOStreamContext.html
+  name: IOStreamContext
+  nameWithType: IOStreamContext
+  fullName: FFmpeg.IO.IOStreamContext
+- uid: FFmpeg.IO.Protocols
+  commentId: T:FFmpeg.IO.Protocols
+  href: FFmpeg.IO.Protocols.html
+  name: Protocols
+  nameWithType: Protocols
+  fullName: FFmpeg.IO.Protocols
+- uid: FFmpeg.IO
+  commentId: N:FFmpeg.IO
+  href: FFmpeg.html
+  name: FFmpeg.IO
+  nameWithType: FFmpeg.IO
+  fullName: FFmpeg.IO
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.IO
+    name: IO
+    href: FFmpeg.IO.html

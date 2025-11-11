@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Struct InputFormat | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Struct InputFormat | FFmpegDotNet ">
+      
+      <meta name="description" content="Represents an AV input format, wrapping around an  pointer.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Formats_InputFormat.md&amp;value=---%0Auid%3A%20FFmpeg.Formats.InputFormat%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Formats.InputFormat">
+
+
+
+  <h1 id="FFmpeg_Formats_InputFormat" data-uid="FFmpeg.Formats.InputFormat" class="text-break">
+Struct InputFormat  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Formats.html">Formats</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents an AV input format, wrapping around an <span class="xref">FFmpeg.AutoGen._AVInputFormat</span> pointer.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly struct InputFormat</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.equals">ValueType.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode">ValueType.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="FFmpeg_Formats_InputFormat_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This struct provides access to the properties and methods associated with an AV input format.</p>
+</div>
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Formats_InputFormat_AAC_" data-uid="FFmpeg.Formats.InputFormat.AAC*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_AAC" data-uid="FFmpeg.Formats.InputFormat.AAC">
+  AAC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the AAC input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? AAC { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_AAX_" data-uid="FFmpeg.Formats.InputFormat.AAX*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_AAX" data-uid="FFmpeg.Formats.InputFormat.AAX">
+  AAX
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L236"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the CRI AAX input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? AAX { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_AC3_" data-uid="FFmpeg.Formats.InputFormat.AC3*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_AC3" data-uid="FFmpeg.Formats.InputFormat.AC3">
+  AC3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the raw AC-3 input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? AC3 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_ASF_" data-uid="FFmpeg.Formats.InputFormat.ASF*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_ASF" data-uid="FFmpeg.Formats.InputFormat.ASF">
+  ASF
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the ASF input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? ASF { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_ASS_" data-uid="FFmpeg.Formats.InputFormat.ASS*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_ASS" data-uid="FFmpeg.Formats.InputFormat.ASS">
+  ASS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the SSA/ASS subtitle input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? ASS { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_AVI_" data-uid="FFmpeg.Formats.InputFormat.AVI*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_AVI" data-uid="FFmpeg.Formats.InputFormat.AVI">
+  AVI
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the AVI input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? AVI { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_BMP_PIPE_" data-uid="FFmpeg.Formats.InputFormat.BMP_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_BMP_PIPE" data-uid="FFmpeg.Formats.InputFormat.BMP_PIPE">
+  BMP_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped BMP sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? BMP_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_DASH_" data-uid="FFmpeg.Formats.InputFormat.DASH*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_DASH" data-uid="FFmpeg.Formats.InputFormat.DASH">
+  DASH
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the DASH input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? DASH { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_DirectShow_" data-uid="FFmpeg.Formats.InputFormat.DirectShow*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_DirectShow" data-uid="FFmpeg.Formats.InputFormat.DirectShow">
+  DirectShow
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L329"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the direct show input device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? DirectShow { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_Extensions_" data-uid="FFmpeg.Formats.InputFormat.Extensions*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_Extensions" data-uid="FFmpeg.Formats.InputFormat.Extensions">
+  Extensions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the file extensions associated with the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; Extensions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_Extensions_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>File extensions are used to identify files of this format. This property retrieves and splits
+the extensions from a comma-separated string. Returns an empty list if no extensions are available.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_FLAC_" data-uid="FFmpeg.Formats.InputFormat.FLAC*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_FLAC" data-uid="FFmpeg.Formats.InputFormat.FLAC">
+  FLAC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L201"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the FLAC input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? FLAC { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_FLV_" data-uid="FFmpeg.Formats.InputFormat.FLV*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_FLV" data-uid="FFmpeg.Formats.InputFormat.FLV">
+  FLV
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Flash Video input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? FLV { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_Flags_" data-uid="FFmpeg.Formats.InputFormat.Flags*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_Flags" data-uid="FFmpeg.Formats.InputFormat.Flags">
+  Flags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the flags associated with the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FormatFlags Flags { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.FormatFlags.html">FormatFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_Flags_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Flags represent various properties and capabilities of the format, such as whether it supports
+seeking or demuxing.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_GDIScreenGrabber_" data-uid="FFmpeg.Formats.InputFormat.GDIScreenGrabber*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_GDIScreenGrabber" data-uid="FFmpeg.Formats.InputFormat.GDIScreenGrabber">
+  GDIScreenGrabber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L335"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the dgigrap input device. <br>
+Use &quot;desktop&quot;, title=window_title or hwnd=window_hwnd to specify what to grap.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? GDIScreenGrabber { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_HLS_" data-uid="FFmpeg.Formats.InputFormat.HLS*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_HLS" data-uid="FFmpeg.Formats.InputFormat.HLS">
+  HLS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L248"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the HTTP Live Streaming input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? HLS { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_JPEGXL_PIPE_" data-uid="FFmpeg.Formats.InputFormat.JPEGXL_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_JPEGXL_PIPE" data-uid="FFmpeg.Formats.InputFormat.JPEGXL_PIPE">
+  JPEGXL_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L312"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped JPEG XL sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? JPEGXL_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_JPEG_PIPE_" data-uid="FFmpeg.Formats.InputFormat.JPEG_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_JPEG_PIPE" data-uid="FFmpeg.Formats.InputFormat.JPEG_PIPE">
+  JPEG_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L297"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped JPEG sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? JPEG_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_LongName_" data-uid="FFmpeg.Formats.InputFormat.LongName*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_LongName" data-uid="FFmpeg.Formats.InputFormat.LongName">
+  LongName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the long name of the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LongName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_LongName_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The long name provides a more descriptive name for the format compared to the short names.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_M4A_" data-uid="FFmpeg.Formats.InputFormat.M4A*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_M4A" data-uid="FFmpeg.Formats.InputFormat.M4A">
+  M4A
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the M4A input format (alias for MP4/MOV).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? M4A { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MATROSKA_" data-uid="FFmpeg.Formats.InputFormat.MATROSKA*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MATROSKA" data-uid="FFmpeg.Formats.InputFormat.MATROSKA">
+  MATROSKA
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L324"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Matroska/WebM input format (alias for MKV/WebM).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MATROSKA { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MKV_" data-uid="FFmpeg.Formats.InputFormat.MKV*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MKV" data-uid="FFmpeg.Formats.InputFormat.MKV">
+  MKV
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Matroska/WebM input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MKV { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MOV_" data-uid="FFmpeg.Formats.InputFormat.MOV*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MOV" data-uid="FFmpeg.Formats.InputFormat.MOV">
+  MOV
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MOV input format (alias for MP4).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MOV { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MP3_" data-uid="FFmpeg.Formats.InputFormat.MP3*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MP3" data-uid="FFmpeg.Formats.InputFormat.MP3">
+  MP3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L191"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MP3 input format (MP2/MP3).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MP3 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MP4_" data-uid="FFmpeg.Formats.InputFormat.MP4*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MP4" data-uid="FFmpeg.Formats.InputFormat.MP4">
+  MP4
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L144"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MP4 input format (QuickTime / MOV / MP4 / 3GP / M4A / 3G2 / MJ2).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MP4 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MPEG_" data-uid="FFmpeg.Formats.InputFormat.MPEG*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MPEG" data-uid="FFmpeg.Formats.InputFormat.MPEG">
+  MPEG
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MPEG-PS input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MPEG { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MPEGTS_" data-uid="FFmpeg.Formats.InputFormat.MPEGTS*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MPEGTS" data-uid="FFmpeg.Formats.InputFormat.MPEGTS">
+  MPEGTS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MPEG-TS input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? MPEGTS { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_MimeTypes_" data-uid="FFmpeg.Formats.InputFormat.MimeTypes*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_MimeTypes" data-uid="FFmpeg.Formats.InputFormat.MimeTypes">
+  MimeTypes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the MIME types associated with the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;string&gt; MimeTypes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_MimeTypes_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>MIME types are used to indicate the media type of the format. This property retrieves and splits
+the MIME types from a comma-separated string. Returns an empty list if no MIME types are available.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_OGA_" data-uid="FFmpeg.Formats.InputFormat.OGA*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_OGA" data-uid="FFmpeg.Formats.InputFormat.OGA">
+  OGA
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Ogg input format (alias for Ogg).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? OGA { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_OGG_" data-uid="FFmpeg.Formats.InputFormat.OGG*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_OGG" data-uid="FFmpeg.Formats.InputFormat.OGG">
+  OGG
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Ogg input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? OGG { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_OGV_" data-uid="FFmpeg.Formats.InputFormat.OGV*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_OGV" data-uid="FFmpeg.Formats.InputFormat.OGV">
+  OGV
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the Ogg input format (alias for Ogg).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? OGV { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_PNG_PIPE_" data-uid="FFmpeg.Formats.InputFormat.PNG_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_PNG_PIPE" data-uid="FFmpeg.Formats.InputFormat.PNG_PIPE">
+  PNG_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped PNG sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? PNG_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_RAWVIDEO_" data-uid="FFmpeg.Formats.InputFormat.RAWVIDEO*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_RAWVIDEO" data-uid="FFmpeg.Formats.InputFormat.RAWVIDEO">
+  RAWVIDEO
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L184"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the raw video input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? RAWVIDEO { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_RTP_" data-uid="FFmpeg.Formats.InputFormat.RTP*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_RTP" data-uid="FFmpeg.Formats.InputFormat.RTP">
+  RTP
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the RTP input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? RTP { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_RTSP_" data-uid="FFmpeg.Formats.InputFormat.RTSP*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_RTSP" data-uid="FFmpeg.Formats.InputFormat.RTSP">
+  RTSP
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L253"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the RTSP input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? RTSP { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_SRT_" data-uid="FFmpeg.Formats.InputFormat.SRT*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_SRT" data-uid="FFmpeg.Formats.InputFormat.SRT">
+  SRT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the SubRip subtitle input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? SRT { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_SSA_" data-uid="FFmpeg.Formats.InputFormat.SSA*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_SSA" data-uid="FFmpeg.Formats.InputFormat.SSA">
+  SSA
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L280"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the SSA subtitle input format (alias for ASS).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? SSA { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_ShortNames_" data-uid="FFmpeg.Formats.InputFormat.ShortNames*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_ShortNames" data-uid="FFmpeg.Formats.InputFormat.ShortNames">
+  ShortNames
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the short names associated with the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; ShortNames { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_ShortNames_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Short names are often used as identifiers or abbreviations for the format. This property retrieves
+and splits the short names from a comma-separated string.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_SupportedCodecs_" data-uid="FFmpeg.Formats.InputFormat.SupportedCodecs*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_SupportedCodecs" data-uid="FFmpeg.Formats.InputFormat.SupportedCodecs">
+  SupportedCodecs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the list of supported codecs for this input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;CodecTag&gt; SupportedCodecs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FFmpeg.Codecs.CodecTag.html">CodecTag</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_SupportedCodecs_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This property iterates through the codec tags associated with the format to collect the supported
+codec IDs.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_TIFF_PIPE_" data-uid="FFmpeg.Formats.InputFormat.TIFF_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_TIFF_PIPE" data-uid="FFmpeg.Formats.InputFormat.TIFF_PIPE">
+  TIFF_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped TIFF sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? TIFF_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_WAV_" data-uid="FFmpeg.Formats.InputFormat.WAV*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_WAV" data-uid="FFmpeg.Formats.InputFormat.WAV">
+  WAV
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L196"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the WAV input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? WAV { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_WEBM_" data-uid="FFmpeg.Formats.InputFormat.WEBM*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_WEBM" data-uid="FFmpeg.Formats.InputFormat.WEBM">
+  WEBM
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the WebM input format (alias for Matroska).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? WEBM { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_WEBP_PIPE_" data-uid="FFmpeg.Formats.InputFormat.WEBP_PIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_WEBP_PIPE" data-uid="FFmpeg.Formats.InputFormat.WEBP_PIPE">
+  WEBP_PIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L307"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the piped WEBP sequence input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? WEBP_PIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_WMA_" data-uid="FFmpeg.Formats.InputFormat.WMA*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_WMA" data-uid="FFmpeg.Formats.InputFormat.WMA">
+  WMA
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the WMA input format (inside ASF).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? WMA { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_YUV4MPEGPIPE_" data-uid="FFmpeg.Formats.InputFormat.YUV4MPEGPIPE*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_YUV4MPEGPIPE" data-uid="FFmpeg.Formats.InputFormat.YUV4MPEGPIPE">
+  YUV4MPEGPIPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L319"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the YUV4MPEG input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? YUV4MPEGPIPE { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Formats_InputFormat_FindFormat_" data-uid="FFmpeg.Formats.InputFormat.FindFormat*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_FindFormat_System_String_" data-uid="FFmpeg.Formats.InputFormat.FindFormat(System.String)">
+  FindFormat(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finds an <a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a> by its short name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static InputFormat? FindFormat(string short_name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>short_name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The short name of the input format to find.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>?</dt>
+    <dd><p>An instance of <a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a> if found; otherwise, null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_GetInputFormats_" data-uid="FFmpeg.Formats.InputFormat.GetInputFormats*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_GetInputFormats" data-uid="FFmpeg.Formats.InputFormat.GetInputFormats">
+  GetInputFormats()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves a collection of all available AV input formats.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;InputFormat&gt; GetInputFormats()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a>&gt;</dt>
+    <dd><p>An <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList&lt;T&gt;</a> containing all available input formats.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Formats_InputFormat_GetInputFormats_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method uses the FFmpeg library to iterate through all available demuxers and collects
+them into a list of <a class="xref" href="FFmpeg.Formats.InputFormat.html">InputFormat</a> objects.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Formats_InputFormat_ToString_" data-uid="FFmpeg.Formats.InputFormat.ToString*"></a>
+
+  <h3 id="FFmpeg_Formats_InputFormat_ToString" data-uid="FFmpeg.Formats.InputFormat.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string representation of the input format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Formats.InputFormat.html#FFmpeg_Formats_InputFormat_LongName">LongName</a> of the input format.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Formats/InputFormat.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

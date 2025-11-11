@@ -1,0 +1,3565 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CodecContext | FFmpegDotNet </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CodecContext | FFmpegDotNet ">
+      
+      <meta name="description" content="Represents a codec context used for encoding or decoding video and audio streams using FFmpeg.  This class wraps the  structure from the FFmpeg library, providing an interface for configuring and interacting with codec parameters for both encoding and decoding operations.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Pascal-Krenckel/FFmpeg/new/master/apiSpec/new?filename=FFmpeg_Codecs_CodecContext.md&amp;value=---%0Auid%3A%20FFmpeg.Codecs.CodecContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FFmpegDotNet">
+            FFmpegDotNet
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FFmpeg.Codecs.CodecContext">
+
+
+
+  <h1 id="FFmpeg_Codecs_CodecContext" data-uid="FFmpeg.Codecs.CodecContext" class="text-break">
+Class CodecContext  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FFmpeg.html">FFmpeg</a>.<a class="xref" href="FFmpeg.Codecs.html">Codecs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FFmpeg.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a codec context used for encoding or decoding video and audio streams using FFmpeg.</p>
+<p>
+This class wraps the <span class="xref">FFmpeg.AutoGen._AVCodecContext</span> structure from the FFmpeg library,
+providing an interface for configuring and interacting with codec parameters for both encoding
+and decoding operations.
+</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CodecContext : OptionQueryBase, IAudioDecoder, IAudioEncoder, IVideoDecoder, IDecoderContext, IVideoEncoder, IEncoderContext, IDisposable, IOptionQuery</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="FFmpeg.Options.OptionQueryBase.html">OptionQueryBase</a></div>
+      <div><span class="xref">CodecContext</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="FFmpeg.Codecs.IAudioDecoder.html">IAudioDecoder</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.IAudioEncoder.html">IAudioEncoder</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.IVideoDecoder.html">IVideoDecoder</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.IDecoderContext.html">IDecoderContext</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.IVideoEncoder.html">IVideoEncoder</a></div>
+      <div><a class="xref" href="FFmpeg.Codecs.IEncoderContext.html">IEncoderContext</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div><a class="xref" href="FFmpeg.Options.IOptionQuery.html">IOptionQuery</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_ResetOptions">OptionQueryBase.ResetOptions()</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_GetOptions_System_Boolean_">OptionQueryBase.GetOptions(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_FindOption_System_String_System_Boolean_">OptionQueryBase.FindOption(string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_String_System_Boolean_">OptionQueryBase.SetOption(string, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Int64_System_Boolean_">OptionQueryBase.SetOption(string, long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Boolean_System_Boolean_">OptionQueryBase.SetOption(string, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Double_System_Boolean_">OptionQueryBase.SetOption(string, double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_FFmpeg_Utils_Rational_System_Boolean_">OptionQueryBase.SetOption(string, Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_ReadOnlySpan_System_Byte__System_Boolean_">OptionQueryBase.SetOption(string, ReadOnlySpan&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_ReadOnlyMemory_System_Byte__System_Boolean_">OptionQueryBase.SetOption(string, ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Int32_System_Int32_System_Boolean_">OptionQueryBase.SetOption(string, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_ValueTuple_System_Int32_System_Int32__System_Boolean_">OptionQueryBase.SetOption(string, (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_FFmpeg_Images_PixelFormat_System_Boolean_">OptionQueryBase.SetOption(string, PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_FFmpeg_Audio_SampleFormat_System_Boolean_">OptionQueryBase.SetOption(string, SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">OptionQueryBase.SetOption(string, IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Linq_ILookup_System_String_System_String__System_Boolean_">OptionQueryBase.SetOption(string, ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">OptionQueryBase.SetOption(IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Linq_ILookup_System_String_System_String___System_Boolean_">OptionQueryBase.SetOption(string, ref ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_System_Object_System_Boolean_">OptionQueryBase.SetOption(string, object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_String_System_Boolean_">OptionQueryBase.SetOption(Option, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Boolean_System_Boolean_">OptionQueryBase.SetOption(Option, bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Int64_System_Boolean_">OptionQueryBase.SetOption(Option, long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Double_System_Boolean_">OptionQueryBase.SetOption(Option, double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_FFmpeg_Utils_Rational_System_Boolean_">OptionQueryBase.SetOption(Option, Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_ReadOnlySpan_System_Byte__System_Boolean_">OptionQueryBase.SetOption(Option, ReadOnlySpan&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_ReadOnlyMemory_System_Byte__System_Boolean_">OptionQueryBase.SetOption(Option, ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Int32_System_Int32_System_Boolean_">OptionQueryBase.SetOption(Option, int, int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_ValueTuple_System_Int32_System_Int32__System_Boolean_">OptionQueryBase.SetOption(Option, (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_FFmpeg_Images_PixelFormat_System_Boolean_">OptionQueryBase.SetOption(Option, PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_FFmpeg_Audio_SampleFormat_System_Boolean_">OptionQueryBase.SetOption(Option, SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Collections_Generic_IDictionary_System_String_System_String__System_Boolean_">OptionQueryBase.SetOption(Option, IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Linq_ILookup_System_String_System_String__System_Boolean_">OptionQueryBase.SetOption(Option, ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_System_Object_System_Boolean_">OptionQueryBase.SetOption(Option, object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_String__System_Boolean_">OptionQueryBase.TryGetOption(string, out string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Int64__System_Boolean_">OptionQueryBase.TryGetOption(string, out long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_UInt64__System_Boolean_">OptionQueryBase.TryGetOption(string, out ulong, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Int32__System_Boolean_">OptionQueryBase.TryGetOption(string, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Boolean__System_Boolean_">OptionQueryBase.TryGetOption(string, out bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_UInt32__System_Boolean_">OptionQueryBase.TryGetOption(string, out uint, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Double__System_Boolean_">OptionQueryBase.TryGetOption(string, out double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Utils_Rational__System_Boolean_">OptionQueryBase.TryGetOption(string, out Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Images_PixelFormat__System_Boolean_">OptionQueryBase.TryGetOption(string, out PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Audio_SampleFormat__System_Boolean_">OptionQueryBase.TryGetOption(string, out SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Collections_Generic_IDictionary_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(string, out IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Collections_Generic_Dictionary_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(string, out Dictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Collections_AVDictionary__System_Boolean_">OptionQueryBase.TryGetOption(string, out AVDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Linq_ILookup_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(string, out ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Collections_AVMultiDictionary__System_Boolean_">OptionQueryBase.TryGetOption(string, out AVMultiDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Int32__System_Int32__System_Boolean_">OptionQueryBase.TryGetOption(string, out int, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_ValueTuple_System_Int32_System_Int32___System_Boolean_">OptionQueryBase.TryGetOption(string, out (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Span_System_Byte__System_Boolean_">OptionQueryBase.TryGetOption(string, Span&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Byte____System_Boolean_">OptionQueryBase.TryGetOption(string, out byte[], bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Memory_System_Byte___System_Boolean_">OptionQueryBase.TryGetOption(string, out Memory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_ReadOnlyMemory_System_Byte___System_Boolean_">OptionQueryBase.TryGetOption(string, out ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_System_Object__System_Boolean_">OptionQueryBase.TryGetOption(string, out object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_String__System_Boolean_">OptionQueryBase.TryGetOption(Option, out string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Int64__System_Boolean_">OptionQueryBase.TryGetOption(Option, out long, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_UInt64__System_Boolean_">OptionQueryBase.TryGetOption(Option, out ulong, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Int32__System_Boolean_">OptionQueryBase.TryGetOption(Option, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Boolean__System_Boolean_">OptionQueryBase.TryGetOption(Option, out bool, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_UInt32__System_Boolean_">OptionQueryBase.TryGetOption(Option, out uint, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Double__System_Boolean_">OptionQueryBase.TryGetOption(Option, out double, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Utils_Rational__System_Boolean_">OptionQueryBase.TryGetOption(Option, out Rational, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Images_PixelFormat__System_Boolean_">OptionQueryBase.TryGetOption(Option, out PixelFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Audio_SampleFormat__System_Boolean_">OptionQueryBase.TryGetOption(Option, out SampleFormat, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Collections_Generic_IDictionary_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(Option, out IDictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Collections_Generic_Dictionary_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(Option, out Dictionary&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Collections_AVDictionary__System_Boolean_">OptionQueryBase.TryGetOption(Option, out AVDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Linq_ILookup_System_String_System_String___System_Boolean_">OptionQueryBase.TryGetOption(Option, out ILookup&lt;string, string&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Collections_AVMultiDictionary__System_Boolean_">OptionQueryBase.TryGetOption(Option, out AVMultiDictionary, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Int32__System_Int32__System_Boolean_">OptionQueryBase.TryGetOption(Option, out int, out int, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_ValueTuple_System_Int32_System_Int32___System_Boolean_">OptionQueryBase.TryGetOption(Option, out (int Width, int Height), bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Byte____System_Boolean_">OptionQueryBase.TryGetOption(Option, out byte[], bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Memory_System_Byte___System_Boolean_">OptionQueryBase.TryGetOption(Option, out Memory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_ReadOnlyMemory_System_Byte___System_Boolean_">OptionQueryBase.TryGetOption(Option, out ReadOnlyMemory&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Span_System_Byte__System_Boolean_">OptionQueryBase.TryGetOption(Option, Span&lt;byte&gt;, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_System_Object__System_Boolean_">OptionQueryBase.TryGetOption(Option, out object, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_System_String_FFmpeg_Audio_ChannelLayout_System_Boolean_">OptionQueryBase.SetOption(string, ChannelLayout, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_SetOption_FFmpeg_Options_Option_FFmpeg_Audio_ChannelLayout_System_Boolean_">OptionQueryBase.SetOption(Option, ChannelLayout, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_System_String_FFmpeg_Audio_ChannelLayout__System_Boolean_">OptionQueryBase.TryGetOption(string, out ChannelLayout, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="FFmpeg.Options.OptionQueryBase.html#FFmpeg_Options_OptionQueryBase_TryGetOption_FFmpeg_Options_Option_FFmpeg_Audio_ChannelLayout__System_Boolean_">OptionQueryBase.TryGetOption(Option, out ChannelLayout, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecContext_AudioServiceType_" data-uid="FFmpeg.Codecs.CodecContext.AudioServiceType*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_AudioServiceType" data-uid="FFmpeg.Codecs.CodecContext.AudioServiceType">
+  AudioServiceType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L906"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the audio service type, which indicates the intended usage of the audio stream (e.g., main audio, commentary, or karaoke).</p>
+<p>
+<b>Encoding:</b> Notify by the user to specify the type of audio service for encoding.
+</p>
+<p>
+<b>Decoding:</b> This field is set by libavcodec during decoding and cannot be set by the user.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioServiceType AudioServiceType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.AudioServiceType.html">AudioServiceType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_BitRate_" data-uid="FFmpeg.Codecs.CodecContext.BitRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_BitRate" data-uid="FFmpeg.Codecs.CodecContext.BitRate">
+  BitRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L454"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the target bit rate in bits per second, which influences the compression level.
+The bit rate directly affects the quality and size of the encoded media.</p>
+<p>
+<b>Encoding:</b> Notify by the user. Not used in constant quantizer encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user. May be overwritten by libavcodec if this information is available in the stream.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BitRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_BitRateTolerance_" data-uid="FFmpeg.Codecs.CodecContext.BitRateTolerance*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_BitRateTolerance" data-uid="FFmpeg.Codecs.CodecContext.BitRateTolerance">
+  BitRateTolerance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L937"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the tolerance for bit rate deviations during encoding.</p>
+<p>
+<b>Encoding:</b> Defines how much the bitstream is allowed to deviate from the target bit rate. This applies to both constant bit rate (CBR) and variable bit rate (VBR) encoding.
+</p>
+<p>
+<b>Decoding:</b> This field is not used during decoding.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BitRateTolerance { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ChannelLayout_" data-uid="FFmpeg.Codecs.CodecContext.ChannelLayout*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ChannelLayout" data-uid="FFmpeg.Codecs.CodecContext.ChannelLayout">
+  ChannelLayout
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L880"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the channel layout for the audio stream, such as stereo or surround sound.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the desired channel layout for encoding.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user if known, but the decoder may override it based on the actual stream data.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChannelLayout_ref ChannelLayout { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.ChannelLayout_ref.html">ChannelLayout_ref</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ChromaSampleLocation_" data-uid="FFmpeg.Codecs.CodecContext.ChromaSampleLocation*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ChromaSampleLocation" data-uid="FFmpeg.Codecs.CodecContext.ChromaSampleLocation">
+  ChromaSampleLocation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L805"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the chroma sample location, which defines the position of the chroma samples relative to the luma samples in the video.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the chroma sample location for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to correctly align chroma samples.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ChromaLocation ChromaSampleLocation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ChromaLocation.html">ChromaLocation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Codec_" data-uid="FFmpeg.Codecs.CodecContext.Codec*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Codec" data-uid="FFmpeg.Codecs.CodecContext.Codec">
+  Codec
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L419"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the codec associated with the context.
+Represents the specific codec being used for encoding or decoding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Codec Codec { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CodecID_" data-uid="FFmpeg.Codecs.CodecContext.CodecID*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CodecID" data-uid="FFmpeg.Codecs.CodecContext.CodecID">
+  CodecID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L425"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec ID, which represents the specific codec used.
+This identifies the codec being used, such as H.264 or AAC.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecID CodecID { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecID.html">CodecID</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CodecTag_" data-uid="FFmpeg.Codecs.CodecContext.CodecTag*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CodecTag" data-uid="FFmpeg.Codecs.CodecContext.CodecTag">
+  CodecTag
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L438"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec tag, an additional codec identifier used to work around some encoder bugs.
+The codec tag is a 32-bit identifier used to map codec information, especially when containers store this data in formats
+that exceed 32 bits. It is commonly represented as a FourCC code.</p>
+<p>
+<b>Encoding:</b> Notify by the user; if not set, a default based on <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_CodecID">CodecID</a> will be used.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user; during initialization, libavcodec will convert the value to uppercase.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FourCC CodecTag { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FourCC.html">FourCC</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CodecType_" data-uid="FFmpeg.Codecs.CodecContext.CodecType*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CodecType" data-uid="FFmpeg.Codecs.CodecContext.CodecType">
+  CodecType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L413"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the general type of the codec (e.g., video, audio).
+This property indicates whether the codec is handling audio, video, or other media types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MediaType CodecType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.MediaType.html">MediaType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CodedHeight_" data-uid="FFmpeg.Codecs.CodecContext.CodedHeight*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CodedHeight" data-uid="FFmpeg.Codecs.CodecContext.CodedHeight">
+  CodedHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L645"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the coded height of the video frame, which may be larger than the actual display height.
+This value represents the height of the frame in the bitstream, which may differ from the decoded output height due to cropping or other optimizations.</p>
+<p>
+<b>Encoding:</b> Unused.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user before opening the decoder if known.
+The decoder may overwrite this value during parsing.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CodedHeight { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CodedWidth_" data-uid="FFmpeg.Codecs.CodecContext.CodedWidth*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CodedWidth" data-uid="FFmpeg.Codecs.CodecContext.CodedWidth">
+  CodedWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L628"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the coded width of the video frame, which may be larger than the actual display width.
+This value represents the width of the frame in the bitstream, which may differ from the decoded output width due to cropping or other optimizations.</p>
+<p>
+<b>Encoding:</b> Unused.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user before opening the decoder if known.
+The decoder may overwrite this value during parsing.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CodedWidth { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ColorPrimaries_" data-uid="FFmpeg.Codecs.CodecContext.ColorPrimaries*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ColorPrimaries" data-uid="FFmpeg.Codecs.CodecContext.ColorPrimaries">
+  ColorPrimaries
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L745"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the chromaticity coordinates of the source primaries, which define the red, green, and blue components of the video.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to define the chromaticity coordinates for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to interpret the color information correctly.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorPrimaries ColorPrimaries { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorPrimaries.html">ColorPrimaries</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ColorRange_" data-uid="FFmpeg.Codecs.CodecContext.ColorRange*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ColorRange" data-uid="FFmpeg.Codecs.CodecContext.ColorRange">
+  ColorRange
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L790"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color range of the video, which defines the range of values for the color components (MPEG vs JPEG YUV range).</p>
+<p>
+<b>Encoding:</b> Can be set by the user to override the default output color range. If not specified, libavcodec sets the color range based on the output format.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec, but may be set by the user to propagate the color range to other components reading from the decoder context.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorRange ColorRange { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorRange.html">ColorRange</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ColorSpace_" data-uid="FFmpeg.Codecs.CodecContext.ColorSpace*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ColorSpace" data-uid="FFmpeg.Codecs.CodecContext.ColorSpace">
+  ColorSpace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L775"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the YUV colorspace type of the video, which defines how the color components are organized.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the YUV colorspace for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to interpret the colorspace of the video stream.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorSpace ColorSpace { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorSpace.html">ColorSpace</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ColorTransferCharacteristic_" data-uid="FFmpeg.Codecs.CodecContext.ColorTransferCharacteristic*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ColorTransferCharacteristic" data-uid="FFmpeg.Codecs.CodecContext.ColorTransferCharacteristic">
+  ColorTransferCharacteristic
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L760"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the color transfer characteristic, which is used for gamma correction and defines how colors are transformed.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the color transfer characteristics for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to handle color transformation properly.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorTransferCharacteristic ColorTransferCharacteristic { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.ColorTransferCharacteristic.html">ColorTransferCharacteristic</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CompressionLevel_" data-uid="FFmpeg.Codecs.CodecContext.CompressionLevel*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CompressionLevel" data-uid="FFmpeg.Codecs.CodecContext.CompressionLevel">
+  CompressionLevel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L967"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the compression level for encoding, affecting the tradeoff between speed and quality.</p>
+<p>
+<b>Encoding:</b> Notify by the user to control the level of compression. Higher values may result in slower encoding but potentially better quality.
+</p>
+<p>
+<b>Decoding:</b> This field is not used during decoding.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompressionLevel { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Delay_" data-uid="FFmpeg.Codecs.CodecContext.Delay*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Delay" data-uid="FFmpeg.Codecs.CodecContext.Delay">
+  Delay
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L581"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the delay in frames between the input to the encoder and the output of the decoder.
+For video, this represents the number of frames delayed between the encoded input and the decoded output.
+For audio decoding, this is the number of samples that the decoder needs to output before its output is valid.</p>
+<p>
+<b>Encoding:</b> Notify by libavcodec.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Delay { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ExtraData_" data-uid="FFmpeg.Codecs.CodecContext.ExtraData*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ExtraData" data-uid="FFmpeg.Codecs.CodecContext.ExtraData">
+  ExtraData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L488"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the extra data, typically codec-specific initialization data required for decoding or encoding.
+Certain codecs use extradata to store auxiliary information, such as Huffman tables for MJPEG, additional flags for RV10,
+or global headers for MPEG-4.</p>
+<p>
+<b>Encoding:</b> The data is set, allocated, and freed by libavcodec.
+</p>
+<p>
+<b>Decoding:</b> The data must be set, allocated, and freed by the user. The allocated memory should be 
+AV_INPUT_BUFFER_PADDING_SIZE bytes larger than the actual extradata to prevent buffer overflows when reading the bitstream.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;byte&gt; ExtraData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_FieldOrder_" data-uid="FFmpeg.Codecs.CodecContext.FieldOrder*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_FieldOrder" data-uid="FFmpeg.Codecs.CodecContext.FieldOrder">
+  FieldOrder
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L820"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the field order for interlaced video, which defines whether the top or bottom field is displayed first.</p>
+<p>
+<b>Encoding:</b> Notify by libavcodec during encoding to ensure proper field order in the output stream.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user if known, to correctly interpret the field order of the input stream.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FieldOrder FieldOrder { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.FieldOrder.html">FieldOrder</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Flags_" data-uid="FFmpeg.Codecs.CodecContext.Flags*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Flags" data-uid="FFmpeg.Codecs.CodecContext.Flags">
+  Flags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L470"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets codec flags that determine various encoding or decoding settings.
+The flags are split between general codec flags (AV_CODEC_FLAG_<em>) and extended flags (AV_CODEC_FLAG2_</em>).</p>
+<p>
+<b>Encoding:</b> Notify by the user.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecFlags Flags { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecFlags.html">CodecFlags</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_FrameRate_" data-uid="FFmpeg.Codecs.CodecContext.FrameRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_FrameRate" data-uid="FFmpeg.Codecs.CodecContext.FrameRate">
+  FrameRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L564"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the frame rate of the video stream, in frames per second.</p>
+<p>
+<b>Encoding:</b> Used to signal the constant frame rate (CFR) content to the encoder.
+</p>
+<p>
+<b>Decoding:</b> May be set by the decoder for codecs that store a frame rate value in the bitstream.
+If unknown, this value will be { 0, 1 }.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational FrameRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_FrameSize_" data-uid="FFmpeg.Codecs.CodecContext.FrameSize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_FrameSize" data-uid="FFmpeg.Codecs.CodecContext.FrameSize">
+  FrameSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L891"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the frame size for audio encoding/decoding, which represents the number of samples per channel in each frame.</p>
+<p>
+<b>Encoding:</b> Notify by libavcodec during encoding to define the number of samples per frame. Each frame submitted must have exactly this number of samples, except the last frame.
+</p>
+<p>
+<b>Decoding:</b> Some decoders may set this field to indicate a constant frame size.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FrameSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_GOPSize_" data-uid="FFmpeg.Codecs.CodecContext.GOPSize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_GOPSize" data-uid="FFmpeg.Codecs.CodecContext.GOPSize">
+  GOPSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L675"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of frames in a Group of Pictures (GOP).</p>
+<p>
+<b>Encoding:</b> Notify by the user to specify the number of frames in each GOP. If set to 0, the encoding will be intra-only (I-frames only).
+</p>
+<p>
+<b>Decoding:</b> This field is unused.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GOPSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_GlobalQuality_" data-uid="FFmpeg.Codecs.CodecContext.GlobalQuality*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_GlobalQuality" data-uid="FFmpeg.Codecs.CodecContext.GlobalQuality">
+  GlobalQuality
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L952"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the global quality factor for codecs that do not adjust quality on a per-frame basis.</p>
+<p>
+<b>Encoding:</b> This value is used to set the global quality for encoding, which is proportional to the MPEG quantization scale (qscale).
+</p>
+<p>
+<b>Decoding:</b> This field is not used during decoding.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GlobalQuality { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_HardwareDeviceContext_" data-uid="FFmpeg.Codecs.CodecContext.HardwareDeviceContext*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_HardwareDeviceContext" data-uid="FFmpeg.Codecs.CodecContext.HardwareDeviceContext">
+  HardwareDeviceContext
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L692"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the hardware device context pointer, which represents the device context used for hardware acceleration.</p>
+<p>
+<b>Encoding:</b> Not used.
+</p>
+<p>
+<b>Decoding:</b> Access this property to interact with the hardware device context when using hardware acceleration.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DeviceContext_ref HardwareDeviceContext { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.HW.DeviceContext_ref.html">DeviceContext_ref</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Height_" data-uid="FFmpeg.Codecs.CodecContext.Height*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Height" data-uid="FFmpeg.Codecs.CodecContext.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L611"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the height of the video frame in pixels.
+This field must be set by the user for encoding and may be set for decoding if known.</p>
+<p>
+<b>Encoding:</b> Must be set by the user.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user before opening the decoder if known, e.g., from the container.
+The decoder may overwrite this value during parsing.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Height { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_IsOpen_" data-uid="FFmpeg.Codecs.CodecContext.IsOpen*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_IsOpen" data-uid="FFmpeg.Codecs.CodecContext.IsOpen">
+  IsOpen
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L407"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the codec context is open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsOpen { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_MinGOPSize_" data-uid="FFmpeg.Codecs.CodecContext.MinGOPSize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_MinGOPSize" data-uid="FFmpeg.Codecs.CodecContext.MinGOPSize">
+  MinGOPSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L660"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the minimum size of the Group of Pictures (GOP).</p>
+<p>
+<b>Encoding:</b> Notify by the user to specify the minimum number of frames between keyframes (i.e., I-frames).
+</p>
+<p>
+<b>Decoding:</b> This field is unused.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MinGOPSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_PacketTimeBase_" data-uid="FFmpeg.Codecs.CodecContext.PacketTimeBase*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_PacketTimeBase" data-uid="FFmpeg.Codecs.CodecContext.PacketTimeBase">
+  PacketTimeBase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L548"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the packet time base, which is used for expressing packet timestamps (pkt_dts/pts) and AVPacket.dts/pts.
+This defines the time base in which the packet timestamps are calculated.</p>
+<p>
+<b>Encoding:</b> Unused.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational PacketTimeBase { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Pass1StatsOutput_" data-uid="FFmpeg.Codecs.CodecContext.Pass1StatsOutput*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Pass1StatsOutput" data-uid="FFmpeg.Codecs.CodecContext.Pass1StatsOutput">
+  Pass1StatsOutput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L997"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the pass1 encoding statistics output buffer as a read-only span of bytes.</p>
+<p>
+This buffer contains encoding statistics collected during the first pass of encoding.
+</p>
+<p>
+This property is set by libavcodec and cannot be modified by the user.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;byte&gt; Pass1StatsOutput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Pass2StatsInput_" data-uid="FFmpeg.Codecs.CodecContext.Pass2StatsInput*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Pass2StatsInput" data-uid="FFmpeg.Codecs.CodecContext.Pass2StatsInput">
+  Pass2StatsInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1010"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the pass2 encoding statistics input buffer as a read-only span of bytes.</p>
+<p>
+This buffer should contain the concatenated statistics from the pass1 output, used for the second pass of encoding.
+</p>
+<p>
+This property can be set by the user for pass2 encoding. If the buffer is being replaced, the old buffer is freed.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlySpan&lt;byte&gt; Pass2StatsInput { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.readonlyspan-1">ReadOnlySpan</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_PixelFormat_" data-uid="FFmpeg.Codecs.CodecContext.PixelFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_PixelFormat" data-uid="FFmpeg.Codecs.CodecContext.PixelFormat">
+  PixelFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L719"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the pixel format of the video, which defines the format of the pixels (e.g., YUV, RGB).</p>
+<p>
+<b>Encoding:</b> Must be set by the user to define the pixel format for encoding.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user if known from the headers. However, it can be overridden by the decoder during parsing.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelFormat PixelFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.PixelFormat.html">PixelFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Pointer_" data-uid="FFmpeg.Codecs.CodecContext.Pointer*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Pointer" data-uid="FFmpeg.Codecs.CodecContext.Pointer">
+  Pointer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the pointer to the underlying <span class="xref">FFmpeg.AutoGen._AVCodecContext</span> structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void* Pointer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.void">void</a>*</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Profile_" data-uid="FFmpeg.Codecs.CodecContext.Profile*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Profile" data-uid="FFmpeg.Codecs.CodecContext.Profile">
+  Profile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L922"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the codec profile, which defines the level of compression and quality for the codec.</p>
+<p>
+<b>Encoding:</b> Notify by the user to specify the desired codec profile (e.g., main, high, baseline for H.264).
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to reflect the profile used in the encoded stream.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Profile Profile { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.Profile.html">Profile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ReferenceFrames_" data-uid="FFmpeg.Codecs.CodecContext.ReferenceFrames*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ReferenceFrames" data-uid="FFmpeg.Codecs.CodecContext.ReferenceFrames">
+  ReferenceFrames
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L835"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of reference frames used for inter-frame compression.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the number of reference frames for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec during decoding to manage reference frame usage.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReferenceFrames { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SampleAspectRatio_" data-uid="FFmpeg.Codecs.CodecContext.SampleAspectRatio*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SampleAspectRatio" data-uid="FFmpeg.Codecs.CodecContext.SampleAspectRatio">
+  SampleAspectRatio
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L704"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the sample aspect ratio, which represents the width of a pixel divided by its height.
+A sample aspect ratio of 0 means the value is unknown. For some video standards, the numerator and denominator must be relatively prime and less than 256.</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the sample aspect ratio for encoding.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec to provide the sample aspect ratio for decoding.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational SampleAspectRatio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SampleFormat_" data-uid="FFmpeg.Codecs.CodecContext.SampleFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SampleFormat" data-uid="FFmpeg.Codecs.CodecContext.SampleFormat">
+  SampleFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L865"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the audio sample format, which defines how audio samples are stored (e.g., signed 16-bit, float).</p>
+<p>
+<b>Encoding:</b> Must be set by the user to define the sample format for the audio stream being encoded.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec based on the audio stream format during decoding.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SampleFormat SampleFormat { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Audio.SampleFormat.html">SampleFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SampleRate_" data-uid="FFmpeg.Codecs.CodecContext.SampleRate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SampleRate" data-uid="FFmpeg.Codecs.CodecContext.SampleRate">
+  SampleRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L850"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the audio sample rate in samples per second (Hz).</p>
+<p>
+<b>Encoding:</b> Must be set by the user to specify the sample rate of the audio stream being encoded.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user if known, but could be overridden by libavcodec based on the audio stream format.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SampleRate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SoftwarePixelFormat_" data-uid="FFmpeg.Codecs.CodecContext.SoftwarePixelFormat*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SoftwarePixelFormat" data-uid="FFmpeg.Codecs.CodecContext.SoftwarePixelFormat">
+  SoftwarePixelFormat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L734"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the software pixel format, which represents the nominal unaccelerated pixel format used during decoding.</p>
+<p>
+<b>Encoding:</b> Unused.
+</p>
+<p>
+<b>Decoding:</b> Notify by libavcodec before calling the format selection function (get_format).
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelFormat SoftwarePixelFormat { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Images.PixelFormat.html">PixelFormat</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ThreadCount_" data-uid="FFmpeg.Codecs.CodecContext.ThreadCount*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ThreadCount" data-uid="FFmpeg.Codecs.CodecContext.ThreadCount">
+  ThreadCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L982"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the number of threads used for encoding or decoding operations.</p>
+<p>
+<b>Encoding:</b> Notify by the user to determine the number of threads for parallel encoding tasks.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user to determine the number of threads for parallel decoding tasks.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ThreadCount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_TimeBase_" data-uid="FFmpeg.Codecs.CodecContext.TimeBase*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_TimeBase" data-uid="FFmpeg.Codecs.CodecContext.TimeBase">
+  TimeBase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L532"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the time base, representing the unit of time in terms of frame duration.
+This is the fundamental unit used to express timestamps in the media stream (e.g., 1/25 for 25 fps).</p>
+<p>
+<b>Encoding:</b> The time base is unused.
+</p>
+<p>
+<b>Decoding:</b> Notify by the user to define the base time unit for timestamps.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rational TimeBase { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.Rational.html">Rational</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Width_" data-uid="FFmpeg.Codecs.CodecContext.Width*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Width" data-uid="FFmpeg.Codecs.CodecContext.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L594"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the width of the video frame in pixels.
+This field must be set by the user for encoding and may be set for decoding if known.</p>
+<p>
+<b>Encoding:</b> Must be set by the user.
+</p>
+<p>
+<b>Decoding:</b> May be set by the user before opening the decoder if known, e.g., from the container.
+The decoder may overwrite this value during parsing.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Allocate_" data-uid="FFmpeg.Codecs.CodecContext.Allocate*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Allocate_System_Nullable_FFmpeg_Codecs_Codec__" data-uid="FFmpeg.Codecs.CodecContext.Allocate(System.Nullable{FFmpeg.Codecs.Codec})">
+  Allocate(Codec?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Allocates a new <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance for the specified codec.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Allocate(Codec? codec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec for which to allocate the context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, a context is allocated without a specific codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>A new <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if the codec context cannot be allocated due to insufficient memory.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_CopyParameters_" data-uid="FFmpeg.Codecs.CodecContext.CopyParameters*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_CopyParameters_FFmpeg_Codecs_CodecContext_" data-uid="FFmpeg.Codecs.CodecContext.CopyParameters(FFmpeg.Codecs.CodecContext)">
+  CopyParameters(CodecContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1092"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies codec parameters from the current codec context to another <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyParameters(CodecContext dst)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dst</code> <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>The destination <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> to which the codec parameters will be copied.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if there is insufficient memory to create the temporary <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a> object.</p>
+</dd>
+    <dt><a class="xref" href="FFmpeg.Exceptions.FFmpegException.html">FFmpegException</a></dt>
+    <dd><p>Thrown if the FFmpeg function to copy parameters returns an error.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Decode_" data-uid="FFmpeg.Codecs.CodecContext.Decode*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Decode_FFmpeg_Utils_AVPacket_FFmpeg_Utils_AVFrame_" data-uid="FFmpeg.Codecs.CodecContext.Decode(FFmpeg.Utils.AVPacket,FFmpeg.Utils.AVFrame)">
+  Decode(AVPacket?, AVFrame)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1409"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Decode(AVPacket? packet, AVFrame frame)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd></dd>
+    <dt><code>frame</code> <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_DecodeSubtitle_" data-uid="FFmpeg.Codecs.CodecContext.DecodeSubtitle*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_DecodeSubtitle_FFmpeg_Utils_AVPacket_FFmpeg_Subtitles_Subtitle_" data-uid="FFmpeg.Codecs.CodecContext.DecodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)">
+  DecodeSubtitle(AVPacket, Subtitle)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Decodes a subtitle from the given <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> and outputs the result as a <a class="xref" href="FFmpeg.Subtitles.Subtitle.html">Subtitle</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 DecodeSubtitle(AVPacket packet, Subtitle subtitle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> containing the encoded subtitle data.</p>
+</dd>
+    <dt><code>subtitle</code> <a class="xref" href="FFmpeg.Subtitles.Subtitle.html">Subtitle</a></dt>
+    <dd><p>The decoded subtitle output as a <a class="xref" href="FFmpeg.Subtitles.Subtitle.html">Subtitle</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The result of the decoding operation as <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>. This result indicates whether the operation was
+successful or if an error occurred.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecContext_DecodeSubtitle_FFmpeg_Utils_AVPacket_FFmpeg_Subtitles_Subtitle__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method is specific to subtitle codecs. If the codec type is not set to <a class="xref" href="FFmpeg.Utils.MediaType.html#FFmpeg_Utils_MediaType_Subtitle">Subtitle</a>,
+the operation will throw a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a>.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the codec is not of type subtitle.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Dispose_" data-uid="FFmpeg.Codecs.CodecContext.Dispose*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Dispose" data-uid="FFmpeg.Codecs.CodecContext.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1460"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_DrainDecoder_" data-uid="FFmpeg.Codecs.CodecContext.DrainDecoder*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_DrainDecoder" data-uid="FFmpeg.Codecs.CodecContext.DrainDecoder">
+  DrainDecoder()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1544"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enters draining mode for the decoder at the end of a stream, ensuring that any internally buffered frames are processed.
+This is required when no more input packets are available for decoding, but the codec may still have frames to output.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 DrainDecoder()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecContext_DrainDecoder_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The draining process for decoding works as follows:</p>
+<ul><li>Instead of passing a valid packet, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_SendPacket_FFmpeg_Utils_AVPacket_">SendPacket(AVPacket?)</a> with a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> packet, which enters draining mode.</li><li>Then, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_ReceiveFrame_FFmpeg_Utils_AVFrame_">ReceiveFrame(AVFrame)</a> repeatedly to retrieve any remaining decoded frames until <code>AVERROR_EOF</code> is returned, 
+indicating that all buffered frames have been processed.</li><li>Before decoding can be resumed, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_FlushBuffers">FlushBuffers()</a> to clear the codec's internal buffers and reset its state.</li></ul>
+<p>During draining mode, <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_ReceiveFrame_FFmpeg_Utils_AVFrame_">ReceiveFrame(AVFrame)</a> will not return <code>AVERROR(EAGAIN)</code> unless the draining mode was not properly initiated.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_DrainEncoder_" data-uid="FFmpeg.Codecs.CodecContext.DrainEncoder*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_DrainEncoder" data-uid="FFmpeg.Codecs.CodecContext.DrainEncoder">
+  DrainEncoder()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1528"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enters draining mode for the encoder at the end of a stream, ensuring that any internally buffered packets are processed.
+This is required when no more input frames are available for encoding, but the codec may still have frames to output.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 DrainEncoder()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecContext_DrainEncoder_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The draining process for encoding works as follows:</p>
+<ul><li>Instead of passing a valid frame, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_SendFrame_FFmpeg_Utils_AVFrame_">SendFrame(AVFrame?)</a> with a <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> frame, which enters draining mode.</li><li>Then, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_ReceivePacket_FFmpeg_Utils_AVPacket_">ReceivePacket(AVPacket)</a> repeatedly to retrieve any remaining encoded packets until <code>AVERROR_EOF</code> is returned, 
+indicating that all buffered packets have been processed.</li><li>Before encoding can be resumed, call <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_FlushBuffers">FlushBuffers()</a> to clear the codec's internal buffers and reset its state.</li></ul>
+<p>During draining mode, <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_ReceivePacket_FFmpeg_Utils_AVPacket_">ReceivePacket(AVPacket)</a> will not return <code>AVERROR(EAGAIN)</code> unless the draining mode was not properly initiated.</p>
+</div>
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Encode_" data-uid="FFmpeg.Codecs.CodecContext.Encode*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Encode_FFmpeg_Utils_AVFrame_FFmpeg_Utils_AVPacket_" data-uid="FFmpeg.Codecs.CodecContext.Encode(FFmpeg.Utils.AVFrame,FFmpeg.Utils.AVPacket)">
+  Encode(AVFrame, AVPacket)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1419"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Encode(AVFrame frame, AVPacket packet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frame</code> <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a></dt>
+    <dd></dd>
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_EncodeSubtitle_" data-uid="FFmpeg.Codecs.CodecContext.EncodeSubtitle*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_EncodeSubtitle_FFmpeg_Utils_AVPacket_FFmpeg_Subtitles_Subtitle_" data-uid="FFmpeg.Codecs.CodecContext.EncodeSubtitle(FFmpeg.Utils.AVPacket,FFmpeg.Subtitles.Subtitle)">
+  EncodeSubtitle(AVPacket, Subtitle)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Encodes a subtitle into the provided <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> and returns the result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 EncodeSubtitle(AVPacket packet, Subtitle subtitle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> that will contain the encoded subtitle data. This method will
+modify and return a fresh packet with the encoded data.</p>
+</dd>
+    <dt><code>subtitle</code> <a class="xref" href="FFmpeg.Subtitles.Subtitle.html">Subtitle</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Subtitles.Subtitle.html">Subtitle</a> to encode into the packet.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>The result of the encoding operation as <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a>. A successful result indicates
+that the subtitle was encoded into the packet successfully.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="FFmpeg_Codecs_CodecContext_EncodeSubtitle_FFmpeg_Utils_AVPacket_FFmpeg_Subtitles_Subtitle__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>After encoding the subtitle, the returned <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> will be freshly created.
+Important settings, such as <a class="xref" href="FFmpeg.Utils.AVPacket.html#FFmpeg_Utils_AVPacket_StreamIndex">StreamIndex</a>, must be set accordingly after the encoding process completes.
+The <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> will have a maximum size of 1MB (1024 * 1024 bytes).</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the codec is not of type subtitle.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Finalize_" data-uid="FFmpeg.Codecs.CodecContext.Finalize*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Finalize" data-uid="FFmpeg.Codecs.CodecContext.Finalize">
+  ~CodecContext()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1453"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Finalizer for <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> to ensure resources are released.</p>
+<p>
+This finalizer calls the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Dispose(bool)</a> method with <code>disposing</code> set to <code>false</code>.
+It is called by the garbage collector if the object is not explicitly disposed.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~CodecContext()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_FlushBuffers_" data-uid="FFmpeg.Codecs.CodecContext.FlushBuffers*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_FlushBuffers" data-uid="FFmpeg.Codecs.CodecContext.FlushBuffers">
+  FlushBuffers()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1435"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the internal codec state and flushes internal buffers.</p>
+<p>
+This method should be called, for example, when seeking or when switching to a different stream.
+It clears any cached data and prepares the codec for new data.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlushBuffers()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_GetCodecParameters_" data-uid="FFmpeg.Codecs.CodecContext.GetCodecParameters*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_GetCodecParameters" data-uid="FFmpeg.Codecs.CodecContext.GetCodecParameters">
+  GetCodecParameters()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1057"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the codec parameters from the current codec context.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CodecParameters GetCodecParameters()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecParameters.html">CodecParameters</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a> object containing the codec parameters retrieved from the context.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></dt>
+    <dd><p>Thrown if there is insufficient memory to allocate the <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a> object.</p>
+</dd>
+    <dt><a class="xref" href="FFmpeg.Exceptions.FFmpegException.html">FFmpegException</a></dt>
+    <dd><p>Thrown if the FFmpeg function to retrieve parameters returns an error.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec)">
+  Open(Codec)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Codecs_ICodecParameters_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Codecs.ICodecParameters)">
+  Open(Codec, ICodecParameters?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec, sets codec parameters, and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, ICodecParameters? codecParams)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>codecParams</code> <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></dt>
+    <dd><p>The codec parameters to set. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec or setting parameters.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Codecs_ICodecParameters_FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Codecs.ICodecParameters,FFmpeg.HW.DeviceType)">
+  Open(Codec, ICodecParameters?, DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec, sets codec parameters, and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with hardware acceleration support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, ICodecParameters? codecParams, DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>codecParams</code> <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></dt>
+    <dd><p>The codec parameters to set. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec, setting parameters, or configuring hardware acceleration.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Collections_AVDictionary_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Collections.AVDictionary)">
+  Open(Codec, AVDictionary?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, AVDictionary? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVDictionary.html">AVDictionary</a></dt>
+    <dd><p>A dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Collections_AVDictionary_FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Collections.AVDictionary,FFmpeg.HW.DeviceType)">
+  Open(Codec, AVDictionary?, DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec, sets hardware device type, and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, AVDictionary? dictionary, DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVDictionary.html">AVDictionary</a></dt>
+    <dd><p>A dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec or setting hardware device type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Collections_AVMultiDictionary_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Collections.AVMultiDictionary)">
+  Open(Codec, AVMultiDictionary?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a multi-dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, AVMultiDictionary? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVMultiDictionary.html">AVMultiDictionary</a></dt>
+    <dd><p>A multi-dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_Collections_AVMultiDictionary_FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.Collections.AVMultiDictionary,FFmpeg.HW.DeviceType)">
+  Open(Codec, AVMultiDictionary?, DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec, sets hardware device type, and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a multi-dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, AVMultiDictionary? dictionary, DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVMultiDictionary.html">AVMultiDictionary</a></dt>
+    <dd><p>A multi-dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec or setting hardware device type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,FFmpeg.HW.DeviceType)">
+  Open(Codec, DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with hardware acceleration support.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec or setting hardware device type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_System_Collections_Generic_IDictionary_System_String_System_String__" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,System.Collections.Generic.IDictionary{System.String,System.String})">
+  Open(Codec, IDictionary&lt;string, string&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L152"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a dictionary of string key-value pairs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, IDictionary&lt;string, string&gt;? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_FFmpeg_Codecs_Codec_System_Collections_Generic_IDictionary_System_String_System_String__FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.Open(FFmpeg.Codecs.Codec,System.Collections.Generic.IDictionary{System.String,System.String},FFmpeg.HW.DeviceType)">
+  Open(Codec, IDictionary&lt;string, string&gt;?, DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L273"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens a codec, sets hardware device type, and initializes a <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> for it with additional options from a dictionary of string key-value pairs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext Open(Codec codec, IDictionary&lt;string, string&gt;? dictionary, DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a></dt>
+    <dd><p>The codec to open.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary of additional codec options. Can be <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd><p>An open <a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a> instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd><p>Thrown if an error occurs while opening the codec or setting hardware device type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_System_Nullable_FFmpeg_Codecs_Codec__" data-uid="FFmpeg.Codecs.CodecContext.Open(System.Nullable{FFmpeg.Codecs.Codec})">
+  Open(Codec?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the codec context with the specified codec.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Open(Codec? codec)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec to be used to open the codec context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the context is opened with the currently set codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_System_Nullable_FFmpeg_Codecs_Codec__FFmpeg_Codecs_ICodecParameters_" data-uid="FFmpeg.Codecs.CodecContext.Open(System.Nullable{FFmpeg.Codecs.Codec},FFmpeg.Codecs.ICodecParameters)">
+  Open(Codec?, ICodecParameters?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the codec context with the specified codec and codec parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Open(Codec? codec, ICodecParameters? codecParameters)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec to be used to open the codec context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the context is opened with the currently set codec.</p>
+</dd>
+    <dt><code>codecParameters</code> <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_System_Nullable_FFmpeg_Codecs_Codec__FFmpeg_Collections_AVDictionary_" data-uid="FFmpeg.Codecs.CodecContext.Open(System.Nullable{FFmpeg.Codecs.Codec},FFmpeg.Collections.AVDictionary)">
+  Open(Codec?, AVDictionary?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1125"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the codec context with the specified codec and optional dictionary of codec options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Open(Codec? codec, AVDictionary? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec to be used to open the codec context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the context is opened with the currently set codec.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVDictionary.html">AVDictionary</a></dt>
+    <dd><p>An optional <a class="xref" href="FFmpeg.Collections.AVDictionary.html">AVDictionary</a> containing codec-specific options. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, defaults are used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_System_Nullable_FFmpeg_Codecs_Codec__FFmpeg_Collections_AVMultiDictionary_" data-uid="FFmpeg.Codecs.CodecContext.Open(System.Nullable{FFmpeg.Codecs.Codec},FFmpeg.Collections.AVMultiDictionary)">
+  Open(Codec?, AVMultiDictionary?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1148"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the codec context with the specified codec and optional multi-dictionary of codec options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Open(Codec? codec, AVMultiDictionary? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec to be used to open the codec context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the context is opened with the currently set codec.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="FFmpeg.Collections.AVMultiDictionary.html">AVMultiDictionary</a></dt>
+    <dd><p>An optional <a class="xref" href="FFmpeg.Collections.AVMultiDictionary.html">AVMultiDictionary</a> containing codec-specific options. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, defaults are used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_Open_" data-uid="FFmpeg.Codecs.CodecContext.Open*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_Open_System_Nullable_FFmpeg_Codecs_Codec__System_Collections_Generic_IDictionary_System_String_System_String__" data-uid="FFmpeg.Codecs.CodecContext.Open(System.Nullable{FFmpeg.Codecs.Codec},System.Collections.Generic.IDictionary{System.String,System.String})">
+  Open(Codec?, IDictionary&lt;string, string&gt;?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Opens the codec context with the specified codec and an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary&lt;TKey, TValue&gt;</a> of codec options.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 Open(Codec? codec, IDictionary&lt;string, string&gt;? dictionary)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codec</code> <a class="xref" href="FFmpeg.Codecs.Codec.html">Codec</a>?</dt>
+    <dd><p>The codec to be used to open the codec context. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the context is opened with the currently set codec.</p>
+</dd>
+    <dt><code>dictionary</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>An optional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary&lt;TKey, TValue&gt;</a> containing codec-specific options. If <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, defaults are used.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_OpenEncoder_" data-uid="FFmpeg.Codecs.CodecContext.OpenEncoder*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_OpenEncoder_FFmpeg_Formats_AVStream_" data-uid="FFmpeg.Codecs.CodecContext.OpenEncoder(FFmpeg.Formats.AVStream)">
+  OpenEncoder(AVStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L313"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CodecContext OpenEncoder(AVStream stream)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>stream</code> <a class="xref" href="FFmpeg.Formats.AVStream.html">AVStream</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Codecs.CodecContext.html">CodecContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ReceiveFrame_" data-uid="FFmpeg.Codecs.CodecContext.ReceiveFrame*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ReceiveFrame_FFmpeg_Utils_AVFrame_" data-uid="FFmpeg.Codecs.CodecContext.ReceiveFrame(FFmpeg.Utils.AVFrame)">
+  ReceiveFrame(AVFrame)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1381"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Receives a frame from the codec and transfers it to the provided <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a>.</p>
+<p>
+If the codec context uses hardware acceleration, the frame will be transferred from hardware memory (GPU) to system memory (RAM). 
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 ReceiveFrame(AVFrame frame)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frame</code> <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a> to receive from the codec. This frame will be populated with the decoded data.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ReceiveHWFrame_" data-uid="FFmpeg.Codecs.CodecContext.ReceiveHWFrame*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ReceiveHWFrame_FFmpeg_Utils_AVFrame_" data-uid="FFmpeg.Codecs.CodecContext.ReceiveHWFrame(FFmpeg.Utils.AVFrame)">
+  ReceiveHWFrame(AVFrame)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1359"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Receives a hardware-accelerated frame from the codec.</p>
+<p>
+If the frame is in RAM, this method behaves the same as <a class="xref" href="FFmpeg.Codecs.CodecContext.html#FFmpeg_Codecs_CodecContext_ReceiveFrame_FFmpeg_Utils_AVFrame_">ReceiveFrame(AVFrame)</a>. 
+If the frame is in GPU memory, this method will return the frame without transferring it to RAM first.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 ReceiveHWFrame(AVFrame frame)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frame</code> <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a> to receive from the codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ReceivePacket_" data-uid="FFmpeg.Codecs.CodecContext.ReceivePacket*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ReceivePacket_FFmpeg_Utils_AVPacket_" data-uid="FFmpeg.Codecs.CodecContext.ReceivePacket(FFmpeg.Utils.AVPacket)">
+  ReceivePacket(AVPacket)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1315"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Receives a packet from the codec after encoding or decoding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 ReceivePacket(AVPacket packet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> to receive from the codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SendFrame_" data-uid="FFmpeg.Codecs.CodecContext.SendFrame*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SendFrame_FFmpeg_Utils_AVFrame_" data-uid="FFmpeg.Codecs.CodecContext.SendFrame(FFmpeg.Utils.AVFrame)">
+  SendFrame(AVFrame?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1337"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a frame to the codec for encoding or decoding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 SendFrame(AVFrame? frame)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>frame</code> <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVFrame.html">AVFrame</a> to send to the codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SendPacket_" data-uid="FFmpeg.Codecs.CodecContext.SendPacket*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SendPacket_FFmpeg_Utils_AVPacket_" data-uid="FFmpeg.Codecs.CodecContext.SendPacket(FFmpeg.Utils.AVPacket)">
+  SendPacket(AVPacket?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1297"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a packet to the codec for encoding or decoding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 SendPacket(AVPacket? packet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>packet</code> <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a></dt>
+    <dd><p>The <a class="xref" href="FFmpeg.Utils.AVPacket.html">AVPacket</a> to send to the codec.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation. Check for errors using <code>ThrowIfError()</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SetCodecParameters_" data-uid="FFmpeg.Codecs.CodecContext.SetCodecParameters*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SetCodecParameters_FFmpeg_Codecs_ICodecParameters_" data-uid="FFmpeg.Codecs.CodecContext.SetCodecParameters(FFmpeg.Codecs.ICodecParameters)">
+  SetCodecParameters(ICodecParameters)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1074"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the codec parameters for the current codec context using the specified parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCodecParameters(ICodecParameters parameters)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parameters</code> <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Codecs.ICodecParameters.html">ICodecParameters</a> object containing the codec parameters to be set in the context.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Exceptions.FFmpegException.html">FFmpegException</a></dt>
+    <dd><p>Thrown if the FFmpeg function to set parameters returns an error.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_SetHWDeviceType_" data-uid="FFmpeg.Codecs.CodecContext.SetHWDeviceType*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_SetHWDeviceType_FFmpeg_HW_DeviceType_" data-uid="FFmpeg.Codecs.CodecContext.SetHWDeviceType(FFmpeg.HW.DeviceType)">
+  SetHWDeviceType(DeviceType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L336"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the hardware device type for the codec context.</p>
+<p>
+This method configures the hardware acceleration device type to be used by the codec context. It must be set
+before opening the codec. If the codec context is already open, an exception will be thrown.
+</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AVResult32 SetHWDeviceType(DeviceType deviceType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>deviceType</code> <a class="xref" href="FFmpeg.HW.DeviceType.html">DeviceType</a></dt>
+    <dd><p>The type of hardware device to use for acceleration.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a></dt>
+    <dd><p>An <a class="xref" href="FFmpeg.Utils.AVResult32.html">AVResult32</a> indicating the result of the operation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>Thrown if the codec context is already open when attempting to set the hardware device type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="FFmpeg_Codecs_CodecContext_ToString_" data-uid="FFmpeg.Codecs.CodecContext.ToString*"></a>
+
+  <h3 id="FFmpeg_Codecs_CodecContext_ToString" data-uid="FFmpeg.Codecs.CodecContext.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L1512"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that represents the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the current object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Pascal-Krenckel/FFmpeg/blob/master/FFmpeg/Codecs/CodecContext.cs/#L20" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

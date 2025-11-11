@@ -1,0 +1,242 @@
+### YamlMime:ManagedReference
+items:
+- uid: FFmpeg.Utils.PacketFlags
+  commentId: T:FFmpeg.Utils.PacketFlags
+  id: PacketFlags
+  parent: FFmpeg.Utils
+  children:
+  - FFmpeg.Utils.PacketFlags.Corrupt
+  - FFmpeg.Utils.PacketFlags.Discard
+  - FFmpeg.Utils.PacketFlags.Disposable
+  - FFmpeg.Utils.PacketFlags.Key
+  - FFmpeg.Utils.PacketFlags.None
+  - FFmpeg.Utils.PacketFlags.Trusted
+  langs:
+  - csharp
+  - vb
+  name: PacketFlags
+  nameWithType: PacketFlags
+  fullName: FFmpeg.Utils.PacketFlags
+  type: Enum
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: PacketFlags
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 5
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: Enumeration for packet flags, corresponding to AV_PKT_FLAG values.
+  example: []
+  syntax:
+    content: >-
+      [Flags]
+
+      public enum PacketFlags
+    content.vb: >-
+      <Flags>
+
+      Public Enum PacketFlags
+  attributes:
+  - type: System.FlagsAttribute
+    ctor: System.FlagsAttribute.#ctor
+    arguments: []
+- uid: FFmpeg.Utils.PacketFlags.None
+  commentId: F:FFmpeg.Utils.PacketFlags.None
+  id: None
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: None
+  nameWithType: PacketFlags.None
+  fullName: FFmpeg.Utils.PacketFlags.None
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: None
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 8
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  syntax:
+    content: None = 0
+    return:
+      type: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.PacketFlags.Key
+  commentId: F:FFmpeg.Utils.PacketFlags.Key
+  id: Key
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: Key
+  nameWithType: PacketFlags.Key
+  fullName: FFmpeg.Utils.PacketFlags.Key
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Key
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 12
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The packet contains a keyframe.
+  example: []
+  syntax:
+    content: Key = 1
+    return:
+      type: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.PacketFlags.Corrupt
+  commentId: F:FFmpeg.Utils.PacketFlags.Corrupt
+  id: Corrupt
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: Corrupt
+  nameWithType: PacketFlags.Corrupt
+  fullName: FFmpeg.Utils.PacketFlags.Corrupt
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Corrupt
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 17
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The packet content is corrupted.
+  example: []
+  syntax:
+    content: Corrupt = 2
+    return:
+      type: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.PacketFlags.Discard
+  commentId: F:FFmpeg.Utils.PacketFlags.Discard
+  id: Discard
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: Discard
+  nameWithType: PacketFlags.Discard
+  fullName: FFmpeg.Utils.PacketFlags.Discard
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Discard
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 22
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The packet is required to maintain valid decoder state but should be discarded after decoding.
+  example: []
+  syntax:
+    content: Discard = 4
+    return:
+      type: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.PacketFlags.Trusted
+  commentId: F:FFmpeg.Utils.PacketFlags.Trusted
+  id: Trusted
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: Trusted
+  nameWithType: PacketFlags.Trusted
+  fullName: FFmpeg.Utils.PacketFlags.Trusted
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Trusted
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 27
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The packet comes from a trusted source, allowing otherwise-unsafe constructs such as arbitrary pointers.
+  example: []
+  syntax:
+    content: Trusted = 8
+    return:
+      type: FFmpeg.Utils.PacketFlags
+- uid: FFmpeg.Utils.PacketFlags.Disposable
+  commentId: F:FFmpeg.Utils.PacketFlags.Disposable
+  id: Disposable
+  parent: FFmpeg.Utils.PacketFlags
+  langs:
+  - csharp
+  - vb
+  name: Disposable
+  nameWithType: PacketFlags.Disposable
+  fullName: FFmpeg.Utils.PacketFlags.Disposable
+  type: Field
+  source:
+    remote:
+      path: FFmpeg/Utils/PacketFlags.cs
+      branch: master
+      repo: https://github.com/Pascal-Krenckel/FFmpeg.git
+    id: Disposable
+    path: FFmpeg/Utils/PacketFlags.cs
+    startLine: 32
+  assemblies:
+  - FFmpeg
+  namespace: FFmpeg.Utils
+  summary: The packet contains frames that can be discarded by the decoder (non-reference frames).
+  example: []
+  syntax:
+    content: Disposable = 16
+    return:
+      type: FFmpeg.Utils.PacketFlags
+references:
+- uid: FFmpeg.Utils
+  commentId: N:FFmpeg.Utils
+  href: FFmpeg.html
+  name: FFmpeg.Utils
+  nameWithType: FFmpeg.Utils
+  fullName: FFmpeg.Utils
+  spec.csharp:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+  spec.vb:
+  - uid: FFmpeg
+    name: FFmpeg
+    href: FFmpeg.html
+  - name: .
+  - uid: FFmpeg.Utils
+    name: Utils
+    href: FFmpeg.Utils.html
+- uid: FFmpeg.Utils.PacketFlags
+  commentId: T:FFmpeg.Utils.PacketFlags
+  parent: FFmpeg.Utils
+  href: FFmpeg.Utils.PacketFlags.html
+  name: PacketFlags
+  nameWithType: PacketFlags
+  fullName: FFmpeg.Utils.PacketFlags
