@@ -93,6 +93,18 @@ public readonly struct EightCC : IEquatable<EightCC>
     public static implicit operator EightCC(ulong value) => new(value);
 
     /// <summary>
+    /// Implicitly converts an <see cref="AVResult64"/> to a <see cref="EightCC"/>.
+    /// </summary>
+    /// <param name="value">The AVResult64 representing the EightCC code.</param>
+    public static implicit operator EightCC(AVResult64 value) => new((ulong)-(long)value);
+
+    /// <summary>
+    /// Implicitly converts a <see cref="EightCC"/> to an <see cref="AVResult64"/>.
+    /// </summary>
+    /// <param name="value">The EightCC representing the AVResult64 code.</param>
+    public static implicit operator AVResult64(EightCC value) => -(long)(ulong)value;
+
+    /// <summary>
     /// Implicitly converts an <see cref="EightCC"/> to its string representation.
     /// </summary>
     /// <param name="eightCC">The <see cref="EightCC"/> to convert.</param>

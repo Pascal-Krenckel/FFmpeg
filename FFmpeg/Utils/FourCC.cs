@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using FFmpeg.Utils;
+
+/// <summary>
 /// Represents a FourCC (four-character code), which is a sequence of four 8-bit characters
 /// packed into a 32-bit unsigned integer.
 /// </summary>
@@ -83,6 +85,18 @@ public readonly struct FourCC : IEquatable<FourCC>
     /// </summary>
     /// <param name="value">The 32-bit unsigned integer representing the FourCC code.</param>
     public static implicit operator FourCC(uint value) => new(value);
+
+    /// <summary>
+    /// Implicitly converts an <see cref="AVResult32"/> to a <see cref="FourCC"/>.
+    /// </summary>
+    /// <param name="value">The AVResult32 representing the FourCC code.</param>
+    public static implicit operator FourCC(AVResult32 value) => new((uint)-(int)value);
+
+    /// <summary>
+    /// Implicitly converts a <see cref="FourCC"/> to an <see cref="AVResult32"/>.
+    /// </summary>
+    /// <param name="value">The FourCC representing the AVResult32 code.</param>
+    public static implicit operator AVResult32(FourCC value) => -(int)(uint)value;
 
     /// <summary>
     /// Implicitly converts a <see cref="FourCC"/> to its string representation.
