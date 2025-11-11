@@ -47,11 +47,11 @@ public sealed class Transcoder : IDisposable
         Sink.Metatdata.Init(source.Metadata);
     }
        
-    private Transcoder(FormatContext source, FormatContext sink) : this(new MediaSource(source), new(sink))
+    private Transcoder(DemuxerContext source, MuxerContext sink) : this(new MediaSource(source), new(sink))
     { }
 
-    public static Transcoder Create(FormatContext source, HW.DeviceType hwSourceType, FormatContext sink) => new(new MediaSource(source, hwSourceType), new(sink));
-    public static Transcoder Create(FormatContext source, FormatContext sink) => new(new MediaSource(source), new(sink));
+    public static Transcoder Create(DemuxerContext source, HW.DeviceType hwSourceType, MuxerContext sink) => new(new MediaSource(source, hwSourceType), new(sink));
+    public static Transcoder Create(DemuxerContext source, MuxerContext sink) => new(new MediaSource(source), new(sink));
 
 
     public IReadOnlyList<AVStream> InputStreams => Source.Streams;

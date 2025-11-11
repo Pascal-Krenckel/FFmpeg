@@ -77,12 +77,14 @@ public unsafe class AVIOContext : IDisposable
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
     }
-
+    // ToDo: avio_open2
     internal static AVResult32 Open(AutoGen._AVIOContext** pb, string filename, int flags, out AVIOContext? ioContext)
     {
         int res = ffmpeg.avio_open(pb, filename, flags);
         ioContext = res >= 0 ? new AVIOContext(pb) { close = true } : null;
         return res;
     }
+
+    public virtual void Flush() => ffmpeg.avio_flush(*context);
 }
 

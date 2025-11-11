@@ -20,7 +20,7 @@ public class IOStreamContext : IOContext
     /// <param name="bufferSize">The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="stream"/> is <c>null</c>.</exception>
     public IOStreamContext(FormatContext context, Stream stream, IOOptions options, int bufferSize = 32768)
-        : base(context, options, bufferSize) => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
+        : base(context,stream.CanSeek ? (options | IO.IOOptions.Seek) : options, bufferSize) => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
 
     public IOStreamContext(Stream stream) : base() => this.stream = stream;
 
@@ -98,4 +98,9 @@ public class IOStreamContext : IOContext
         // Call the base class Dispose method
         base.Dispose(disposing);
     }
+
+    /// <inherit doc/>
+    public override bool CanSeek => stream.CanSeek;
+
+    public override void Flush() => stream.Flush();
 }

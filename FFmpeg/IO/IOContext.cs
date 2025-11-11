@@ -1,4 +1,5 @@
-﻿using FFmpeg.Formats;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Formats;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
@@ -24,13 +25,13 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="formatContext">The <see cref="Formats.FormatContext"/> to associate with this I/O context.</param>
     /// <param name="options">The I/O operations that this context will support, such as reading, writing, and seeking.</param>
     /// <param name="buffer_size">The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.</param>
-    public IOContext(FormatContext formatContext, IOOptions options, int buffer_size = 32768)
+    protected IOContext(FormatContext formatContext, IOOptions options, int buffer_size = 32768)
         : base(&formatContext.Context->pb)
     {
         FormatContext = formatContext;
         gch = GCHandle.Alloc(this);
         formatContext.ioContext?.Dispose();
-
+        
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
@@ -65,6 +66,7 @@ public abstract unsafe class IOContext : AVIOContext
         FormatContext = formatContext;
         gch = GCHandle.Alloc(this);
         formatContext.ioContext?.Dispose();
+        
 
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
@@ -95,6 +97,15 @@ public abstract unsafe class IOContext : AVIOContext
         SetContext(&FormatContext.Context->pb);
     }
     #endregion
+
+    /// <summary>
+    /// When overridden in a derived class, gets a value indicating whether the current
+    ///     IoContext supports seeking.
+    /// </summary>
+    /// <returns>
+    /// true if the IoContext supports seeking; otherwise, false.
+    /// </returns>
+    public abstract bool CanSeek { get; }
 
     #region statics IO
 
@@ -174,9 +185,12 @@ public abstract unsafe class IOContext : AVIOContext
                 gch.Free();
 
             // Free the buffer and AVIOContext associated with the format context
-            AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);
-            AutoGen.ffmpeg.avio_context_free(&FormatContext.Context->pb);
-
+            if (FormatContext.Context != null)
+            {
+                if (FormatContext.Context->pb != null)
+                    AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);
+                AutoGen.ffmpeg.avio_context_free(&FormatContext.Context->pb);
+            }
             disposedValue = true;
             base.Dispose(disposing);
         }

@@ -28,13 +28,9 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.0.0.5</Version>
+		<Version>8.0.0.6</Version>
 		<PackageReleaseNotes>
-			1.) Added AudioFifo
-			2.) [Obsolete] AVFrame.GetBuffer -> renamed to CreateBuffer
-			3.) AVFrame.Allocate has now overloads that allocate the buffer aswell
-			4.) Input/OutputFormat's static constructor now call ffmpeg.av_device_register_all, making device formats visible. (e.g. GDIScreenGrabber)
-			5.) MediaSource no longer thread-safe. It doesn't make much sense to access this from different threads, the caller should take care of thread-safety.
+			1.) FormatContext split into MuxerContext and DemuxerContext
 		</PackageReleaseNotes>
 </PropertyGroup>
 

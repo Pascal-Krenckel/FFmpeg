@@ -7,11 +7,11 @@ namespace FFmpeg;
 
 public class MediaSink : IDisposable
 {
-    public FormatContext FormatContext { get; private set; }
+    public MuxerContext FormatContext { get; private set; }
 
     private readonly AVPacket packet = new() { StreamIndex = -1 };
 
-    public MediaSink(FormatContext context) => FormatContext = context;
+    public MediaSink(MuxerContext context) => FormatContext = context;
 
     public IReadOnlyList<AVStream> Streams => FormatContext.Streams;
 
@@ -37,7 +37,7 @@ public class MediaSink : IDisposable
         if (encoderContext == null)
         {
             codecContexts.Add(null);
-            return FormatContext.AddStream(default);
+            return FormatContext.AddStream(default(Codec));
         }
         else
         {
@@ -132,19 +132,19 @@ public class MediaSink : IDisposable
     {
         if (string.IsNullOrWhiteSpace(url) && outputFormat == null)
             throw new ArgumentNullException(nameof(url));
-        FormatContext? res = FormatContext.OpenOutput(url, outputFormat);
+        MuxerContext? res = MuxerContext.OpenOutput(url, outputFormat);
         return res == null ? null : new(res);
     }
     public static MediaSink? Create(string url) => Create(url, null);
     public static MediaSink? Create(Stream stream, OutputFormat outputFormat)
     {
-        FormatContext? res = FormatContext.OpenOutput(stream, outputFormat);
+        MuxerContext? res = MuxerContext.OpenOutput(stream, outputFormat);
         return res == null ? null : new(res);
     }
 
     public static MediaSink? Create(IO.IOContext ioContext, OutputFormat outputFormat)
     {
-        FormatContext? res = FormatContext.OpenOutput(ioContext, outputFormat);
+        MuxerContext? res = MuxerContext.OpenOutput(ioContext, outputFormat);
         return res == null ? null : new(res);
     }
 

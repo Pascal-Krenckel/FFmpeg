@@ -13,7 +13,7 @@ public class MediaSource : IDisposable
     /// <summary>
     /// Gets the format context associated with this media source.
     /// </summary>
-    public FormatContext FormatContext { get; private set; }
+    public DemuxerContext FormatContext { get; private set; }
     private readonly AVPacket packet = new() { StreamIndex = -1 };
     private readonly DeviceType hwType = DeviceType.None;
 
@@ -85,7 +85,7 @@ public class MediaSource : IDisposable
     /// </summary>
     /// <param name="context">The format context to associate with this media source.</param>
     /// <param name="deviceType">The device type for hardware-accelerated decoding.</param>
-    public MediaSource(FormatContext context, DeviceType deviceType)
+    public MediaSource(DemuxerContext context, DeviceType deviceType)
     {
         FormatContext = context;
         hwType = deviceType;
@@ -95,7 +95,7 @@ public class MediaSource : IDisposable
     /// Initializes a new instance of the <see cref="MediaSource"/> class with a specified format context.
     /// </summary>
     /// <param name="context">The format context to associate with this media source.</param>
-    public MediaSource(FormatContext context)
+    public MediaSource(DemuxerContext context)
     {
         FormatContext = context;
         hwType = DeviceType.None;
@@ -111,7 +111,7 @@ public class MediaSource : IDisposable
     /// <returns>A new <see cref="MediaSource"/> instance if successful; otherwise, <see langword="null"/>.</returns>
     public static MediaSource Open(string url, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
     {
-        FormatContext input = FormatContext.OpenInput(url, format, options, true);
+        DemuxerContext input = DemuxerContext.Open(url, format, options, true);
         return new MediaSource(input, deviceType);
     }
 
@@ -125,7 +125,7 @@ public class MediaSource : IDisposable
     /// <returns>A new <see cref="MediaSource"/> instance if successful; otherwise, <see langword="null"/>.</returns>
     public static MediaSource Open(Stream stream, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
     {
-        FormatContext? input = FormatContext.OpenInput(stream, format, options, true);
+        DemuxerContext? input = DemuxerContext.Open(stream, format, options, true);
         return new MediaSource(input, deviceType);
     }
 
@@ -139,7 +139,7 @@ public class MediaSource : IDisposable
     /// <returns>A new <see cref="MediaSource"/> instance if successful; otherwise, <see langword="null"/>.</returns>
     public static MediaSource Open(IO.IOContext io, InputFormat? format = null, IDictionary<string, string>? options = null, DeviceType deviceType = DeviceType.None)
     {
-        FormatContext input = FormatContext.OpenInput(io, format, options, true);
+        DemuxerContext input = DemuxerContext.Open(io, format, options, true);
         return new MediaSource(input, deviceType);
     }
 
@@ -149,7 +149,7 @@ public class MediaSource : IDisposable
     /// <param name="file">The format context representing the media source.</param>
     /// <param name="deviceType">The device type for hardware-accelerated decoding (default is <see cref="DeviceType.None"/>).</param>
     /// <returns>A new <see cref="MediaSource"/> instance.</returns>
-    public static MediaSource Open(FormatContext file, DeviceType deviceType = DeviceType.None) => new(file, deviceType);
+    public static MediaSource Open(DemuxerContext file, DeviceType deviceType = DeviceType.None) => new(file, deviceType);
 
     /// <summary>
     /// Finds the best stream of the specified media type within this media source.
@@ -314,10 +314,10 @@ public class MediaSource : IDisposable
         return FormatContext.Seek(frame, streamIndex);
     }
 
-    /// <inheritdoc cref="FormatContext.GuessFrameRate(int)"/>
+    /// <inheritdoc cref="DemuxerContext.GuessFrameRate(int)"/>
     public Rational GuessFramerate(int streamIndex) => FormatContext.GuessFrameRate(streamIndex);
 
-    /// <inheritdoc cref="FormatContext.GuessFrameRate(AVStream)"/>
+    /// <inheritdoc cref="DemuxerContext.GuessFrameRate(AVStream)"/>
     public Rational GuessFramerate(AVStream stream) => FormatContext.GuessFrameRate(stream);
 
     #region Dispose

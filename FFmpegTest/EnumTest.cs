@@ -1,5 +1,6 @@
 using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
+using FFmpeg.Formats;
 using FFmpeg.Images;
 using System.Diagnostics;
 using System.Linq;
@@ -51,15 +52,15 @@ public class EnumTest
     {        
         Assert.AreEqual(sizeof(TSource), sizeof(TTest));
         var ms = MissingValues<TTest, TSource>();
-        Assert.AreEqual(0, ms.Length);
+        Assert.HasCount(0, ms);
         var namesTest = Enum.GetNames(typeof(TTest));
         var namesSource = Enum.GetNames(typeof(TSource));
-        Assert.AreEqual(namesSource.Length, namesTest.Length);
+        Assert.HasCount(namesSource.Length, namesTest);
 
         var valuesTest = Enum.GetValues(typeof(TTest));
         var valuesSource = Enum.GetValues(typeof(TSource));
 
-        Assert.AreEqual(valuesTest.Length, valuesSource.Length);
+        Assert.HasCount(valuesTest.Length, valuesSource);
         for (int i = 0; i < valuesTest.Length; i++)
             Assert.AreEqual((int)valuesTest.GetValue(i)!, (int)valuesSource.GetValue(i)!);
         
