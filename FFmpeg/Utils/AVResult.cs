@@ -418,6 +418,20 @@ public readonly struct AVResult64 : IEquatable<AVResult64>, IEquatable<long>
     public static implicit operator AVResult64(long result) => new(result);
 
     /// <summary>
+    /// Explicitly converts an <see cref="AVResult64"/> instance to an <see cref="AVResult32"/>.
+    /// </summary>
+    /// <param name="result">The <see cref="AVResult64"/> instance to convert.</param>
+    /// <returns>A new <see cref="AVResult32"/> instance with the converted value.</returns>
+    public static explicit operator AVResult32(AVResult64 result) => (int)result.value;
+
+    /// <summary>
+    /// Implicitly converts an <see cref="AVResult32"/> instance to an <see cref="AVResult64"/>.
+    /// </summary>
+    /// <param name="result">The <see cref="AVResult32"/> instance to convert.</param>
+    /// <returns>A new <see cref="AVResult64"/> instance with the corresponding value.</returns>
+    public static implicit operator AVResult64(AVResult32 result) => result;
+
+    /// <summary>
     /// Explicitly converts an <see cref="AVResult64"/> to a <see cref="ulong"/>.
     /// </summary>
     /// <param name="result">The <see cref="AVResult64"/> instance to convert.</param>
