@@ -138,7 +138,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     /// Multiplies a long integer by a <see cref="Rational"/>.
     /// </summary>
     public static Rational operator *(long value, Rational r)
-        => new((int)(value * r.Numerator), r.Denominator);
+        => new(value * r.Numerator, r.Denominator);
 
     /// <summary>
     /// Multiplies two <see cref="Rational"/> numbers.
