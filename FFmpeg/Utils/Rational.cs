@@ -263,4 +263,27 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     }
 
     #endregion
+
+    /// <summary>
+    /// Return the best rational so that a and b are multiple of it. If the resulting
+    ///    denominator is larger than max_den, return def.
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="max_den"></param>
+    /// <param name="default"></param>
+    /// <returns></returns>
+    public static Rational GreatestCommonDivisor(Rational a, Rational b,int max_den, Rational @default)
+    {
+        return ffmpeg.av_gcd_q(a,b,max_den, @default);
+    }
+
+    public static long GreatestCommonDivisor(long a, long b)
+    {
+        return ffmpeg.av_gcd(a, b);
+    }
+
+
 }
+
+
