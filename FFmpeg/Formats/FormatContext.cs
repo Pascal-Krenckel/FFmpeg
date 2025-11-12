@@ -126,7 +126,7 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
 
     #endregion
 
-    
+    public virtual ChapterList Chapters => new ChapterList(this, false);
 
     #region SetIOContext
     /// <summary>
