@@ -27,6 +27,10 @@ public unsafe class DemuxerContext : FormatContext
     /// </summary>
     public InputFormat? InputFormat => Context->iformat != null ? new(Context->iformat) : null;
 
+    #region Properties
+
+    #endregion
+
     #region Open
 
     /// <summary>
@@ -1137,7 +1141,12 @@ public unsafe class DemuxerContext : FormatContext
 
     #endregion
 
-    
+    public long StartTime => Context->start_time;
+    public long Duration => Context->duration;
+    public long BitRate => Context->bit_rate;
+
+
+    public override ChapterList Chapters => new ChapterList(this, true);
 
     // ToDo: Find Program, Add Program, FindBestStream overloads
 

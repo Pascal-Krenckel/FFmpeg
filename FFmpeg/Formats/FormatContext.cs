@@ -1,6 +1,7 @@
 ﻿using FFmpeg.Collections;
 using FFmpeg.IO;
 using FFmpeg.Utils;
+using System.Runtime.InteropServices;
 
 namespace FFmpeg.Formats;
 
@@ -79,8 +80,6 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
         }
     }
 
-    public AVDictionary_ref Metadata => new(&Context->metadata, true, false);
-
     /// <summary>
     /// Updates the internal stream array to reflect the current streams in the context.
     /// </summary>
@@ -149,11 +148,11 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     #endregion
 
 
-      
+    public string? Url => Context->url != null ? Marshal.PtrToStringAnsi((IntPtr)Context->url) : null;
 
- 
-    
+    public AVDictionary_ref Metadata => new(&Context->metadata, true, false);
 
+    public DateTime? StartTimeRealTime => Context->start_time_realtime != ffmpeg.AV_NOPTS_VALUE ? DateTime.UnixEpoch.AddMilliseconds(Context->start_time_realtime) : null;
 
     #region IDisposable
 
@@ -206,7 +205,6 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     }
 
     #endregion
-
 
 
     // ToDo: -40 if not supported
