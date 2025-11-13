@@ -1,4 +1,5 @@
-﻿using FFmpeg.Collections;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Collections;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Images;
@@ -148,6 +149,22 @@ public sealed unsafe class Image : IDisposable
     }
 
     /// <summary>
+    /// Creates a new <see cref="Image"/> by copying pixel data from the specified pointer.
+    /// </summary>
+    /// <param name="info">The image information such as dimensions and pixel format.</param>
+    /// <param name="data">A ReadOnlySpan to the source pixel data to be copied.</param>
+    /// <returns>A new <see cref="Image"/> with copied pixel data.</returns>
+    public static Image FromPixelCopy(ImageInfo info, ReadOnlySpan<byte> data)
+    {
+        Image image = Create(info);
+        if (data.Length < info.BufferSize)
+            throw new ArgumentException("Data span is smaller than the required buffer size.", nameof(data));
+        fixed (byte* dataPtr = data)
+            Buffer.MemoryCopy(dataPtr, (void*)image.Data, info.BufferSize, info.BufferSize);
+        return image;
+    }
+
+    /// <summary>
     /// Creates a new <see cref="Image"/> from an <see cref="AVBuffer"/> containing pixel data.
     /// </summary>
     /// <param name="info">The image information such as dimensions and pixel format.</param>
@@ -184,6 +201,23 @@ public sealed unsafe class Image : IDisposable
         }
         return img;
     }
+
+    public Span<byte> GetPlane(int index)
+    {
+        if (index < 0 || index >= Info.Planes)
+            throw new ArgumentOutOfRangeException(nameof(index));
+        byte_ptrArray4 ptrs = new();
+        int_array4 lines = new();
+        ulong_array4 sizes = new();
+        long_array4 linesL = new();
+        _ = ffmpeg.av_image_fill_linesizes(ref lines, (_AVPixelFormat)PixelFormat, Width);
+        for (uint i = 0; i < 4; i++)
+            linesL[i] = lines[i];
+        _ = ffmpeg.av_image_fill_pointers(ref ptrs, (_AVPixelFormat)PixelFormat, Height, (byte*)Data, lines);
+        _ = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, linesL);
+        return new Span<byte>(ptrs[(uint)index], (int)sizes[(uint)index]);
+    }
+
 
     /// <summary>
     /// Releases the resources used by the <see cref="Image"/>, including the underlying buffer.
