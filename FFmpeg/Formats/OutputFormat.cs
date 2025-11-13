@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using FFmpeg.Codecs;
+using System.Runtime.InteropServices;
 
 namespace FFmpeg.Formats;
 
@@ -85,7 +86,7 @@ public readonly unsafe struct OutputFormat
     /// <remarks>
     /// This represents the codec used for audio streams by default when the format is selected.
     /// </remarks>
-    public AutoGen._AVCodecID DefaultAudioCodec => Format->audio_codec;
+    public CodecID DefaultAudioCodec => (CodecID)Format->audio_codec;
 
     /// <summary>
     /// Gets the default video codec for this output format.
@@ -93,7 +94,7 @@ public readonly unsafe struct OutputFormat
     /// <remarks>
     /// This represents the codec used for video streams by default when the format is selected.
     /// </remarks>
-    public AutoGen._AVCodecID DefaultVideoCodec => Format->video_codec;
+    public CodecID DefaultVideoCodec => (CodecID)Format->video_codec;
 
     /// <summary>
     /// Gets the default subtitle codec for this output format.
@@ -101,7 +102,7 @@ public readonly unsafe struct OutputFormat
     /// <remarks>
     /// This represents the codec used for subtitle streams by default when the format is selected.
     /// </remarks>
-    public AutoGen._AVCodecID DefaultSubtitleCodec => Format->subtitle_codec;
+    public CodecID DefaultSubtitleCodec => (CodecID)Format->subtitle_codec;
 
     /// <summary>
     /// Gets the flags associated with this output format.
