@@ -52,5 +52,9 @@ public static class PixelFormatExtensions
         return (PixelFormat)best;
     }
 
+    extension(PixelFormat)
+    {
+        public static PixelFormat Parse(string name) => (PixelFormat)ffmpeg.av_get_pix_fmt(name);
+    }
 }
 

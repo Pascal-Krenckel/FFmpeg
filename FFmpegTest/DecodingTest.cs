@@ -77,7 +77,7 @@ public class DecodingTest
             Assert.AreEqual(probeStream.Profile, avStream.CodecParameters.Profile.Name);
             Assert.AreEqual(probeStream.Width, avStream.CodecParameters.Width);
             Assert.AreEqual(probeStream.Height, avStream.CodecParameters.Height);
-            Assert.AreEqual(PixelFormat.GetPixelFormat((probeStream.PixFmt)), avStream.CodecParameters.PixelFormat);
+            Assert.AreEqual(PixelFormat.Parse((probeStream.PixFmt)), avStream.CodecParameters.PixelFormat);
             Assert.AreEqual(Rational.Parse(probeStream.SampleAspectRatio), avStream.SampleAspectRatio);
             Assert.AreEqual(probeStream.Level, avStream.CodecParameters.Level);
 
@@ -87,7 +87,7 @@ public class DecodingTest
             Assert.AreEqual(probeStream.SampleRate, avStream.CodecParameters.SampleRate);
             Assert.AreEqual(ChannelLayout.Parse(probeStream.ChannelLayout), avStream.CodecParameters.ChannelLayout);
             Assert.AreEqual(probeStream.Channels, avStream.CodecParameters.Channels);
-            Assert.AreEqual(SampleFormat.GetSampleFormat(probeStream.SampleFmt), avStream.CodecParameters.SampleFormat);
+            Assert.AreEqual(SampleFormat.Parse(probeStream.SampleFmt), avStream.CodecParameters.SampleFormat);
         }
         Assert.AreEqual(probeStream.CodecType, codec.MediaType.ToString(), StringComparer.OrdinalIgnoreCase);
         Assert.AreEqual(probeStream.CodecTag, avStream.CodecParameters.CodecTag);

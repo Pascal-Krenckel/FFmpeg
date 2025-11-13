@@ -159,6 +159,16 @@ public static class SampleExtensions
         // If the format is unsupported or invalid
         SampleFormat.None or SampleFormat.__COUNT__ or _ => throw new ArgumentException($"Unsupported sample format: {sampleFormat}")
     };
+
+    extension(SampleFormat)
+    {
+        /// <summary>
+        /// Gets the <see cref="SampleFormat"/> from its name.
+        /// </summary>
+        /// <param name="name">The name of the sample format.</param>
+        /// <returns>The corresponding <see cref="SampleFormat"/>.</returns>
+        public static SampleFormat Parse(string name) => (SampleFormat)ffmpeg.av_get_sample_fmt(name);
+    }
 }
 
 
