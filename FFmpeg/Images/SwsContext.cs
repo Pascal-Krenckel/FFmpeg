@@ -224,7 +224,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
 
         _ = src.GetPlanes(srcData, srcLines);
         if (!dst.HasBuffer)
-            dst.GetBuffer().ThrowIfError();
+            dst.CreateBuffer().ThrowIfError();
         else
             dst.MakeWriteable().ThrowIfError();
         fixed (void* dstDataPtr = srcData, dstLinesPtr = srcLines)
@@ -251,7 +251,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
         if (res.IsError)
             return res;
         if (!dst.HasBuffer)
-            dst.GetBuffer().ThrowIfError();
+            dst.CreateBuffer().ThrowIfError();
         else
             dst.MakeWriteable().ThrowIfError();
         return ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
