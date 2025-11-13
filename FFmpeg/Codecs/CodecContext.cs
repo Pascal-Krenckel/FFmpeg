@@ -1386,7 +1386,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
         {
             int res = ffmpeg.avcodec_receive_frame(context, frame.Frame);
             if (frame.TimeBase.Numerator == 0)
-                frame.TimeBase = context->pkt_timebase;
+                frame.TimeBase = context->time_base;
             return res;
         }
         else
@@ -1400,7 +1400,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
             _ = ffmpeg.av_frame_copy_props(frame.Frame, hardwareFrame.Frame);
             hardwareFrame.Unreference();
             if (frame.TimeBase.Numerator == 0)
-                frame.TimeBase = context->pkt_timebase;
+                frame.TimeBase = context->time_base;
             return res;
         }
     }
