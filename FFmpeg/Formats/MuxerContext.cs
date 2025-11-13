@@ -51,7 +51,7 @@ public unsafe class MuxerContext : FormatContext
 
     #endregion
 
-    #region OpenOutput
+    #region Open
 
     /// <summary>
     /// Opens an output media file for writing.
@@ -59,7 +59,7 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="filename">The filename for the output media.</param>
     /// <param name="format">The output format.</param>
     /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
-    public static MuxerContext? OpenOutput(string? filename, OutputFormat? format)
+    public static MuxerContext? Open(string? filename, OutputFormat? format)
     {
         MuxerContext? output = AllocateOutput(filename, format);
         if (output == null)
@@ -82,8 +82,8 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="stream">The stream for output media.</param>
     /// <param name="format">The output format.</param>
     /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
-    public static MuxerContext? OpenOutput(Stream stream, OutputFormat format)
-        => OpenOutput(new IOStreamContext(stream), format);
+    public static MuxerContext? Open(Stream stream, OutputFormat format, bool closeOnDispose = true)
+        => Open(new IOStreamContext(stream, closeOnDispose), format);
 
     /// <summary>
     /// Opens an output media file using an I/O context for writing.
@@ -91,7 +91,7 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="context">The I/O context for output media.</param>
     /// <param name="format">The output format.</param>
     /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
-    public static MuxerContext? OpenOutput(IOContext context, OutputFormat format)
+    public static MuxerContext? Open(IOContext context, OutputFormat format)
     {
         MuxerContext? output = AllocateOutput(null, format);
         if (output == null)

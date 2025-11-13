@@ -10,6 +10,7 @@ namespace FFmpeg.IO;
 public class IOStreamContext : IOContext
 {
     private readonly Stream stream;
+    private readonly bool closeStreamOnDispose = true;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IOStreamContext"/> class.
@@ -23,6 +24,11 @@ public class IOStreamContext : IOContext
         : base(context,stream.CanSeek ? (options | IO.IOOptions.Seek) : options, bufferSize) => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
 
     public IOStreamContext(Stream stream) : base() => this.stream = stream;
+    public IOStreamContext(Stream stream, bool closeStreamOnDispose) : base()
+    {
+        this.stream = stream;
+        this.closeStreamOnDispose = closeStreamOnDispose;
+    }
 
     /// <summary>
     /// Creates an <see cref="IOStreamContext"/> for reading from the specified stream.
@@ -92,6 +98,7 @@ public class IOStreamContext : IOContext
         if (disposing)
         {
             // Dispose the managed stream
+            if (closeStreamOnDispose)
             stream.Dispose();
         }
 
