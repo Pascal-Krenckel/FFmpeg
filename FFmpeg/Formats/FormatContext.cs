@@ -21,7 +21,7 @@ namespace FFmpeg.Formats;
 /// The class also inherits from <see cref="Options.OptionQueryBase"/>, enabling access to FFmpeg's options querying and setting capabilities. This allows for configuring various aspects of media handling by setting or querying options on the format context.
 /// </para>
 /// </remarks>
-public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
+public abstract unsafe class FormatContext : Options.OptionQueryBase, IDisposable
 {
     public AutoGen._AVFormatContext* Context { get; protected set; }
 
