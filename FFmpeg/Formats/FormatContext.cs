@@ -23,8 +23,6 @@ namespace FFmpeg.Formats;
 /// </remarks>
 public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
 {
-    private readonly object _lock = new();
-    private readonly bool freeOnDispose = true;
     public AutoGen._AVFormatContext* Context { get; protected set; }
 
     internal AVIOContext? ioContext;
@@ -88,16 +86,14 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     private void UpdateStreamArray()
     {
-        lock (_lock)
-        {
             AVStream[] streams = this.streams;
             if (streams.Length != StreamCount)
                 streams = new AVStream[StreamCount];
             for (int i = 0; i < streams.Length; i++)
                 streams[i] = new AVStream(Context->streams[i]);
             this.streams = streams;
+
         }
-    }
 
     /// <summary>
     /// Compares the internal stream array with the current streams in the format context.
