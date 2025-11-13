@@ -383,69 +383,114 @@ using var clone = packet.Clone();
 packet.Unreference();
 ```
 
-### `FFmpeg.FormatContext`
+___
 
-Represents an input or output media container and manages streams, I/O, and metadata.  
-Most operations wrap FFmpeg's `AVFormatContext` and unmanaged resources. Implements `IDisposable`.
+### `FFmpeg.Formats.FormatContext`
 
----
+Represents a managed wrapper around FFmpeg’s native `_AVFormatContext`, providing container-level functionality shared by both demuxing and muxing operations.  
+This class is typically used indirectly through `DemuxerContext` (input) and `MuxerContext` (output).  
+It implements `IDisposable` because it owns unmanaged FFmpeg resources.
 
-#### Input / Output Initialization
+#### Responsibilities
 
-| Method | Description |
-|--------|-------------|
-| `static OpenInput` | Opens a media input from a stream with optional input format and options. Handles `AVDictionary`, `AVMultiDictionary`, or `IDictionary<string,string>`. |
-| `static OpenOutput` | Opens an output file, stream, or custom I/O context for writing. |
+- Wraps the native `_AVFormatContext*`
+- Manages container metadata, stream descriptors, chapters, and format options
+- Synchronizes managed stream objects with the native stream array
+- Supports binding to a custom `IOContext`
+- Provides format-level option querying via `OptionQueryBase`
+- Handles cleanup of the underlying native context and any associated I/O resources
 
----
+#### Properties
 
-#### Streams
+| Property | Type | Description |
+|----------|-------|-------------|
+| `Flags` | `FormatContextFlags` | Flags applied to the format context. |
+| `StreamCount` | `int` | Number of streams present in the container. |
+| `Streams` | `IReadOnlyList<AVStream>` | Managed list of stream descriptors synchronized with the native context. |
+| `Url` | `string?` | Media URL or file path associated with the context, if available. |
+| `Metadata` | `AVDictionary_ref` | Container-level metadata. |
+| `StartTimeRealTime` | `DateTime?` | Real-time clock value of the first packet, when provided by the container. |
+| `Chapters` | `ChapterList` | List of chapters defined in the container. |
 
-| Property | Description |
-|----------|-------------|
-| `Streams` | Gets a read-only collection of streams in this context. Updated automatically if the underlying stream array changes. |
-
-| Method | Description |
-|--------|-------------|
-| `FindStreamInfo` | Populates stream information. Supports array/span of `AVDictionary`, `AVMultiDictionary`, or `IDictionary<string,string>`. |
-| `FindBestStream` | Finds the best stream of a given media type (audio, video, subtitle). Returns stream index or negative if none found. |
-| `GuessFrameRate` | Guesses frame rate of a stream by `AVStream` or stream index, optionally using a frame. |
-| `AddStream` | Adds a new stream to the media file using either a `Codec` or a `CodecContext`. Returns the newly added `AVStream`. |
-
----
-
-#### Frame Operations
+#### Methods
 
 | Method | Description |
 |--------|-------------|
-| `WriteHeader` | Writes the header of the output media. Supports multiple dictionary types. |
-| `WriteFrame` | Writes a packet to the output, optionally interleaved. |
-| `WriteTrailer` | Writes the trailer for output once. |
-| `ReadFrame` | Reads a packet from input and sets packet time base if unset. |
+| `FindBestStream(MediaType type)` | Returns the index of the best-matching stream for the specified media type. |
+| `SetContext(IOContext context, IOOptions options, int bufferSize)` | Associates a custom I/O context and configures it for reading or writing. |
+| `GetOutputTimestamp(int streamIndex, out TimeSpan timestamp, out TimeSpan wallClock)` | Retrieves FFmpeg’s computed output timestamps for muxing operations. |
+| `Dispose()` | Releases the underlying `_AVFormatContext*` and any associated resources. |
 
----
+#### Notes
 
-#### Seeking
+- This class is not intended for direct allocation or opening of media files.  
+  Use `DemuxerContext` for reading and `MuxerContext` for writing.
+- It functions as the core container representation used internally by both workflows.
+
+### `FFmpeg.Formats.MuxerContext`
+
+Represents an output-oriented wrapper around FFmpeg’s `_AVFormatContext`, used for creating and writing container formats such as MP4, MKV, MP3, TS, and others.  
+`MuxerContext` is responsible for allocating output contexts, configuring streams, writing headers, writing packets, and finalizing the output file.
+
+This class inherits from `FormatContext` and extends it with muxing-specific functionality.
+
+#### Responsibilities
+
+- Allocates and configures output format contexts
+- Manages output streams and associated codec parameters
+- Handles file or custom I/O binding for writing
+- Writes headers, packets, trailers, and flushes buffers
+- Ensures proper disposal of unmanaged FFmpeg structures
+
+#### Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `OutputFormat` | `OutputFormat?` | The format used for muxing, derived from the underlying `_AVFormatContext.oformat`. |
+
+#### Context Allocation & Opening
 
 | Method | Description |
 |--------|-------------|
-| `Seek` | Seeks to a specific time or timestamp globally or per stream. |
+| `Open(string? filename, OutputFormat? format)` | Creates a muxer context using a filesystem output target. May also allocate an FFmpeg-managed file handle. |
+| `Open(Stream stream, OutputFormat format, bool closeOnDispose = true)` | Opens a muxer context using a managed .NET stream. |
+| `Open(IOContext context, OutputFormat format)` | Opens a muxer context using a custom I/O implementation. |
 
----
-
-#### Output Timestamps
-
-| Method | Description |
-|--------|-------------|
-| `GetOutputTimestamp` | Retrieves the output timestamp for a given stream. |
-
----
-
-#### IDisposable / Resource Management
+#### Stream Creation
 
 | Method | Description |
 |--------|-------------|
-| `Dispose` | Disposes the `FormatContext` and associated resources. |
-| `Free` | Alias for `Dispose()`. |
-| `~FormatContext` | Finalizer ensures unmanaged resources are released. |
+| `AddStream(Codec codec)` | Creates a new stream using the given codec. Initializes codec parameters (ID, type). |
+| `AddStream(Codec codec, ICodecParameters parameters)` | Creates a new stream and copies codec parameters into the stream. |
+| `AddStream(CodecContext codec)` | Creates a stream from an existing initialized codec context. Copies codec parameters and uses its time base. |
+
+#### Header Writing
+
+| Method | Description |
+|--------|-------------|
+| `WriteHeader()` | Writes the container header using default options. |
+| `WriteHeader(AVDictionary dict)` | Writes the header using a single dictionary of muxing options. |
+| `WriteHeader(AVMultiDictionary dict)` | Writes the header using multiple option dictionaries. |
+| `WriteHeader(IDictionary<string,string> dict)` | Writes the header and returns updated options after FFmpeg processing. |
+
+#### Writing Packets
+
+| Method | Description |
+|--------|-------------|
+| `WriteFrame(IPacket? packet)` | Writes a packet directly without interleaving. |
+| `WriteFrameInterleaved(IPacket? packet)` | Writes a packet with automatic interleaving. |
+
+#### Finalization
+
+| Method | Description |
+|--------|-------------|
+| `WriteTrailer()` | Writes the container trailer and final metadata. |
+| `Flush()` | Flushes the underlying I/O context if present. |
+
+#### Other Members
+
+| Member | Description |
+|--------|-------------|
+| `ToString()` | Returns the long name of the output format or `"Unknown"` when unavailable. |
+
 
