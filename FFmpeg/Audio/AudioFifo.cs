@@ -4177,6 +4177,24 @@ public unsafe class AudioFifo : IDisposable
     }
 
     /// <summary>
+    /// Drops (removes) a specified duration of samples from the start of the FIFO buffer.
+    /// </summary>
+    /// <param name="duration">The number of samples to drop from the FIFO.</param>
+    /// <param name="sampleRate">The sample rate of the audio stream.</param>
+    /// <returns>
+    /// Returns 0 on success, or a negative error code if the operation fails.
+    /// </returns>
+    /// <remarks>
+    /// This method reduces the number of available samples in the FIFO by <paramref name="samples"/>.  
+    /// Dropping more samples than are currently available in the FIFO will result in an error.
+    /// </remarks>
+    public AVResult32 Drop(TimeSpan duration, int sampleRate)
+    {
+        int samples = (int)(duration.TotalSeconds * sampleRate);
+        return ffmpeg.av_audio_fifo_drain(fifo, samples);
+    }
+
+    /// <summary>
     /// Clears all samples from the FIFO buffer, resetting it to an empty state.
     /// </summary>
     /// <remarks>
