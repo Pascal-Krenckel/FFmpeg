@@ -1,5 +1,7 @@
 ﻿using FFmpeg.AutoGen;
+using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace FFmpeg.Utils;
 
@@ -7,9 +9,56 @@ namespace FFmpeg.Utils;
 /// Represents a rational number with a numerator and denominator.
 /// This struct is readonly for performance reasons.
 /// </summary>
-public readonly unsafe struct Rational : IEquatable<Rational>
+public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Rational>, IConvertible, IFormattable
 {
-    public static Rational TIME_BASE => new(1, ffmpeg.AV_TIME_BASE);
+    /// <summary>
+    /// Represents the time base used by the <see cref="Rational"/> structure.
+    /// It is a rational number with a numerator of 1 and a denominator of <see cref="ffmpeg.AV_TIME_BASE"/>.
+    /// This value is commonly used in time-based calculations in multimedia processing and represents the ffmpegs default time base.
+    /// </summary>
+    public static readonly Rational TIME_BASE = new(1, ffmpeg.AV_TIME_BASE);
+
+    /// <summary>
+    /// Represents the rational number zero (0/1).
+    /// This value is commonly used to represent a zero rational value.
+    /// </summary>
+    public static readonly Rational Zero = new(0, 1);
+
+    /// <summary>
+    /// Represents the maximum possible value for a rational number, using <see cref="int.MaxValue"/> as the numerator and 1 as the denominator.
+    /// </summary>
+    public static readonly Rational MaxValue = new(int.MaxValue, 1);
+
+    /// <summary>
+    /// Represents the minimum possible value for a rational number, using <see cref="int.MinValue"/> as the numerator and 1 as the denominator.
+    /// </summary>
+    public static readonly Rational MinValue = new(int.MinValue, 1);
+
+    /// <summary>
+    /// Represents the smallest possible positive value for a rational number, defined as 1/<see cref="int.MaxValue"/>.
+    /// This value is used to represent the smallest non-zero rational value.
+    /// </summary>
+    public static readonly Rational Epsilon = new(1, int.MaxValue);
+
+    /// <summary>
+    /// Represents positive infinity as a rational number (1/0).
+    /// This is used to represent an infinitely large positive value.
+    /// </summary>
+    public static readonly Rational PositiveInfinity = new(1, 0);
+
+    /// <summary>
+    /// Represents negative infinity as a rational number (-1/0).
+    /// This is used to represent an infinitely large negative value.
+    /// </summary>
+    public static readonly Rational NegativeInfinity = new(-1, 0);
+
+    /// <summary>
+    /// Represents NaN (Not-a-Number) as a rational number (0/0).
+    /// This is used to represent an undefined or unrepresentable value.
+    /// </summary>
+    public static readonly Rational NaN = new(0, 0);
+
+
 
 
     /// <summary>
@@ -47,8 +96,8 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     {
         if (denominator == 0)
         {
-            Numerator = numerator;
-            Denominator = denominator;
+            Numerator = Math.Clamp(numerator, -1, 1);
+            Denominator = 0;
         }
         else
         {
@@ -72,20 +121,54 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     /// <param name="denominator">The denominator.</param>
     public Rational(long numerator, long denominator)
     {
-        int n;
-        int d;
-        _ = ffmpeg.av_reduce(&n, &d, numerator, denominator, int.MaxValue); // Let ffmpeg handle reduction
-        Numerator = n;
-        Denominator = d;
+        if (denominator == 0)
+        {
+            Numerator = (int)Math.Clamp(numerator, -1, 1);
+            Denominator = 0;
+        }
+        else
+        {
+            int n;
+            int d;
+            _ = ffmpeg.av_reduce(&n, &d, numerator, denominator, int.MaxValue); // Let ffmpeg handle reduction
+            Numerator = n;
+            Denominator = d;
+        }
     }
 
-    #region Implicit Conversions
+
+
+    #region Conversions
 
     /// <summary>
-    /// Implicitly converts a tuple of (numerator, denominator) to a <see cref="Rational"/>.
+    /// Implicitly converts a tuple of int (numerator, denominator) to a <see cref="Rational"/>.
     /// </summary>
     public static implicit operator Rational((int numerator, int denominator) value)
         => new(value.numerator, value.denominator);
+
+
+    /// <summary>
+    /// Explicitly converts a tuple of long(numerator, denominator) to a <see cref="Rational"/>.
+    /// </summary>
+    public static implicit operator Rational((long numerator, long denominator) value)
+        => new(value.numerator, value.denominator);
+
+    /// <summary>
+    /// Deconstructs the <see cref="Rational"/> into its numerator and denominator components.
+    /// This method allows for easy extraction of the numerator and denominator 
+    /// when using tuple deconstruction syntax.
+    /// </summary>
+    /// <param name="numerator">
+    /// The numerator of the <see cref="Rational"/> instance.
+    /// </param>
+    /// <param name="denominator">
+    /// The denominator of the <see cref="Rational"/> instance.
+    /// </param>
+    public void Deconstruct(out int numerator, out int denominator)
+    {
+        numerator = Numerator;
+        denominator = Denominator;
+    }
 
     /// <summary>
     /// Implicitly converts a <see cref="Rational"/> to an <see cref="_AVRational"/>.
@@ -131,54 +214,303 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     /// <summary>
     /// Multiplies an integer by a <see cref="Rational"/>.
     /// </summary>
+    /// <param name="value">The integer to multiply with the rational number.</param>
+    /// <param name="r">The <see cref="Rational"/> number to multiply.</param>
+    /// <returns>A new <see cref="Rational"/> that represents the product of the integer and the rational number.</returns>
     public static Rational operator *(int value, Rational r)
         => new(value * r.Numerator, r.Denominator);
 
     /// <summary>
     /// Multiplies a long integer by a <see cref="Rational"/>.
     /// </summary>
+    /// <param name="value">The long integer to multiply with the rational number.</param>
+    /// <param name="r">The <see cref="Rational"/> number to multiply.</param>
+    /// <returns>A new <see cref="Rational"/> that represents the product of the long integer and the rational number.</returns>
     public static Rational operator *(long value, Rational r)
         => new(value * r.Numerator, r.Denominator);
 
     /// <summary>
     /// Multiplies two <see cref="Rational"/> numbers.
     /// </summary>
+    /// <param name="r1">The first <see cref="Rational"/> number to multiply.</param>
+    /// <param name="r2">The second <see cref="Rational"/> number to multiply.</param>
+    /// <returns>A new <see cref="Rational"/> that represents the product of the two rational numbers.</returns>
     public static Rational operator *(Rational r1, Rational r2)
         => new((long)r1.Numerator * r2.Numerator, (long)r1.Denominator * r2.Denominator);
 
     /// <summary>
-    /// Divides one <see cref="Rational"/> number by another.
+    /// Adds two rational numbers together, returning their sum as a new <see cref="Rational"/>.
+    /// The result is calculated by finding a common denominator and adding the numerators.
     /// </summary>
+    /// <param name="a">The first rational number to be added.</param>
+    /// <param name="b">The second rational number to be added.</param>
+    /// <returns>A new <see cref="Rational"/> representing the sum of the two rational numbers.</returns>
+    public static Rational operator +(Rational a, Rational b)
+    {
+        // Find a common denominator by multiplying the denominators.
+        long commonDenominator = a.Denominator * b.Denominator;
+
+        // Adjust the numerators to have the common denominator and add them.
+        long numeratorSum = (a.Numerator * b.Denominator) + (b.Numerator * a.Denominator);
+
+        return new Rational(numeratorSum, commonDenominator);
+    }
+
+    /// <summary>
+    /// Subtracts one rational number from another, returning the result as a new <see cref="Rational"/>.
+    /// The result is calculated by finding a common denominator and subtracting the numerators.
+    /// </summary>
+    /// <param name="a">The rational number to subtract from (minuend).</param>
+    /// <param name="b">The rational number to subtract (subtrahend).</param>
+    /// <returns>A new <see cref="Rational"/> representing the difference between the two rational numbers.</returns>
+    public static Rational operator -(Rational a, Rational b)
+    {
+        // Find a common denominator by multiplying the denominators.
+        long commonDenominator = a.Denominator * b.Denominator;
+
+        // Adjust the numerators to have the common denominator and subtract them.
+        long numeratorDifference = (a.Numerator * b.Denominator) - (b.Numerator * a.Denominator);
+
+        return new Rational(numeratorDifference, commonDenominator);
+    }
+
+    /// <summary>
+    /// Divides one <see cref="Rational"/> number by another, returning the result as a new <see cref="Rational"/>.
+    /// </summary>
+    /// <param name="r1">The <see cref="Rational"/> number to divide (numerator).</param>
+    /// <param name="r2">The <see cref="Rational"/> number by which to divide (denominator).</param>
+    /// <returns>A new <see cref="Rational"/> representing the quotient of the two rational numbers.</returns>
     public static Rational operator /(Rational r1, Rational r2)
         => new((long)r1.Numerator * r2.Denominator, (long)r1.Denominator * r2.Numerator);
 
     /// <summary>
-    /// Divides one <see cref="Rational"/> number by another.
+    /// Divides a <see cref="TimeSpan"/> by a <see cref="Rational"/> number, returning the quotient as a long.
     /// </summary>
+    /// <param name="t">The <see cref="TimeSpan"/> to divide.</param>
+    /// <param name="r2">The <see cref="Rational"/> divisor.</param>
+    /// <returns>A long representing the result of dividing the <see cref="TimeSpan"/> by the <see cref="Rational"/>.</returns>
     public static long operator /(TimeSpan t, Rational r2)
         => (long)((Rational)t / r2);
 
-    ///<inheritdoc />
-    public static bool operator <(Rational left, Rational right) => (long)left.Numerator * right.Denominator < (long)right.Numerator * left.Denominator;
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for less than.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the first <see cref="Rational"/> is less than the second; otherwise, false.</returns>
+    public static bool operator <(Rational left, Rational right)
+    {
+        long cmp = ffmpeg.av_cmp_q(left, right);
+        return cmp is not int.MinValue and < 0;
+    }
 
-    ///<inheritdoc />
-    public static bool operator >(Rational left, Rational right) => (long)left.Numerator * right.Denominator > (long)right.Numerator * left.Denominator;
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for greater than.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the first <see cref="Rational"/> is greater than the second; otherwise, false.</returns>
+    public static bool operator >(Rational left, Rational right)
+    {
+        long cmp = ffmpeg.av_cmp_q(left, right);
+        return cmp is not int.MinValue and > 0;
+    }
 
-    ///<inheritdoc />
-    public static bool operator <=(Rational left, Rational right) => (long)left.Numerator * right.Denominator <= (long)right.Numerator * left.Denominator;
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for less than or equal to.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the first <see cref="Rational"/> is less than or equal to the second; otherwise, false.</returns>
+    public static bool operator <=(Rational left, Rational right)
+    {
+        long cmp = ffmpeg.av_cmp_q(left, right);
+        return cmp is not int.MinValue and <= 0;
+    }
 
-    ///<inheritdoc />
-    public static bool operator >=(Rational left, Rational right) => (long)left.Numerator * right.Denominator >= (long)right.Numerator * left.Denominator;
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for greater than or equal to.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the first <see cref="Rational"/> is greater than or equal to the second; otherwise, false.</returns>
+    public static bool operator >=(Rational left, Rational right)
+    {
+        long cmp = ffmpeg.av_cmp_q(left, right);
+        return cmp is not int.MinValue and >= 0;
+    }
+
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for equality.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the two <see cref="Rational"/> numbers are equal; otherwise, false.</returns>
+    public static bool operator ==(Rational left, Rational right) => left.Equals(right);
+
+    /// <summary>
+    /// Compares two <see cref="Rational"/> numbers for inequality.
+    /// </summary>
+    /// <param name="left">The first <see cref="Rational"/> number to compare.</param>
+    /// <param name="right">The second <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the two <see cref="Rational"/> numbers are not equal; otherwise, false.</returns>
+    public static bool operator !=(Rational left, Rational right) =>
+        // Check if the numbers are not equal by comparing numerators and denominators
+        !(left == right);
+
+    // Compare Rational < TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> number with a <see cref="TimeSpan"/> for less than.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the <see cref="Rational"/> is less than the <see cref="TimeSpan"/>; otherwise, false.</returns>
+    public static bool operator <(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational < (Rational)timeSpan;
+
+    // Compare Rational > TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> number with a <see cref="TimeSpan"/> for greater than.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the <see cref="Rational"/> is greater than the <see cref="TimeSpan"/>; otherwise, false.</returns>
+    public static bool operator >(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational > (Rational)timeSpan;
+
+    // Compare Rational <= TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> number with a <see cref="TimeSpan"/> for less than or equal to.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the <see cref="Rational"/> is less than or equal to the <see cref="TimeSpan"/>; otherwise, false.</returns>
+    public static bool operator <=(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational <= (Rational)timeSpan;
+
+    // Compare Rational >= TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> number with a <see cref="TimeSpan"/> for greater than or equal to.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the <see cref="Rational"/> is greater than or equal to the <see cref="TimeSpan"/>; otherwise, false.</returns>
+    public static bool operator >=(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational >= (Rational)timeSpan;
+
+    // Compare TimeSpan < Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for less than.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the <see cref="TimeSpan"/> is less than the <see cref="Rational"/>; otherwise, false.</returns>
+    public static bool operator <(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan < rational;
+
+    // Compare TimeSpan > Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for greater than.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the <see cref="TimeSpan"/> is greater than the <see cref="Rational"/>; otherwise, false.</returns>
+    public static bool operator >(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan > rational;
+
+    // Compare TimeSpan <= Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for less than or equal to.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the <see cref="TimeSpan"/> is less than or equal to the <see cref="Rational"/>; otherwise, false.</returns>
+    public static bool operator <=(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan <= rational;
+
+    // Compare TimeSpan >= Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for greater than or equal to.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the <see cref="TimeSpan"/> is greater than or equal to the <see cref="Rational"/>; otherwise, false.</returns>
+    public static bool operator >=(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan >= rational;
+
+    // Compare Rational == TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> with a <see cref="TimeSpan"/> for equality.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the two are equal; otherwise, false.</returns>
+    public static bool operator ==(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational == (Rational)timeSpan;
+
+    // Compare Rational != TimeSpan
+    /// <summary>
+    /// Compares a <see cref="Rational"/> with a <see cref="TimeSpan"/> for inequality.
+    /// </summary>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <returns>True if the two are not equal; otherwise, false.</returns>
+    public static bool operator !=(Rational rational, TimeSpan timeSpan) =>
+        // Convert TimeSpan to Rational and compare
+        rational != (Rational)timeSpan;
+
+    // Compare TimeSpan == Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for equality.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the two are equal; otherwise, false.</returns>
+    public static bool operator ==(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan == rational;
+
+    // Compare TimeSpan != Rational
+    /// <summary>
+    /// Compares a <see cref="TimeSpan"/> with a <see cref="Rational"/> for inequality.
+    /// </summary>
+    /// <param name="timeSpan">The <see cref="TimeSpan"/> to compare.</param>
+    /// <param name="rational">The <see cref="Rational"/> number to compare.</param>
+    /// <returns>True if the two are not equal; otherwise, false.</returns>
+    public static bool operator !=(TimeSpan timeSpan, Rational rational) =>
+        // Convert TimeSpan to Rational and compare
+        (Rational)timeSpan != rational;
+
     #endregion
 
-    #region IEquatable<Rational> Implementation
+
+    #region IEquatable<Rational>/Comparable Implementation
 
     /// <summary>
     /// Determines whether the current <see cref="Rational"/> is equal to another <see cref="Rational"/>.
     /// </summary>
     /// <param name="other">The <see cref="Rational"/> to compare with the current <see cref="Rational"/>.</param>
     /// <returns>true if the current <see cref="Rational"/> is equal to the other parameter; otherwise, false.</returns>
-    public bool Equals(Rational other) => Numerator == other.Numerator && Denominator == other.Denominator;
+    public bool Equals(Rational other)
+    {
+        if (Denominator == other.Denominator)
+            return Numerator == other.Numerator;
+        if (Denominator == 0 && other.Denominator == 0) // Inf,-Inf or Nan
+        {
+            // only true if both are +Inf or both are -Inf
+            return (Numerator > 0 && other.Numerator > 0) || (Numerator < 0 && other.Numerator < 0);
+        }
+        return false;
+    }
 
     /// <summary>
     /// Determines whether the current <see cref="Rational"/> is equal to another object.
@@ -187,8 +519,24 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     /// <returns>true if the specified object is equal to the current <see cref="Rational"/>; otherwise, false.</returns>
     public override bool Equals(object? obj) => obj is Rational other && Equals(other);
 
+    /// <inheritdoc />
+    public int CompareTo(Rational other)
+    {
+        int comp = ffmpeg.av_cmp_q(this, other);
+        return comp == int.MinValue ? 0 : comp;
+    }
+
+
     #endregion
 
+    /// <summary>
+    /// Indicates whether the rational number represents a valid time base.
+    /// A valid time base is defined as having both a positive numerator and denominator.
+    /// </summary>
+    /// <returns>
+    /// <c>true</c> if the rational number represents a valid time base (i.e., both numerator and denominator are positive), 
+    /// otherwise <c>false</c>.
+    /// </returns>
     public bool IsValidTimeBase => Numerator > 0 && Denominator > 0;
 
     #region HashCode
@@ -236,12 +584,6 @@ public readonly unsafe struct Rational : IEquatable<Rational>
         return new(n, d);
     }
 
-    /// <summary>
-    /// Returns a string representation of the <see cref="Rational"/> number.
-    /// </summary>
-    /// <returns>A string in the format "numerator/denominator".</returns>
-    public override string ToString() => $"{Numerator}/{Denominator}";
-
     #region Helper Methods
 
     /// <summary>
@@ -265,25 +607,268 @@ public readonly unsafe struct Rational : IEquatable<Rational>
     #endregion
 
     /// <summary>
-    /// Return the best rational so that a and b are multiple of it. If the resulting
-    ///    denominator is larger than max_den, return def.
+    /// Returns the greatest common divisor (GCD) of two rational numbers <paramref name="a"/> and <paramref name="b"/>.
+    /// The GCD is chosen so that both numbers are multiples of it. If the resulting denominator exceeds the specified
+    /// <paramref name="max_den" />, the method will return the provided <paramref name="default"/> rational value.
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <param name="max_den"></param>
-    /// <param name="default"></param>
-    /// <returns></returns>
-    public static Rational GreatestCommonDivisor(Rational a, Rational b,int max_den, Rational @default)
+    /// <param name="a">
+    /// The first rational number for which the GCD is to be calculated.
+    /// </param>
+    /// <param name="b">
+    /// The second rational number for which the GCD is to be calculated.
+    /// </param>
+    /// <param name="max_den">
+    /// The maximum allowable denominator for the resulting GCD. If the denominator of the GCD exceeds this value,
+    /// the method will return <paramref name="default"/>.
+    /// </param>
+    /// <param name="default">
+    /// A fallback rational value to return if the denominator of the GCD exceeds <paramref name="max_den"/>.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Rational"/> representing the greatest common divisor of <paramref name="a"/> and <paramref name="b"/>.
+    /// If the GCD has a denominator larger than <paramref name="max_den"/>, returns <paramref name="default"/>.
+    /// </returns>
+    public static Rational GreatestCommonDivisor(Rational a, Rational b, int max_den, Rational @default) => ffmpeg.av_gcd_q(a, b, max_den, @default);
+
+    /// <summary>
+    /// Returns the greatest common divisor (GCD) of two integers <paramref name="a"/> and <paramref name="b"/>.
+    /// </summary>
+    /// <param name="a">
+    /// The first integer for which the GCD is to be calculated.
+    /// </param>
+    /// <param name="b">
+    /// The second integer for which the GCD is to be calculated.
+    /// </param>
+    /// <returns>
+    /// The greatest common divisor of <paramref name="a"/> and <paramref name="b"/>.
+    /// </returns>
+    public static long GreatestCommonDivisor(long a, long b) => ffmpeg.av_gcd(a, b);
+
+    /// <summary>
+    /// Indicates whether the rational number is NaN (Not-a-Number).
+    /// A rational number is considered NaN if both its numerator and denominator are zero.
+    /// </summary>
+    /// <returns>
+    /// <c>true</c> if the rational number is NaN, otherwise <c>false</c>.
+    /// </returns>
+    public bool IsNaN => Denominator == 0 && Numerator == 0;
+
+    /// <summary>
+    /// Indicates whether the rational number is positive infinity.
+    /// A rational number is considered positive infinity if its numerator is greater than zero
+    /// and its denominator is zero.
+    /// </summary>
+    /// <returns>
+    /// <c>true</c> if the rational number is positive infinity, otherwise <c>false</c>.
+    /// </returns>
+    public bool IsPositiveInfinity => Denominator == 0 && Numerator > 0;
+
+    /// <summary>
+    /// Indicates whether the rational number is negative infinity.
+    /// A rational number is considered negative infinity if its numerator is less than zero
+    /// and its denominator is zero.
+    /// </summary>
+    /// <returns>
+    /// <c>true</c> if the rational number is negative infinity, otherwise <c>false</c>.
+    /// </returns>
+    public bool IsNegativeInfinity => Denominator == 0 && Numerator < 0;
+
+
+
+    /// <summary>
+    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>).
+    /// If successful, the parsed <see cref="Rational"/> is returned in the out parameter.
+    /// </summary>
+    /// <param name="s">
+    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// - A rational number "numerator/denominator" (e.g., "1/2")
+    /// - A decimal value (e.g., "3.14")
+    /// </param>
+    /// <param name="value">
+    /// An output parameter that will contain the parsed <see cref="Rational"/> if parsing succeeds, or <see cref="Rational.NaN"/> if it fails.
+    /// </param>
+    /// <returns>
+    /// Returns <c>true</c> if the parsing was successful, otherwise <c>false</c>.
+    /// </returns>
+    public static bool TryParse(ReadOnlySpan<char> s, out Rational value) => TryParse(s, null, out value);
+
+    /// <summary>
+    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>), 
+    /// using a specified culture-specific formatting provider.
+    /// </summary>
+    /// <param name="s">
+    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// - A rational number "numerator/denominator" (e.g., "1/2")
+    /// - A decimal value (e.g., "3.14")
+    /// </param>
+    /// <param name="provider">
+    /// An optional <see cref="IFormatProvider"/> used to parse the string according to specific culture settings (e.g., decimal separators).
+    /// </param>
+    /// <param name="value">
+    /// An output parameter that will contain the parsed <see cref="Rational"/> if parsing succeeds, or <see cref="Rational.NaN"/> if it fails.
+    /// </param>
+    /// <returns>
+    /// Returns <c>true</c> if the parsing was successful, otherwise <c>false</c>.
+    /// </returns>
+    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Rational value)
     {
-        return ffmpeg.av_gcd_q(a,b,max_den, @default);
+        provider ??= CultureInfo.InvariantCulture; // use invariant culture as default, since this video files are invariant culture
+        value = Rational.NaN;
+        ReadOnlySpan<char> delimiter = "/:";
+        int delim = s.IndexOfAny(delimiter);
+
+        // Try parsing as a rational number (numerator/denominator)
+        if (delim >= 0)
+        {
+            if (!long.TryParse(s[..delim], System.Globalization.NumberStyles.Integer, provider, out long n))
+                return false;
+            if (!long.TryParse(s[(delim + 1)..], System.Globalization.NumberStyles.Integer, provider, out long d))
+                return false;
+
+            value = new(n, d); // If both parts are parsed successfully, return the Rational number
+            return true;
+        }
+        else
+        {
+            // If no delimiter, try parsing as a double, since double can hold an integer
+            if (!double.TryParse(s, System.Globalization.NumberStyles.Float, provider, out double d))
+                return false;
+
+            value = d; // If parsing succeeds, return the double as a Rational
+            return true;
+        }
     }
 
-    public static long GreatestCommonDivisor(long a, long b)
+    /// <summary>
+    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>).
+    /// Throws a <see cref="FormatException"/> if parsing fails.
+    /// </summary>
+    /// <param name="s">
+    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// - A rational number "numerator/denominator" (e.g., "1/2")
+    /// - A decimal value (e.g., "3.14")
+    /// </param>
+    /// <returns>
+    /// A <see cref="Rational"/> representing the parsed value.
+    /// </returns>
+    /// <exception cref="FormatException">
+    /// Thrown when the string cannot be parsed into a valid <see cref="Rational"/>.
+    /// </exception>
+    public static Rational Parse(ReadOnlySpan<char> s) => TryParse(s, out Rational r) ? r : throw new FormatException($"Invalid Rational format: '{s.ToString()}'");
+
+    /// <summary>
+    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>), 
+    /// using a specified culture-specific formatting provider. Throws a <see cref="FormatException"/> if parsing fails.
+    /// </summary>
+    /// <param name="s">
+    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// - A rational number "numerator/denominator" (e.g., "1/2")
+    /// - A decimal value (e.g., "3.14")
+    /// </param>
+    /// <param name="provider">
+    /// An optional <see cref="IFormatProvider"/> used to parse the string according to specific culture settings (e.g., decimal separators).
+    /// </param>
+    /// <returns>
+    /// A <see cref="Rational"/> representing the parsed value.
+    /// </returns>
+    /// <exception cref="FormatException">
+    /// Thrown when the string cannot be parsed into a valid <see cref="Rational"/>.
+    /// </exception>
+    public static Rational Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => TryParse(s, provider, out Rational r) ? r : throw new FormatException($"Invalid Rational format: '{s.ToString()}'");
+
+
+
+    /// <summary>
+    /// Returns a string representation of the <see cref="Rational"/> number.
+    /// </summary>
+    /// <returns>A string in the format "numerator/denominator".</returns>
+    public override string ToString() => $"{Numerator}/{Denominator}";
+
+    /// <summary>
+    /// Converts this <see cref="Rational"/> instance to a <see cref="string"/> representation, 
+    /// using the default format and no culture-specific formatting.
+    /// </summary>
+    /// <param name="format">
+    /// A custom format string. If null or empty, the rational number is represented as "{numerator}/{denominator}". 
+    /// </param>
+    /// <returns>
+    /// A string representing the rational number in the specified format.
+    /// </returns>
+    public string ToString(string? format) => ToString(format, null);
+
+    /// <summary>
+    /// Converts this <see cref="Rational"/> instance to a <see cref="string"/> representation, 
+    /// using the default format and the specified culture-specific formatting.
+    /// </summary>
+    /// <param name="provider">
+    /// An object that supplies culture-specific formatting information. If null, the default culture is used.
+    /// </param>
+    /// <returns>
+    /// A string representing the rational number in the specified culture format.
+    /// </returns>
+    public string ToString(IFormatProvider? provider) => ToString(null, provider);
+
+    /// <summary>
+    /// Converts this <see cref="Rational"/> instance to a <see cref="string"/> representation.
+    /// </summary>
+    /// <param name="format">
+    /// A custom format string that determines how the rational number is converted to a string.
+    /// The format string can specify the following:
+    /// <list type="bullet">
+    ///     <item><description>If the first character is 'D' or 'd', followed by a double format (e.g., "D2"), 
+    ///     the result will be a string representing the rational number as a double with the specified format. 
+    ///     If the format string is just 'D' or 'd' (without any digits), the result will be a string representing 
+    ///     the rational number as a double, using the default format for doubles.</description></item>
+    ///     <item><description>If the first character is a delimiter (e.g., '/', '-', etc.), followed by an integer format (e.g., "F0"), 
+    ///     the result will be a string formatted as "{numerator:format}{delimiter}{denominator:format}".</description></item>
+    ///     <item><description>If the format string is empty or null, the method will return the rational number as a string in the format "{numerator}/{denominator}".</description></item>
+    /// </list>
+    /// </param>
+    /// <param name="formatProvider">
+    /// An object that supplies culture-specific formatting information. 
+    /// This is used to format both the numerator and denominator according to the specified format.
+    /// </param>
+    /// <returns>
+    /// A string representing the rational number in the specified format.
+    /// </returns>
+    public string ToString(string? format, IFormatProvider? formatProvider)
     {
-        return ffmpeg.av_gcd(a, b);
+        formatProvider ??= CultureInfo.InvariantCulture;
+        if (string.IsNullOrEmpty(format))
+            return string.Format(formatProvider, "{0}/{1}", Numerator, Denominator);
+
+        if (format[0] is 'D' or 'd')
+            return ((double)this).ToString(format[1..], formatProvider);
+
+        char delim = format[0];
+        StringBuilder formatString = new StringBuilder("{0:").Append(format[1..])
+            .Append("}")
+            .Append(delim)
+            .Append("{1:").Append(format[1..]).Append("}");
+
+        return string.Format(formatProvider, formatString.ToString(), Numerator, Denominator);
     }
 
 
+    #region IConvertable
+    TypeCode IConvertible.GetTypeCode() => TypeCode.Object;
+    bool IConvertible.ToBoolean(IFormatProvider provider) => !IsNaN && Numerator != 0;
+    byte IConvertible.ToByte(IFormatProvider provider) => (byte)(Numerator / Denominator);
+    char IConvertible.ToChar(IFormatProvider provider) => (char)(Numerator / Denominator);
+    DateTime IConvertible.ToDateTime(IFormatProvider provider) => throw new InvalidCastException();
+    decimal IConvertible.ToDecimal(IFormatProvider provider) => Numerator / (decimal)Denominator;
+    double IConvertible.ToDouble(IFormatProvider provider) => this;
+    short IConvertible.ToInt16(IFormatProvider provider) => (short)(Numerator / Denominator);
+    int IConvertible.ToInt32(IFormatProvider provider) => Numerator / Denominator;
+    long IConvertible.ToInt64(IFormatProvider provider) => Numerator / Denominator;
+    sbyte IConvertible.ToSByte(IFormatProvider provider) => (sbyte)(Numerator / Denominator);
+    float IConvertible.ToSingle(IFormatProvider provider) => (float)Numerator / Denominator;
+    string IConvertible.ToString(IFormatProvider provider) => ToString(null!, provider);
+    object IConvertible.ToType(Type conversionType, IFormatProvider provider) => Convert.ChangeType((double)this, conversionType, provider);
+    ushort IConvertible.ToUInt16(IFormatProvider provider) => (ushort)(Numerator / Denominator);
+    uint IConvertible.ToUInt32(IFormatProvider provider) => (uint)(Numerator / Denominator);
+    ulong IConvertible.ToUInt64(IFormatProvider provider) => (ulong)(Numerator / Denominator);
+    #endregion
 }
 
 
