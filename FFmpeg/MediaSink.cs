@@ -132,19 +132,19 @@ public class MediaSink : IDisposable
     {
         if (string.IsNullOrWhiteSpace(url) && outputFormat == null)
             throw new ArgumentNullException(nameof(url));
-        MuxerContext? res = MuxerContext.OpenOutput(url, outputFormat);
+        MuxerContext? res = MuxerContext.Open(url, outputFormat);
         return res == null ? null : new(res);
     }
     public static MediaSink? Create(string url) => Create(url, null);
     public static MediaSink? Create(Stream stream, OutputFormat outputFormat)
     {
-        MuxerContext? res = MuxerContext.OpenOutput(stream, outputFormat);
+        MuxerContext? res = MuxerContext.Open(stream, outputFormat);
         return res == null ? null : new(res);
     }
 
     public static MediaSink? Create(IO.IOContext ioContext, OutputFormat outputFormat)
     {
-        MuxerContext? res = MuxerContext.OpenOutput(ioContext, outputFormat);
+        MuxerContext? res = MuxerContext.Open(ioContext, outputFormat);
         return res == null ? null : new(res);
     }
 
