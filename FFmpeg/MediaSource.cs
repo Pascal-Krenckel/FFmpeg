@@ -178,10 +178,7 @@ public class MediaSource : IDisposable
     }
 
     /// <inheritdoc cref=CodecContext.DecodeSubtitle(AVPacket, out Subtitles.Subtitle) />
-    public AVResult32 DecodeSubtitle(AVPacket srcPacket, Subtitles.Subtitle subtitle)
-    {
-        return codecContexts[srcPacket.StreamIndex].DecodeSubtitle(srcPacket, subtitle);
-    }
+    public AVResult32 DecodeSubtitle(AVPacket srcPacket, Subtitles.Subtitle subtitle) => codecContexts[srcPacket.StreamIndex].DecodeSubtitle(srcPacket, subtitle);
 
 
 

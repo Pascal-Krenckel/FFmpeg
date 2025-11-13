@@ -36,7 +36,7 @@ public unsafe class AVIOContext : IDisposable
 
     protected void SetContext(AutoGen._AVIOContext** context)
     {
-        if (this.context == null && context != this.context)
+        if (this.context != null && context != this.context)
             ffmpeg.avio_context_free(this.context);
         this.context = context;
     }

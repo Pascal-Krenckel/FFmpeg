@@ -2,9 +2,6 @@
 using FFmpeg.Codecs;
 using FFmpeg.IO;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Formats;
 
@@ -124,14 +121,14 @@ public unsafe class MuxerContext : FormatContext
         return new AVStream(res);
     }
 
-    public AVStream AddStream(Codec codec,ICodecParameters codecParameters)
+    public AVStream AddStream(Codec codec, ICodecParameters codecParameters)
     {
         AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, codec.codec);
-        if(res == null)
+        if (res == null)
             throw new OutOfMemoryException();
         res->codecpar->codec_id = (AutoGen._AVCodecID)codec.CodecID;
         res->codecpar->codec_type = (AutoGen._AVMediaType)codec.MediaType;
-        ((AVResult32) ffmpeg.avcodec_parameters_copy(res->codecpar, codecParameters.Parameters)).ThrowIfError();
+        ((AVResult32)ffmpeg.avcodec_parameters_copy(res->codecpar, codecParameters.Parameters)).ThrowIfError();
         return new AVStream(res);
     }
     public AVStream AddStream(CodecContext codec)
@@ -141,7 +138,7 @@ public unsafe class MuxerContext : FormatContext
             throw new OutOfMemoryException();
         res->codecpar->codec_id = (AutoGen._AVCodecID)codec.CodecID;
         res->codecpar->codec_type = (AutoGen._AVMediaType)codec.Codec.MediaType;
-        using var codecParams = codec.GetCodecParameters();
+        using CodecParameters codecParams = codec.GetCodecParameters();
         ((AVResult32)ffmpeg.avcodec_parameters_copy(res->codecpar, codecParams.codecParameters)).ThrowIfError();
         res->time_base = codec.TimeBase;
         return new AVStream(res);

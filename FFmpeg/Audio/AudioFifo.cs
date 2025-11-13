@@ -1,13 +1,8 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
 using System.Buffers;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
 
 namespace FFmpeg.Audio;
 
@@ -34,7 +29,7 @@ namespace FFmpeg.Audio;
 public unsafe class AudioFifo : IDisposable
 {
     private const int BUFFER_SIZE = 81920;
-    AutoGen._AVAudioFifo* fifo;
+    private AutoGen._AVAudioFifo* fifo;
 
     /// <summary>
     /// Gets the audio sample format used by this FIFO.
@@ -87,7 +82,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 WritePackedToPlanar(byte* data, int samples)
     {
         // Rent a buffer from ArrayPool
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             byte** ptr = stackalloc byte*[Channels];
@@ -99,7 +94,7 @@ public unsafe class AudioFifo : IDisposable
             {
                 // Set up pointers for each channel to point to their respective locations in the buffer
                 for (int i = 0; i < Channels; i++)
-                    ptr[i] = bufferPtrs + i * samplesPerChannel * sampleSize;
+                    ptr[i] = bufferPtrs + (i * samplesPerChannel * sampleSize);
 
                 // Process the samples until we've copied all or encounter an error
                 while (samplesCopied < samples)
@@ -114,12 +109,12 @@ public unsafe class AudioFifo : IDisposable
                         for (int channel = 0; channel < Channels; channel++)
                         {
                             // Calculate the index in the interleaved input data array
-                            int dataIndex = (samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize;
+                            int dataIndex = ((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize);
 
                             // Copy the data for this channel and sample into the corresponding buffer position
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                ptr[channel][sampleIndex * sampleSize + b] = data[dataIndex + b];
+                                ptr[channel][(sampleIndex * sampleSize) + b] = data[dataIndex + b];
                             }
                         }
                     }
@@ -147,7 +142,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 WritePlanarToPacked(byte** data, int samples)
     {
         // Rent a buffer from ArrayPool
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             fixed (byte* bufferPtr = buffer)  // Pin the rented buffer to use a byte* pointer
@@ -172,8 +167,8 @@ public unsafe class AudioFifo : IDisposable
                             for (int b = 0; b < sampleSize; b++)
                             {
                                 // Write data from the unpacked input to the interleaved buffer
-                                bufferPtr[(samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize + b] =
-                                    data[channel][sampleIndex * sampleSize + b];
+                                bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b] =
+                                    data[channel][(sampleIndex * sampleSize) + b];
                             }
                         }
                     }
@@ -245,13 +240,11 @@ public unsafe class AudioFifo : IDisposable
         if (frame.SampleFormat.AsPlanar() != Format.AsPlanar())
             throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame));
 
-        if (frame.SampleFormat == Format) // no planar <-> packed conversion needed
-            return ffmpeg.av_audio_fifo_write(fifo, (void**)frame.ExtendedData, frame.SampleCount);
-
-        if (Format.IsPlanar()) // write from packed to planar
-            return WritePackedToPlanar(frame.ExtendedData[0], frame.SampleCount);
-        else // write from planar to packed 
-            return WritePlanarToPacked(frame.ExtendedData, frame.SampleCount);
+        return frame.SampleFormat == Format
+            ? (AVResult32)ffmpeg.av_audio_fifo_write(fifo, (void**)frame.ExtendedData, frame.SampleCount)
+            : Format.IsPlanar()
+            ? WritePackedToPlanar(frame.ExtendedData[0], frame.SampleCount)
+            : WritePlanarToPacked(frame.ExtendedData, frame.SampleCount);
     }
 
     #region Write(ReadOnlySpan<byte> ch1, ch2....) and ReadOnlySpan<T>
@@ -276,10 +269,11 @@ public unsafe class AudioFifo : IDisposable
     public AVResult32 Write(ReadOnlySpan<byte> packedData)
     {
         fixed (byte* bufferPtr = packedData)
-            if (Format.IsPlanar())
-                return WritePackedToPlanar(bufferPtr, packedData.Length / Format.GetBytesPerSample() / Channels);
-            else
-                return WritePackedToPacked(bufferPtr, packedData.Length / Format.GetBytesPerSample() / Channels);
+        {
+            return Format.IsPlanar()
+                ? WritePackedToPlanar(bufferPtr, packedData.Length / Format.GetBytesPerSample() / Channels)
+                : WritePackedToPacked(bufferPtr, packedData.Length / Format.GetBytesPerSample() / Channels);
+        }
     }
 
 
@@ -339,10 +333,7 @@ public unsafe class AudioFifo : IDisposable
         ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
         ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
-        if (Format.IsPlanar())
-            return WritePlanarToPlanar(ptrs, samples);
-        else
-            return WritePlanarToPacked(ptrs, samples);
+        return Format.IsPlanar() ? WritePlanarToPlanar(ptrs, samples) : WritePlanarToPacked(ptrs, samples);
     }
 
     /// <summary>
@@ -925,8 +916,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Write(params byte[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = data.Min(static d => d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) / Format.GetBytesPerSample();
 
@@ -947,7 +940,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -1016,8 +1009,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Write(T[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int bytesPerChannel = data.Min(static d => (d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) * sizeof(T));
         int samples = bytesPerChannel / Format.GetBytesPerSample();
@@ -1042,7 +1037,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -1085,8 +1080,10 @@ public unsafe class AudioFifo : IDisposable
         int byteCountPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Write(byte[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = byteCountPerChannel / Format.GetBytesPerSample();
 
@@ -1098,7 +1095,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -1145,12 +1142,16 @@ public unsafe class AudioFifo : IDisposable
         int samplesPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Write(T[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         if (sizeof(T) != Format.GetBytesPerSample())
+        {
             throw new NotSupportedException(
                 $"Element size sizeof({typeof(T).Name}) = {sizeof(T)} does not match format sample size {Format.GetBytesPerSample()}.");
+        }
 
         T** ptrs = stackalloc T*[channelCount];
 
@@ -1160,7 +1161,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             // Cast to byte** for planar/packed methods
@@ -1199,7 +1200,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 ReadPlanarToPacked(byte* data, int samples)
     {
         // Rent a temporary buffer from ArrayPool to hold planar data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             byte** ptr = stackalloc byte*[Channels];
@@ -1211,7 +1212,7 @@ public unsafe class AudioFifo : IDisposable
             {
                 // Set up pointers for each channel to point into the temporary buffer
                 for (int i = 0; i < Channels; i++)
-                    ptr[i] = bufferPtrs + i * samplesPerChannel * sampleSize;
+                    ptr[i] = bufferPtrs + (i * samplesPerChannel * sampleSize);
 
                 while (samplesCopied < samples)
                 {
@@ -1225,9 +1226,9 @@ public unsafe class AudioFifo : IDisposable
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
-                            int dataIndex = (samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize;
+                            int dataIndex = ((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize);
                             for (int b = 0; b < sampleSize; b++)
-                                data[dataIndex + b] = ptr[channel][sampleIndex * sampleSize + b];
+                                data[dataIndex + b] = ptr[channel][(sampleIndex * sampleSize) + b];
                         }
                     }
 
@@ -1261,7 +1262,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 ReadPackedToPlanar(byte** data, int samples)
     {
         // Rent a temporary buffer from ArrayPool to hold packed data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             int sampleSize = Format.GetBytesPerSample();
@@ -1285,8 +1286,8 @@ public unsafe class AudioFifo : IDisposable
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][sampleIndex * sampleSize + b] =
-                                    bufferPtr[(samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize + b];
+                                data[channel][(sampleIndex * sampleSize) + b] =
+                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
@@ -1383,13 +1384,11 @@ public unsafe class AudioFifo : IDisposable
             frame.CreateBuffer().ThrowIfError();
 
         // Read from FIFO
-        if (frame.SampleFormat == Format)
-            return ffmpeg.av_audio_fifo_read(fifo, (void**)frame.ExtendedData, frame.SampleCount);
-
-        if (Format.IsPlanar()) // FIFO stores planar, frame expects packed
-            return ReadPlanarToPacked(frame.ExtendedData[0], frame.SampleCount);
-        else // FIFO stores packed, frame expects planar
-            return ReadPackedToPlanar(frame.ExtendedData, frame.SampleCount);
+        return frame.SampleFormat == Format
+            ? (AVResult32)ffmpeg.av_audio_fifo_read(fifo, (void**)frame.ExtendedData, frame.SampleCount)
+            : Format.IsPlanar()
+            ? ReadPlanarToPacked(frame.ExtendedData[0], frame.SampleCount)
+            : ReadPackedToPlanar(frame.ExtendedData, frame.SampleCount);
     }
 
     #region Read Span
@@ -1451,10 +1450,7 @@ public unsafe class AudioFifo : IDisposable
     /// The number of channels is determined from the current audio stream's <see cref="Channels"/> property.  
     /// This method simply reinterprets the <typeparamref name="T"/> span as bytes and calls <see cref="Read(Span{byte})"/>.
     /// </remarks>
-    public AVResult32 Read<T>(Span<T> buffer) where T : unmanaged
-    {
-        return Read(MemoryMarshal.AsBytes(buffer));
-    }
+    public AVResult32 Read<T>(Span<T> buffer) where T : unmanaged => Read(MemoryMarshal.AsBytes(buffer));
 
     /// <summary>
     /// Reads stereo (two-channel) audio data into separate left and right channel buffers.
@@ -1482,10 +1478,7 @@ public unsafe class AudioFifo : IDisposable
         ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
         ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
-        if (Format.IsPlanar())
-            return ReadPlanarToPlanar(ptrs, samples);
-        else
-            return ReadPackedToPlanar(ptrs, samples);
+        return Format.IsPlanar() ? ReadPlanarToPlanar(ptrs, samples) : ReadPackedToPlanar(ptrs, samples);
     }
 
     /// <summary>
@@ -1961,8 +1954,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Read(params byte[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = data.Min(static d => d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) / Format.GetBytesPerSample();
 
@@ -1983,7 +1978,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -2005,8 +2000,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Read(T[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int bytesPerChannel = data.Min(static d => (d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) * sizeof(T));
         int samples = bytesPerChannel / Format.GetBytesPerSample();
@@ -2028,7 +2025,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -2054,8 +2051,10 @@ public unsafe class AudioFifo : IDisposable
         int byteCountPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Read(byte[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = byteCountPerChannel / Format.GetBytesPerSample();
 
@@ -2067,7 +2066,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -2098,12 +2097,16 @@ public unsafe class AudioFifo : IDisposable
         int samplesPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Read(T[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         if (sizeof(T) != Format.GetBytesPerSample())
+        {
             throw new NotSupportedException(
                 $"Element size sizeof({typeof(T).Name}) = {sizeof(T)} does not match format sample size {Format.GetBytesPerSample()}.");
+        }
 
         T** ptrs = stackalloc T*[channelCount];
 
@@ -2113,7 +2116,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -2152,7 +2155,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 PeekPlanarToPacked(byte* data, int samples)
     {
         // Rent a temporary buffer from ArrayPool to hold planar data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             byte** ptr = stackalloc byte*[Channels];
@@ -2164,7 +2167,7 @@ public unsafe class AudioFifo : IDisposable
             {
                 // Set up pointers for each channel to point into the temporary buffer
                 for (int i = 0; i < Channels; i++)
-                    ptr[i] = bufferPtrs + i * samplesPerChannel * sampleSize;
+                    ptr[i] = bufferPtrs + (i * samplesPerChannel * sampleSize);
 
                 while (samplesCopied < samples)
                 {
@@ -2178,9 +2181,9 @@ public unsafe class AudioFifo : IDisposable
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
-                            int dataIndex = (samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize;
+                            int dataIndex = ((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize);
                             for (int b = 0; b < sampleSize; b++)
-                                data[dataIndex + b] = ptr[channel][sampleIndex * sampleSize + b];
+                                data[dataIndex + b] = ptr[channel][(sampleIndex * sampleSize) + b];
                         }
                     }
 
@@ -2214,7 +2217,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 PeekPackedToPlanar(byte** data, int samples)
     {
         // Rent a temporary buffer from ArrayPool to hold packed data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             int sampleSize = Format.GetBytesPerSample();
@@ -2238,8 +2241,8 @@ public unsafe class AudioFifo : IDisposable
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][sampleIndex * sampleSize + b] =
-                                    bufferPtr[(samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize + b];
+                                data[channel][(sampleIndex * sampleSize) + b] =
+                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
@@ -2336,13 +2339,11 @@ public unsafe class AudioFifo : IDisposable
             frame.CreateBuffer().ThrowIfError();
 
         // Peek from FIFO
-        if (frame.SampleFormat == Format)
-            return ffmpeg.av_audio_fifo_peek(fifo, (void**)frame.ExtendedData, frame.SampleCount);
-
-        if (Format.IsPlanar()) // FIFO stores planar, frame expects packed
-            return PeekPlanarToPacked(frame.ExtendedData[0], frame.SampleCount);
-        else // FIFO stores packed, frame expects planar
-            return PeekPackedToPlanar(frame.ExtendedData, frame.SampleCount);
+        return frame.SampleFormat == Format
+            ? (AVResult32)ffmpeg.av_audio_fifo_peek(fifo, (void**)frame.ExtendedData, frame.SampleCount)
+            : Format.IsPlanar()
+            ? PeekPlanarToPacked(frame.ExtendedData[0], frame.SampleCount)
+            : PeekPackedToPlanar(frame.ExtendedData, frame.SampleCount);
     }
 
     #region Peek Span
@@ -2404,10 +2405,7 @@ public unsafe class AudioFifo : IDisposable
     /// The number of channels is determined from the current audio stream's <see cref="Channels"/> property.  
     /// This method simply reinterprets the <typeparamref name="T"/> span as bytes and calls <see cref="Peek(Span{byte})"/>.
     /// </remarks>
-    public AVResult32 Peek<T>(Span<T> buffer) where T : unmanaged
-    {
-        return Peek(MemoryMarshal.AsBytes(buffer));
-    }
+    public AVResult32 Peek<T>(Span<T> buffer) where T : unmanaged => Peek(MemoryMarshal.AsBytes(buffer));
 
     /// <summary>
     /// Peeks stereo (two-channel) audio data into separate left and right channel buffers.
@@ -2435,10 +2433,7 @@ public unsafe class AudioFifo : IDisposable
         ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
         ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
-        if (Format.IsPlanar())
-            return PeekPlanarToPlanar(ptrs, samples);
-        else
-            return PeekPackedToPlanar(ptrs, samples);
+        return Format.IsPlanar() ? PeekPlanarToPlanar(ptrs, samples) : PeekPackedToPlanar(ptrs, samples);
     }
 
     /// <summary>
@@ -2914,8 +2909,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(params byte[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = data.Min(static d => d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) / Format.GetBytesPerSample();
 
@@ -2936,7 +2933,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -2958,8 +2955,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(T[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int bytesPerChannel = data.Min(static d => (d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) * sizeof(T));
         int samples = bytesPerChannel / Format.GetBytesPerSample();
@@ -2981,7 +2980,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -3007,8 +3006,10 @@ public unsafe class AudioFifo : IDisposable
         int byteCountPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(byte[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = byteCountPerChannel / Format.GetBytesPerSample();
 
@@ -3020,7 +3021,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -3051,12 +3052,16 @@ public unsafe class AudioFifo : IDisposable
         int samplesPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(T[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         if (sizeof(T) != Format.GetBytesPerSample())
+        {
             throw new NotSupportedException(
                 $"Element size sizeof({typeof(T).Name}) = {sizeof(T)} does not match format sample size {Format.GetBytesPerSample()}.");
+        }
 
         T** ptrs = stackalloc T*[channelCount];
 
@@ -3066,7 +3071,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -3093,7 +3098,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 PeekPlanarToPacked(byte* data, int samples, int offset)
     {
         // Rent a temporary buffer from ArrayPool to hold planar data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             byte** ptr = stackalloc byte*[Channels];
@@ -3105,7 +3110,7 @@ public unsafe class AudioFifo : IDisposable
             {
                 // Set up pointers for each channel to point into the temporary buffer
                 for (int i = 0; i < Channels; i++)
-                    ptr[i] = bufferPtrs + i * samplesPerChannel * sampleSize;
+                    ptr[i] = bufferPtrs + (i * samplesPerChannel * sampleSize);
 
                 while (samplesCopied < samples)
                 {
@@ -3119,9 +3124,9 @@ public unsafe class AudioFifo : IDisposable
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
-                            int dataIndex = (samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize;
+                            int dataIndex = ((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize);
                             for (int b = 0; b < sampleSize; b++)
-                                data[dataIndex + b] = ptr[channel][sampleIndex * sampleSize + b];
+                                data[dataIndex + b] = ptr[channel][(sampleIndex * sampleSize) + b];
                         }
                     }
 
@@ -3155,7 +3160,7 @@ public unsafe class AudioFifo : IDisposable
     private AVResult32 PeekPackedToPlanar(byte** data, int samples, int offset)
     {
         // Rent a temporary buffer from ArrayPool to hold packed data from the FIFO
-        var buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(BUFFER_SIZE);
         try
         {
             int sampleSize = Format.GetBytesPerSample();
@@ -3179,8 +3184,8 @@ public unsafe class AudioFifo : IDisposable
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][sampleIndex * sampleSize + b] =
-                                    bufferPtr[(samplesCopied + sampleIndex) * Channels * sampleSize + channel * sampleSize + b];
+                                data[channel][(sampleIndex * sampleSize) + b] =
+                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
@@ -3290,13 +3295,11 @@ public unsafe class AudioFifo : IDisposable
             frame.CreateBuffer().ThrowIfError();
 
         // Peek from FIFO at specified offset
-        if (frame.SampleFormat == Format)
-            return ffmpeg.av_audio_fifo_peek_at(fifo, (void**)frame.ExtendedData, frame.SampleCount, offset);
-
-        if (Format.IsPlanar()) // FIFO stores planar, frame expects packed
-            return PeekPlanarToPacked(frame.ExtendedData[0], frame.SampleCount, offset);
-        else // FIFO stores packed, frame expects planar
-            return PeekPackedToPlanar(frame.ExtendedData, frame.SampleCount, offset);
+        return frame.SampleFormat == Format
+            ? (AVResult32)ffmpeg.av_audio_fifo_peek_at(fifo, (void**)frame.ExtendedData, frame.SampleCount, offset)
+            : Format.IsPlanar()
+            ? PeekPlanarToPacked(frame.ExtendedData[0], frame.SampleCount, offset)
+            : PeekPackedToPlanar(frame.ExtendedData, frame.SampleCount, offset);
     }
 
 
@@ -3365,10 +3368,7 @@ public unsafe class AudioFifo : IDisposable
     /// <remarks>
     /// This method simply reinterprets the <typeparamref name="T"/> span as bytes and calls <see cref="Peek(Span{byte}, int)"/>.
     ///</remarks>
-    public AVResult32 Peek<T>(Span<T> buffer, int offset = 0) where T : unmanaged
-    {
-        return Peek(MemoryMarshal.AsBytes(buffer), offset);
-    }
+    public AVResult32 Peek<T>(Span<T> buffer, int offset = 0) where T : unmanaged => Peek(MemoryMarshal.AsBytes(buffer), offset);
 
     /// <summary>
     /// Peeks stereo (two-channel) audio data into separate left and right channel buffers.
@@ -3728,12 +3728,9 @@ public unsafe class AudioFifo : IDisposable
     /// <see cref="Peek(Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, int)"/>.
     /// </remarks>
     public AVResult32 Peek<T>(Span<T> ch1, Span<T> ch2, Span<T> ch3, Span<T> ch4,
-                              Span<T> ch5, Span<T> ch6, Span<T> ch7, int offset = 0) where T : unmanaged
-    {
-        return Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
+                              Span<T> ch5, Span<T> ch6, Span<T> ch7, int offset = 0) where T : unmanaged => Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
                     MemoryMarshal.AsBytes(ch4), MemoryMarshal.AsBytes(ch5), MemoryMarshal.AsBytes(ch6),
                     MemoryMarshal.AsBytes(ch7), offset);
-    }
 
     /// <summary>
     /// Peeks 8-channel audio data into separate channel buffers.
@@ -3809,12 +3806,9 @@ public unsafe class AudioFifo : IDisposable
     /// <see cref="Peek(Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, int)"/>.
     /// </remarks>
     public AVResult32 Peek<T>(Span<T> ch1, Span<T> ch2, Span<T> ch3, Span<T> ch4,
-                              Span<T> ch5, Span<T> ch6, Span<T> ch7, Span<T> ch8, int offset = 0) where T : unmanaged
-    {
-        return Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
+                              Span<T> ch5, Span<T> ch6, Span<T> ch7, Span<T> ch8, int offset = 0) where T : unmanaged => Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
                     MemoryMarshal.AsBytes(ch4), MemoryMarshal.AsBytes(ch5), MemoryMarshal.AsBytes(ch6),
                     MemoryMarshal.AsBytes(ch7), MemoryMarshal.AsBytes(ch8), offset);
-    }
 
     /// <summary>
     /// Peeks 9-channel audio data into separate channel buffers.
@@ -3895,12 +3889,9 @@ public unsafe class AudioFifo : IDisposable
     /// <see cref="Peek(Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, Span{byte}, int)"/>.
     /// </remarks>
     public AVResult32 Peek<T>(Span<T> ch1, Span<T> ch2, Span<T> ch3, Span<T> ch4,
-                              Span<T> ch5, Span<T> ch6, Span<T> ch7, Span<T> ch8, Span<T> ch9, int offset = 0) where T : unmanaged
-    {
-        return Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
+                              Span<T> ch5, Span<T> ch6, Span<T> ch7, Span<T> ch8, Span<T> ch9, int offset = 0) where T : unmanaged => Peek(MemoryMarshal.AsBytes(ch1), MemoryMarshal.AsBytes(ch2), MemoryMarshal.AsBytes(ch3),
                     MemoryMarshal.AsBytes(ch4), MemoryMarshal.AsBytes(ch5), MemoryMarshal.AsBytes(ch6),
                     MemoryMarshal.AsBytes(ch7), MemoryMarshal.AsBytes(ch8), MemoryMarshal.AsBytes(ch9), offset);
-    }
 
 
     #endregion
@@ -3982,8 +3973,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(params byte[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = data.Min(static d => d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) / Format.GetBytesPerSample();
 
@@ -4004,7 +3997,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -4031,8 +4024,10 @@ public unsafe class AudioFifo : IDisposable
         if (data is null)
             throw new ArgumentNullException(nameof(data));
         if (data.Length != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(T[][]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int bytesPerChannel = data.Min(static d => (d?.Length ?? throw new ArgumentException("One or more channel buffers are null.", nameof(data))) * sizeof(T));
         int samples = bytesPerChannel / Format.GetBytesPerSample();
@@ -4054,7 +4049,7 @@ public unsafe class AudioFifo : IDisposable
         }
         finally
         {
-            foreach (ref var handle in handles)
+            foreach (ref GCHandle handle in handles)
             {
                 if (handle.IsAllocated)
                     handle.Free();
@@ -4081,8 +4076,10 @@ public unsafe class AudioFifo : IDisposable
         int byteCountPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(byte[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         int samples = byteCountPerChannel / Format.GetBytesPerSample();
 
@@ -4094,7 +4091,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -4130,12 +4127,16 @@ public unsafe class AudioFifo : IDisposable
         int samplesPerChannel = data.GetLength(1);
 
         if (channelCount != Channels)
+        {
             throw new NotSupportedException(
                 $"Peek(T[,]) only supports audio data with exactly {Channels} channels.");
+        }
 
         if (sizeof(T) != Format.GetBytesPerSample())
+        {
             throw new NotSupportedException(
                 $"Element size sizeof({typeof(T).Name}) = {sizeof(T)} does not match format sample size {Format.GetBytesPerSample()}.");
+        }
 
         T** ptrs = stackalloc T*[channelCount];
 
@@ -4145,7 +4146,7 @@ public unsafe class AudioFifo : IDisposable
 
             for (int ch = 0; ch < channelCount; ch++)
             {
-                ptrs[ch] = basePtr + ch * rowStride;
+                ptrs[ch] = basePtr + (ch * rowStride);
             }
 
             return Format.IsPlanar()
@@ -4171,10 +4172,7 @@ public unsafe class AudioFifo : IDisposable
     /// This method reduces the number of available samples in the FIFO by <paramref name="samples"/>.  
     /// Dropping more samples than are currently available in the FIFO will result in an error.
     /// </remarks>
-    public AVResult32 Drop(int samples)
-    {
-        return ffmpeg.av_audio_fifo_drain(fifo, samples);
-    }
+    public AVResult32 Drop(int samples) => ffmpeg.av_audio_fifo_drain(fifo, samples);
 
     /// <summary>
     /// Drops (removes) a specified duration of samples from the start of the FIFO buffer.

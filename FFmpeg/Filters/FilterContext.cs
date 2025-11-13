@@ -299,7 +299,7 @@ public unsafe class FilterContext : Options.OptionQueryBase
     public AVResult32 BufferSinkChannelLayout(out Audio.ChannelLayout layout)
     {
         AutoGen._AVChannelLayout l;
-        var res = ffmpeg.av_buffersink_get_ch_layout(context, &l);
+        int res = ffmpeg.av_buffersink_get_ch_layout(context, &l);
         layout = new(l);
         return res;
     }

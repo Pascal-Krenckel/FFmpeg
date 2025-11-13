@@ -307,20 +307,17 @@ public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
     /// <param name="dstInfo">The information describing the destination image.</param>
     /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
     /// <seealso cref="Convert(IntPtr, IntPtr, int, int)"/>
-    public AVResult32 Convert(IntPtr src, ImageInfo srcInfo, IntPtr dst, ImageInfo dstInfo)
-    {
-        if (srcInfo.Format != SourceFormat)
-            throw new ArgumentException();
-        if (srcInfo.Width != SourceWidth)
-            throw new ArgumentException();
-        return srcInfo.Height != SourceHeight
+    public AVResult32 Convert(IntPtr src, ImageInfo srcInfo, IntPtr dst, ImageInfo dstInfo) => srcInfo.Format != SourceFormat
+            ? throw new ArgumentException()
+            : srcInfo.Width != SourceWidth
+            ? throw new ArgumentException()
+            : srcInfo.Height != SourceHeight
             ? throw new ArgumentException()
             : dstInfo.Format != DestinationFormat
             ? throw new ArgumentException()
             : dstInfo.Width != DestinationWidth
             ? throw new ArgumentException()
             : dstInfo.Height != DestinationHeight ? throw new ArgumentException() : Convert(src, dst, srcInfo.Alignment, dstInfo.Alignment);
-    }
 
     /// <summary>
     /// Converts the source <see cref="Image"/> to the destination <see cref="Image"/>.

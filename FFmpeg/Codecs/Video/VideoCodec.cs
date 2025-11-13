@@ -1,5 +1,4 @@
-﻿using FFmpeg.Helper;
-using FFmpeg.Images;
+﻿using FFmpeg.Images;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Codecs.Video;

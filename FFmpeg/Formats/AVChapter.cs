@@ -1,38 +1,40 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Collections;
 using FFmpeg.Utils;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Formats;
-public unsafe readonly struct ChapterList(FormatContext context, bool readOnly) : IEnumerable<AVChapter>
+
+public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) : IEnumerable<AVChapter>
 {
-    readonly FormatContext context = context;
+    private readonly FormatContext context = context;
 
     private _AVChapter** Chapters => context.Context != null ? context.Context->chapters : throw new ObjectDisposedException(nameof(FormatContext));
 
-    public AVChapter this[int index] { get => new(context, index); }
+    public AVChapter this[int index] => new(context, index);
 
-    public readonly int Count => context.Context != null ?(int)context.Context->nb_chapters : 0;
+    public readonly int Count => context.Context != null ? (int)context.Context->nb_chapters : 0;
 
     public bool IsReadOnly { get; } = readOnly;
 
     public void SetChapter(long id, Rational timeBase, long start, long end, string title)
     {
-        if (IsReadOnly) throw new NotSupportedException();
+        if (IsReadOnly)
+            throw new NotSupportedException();
         _AVChapter* chapter = null;
         for (int i = 0; i < Count; i++)
+        {
             if (Chapters[i]->id == id)
                 chapter = Chapters[i];
-            if (chapter == null)
-                chapter = (_AVChapter*)ffmpeg.av_mallocz((ulong)sizeof(_AVChapter));
+        }
+
+        if (chapter == null)
+            chapter = (_AVChapter*)ffmpeg.av_mallocz((ulong)sizeof(_AVChapter));
         chapter->id = id;
         chapter->time_base = timeBase;
         chapter->end = end;
-        chapter->start = start;        
-        ffmpeg.av_dict_set(&chapter->metadata, "title", title, 0);
+        chapter->start = start;
+        _ = ffmpeg.av_dict_set(&chapter->metadata, "title", title, 0);
 
         AVResult32 result = ffmpeg.av_dynarray_add_nofree(&context.Context->chapters, (int*)&context.Context->nb_chapters, chapter);
         if (result.IsError)
@@ -45,8 +47,8 @@ public unsafe readonly struct ChapterList(FormatContext context, bool readOnly) 
 
     public void SetChapter(long id, TimeSpan start, TimeSpan end, string title)
     {
-        var timeBase = Rational.GreatestCommonDivisor(start, end, int.MaxValue, Rational.TIME_BASE);
-        SetChapter(id,timeBase,start/timeBase,end/timeBase,title);
+        Rational timeBase = Rational.GreatestCommonDivisor(start, end, int.MaxValue, Rational.TIME_BASE);
+        SetChapter(id, timeBase, start / timeBase, end / timeBase, title);
     }
 
     public void AddChapter(Rational timeBase, long start, long end, string title)
@@ -54,8 +56,11 @@ public unsafe readonly struct ChapterList(FormatContext context, bool readOnly) 
         // check if Count is free as this would be usual way
         bool count_used = false;
         for (int i = 0; i < Count; i++)
-            if (count_used = (Chapters[i]->id) == Count)
+        {
+            if (count_used = Chapters[i]->id == Count)
                 break;
+        }
+
         long id = !count_used ? Count : FindFirstFree();
         SetChapter(id, timeBase, start, end, title);
     }
@@ -64,10 +69,17 @@ public unsafe readonly struct ChapterList(FormatContext context, bool readOnly) 
     {
         Span<bool> usedIds = stackalloc bool[Count];
         for (int i = 0; i < Count; i++)
+        {
             if (Chapters[i]->id < Count && Chapters[i]->id >= 0)
                 usedIds[(int)Chapters[i]->id] = true;
+        }
+
         for (int i = 0; i < Count; i++)
-            if (!usedIds[i]) return i;
+        {
+            if (!usedIds[i])
+                return i;
+        }
+
         return Count;
     }
 
@@ -96,23 +108,20 @@ public readonly unsafe struct AVChapter
         this.index = index;
     }
 
-    readonly FormatContext context;
-    readonly int index;
+    private readonly FormatContext context;
+    private readonly int index;
 
     private _AVChapter* Chapter => context.Context != null && index < context.Context->nb_chapters ? context.Context->chapters[index] : throw new ObjectDisposedException("The format context was disposed or the chapter removed.");
 
     public long Id => Chapter->id;
-    public readonly Rational TimeBase { get => Chapter->time_base; }
+    public readonly Rational TimeBase => Chapter->time_base;
 
-    public readonly long Start { get => Chapter->start; }
-    public readonly long End { get => Chapter->end; }
+    public readonly long Start => Chapter->start;
+    public readonly long End => Chapter->end;
 
     public TimeSpan Duration => (End - Start) * TimeBase;
 
     public AVDictionary_ref Metadata => new(&Chapter->metadata);
 
-    public readonly string? Title
-    {
-        get => Metadata.TryGetValue("title", out var val) ? val : null;
-    }
+    public readonly string? Title => Metadata.TryGetValue("title", out string? val) ? val : null;
 }

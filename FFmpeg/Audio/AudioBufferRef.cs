@@ -150,7 +150,7 @@ internal readonly unsafe struct AudioBufferRef
             Samples = 0,
         };
 
-        var res = ffmpeg.av_samples_fill_arrays(abuffer.Planes, abuffer.LineSizes, abuffer.Buffer, channels, capacity, (AutoGen._AVSampleFormat)format, alignment);
+        int res = ffmpeg.av_samples_fill_arrays(abuffer.Planes, abuffer.LineSizes, abuffer.Buffer, channels, capacity, (AutoGen._AVSampleFormat)format, alignment);
         if (res < 0)
         {
             ffmpeg.av_buffer_unref(&buffer);

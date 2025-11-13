@@ -470,11 +470,11 @@ public abstract unsafe class OptionQueryBase : IOptionQuery
             return SetOption(name, bytes.AsSpan(), recursive);
         if (value is Memory<byte> memory)
             return SetOption(name, memory, recursive);
-        if (TryConvert(value, out (int, int) size))
-            return SetOption(name, size.Item1, size.Item2, recursive);
-        if (TryConvert(value, out PixelFormat pixFmt))
-            return SetOption(name, pixFmt, recursive);
-        return TryConvert(value, out SampleFormat sampleFmt)
+        return TryConvert(value, out (int, int) size)
+            ? SetOption(name, size.Item1, size.Item2, recursive)
+            : TryConvert(value, out PixelFormat pixFmt)
+            ? SetOption(name, pixFmt, recursive)
+            : TryConvert(value, out SampleFormat sampleFmt)
             ? SetOption(name, sampleFmt, recursive)
             : TryConvert(value, out IDictionary<string, string> dict)
             ? SetOption(name, dict, recursive)

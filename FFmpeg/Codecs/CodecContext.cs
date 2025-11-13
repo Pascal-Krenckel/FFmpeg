@@ -1,6 +1,5 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
-using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
@@ -1408,7 +1407,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     // ToDo: Docu, include info about TryAgain
     public AVResult32 Decode(AVPacket? packet, AVFrame frame)
     {
-        var res = SendPacket(packet);
+        AVResult32 res = SendPacket(packet);
         if (res == AVResult32.TryAgain)
             res.ThrowIfError(); //  should never happen, since ReceiveFrame is always called afterwards, but if it does happen, you need to call ReceiveFrame until TryAgain 
         // in draining mode SendPacket might return EOF
@@ -1418,7 +1417,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
 
     public AVResult32 Encode(AVFrame frame, AVPacket packet)
     {
-        var res = SendFrame(frame);
+        AVResult32 res = SendFrame(frame);
         if (res == AVResult32.TryAgain)
             res.ThrowIfError(); //  should never happen, since ReceivePacket is always called afterwards, but if it does, you need to call ReveicePacket until TryAgain
         // in draining mode SendPacket might return EOF
@@ -1482,7 +1481,8 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     private void Dispose(bool disposing)
     {
         // already disposed?
-        if (context == null) return;
+        if (context == null)
+            return;
         if (disposing)
         {
             hardwareFrame.Dispose();

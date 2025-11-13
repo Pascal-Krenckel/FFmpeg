@@ -1,8 +1,5 @@
 ﻿using FFmpeg.IO;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Formats;
 
@@ -471,7 +468,7 @@ public unsafe class DemuxerContext : FormatContext
             throw new OutOfMemoryException();
         DemuxerContext formatContext = new(context);
 
-        IOStreamContext.OpenRead(formatContext, stream);
+        _ = IOStreamContext.OpenRead(formatContext, stream);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
@@ -519,7 +516,7 @@ public unsafe class DemuxerContext : FormatContext
         if (context == null)
             throw new OutOfMemoryException();
         DemuxerContext formatContext = new(context);
-        IOStreamContext.OpenRead(formatContext, stream);
+        _ = IOStreamContext.OpenRead(formatContext, stream);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
@@ -1146,15 +1143,12 @@ public unsafe class DemuxerContext : FormatContext
     public long BitRate => Context->bit_rate;
 
 
-    public override ChapterList Chapters => new ChapterList(this, true);
+    public override ChapterList Chapters => new(this, true);
 
     // ToDo: Find Program, Add Program, FindBestStream overloads
 
     #region Dispose
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-    }
+    protected override void Dispose(bool disposing) => base.Dispose(disposing);
     #endregion
 
     public override string ToString() => InputFormat?.LongName ?? "Unknown";

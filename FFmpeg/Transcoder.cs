@@ -2,7 +2,6 @@
 using FFmpeg.Codecs;
 using FFmpeg.Filters;
 using FFmpeg.Formats;
-using FFmpeg.Helper;
 using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Runtime.CompilerServices;
@@ -34,7 +33,7 @@ public sealed class Transcoder : IDisposable
     private DateTime lastUpdate = DateTime.MinValue;
     // if < Zero no preview frame will additionally get decoded 
     public TimeSpan UpdateInterval { get; set; } = TimeSpan.FromSeconds(10);
-    public TimeSpan Duration => duration > TimeSpan.Zero ? duration : OutputStream.Max(s => (s.StartTime + s.Duration) * s.TimeBase) - start;
+    public TimeSpan Duration => duration > TimeSpan.Zero ? duration : OutputStream.Max(s => (TimeSpan)((s.StartTime + s.Duration) * s.TimeBase)) - start;
 
 
     private readonly Subtitles.Subtitle subtitle = new();
@@ -46,7 +45,7 @@ public sealed class Transcoder : IDisposable
         Sink = sink;
         Sink.Metatdata.Init(source.Metadata);
     }
-       
+
     private Transcoder(DemuxerContext source, MuxerContext sink) : this(new MediaSource(source), new(sink))
     { }
 

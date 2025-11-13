@@ -121,9 +121,9 @@ public readonly unsafe struct Filter : IEquatable<Filter>
     /// </summary>
     public static Filter AudioBufferSink => GetFilterByName("abuffersink");
 
-    public bool IsSourceFilter => (ffmpeg.avfilter_filter_pad_count(filter, 0) | (uint)(filter->flags & (AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_INPUTS))) == 0;
+    public bool IsSourceFilter => (ffmpeg.avfilter_filter_pad_count(filter, 0) | (uint)(filter->flags & AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_INPUTS)) == 0;
 
-    public bool IsSinkFilter => (ffmpeg.avfilter_filter_pad_count(filter, 1) | (uint)(filter->flags & (AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_OUTPUTS))) == 0;
+    public bool IsSinkFilter => (ffmpeg.avfilter_filter_pad_count(filter, 1) | (uint)(filter->flags & AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_OUTPUTS)) == 0;
 
     public static Filter VideoNullSink => GetFilterByName("nullsink");
     public static Filter AudioNullSink => GetFilterByName("anullsink");

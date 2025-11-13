@@ -235,9 +235,13 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     {
         Clear();
         if (metadata is AVDictionary avDict)
+        {
             ((AVResult32)ffmpeg.av_dict_copy(Pointer, avDict.dictionary, (int)Flags)).ThrowIfError();
+        }
         else if (metadata is AVDictionary_ref avDictRef)
+        {
             ((AVResult32)ffmpeg.av_dict_copy(Pointer, *avDictRef.Pointer, (int)Flags)).ThrowIfError();
+        }
         else
         {
             foreach (KeyValuePair<string, string> kv in metadata)

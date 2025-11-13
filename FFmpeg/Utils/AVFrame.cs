@@ -67,7 +67,7 @@ public sealed unsafe class AVFrame : IDisposable
         frame.PixelFormat = format;
         frame.Width = width;
         frame.Height = height;
-        var error = frame.CreateBuffer();
+        AVResult32 error = frame.CreateBuffer();
         if (error.IsError)
         {
             frame.Dispose();
@@ -96,7 +96,7 @@ public sealed unsafe class AVFrame : IDisposable
         frame.SampleCount = samples;
         if (sampleRate != null)
             frame.SampleRate = sampleRate.Value;
-        var error = frame.CreateBuffer();
+        AVResult32 error = frame.CreateBuffer();
         if (error.IsError)
         {
             frame.Dispose();
@@ -125,7 +125,7 @@ public sealed unsafe class AVFrame : IDisposable
         frame.SampleCount = samples;
         if (sampleRate != null)
             frame.SampleRate = sampleRate.Value;
-        var error = frame.CreateBuffer();
+        AVResult32 error = frame.CreateBuffer();
         if (error.IsError)
         {
             frame.Dispose();
@@ -162,20 +162,11 @@ public sealed unsafe class AVFrame : IDisposable
     /// For video frames, the span contains pointers to pixel planes. <br/>
     /// For audio frames, it contains pointers to audio channels.
     /// </summary>
-    public ReadOnlySpan<IntPtr> Data
-    {
-        get
-        {
-            if (ExtendedData == null)
-                return [];
-            else
-            {
-                return IsVideo
+    public ReadOnlySpan<IntPtr> Data => ExtendedData == null
+                ? []
+                : IsVideo
                 ? new(Frame->extended_data, PixelFormat.PlaneCount())
                 : SampleFormat.IsPacked() ? new(Frame->extended_data, 1) : new(Frame->extended_data, Frame->ch_layout.nb_channels);
-            }
-        }
-    }
 
     public Span<byte> GetData(int index)
     {

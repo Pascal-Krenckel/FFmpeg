@@ -48,10 +48,7 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </summary>
     /// <param name="context">The already allocated context.</param>
     /// <param name="freeOnDispose">Indicates whether the underlying <see cref="AutoGen._AVFormatContext"/>* should be freed when this object is disposed.</param>
-    protected FormatContext(AutoGen._AVFormatContext* context)
-    {
-        Context = context;
-    }
+    protected FormatContext(AutoGen._AVFormatContext* context) => Context = context;
 
     #endregion
 
@@ -86,14 +83,14 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// </remarks>
     private void UpdateStreamArray()
     {
-            AVStream[] streams = this.streams;
-            if (streams.Length != StreamCount)
-                streams = new AVStream[StreamCount];
-            for (int i = 0; i < streams.Length; i++)
-                streams[i] = new AVStream(Context->streams[i]);
-            this.streams = streams;
+        AVStream[] streams = this.streams;
+        if (streams.Length != StreamCount)
+            streams = new AVStream[StreamCount];
+        for (int i = 0; i < streams.Length; i++)
+            streams[i] = new AVStream(Context->streams[i]);
+        this.streams = streams;
 
-        }
+    }
 
     /// <summary>
     /// Compares the internal stream array with the current streams in the format context.
@@ -121,7 +118,7 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
 
     #endregion
 
-    public virtual ChapterList Chapters => new ChapterList(this, false);
+    public virtual ChapterList Chapters => new(this, false);
 
     #region SetIOContext
     /// <summary>
@@ -152,8 +149,7 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
 
     #region IDisposable
 
-    private bool disposedValue;
-    public bool IsDisposed => disposedValue;
+    public bool IsDisposed { get; private set; }
 
     /// <summary>
     /// Disposes of the resources used by the <see cref="FormatContext"/>.
@@ -161,17 +157,17 @@ public unsafe class FormatContext : Options.OptionQueryBase, IDisposable
     /// <param name="disposing">Indicates whether the method is being called from the <see cref="Dispose"/> method or a finalizer.</param>
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposedValue)
+        if (!IsDisposed)
         {
             if (disposing)
                 ioContext?.Dispose();
-           if(Context != null)
+            if (Context != null)
             {
-                var context = Context;
+                AutoGen._AVFormatContext* context = Context;
                 ffmpeg.avformat_close_input(&context);
                 Context = context;
             }
-            disposedValue = true;
+            IsDisposed = true;
         }
     }
 
