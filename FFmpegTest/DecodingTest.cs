@@ -128,7 +128,7 @@ public class DecodingTest
         {
             do
             {
-                result = input.ReadFrame(packet);
+                result = input.ReadPacket(packet);
                 if (result.IsError)
                     return result;
                 if(packet.Flags.HasFlag(PacketFlags.Discard))
