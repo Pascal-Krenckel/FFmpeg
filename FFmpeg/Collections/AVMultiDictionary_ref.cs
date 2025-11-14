@@ -1,4 +1,5 @@
 ﻿using FFmpeg.Exceptions;
+using FFmpeg.Unmanaged;
 using System.Collections;
 using System.Runtime.InteropServices;
 
@@ -7,7 +8,7 @@ namespace FFmpeg.Collections;
 /// <summary>
 /// Represents a multi-dictionary that allows multiple values for a single key.
 /// </summary>
-public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IReference<AVMultiDictionary>
+public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IReference<AVMultiDictionary>, IAVPointer<AutoGen._AVDictionary>
 {
 
 
@@ -15,6 +16,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// Pointer to the underlying dictionary structure.
     /// </summary>
     internal readonly AutoGen._AVDictionary** dictionary = null;
+    readonly AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => *dictionary;
 
     /// <summary>
     /// Gets or sets the flags used for dictionary operations.

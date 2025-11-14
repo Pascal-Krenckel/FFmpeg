@@ -1,4 +1,6 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 
 namespace FFmpeg.IO;
 
@@ -6,13 +8,13 @@ namespace FFmpeg.IO;
 /// Represents a managed wrapper for the unmanaged FFmpeg AVIOContext structure.
 /// This class provides access to various properties and methods related to AVIOContext.
 /// </summary>
-public unsafe class AVIOContext : IDisposable
+public unsafe class AVIOContext : IDisposable, IAVPointer<AutoGen._AVIOContext>
 {
     /// <summary>
     /// Pointer to the unmanaged AVIOContext structure.
     /// </summary>
     private AutoGen._AVIOContext** context;
-
+    unsafe _AVIOContext* IAVPointer<_AVIOContext>.Pointer => *context;
 
     /// <summary>
     /// Gets a value indicating whether the end of the file (EOF) has been reached.

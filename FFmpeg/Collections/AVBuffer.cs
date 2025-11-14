@@ -1,4 +1,5 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 
 namespace FFmpeg.Collections;
 
@@ -6,10 +7,11 @@ namespace FFmpeg.Collections;
 /// Represents a wrapper for an AVBufferRef in FFmpeg, which manages reference-counted buffers.
 /// Provides functionality for managing the lifetime, access, and manipulation of these buffers.
 /// </summary>
-public sealed unsafe class AVBuffer : IDisposable, IBuffer
+public sealed unsafe class AVBuffer : IDisposable, IBuffer, IAVPointer<AutoGen._AVBufferRef>
 {
     internal AutoGen._AVBufferRef* reference;
     AutoGen._AVBufferRef* IBuffer.Reference => reference;
+    AutoGen._AVBufferRef* IAVPointer<AutoGen._AVBufferRef>.Pointer => reference;
 
     private AVBuffer() { }
 

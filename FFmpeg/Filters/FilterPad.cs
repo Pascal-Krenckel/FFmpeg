@@ -1,16 +1,19 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 using System.Collections;
 
 namespace FFmpeg.Filters;
 /// <summary>
 /// Represents a single filter pad, which is used for connecting filter inputs and outputs in an FFmpeg filter graph.
 /// </summary>
-public readonly unsafe struct FilterPad
+public readonly unsafe struct FilterPad : IAVPointer<_AVFilterPad>
 {
     /// <summary>
     /// The pointer to the array of _AVFilterPad structures.
     /// </summary>
     internal readonly AutoGen._AVFilterPad* pads;
+    readonly _AVFilterPad* IAVPointer<_AVFilterPad>.Pointer => pads;
 
     /// <summary>
     /// The index of the filter pad in the array.

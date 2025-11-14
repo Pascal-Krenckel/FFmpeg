@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using System.Collections;
 using System.Runtime.InteropServices;
 
 namespace FFmpeg.Filters;
 
-public unsafe struct FilterInOutEntry
+public unsafe struct FilterInOutEntry : IAVPointer<_AVFilterInOut>
 {
     internal AutoGen._AVFilterInOut* filterInOut;
-
+    readonly _AVFilterInOut* IAVPointer<_AVFilterInOut>.Pointer => filterInOut;
     internal FilterInOutEntry(AutoGen._AVFilterInOut* filterInOut) => this.filterInOut = filterInOut;
 
 

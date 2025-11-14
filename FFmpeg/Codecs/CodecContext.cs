@@ -1,6 +1,7 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 using AVFrame = FFmpeg.Utils.AVFrame;
@@ -16,7 +17,7 @@ namespace FFmpeg.Codecs;
 /// and decoding operations.
 /// </para>
 /// </summary>
-public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, IAudioDecoder, IAudioEncoder, IVideoDecoder, IVideoEncoder
+public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, IAudioDecoder, IAudioEncoder, IVideoDecoder, IVideoEncoder, IAVPointer<AutoGen._AVCodecContext>
 {
     internal AutoGen._AVCodecContext* context;
     private readonly GCHandle handle;
@@ -28,6 +29,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
     /// Gets the pointer to the underlying <see cref="AutoGen._AVCodecContext"/> structure.
     /// </summary>
     protected override unsafe void* Pointer => context;
+    _AVCodecContext* IAVPointer<_AVCodecContext>.Pointer => context;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="CodecContext"/> class with the specified codec.
@@ -1036,6 +1038,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, 
             }
         }
     }
+
 
     #endregion
 

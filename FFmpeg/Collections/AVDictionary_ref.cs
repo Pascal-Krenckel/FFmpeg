@@ -1,4 +1,5 @@
 ﻿using FFmpeg.Exceptions;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 using System.Collections;
 using System.Runtime.InteropServices;
@@ -8,12 +9,13 @@ namespace FFmpeg.Collections;
 /// Represents a dictionary that wraps around the FFmpeg AVDictionary structure, allowing for 
 /// key-value pair management with additional features such as case-insensitive comparisons.
 /// </summary>
-public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IReference<AVDictionary>
+public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IReference<AVDictionary>, IAVPointer<AutoGen._AVDictionary>
 {
     /// <summary>
     /// Gets the pointer to the underlying AVDictionary structure.
     /// </summary>
     internal AutoGen._AVDictionary** Pointer { get; } = null;
+    AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => *Pointer;
 
     /// <summary>
     /// Gets the flags used for dictionary operations, which can include matching case or ignoring suffixes.

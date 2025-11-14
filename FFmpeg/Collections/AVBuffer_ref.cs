@@ -1,9 +1,11 @@
-﻿namespace FFmpeg.Collections;
+﻿using FFmpeg.Unmanaged;
+
+namespace FFmpeg.Collections;
 /// <summary>
 /// Represents a reference to an AVBuffer, providing a set of operations for handling
 /// buffer memory and metadata in a safe manner, while leveraging the underlying AVBufferRef structure.
 /// </summary>
-public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, Utils.IReference<AVBuffer>
+public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, Utils.IReference<AVBuffer>, IAVPointer<AutoGen._AVBufferRef>
 {
     /// <summary>
     /// Internal pointer to the underlying AVBufferRef structure.
@@ -14,6 +16,8 @@ public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// Gets the reference to the underlying AVBufferRef structure.
     /// </summary>
     AutoGen._AVBufferRef* IBuffer.Reference => *buffer;
+
+    AutoGen._AVBufferRef* IAVPointer<AutoGen._AVBufferRef>.Pointer => *buffer;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AVBuffer_ref"/> struct.

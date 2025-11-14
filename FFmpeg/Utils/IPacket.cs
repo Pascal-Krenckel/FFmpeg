@@ -1,9 +1,14 @@
-﻿namespace FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using System.Reflection;
+
+namespace FFmpeg.Utils;
 /// <inheritdoc cref="AVPacket"/>
-public unsafe interface IPacket
+public unsafe interface IPacket : IAVPointer<AutoGen._AVPacket>
 {
     /// <inheritdoc cref="AVPacket.packet"/>
     internal AutoGen._AVPacket* Packet { get; }
+    AutoGen._AVPacket* IAVPointer<AutoGen._AVPacket>.Pointer => Packet;
 
     /// <inheritdoc cref="AVPacket.Data"/>
     Span<byte> Data { get; }

@@ -1,5 +1,6 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;
@@ -7,9 +8,11 @@ namespace FFmpeg.Formats;
 /// <summary>
 /// Managed wrapper for the FFmpeg AVStream structure.
 /// </summary>
-public unsafe class AVStream : Options.OptionQueryBase, IEquatable<AVStream?>
+public unsafe class AVStream : Options.OptionQueryBase, IEquatable<AVStream?>, IAVPointer<_AVStream>
 {
     internal readonly AutoGen._AVStream* stream;
+    unsafe _AVStream* IAVPointer<_AVStream>.Pointer => stream;
+
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AVStream"/> class.

@@ -1,4 +1,5 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 using System.Collections;
 using System.Runtime.InteropServices;
 
@@ -6,7 +7,7 @@ namespace FFmpeg.Collections;
 /// <summary>
 /// Represents a dictionary that wraps around the FFmpeg AVDictionary structure.
 /// </summary>
-public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposable
+public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposable, IAVPointer<AutoGen._AVDictionary>
 {
     private int _check = 0;
 
@@ -15,6 +16,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// Pointer to the underlying FFmpeg AVDictionary structure.
     /// </summary>
     internal AutoGen._AVDictionary* dictionary = null;
+    AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => dictionary;
 
     /// <summary>
     /// Gets or sets the flags used for dictionary operations.

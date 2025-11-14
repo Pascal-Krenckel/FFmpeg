@@ -1,16 +1,19 @@
-﻿using System.Collections.ObjectModel;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 
 namespace FFmpeg.Filters;
 /// <summary>
 /// Represents a filter used in FFmpeg's filter graph. Provides information about filters, including their names, descriptions, inputs, outputs, and flags.
 /// </summary>
-public readonly unsafe struct Filter : IEquatable<Filter>
+public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
 {
     /// <summary>
     /// Pointer to the unmanaged <see cref="AutoGen._AVFilter"/> structure used by FFmpeg.
     /// </summary>
     internal readonly AutoGen._AVFilter* filter;
+    readonly _AVFilter* IAVPointer<_AVFilter>.Pointer =>  filter;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Filter"/> struct with the given FFmpeg filter.

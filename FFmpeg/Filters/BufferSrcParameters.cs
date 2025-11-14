@@ -1,5 +1,7 @@
 ﻿using FFmpeg.Audio;
+using FFmpeg.AutoGen;
 using FFmpeg.Images;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Filters;
@@ -7,12 +9,13 @@ namespace FFmpeg.Filters;
 /// Represents the parameters used for configuring a buffer source in FFmpeg. 
 /// Provides mechanisms to allocate, manage, and dispose of buffer source parameters.
 /// </summary>
-public sealed unsafe class BufferSrcParameters : IDisposable
+public sealed unsafe class BufferSrcParameters : IDisposable, IAVPointer<AutoGen._AVBufferSrcParameters>
 {
     /// <summary>
     /// Pointer to the unmanaged <see cref="AutoGen._AVBufferSrcParameters"/> structure used by FFmpeg.
     /// </summary>
     internal AutoGen._AVBufferSrcParameters* parameters;
+    unsafe _AVBufferSrcParameters* IAVPointer<_AVBufferSrcParameters>.Pointer => parameters;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="BufferSrcParameters"/> class with the given FFmpeg buffer source parameters.

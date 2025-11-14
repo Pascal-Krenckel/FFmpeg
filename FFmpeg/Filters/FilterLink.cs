@@ -1,10 +1,12 @@
 ﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
 
 namespace FFmpeg.Filters;
 
-public unsafe class FilterLink
+public unsafe class FilterLink : IAVPointer<_AVFilterLink>
 {
     internal readonly AutoGen._AVFilterLink* link;
+    unsafe _AVFilterLink* IAVPointer<_AVFilterLink>.Pointer => link;
 
     internal FilterLink(AutoGen._AVFilterLink* link) => this.link = link;
 

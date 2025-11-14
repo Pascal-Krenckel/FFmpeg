@@ -1,13 +1,16 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 
 namespace FFmpeg.Images;
 /// <summary>
 /// Represents a context for scaling and converting image frames between different sizes and pixel formats.
 /// This class provides an interface for configuring the source and destination image properties and performing the conversion using the FFmpeg scaling library.
 /// </summary>
-public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable
+public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable, IAVPointer<_SwsContext>
 {
     private AutoGen._SwsContext* context;
+    unsafe _SwsContext* IAVPointer<_SwsContext>.Pointer => context;
 
     /// <summary>
     /// Gets the width of the source image in pixels.

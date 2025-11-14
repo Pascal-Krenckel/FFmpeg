@@ -1,4 +1,6 @@
-﻿namespace FFmpeg.Collections;
+﻿using FFmpeg.Unmanaged;
+
+namespace FFmpeg.Collections;
 
 /// <summary>
 /// Represents a pool of <see cref="AVBuffer"/> objects for efficient memory management.
@@ -16,9 +18,11 @@
 /// This constructor creates a new buffer pool using FFmpeg's `av_buffer_pool_init` function.
 /// The pool will manage buffers of the specified size.
 /// </remarks>
-public sealed unsafe class AVBufferPool(int size) : IDisposable
+public sealed unsafe class AVBufferPool(int size) : IDisposable, IAVPointer<AutoGen._AVBufferPool>
 {
     private AutoGen._AVBufferPool* pool = ffmpeg.av_buffer_pool_init((ulong)size, null);
+    AutoGen._AVBufferPool* IAVPointer<AutoGen._AVBufferPool>.Pointer => pool;
+
 
     /// <summary>
     /// Rents a buffer from the pool.

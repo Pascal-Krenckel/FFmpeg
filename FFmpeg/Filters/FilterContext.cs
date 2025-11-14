@@ -1,5 +1,7 @@
 ﻿using FFmpeg.Audio;
+using FFmpeg.AutoGen;
 using FFmpeg.Images;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
@@ -7,12 +9,13 @@ namespace FFmpeg.Filters;
 /// <summary>
 /// Represents a filter context in FFmpeg, which is used to manage filter instances in a filter graph.
 /// </summary>
-public unsafe class FilterContext : Options.OptionQueryBase
+public unsafe class FilterContext : Options.OptionQueryBase, IAVPointer<_AVFilterContext>
 {
     /// <summary>
     /// Gets a pointer to the filter context, used for option queries.
     /// </summary>
     protected override unsafe void* Pointer => context;
+    _AVFilterContext* IAVPointer<_AVFilterContext>.Pointer => context;
 
     /// <summary>
     /// The underlying unmanaged FFmpeg filter context.

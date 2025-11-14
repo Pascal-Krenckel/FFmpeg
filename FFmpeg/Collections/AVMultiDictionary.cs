@@ -1,4 +1,5 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.Unmanaged;
+using FFmpeg.Utils;
 using System.Collections;
 using System.Runtime.InteropServices;
 
@@ -6,7 +7,7 @@ namespace FFmpeg.Collections;
 /// <summary>
 /// Represents a multi-dictionary that allows multiple values for a single key.
 /// </summary>
-public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposable
+public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposable, IAVPointer<AutoGen._AVDictionary>
 {
     /// <summary>
     /// A check variable used for internal operations.
@@ -17,6 +18,7 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// Pointer to the underlying dictionary structure.
     /// </summary>
     internal AutoGen._AVDictionary* dictionary = null;
+    AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => dictionary;
 
     /// <summary>
     /// Gets or sets the flags used for dictionary operations.

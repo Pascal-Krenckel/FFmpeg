@@ -1,5 +1,6 @@
 ﻿using FFmpeg.Collections;
 using FFmpeg.IO;
+using FFmpeg.Unmanaged;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
@@ -21,9 +22,10 @@ namespace FFmpeg.Formats;
 /// The class also inherits from <see cref="Options.OptionQueryBase"/>, enabling access to FFmpeg's options querying and setting capabilities. This allows for configuring various aspects of media handling by setting or querying options on the format context.
 /// </para>
 /// </remarks>
-public abstract unsafe class FormatContext : Options.OptionQueryBase, IDisposable
+public abstract unsafe class FormatContext : Options.OptionQueryBase, IDisposable, IAVPointer<AutoGen._AVFormatContext>
 {
-    public AutoGen._AVFormatContext* Context { get; protected set; }
+    internal AutoGen._AVFormatContext* Context { get; set; }
+    AutoGen._AVFormatContext* IAVPointer<AutoGen._AVFormatContext>.Pointer => Context;
 
     internal AVIOContext? ioContext;
 
