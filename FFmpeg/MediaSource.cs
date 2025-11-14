@@ -163,7 +163,7 @@ public class MediaSource : IDisposable
     /// </summary>
     /// <param name="packet">The <see cref="AVPacket"/> instance to populate with data.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    public AVResult32 ReadPacket(AVPacket packet) => FormatContext.ReadFrame(packet);
+    public AVResult32 ReadPacket(AVPacket packet) => FormatContext.ReadPacket(packet);
 
     /// <summary>
     /// Sends a packet to the codec context and attempts to receive a frame.
@@ -195,7 +195,7 @@ public class MediaSource : IDisposable
         {
             if (res == AVResult32.TryAgain || packet.StreamIndex == -1)
             {
-                res = FormatContext.ReadFrame(packet);
+                res = FormatContext.ReadPacket(packet);
 
                 if (res == AVResult32.EndOfFile)
                 {

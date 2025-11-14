@@ -213,6 +213,15 @@ public unsafe class MuxerContext : FormatContext
     /// </summary>
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    public AVResult32 WritePacket(IPacket? packet)
+        => packet == null ? (AVResult32)ffmpeg.av_write_frame(Context, null) : (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
+
+    /// <summary>
+    /// Writes a frame to the output media file.
+    /// </summary>
+    /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    [Obsolete("Renamed to WritePacket")]
     public AVResult32 WriteFrame(IPacket? packet)
         => packet == null ? (AVResult32)ffmpeg.av_write_frame(Context, null) : (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
 
@@ -221,6 +230,15 @@ public unsafe class MuxerContext : FormatContext
     /// </summary>
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    public AVResult32 WritePacketInterleaved(IPacket? packet)
+        => packet == null ? (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null) : (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
+
+    /// <summary>
+    /// Writes an interleaved frame to the output media file.
+    /// </summary>
+    /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    [Obsolete("Renamed to WritePacketInterleaved")]
     public AVResult32 WriteFrameInterleaved(IPacket? packet)
         => packet == null ? (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null) : (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
 

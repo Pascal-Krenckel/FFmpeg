@@ -1034,6 +1034,23 @@ public unsafe class DemuxerContext : FormatContext
     /// </summary>
     /// <param name="packet">The packet to read into.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    public AVResult32 ReadPacket(AVPacket packet)
+    {
+        packet.Unreference(); // av_read_frame in contrast to receive frame/packet (codec context) does not unreference the packet
+        AVResult32 result = ffmpeg.av_read_frame(Context, packet.packet);
+        if (result.IsError)
+            return result;
+        if (packet.TimeBase.Numerator == 0) // set packet time base if not set
+            packet.TimeBase = Context->streams[packet.StreamIndex]->time_base;
+        return result;
+    }
+
+    /// <summary>
+    /// Reads a frame from the input media file.
+    /// </summary>
+    /// <param name="packet">The packet to read into.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    [Obsolete("Renamed to ReadPacket")]
     public AVResult32 ReadFrame(AVPacket packet)
     {
         packet.Unreference(); // av_read_frame in contrast to receive frame/packet (codec context) does not unreference the packet
@@ -1044,6 +1061,7 @@ public unsafe class DemuxerContext : FormatContext
             packet.TimeBase = Context->streams[packet.StreamIndex]->time_base;
         return result;
     }
+
 
     #endregion
 

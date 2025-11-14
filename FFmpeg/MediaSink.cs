@@ -101,7 +101,7 @@ public class MediaSink : IDisposable
                 codecContexts[i]!.Open(null).ThrowIfError();
         }
     }
-    public AVResult32 WritePacket(IPacket packet) => FormatContext.WriteFrameInterleaved(packet);
+    public AVResult32 WritePacket(IPacket packet) => FormatContext.WritePacketInterleaved(packet);
     public AVResult32 WriteFrame(AVFrame frame, int streamIndex)
     {
         lock (packet)
@@ -175,7 +175,7 @@ public class MediaSink : IDisposable
                             res = context.ReceivePacket(packet);
                             packet.StreamIndex = i;
                             if (!res.IsError)
-                                _ = FormatContext.WriteFrameInterleaved(packet);
+                                _ = FormatContext.WritePacketInterleaved(packet);
                             else
                                 break;
                         } while (true);
