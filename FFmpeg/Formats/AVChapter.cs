@@ -65,6 +65,35 @@ public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) 
         SetChapter(id, timeBase, start, end, title);
     }
 
+    public void RemoveAt(long index)
+    {
+        if(IsReadOnly) throw new NotSupportedException();
+        if (index < 0 || index >= Count)
+            throw new ArgumentOutOfRangeException(nameof(index));
+        if (Chapters[index] != null)
+        {
+            if (Chapters[index]->metadata != null)
+                ffmpeg.av_dict_free(&Chapters[index]->metadata);
+            ffmpeg.av_freep(&Chapters[index]);
+            Chapters[index] = Chapters[Count - 1];
+            Chapters[Count - 1] = null;
+            context.Context->nb_chapters--;
+        }
+    }
+
+    public bool RemoveById(long id)
+    {
+        for(long index = 0; index < Count; index++)
+            if (Chapters[index]->id == id)
+            {
+                RemoveAt(index);
+                return true;
+            }
+        return false;
+    }
+
+    public bool Remove(AVChapter chapter) => RemoveById(chapter.Id);
+
     private int FindFirstFree()
     {
         Span<bool> usedIds = stackalloc bool[Count];
