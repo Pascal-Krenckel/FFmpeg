@@ -127,6 +127,7 @@ public unsafe class MuxerContext : FormatContext
         AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, codec.codec);
         if (res == null)
             throw new OutOfMemoryException();
+        res->id = res->index;
         res->codecpar->codec_id = (AutoGen._AVCodecID)codec.CodecID;
         res->codecpar->codec_type = (AutoGen._AVMediaType)codec.MediaType;
         ((AVResult32)ffmpeg.avcodec_parameters_copy(res->codecpar, codecParameters.Parameters)).ThrowIfError();
@@ -137,6 +138,7 @@ public unsafe class MuxerContext : FormatContext
         AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, codec.Codec.codec);
         if (res == null)
             throw new OutOfMemoryException();
+        res->id = res->index;
         res->codecpar->codec_id = (AutoGen._AVCodecID)codec.CodecID;
         res->codecpar->codec_type = (AutoGen._AVMediaType)codec.Codec.MediaType;
         using CodecParameters codecParams = codec.GetCodecParameters();
