@@ -17,7 +17,7 @@ namespace FFmpeg.Codecs;
 /// and decoding operations.
 /// </para>
 /// </summary>
-public sealed unsafe class CodecContext : Options.OptionQueryBase, IDisposable, IAudioDecoder, IAudioEncoder, IVideoDecoder, IVideoEncoder, IAVPointer<AutoGen._AVCodecContext>
+public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposable, IAudioDecoder, IAudioEncoder, IVideoDecoder, IVideoEncoder, IAVPointer<AutoGen._AVCodecContext>
 {
     internal AutoGen._AVCodecContext* context;
     private readonly GCHandle handle;

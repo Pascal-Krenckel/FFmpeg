@@ -7,7 +7,7 @@ namespace FFmpeg.Images;
 /// Represents a context for scaling and converting image frames between different sizes and pixel formats.
 /// This class provides an interface for configuring the source and destination image properties and performing the conversion using the FFmpeg scaling library.
 /// </summary>
-public sealed unsafe class SwsContext : Options.OptionQueryBase, IDisposable, IAVPointer<_SwsContext>
+public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable, IAVPointer<_SwsContext>
 {
     private AutoGen._SwsContext* context;
     unsafe _SwsContext* IAVPointer<_SwsContext>.Pointer => context;

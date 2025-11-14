@@ -6,7 +6,7 @@ namespace FFmpeg.Audio;
 /// Represents a managed wrapper for the FFmpeg SwrContext, used for audio resampling, format conversion,
 /// and channel layout remapping.
 /// </summary>
-public unsafe class SwrContext : Options.OptionQueryBase, IDisposable, IAVPointer<AutoGen._SwrContext>
+public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPointer<AutoGen._SwrContext>
 {
     private AutoGen._SwrContext* context;
     AutoGen._SwrContext* IAVPointer<AutoGen._SwrContext>.Pointer => context;

@@ -2,7 +2,7 @@
 
 namespace FFmpeg.Codecs;
 
-public interface IDecoderContext : IDisposable, Options.IOptionQuery
+public interface IDecoderContext : IDisposable, Options.IOptionQueryable
 {
     /// <summary>
     /// Gets the codec that is used for encoding.

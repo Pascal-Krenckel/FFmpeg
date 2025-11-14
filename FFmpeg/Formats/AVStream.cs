@@ -8,7 +8,7 @@ namespace FFmpeg.Formats;
 /// <summary>
 /// Managed wrapper for the FFmpeg AVStream structure.
 /// </summary>
-public unsafe class AVStream : Options.OptionQueryBase, IEquatable<AVStream?>, IAVPointer<_AVStream>
+public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?>, IAVPointer<_AVStream>
 {
     internal readonly AutoGen._AVStream* stream;
     unsafe _AVStream* IAVPointer<_AVStream>.Pointer => stream;

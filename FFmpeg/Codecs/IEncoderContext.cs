@@ -7,7 +7,7 @@ namespace FFmpeg.Codecs;
 /// Represents the context for encoding operations, including codec information and encoding settings.
 /// This interface manages encoding state and allows querying and setting options for the encoder.
 /// </summary>
-public interface IEncoderContext : IDisposable, IOptionQuery
+public interface IEncoderContext : IDisposable, IOptionQueryable
 {
     /// <summary>
     /// Gets the codec that is used for encoding.

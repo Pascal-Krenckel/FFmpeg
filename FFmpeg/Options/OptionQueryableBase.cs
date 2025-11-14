@@ -7,12 +7,13 @@ using System.Runtime.InteropServices;
 namespace FFmpeg.Options;
 
 /// <summary>
-/// An abstract base class for querying options from AV-option-enabled classes.
+/// An abstract base class for querying and setting options in AV-option-enabled classes.
 /// </summary>
 /// <remarks>
-/// This class provides methods to retrieve or set various types of options from AV-option-enabled classes.
+/// This class provides methods for retrieving and modifying various options on AV-option-enabled classes, 
+/// facilitating interaction with their private data through the <see cref="av_opt_*"/> functions.
 /// </remarks>
-public abstract unsafe class OptionQueryBase : IOptionQuery
+public abstract unsafe class OptionQueryableBase : IOptionQueryable
 {
     /// <summary>
     /// Abstract base class that provides access to a pointer for AVOptions retrieval.

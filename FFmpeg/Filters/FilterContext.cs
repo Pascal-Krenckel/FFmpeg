@@ -9,7 +9,7 @@ namespace FFmpeg.Filters;
 /// <summary>
 /// Represents a filter context in FFmpeg, which is used to manage filter instances in a filter graph.
 /// </summary>
-public unsafe class FilterContext : Options.OptionQueryBase, IAVPointer<_AVFilterContext>
+public unsafe class FilterContext : Options.OptionQueryableBase, IAVPointer<_AVFilterContext>
 {
     /// <summary>
     /// Gets a pointer to the filter context, used for option queries.
