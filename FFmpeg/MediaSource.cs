@@ -311,6 +311,36 @@ public class MediaSource : IDisposable
         return FormatContext.Seek(frame, streamIndex);
     }
 
+    /// <summary>
+    /// Seeks exactly to the specified time position within the media stream for a specific stream index.
+    /// </summary>
+    /// <param name="timeSpan">The position to seek to.</param>
+    /// <param name="streamIndex">The stream index.</param>
+    /// <returns>Negative if error.</returns>
+    public AVResult32 SeekExactly(TimeSpan timeSpan, int streamIndex)
+    {
+        var result = Seek(timeSpan, streamIndex);
+        if (result.IsError)
+            return result;
+        using AVFrame frame = AVFrame.Allocate();
+        for(; ;)
+        { 
+            result = ReadPacket(packet);
+            if(result.IsError)
+                return result;
+            if((packet.PresentationTimestamp+packet.Duration) * packet.TimeBase < timeSpan)
+            {
+                result = Decode(packet, frame);
+                if (result.IsTryAgain)
+                    continue;
+                if(result.IsError)
+                    return result;
+            }
+            else
+                return CodecContexts[packet.StreamIndex].SendPacket(packet);            
+        }
+    }
+
     /// <inheritdoc cref="DemuxerContext.GuessFrameRate(int)"/>
     public Rational GuessFramerate(int streamIndex) => FormatContext.GuessFrameRate(streamIndex);
 
