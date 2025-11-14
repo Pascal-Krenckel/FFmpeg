@@ -16,6 +16,9 @@ This document provides an overview of the most important classes and structures,
 - [Classes](#classes)  
   - [`FFmpeg.AVFrame`](#ffmpegavframe)  
   - [`FFmpeg.AVPacket`](#ffmpegavpacket)  
+  - [`FFmpeg.Formats.FormatContext`](#ffmpegformatsformatcontext)  
+  - [`FFmpeg.Formats.MuxerContext`](#ffmpegformatsmuxercontext)  
+  - [`FFmpeg.Formats.DemuxerContext`](#ffmpegformatsdemuxercontext)  
 
 ---
 
@@ -477,8 +480,10 @@ This class inherits from `FormatContext` and extends it with muxing-specific fun
 
 | Method | Description |
 |--------|-------------|
-| `WriteFrame(IPacket? packet)` | Writes a packet directly without interleaving. |
-| `WriteFrameInterleaved(IPacket? packet)` | Writes a packet with automatic interleaving. |
+| ~~`WriteFrame(IPacket? packet)`~~ | Writes a packet directly without interleaving. |
+| ~~`WriteFrameInterleaved(IPacket? packet)`~~ | Writes a packet with automatic interleaving. |
+| `WritePacket(AVPacket? packet)` | Writes a packet directly without interleaving. |
+| `WritePacketInterleaved(AVPacket? packet)` | Writes a packet with automatic interleaving. |
 
 #### Finalization
 
@@ -493,4 +498,141 @@ This class inherits from `FormatContext` and extends it with muxing-specific fun
 |--------|-------------|
 | `ToString()` | Returns the long name of the output format or `"Unknown"` when unavailable. |
 
+#### Usage Example
 
+```csharp
+    using MuxerContext context = MuxerContext.Open("output.mp4",null!)!;
+        
+    using CodecContext ctx = CodecContext.Open(Codec.FindEncoder(CodecID.H264)!.Value);
+    // ... Set codec parameters (ctx);
+    // adds a stream using the codec context and copies the codec parameters
+    // its advised to set the codec parameters manually instead of copieng during remuxing,
+    // since they might not be valid between Decoder and Encoder
+    var videoStream = context.AddStream(ctx);
+
+    videoStream.TimeBase = ctx.TimeBase = new Rational(1, 30); // 30 fps
+
+    var audioStream = context.AddStream(Codec.FindEncoder(CodecID.AAC)!.Value);
+    audioStream.TimeBase = new Rational(1, 48000); // 48 kHz
+    var codecParameters = audioStream.CodecParameters; // its a struct, VS, does not like changing Properties that are structs.
+    codecParameters.SampleRate = 48000;
+    codecParameters.ChannelLayout = ChannelLayout.CreateStereo();
+    codecParameters.SampleFormat = SampleFormat.Float32Planar;
+    audioStream.SetOption("key", "value"); // example to set stream option
+
+    context.WriteHeader();
+    // ... Encode and write frames
+    while (...)
+    {
+        AVPacket packet = GetSomePacketFormSomeEncoder();
+        packet.StreamIndex = videoStream.Index; // or audioStream.Index
+        context.WriteFrameInterleaved(packet);
+    }
+    context.WriteTrailer();
+    context.Dispose(); // or use 'using' statement
+
+```
+
+---
+
+### FFmpeg.Formats.DemuxerContext
+
+Represents an input-oriented wrapper around FFmpeg’s `_AVFormatContext` used for reading container formats such as MP4, MKV, MP3, TS, and others.  
+This class inherits from `FormatContext` and extends it with demuxing-specific functionality.
+
+#### Constructions
+
+| Constructor | Description |
+|-------------|-------------|
+| `protected DemuxerContext(AutoGen._AVFormatContext* context)` | Initializes a new instance of `DemuxerContext` with an existing native `_AVFormatContext`. Ownership of the context depends on internal management. |
+
+#### Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `InputFormat` | `InputFormat?` | Gets the input format associated with this context, if available. |
+| `StartTime` | `long` | Start time of the media file in AV_TIME_BASE units. |
+| `Duration` | `long` | Duration of the media file in AV_TIME_BASE units. |
+| `BitRate` | `long` | Overall bit rate of the media file in bits per second. |
+| `Chapters` | `ChapterList` | List of chapters in the media file. Constructed from the current context. |
+
+#### Methods
+
+##### Open(...)
+
+Opens an input media source and initializes a `DemuxerContext`. Overloads exist depending on the type of source:
+
+| Source Type        | Input Format (`InputFormat?`) | Options (`IDictionary<string,string>` or derived) | Find Stream Info (`bool`) | Notes |
+|-------------------|-------------------------------|--------------------------------------------------|---------------------------|-------|
+| File path (`string`) | Optional                     | Optional                                         | Optional                  | Opens input from a file or URL. |
+| Stream (`Stream`)    | Optional                     | Optional                                         | Optional                  | Stream must support reading and seeking. |
+| IOContext (`IOContext`) | Optional                  | Optional                                         | Optional                  | IOContext handles low-level read/write operations; may support seeking. |
+
+**Parameter notes:**
+
+- **Input Format**: Required for non-file-based sources or to override automatic detection.  
+- **Options**: General key/value dictionary controlling input behavior; single or multi-dictionary supported internally.  
+- **Find Stream Info**: If `true`, calls `avformat_find_stream_info` after opening to populate stream metadata. FFmpeg might read a few frames to set the AVStream Properties to the correct values. 
+
+All overloads internally handle dictionary conversions and FFmpeg context initialization.
+
+
+| Method | Description |
+|--------|-------------|
+| `AVResult32 FindStreamInfo(...)` | Finds stream information from the media file. |
+| `Rational GuessFrameRate(...)` | Guesses the frame rate of a stream using an optional frame. |
+| `AVResult32 Seek(Rational time, int streamIndex)` | Seeks to a specific time in a given stream. Throws if index out of range. |
+| `AVResult32 Seek(long timestamp, int streamIndex)` | Seeks to a specific timestamp in a given stream. |
+| ~~`AVResult32 ReadFrame(AVPacket packet)`~~ | Reads a frame from the input media. Sets packet time base if not already set. |
+| `AVResult32 ReadPacket(AVPacket packet)` | Reads a frame from the input media. Sets packet time base if not already set. |
+| `Dispose()` | Disposes the context and underlying resources. |
+
+
+#### Usage Example
+
+```csharp
+    TimeSpan seek = TimeSpan.FromSeconds(10);
+
+    using var demuxerContext = DemuxerContext.Open(videoFile, true); // searchStreamInfo = true
+    int videoIndex = context.FindBestStream(MediaType.Video); // find Best Video Stream
+    
+    // Discard all other streams
+    foreach (var stream in context.Streams)
+        stream.Discard = DiscardFlags.All;
+    context.Streams[index].Discard = DiscardFlags.Default;
+    
+    // Open Decoder, with the correct parameters
+    Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
+    using CodecContext decoder = CodecContext.Open(c, demuxerContext.Streams[videoIndex].CodecParameters);
+            decoder.TimeBase = input.Streams[videoIndex].TimeBase; // set codec TimeBase just to be sure
+
+
+    using AVFrame frame = AVFrame.Allocate();
+    using var packet = AVPacket.Allocate();
+    var result = input.Seek(seek, videoIndex);
+    if (result.IsError)
+        return result;
+    // decoder.FlushBuffers(); // we seeked so flush the codecs internal buffers if something was written to it
+    do
+    {
+        do
+        {
+            result = input.ReadFrame(packet);
+            if (result.IsError)
+                return result;
+            if(packet.Flags.HasFlag(PacketFlags.Discard) || packet.StreamIndex != videoIndex)
+            {
+                result = AVResult32.TryAgain;
+                continue;
+            }
+            result = decoder.SendPacket(packet);
+            if (result.IsError)
+                return result;
+            result = decoder.ReceiveFrame(frame);
+        } while (result.IsTryAgain);
+    } while (!result.IsError && (frame.GetPresentationTimestamp()+frame.Duration) * frame.TimeBase < seek);
+    
+    return frame;
+```
+
+### CodecContext
