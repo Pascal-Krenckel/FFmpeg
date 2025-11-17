@@ -93,7 +93,7 @@ public unsafe class MuxerContext : FormatContext
         MuxerContext? output = AllocateOutput(null, format);
         if (output == null)
             return null;
-        context.InitContext(output, IOOptions.Write);
+        context.InitContext(output, IOOptions.Write | (context.CanSeek ? IOOptions.Seek : 0));
         return output;
     }
 
