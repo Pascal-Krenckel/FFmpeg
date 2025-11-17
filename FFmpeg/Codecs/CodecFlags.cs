@@ -89,7 +89,7 @@ public enum CodecFlags : long
     /// <summary>
     /// Place global headers in extradata instead of every keyframe.
     /// </summary>
-    GlobalHeadersInExtradata = ffmpeg.AV_CODEC_FLAG_GLOBAL_HEADER,
+    GlobalHeader = ffmpeg.AV_CODEC_FLAG_GLOBAL_HEADER,
 
     /// <summary>
     /// Use only bit-exact operations (except (I)DCT).
