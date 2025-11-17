@@ -144,6 +144,8 @@ public unsafe class MuxerContext : FormatContext
         using CodecParameters codecParams = codec.GetCodecParameters();
         ((AVResult32)ffmpeg.avcodec_parameters_copy(res->codecpar, codecParams.codecParameters)).ThrowIfError();
         res->time_base = codec.TimeBase;
+        if (OutputFormat.GetValueOrDefault().Flags.HasFlag(FormatFlags.GlobalHeader))
+            codec.Flags |= CodecFlags.GlobalHeader;
         return new AVStream(res);
     }
 
@@ -214,7 +216,16 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 WritePacket(IPacket? packet)
-        => packet == null ? (AVResult32)ffmpeg.av_write_frame(Context, null) : (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
+    {
+        if (packet == null)
+            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null);
+        else
+        {
+            if (packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
+                ffmpeg.av_packet_rescale_ts(packet.Packet, packet.TimeBase, Streams[packet.StreamIndex].TimeBase);
+            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
+        }
+    }
 
     /// <summary>
     /// Writes a frame to the output media file.
@@ -222,8 +233,7 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     [Obsolete("Renamed to WritePacket")]
-    public AVResult32 WriteFrame(IPacket? packet)
-        => packet == null ? (AVResult32)ffmpeg.av_write_frame(Context, null) : (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
+    public AVResult32 WriteFrame(IPacket? packet) => WritePacket(packet);
 
     /// <summary>
     /// Writes an interleaved frame to the output media file.
@@ -231,7 +241,16 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     public AVResult32 WritePacketInterleaved(IPacket? packet)
-        => packet == null ? (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null) : (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
+    {
+        if (packet == null)
+            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null);
+        else
+        {
+            if (packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
+                ffmpeg.av_packet_rescale_ts(packet.Packet, packet.TimeBase, Streams[packet.StreamIndex].TimeBase);
+            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
+        }
+    }
 
     /// <summary>
     /// Writes an interleaved frame to the output media file.
@@ -239,9 +258,7 @@ public unsafe class MuxerContext : FormatContext
     /// <param name="packet">The packet to write. If <see langword="null"/>, writes a null packet.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
     [Obsolete("Renamed to WritePacketInterleaved")]
-    public AVResult32 WriteFrameInterleaved(IPacket? packet)
-        => packet == null ? (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null) : (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
-
+    public AVResult32 WriteFrameInterleaved(IPacket? packet) => WritePacketInterleaved(packet);
     #endregion
 
     public AVResult32 WriteTrailer()
