@@ -146,6 +146,19 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     public AVResult32 Convert(AVFrame src, AVFrame dst) => AutoGen.ffmpeg.sws_scale_frame(context, dst.Frame, src.Frame); // <0 on error
 
     /// <summary>
+    /// Converts the source <see cref="AVFrame"/> to the destination <see cref="AVFrame"/> using the current scaling context.
+    /// </summary>
+    /// <param name="src">The source frame to be converted.</param>
+    /// <param name="dst">The destination frame where the converted data will be stored.</param>
+    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
+    /// <seealso cref="Convert(AVFrame, Image)"/>
+    public static AVResult32 Convert(AVFrame src, AVFrame dst, SwsAlgorithm algorithm)
+    {
+        using SwsContext context = new(src.Width,src.Height,src.PixelFormat,dst.Width,dst.Height,dst.PixelFormat,algorithm);
+        return context.Convert(src, dst);
+    }
+
+    /// <summary>
     /// Converts the source <see cref="AVFrame"/> to the destination <see cref="Image"/> using the current scaling context.
     /// </summary>
     /// <param name="src">The source frame to be converted.</param>
