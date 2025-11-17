@@ -1,4 +1,4 @@
-﻿using FFmpeg.Unmanaged;
+﻿using FFmpeg.Unsafe;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Audio;

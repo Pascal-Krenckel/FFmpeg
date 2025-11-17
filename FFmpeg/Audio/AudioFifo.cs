@@ -330,8 +330,8 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[2];
         int samples = Math.Min(left.Length, right.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
         return Format.IsPlanar() ? WritePlanarToPlanar(ptrs, samples) : WritePlanarToPacked(ptrs, samples);
     }
@@ -393,9 +393,9 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[3];
         int samples = Math.Min(ch1.Length, Math.Min(ch2.Length, ch3.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -458,10 +458,10 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[4];
         int samples = Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -520,11 +520,11 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)), ch5.Length)
                       / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -586,12 +586,12 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(ch5.Length, ch6.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -656,13 +656,13 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(Math.Min(ch5.Length, ch6.Length), ch7.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -732,14 +732,14 @@ public unsafe class AudioFifo : IDisposable
                                Math.Min(Math.Min(ch5.Length, ch6.Length), Math.Min(ch7.Length, ch8.Length)))
                                / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -815,15 +815,15 @@ public unsafe class AudioFifo : IDisposable
                                                 Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
-        ptrs[8] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[8] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
 
         return Format.IsPlanar()
             ? WritePlanarToPlanar(ptrs, samples)
@@ -1475,8 +1475,8 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[2];
         int samples = Math.Min(left.Length, right.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
         return Format.IsPlanar() ? ReadPlanarToPlanar(ptrs, samples) : ReadPackedToPlanar(ptrs, samples);
     }
@@ -1503,9 +1503,9 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[3];
         int samples = Math.Min(ch1.Length, Math.Min(ch2.Length, ch3.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1529,10 +1529,10 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[4];
         int samples = Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1583,11 +1583,11 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)), ch5.Length)
                                / Format.GetBytesPerSample(), int.MaxValue);
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1641,12 +1641,12 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(ch5.Length, ch6.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1703,13 +1703,13 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(Math.Min(ch5.Length, ch6.Length), ch7.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1771,14 +1771,14 @@ public unsafe class AudioFifo : IDisposable
                                Math.Min(Math.Min(ch5.Length, ch6.Length), Math.Min(ch7.Length, ch8.Length)))
                                / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -1844,15 +1844,15 @@ public unsafe class AudioFifo : IDisposable
                                                  Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
-        ptrs[8] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[8] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
 
         return Format.IsPlanar()
             ? ReadPlanarToPlanar(ptrs, samples)
@@ -2430,8 +2430,8 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[2];
         int samples = Math.Min(left.Length, right.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
         return Format.IsPlanar() ? PeekPlanarToPlanar(ptrs, samples) : PeekPackedToPlanar(ptrs, samples);
     }
@@ -2458,9 +2458,9 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[3];
         int samples = Math.Min(ch1.Length, Math.Min(ch2.Length, ch3.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2484,10 +2484,10 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[4];
         int samples = Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2538,11 +2538,11 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)), ch5.Length)
                                / Format.GetBytesPerSample(), int.MaxValue);
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2596,12 +2596,12 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(ch5.Length, ch6.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2658,13 +2658,13 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(Math.Min(ch5.Length, ch6.Length), ch7.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2726,14 +2726,14 @@ public unsafe class AudioFifo : IDisposable
                                Math.Min(Math.Min(ch5.Length, ch6.Length), Math.Min(ch7.Length, ch8.Length)))
                                / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -2799,15 +2799,15 @@ public unsafe class AudioFifo : IDisposable
                                                  Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
-        ptrs[8] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[8] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples)
@@ -3400,8 +3400,8 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[2];
         int samples = Math.Min(left.Length, right.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3452,9 +3452,9 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[3];
         int samples = Math.Min(ch1.Length, Math.Min(ch2.Length, ch3.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3508,10 +3508,10 @@ public unsafe class AudioFifo : IDisposable
         byte** ptrs = stackalloc byte*[4];
         int samples = Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3570,11 +3570,11 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)), ch5.Length)
                                / Format.GetBytesPerSample(), int.MaxValue);
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3618,12 +3618,12 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(ch5.Length, ch6.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3690,13 +3690,13 @@ public unsafe class AudioFifo : IDisposable
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(Math.Min(ch5.Length, ch6.Length), ch7.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3766,14 +3766,14 @@ public unsafe class AudioFifo : IDisposable
                                Math.Min(Math.Min(ch5.Length, ch6.Length), Math.Min(ch7.Length, ch8.Length)))
                                / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)
@@ -3847,15 +3847,15 @@ public unsafe class AudioFifo : IDisposable
                                                  Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
-        ptrs[8] = (byte*)Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
+        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
+        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
+        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        ptrs[8] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
 
         return Format.IsPlanar()
             ? PeekPlanarToPlanar(ptrs, samples, offset)

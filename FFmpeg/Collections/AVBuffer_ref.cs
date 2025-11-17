@@ -1,4 +1,4 @@
-﻿using FFmpeg.Unmanaged;
+﻿using FFmpeg.Unsafe;
 
 namespace FFmpeg.Collections;
 /// <summary>

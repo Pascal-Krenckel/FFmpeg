@@ -1,7 +1,7 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
-using FFmpeg.Unmanaged;
+using FFmpeg.Unsafe;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 using AVFrame = FFmpeg.Utils.AVFrame;

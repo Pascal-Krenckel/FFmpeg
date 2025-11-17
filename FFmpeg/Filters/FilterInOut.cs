@@ -1,5 +1,5 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.Unmanaged;
+using FFmpeg.Unsafe;
 using System.Collections;
 using System.Runtime.InteropServices;
 

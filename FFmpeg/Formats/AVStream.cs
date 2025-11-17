@@ -1,6 +1,6 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
-using FFmpeg.Unmanaged;
+using FFmpeg.Unsafe;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;

@@ -1,6 +1,6 @@
 ﻿using FFmpeg.Collections;
 using FFmpeg.IO;
-using FFmpeg.Unmanaged;
+using FFmpeg.Unsafe;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
