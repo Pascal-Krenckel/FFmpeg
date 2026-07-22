@@ -55,6 +55,7 @@ public class MediaSource : IDisposable
                     codecContexts[i].SetCodecParameters(Streams[i].CodecParameters);
                     _ = codecContexts[i].SetHWDeviceType(hwType);
                     codecContexts[i].PacketTimeBase = Streams[i].TimeBase;
+                    codecContexts[i].TimeBase = Streams[i].TimeBase;
                     if (codecContexts[i].CodecType == MediaType.Video)
                         codecContexts[i].FrameRate = FormatContext.GuessFrameRate(Streams[i], null);
                 }
