@@ -110,9 +110,23 @@ public enum ColorTransferCharacteristic : int
     /// </summary>
     ARIB_STD_B67 = AutoGen._AVColorTransferCharacteristic.AVCOL_TRC_ARIB_STD_B67,
 
+
+
     /// <summary>
     /// Not part of ABI, represents the number of transfer characteristic options available.
     /// </summary>
-    __COUNT__ = AutoGen._AVColorTransferCharacteristic.AVCOL_TRC_NB
+    __COUNT__ = AutoGen._AVColorTransferCharacteristic.AVCOL_TRC_NB,
+    /// <summary>
+    /// Not part of the ABI.
+    /// </summary>
+    __AVCOL_TRC_EXT_BASE = 256,
+    /// <summary>
+    /// Not part of the ABI.
+    /// </summary>
+    __AVCOL_TRC_V_LOG = 256,
+    /// <summary>
+    /// Not part of the ABI.
+    /// </summary>
+    __AVCOL_TRC_EXT_NB = 257
 }
 

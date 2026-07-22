@@ -817,6 +817,9 @@ public enum PixelFormat : int
     /// <summary>Special codec pixel format</summary>
     OHCODEC = AutoGen._AVPixelFormat.AV_PIX_FMT_OHCODEC,
 
+    /// <inheritdoc cref="AutoGen._AVPixelFormat.AV_PIX_FMT_CUARRAY"/>
+    CU_ARRAY = AutoGen._AVPixelFormat.AV_PIX_FMT_CUARRAY,
+
     /// <summary>Number of pixel formats, DO NOT USE THIS if you want to link with shared libav* because the number of formats might differ between versions</summary>
     __COUNT__ = AutoGen._AVPixelFormat.AV_PIX_FMT_NB,
 }

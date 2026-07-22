@@ -91,5 +91,18 @@ public enum ColorPrimaries : int
     /// <summary>
     /// Not part of ABI, and represents the number of color primary options available.
     /// </summary>
-    __COUNT__ = AutoGen._AVColorPrimaries.AVCOL_PRI_NB
+    __COUNT__ = AutoGen._AVColorPrimaries.AVCOL_PRI_NB,
+
+    /// <summary>
+    /// Not part of the ABI
+    /// </summary>
+    __PRI_EXT_BASE = AutoGen._AVColorPrimaries.AVCOL_PRI_EXT_BASE,
+    /// <summary>
+    /// Not part of the ABI
+    /// </summary> 
+    __PRI_V_GAMUT = AutoGen._AVColorPrimaries.AVCOL_PRI_V_GAMUT,
+    /// <summary>
+    /// Not part of the ABI
+    /// </summary>
+    __PRI_EXT_COUNT = AutoGen._AVColorPrimaries.AVCOL_PRI_EXT_NB,
 }
