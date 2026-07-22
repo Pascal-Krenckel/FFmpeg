@@ -13,7 +13,7 @@ public static class FFmpegLoader
     /// <param name="throwIfFunctionNotFound">Whether an exception should be thrown when calling one of the functions couldn't be loaded.</param>
     /// <example>
     /// The following code searches AppContext.BaseDirectory/(ffmpeg/(win-x64|linux-arm32...)) and %PATH% <c>Initialize();</c>
-    /// The following code specifies to different dirs <c>Initialize("dir1;dir2")</c>
+    /// The following code specifies different dirs <c>Initialize("dir1;dir2")</c>
     /// </example>
 
     public static void Initialize(string? dir = null, bool throwIfFunctionNotFound = true)
