@@ -45,8 +45,9 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		</None>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 		<PackageReference Include="System.IO.Pipelines" Version="10.0.10" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 		<PackageReference Include="System.Security.Permissions" Version="10.0.10" />
-		<PackageReference Include="FFmpegDotNet._AutoGen" Version="[8,9)" />
+		<PackageReference Include="FFmpegDotNet._AutoGen" Version="[8.1.2,8.2)" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
 		</Using>
