@@ -23,7 +23,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Occurs when FFmpeg produces a log message.
+    /// Occurs when FFmpeg produces a log message. All callbacks must be thread-safe.
     /// </summary>
     /// <remarks>
     /// If no handlers are registered, FFmpeg's default logging callback is used.
