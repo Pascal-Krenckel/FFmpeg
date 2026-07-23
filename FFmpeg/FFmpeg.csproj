@@ -7,7 +7,7 @@
 		<LangVersion>Latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild Condition=" $(Configuration) == 'Release' ">true</GeneratePackageOnBuild>
 		<Title>FFmpeg</Title>
 		<Authors>Pascal Krenckel</Authors>
 		<Description>A .NET wrapper library for FFmpeg using FFmpeg.AutoGen. This library provides a managed interface for FFmpeg's raw C API by wrapping around the unsafe pointers and structs provided by FFmpeg.AutoGen. It offers a higher-level, object-oriented approach to access and manipulate FFmpeg's core functionality, making it easier to integrate FFmpeg into .NET applications.
@@ -51,7 +51,8 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<PackageReference Include="System.IO.Pipelines" Version="10.0.10" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 		<PackageReference Include="System.Security.Permissions" Version="10.0.10" />
-		<PackageReference Include="FFmpegDotNet._AutoGen" Version="[8.1.2,8.2)" />
+		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[8.1.2.1,8.2)" />
+		<ProjectReference Condition=" $(Configuration) == 'Debug' " Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
 		</Using>
