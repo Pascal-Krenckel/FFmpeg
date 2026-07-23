@@ -2,6 +2,7 @@ using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
 using FFmpeg.Formats;
 using FFmpeg.Images;
+using FFmpeg.Logging;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -71,6 +72,12 @@ public class EnumTest
     {
         TestEnum<CodecID, _AVCodecID>();
 
+    }
+
+    [TestMethod]
+    public void TestClassCategory()
+    {
+        TestEnum<ClassCategory, _AVClassCategory>();
     }
 
     [TestMethod]
