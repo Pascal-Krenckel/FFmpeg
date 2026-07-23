@@ -41,6 +41,17 @@ public static class Logger
     /// </remarks>
     public static bool IncludePrefix { get; set; } = true;
 
+    /// <summary>
+    /// Gets or sets whether FFmpeg's default logging callback is invoked in addition to
+    /// <see cref="MessageLogged"/> handlers.
+    /// </summary>
+    /// <remarks>
+    /// When enabled, log messages are forwarded to both the registered managed event
+    /// handlers and FFmpeg's default logger. When disabled, registering a
+    /// <see cref="MessageLogged"/> handler replaces FFmpeg's default logging output.
+    /// </remarks>
+    public static bool UseDefaultLogger { get; set; } = false;
+
     private static unsafe void LogCallback(
         void* avcl,
         int logLevel,
@@ -55,6 +66,8 @@ public static class Logger
             ffmpeg.av_log_default_callback(avcl, logLevel, format, arguments);
             return;
         }
+        if (UseDefaultLogger)
+            ffmpeg.av_log_default_callback(avcl, logLevel, format, arguments);
 
         int printPrefix = IncludePrefix ? 1 : 0;
 
