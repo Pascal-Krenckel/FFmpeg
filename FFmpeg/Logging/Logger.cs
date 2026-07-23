@@ -30,7 +30,7 @@ public static class Logger
     /// Messages include the formatting applied by FFmpeg and may contain a trailing
     /// newline character.
     /// </remarks>
-    public static event LogMessageEventHandler? MessageLogged;
+    public static event LogMessageEventHandler? LogMessageReceived;
 
     /// <summary>
     /// Gets or sets whether FFmpeg log prefixes are included in messages.
@@ -43,12 +43,12 @@ public static class Logger
 
     /// <summary>
     /// Gets or sets whether FFmpeg's default logging callback is invoked in addition to
-    /// <see cref="MessageLogged"/> handlers.
+    /// <see cref="LogMessageReceived"/> handlers.
     /// </summary>
     /// <remarks>
     /// When enabled, log messages are forwarded to both the registered managed event
     /// handlers and FFmpeg's default logger. When disabled, registering a
-    /// <see cref="MessageLogged"/> handler replaces FFmpeg's default logging output.
+    /// <see cref="LogMessageReceived"/> handler replaces FFmpeg's default logging output.
     /// </remarks>
     public static bool UseDefaultLogger { get; set; } = false;
 
@@ -61,7 +61,7 @@ public static class Logger
         if (logLevel > (int)Level)
             return;
 
-        if (MessageLogged == null)
+        if (LogMessageReceived == null)
         {
             ffmpeg.av_log_default_callback(avcl, logLevel, format, arguments);
             return;
@@ -102,7 +102,7 @@ public static class Logger
             ClassCategory category =
                 (ClassCategory)ffmpeg.av_default_get_category(avcl);
 
-            MessageLogged?.Invoke(
+            LogMessageReceived?.Invoke(
                 message,
                 (LogLevel)logLevel,
                 category,
@@ -110,7 +110,7 @@ public static class Logger
         }
         else
         {
-            MessageLogged?.Invoke(
+            LogMessageReceived?.Invoke(
                 message,
                 (LogLevel)logLevel,
                 ClassCategory.None,
