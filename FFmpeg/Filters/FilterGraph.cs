@@ -1,4 +1,5 @@
 ﻿using FFmpeg.AutoGen;
+using FFmpeg.Logging;
 using FFmpeg.Options;
 using FFmpeg.Unsafe;
 using FFmpeg.Utils;
@@ -9,10 +10,13 @@ namespace FFmpeg.Filters;
 /// <summary>
 /// Represents an FFmpeg filter graph, which contains multiple filter contexts and manages their connections.
 /// </summary>
-public sealed unsafe class FilterGraph : IDisposable, IAVPointer<_AVFilterGraph>
+public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointer<_AVFilterGraph>
 {
+
     internal AutoGen._AVFilterGraph* graph;
-    unsafe _AVFilterGraph* IAVPointer<_AVFilterGraph>.Pointer => graph;
+    unsafe void* ILoggingContext.AVClassPointer => graph;
+
+    _AVFilterGraph* IAVPointer<_AVFilterGraph>.Pointer => graph;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FilterGraph"/> class using the given FFmpeg filter graph.

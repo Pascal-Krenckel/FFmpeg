@@ -1,6 +1,7 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.Collections;
 using FFmpeg.Images;
+using FFmpeg.Logging;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
 
@@ -13,12 +14,14 @@ namespace FFmpeg.Options;
 /// This class provides methods for retrieving and modifying various options on AV-option-enabled classes, 
 /// facilitating interaction with their private data through the <see cref="av_opt_*"/> functions.
 /// </remarks>
-public abstract unsafe class OptionQueryableBase : IOptionQueryable
+public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingContext
 {
     /// <summary>
     /// Abstract base class that provides access to a pointer for AVOptions retrieval.
     /// </summary>
     protected abstract void* Pointer { get; }
+
+    void* ILoggingContext.AVClassPointer => Pointer;
 
     /// <summary>
     /// Recursively retrieves AVOptions for a given pointer and adds them to a provided list.
