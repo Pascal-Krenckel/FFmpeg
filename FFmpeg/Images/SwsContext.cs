@@ -106,19 +106,31 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
         ffmpeg.FFALIGN(ffmpeg.av_image_get_linesize((AutoGen._AVPixelFormat)fmt, width, plane), align);
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SwsContext"/> class for scaling and converting images between different dimensions and pixel formats.
+    /// Initializes a new <see cref="SwsContext"/> with a fixed source and destination
+    /// image configuration.
     /// </summary>
-    /// <param name="srcW">The width of the source image in pixels.</param>
-    /// <param name="srcH">The height of the source image in pixels.</param>
+    /// <remarks>
+    /// Use this constructor when converting between image buffers or image planes where
+    /// the source and destination dimensions and pixel formats are known in advance.
+    /// The source and destination properties of the created context are fixed for its
+    /// lifetime and cannot be changed after construction.
+    ///
+    /// If you intend to convert between <see cref="AVFrame"/> instances using
+    /// <see cref="Convert(AVFrame, AVFrame)" />, prefer creating the context with
+    /// <see cref="Allocate"/> instead. An allocated context automatically configures
+    /// itself to match the source and destination frames when scaling.
+    /// </remarks>
+    /// <param name="srcW">The width of the source image, in pixels.</param>
+    /// <param name="srcH">The height of the source image, in pixels.</param>
     /// <param name="srcFormat">The pixel format of the source image.</param>
-    /// <param name="dstW">The width of the destination image in pixels.</param>
-    /// <param name="dstH">The height of the destination image in pixels.</param>
+    /// <param name="dstW">The width of the destination image, in pixels.</param>
+    /// <param name="dstH">The height of the destination image, in pixels.</param>
     /// <param name="dstFormat">The pixel format of the destination image.</param>
-    /// <param name="algorithm">The scaling algorithm to use during the conversion.</param>
+    /// <param name="algorithm">The scaling algorithm and associated parameters to use.</param>
     public SwsContext(int srcW, int srcH, PixelFormat srcFormat, int dstW, int dstH, PixelFormat dstFormat, SwsAlgorithm algorithm)
     {
         double* @params = stackalloc double[] { algorithm.Param1, algorithm.Param2 };
-
+        
         context = ffmpeg.sws_getContext(
             srcW, srcH,
             (AutoGen._AVPixelFormat)srcFormat,
@@ -134,6 +146,29 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
         DestinationFormat = dstFormat;
         Algorithm = algorithm;
     }
+    private SwsContext() => context = ffmpeg.sws_alloc_context();
+
+    /// <summary>
+    /// Allocates an unconfigured <see cref="SwsContext"/>.
+    /// </summary>
+    /// <remarks>
+    /// This is the preferred way to create a context when using
+    /// <see cref="Convert(AVFrame, AVFrame)"/>. The context is automatically configured from
+    /// the source and destination frames each time it is used, updating the source
+    /// and destination properties as needed.
+    ///
+    /// Unlike <see cref="SwsContext(int, int, PixelFormat, int, int, PixelFormat, SwsAlgorithm)"/>,
+    /// the image dimensions and pixel formats are not fixed when the context is
+    /// created.
+    ///
+    /// The scaling algorithm cannot currently be specified when using this creation
+    /// method.
+    /// </remarks>
+    /// <returns>
+    /// A new, unconfigured <see cref="SwsContext"/> suitable for frame-to-frame
+    /// scaling.
+    /// </returns>
+    public static SwsContext Allocate() => new();
 
 
     /// <summary>
@@ -154,7 +189,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// <seealso cref="Convert(AVFrame, Image)"/>
     public static AVResult32 Convert(AVFrame src, AVFrame dst, SwsAlgorithm algorithm)
     {
-        using SwsContext context = new(src.Width,src.Height,src.PixelFormat,dst.Width,dst.Height,dst.PixelFormat,algorithm);
+        using SwsContext context = new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, algorithm);
         return context.Convert(src, dst);
     }
 
@@ -314,6 +349,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
             : (AVResult32)AutoGen.ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
 
+
     /// <summary>
     /// Converts the source buffer, described by <see cref="ImageInfo"/>, to the destination buffer, also described by <see cref="ImageInfo"/>.
     /// </summary>
@@ -348,27 +384,115 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// Converts the source and destination planes using the current scaling context.
     /// </summary>
     /// <param name="srcPlanes">The source planes as an array of pointers.</param>
-    /// <param name="srcLineSize">The line size of each source plane.</param>
+    /// <param name="srcStride">The line size of each source plane.</param>
     /// <param name="dstPlanes">The destination planes as an array of pointers.</param>
-    /// <param name="dstLineSize">The line size of each destination plane.</param>
+    /// <param name="dstStride">The line size of each destination plane.</param>
     /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
     /// <seealso cref="Convert(Span{byte}, AVFrame, int)"/>
-    public AVResult32 Convert(ReadOnlySpan<IntPtr> srcPlanes, ReadOnlySpan<int> srcLineSize, ReadOnlySpan<IntPtr> dstPlanes, ReadOnlySpan<int> dstLineSize)
+    public AVResult32 Convert(ReadOnlySpan<IntPtr> srcPlanes, ReadOnlySpan<int> srcStride, ReadOnlySpan<IntPtr> dstPlanes, ReadOnlySpan<int> dstStride)
     {
         int srcPlaneCount = ffmpeg.av_pix_fmt_count_planes((AutoGen._AVPixelFormat)SourceFormat);
         int dstPlaneCount = ffmpeg.av_pix_fmt_count_planes((AutoGen._AVPixelFormat)DestinationFormat);
         if (srcPlanes.Length < srcPlaneCount)
             throw new ArgumentException();
-        if (srcLineSize.Length < srcPlaneCount)
+        if (srcStride.Length < srcPlaneCount)
             throw new ArgumentException();
         if (dstPlanes.Length < dstPlaneCount)
             throw new ArgumentException();
-        if (dstLineSize.Length < dstPlaneCount)
+        if (dstStride.Length < dstPlaneCount)
             throw new ArgumentException();
 
-        fixed (void* srcPlanes_ptr = srcPlanes, srcLineSize_ptr = srcLineSize, dstPlanes_ptr = dstPlanes, dstLineSize_ptr = dstLineSize)
+        fixed (void* srcPlanes_ptr = srcPlanes, srcLineSize_ptr = srcStride, dstPlanes_ptr = dstPlanes, dstLineSize_ptr = dstStride)
             return AutoGen.ffmpeg.sws_scale(context, (byte**)srcPlanes_ptr, (int*)srcLineSize_ptr, 0, SourceHeight, (byte**)dstPlanes_ptr, (int*)dstLineSize_ptr);
     }
+
+
+    /// <summary>
+    /// Converts pixel data from the specified source <see cref="AVFrame"/> into the destination image planes
+    /// using the current scaling context.
+    /// </summary>
+    /// <param name="frame">
+    /// The source frame. Its pixel format must match <see cref="SourceFormat"/>.
+    /// </param>
+    /// <param name="dstPlanes">
+    /// The destination image planes as an array of pointers. The array must contain at least as many
+    /// elements as required by <see cref="DestinationFormat"/>.
+    /// </param>
+    /// <param name="dstStride">
+    /// The line size, in bytes, for each destination plane.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.
+    /// </returns>
+    /// <seealso cref="Convert(ReadOnlySpan{IntPtr}, ReadOnlySpan{int}, AVFrame)"/>
+    /// <seealso cref="Convert(Span{byte}, AVFrame, int)"/>
+    public AVResult32 Convert(AVFrame frame, ReadOnlySpan<IntPtr> dstPlanes, ReadOnlySpan<int> dstStride)
+    {
+        int dstPlaneCount = ffmpeg.av_pix_fmt_count_planes((AutoGen._AVPixelFormat)DestinationFormat);
+        if (frame.PixelFormat != SourceFormat)
+            throw new ArgumentException();
+        if (dstPlanes.Length < dstPlaneCount)
+            throw new ArgumentException();
+        if (dstStride.Length < dstPlaneCount)
+            throw new ArgumentException();
+
+        var srcLineSize_ptr = &frame.Frame->linesize;
+        var srcPlanes_ptr = frame.Frame->extended_data;
+
+        fixed (void* dstPlanes_ptr = dstPlanes, dstLineSize_ptr = dstStride)
+            return AutoGen.ffmpeg.sws_scale(
+                context,
+                srcPlanes_ptr,
+                (int*)srcLineSize_ptr,
+                0,
+                SourceHeight,
+                (byte**)dstPlanes_ptr,
+                (int*)dstLineSize_ptr);
+    }
+
+    /// <summary>
+    /// Converts pixel data from the specified source image planes into the destination <see cref="AVFrame"/>
+    /// using the current scaling context.
+    /// </summary>
+    /// <param name="srcPlanes">
+    /// The source image planes as an array of pointers. The array must contain at least as many
+    /// elements as required by <see cref="SourceFormat"/>.
+    /// </param>
+    /// <param name="srcStride">
+    /// The line size, in bytes, for each source plane.
+    /// </param>
+    /// <param name="frame">
+    /// The destination frame. Its pixel format must match <see cref="DestinationFormat"/>.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.
+    /// </returns>
+    /// <seealso cref="Convert(AVFrame, ReadOnlySpan{IntPtr}, ReadOnlySpan{int})"/>
+    public AVResult32 Convert(ReadOnlySpan<IntPtr> srcPlanes, ReadOnlySpan<int> srcStride, AVFrame frame)
+    {
+        int srcPlaneCount = ffmpeg.av_pix_fmt_count_planes((AutoGen._AVPixelFormat)SourceFormat);
+
+        if (frame.PixelFormat != DestinationFormat)
+            throw new ArgumentException();
+        if (srcPlanes.Length < srcPlaneCount)
+            throw new ArgumentException();
+        if (srcStride.Length < srcPlaneCount)
+            throw new ArgumentException();
+
+        var dstLineSize_ptr = &frame.Frame->linesize;
+        var dstPlanes_ptr = frame.Frame->extended_data;
+
+        fixed (void* srcPlanes_ptr = srcPlanes, srcLineSize_ptr = srcStride)
+            return AutoGen.ffmpeg.sws_scale(
+                context,
+                (byte**)srcPlanes_ptr,
+                (int*)srcLineSize_ptr,
+                0,
+                SourceHeight,
+                dstPlanes_ptr,
+                (int*)dstLineSize_ptr);
+    }
+
     /// <summary>
     /// Converts the source buffer, described by <see cref="ImageInfo"/>, to the destination buffer, also described by <see cref="ImageInfo"/>, using the specified scaling algorithm.
     /// </summary>
@@ -469,7 +593,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     ~SwsContext() => Dispose();
 
     public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, Codecs.CodecContext dst)
-    {
+    {     
         if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
