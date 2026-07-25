@@ -1,3 +1,4 @@
+using FFmpeg.Audio;
 using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
 using FFmpeg.Formats;
@@ -72,6 +73,12 @@ public class EnumTest
     {
         TestEnum<CodecID, _AVCodecID>();
 
+    }
+
+    [TestMethod]
+    public void TestAudioChannel()
+    {
+        TestEnum<AudioChannel, _AVChannel>();
     }
 
     [TestMethod]
