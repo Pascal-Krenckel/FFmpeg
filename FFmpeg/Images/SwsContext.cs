@@ -27,6 +27,10 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// </summary>
     public PixelFormat SourceFormat { get; }
 
+
+    /// <summary>
+    /// Gets the sws algorithm used for scaling
+    /// </summary>
     public SwsAlgorithm Algorithm { get; }
 
     /// <summary>
@@ -264,20 +268,20 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// <seealso cref="Convert(AVFrame, Image)"/>
     public AVResult32 Convert(Image src, AVFrame dst)
     {
-        if (dst.Height != SourceHeight || dst.Width != SourceWidth || (PixelFormat)dst.Format != SourceFormat)
+        if (dst.Height != DestinationHeight || dst.Width != DestinationWidth || (PixelFormat)dst.Format != DestinationFormat)
             return AVResult32.InvalidArgument;
-        if (src.Height != DestinationHeight || src.Width != DestinationWidth || src.PixelFormat != DestinationFormat)
+        if (src.Height != SourceHeight || src.Width != SourceWidth || src.PixelFormat != SourceFormat)
             return AVResult32.InvalidArgument;
-        AutoGen.byte_ptrArray8 dstData = dst.Frame->data;
-        AutoGen.int_array8 dstLines = dst.Frame->linesize;
+       
         Span<IntPtr> srcData = stackalloc IntPtr[4];
         Span<int> srcLines = stackalloc int[4];
 
         _ = src.GetPlanes(srcData, srcLines);
         if (!dst.HasBuffer)
             dst.CreateBuffer().ThrowIfError();
-        else
-            dst.MakeWriteable().ThrowIfError();
+        AutoGen.byte_ptrArray8 dstData = dst.Frame->data;
+        AutoGen.int_array8 dstLines = dst.Frame->linesize;
+
         fixed (void* dstDataPtr = srcData, dstLinesPtr = srcLines)
             return ffmpeg.sws_scale(context, (byte**)dstDataPtr, (int*)dstLinesPtr, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
@@ -292,10 +296,9 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// <seealso cref="Convert(AVFrame, IntPtr, int)"/>
     public AVResult32 Convert(IntPtr src, AVFrame dst, int srcAlign = 1)
     {
-        if (dst.Height != SourceHeight || dst.Width != SourceWidth || (PixelFormat)dst.Format != SourceFormat)
+        if (dst.Height != DestinationHeight || dst.Width != DestinationWidth || (PixelFormat)dst.Format != DestinationFormat)
             return AVResult32.InvalidArgument;
-        AutoGen.byte_ptrArray8 dstData = dst.Frame->data;
-        AutoGen.int_array8 dstLines = dst.LineSize;
+       
         AutoGen.byte_ptrArray4 srcData = new();
         AutoGen.int_array4 srcLines = new();
         AVResult32 res = ffmpeg.av_image_fill_arrays(ref srcData, ref srcLines, (byte*)src, (AutoGen._AVPixelFormat)SourceFormat, SourceWidth, SourceHeight, srcAlign);
@@ -303,8 +306,8 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
             return res;
         if (!dst.HasBuffer)
             dst.CreateBuffer().ThrowIfError();
-        else
-            dst.MakeWriteable().ThrowIfError();
+        AutoGen.byte_ptrArray8 dstData = dst.Frame->data;
+        AutoGen.int_array8 dstLines = dst.LineSize;
         return ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
 
@@ -478,6 +481,11 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
             throw new ArgumentException();
         if (srcStride.Length < srcPlaneCount)
             throw new ArgumentException();
+        if (frame.Height != DestinationHeight || frame.Width != DestinationWidth || (PixelFormat)frame.Format != DestinationFormat)
+            return AVResult32.InvalidArgument;
+
+        if (!frame.HasBuffer)
+            frame.CreateBuffer().ThrowIfError();
 
         var dstLineSize_ptr = &frame.Frame->linesize;
         var dstPlanes_ptr = frame.Frame->extended_data;
