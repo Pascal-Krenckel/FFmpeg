@@ -95,3 +95,22 @@ These abstractions are ideal for typical scenarios such as:
 - Extracting frames from a video  
 - Re-encoding media to a different format  
 - Streaming or piping decoded frames to other components  
+
+## 📚 Examples
+
+Complete sample applications are available in the **FFmpeg.Examples** repository.
+
+The examples range from low-level usage of the FFmpeg API to the higher-level abstractions provided by FFmpegDotNet, making them a good starting point for learning the library.
+
+Examples include:
+
+- Opening media files with `DemuxerContext`
+- Decoding audio and video streams
+- Reading and writing media containers
+- Audio resampling with `SwrContext`
+- Image scaling and pixel format conversion with `SwsContext`
+- Using `MediaSource` for simplified decoding
+
+The examples are intentionally kept small and focused, with each project demonstrating a single feature or workflow.
+
+➡️ **Source Code:** https://github.com/Pascal-Krenckel/FFmpeg.Examples
