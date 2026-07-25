@@ -24,17 +24,17 @@ The **FFmpeg (.NET Wrapper)** library provides a **high-level, managed abstracti
 - [FFmpeg binaries](https://ffmpeg.org/download.html) available in your system path  
 
 #### Supported FFmpeg Versions
-FFmpeg 8.0.0 "Huffman"
+FFmpeg 8.1.2 "Hoare"
 
 | Library       | Version |
 |----------------|----------|
-| avcodec        | 62       |
-| avdevice       | 62       |
-| avfilter       | 11       |
-| avformat       | 62       |
-| avutil         | 60       |
-| swresample     | 6        |
-| swscale        | 9        |
+| avcodec        | 63       |
+| avdevice       | 63       |
+| avfilter       | 12       |
+| avformat       | 63       |
+| avutil         | 61       |
+| swresample     | 7        |
+| swscale        | 10        |
  
 ### 2. Loading FFmpeg Libraries
 
