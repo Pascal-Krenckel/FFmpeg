@@ -8,6 +8,8 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GeneratePackageOnBuild Condition=" $(Configuration) == 'Release' ">true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile Condition=" $(Configuration) == 'Release' ">True</GenerateDocumentationFile>
+
 		<Title>FFmpeg</Title>
 		<Authors>Pascal Krenckel</Authors>
 		<Description>A .NET wrapper library for FFmpeg using FFmpeg.AutoGen. This library provides a managed interface for FFmpeg's raw C API by wrapping around the unsafe pointers and structs provided by FFmpeg.AutoGen. It offers a higher-level, object-oriented approach to access and manipulate FFmpeg's core functionality, making it easier to integrate FFmpeg into .NET applications.
