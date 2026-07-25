@@ -1,6 +1,8 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Utils;
+using System.Buffers;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace FFmpeg.Audio;
 
@@ -62,13 +64,15 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     public bool Valid => ffmpeg.av_channel_layout_check(ptr) != 0;
 
     /// <summary>
-    /// Creates a copy of the current <see cref="ChannelLayout_ref"/> instance.
+    /// Creates a deep copy of the referenced channel layout.
     /// </summary>
-    /// <returns>A new <see cref="ChannelLayout"/> that is a copy of the current instance.</returns>
-    /// <exception cref="Exception">Thrown if an error occurs during copying.</exception>
+    /// <returns>
+    /// A new <see cref="ChannelLayout"/> containing a copy of the referenced
+    /// channel layout.
+    /// </returns>
     /// <remarks>
-    /// This method uses <see cref="ffmpeg.av_channel_layout_copy"/> to create a new <see cref="ChannelLayout"/> instance
-    /// from the current layout.
+    /// The returned <see cref="ChannelLayout"/> owns its copied layout
+    /// independently of this reference.
     /// </remarks>
     public ChannelLayout Copy()
     {
@@ -90,8 +94,7 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </remarks>
     public void CopyFrom(ChannelLayout layout)
     {
-        if (IsReadOnly)
-            throw new NotSupportedException();
+        CheckReadOnly();
         AutoGen._AVChannelLayout l = layout.Layout;
         ((AVResult32)ffmpeg.av_channel_layout_copy(ptr, &l)).ThrowIfError();
     }
@@ -171,19 +174,30 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     }
 
     /// <summary>
-    /// Initializes the channel layout with a custom number of channels.
+    /// Initializes the current channel layout as a custom layout with the specified number of channels.
     /// </summary>
-    /// <param name="nb">The number of channels to initialize with.</param>
-    /// <exception cref="NotSupportedException">Thrown if the current instance is read-only.</exception>
-    /// <exception cref="OutOfMemoryException">Thrown if there is insufficient memory to perform the operation.</exception>
-    /// <exception cref="ArgumentException">Thrown if the <paramref name="nb"/> parameter is invalid.</exception>
+    /// <param name="nb">
+    /// The number of channels in the custom layout.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// The current instance is read-only.
+    /// </exception>
+    /// <exception cref="OutOfMemoryException">
+    /// FFmpeg could not allocate memory for the custom channel map.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// <paramref name="nb"/> is not a valid channel count.
+    /// </exception>
     /// <remarks>
-    /// This method uses <see cref="ffmpeg.av_channel_layout_custom_init"/> to set the number of channels for the current channel layout.
+    /// This method initializes the referenced channel layout as a custom layout by
+    /// calling <see cref="ffmpeg.av_channel_layout_custom_init"/>.
+    /// Any previous layout is released before the new layout is created.
     /// </remarks>
     public readonly void Init(int nb)
     {
         if (IsReadOnly)
             throw new NotSupportedException();
+        ffmpeg.av_channel_layout_uninit(ptr);
         int res = ffmpeg.av_channel_layout_custom_init(ptr, nb);
         if (res == AVResult32.OutOfMemory)
             throw new OutOfMemoryException();
@@ -192,20 +206,41 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     }
 
     /// <summary>
-    /// Returns a string that describes the current channel layout.
+    /// Returns a human-readable description of the current channel layout.
     /// </summary>
-    /// <returns>A string that represents the current channel layout, or an empty string if an error occurs.</returns>
+    /// <returns>
+    /// A string describing the channel layout, or an empty string if the description
+    /// could not be generated.
+    /// </returns>
     /// <remarks>
-    /// This method uses <see cref="ffmpeg.av_channel_layout_describe"/> to get a description of the current channel layout.
+    /// This method uses <see cref="ffmpeg.av_channel_layout_describe"/> to format the
+    /// channel layout using FFmpeg's standard textual representation, such as
+    /// <c>"stereo"</c>, <c>"5.1"</c>, or a custom channel list.
     /// </remarks>
-    public override readonly string ToString()
+    public override string ToString()
     {
+
+        // Get the required size for the layout description.
         AVResult32 res = ffmpeg.av_channel_layout_describe(ptr, null, 0);
+
+
         if (res.IsError)
             return string.Empty;
-        byte* chars = stackalloc byte[res];
-        res = ffmpeg.av_channel_layout_describe(ptr, chars, (ulong)(int)res);
-        return res.IsError ? string.Empty : Marshal.PtrToStringUTF8((nint)chars);
+
+        byte[]? buffer = null;
+        if (res > 256)
+            buffer = ArrayPool<byte>.Shared.Rent(res);
+        Span<byte> data = buffer ?? (stackalloc byte[res]);
+
+        // Allocate a buffer for the description and retrieve it.
+        fixed (byte* chars = data)
+        {
+            res = ffmpeg.av_channel_layout_describe(ptr, chars, (ulong)(int)res);
+            string ret = res.IsError ? string.Empty : Encoding.UTF8.GetString(chars, res - 1);
+            if (buffer != null)
+                ArrayPool<byte>.Shared.Return(buffer);
+            return ret;
+        }
     }
 
 
@@ -219,14 +254,19 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     public override int GetHashCode() => HashCode.Combine(Channels);
 
     /// <summary>
-    /// Retrieves a <see cref="ChannelLayout"/> object that is a copy of the referenced channel layout.
+    /// Retrieves a copy of the referenced channel layout.
     /// </summary>
-    /// <returns>A new <see cref="ChannelLayout"/> instance representing the referenced channel layout.</returns>
-    /// <exception cref="OutOfMemoryException">Thrown if there is insufficient memory to perform the operation.</exception>
+    /// <returns>
+    /// A new <see cref="ChannelLayout"/> containing a copy of the referenced layout.
+    /// </returns>
+    /// <exception cref="OutOfMemoryException">
+    /// FFmpeg could not allocate memory while copying the channel layout.
+    /// </exception>
     /// <remarks>
-    /// This method uses <see cref="ffmpeg.av_channel_layout_copy"/> to create a copy of the current channel layout and return it as a <see cref="ChannelLayout"/> instance.
+    /// The returned <see cref="ChannelLayout"/> is independent of the referenced
+    /// layout. Modifying either instance does not affect the other.
     /// </remarks>
-    public ChannelLayout? GetReferencedObject()
+    public readonly ChannelLayout GetReferencedObject()
     {
         AutoGen._AVChannelLayout layout;
         AVResult32 res = ffmpeg.av_channel_layout_copy(&layout, ptr);
@@ -235,18 +275,202 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     }
 
     /// <summary>
-    /// Sets the referenced channel layout to a new <see cref="ChannelLayout"/> object.
+    /// Determines whether the current channel layout contains the specified audio channel.
     /// </summary>
-    /// <param name="obj">The <see cref="ChannelLayout"/> instance to set as the referenced object, or <see langword="null"/> to uninitialize the current layout.</param>
-    /// <exception cref="NotSupportedException">Thrown if the current instance is read-only and cannot be modified. This occurs when <see cref="IsReadOnly"/> is <see langword="true"/>.</exception>
-    /// <exception cref="OutOfMemoryException">Thrown if there is insufficient memory to perform the operation. This can occur if <see cref="ffmpeg.av_channel_layout_copy"/> fails due to memory constraints.</exception>
+    /// <param name="channelId">
+    /// The channel identifier to search for.
+    /// </param>
+    /// <returns>
+    /// <see langword="true"/> if the specified channel is present in the layout;
+    /// otherwise, <see langword="false"/>.
+    /// </returns>
     /// <remarks>
-    /// This method uses <see cref="ffmpeg.av_channel_layout_copy"/> to copy the layout from the specified <see cref="ChannelLayout"/> instance. If <paramref name="obj"/> is <see langword="null"/>, it uses <see cref="ffmpeg.av_channel_layout_uninit"/> to uninitialize the current layout. 
+    /// For custom channel layouts, this method searches the custom channel map.
+    /// For native and ambisonic layouts, it checks whether the corresponding channel
+    /// bit is set in the layout's channel mask.
+    /// </remarks>
+    public bool HasChannel(AudioChannel channelId)
+    {
+        if (Channels <= 0)
+            return false;
+        
+        if (ptr->order == _AVChannelOrder.AV_CHANNEL_ORDER_CUSTOM)
+        {
+            if (ptr->u.map == null)
+                return false;
+
+            for (int i = 0; i < Channels; i++)
+            {
+                if (ptr->u.map[i].id == (_AVChannel)channelId)
+                    return true;
+            }
+
+            return false;
+        }
+
+        return ((ptr->u.mask >> (int)channelId) & 1) != 0;
+    }
+
+    /// <summary>
+    /// Gets the UTF-8 name assigned to a channel in a custom channel layout.
+    /// </summary>
+    /// <param name="channelNumber">
+    /// The zero-based index of the channel.
+    /// </param>
+    /// <returns>
+    /// The UTF-8 channel name.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// The channel layout is not a custom channel layout.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="channelNumber"/> is outside the valid channel range.
+    /// </exception>
+    /// <remarks>
+    /// Custom channel names are stored in a fixed-size 16-byte UTF-8 buffer.
+    /// </remarks>
+    public string GetCustomChannelName(int channelNumber)
+    {
+        ValidateCustomChannel(channelNumber);
+
+        Span<byte> bytes = new((byte*)&ptr->u.map[channelNumber].name, 16);
+        int length = bytes.IndexOf((byte)0);
+        if (length < 0)
+            length = bytes.Length;
+
+        return Encoding.UTF8.GetString(bytes[..length]);
+    }
+
+    /// <summary>
+    /// Sets the UTF-8 name assigned to a channel in a custom channel layout.
+    /// </summary>
+    /// <param name="channelNumber">
+    /// The zero-based index of the channel.
+    /// </param>
+    /// <param name="name">
+    /// The UTF-8 channel name. The encoded name must not exceed 16 bytes.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// The current instance is read-only.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// The channel layout is not a custom channel layout.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="channelNumber"/> is outside the valid channel range.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// The UTF-8 encoded channel name exceeds the 16-byte storage limit.
+    /// </exception>
+    /// <remarks>
+    /// Any unused bytes in the fixed-size channel name buffer are cleared.
+    /// </remarks>
+    public void SetCustomChannelName(int channelNumber, ReadOnlySpan<char> name)
+    {
+        ValidateCustomChannel(channelNumber);
+        CheckReadOnly();
+
+        Span<byte> bytes = new((byte*)&ptr->u.map[channelNumber].name, 16);
+        bytes.Clear();
+
+        if (Encoding.UTF8.GetByteCount(name) > bytes.Length)
+            throw new ArgumentException("The UTF-8 encoded channel name must not exceed 16 bytes.", nameof(name));
+
+        _ = Encoding.UTF8.GetBytes(name, bytes);
+    }
+
+    /// <summary>
+    /// Gets the channel identifier assigned to a channel in a custom channel layout.
+    /// </summary>
+    /// <param name="channelNumber">
+    /// The zero-based index of the channel.
+    /// </param>
+    /// <returns>
+    /// The channel identifier assigned to the specified channel.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    /// The channel layout is not a custom channel layout.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="channelNumber"/> is outside the valid channel range.
+    /// </exception>
+    public AudioChannel GetCustomChannelId(int channelNumber)
+    {
+        ValidateCustomChannel(channelNumber);
+        return (AudioChannel)ptr->u.map[channelNumber].id;
+    }
+
+    /// <summary>
+    /// Sets the channel identifier assigned to a channel in a custom channel layout.
+    /// </summary>
+    /// <param name="channelNumber">
+    /// The zero-based index of the channel.
+    /// </param>
+    /// <param name="channel">
+    /// The channel identifier to assign.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// The current instance is read-only.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// The channel layout is not a custom channel layout.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="channelNumber"/> is outside the valid channel range.
+    /// </exception>
+    public void SetCustomChannelId(int channelNumber, AudioChannel channel)
+    {
+        ValidateCustomChannel(channelNumber);
+        CheckReadOnly();
+        ptr->u.map[channelNumber].id = (_AVChannel)channel;
+    }
+
+    /// <summary>
+    /// Validates that the specified channel index refers to a channel in a custom
+    /// channel layout.
+    /// </summary>
+    /// <param name="channelNumber">
+    /// The zero-based channel index.
+    /// </param>
+    /// <exception cref="InvalidOperationException">
+    /// The channel layout is not a custom channel layout.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="channelNumber"/> is outside the valid channel range.
+    /// </exception>
+    private void ValidateCustomChannel(int channelNumber)
+    {
+
+        if (ptr->order != _AVChannelOrder.AV_CHANNEL_ORDER_CUSTOM)
+            throw new InvalidOperationException("The channel layout is not a custom channel layout.");
+
+        if ((uint)channelNumber >= (uint)Channels)
+            throw new ArgumentOutOfRangeException(nameof(channelNumber));
+    }
+
+    /// <summary>
+    /// Sets the referenced channel layout.
+    /// </summary>
+    /// <param name="obj">
+    /// The channel layout to copy into the referenced layout, or
+    /// <see langword="null"/> to uninitialize the current layout.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// The current instance is read-only.
+    /// </exception>
+    /// <exception cref="OutOfMemoryException">
+    /// FFmpeg could not allocate memory while copying the channel layout.
+    /// </exception>
+    /// <remarks>
+    /// If <paramref name="obj"/> is <see langword="null"/>, the referenced layout
+    /// is uninitialized using <see cref="ffmpeg.av_channel_layout_uninit"/>.
+    /// Otherwise, the layout is replaced with a copy of
+    /// <paramref name="obj"/> using
+    /// <see cref="ffmpeg.av_channel_layout_copy"/>.
     /// </remarks>
     public void SetReferencedObject(ChannelLayout? obj)
     {
-        if (IsReadOnly)
-            throw new NotSupportedException("The current instance is read-only and cannot be modified.");
+        CheckReadOnly();
         if (obj == null)
         {
             ffmpeg.av_channel_layout_uninit(ptr);
@@ -257,6 +481,12 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
             AVResult32 res = ffmpeg.av_channel_layout_copy(ptr, &layout);
             res.ThrowIfError(); // Throws OutOfMemoryException or other exceptions based on the result
         }
+    }
+
+    private void CheckReadOnly()
+    {
+        if (IsReadOnly)
+            throw new NotSupportedException("The current instance is read-only and cannot be modified.");
     }
 
 
