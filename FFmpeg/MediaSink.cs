@@ -391,21 +391,13 @@ public class MediaSink : IDisposable
     {
         if (trailerWritten)
             return 0;
-        foreach (var context in CodecContexts.Where(c => c != null && c.CodecType is MediaType.Video or MediaType.Audio))
+        for (int i = 0; i < CodecContexts.Count; i++)
         {
-            AVResult32 error = context!.DrainEncoder();
-            if (error == AVResult32.EndOfFile)
-                continue;
-            if (error.IsError)
-                return error;
-            while (!(error = context.ReceivePacket(packet)).IsError)
-            {
-                error = FormatContext.WritePacket(packet);
-                if (error.IsError)
-                    return error;
-            }
-            if (error != AVResult32.EndOfFile)
-                return error;
+            CodecContext? context = CodecContexts[i];
+            if (context == null || context.CodecType is not MediaType.Audio and not MediaType.Video) continue;
+            AVResult32 error = WriteFrame(null!, i);
+            if (error.IsError && error != AVResult32.EndOfFile)
+                return error;            
         }
         AVResult32 result = FormatContext.WriteTrailer();
         if (!result.IsError)
