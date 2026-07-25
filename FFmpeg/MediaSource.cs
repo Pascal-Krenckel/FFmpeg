@@ -232,7 +232,7 @@ public class MediaSource : IDisposable
                     res = AVResult32.TryAgain;
                     continue;
                 }
-                _ = CodecContexts[packet.StreamIndex].SendPacket(packet);
+                CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();                
             }
             res = CodecContexts[packet.StreamIndex].ReceiveFrame(frame);
         } while (res == AVResult32.TryAgain);
