@@ -5,6 +5,31 @@ using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;
 
+/// <summary>
+/// Represents an output media container used for muxing encoded packets into
+/// a media file or stream.
+/// </summary>
+/// <remarks>
+/// <para>
+/// <see cref="MuxerContext"/> is the output counterpart to
+/// <see cref="DemuxerContext"/>. It provides functionality for creating media
+/// containers, adding streams, writing container headers, writing encoded
+/// packets, and finalizing the output.
+/// </para>
+/// <para>
+/// A muxer can write to a file, a <see cref="Stream"/>, or a custom
+/// <see cref="IOContext"/>. After opening a muxer, one or more streams should
+/// be added and configured before calling <see cref="WriteHeader"/>. Encoded
+/// packets can then be written using <see cref="WritePacket(IPacket?)"/> or
+/// <see cref="WritePacketInterleaved(IPacket?)"/>. Once all packets have been
+/// written, <see cref="WriteTrailer"/> should be called to finalize the
+/// container.
+/// </para>
+/// <para>
+/// This class wraps FFmpeg's <c>AVFormatContext</c> for output operations and
+/// corresponds to the FFmpeg muxing API.
+/// </para>
+/// </remarks>
 public unsafe class MuxerContext : FormatContext
 {
 
@@ -100,16 +125,24 @@ public unsafe class MuxerContext : FormatContext
     #endregion
 
     /// <summary>
-    /// Adds a new stream to the media file.
+    /// Adds a new stream to the output container.
     /// </summary>
-    /// <param name="codec">The codec to be used for the new stream.</param>
+    /// <param name="codec">
+    /// The codec associated with the new stream.
+    /// </param>
     /// <returns>
-    /// An instance of <see cref="AVStream"/> representing the newly added stream.
+    /// An <see cref="AVStream"/> representing the newly created stream.
     /// </returns>
+    /// <exception cref="OutOfMemoryException">
+    /// Thrown if FFmpeg fails to allocate the new stream.
+    /// </exception>
     /// <remarks>
-    /// When demuxing, this method is called by the demuxer in <see langword="read_header"/>. If the <see langword="AVFMTCTX_NOHEADER"/> flag is set in <see cref="AutoGen._AVFormatContext.ctx_flags"/>, it may also be called in <see langword="read_packet"/>.
-    /// When muxing, this method should be called by the user before <see cref="ffmpeg.avformat_write_header"/>.
-    /// The user is required to call <see cref="ffmpeg.avformat_free_context"/> to clean up the allocation made by <see cref="ffmpeg.avformat_new_stream"/>.
+    /// This method creates a new <see cref="AVStream"/> using
+    /// <see cref="ffmpeg.avformat_new_stream"/> and initializes its codec
+    /// identifier and media type.
+    ///
+    /// The returned stream should be configured before calling
+    /// <see cref="WriteHeader()"/>.
     /// </remarks>
     public AVStream AddStream(Codecs.Codec codec)
     {
@@ -122,6 +155,28 @@ public unsafe class MuxerContext : FormatContext
         return new AVStream(res);
     }
 
+    /// <summary>
+    /// Adds a new stream to the output container and copies codec parameters
+    /// from an existing source.
+    /// </summary>
+    /// <param name="codec">
+    /// The codec associated with the new stream.
+    /// </param>
+    /// <param name="codecParameters">
+    /// The codec parameters to copy into the stream.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVStream"/> representing the newly created stream.
+    /// </returns>
+    /// <exception cref="OutOfMemoryException">
+    /// Thrown if FFmpeg fails to allocate the new stream.
+    /// </exception>
+    /// <remarks>
+    /// The codec parameters are copied using
+    /// <see cref="ffmpeg.avcodec_parameters_copy"/>. This overload is useful
+    /// when remuxing existing streams or when codec parameters are already
+    /// available.
+    /// </remarks>
     public AVStream AddStream(Codec codec, ICodecParameters codecParameters)
     {
         AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, codec.codec);
@@ -133,6 +188,27 @@ public unsafe class MuxerContext : FormatContext
         ((AVResult32)ffmpeg.avcodec_parameters_copy(res->codecpar, codecParameters.Parameters)).ThrowIfError();
         return new AVStream(res);
     }
+
+    /// <summary>
+    /// Adds a new stream to the output container using an existing codec context.
+    /// </summary>
+    /// <param name="codec">
+    /// The codec context whose parameters are copied to the new stream.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVStream"/> representing the newly created stream.
+    /// </returns>
+    /// <exception cref="OutOfMemoryException">
+    /// Thrown if FFmpeg fails to allocate the new stream.
+    /// </exception>
+    /// <remarks>
+    /// The codec parameters and time base are copied from the supplied
+    /// <see cref="CodecContext"/>.
+    ///
+    /// If the selected output format requires global headers, the
+    /// <see cref="CodecFlags.GlobalHeader"/> flag is automatically enabled on
+    /// the codec context before encoding begins.
+    /// </remarks>
     public AVStream AddStream(CodecContext codec)
     {
         AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, codec.Codec.codec);
@@ -218,12 +294,12 @@ public unsafe class MuxerContext : FormatContext
     public AVResult32 WritePacket(IPacket? packet)
     {
         if (packet == null)
-            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null);
+            return (AVResult32)ffmpeg.av_write_frame(Context, null);
         else
         {
             if (packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
                 ffmpeg.av_packet_rescale_ts(packet.Packet, packet.TimeBase, Streams[packet.StreamIndex].TimeBase);
-            return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
+            return (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
         }
     }
 
@@ -261,14 +337,40 @@ public unsafe class MuxerContext : FormatContext
     public AVResult32 WriteFrameInterleaved(IPacket? packet) => WritePacketInterleaved(packet);
     #endregion
 
+    /// <summary>
+    /// Writes the trailer of the output media file and finalizes the container.
+    /// </summary>
+    /// <returns>
+    /// An <see cref="AVResult32"/> indicating the result of the operation.
+    /// </returns>
+    /// <remarks>
+    /// This method must be called after all packets have been written. It writes
+    /// any remaining buffered data, updates container metadata such as indexes,
+    /// and releases internal muxing state maintained by FFmpeg.
+    /// </remarks>
     public AVResult32 WriteTrailer()
     {
         AVResult32 res = ffmpeg.av_write_trailer(Context);
         return res;
     }
 
+    /// <summary>
+    /// Flushes the underlying output I/O context, if one exists.
+    /// </summary>
+    /// <remarks>
+    /// This forces any buffered data to be written to the underlying stream or
+    /// file. It does not finalize the media container; call
+    /// <see cref="WriteTrailer"/> to properly finish the output.
+    /// </remarks>
     public void Flush() => ioContext?.Flush();
 
-    public override string ToString() => OutputFormat?.LongName ?? "Unkown";
+    /// <summary>
+    /// Returns the long name of the output format.
+    /// </summary>
+    /// <returns>
+    /// The long name of the output format, or <c>"Unknown"</c> if no output
+    /// format is associated with this context.
+    /// </returns>
+    public override string ToString() => OutputFormat?.LongName ?? "Unknown";
 
 }
