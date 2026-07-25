@@ -11,7 +11,7 @@ namespace FFmpeg.Codecs;
 public unsafe struct CodecParameters_ref : ICodecParameters
 {
     internal AutoGen._AVCodecParameters* codecParameters;
-    AutoGen._AVCodecParameters* ICodecParameters.Parameters => codecParameters;
+    readonly AutoGen._AVCodecParameters* ICodecParameters.Parameters => codecParameters;
 
 
 
@@ -34,7 +34,7 @@ public unsafe struct CodecParameters_ref : ICodecParameters
     /// <param name="other">The other <see cref="CodecParameters"/> instance to copy from.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="other"/> is null.</exception>
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
-    public void CopyFrom(ICodecParameters other)
+    public readonly void CopyFrom(ICodecParameters other)
     {
         if (other == null)
             throw new ArgumentNullException(nameof(other));
@@ -52,7 +52,7 @@ public unsafe struct CodecParameters_ref : ICodecParameters
     /// <param name="other">The <see cref="CodecContext"/> instance to copy from.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="other"/> is null.</exception>
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
-    public void CopyFrom(CodecContext other)
+    public readonly void CopyFrom(CodecContext other)
     {
         if (other == null)
             throw new ArgumentNullException(nameof(other));
@@ -70,7 +70,7 @@ public unsafe struct CodecParameters_ref : ICodecParameters
     /// <param name="other">The <see cref="CodecContext"/> instance to copy to.</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="other"/> is null.</exception>
     /// <exception cref="ApplicationException">Thrown if copying fails.</exception>
-    public void CopyTo(CodecContext other)
+    public readonly void CopyTo(CodecContext other)
     {
         if (other == null)
             throw new ArgumentNullException(nameof(other));
@@ -309,16 +309,11 @@ public unsafe struct CodecParameters_ref : ICodecParameters
     public int Channels => codecParameters->ch_layout.nb_channels;
 
     /// <inheritdoc/>
-    public ChannelLayout ChannelLayout
+    public ChannelLayout_ref ChannelLayout
     {
-        get => new(codecParameters->ch_layout, false);
-        set
-        {
-            _AVChannelLayout layout = value.layout;
-            ffmpeg.av_channel_layout_uninit(&codecParameters->ch_layout);
-            _ = ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
-        }
+        get => new(&codecParameters->ch_layout,false); 
     }
+    ChannelLayout ICodecParameters.ChannelLayout { get => ChannelLayout.GetReferencedObject(); set => ChannelLayout.SetReferencedObject(value); }
 
 
     /// <inheritdoc/>

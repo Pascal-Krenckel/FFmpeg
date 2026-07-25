@@ -408,14 +408,9 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     public int Channels => codecParameters->ch_layout.nb_channels;
 
     /// <inheritdoc/>
-    public ChannelLayout ChannelLayout
+    public ChannelLayout_ref ChannelLayout
     {
-        get => new(codecParameters->ch_layout, false);
-        set
-        {
-            _AVChannelLayout layout = value.layout;
-            ffmpeg.av_channel_layout_uninit(&codecParameters->ch_layout);
-            _ = ffmpeg.av_channel_layout_copy(&codecParameters->ch_layout, &layout);
-        }
+        get => new(&codecParameters->ch_layout,false);
     }
+    ChannelLayout ICodecParameters.ChannelLayout { get => ChannelLayout.GetReferencedObject(); set => ChannelLayout.SetReferencedObject(value); }
 }
