@@ -41,7 +41,8 @@ FFmpeg 8.1.2 "Hoare"
 The **`FFmpeg`** namespace includes a static helper class named `FFmpegLoader`, which is responsible for locating and initializing the native FFmpeg libraries before use.  
 If `Initialize()` is not called manually, the library will automatically attempt to locate the FFmpeg binaries using a predefined search order.
 
-Use the nuget package [FFmpegDotNet.bin.winx64](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/) to include the lgpl ffmpeg libraries automatically.
+Use the NuGet package [FFmpegDotNet.bin.winx64](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/) to automatically include the LGPL FFmpeg binaries.
+
 #### Default Search Order
 
 When `FFmpegLoader.Initialize()` is called with no parameters, the following directories are searched in order:
