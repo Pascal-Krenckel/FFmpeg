@@ -79,6 +79,13 @@ public unsafe class MuxerContext : FormatContext
     /// Opens an output media file for writing.
     /// </summary>
     /// <param name="filename">The filename for the output media.</param>
+    /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
+    public static MuxerContext? Open(string filename) => Open(filename, null);
+
+    /// <summary>
+    /// Opens an output media file for writing. For Output fomats of the no file type, filename may be null.
+    /// </summary>
+    /// <param name="filename">The filename for the output media.</param>
     /// <param name="format">The output format.</param>
     /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
     public static MuxerContext? Open(string? filename, OutputFormat? format)
@@ -103,6 +110,7 @@ public unsafe class MuxerContext : FormatContext
     /// </summary>
     /// <param name="stream">The stream for output media.</param>
     /// <param name="format">The output format.</param>
+    /// <param name="closeOnDispose">If true, when the MuxerContext is closed the stream will be too.</param>
     /// <returns>An instance of <see cref="MuxerContext"/> or <see langword="null"/> if the operation fails.</returns>
     public static MuxerContext? Open(Stream stream, OutputFormat format, bool closeOnDispose = true)
         => Open(new IOStreamContext(stream, closeOnDispose), format);
