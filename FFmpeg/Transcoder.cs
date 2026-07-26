@@ -43,7 +43,7 @@ public sealed class Transcoder : IDisposable
     {
         Source = source;
         Sink = sink;
-        Sink.Metatdata.Init(source.Metadata);
+        Sink.Metadata.Init(source.Metadata);
     }
 
     private Transcoder(DemuxerContext source, MuxerContext sink) : this(new MediaSource(source), new(sink))
