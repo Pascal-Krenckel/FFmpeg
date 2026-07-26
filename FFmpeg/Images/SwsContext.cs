@@ -7,7 +7,7 @@ namespace FFmpeg.Images;
 /// Represents a context for scaling and converting image frames between different sizes and pixel formats.
 /// This class provides an interface for configuring the source and destination image properties and performing the conversion using the FFmpeg scaling library.
 /// </summary>
-public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable, IAVPointer<_SwsContext>
+public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDisposable, IAVPointer<_SwsContext>
 {
     private AutoGen._SwsContext* context;
     unsafe _SwsContext* IAVPointer<_SwsContext>.Pointer => context;
@@ -29,8 +29,12 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
 
 
     /// <summary>
-    /// Gets the sws algorithm used for scaling
+    /// Gets the scaling algorithm used by this context.
     /// </summary>
+    /// <remarks>
+    /// For contexts created with <see cref="Allocate"/>, the algorithm is currently
+    /// fixed to the default algorithm selected during context initialization.
+    /// </remarks>
     public SwsAlgorithm Algorithm { get; }
 
     /// <summary>
@@ -184,18 +188,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     /// <seealso cref="Convert(AVFrame, Image)"/>
     public AVResult32 Convert(AVFrame src, AVFrame dst) => AutoGen.ffmpeg.sws_scale_frame(context, dst.Frame, src.Frame); // <0 on error
 
-    /// <summary>
-    /// Converts the source <see cref="AVFrame"/> to the destination <see cref="AVFrame"/> using the current scaling context.
-    /// </summary>
-    /// <param name="src">The source frame to be converted.</param>
-    /// <param name="dst">The destination frame where the converted data will be stored.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(AVFrame, Image)"/>
-    public static AVResult32 Convert(AVFrame src, AVFrame dst, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, algorithm);
-        return context.Convert(src, dst);
-    }
+
 
     /// <summary>
     /// Converts the source <see cref="AVFrame"/> to the destination <see cref="Image"/> using the current scaling context.
@@ -241,23 +234,6 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
             : (AVResult32)ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
 
-
-    /// <summary>
-    /// Converts the source <see cref="AVFrame"/> to a destination buffer represented as a <see cref="Span{byte}"/>.
-    /// </summary>
-    /// <param name="src">The source frame to be converted.</param>
-    /// <param name="dst">The destination buffer as a <see cref="Span{byte}"/>.</param>
-    /// <param name="dstAlign">Optional memory alignment for the destination buffer, default is 1.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(AVFrame, IntPtr, int)"/>
-    public AVResult32 Convert(AVFrame src, Span<byte> dst, int dstAlign = 1)
-    {
-        int size = GetDestinationBufferSize(dstAlign);
-        if (dst.Length < size)
-            return AVResult32.InvalidArgument;
-        fixed (byte* dstPtr = dst)
-            return Convert(src, (nint)dstPtr, dstAlign);
-    }
 
     /// <summary>
     /// Converts the source <see cref="Image"/> to the destination <see cref="AVFrame"/> using the current scaling context.
@@ -312,23 +288,6 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
     }
 
     /// <summary>
-    /// Converts the source buffer, represented as a <see cref="Span{Byte}"/>, to the destination <see cref="AVFrame"/>.
-    /// </summary>
-    /// <param name="src">The source buffer as a <see cref="Span{Byte}"/>.</param>
-    /// <param name="dst">The destination frame where the converted data will be stored.</param>
-    /// <param name="srcAlign">Optional memory alignment for the source buffer, default is 1.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, AVFrame, int)"/>
-    public AVResult32 Convert(Span<byte> src, AVFrame dst, int srcAlign = 1)
-    {
-        int size = GetSourceBufferSize(srcAlign);
-        if (src.Length < size)
-            return AVResult32.InvalidArgument;
-        fixed (byte* srcPtr = src)
-            return Convert((nint)srcPtr, dst, srcAlign);
-    }
-
-    /// <summary>
     /// Converts the source buffer to the destination buffer, both specified by pointers, with optional alignments for source and destination.
     /// </summary>
     /// <param name="src">Pointer to the source buffer.</param>
@@ -351,38 +310,7 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
             ? res
             : (AVResult32)AutoGen.ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
-
-
-    /// <summary>
-    /// Converts the source buffer, described by <see cref="ImageInfo"/>, to the destination buffer, also described by <see cref="ImageInfo"/>.
-    /// </summary>
-    /// <param name="src">Pointer to the source buffer.</param>
-    /// <param name="srcInfo">The information describing the source image.</param>
-    /// <param name="dst">Pointer to the destination buffer.</param>
-    /// <param name="dstInfo">The information describing the destination image.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, IntPtr, int, int)"/>
-    public AVResult32 Convert(IntPtr src, ImageInfo srcInfo, IntPtr dst, ImageInfo dstInfo) => srcInfo.Format != SourceFormat
-            ? throw new ArgumentException()
-            : srcInfo.Width != SourceWidth
-            ? throw new ArgumentException()
-            : srcInfo.Height != SourceHeight
-            ? throw new ArgumentException()
-            : dstInfo.Format != DestinationFormat
-            ? throw new ArgumentException()
-            : dstInfo.Width != DestinationWidth
-            ? throw new ArgumentException()
-            : dstInfo.Height != DestinationHeight ? throw new ArgumentException() : Convert(src, dst, srcInfo.Alignment, dstInfo.Alignment);
-
-    /// <summary>
-    /// Converts the source <see cref="Image"/> to the destination <see cref="Image"/>.
-    /// </summary>
-    /// <param name="src">The source image to be converted.</param>
-    /// <param name="dst">The destination image where the converted data will be stored.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, ImageInfo, IntPtr, ImageInfo)"/>
-    public AVResult32 Convert(Image src, Image dst) => Convert(src.Data, dst.Data, src.Info.Alignment, dst.Info.Alignment);
-
+        
     /// <summary>
     /// Converts the source and destination planes using the current scaling context.
     /// </summary>
@@ -501,147 +429,21 @@ public sealed unsafe class SwsContext : Options.OptionQueryableBase, IDisposable
                 (int*)dstLineSize_ptr);
     }
 
+    
     /// <summary>
-    /// Converts the source buffer, described by <see cref="ImageInfo"/>, to the destination buffer, also described by <see cref="ImageInfo"/>, using the specified scaling algorithm.
+    /// Releases the unmanaged resources associated with this scaling context.
     /// </summary>
-    /// <param name="src">Pointer to the source buffer.</param>
-    /// <param name="srcInfo">Information describing the source image.</param>
-    /// <param name="dst">Pointer to the destination buffer.</param>
-    /// <param name="dstInfo">Information describing the destination image.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, ImageInfo, IntPtr, ImageInfo)"/>
-    public static AVResult32 Convert(IntPtr src, ImageInfo srcInfo, IntPtr dst, ImageInfo dstInfo, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(srcInfo.Width, srcInfo.Height, srcInfo.Format, dstInfo.Width, dstInfo.Height, dstInfo.Format, algorithm);
-        return context.Convert(src, dst, srcInfo.Alignment, dstInfo.Alignment);
-    }
-
-    /// <summary>
-    /// Converts the source <see cref="Image"/> to the destination <see cref="Image"/> using the specified scaling algorithm.
-    /// </summary>
-    /// <param name="src">The source image to be converted.</param>
-    /// <param name="dst">The destination image where the converted data will be stored.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, ImageInfo, IntPtr, ImageInfo, SwsAlgorithm)"/>
-    public static AVResult32 Convert(Image src, Image dst, SwsAlgorithm algorithm)
-        => Convert(src.Data, src.Info, dst.Data, dst.Info, algorithm);
-
-    /// <summary>
-    /// Converts the source <see cref="AVFrame"/> to the destination <see cref="Image"/> using the specified scaling algorithm.
-    /// </summary>
-    /// <param name="src">The source frame to be converted.</param>
-    /// <param name="dst">The destination image where the converted data will be stored.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(AVFrame, Image, SwsAlgorithm)"/>
-    public static AVResult32 Convert(AVFrame src, Image dst, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(src.Width, src.Height, (PixelFormat)src.Format, dst.Width, dst.Height, dst.PixelFormat, algorithm);
-        return context.Convert(src, dst);
-    }
-
-    /// <summary>
-    /// Converts the source <see cref="Image"/> to the destination <see cref="AVFrame"/> using the specified scaling algorithm.
-    /// </summary>
-    /// <param name="src">The source image to be converted.</param>
-    /// <param name="dst">The destination frame where the converted data will be stored.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(Image, AVFrame, SwsAlgorithm)"/>
-    public static AVResult32 Convert(Image src, AVFrame dst, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, (PixelFormat)dst.Format, algorithm);
-        return context.Convert(src, dst);
-    }
-
-    /// <summary>
-    /// Converts the source <see cref="AVFrame"/> to the destination buffer, described by <see cref="ImageInfo"/>, using the specified scaling algorithm.
-    /// </summary>
-    /// <param name="src">The source frame to be converted.</param>
-    /// <param name="dst">Pointer to the destination buffer.</param>
-    /// <param name="dstInfo">Information describing the destination image.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(AVFrame, IntPtr, ImageInfo, SwsAlgorithm)"/>
-    public static AVResult32 Convert(AVFrame src, IntPtr dst, ImageInfo dstInfo, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(src.Width, src.Height, (PixelFormat)src.Format, dstInfo.Width, dstInfo.Height, dstInfo.Format, algorithm);
-        return context.Convert(src, dst, dstInfo.Alignment);
-    }
-
-    /// <summary>
-    /// Converts the source buffer, described by <see cref="ImageInfo"/>, to the destination <see cref="AVFrame"/> using the specified scaling algorithm.
-    /// </summary>
-    /// <param name="src">Pointer to the source buffer.</param>
-    /// <param name="srcInfo">Information describing the source image.</param>
-    /// <param name="dst">The destination frame where the converted data will be stored.</param>
-    /// <param name="algorithm">The scaling algorithm to use for the conversion.</param>
-    /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
-    /// <seealso cref="Convert(IntPtr, ImageInfo, AVFrame, SwsAlgorithm)"/>
-    public static AVResult32 Convert(IntPtr src, ImageInfo srcInfo, AVFrame dst, SwsAlgorithm algorithm)
-    {
-        using SwsContext context = new(srcInfo.Width, srcInfo.Height, srcInfo.Format, dst.Width, dst.Height, (PixelFormat)dst.Format, algorithm);
-        return context.Convert(src, dst, srcInfo.Alignment);
-    }
-
-    /// <summary>
-    /// Frees the resources used by the <see cref="SwsContext"/> instance.
-    /// </summary>
+    /// <remarks>
+    /// After calling this method, the context can no longer be used for image
+    /// conversion.
+    /// </remarks>
     public void Dispose()
     {
         ffmpeg.sws_freeContext(context);
         context = null;
+        GC.SuppressFinalize(this);
     }
 
-    /// <summary>
-    /// Finalizer that calls the <see cref="Dispose"/> method to ensure resources are cleaned up.
-    /// </summary>
     ~SwsContext() => Dispose();
-
-    public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, Codecs.CodecContext dst)
-    {     
-        if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
-            || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
-        {
-            context?.Dispose();
-            return new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, context?.Algorithm ?? SwsAlgorithm.Bicubic());
-        }
-        return context;
-    }
-
-    public static SwsContext CheckContext(SwsContext? context, AVFrame src, Codecs.CodecContext dst)
-    {
-        if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
-            || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
-        {
-            context?.Dispose();
-            return new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, context?.Algorithm ?? SwsAlgorithm.Bicubic());
-        }
-        return context;
-    }
-
-    public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, AVFrame dst)
-    {
-        if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
-            || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
-        {
-            context?.Dispose();
-            return new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, context?.Algorithm ?? SwsAlgorithm.Bicubic());
-        }
-        return context;
-    }
-
-    public static SwsContext CheckContext(SwsContext? context, AVFrame src, AVFrame dst)
-    {
-        if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
-            || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
-        {
-            context?.Dispose();
-            return new(src.Width, src.Height, src.PixelFormat, dst.Width, dst.Height, dst.PixelFormat, context?.Algorithm ?? SwsAlgorithm.Bicubic());
-        }
-        return context;
-    }
 
 }
