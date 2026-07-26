@@ -30,9 +30,14 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.3</Version>
+		<Version>8.1.2.4</Version>
 		<PackageReleaseNotes>
-			___ 8.1.2.3 ---
+			___ 8.1.2.4 ---
+			BugFix: FormatContext.WritePacket wrote interleaved packets previously.
+			BugFix/full implementation: MediaSink is now fully implemented, some bugs got fixed
+			BugFix: SwsContext copies now into "readonly" AVFrame
+			BugFix: SwsContext does create a Buffer if the frame does not have one. The plane pointers are fetched after the buffer was created
+			--- 8.1.2.3 ---
 			XML Docu no in nuget package
 			Support for custom audio channel layout
 			AudioFifo-Bugfix
