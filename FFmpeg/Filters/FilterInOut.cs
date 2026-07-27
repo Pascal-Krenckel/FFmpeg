@@ -62,6 +62,8 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
     {
         get
         {
+            if (index < 0)
+                throw new IndexOutOfRangeException("Index must be larger than or equal than 0.");
             AutoGen._AVFilterInOut* node = head;
             while (node != null && index-- > 0)
                 node = node->next;
