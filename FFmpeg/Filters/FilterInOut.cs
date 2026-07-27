@@ -63,9 +63,9 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
         get
         {
             AutoGen._AVFilterInOut* node = head;
-            while (node != null && index-- >= 0)
+            while (node != null && index-- > 0)
                 node = node->next;
-            return node == null ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range.") : new FilterInOutEntry(node);
+            return node == null ? throw new IndexOutOfRangeException("Index is out of range.") : new FilterInOutEntry(node);
         }
     }
 
