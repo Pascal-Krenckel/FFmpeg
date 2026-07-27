@@ -85,7 +85,7 @@ public class DecodingTest
         else if (avStream.MediaType == MediaType.Audio)
         {
             Assert.AreEqual(probeStream.SampleRate, avStream.CodecParameters.SampleRate);
-            Assert.AreEqual(ChannelLayout.Parse(probeStream.ChannelLayout), avStream.CodecParameters.ChannelLayout);
+            Assert.AreEqual(ChannelLayout.Parse(probeStream.ChannelLayout), avStream.CodecParameters.ChannelLayout.GetReferencedObject());
             Assert.AreEqual(probeStream.Channels, avStream.CodecParameters.Channels);
             Assert.AreEqual(SampleFormat.Parse(probeStream.SampleFmt), avStream.CodecParameters.SampleFormat);
         }
