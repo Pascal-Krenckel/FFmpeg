@@ -83,7 +83,7 @@ public sealed class Transcoder : IDisposable
         Rational timeBase = bfSink?.BufferSinkTimeBase() ?? InputStreams[sourceIndex].TimeBase;
         PixelFormat pixFmt = bfSink?.BufferSinkPixelFormat() ?? InputCodecs[sourceIndex].PixelFormat;
         ChannelLayout l = null!;
-        if (!(bfSink?.BufferSinkChannelLayout(out l) >= 0))
+        if (!(bfSink?.TryGetBufferSinkChannelLayout(out l) >= 0))
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
         using ChannelLayout layout = l;
         ColorRange colorRange = bfSink?.BufferSinkColorRange() ?? InputCodecs[sourceIndex].ColorRange;
@@ -142,7 +142,7 @@ public sealed class Transcoder : IDisposable
                 {
                     FilterContext fctx = filter.OutputFilters.Single();
                     encoder.SampleRate = fctx.BufferSinkSampleRate();
-                    fctx.BufferSinkChannelLayout(out ChannelLayout? ch).ThrowIfError();
+                    fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch).ThrowIfError();
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
                     encoder.SampleFormat = fctx.BufferSinkSampleFormat();
@@ -223,7 +223,7 @@ public sealed class Transcoder : IDisposable
         start = startTime;
         this.duration = duration;
         Sink.OpenCodecs();
-        Sink.WriteHeader();
+        _ = Sink.WriteHeader();
         Source.Seek(start).ThrowIfError();
         if (PreviewOutputStreamIndex < 0)
             PreviewOutputStreamIndex = Sink.FormatContext.FindBestStream(MediaType.Video);
