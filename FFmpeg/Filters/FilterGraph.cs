@@ -1,4 +1,5 @@
 ﻿using FFmpeg.AutoGen;
+using FFmpeg.Codecs;
 using FFmpeg.Logging;
 using FFmpeg.Options;
 using FFmpeg.Unsafe;
@@ -8,59 +9,73 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.Filters;
 /// <summary>
-/// Represents an FFmpeg filter graph, which contains multiple filter contexts and manages their connections.
+/// Represents a filter graph that contains a collection of connected filters.
 /// </summary>
-public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointer<_AVFilterGraph>
+/// <remarks>
+/// A <see cref="FilterGraph"/> owns the <see cref="FilterContext"/> instances
+/// created within it and manages the links between them. Once configured, the
+/// graph can be used to process audio or video frames.
+/// </remarks>
+public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, IAVPointer<_AVFilterGraph>
 {
-
     internal AutoGen._AVFilterGraph* graph;
     unsafe void* ILoggingContext.AVClassPointer => graph;
 
     _AVFilterGraph* IAVPointer<_AVFilterGraph>.Pointer => graph;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FilterGraph"/> class using the given FFmpeg filter graph.
+    /// Initializes a new instance of the <see cref="FilterGraph"/> class from an
+    /// existing FFmpeg filter graph.
     /// </summary>
+    /// <param name="filterGraph">
+    /// A pointer to the underlying FFmpeg filter graph.
+    /// </param>
     internal FilterGraph(AutoGen._AVFilterGraph* filterGraph) => graph = filterGraph;
 
     /// <summary>
-    /// Allocates and adds a filter to the graph with the given name and filter. The filter is not yet initialized.
+    /// Gets or sets the maximum number of threads used when processing the filter graph.
     /// </summary>
-    public FilterContext? AllocateFilter(string name, Filter filter) => FilterContext.Allocate(name, filter, this);
+    /// <remarks>
+    /// A value of <c>0</c> allows FFmpeg to choose an appropriate number of threads.
+    /// </remarks>
+    public int Threads
+    {
+        get => graph->nb_threads;
+        set => graph->nb_threads = value;
+    }
 
     /// <summary>
-    /// Gets or sets the number of threads used in the filter graph.
-    /// </summary>
-    public int Threads { get => graph->nb_threads; set => graph->nb_threads = value; }
-
-    /// <summary>
-    /// Gets the number of filters currently in the graph.
+    /// Gets the number of filters contained in the graph.
     /// </summary>
     public int Count => (int)graph->nb_filters;
 
     /// <summary>
-    /// Gets the filter context at the specified index.
+    /// Gets the filter at the specified index.
     /// </summary>
-    /// <param name="index">The index of the filter context.</param>
-    public FilterContext this[int index] => index < 0 || index >= Count ? throw new ArgumentOutOfRangeException(nameof(index)) : new(graph->filters[index]);
-
-    /// <summary>
-    /// Allocates a new filter graph.
-    /// </summary>
-    public static FilterGraph Allocate()
-    {
-        AutoGen._AVFilterGraph* graph = ffmpeg.avfilter_graph_alloc();
-        return graph == null ? throw new OutOfMemoryException() : new(graph);
-
-    }
+    /// <param name="index">
+    /// The zero-based index of the filter.
+    /// </param>
+    /// <returns>
+    /// The <see cref="FilterContext"/> at the specified index.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="index"/> is outside the bounds of the graph.
+    /// </exception>
+    public FilterContext this[int index] =>
+        index < 0 || index >= Count
+            ? throw new ArgumentOutOfRangeException(nameof(index))
+            : new(graph->filters[index]);
 
     #region Dispose
 
     private bool disposedValue;
 
     /// <summary>
-    /// Releases the unmanaged resources used by the filter graph and optionally releases the managed resources.
+    /// Releases the unmanaged resources used by the filter graph and optionally releases any managed resources.
     /// </summary>
+    /// <param name="disposing">
+    /// <see langword="true"/> to release managed resources as well; otherwise, <see langword="false"/>.
+    /// </param>
     private void Dispose(bool disposing)
     {
         if (!disposedValue)
@@ -97,31 +112,61 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
     #endregion
 
     /// <summary>
-    /// Links the source filter context to the destination filter context using the specified pads.
+    /// Connects an output pad of one filter to an input pad of another filter.
     /// </summary>
-    /// <param name="src">The source filter context.</param>
-    /// <param name="srcpad">The index of the output pad on the source filter context.</param>
-    /// <param name="dst">The destination filter context.</param>
-    /// <param name="dstpad">The index of the input pad on the destination filter context.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the link operation.</returns>
-    public AVResult32 Link(FilterContext src, int srcpad, FilterContext dst, int dstpad) => ffmpeg.avfilter_link(src.context, (uint)srcpad, dst.context, (uint)dstpad);
+    /// <param name="src">
+    /// The source filter.
+    /// </param>
+    /// <param name="srcpad">
+    /// The zero-based output pad index on <paramref name="src"/>.
+    /// </param>
+    /// <param name="dst">
+    /// The destination filter.
+    /// </param>
+    /// <param name="dstpad">
+    /// The zero-based input pad index on <paramref name="dst"/>.
+    /// </param>
+    /// <returns>
+    /// The result of the link operation.
+    /// </returns>
+    public AVResult32 Link(FilterContext src, int srcpad, FilterContext dst, int dstpad) =>
+        ffmpeg.avfilter_link(src.context, (uint)srcpad, dst.context, (uint)dstpad);
 
     /// <summary>
-    /// Links the source filter context to the destination filter context using the first pads.
+    /// Connects the first output pad of one filter to the first input pad of another filter.
     /// </summary>
-    /// <param name="src">The source filter context.</param>
-    /// <param name="dst">The destination filter context.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the link operation.</returns>
-    public AVResult32 Link(FilterContext src, FilterContext dst) => ffmpeg.avfilter_link(src.context, 0, dst.context, 0);
-
+    /// <param name="src">
+    /// The source filter.
+    /// </param>
+    /// <param name="dst">
+    /// The destination filter.
+    /// </param>
+    /// <returns>
+    /// The result of the link operation.
+    /// </returns>
+    public AVResult32 Link(FilterContext src, FilterContext dst) =>
+        ffmpeg.avfilter_link(src.context, 0, dst.context, 0);
 
     /// <summary>
-    /// Parses the given filter graph description and links input and output filter contexts.
+    /// Parses a filter graph description and connects it to the specified input and output filters.
     /// </summary>
-    /// <param name="input">The input filters.</param>
-    /// <param name="filters">The filter graph description.</param>
-    /// <param name="output">The output filters.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the parse operation.</returns>
+    /// <param name="input">
+    /// The input filter list, or <see langword="null"/> if no explicit input list should be supplied.
+    /// </param>
+    /// <param name="filters">
+    /// The filter graph description.
+    /// </param>
+    /// <param name="output">
+    /// The output filter list, or <see langword="null"/> if no explicit output list should be supplied.
+    /// </param>
+    /// <returns>
+    /// The result of the parse operation.
+    /// </returns>
+    /// <remarks>
+    /// This method wraps FFmpeg's <c>avfilter_graph_parse_ptr()</c>. Any unconnected
+    /// inputs or outputs remaining after parsing are written back into the supplied
+    /// <see cref="FilterInOutList"/> instances.
+    /// </remarks>
     public AVResult32 ParseAndLink(FilterInOutList? input, string filters, FilterInOutList? output)
     {
         AutoGen._AVFilterInOut* @in = input != null ? input.Head : null;
@@ -137,12 +182,23 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
     }
 
     /// <summary>
-    /// Parses the given filter graph description and links input and output filter contexts.
+    /// Parses a filter graph description and returns any unconnected inputs and outputs.
     /// </summary>
-    /// <param name="input">The input filters.</param>
-    /// <param name="filters">The filter graph description.</param>
-    /// <param name="output">The output filters.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the parse operation.</returns>
+    /// <param name="input">
+    /// When this method returns, contains the unconnected input filters.
+    /// </param>
+    /// <param name="filters">
+    /// The filter graph description.
+    /// </param>
+    /// <param name="output">
+    /// When this method returns, contains the unconnected output filters.
+    /// </param>
+    /// <returns>
+    /// The result of the parse operation.
+    /// </returns>
+    /// <remarks>
+    /// This method wraps FFmpeg's <c>avfilter_graph_parse_ptr()</c>.
+    /// </remarks>
     public AVResult32 ParseAndLink(out FilterInOutList input, string filters, out FilterInOutList output)
     {
         input = [];
@@ -156,14 +212,24 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
         return res;
     }
 
-
     /// <summary>
-    /// Parses the given filter graph description but doesn't link input and output filter contexts.
+    /// Parses a filter graph description without linking it to existing filters.
     /// </summary>
-    /// <param name="inputs">The input filters.</param>
-    /// <param name="filters">The filter graph description.</param>
-    /// <param name="outputs">The output filters.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the parse operation.</returns>
+    /// <param name="inputs">
+    /// When this method returns, contains the unconnected input filters.
+    /// </param>
+    /// <param name="filters">
+    /// The filter graph description.
+    /// </param>
+    /// <param name="outputs">
+    /// When this method returns, contains the unconnected output filters.
+    /// </param>
+    /// <returns>
+    /// The result of the parse operation.
+    /// </returns>
+    /// <remarks>
+    /// This method wraps FFmpeg's <c>avfilter_graph_parse2()</c>.
+    /// </remarks>
     public AVResult32 Parse(out FilterInOutList inputs, string filters, out FilterInOutList outputs)
     {
         inputs = [];
@@ -177,138 +243,27 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
         return res;
     }
 
-    public static AVResult32 TryCreate(string filter, out FilterGraph? graph)
-    {
-        graph = Allocate();
-        AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(graph.graph, filter, null, null, null);
-        if (res.IsError)
-        {
-            graph.Dispose();
-            graph = null;
-            return res;
-        }
-        return res;
-    }
-
-    public static FilterGraph Create(string filter) => TryCreate(filter, out FilterGraph? graph) switch
-    {
-        AVResult32 res when res.IsError => throw new FFmpeg.Exceptions.FFmpegException(res),
-        _ => graph!,
-    };
-
-    public static AVResult32 TryCreate(out FilterInOutList? inputs, string filter, out FilterInOutList? outputs, out FilterGraph? filterGraph)
-    {
-        filterGraph = Allocate();
-        _AVFilterInOut* @in;
-        _AVFilterInOut* @out;
-        AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(filterGraph.graph, filter, &@in, &@out, null);
-        if (res.IsError)
-        {
-            ffmpeg.avfilter_inout_free(&@in);
-            ffmpeg.avfilter_inout_free(&@out);
-            filterGraph.Dispose();
-            inputs = null;
-            outputs = null;
-        }
-        else
-        {
-            inputs = new FilterInOutList(@in);
-            outputs = new FilterInOutList(@out);
-        }
-        return res;
-
-    }
-
-    public static FilterGraph Create(out FilterInOutList? inputs, string filter, out FilterInOutList? outputs)
-    {
-        AVResult32 res = TryCreate(out inputs, filter, out outputs, out FilterGraph? graph);
-        return res.IsError ? throw new FFmpeg.Exceptions.FFmpegException(res) : graph!;
-    }
-
-    // Init and Init, string may be null if no arguments are needed
-    // If you want to that arguments later use CreateFilter(name,filter) instead
-    public FilterContext CreateFilter(string name, Filter filter, string? args)
-    {
-        _AVFilterContext* ctx = null;
-        AVResult32 res = ffmpeg.avfilter_graph_create_filter(&ctx, filter.filter, name, args, null, graph);
-        res.ThrowIfError();
-        return new(ctx);
-    }
-
-    // Init and Init
-    public FilterContext CreateFilter(string name, Filter filter, Collections.AVDictionary? args)
-    {
-        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
-        if (args == null)
-        {
-            ((AVResult32)ffmpeg.avfilter_init_dict(ctx, null)).ThrowIfError();
-        }
-        else
-        {
-            _AVDictionary* dictionary = args.dictionary;
-            AVResult32 res = ffmpeg.avfilter_init_dict(ctx, &dictionary);
-            args.dictionary = dictionary; // Update the dictionary in case it was modified
-            res.ThrowIfError();
-        }
-        return new(ctx);
-
-    }
-
-    public FilterContext CreateFilter(string name, Filter filter, Collections.AVMultiDictionary? args)
-    {
-        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
-        if (args == null)
-        {
-            ((AVResult32)ffmpeg.avfilter_init_dict(ctx, null)).ThrowIfError();
-        }
-        else
-        {
-            _AVDictionary* dictionary = args.dictionary;
-            AVResult32 res = ffmpeg.avfilter_init_dict(ctx, &dictionary);
-            args.dictionary = dictionary; // Update the dictionary in case it was modified
-            res.ThrowIfError();
-        }
-        return new(ctx);
-
-    }
-    public FilterContext CreateFilter(string name, Filter filter, IDictionary<string, string> args)
-    {
-        if (args == null)
-            return CreateFilter(name, filter, default(Collections.AVDictionary)!);
-        using Collections.AVDictionary dictionary = new(args);
-        try
-        {
-            return CreateFilter(name, filter, dictionary);
-        }
-        finally
-        {
-            args.Clear();
-            foreach (KeyValuePair<string, string> item in dictionary)
-                args.Add(item);
-        }
-    }
-
     /// <summary>
-    ///  Create a filter, but doesn't initialize it.
+    /// Validates and configures all links in the filter graph.
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="filter"></param>
-    /// <returns></returns>
-    public FilterContext CreateFilter(string name, Filter filter)
-    {
-        _AVFilterContext* ctx = ffmpeg.avfilter_graph_alloc_filter(graph, filter.filter, name);
-        return ctx == null ? throw new OutOfMemoryException("Failed to allocate filter context.") : new(ctx);
-    }
-
-    /// <summary>
-    /// Configures all the links in the filter graph.
-    /// </summary>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the configuration.</returns>
+    /// <returns>
+    /// The result of the configuration operation.
+    /// </returns>
+    /// <remarks>
+    /// This method should be called after all filters have been created and linked,
+    /// and before frames are processed through the graph.
+    /// </remarks>
     public AVResult32 Config() => ffmpeg.avfilter_graph_config(graph, null);
 
     /// <summary>
-    /// Dumps the current filter graph as a string representation.
+    /// Returns a textual representation of the current filter graph.
     /// </summary>
+    /// <returns>
+    /// A human-readable description of the graph.
+    /// </returns>
+    /// <remarks>
+    /// This method is primarily intended for debugging and diagnostics.
+    /// </remarks>
     public string Dump()
     {
         byte* buff = ffmpeg.avfilter_graph_dump(graph, null);
@@ -320,21 +275,61 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
     }
 
     /// <summary>
-    /// Returns an enumerator that iterates through the filter contexts in the graph.
+    /// Returns an enumerator that iterates through the filters in the graph.
     /// </summary>
+    /// <returns>An enumerator over the graph's filters.</returns>
     public IEnumerator<FilterContext> GetEnumerator() => new FilterEnumerator(this);
 
+    /// <summary>
+    /// Returns a read-only span over the filters contained in the graph.
+    /// </summary>
+    /// <returns>A read-only span over the graph's filters.</returns>
     public ReadOnlySpan<FilterContext> AsSpan() => new(graph->filters, Count);
 
+    /// <summary>
+    /// Gets a read-only list view over all filters contained in the graph.
+    /// </summary>
     public IReadOnlyList<FilterContext> Filters => new FilterGraphList(this);
 
-    public IEnumerable<FilterContext> InputFilters => Filters.Where(f => f.Filter == FFmpeg.Filters.Filter.VideoBufferSource || f.Filter == FFmpeg.Filters.Filter.AudioBufferSource);
-    public IEnumerable<FilterContext> OutputFilters => Filters.Where(f => f.Filter == FFmpeg.Filters.Filter.VideoBufferSink || f.Filter == FFmpeg.Filters.Filter.AudioBufferSink);
+    /// <summary>
+    /// Gets all buffer source filters contained in the graph.
+    /// </summary>
+    /// <remarks>
+    /// These are the filters that provide input frames to the graph.
+    /// </remarks>
+    public IEnumerable<FilterContext> InputFilters =>
+        Filters.Where(f => f.Filter == FFmpeg.Filters.Filter.VideoBufferSource || f.Filter == FFmpeg.Filters.Filter.AudioBufferSource);
 
-    public IEnumerable<FilterContext> SourceFilters => Filters.Where(f => f.Filter.IsSourceFilter);
+    /// <summary>
+    /// Gets all buffer sink filters contained in the graph.
+    /// </summary>
+    /// <remarks>
+    /// These are the filters that receive processed output frames from the graph.
+    /// </remarks>
+    public IEnumerable<FilterContext> OutputFilters =>
+        Filters.Where(f => f.Filter == FFmpeg.Filters.Filter.VideoBufferSink || f.Filter == FFmpeg.Filters.Filter.AudioBufferSink);
 
-    public IEnumerable<FilterContext> SinkFilters => Filters.Where(f => f.Filter.IsSinkFilter);
+    /// <summary>
+    /// Gets all source filters contained in the graph.
+    /// </summary>
+    /// <remarks>
+    /// Source filters have no input pads and generate media for the graph.
+    /// </remarks>
+    public IEnumerable<FilterContext> SourceFilters =>
+        Filters.Where(f => f.Filter.IsSourceFilter);
 
+    /// <summary>
+    /// Gets all sink filters contained in the graph.
+    /// </summary>
+    /// <remarks>
+    /// Sink filters have no output pads and consume media from the graph.
+    /// </remarks>
+    public IEnumerable<FilterContext> SinkFilters =>
+        Filters.Where(f => f.Filter.IsSinkFilter);
+
+    /// <summary>
+    /// Gets all filters that have at least one unconnected output pad.
+    /// </summary>
     public IEnumerable<FilterContext> UnlinkedOutFilters
     {
         get
@@ -353,6 +348,9 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
         }
     }
 
+    /// <summary>
+    /// Gets all filters that have at least one unconnected input pad.
+    /// </summary>
     public IEnumerable<FilterContext> UnlinkedInFilters
     {
         get
@@ -371,41 +369,52 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
         }
     }
 
+    /// <summary>
+    /// Inserts a filter into an existing link between two filters.
+    /// </summary>
+    /// <param name="link">
+    /// The link to split.
+    /// </param>
+    /// <param name="filter">
+    /// The filter to insert.
+    /// </param>
+    /// <param name="srcFilterPad">
+    /// The output pad index on the inserted filter.
+    /// </param>
+    /// <param name="destFilterPad">
+    /// The input pad index on the inserted filter.
+    /// </param>
+    /// <returns>
+    /// The result of the insertion operation.
+    /// </returns>
+    public AVResult32 Insert(FilterLink link, FilterContext filter, int srcFilterPad, int destFilterPad) =>
+        ffmpeg.avfilter_insert_filter(link.link, filter.context, (uint)srcFilterPad, (uint)destFilterPad);
 
-    public AVResult32 Insert(FilterLink link, FilterContext filter, int srcFilterPad, int destFilterPad) => ffmpeg.avfilter_insert_filter(link.link, filter.context, (uint)srcFilterPad, (uint)destFilterPad);
-
+    /// <summary>
+    /// Finds a filter by its instance name.
+    /// </summary>
+    /// <param name="name">
+    /// The name of the filter instance.
+    /// </param>
+    /// <returns>
+    /// The matching filter, or <see langword="null"/> if no filter with the specified name exists.
+    /// </returns>
     public FilterContext? FindFilter(string name)
     {
         _AVFilterContext* ptr = ffmpeg.avfilter_graph_get_filter(graph, name);
         return ptr == null ? null : new(ptr);
     }
 
-    private class FilterEnumerator : IEnumerator<FilterContext>
-    {
-        private readonly FilterGraph filterGraph;
-        private int index = -1;
-        public FilterEnumerator(FilterGraph filterGraph) => this.filterGraph = filterGraph;
-
-        public FilterContext Current => new(filterGraph.graph->filters[index]);
-
-        object IEnumerator.Current => Current;
-
-        public void Dispose() { }
-        public bool MoveNext() => ++index < filterGraph.Count;
-
-        public void Reset() => index = -1;
-    }
-
-    private class FilterGraphList : IReadOnlyList<FilterContext>
-    {
-        private readonly FilterGraph filterGraph;
-        public FilterGraphList(FilterGraph filterGraph) => this.filterGraph = filterGraph;
-        public FilterContext this[int index] => filterGraph[index];
-        public int Count => filterGraph.Count;
-        public IEnumerator<FilterContext> GetEnumerator() => filterGraph.GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    }
-
+    /// <summary>
+    /// Creates a copy of the filter graph.
+    /// </summary>
+    /// <returns>
+    /// A new <see cref="FilterGraph"/> containing equivalent filters and connections.
+    /// </returns>
+    /// <remarks>
+    /// The copied graph contains newly allocated filter contexts configured with the
+    /// same options and topology as the original graph.
+    /// </remarks>
     public FilterGraph Copy()
     {
         FilterGraph copy = FilterGraph.Allocate();
@@ -418,16 +427,72 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
                     dictionary.Add(o.Name, value!);
             }
 
-            _ = copy.CreateFilter(context.Name, context.Filter, dictionary);
+            _ = FilterContext.Create(context.Name, context.Filter, dictionary, copy);
         }
         foreach (FilterContext context in this)
         {
             foreach (FilterLink l in context.OutputFilterLinks)
             {
-                copy.Link(copy.FindFilter(l.SourceContext.Name!), l.SourcePadIndex, copy.FindFilter(l.DestinationContext.Name!), l.DestinationPadIndex).ThrowIfError();
+                copy.Link(
+                        copy.FindFilter(l.SourceContext.Name!)!,
+                        l.SourcePadIndex,
+                        copy.FindFilter(l.DestinationContext.Name!)!,
+                        l.DestinationPadIndex)
+                    .ThrowIfError();
             }
         }
         return copy;
-
     }
+
+    private class FilterEnumerator(FilterGraph filterGraph) : IEnumerator<FilterContext>
+    {
+        private readonly FilterGraph filterGraph = filterGraph;
+        private int index = -1;
+
+        /// <summary>
+        /// Gets the current filter context.
+        /// </summary>
+        public FilterContext Current => new(filterGraph.graph->filters[index]);
+
+        object IEnumerator.Current => Current;
+
+        /// <inheritdoc />
+        public void Dispose() { }
+
+        /// <summary>
+        /// Advances the enumerator to the next filter.
+        /// </summary>
+        /// <returns><see langword="true"/> if the enumerator was advanced; otherwise, <see langword="false"/>.</returns>
+        public bool MoveNext() => ++index < filterGraph.Count;
+
+        /// <summary>
+        /// Resets the enumerator to the initial position.
+        /// </summary>
+        public void Reset() => index = -1;
+    }
+
+    private class FilterGraphList(FilterGraph filterGraph) : IReadOnlyList<FilterContext>
+    {
+        private readonly FilterGraph filterGraph = filterGraph;
+
+        /// <summary>
+        /// Gets the filter at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the filter.</param>
+        public FilterContext this[int index] => filterGraph[index];
+
+        /// <summary>
+        /// Gets the number of filters in the graph.
+        /// </summary>
+        public int Count => filterGraph.Count;
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the filters in the graph.
+        /// </summary>
+        public IEnumerator<FilterContext> GetEnumerator() => filterGraph.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+
 }
+

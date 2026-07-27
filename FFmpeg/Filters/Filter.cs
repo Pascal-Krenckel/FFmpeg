@@ -44,12 +44,16 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     /// <summary>
     /// Gets the name of the filter.
     /// </summary>
-    public string Name => Marshal.PtrToStringUTF8((nint)filter->name);
+    public string? Name => Marshal.PtrToStringUTF8((nint)filter->name);
 
     /// <summary>
-    /// Gets the description of the filter.
+    /// Gets a human-readable description of the filter.
     /// </summary>
-    public string Description => Marshal.PtrToStringUTF8((nint)filter->description);
+    /// <value>
+    /// A description of the filter, or <see langword="null"/> if the filter does
+    /// not provide one.
+    /// </value>>
+    public string? Description => Marshal.PtrToStringUTF8((nint)filter->description);
 
     /// <summary>
     /// Gets the filter's flags, indicating its properties and behavior.
@@ -57,14 +61,12 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public FilterFlags Flags => (FilterFlags)filter->flags;
 
     /// <summary>
-    /// Gets the list of input pads for this filter.
-    /// Handles dynamic input pads if specified by the filter flags.
+    /// Gets the input pads supported by the filter.
     /// </summary>
     public FilterPadList Inputs => new(filter->inputs, (int)ffmpeg.avfilter_filter_pad_count(filter, 0));
 
     /// <summary>
-    /// Gets the list of output pads for this filter.
-    /// Handles dynamic output pads if specified by the filter flags.
+    /// Gets the output pads supported by the filter.
     /// </summary>
     public FilterPadList Outputs => new(filter->outputs, (int)ffmpeg.avfilter_filter_pad_count(filter, 1));
 
@@ -92,7 +94,9 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     /// <param name="name">The name of the filter to retrieve.</param>
     /// <returns>The filter associated with the specified name.</returns>
     /// <exception cref="ArgumentException">Thrown if the filter with the specified name is not found.</exception>
-    public static Filter GetFilterByName(string name) => TryGetFilterByName(name, out Filter filter) ? filter : throw new ArgumentException(nameof(name));
+    public static Filter GetFilterByName(string name) => TryGetFilterByName(name, out Filter filter) ? filter : throw new ArgumentException(
+    $"No filter named '{name}' exists.",
+    nameof(name));
 
     /// <summary>
     /// Gets the video buffer source filter, used to create frames in filter graphs.
@@ -124,24 +128,70 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     /// </summary>
     public static Filter AudioBufferSink => GetFilterByName("abuffersink");
 
+    /// <summary>
+    /// Gets a value indicating whether the filter acts as a source filter.
+    /// </summary>
+    /// <remarks>
+    /// Source filters have no input pads and generate media for a filter graph.
+    /// </remarks>
     public bool IsSourceFilter => (ffmpeg.avfilter_filter_pad_count(filter, 0) | (uint)(filter->flags & AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_INPUTS)) == 0;
 
+    /// <summary>
+    /// Gets a value indicating whether the filter acts as a sink filter.
+    /// </summary>
+    /// <remarks>
+    /// Sink filters have no output pads and consume media from a filter graph.
+    /// </remarks>
     public bool IsSinkFilter => (ffmpeg.avfilter_filter_pad_count(filter, 1) | (uint)(filter->flags & AutoGen.ffmpeg.AVFILTER_FLAG_DYNAMIC_OUTPUTS)) == 0;
 
+    /// <summary>
+    /// Gets the built-in video null sink filter.
+    /// </summary>
+    /// <remarks>
+    /// The null sink filter consumes video frames without producing any output.
+    /// It is useful when the output of a filter graph does not need to be retrieved.
+    /// </remarks>
     public static Filter VideoNullSink => GetFilterByName("nullsink");
+
+    /// <summary>
+    /// Gets the built-in audio null sink filter.
+    /// </summary>
+    /// <remarks>
+    /// The null sink filter consumes audio frames without producing any output.
+    /// It is useful when the output of a filter graph does not need to be retrieved.
+    /// </remarks>
     public static Filter AudioNullSink => GetFilterByName("anullsink");
 
+    /// <summary>
+    /// Gets the built-in video null source filter.
+    /// </summary>
+    /// <remarks>
+    /// The null source filter generates synthetic video frames and is commonly used
+    /// as the starting point of a filter graph when no external video input is available.
+    /// </remarks>
     public static Filter VideoNullSource => GetFilterByName("nullsrc");
+
+    /// <summary>
+    /// Gets the built-in audio null source filter.
+    /// </summary>
+    /// <remarks>
+    /// The null source filter generates synthetic audio samples and is commonly used
+    /// as the starting point of a filter graph when no external audio input is available.
+    /// </remarks>
     public static Filter AudioNullSource => GetFilterByName("anullsrc");
 
     /// <summary>
     /// Returns the name of the filter as a string.
     /// </summary>
     /// <returns>The name of the filter.</returns>
-    public override string ToString() => Name;
+    public override string? ToString() => Name;
+
+    /// <inheritdoc />
     public override bool Equals(object? obj) => obj is Filter filter && Equals(filter);
-    public bool Equals(Filter other) => Name == other.Name;
-    public override int GetHashCode() => HashCode.Combine(Name);
+    /// <inheritdoc />
+    public bool Equals(Filter other) => filter == other.filter;
+    /// <inheritdoc />
+    public override int GetHashCode() => HashCode.Combine((nint)filter);
 
     public static bool operator ==(Filter left, Filter right) => left.Equals(right);
     public static bool operator !=(Filter left, Filter right) => !(left == right);
