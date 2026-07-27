@@ -181,6 +181,21 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public static Filter AudioNullSource => GetFilterByName("anullsrc");
 
     /// <summary>
+    /// Packs two video streams into a stereoscopic video using one of the supported frame packing layouts.
+    /// </summary>
+    /// <remarks>
+    /// The filter combines two input video streams into a single stereoscopic output stream and sets
+    /// the appropriate stereo metadata when supported by the output codec.
+    ///
+    /// Both input streams must have the same frame size and frame rate. Processing stops when the
+    /// shorter input stream reaches the end.
+    ///
+    /// Common packing formats include side-by-side, top-and-bottom, line-interleaved,
+    /// column-interleaved, and frame-sequential.
+    /// </remarks>
+    public static Filter FramePack => GetFilterByName("framepack");
+
+    /// <summary>
     /// Returns the name of the filter as a string.
     /// </summary>
     /// <returns>The name of the filter.</returns>

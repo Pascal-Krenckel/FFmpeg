@@ -117,4 +117,30 @@ public static class VideoFilters
         context.Init(fps.ToString()).ThrowIfError();
         return context;
     }
+
+    /// <summary>
+    /// Creates a <c>framepack</c> filter.
+    /// </summary>
+    /// <param name="name">The filter instance name.</param>
+    /// <param name="format">The stereoscopic frame packing format.</param>
+    /// <param name="graph">The filter graph that will own the filter.</param>
+    /// <returns>The initialized filter context.</returns>
+    public static FilterContext CreateFramePack(string name, FramePackFormat format, FilterGraph graph)
+        => CreateFramePack(name, format.ToFFmpegString(), graph);
+
+    /// <summary>
+    /// Creates a <c>framepack</c> filter.
+    /// </summary>
+    /// <param name="name">The filter instance name.</param>
+    /// <param name="format">The FFmpeg frame packing format string.</param>
+    /// <param name="graph">The filter graph that will own the filter.</param>
+    /// <returns>The initialized filter context.</returns>
+    public static FilterContext CreateFramePack(string name, string format, FilterGraph graph)
+    {
+        FilterContext context = FilterContext.Allocate(name, Filter.FramePack, graph)
+            ?? throw new ArgumentNullException(nameof(Filter.FramePack));
+
+        context.Init(format).ThrowIfError();
+        return context;
+    }
 }
