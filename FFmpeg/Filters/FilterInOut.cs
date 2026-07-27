@@ -84,7 +84,6 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
     private AutoGen._AVFilterInOut* head;
     private AutoGen._AVFilterInOut* tail;
-    private bool disposedValue;
 
     /// <summary>
     /// Gets the number of entries in the list.
@@ -145,14 +144,11 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposedValue)
-        {
+        AutoGen._AVFilterInOut* head = this.head;
+        ffmpeg.avfilter_inout_free(&head);
+        this.head = tail = null;
+        Count = 0;
 
-            AutoGen._AVFilterInOut* head = this.head;
-            ffmpeg.avfilter_inout_free(&head);
-            this.head = tail = null;
-            disposedValue = true;
-        }
     }
 
     ~FilterInOutList()
