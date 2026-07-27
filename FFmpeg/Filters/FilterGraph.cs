@@ -343,7 +343,7 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
             {
                 for (int i = 0; i < filter.OutputCount; i++)
                 {
-                    if (filter.OutputFilterLinks == null)
+                    if (filter.GetOutputFilterLink(i) == null)
                     {
                         yield return filter;
                         break;
@@ -361,7 +361,7 @@ public sealed unsafe class FilterGraph : ILoggingContext ,IDisposable, IAVPointe
             {
                 for (int i = 0; i < filter.InputCount; i++)
                 {
-                    if (filter.InputFilterLinks == null)
+                    if (filter.GetInputFilterLink(i) == null)
                     {
                         yield return filter;
                         break;
