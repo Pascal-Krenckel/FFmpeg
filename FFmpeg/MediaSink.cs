@@ -272,9 +272,7 @@ public class MediaSink : IDisposable
             if (error.IsError)
                 return error;
         }
-        if (error.IsTryAgain)
-            return 0;
-        return error;
+        return error.IsTryAgain ? (AVResult32)0 : error;
 
     }
 
@@ -394,10 +392,11 @@ public class MediaSink : IDisposable
         for (int i = 0; i < CodecContexts.Count; i++)
         {
             CodecContext? context = CodecContexts[i];
-            if (context == null || context.CodecType is not MediaType.Audio and not MediaType.Video) continue;
+            if (context == null || context.CodecType is not MediaType.Audio and not MediaType.Video)
+                continue;
             AVResult32 error = WriteFrame(null!, i);
             if (error.IsError && error != AVResult32.EndOfFile)
-                return error;            
+                return error;
         }
         AVResult32 result = FormatContext.WriteTrailer();
         if (!result.IsError)

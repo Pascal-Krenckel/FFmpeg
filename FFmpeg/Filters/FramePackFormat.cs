@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Filters;
+﻿namespace FFmpeg.Filters;
 
 /// <summary>
 /// Specifies how two video streams are packed into a stereoscopic frame.

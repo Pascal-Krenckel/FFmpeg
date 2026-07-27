@@ -13,7 +13,8 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     /// Pointer to the unmanaged <see cref="AutoGen._AVFilter"/> structure used by FFmpeg.
     /// </summary>
     internal readonly AutoGen._AVFilter* filter;
-    readonly _AVFilter* IAVPointer<_AVFilter>.Pointer =>  filter;
+
+    readonly _AVFilter* IAVPointer<_AVFilter>.Pointer => filter;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Filter"/> struct with the given FFmpeg filter.

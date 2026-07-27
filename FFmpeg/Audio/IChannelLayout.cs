@@ -1,5 +1,4 @@
 ﻿using FFmpeg.AutoGen;
-using System.Text;
 
 namespace FFmpeg.Audio;
 /// <summary>

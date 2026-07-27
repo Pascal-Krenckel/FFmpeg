@@ -1,7 +1,5 @@
-﻿using FFmpeg.Audio;
-using FFmpeg.AutoGen;
+﻿using FFmpeg.AutoGen;
 using FFmpeg.Collections;
-using FFmpeg.Images;
 using FFmpeg.Unsafe;
 using FFmpeg.Utils;
 using System.Runtime.InteropServices;
@@ -114,7 +112,7 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
             return Init(null as string);
         AutoGen._AVDictionary* dic = dictionary.dictionary;
         int res = ffmpeg.avfilter_init_dict(context, &dic);
-        dictionary.dictionary = dic;        
+        dictionary.dictionary = dic;
         return res;
     }
 
@@ -161,13 +159,14 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     /// <see cref="AVDictionary"/>, and the remaining unrecognized options are copied
     /// back into the original dictionary after initialization.
     /// </remarks>
-    public AVResult32 Init(IDictionary<string,string> dictionary)
-    {        
-        if (dictionary is AVDictionary dic) return Init(dic);
+    public AVResult32 Init(IDictionary<string, string> dictionary)
+    {
+        if (dictionary is AVDictionary dic)
+            return Init(dic);
         using AVDictionary avDic = new(dictionary);
-        var ret = Init(avDic);
+        AVResult32 ret = Init(avDic);
         dictionary.Clear();
-        foreach (var kvp in avDic)
+        foreach (KeyValuePair<string, string> kvp in avDic)
             dictionary.Add(kvp);
         return ret;
     }
@@ -243,7 +242,7 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     public FilterPad GetInputFilterPad(int index) => index < 0 || index >= InputCount
             ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter pads.")
             : new FilterPad(context->input_pads, index);
-    
+
     /// <summary>
     /// Gets the output pad at the specified index.
     /// </summary>

@@ -138,7 +138,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
     public SwsContext(int srcW, int srcH, PixelFormat srcFormat, int dstW, int dstH, PixelFormat dstFormat, SwsAlgorithm algorithm)
     {
         double* @params = stackalloc double[] { algorithm.Param1, algorithm.Param2 };
-        
+
         context = ffmpeg.sws_getContext(
             srcW, srcH,
             (AutoGen._AVPixelFormat)srcFormat,
@@ -248,7 +248,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
             return AVResult32.InvalidArgument;
         if (src.Height != SourceHeight || src.Width != SourceWidth || src.PixelFormat != SourceFormat)
             return AVResult32.InvalidArgument;
-       
+
         Span<IntPtr> srcData = stackalloc IntPtr[4];
         Span<int> srcLines = stackalloc int[4];
 
@@ -274,7 +274,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
     {
         if (dst.Height != DestinationHeight || dst.Width != DestinationWidth || (PixelFormat)dst.Format != DestinationFormat)
             return AVResult32.InvalidArgument;
-       
+
         AutoGen.byte_ptrArray4 srcData = new();
         AutoGen.int_array4 srcLines = new();
         AVResult32 res = ffmpeg.av_image_fill_arrays(ref srcData, ref srcLines, (byte*)src, (AutoGen._AVPixelFormat)SourceFormat, SourceWidth, SourceHeight, srcAlign);
@@ -310,7 +310,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
             ? res
             : (AVResult32)AutoGen.ffmpeg.sws_scale(context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
-        
+
     /// <summary>
     /// Converts the source and destination planes using the current scaling context.
     /// </summary>
@@ -367,8 +367,8 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         if (dstStride.Length < dstPlaneCount)
             throw new ArgumentException();
 
-        var srcLineSize_ptr = &frame.Frame->linesize;
-        var srcPlanes_ptr = frame.Frame->extended_data;
+        int_array8* srcLineSize_ptr = &frame.Frame->linesize;
+        byte** srcPlanes_ptr = frame.Frame->extended_data;
 
         fixed (void* dstPlanes_ptr = dstPlanes, dstLineSize_ptr = dstStride)
             return AutoGen.ffmpeg.sws_scale(
@@ -415,8 +415,8 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         if (!frame.HasBuffer)
             frame.CreateBuffer().ThrowIfError();
 
-        var dstLineSize_ptr = &frame.Frame->linesize;
-        var dstPlanes_ptr = frame.Frame->extended_data;
+        int_array8* dstLineSize_ptr = &frame.Frame->linesize;
+        byte** dstPlanes_ptr = frame.Frame->extended_data;
 
         fixed (void* srcPlanes_ptr = srcPlanes, srcLineSize_ptr = srcStride)
             return AutoGen.ffmpeg.sws_scale(
@@ -429,7 +429,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
                 (int*)dstLineSize_ptr);
     }
 
-    
+
     /// <summary>
     /// Releases the unmanaged resources associated with this scaling context.
     /// </summary>

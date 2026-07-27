@@ -1,8 +1,6 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Utils;
 using System.Buffers;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace FFmpeg.Audio;
 
@@ -96,7 +94,7 @@ public unsafe partial class AudioFifo : IDisposable
             fixed (byte* bufferPtr = buffer)
             {
                 for (int channel = 0; channel < Channels; channel++)
-                    planes[channel] = bufferPtr + channel * sampelsPerChannel * sampleSize;
+                    planes[channel] = bufferPtr + (channel * sampelsPerChannel * sampleSize);
 
 
                 while (samplesCopied < samples)
@@ -111,11 +109,11 @@ public unsafe partial class AudioFifo : IDisposable
                         for (int channel = 0; channel < Channels; channel++)
                         {
                             byte* destination =
-                                planes[channel] + sample * sampleSize;
+                                planes[channel] + (sample * sampleSize);
 
                             byte* source =
                                 data +
-                                ((samplesCopied + sample) * Channels + channel) * sampleSize;
+                                ((((samplesCopied + sample) * Channels) + channel) * sampleSize);
 
 
                             Buffer.MemoryCopy(

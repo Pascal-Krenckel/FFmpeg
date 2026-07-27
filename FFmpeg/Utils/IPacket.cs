@@ -1,6 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Unsafe;
-using System.Reflection;
+﻿using FFmpeg.Unsafe;
 
 namespace FFmpeg.Utils;
 /// <inheritdoc cref="AVPacket"/>

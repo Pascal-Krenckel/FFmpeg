@@ -67,7 +67,8 @@ public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) 
 
     public void RemoveAt(long index)
     {
-        if(IsReadOnly) throw new NotSupportedException();
+        if (IsReadOnly)
+            throw new NotSupportedException();
         if (index < 0 || index >= Count)
             throw new ArgumentOutOfRangeException(nameof(index));
         if (Chapters[index] != null)
@@ -83,7 +84,7 @@ public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) 
 
     public bool RemoveById(long id)
     {
-        for(long index = 0; index < Count; index++)
+        for (long index = 0; index < Count; index++)
             if (Chapters[index]->id == id)
             {
                 RemoveAt(index);

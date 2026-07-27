@@ -470,11 +470,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
             return SetOption(name, d, recursive);
         if (TryConvert(value, out Rational r))
             return SetOption(name, r, recursive);
-        if (value is byte[] bytes)
-            return SetOption(name, bytes.AsSpan(), recursive);
-        if (value is Memory<byte> memory)
-            return SetOption(name, memory, recursive);
-        return TryConvert(value, out (int, int) size)
+        return value is byte[] bytes
+            ? SetOption(name, bytes.AsSpan(), recursive)
+            : value is Memory<byte> memory
+            ? SetOption(name, memory, recursive)
+            : TryConvert(value, out (int, int) size)
             ? SetOption(name, size.Item1, size.Item2, recursive)
             : TryConvert(value, out PixelFormat pixFmt)
             ? SetOption(name, pixFmt, recursive)

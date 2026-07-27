@@ -814,11 +814,11 @@ public enum CodecID : int
     /// JpegXS image codec
     /// </summary>
     JPEGXS = AutoGen._AVCodecID.AV_CODEC_ID_JPEGXS,
-    
+
     /// <summary>
     /// webp anim codec
     /// </summary>
-    WEBP_ANIM =AutoGen._AVCodecID.AV_CODEC_ID_WEBP_ANIM,
+    WEBP_ANIM = AutoGen._AVCodecID.AV_CODEC_ID_WEBP_ANIM,
 
     /// <summary>A dummy ID pointing at the start of audio codecs.</summary>
     FirstAudio = AutoGen._AVCodecID.AV_CODEC_ID_FIRST_AUDIO,

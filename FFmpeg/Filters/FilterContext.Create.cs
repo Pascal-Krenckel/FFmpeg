@@ -1,8 +1,5 @@
 ﻿using FFmpeg.Collections;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -93,7 +90,7 @@ public unsafe partial class FilterContext
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, AVDictionary dictionary, FilterGraph graph)
     {
-        var filterContext = Allocate(name, filter, graph);
+        FilterContext? filterContext = Allocate(name, filter, graph);
         filterContext!.Init(dictionary).ThrowIfError();
         return filterContext;
     }
@@ -124,7 +121,7 @@ public unsafe partial class FilterContext
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, IDictionary<string, string> dictionary, FilterGraph graph)
     {
-        var filterContext = Allocate(name, filter, graph);
+        FilterContext? filterContext = Allocate(name, filter, graph);
         filterContext!.Init(dictionary).ThrowIfError();
         return filterContext;
     }
@@ -154,7 +151,7 @@ public unsafe partial class FilterContext
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, AVMultiDictionary dictionary, FilterGraph graph)
     {
-        var filterContext = Allocate(name, filter, graph);
+        FilterContext? filterContext = Allocate(name, filter, graph);
         filterContext!.Init(dictionary).ThrowIfError();
         return filterContext;
     }

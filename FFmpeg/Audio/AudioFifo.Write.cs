@@ -1,8 +1,5 @@
 ﻿using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace FFmpeg.Audio;
 
@@ -44,20 +41,15 @@ public unsafe partial class AudioFifo
     /// To avoid unnecessary copying, it is recommended to provide frames in the same planar/packed layout as the FIFO’s <see cref="Format"/>.
     /// </para>
     /// </remarks>
-    public AVResult32 Write(AVFrame frame)
-    {
-        if (frame.ChannelLayout.Channels != Channels)
-            throw new ArgumentException("Frame channel count does not match the audio FIFO.", nameof(frame));
-
-        if (frame.SampleFormat.AsPlanar() != Format.AsPlanar())
-            throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame));
-
-        return frame.SampleFormat == Format
+    public AVResult32 Write(AVFrame frame) => frame.ChannelLayout.Channels != Channels
+            ? throw new ArgumentException("Frame channel count does not match the audio FIFO.", nameof(frame))
+            : frame.SampleFormat.AsPlanar() != Format.AsPlanar()
+            ? throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame))
+            : frame.SampleFormat == Format
             ? (AVResult32)ffmpeg.av_audio_fifo_write(fifo, (void**)frame.ExtendedData, frame.SampleCount)
             : Format.IsPlanar()
             ? WritePackedToPlanar(frame.ExtendedData[0], frame.SampleCount)
             : WritePlanarToPacked(frame.ExtendedData, frame.SampleCount);
-    }
 
     #region Packed/Mono
     /// <summary>
@@ -421,7 +413,7 @@ public unsafe partial class AudioFifo
                                         Math.Min(Math.Min(ch5.Length, ch6.Length),
                                                 Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
-;
+        ;
         ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
         ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
         ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));

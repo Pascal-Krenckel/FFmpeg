@@ -1,7 +1,6 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Utils;
 using System.Buffers;
-using System.Runtime.InteropServices;
 using System.Text;
 
 namespace FFmpeg.Audio;
@@ -293,7 +292,7 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     {
         if (Channels <= 0)
             return false;
-        
+
         if (ptr->order == _AVChannelOrder.AV_CHANNEL_ORDER_CUSTOM)
         {
             if (ptr->u.map == null)

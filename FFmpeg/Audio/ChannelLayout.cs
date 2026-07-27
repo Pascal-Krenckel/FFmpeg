@@ -34,10 +34,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// Initializes a new instance of the <see cref="ChannelLayout"/> class using an existing FFmpeg channel layout.
     /// </summary>
     /// <param name="layout">The FFmpeg channel layout to be used.</param>
-    internal ChannelLayout(AutoGen._AVChannelLayout layout)
-    {
-        this.layout = layout;
-    }
+    internal ChannelLayout(AutoGen._AVChannelLayout layout) => this.layout = layout;
 
     /// <summary>
     /// Determines whether the current channel layout is valid.
@@ -289,7 +286,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     public void Dispose()
     {
 
-        var layout = this.layout;
+        _AVChannelLayout layout = this.layout;
         ffmpeg.av_channel_layout_uninit(&layout);
         this.layout = layout;
     }
@@ -310,7 +307,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
 
         // Get the required size for the layout description.
         AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);
-        
+
 
         if (res.IsError)
             return string.Empty;

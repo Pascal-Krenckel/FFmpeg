@@ -234,12 +234,12 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
 
         using MuxerContext context = MuxerContext.Open(output, OutputFormat.AVIF!.Value, closeStream)!;
 
-        var enumerator = frames.GetEnumerator();
+        IEnumerator<AVFrame> enumerator = frames.GetEnumerator();
         try
         {
             if (!enumerator.MoveNext())
                 throw new ArgumentException("No frames found.");
-            var firstFrame = enumerator.Current;
+            AVFrame firstFrame = enumerator.Current;
             if (!TimeBase.IsValidTimeBase)
                 TimeBase = firstFrame.TimeBase;
             if (Width <= 0)
@@ -249,7 +249,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             if (PixelFormat == PixelFormat.None)
                 PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
             using SwsContext swsContext = new(firstFrame.Width, firstFrame.Height, firstFrame.PixelFormat, Width, Height, PixelFormat, SwsAlgorithm.Bicubic());
-            using var codecContext = CreateCodecContext();
+            using CodecContext codecContext = CreateCodecContext();
             _ = context.AddStream(codecContext);
             context.WriteHeader().ThrowIfError();
             using AVFrame convertedFrame = AVFrame.Allocate();
@@ -258,7 +258,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             AVResult32 result;
             do
             {
-                var current = enumerator.Current;
+                AVFrame current = enumerator.Current;
                 if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
                 {
                     swsContext.Convert(current, convertedFrame).ThrowIfError();
@@ -308,12 +308,12 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
 
         using MuxerContext context = MuxerContext.Open(output, OutputFormat.AVIF!.Value, closeStream)!;
 
-        var enumerator = frames.GetEnumerator();
+        IEnumerator<AVFrame> enumerator = frames.GetEnumerator();
         try
         {
             if (!enumerator.MoveNext())
                 throw new ArgumentException("No frames found.");
-            var firstFrame = enumerator.Current;
+            AVFrame firstFrame = enumerator.Current;
             TimeBase = frameDuration;
             if (Width == 0)
                 Width = firstFrame.Width;
@@ -322,7 +322,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             if (PixelFormat == PixelFormat.None)
                 PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
             using SwsContext swsContext = new(firstFrame.Width, firstFrame.Height, firstFrame.PixelFormat, Width, Height, PixelFormat, SwsAlgorithm.Bicubic());
-            using var codecContext = CreateCodecContext();
+            using CodecContext codecContext = CreateCodecContext();
             _ = context.AddStream(codecContext);
             context.WriteHeader().ThrowIfError();
             using AVFrame convertedFrame = AVFrame.Allocate();
@@ -332,7 +332,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             long frameIndex = 0;
             do
             {
-                var current = enumerator.Current;
+                AVFrame current = enumerator.Current;
                 if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
                 {
                     swsContext.Convert(current, convertedFrame).ThrowIfError();

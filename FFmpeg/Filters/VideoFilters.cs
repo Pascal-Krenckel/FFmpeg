@@ -1,8 +1,5 @@
 ﻿using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -58,11 +55,11 @@ public static class VideoFilters
 
 
     /// <inheritdoc cref="AudioFilters.CreateSource(string, Codecs.CodecContext, FilterGraph)"/>
-    public static FilterContext CreateSource(string name, Codecs.CodecContext ctx, FilterGraph graph) => AudioFilters.CreateSource(name,ctx, graph);
+    public static FilterContext CreateSource(string name, Codecs.CodecContext ctx, FilterGraph graph) => AudioFilters.CreateSource(name, ctx, graph);
 
 
     /// <inheritdoc cref="AudioFilters.CreateSource(string, Formats.AVStream, FilterGraph)" />
-    public static FilterContext CreateSource(string name, Formats.AVStream stream, FilterGraph graph) => AudioFilters.CreateSource(name,stream, graph);
+    public static FilterContext CreateSource(string name, Formats.AVStream stream, FilterGraph graph) => AudioFilters.CreateSource(name, stream, graph);
 
     /// <summary>
     /// Creates a video scale filter.

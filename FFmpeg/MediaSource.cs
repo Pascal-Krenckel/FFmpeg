@@ -232,7 +232,7 @@ public class MediaSource : IDisposable
                     res = AVResult32.TryAgain;
                     continue;
                 }
-                CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();                
+                CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();
             }
             res = CodecContexts[packet.StreamIndex].ReceiveFrame(frame);
         } while (res == AVResult32.TryAgain);
@@ -320,25 +320,25 @@ public class MediaSource : IDisposable
     /// <returns>Negative if error.</returns>
     public AVResult32 SeekExactly(TimeSpan timeSpan, int streamIndex)
     {
-        var result = Seek(timeSpan, streamIndex);
+        AVResult32 result = Seek(timeSpan, streamIndex);
         if (result.IsError)
             return result;
         using AVFrame frame = AVFrame.Allocate();
-        for(; ;)
-        { 
+        for (; ; )
+        {
             result = ReadPacket(packet);
-            if(result.IsError)
+            if (result.IsError)
                 return result;
-            if((packet.PresentationTimestamp+packet.Duration) * packet.TimeBase < timeSpan)
+            if ((packet.PresentationTimestamp + packet.Duration) * packet.TimeBase < timeSpan)
             {
                 result = Decode(packet, frame);
                 if (result.IsTryAgain)
                     continue;
-                if(result.IsError)
+                if (result.IsError)
                     return result;
             }
             else
-                return CodecContexts[packet.StreamIndex].SendPacket(packet);            
+                return CodecContexts[packet.StreamIndex].SendPacket(packet);
         }
     }
 

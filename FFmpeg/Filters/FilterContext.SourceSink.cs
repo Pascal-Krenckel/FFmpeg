@@ -2,10 +2,7 @@
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -135,7 +132,7 @@ public unsafe partial class FilterContext
     public bool TryGetBufferSinkChannelLayout([NotNullWhen(true)] out Audio.ChannelLayout? layout)
     {
         _AVChannelLayout l;
-        if (ffmpeg.av_buffersink_get_ch_layout(context,&l) < 0)
+        if (ffmpeg.av_buffersink_get_ch_layout(context, &l) < 0)
         {
             layout = null;
             return false;

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Logging;
+﻿namespace FFmpeg.Logging;
 
 public enum LogLevel
 {
-    Info = ffmpeg.AV_LOG_INFO, 
+    Info = ffmpeg.AV_LOG_INFO,
     Error = ffmpeg.AV_LOG_ERROR,
     Debug = ffmpeg.AV_LOG_DEBUG,
     Fatal = ffmpeg.AV_LOG_FATAL,

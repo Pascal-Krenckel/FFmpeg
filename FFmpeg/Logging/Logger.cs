@@ -1,7 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace FFmpeg.Logging;
 
@@ -16,7 +13,7 @@ public static class Logger
 {
     private static readonly AutoGen.av_log_set_callback_callback _callback;
 
-    unsafe static Logger()
+    static unsafe Logger()
     {
         _callback = LogCallback;
         ffmpeg.av_log_set_callback(_callback);

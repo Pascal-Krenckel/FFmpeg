@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Logging;
+﻿namespace FFmpeg.Logging;
 
 [Flags]
 public enum LogFlags

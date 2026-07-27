@@ -1,5 +1,4 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.Codecs;
 using FFmpeg.Logging;
 using FFmpeg.Options;
 using FFmpeg.Unsafe;

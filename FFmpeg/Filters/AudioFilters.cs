@@ -1,9 +1,5 @@
 ﻿using FFmpeg.Audio;
-using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -193,5 +189,4 @@ public static class AudioFilters
         context.Init().ThrowIfError();
         return context;
     }
-
 }

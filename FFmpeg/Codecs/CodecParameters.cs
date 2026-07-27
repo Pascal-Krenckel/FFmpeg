@@ -408,9 +408,6 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     public int Channels => codecParameters->ch_layout.nb_channels;
 
     /// <inheritdoc/>
-    public ChannelLayout_ref ChannelLayout
-    {
-        get => new(&codecParameters->ch_layout,false);
-    }
+    public ChannelLayout_ref ChannelLayout => new(&codecParameters->ch_layout, false);
     ChannelLayout ICodecParameters.ChannelLayout { get => ChannelLayout.GetReferencedObject(); set => ChannelLayout.SetReferencedObject(value); }
 }
