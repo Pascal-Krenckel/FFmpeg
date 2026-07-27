@@ -150,7 +150,7 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
 
             AutoGen._AVFilterInOut* head = this.head;
             ffmpeg.avfilter_inout_free(&head);
-            _ = tail = null;
+            this.head = tail = null;
             disposedValue = true;
         }
     }
