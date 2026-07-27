@@ -78,25 +78,25 @@ public sealed class Transcoder : IDisposable
         FilterContext? bfSink = null;
         if (filter != null)
             bfSink = filter.OutputFilters.Single();
-        int width = bfSink?.BufferSinkWidth() ?? InputCodecs[sourceIndex].Width;
-        int height = bfSink?.BufferSinkHeight() ?? InputCodecs[sourceIndex].Height;
-        Rational timeBase = bfSink?.BufferSinkTimeBase() ?? InputStreams[sourceIndex].TimeBase;
-        PixelFormat pixFmt = bfSink?.BufferSinkPixelFormat() ?? InputCodecs[sourceIndex].PixelFormat;
-        ChannelLayout l = null!;
-        if (!(bfSink?.TryGetBufferSinkChannelLayout(out l) >= 0))
+        int width = bfSink?.BufferSinkWidth ?? InputCodecs[sourceIndex].Width;
+        int height = bfSink?.BufferSinkHeight ?? InputCodecs[sourceIndex].Height;
+        Rational timeBase = bfSink?.BufferSinkTimeBase ?? InputStreams[sourceIndex].TimeBase;
+        PixelFormat pixFmt = bfSink?.BufferSinkPixelFormat ?? InputCodecs[sourceIndex].PixelFormat;
+        ChannelLayout? l = null;
+        if ((bfSink?.TryGetBufferSinkChannelLayout(out l) != true))
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
-        using ChannelLayout layout = l;
-        ColorRange colorRange = bfSink?.BufferSinkColorRange() ?? InputCodecs[sourceIndex].ColorRange;
-        ColorSpace colorSpace = bfSink?.BufferSinkColorSpace() ?? InputCodecs[sourceIndex].ColorSpace;
+        using ChannelLayout layout = l!;
+        ColorRange colorRange = bfSink?.BufferSinkColorRange ?? InputCodecs[sourceIndex].ColorRange;
+        ColorSpace colorSpace = bfSink?.BufferSinkColorSpace ?? InputCodecs[sourceIndex].ColorSpace;
 
         Rational frameRate = InputCodecs[sourceIndex].FrameRate;
-        if (bfSink?.BufferSinkFrameRate().IsValidTimeBase == true)
-            frameRate = bfSink.BufferSinkFrameRate();
+        if (bfSink?.BufferSinkFrameRate.IsValidTimeBase == true)
+            frameRate = bfSink.BufferSinkFrameRate;
 
 
-        Rational sampleAspectRatio = bfSink?.BufferSinkSampleAspectRatio() ?? InputCodecs[sourceIndex].SampleAspectRatio;
-        SampleFormat sampleFmt = bfSink?.BufferSinkSampleFormat() ?? InputCodecs[sourceIndex].SampleFormat;
-        int sampleRate = bfSink?.BufferSinkSampleRate() ?? InputCodecs[sourceIndex].SampleRate;
+        Rational sampleAspectRatio = bfSink?.BufferSinkSampleAspectRatio ?? InputCodecs[sourceIndex].SampleAspectRatio;
+        SampleFormat sampleFmt = bfSink?.BufferSinkSampleFormat ?? InputCodecs[sourceIndex].SampleFormat;
+        int sampleRate = bfSink?.BufferSinkSampleRate ?? InputCodecs[sourceIndex].SampleRate;
 
         if (sinkCodec != null)
         {
@@ -141,22 +141,22 @@ public sealed class Transcoder : IDisposable
                 if (encoder.CodecType == Utils.MediaType.Audio)
                 {
                     FilterContext fctx = filter.OutputFilters.Single();
-                    encoder.SampleRate = fctx.BufferSinkSampleRate();
-                    fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch).ThrowIfError();
+                    encoder.SampleRate = fctx.BufferSinkSampleRate;
+                    fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch);
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
-                    encoder.SampleFormat = fctx.BufferSinkSampleFormat();
-                    encoder.TimeBase = fctx.BufferSinkTimeBase();
+                    encoder.SampleFormat = fctx.BufferSinkSampleFormat;
+                    encoder.TimeBase = fctx.BufferSinkTimeBase;
                 }
                 else if (encoder.CodecType == Utils.MediaType.Video)
                 {
                     FilterContext fctx = filter.OutputFilters.Single();
-                    encoder.TimeBase = fctx.BufferSinkTimeBase();
-                    encoder.PixelFormat = fctx.BufferSinkPixelFormat();
-                    encoder.FrameRate = fctx.BufferSinkFrameRate();
-                    encoder.Width = fctx.BufferSinkWidth();
-                    encoder.Height = fctx.BufferSinkHeight();
-                    encoder.SampleAspectRatio = fctx.BufferSinkSampleAspectRatio();
+                    encoder.TimeBase = fctx.BufferSinkTimeBase;
+                    encoder.PixelFormat = fctx.BufferSinkPixelFormat;
+                    encoder.FrameRate = fctx.BufferSinkFrameRate;
+                    encoder.Width = fctx.BufferSinkWidth;
+                    encoder.Height = fctx.BufferSinkHeight;
+                    encoder.SampleAspectRatio = fctx.BufferSinkSampleAspectRatio;
                 }
                 Sink.SetCodecContext(encoder, sinkIndex);
             }
