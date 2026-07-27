@@ -13,7 +13,7 @@ public unsafe partial class AudioFifo
     /// The <see cref="AVFrame"/> to receive audio samples.  
     /// If the frame has no buffer, its channel layout, sample format, and sample count can be automatically initialized:
     /// <list type="bullet">
-    /// <item><description>If <see cref="AVFrame.ChannelLayout.Channels"/> is 0, it is set to the default layout for the FIFO’s <see cref="Channels"/>.</description></item>
+    /// <item><description>If <see cref="AVFrame.ChannelLayout" path=".Channels"/> is 0, it is set to the default layout for the FIFO’s <see cref="Channels"/>.</description></item>
     /// <item><description>If <see cref="AVFrame.SampleFormat"/> is <see cref="SampleFormat.None"/>, it is set to the FIFO’s <see cref="Format"/>.</description></item>
     /// <item><description>If <see cref="AVFrame.SampleCount"/> is less than 1, it is set to the current <see cref="AudioFifo.Count"/> (peek all available samples from the offset).</description></item>
     /// </list>
@@ -49,8 +49,8 @@ public unsafe partial class AudioFifo
     /// Planar ↔ packed conversions are handled automatically:
     /// <list type="bullet">
     /// <item>If the frame's format exactly matches the FIFO format, the data is peeked directly using <c>ffmpeg.av_audio_fifo_peek</c>.</item>
-    /// <item>If the FIFO stores planar but the frame is packed, the data is converted from planar to packed using <see cref="PeekPlanarToPacked"/>.</item>
-    /// <item>If the FIFO stores packed but the frame is planar, the data is converted from packed to planar using <see cref="PeekPackedToPlanar"/>.</item>
+    /// <item>If the FIFO stores planar but the frame is packed, the data is converted from planar to packed.</item>
+    /// <item>If the FIFO stores packed but the frame is planar, the data is converted from packed to planar.</item>
     /// </list>
     /// </para>
     /// <para>
@@ -147,7 +147,7 @@ public unsafe partial class AudioFifo
     /// </summary>
     /// <typeparam name="T">
     /// The unmanaged sample type (for example, <see cref="float"/> or <see cref="short"/>).  
-    /// Its size must match <see cref="Format.GetBytesPerSample()"/>.
+    /// Its size must match <see cref="SampleExtensions.GetBytesPerSample(SampleFormat)"/>.
     /// </typeparam>
     /// <param name="buffer">
     /// A writable span to receive interleaved audio samples for all channels.  
@@ -816,7 +816,7 @@ public unsafe partial class AudioFifo
     /// <exception cref="NotSupportedException">Thrown when <paramref name="data"/> length does not match <see cref="Channels"/>.</exception>
     /// <remarks>
     /// This method simply reinterprets the <typeparamref name="T"/> arrays as bytes and calls 
-    /// <see cref="Peek(params byte[][], int)"/>.
+    /// <see cref="Peek(byte[][], int)"/>.
     /// </remarks>
     public AVResult32 Peek<T>(T[][] data, int offset) where T : unmanaged
     {
@@ -911,7 +911,7 @@ public unsafe partial class AudioFifo
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/> is <see langword="null"/>.</exception>
     /// <exception cref="NotSupportedException">
     /// Thrown when the number of channels does not match <see cref="Channels"/> or
-    /// when <c>sizeof(T)</c> does not match <see cref="Format.GetBytesPerSample()"/>.
+    /// when <c>sizeof(T)</c> does not match <see cref="SampleExtensions.GetBytesPerSample(SampleFormat)"/>.
     /// </exception>
     /// <remarks>
     /// This method simply reinterprets the <typeparamref name="T"/> array as bytes and calls

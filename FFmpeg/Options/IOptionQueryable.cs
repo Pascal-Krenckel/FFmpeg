@@ -7,7 +7,7 @@ namespace FFmpeg.Options;
 
 /// <summary>
 /// Defines methods for querying and setting options on a class's private data, typically used for configuring 
-/// settings in a system (e.g., FFmpeg's <see cref="av_opt_*"/> functions). This interface allows the retrieval, 
+/// settings in a system (e.g., FFmpeg's "av_opt_*" functions). This interface allows the retrieval, 
 /// modification, and management of various options associated with the class's internal state.
 /// </summary>
 public interface IOptionQueryable
@@ -21,13 +21,13 @@ public interface IOptionQueryable
     /// <inheritdoc cref="OptionQueryableBase.GetOptions(bool)"/>
     IReadOnlyList<Option> GetOptions(bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, (int, int), bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, ValueTuple{int, int}, bool)"/>
     AVResult32 SetOption(Option option, (int Width, int Height) size, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, _AVPixelFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, PixelFormat, bool)"/>
     AVResult32 SetOption(Option option, PixelFormat value, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, _AVSampleFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, SampleFormat, bool)"/>
     AVResult32 SetOption(Option option, SampleFormat value, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(Option, bool, bool)"/>
@@ -66,13 +66,13 @@ public interface IOptionQueryable
     /// <inheritdoc cref="OptionQueryableBase.SetOption(IDictionary{string, string}, bool)"/>
     AVResult32 SetOption(IDictionary<string, string> values, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, (int, int), bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, ValueTuple{int, int}, bool)"/>
     AVResult32 SetOption(string name, (int Width, int Height) size, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, _AVPixelFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, PixelFormat, bool)"/>
     AVResult32 SetOption(string name, PixelFormat format, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, _AVSampleFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.SetOption(string, SampleFormat, bool)"/>
     AVResult32 SetOption(string name, SampleFormat format, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(string, bool, bool)"/>
@@ -178,7 +178,7 @@ public interface IOptionQueryable
     /// <inheritdoc cref="OptionQueryableBase.TryGetOption(Option, Span{byte}, bool)"/>
     AVResult32 TryGetOption(Option option, Span<byte> value, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out (int, int), bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(Option, out ValueTuple{int, int}, bool)"/>
     AVResult32 TryGetOption(string name, out (int Width, int Height) size, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out Collections.AVDictionary, bool)"/>
@@ -187,10 +187,10 @@ public interface IOptionQueryable
     /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out AVMultiDictionary, bool)"/>
     AVResult32 TryGetOption(string name, out AVMultiDictionary value, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out _AVPixelFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out PixelFormat, bool)"/>
     AVResult32 TryGetOption(string name, out PixelFormat value, bool recursive = true);
 
-    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out _AVSampleFormat, bool)"/>
+    /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out SampleFormat, bool)"/>
     AVResult32 TryGetOption(string name, out SampleFormat value, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.TryGetOption(string, out bool, bool)"/>

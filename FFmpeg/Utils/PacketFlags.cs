@@ -6,6 +6,9 @@
 [Flags]
 public enum PacketFlags
 {
+    /// <summary>
+    /// No package flags set.
+    /// </summary>
     None = 0,
     /// <summary>
     /// The packet contains a keyframe.

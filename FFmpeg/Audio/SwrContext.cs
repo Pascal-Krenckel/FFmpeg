@@ -113,7 +113,7 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
 
     /// <summary>
     /// Gets the number of bytes per sample for a specified audio sample format.
-    /// </summary///>
+    /// </summary>
     /// <param name="format">The sample format to query.</param>
     /// <returns>The number of bytes per sample.</returns>
     public static int BytesPerSample(SampleFormat format) =>

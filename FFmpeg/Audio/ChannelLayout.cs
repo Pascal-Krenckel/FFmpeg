@@ -291,6 +291,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         this.layout = layout;
     }
 
+    /// <inheritdoc />
     ~ChannelLayout()
     {
         Dispose();

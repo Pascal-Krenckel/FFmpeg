@@ -38,6 +38,10 @@ public unsafe class MuxerContext : FormatContext
     /// </summary>
     public OutputFormat? OutputFormat => field ??= Context->oformat != null ? new(Context->oformat) : null;
 
+    /// <summary>
+    /// Creates a muxer context that wraps around the provided ffmpeg ibject
+    /// </summary>
+    /// <param name="context">The pointer to the _AVFormatContext</param>
     protected MuxerContext(_AVFormatContext* context) : base(context)
     {
     }
@@ -380,5 +384,17 @@ public unsafe class MuxerContext : FormatContext
     /// format is associated with this context.
     /// </returns>
     public override string ToString() => OutputFormat?.LongName ?? "Unknown";
+
+    /// <inheritdoc />
+    protected override void Dispose(bool disposing)
+    {        
+        if (disposing)
+        {
+            ioContext?.Dispose();
+        }
+        ffmpeg.avformat_free_context(Context);
+        Context = null;
+        base.Dispose(disposing);
+    }
 
 }

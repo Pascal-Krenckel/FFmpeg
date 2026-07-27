@@ -6,7 +6,9 @@ using FFmpeg.Utils;
 namespace FFmpeg.Formats;
 
 /// <summary>
-/// Managed wrapper for the FFmpeg AVStream structure.
+/// Represents a single media stream within a container.
+/// A stream typically contains encoded audio, video, subtitles, or other media data,
+/// together with its timing information, codec parameters, and metadata.
 /// </summary>
 public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?>, IAVPointer<_AVStream>
 {
@@ -15,9 +17,13 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
 
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="AVStream"/> class.
+    /// Initializes a new instance of the <see cref="AVStream"/> class that wraps an existing unmanaged
+    /// <see cref="AutoGen._AVStream"/> structure.
     /// </summary>
-    /// <param name="stream">Pointer to the unmanaged AVStream structure.</param>
+    /// <param name="stream">A pointer to the unmanaged FFmpeg stream.</param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown if <paramref name="stream"/> is <see langword="null"/>.
+    /// </exception>
     public AVStream(AutoGen._AVStream* stream)
     {
         if (stream == null)
@@ -30,12 +36,13 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
 
 
     /// <summary>
-    /// Stream index in AVFormatContext.
+    /// Gets the zero-based index of this stream within its containing format context.
     /// </summary>
     public int Index => stream->index;
 
     /// <summary>
-    /// Format-specific stream ID.
+    /// Gets or sets the container-specific stream identifier.
+    /// The meaning of this value depends on the container format.
     /// </summary>
     public int Id
     {
@@ -44,30 +51,39 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Codec parameters associated with this stream.
+    /// Gets a reference to the codec parameters describing the encoded data in this stream.
+    /// These parameters include the codec, media type, dimensions, sample rate, channel layout,
+    /// and other codec-specific information.
     /// </summary>
     public Codecs.CodecParameters_ref CodecParameters => new(stream->codecpar);
 
     /// <summary>
-    /// Fundamental unit of time (in seconds) in which timestamps are represented.
+    /// Gets or sets the stream time base.
+    /// All timestamps stored in this stream, such as <see cref="StartTime"/> and
+    /// <see cref="Duration"/>, are expressed in this time base.
     /// </summary>
     public Rational TimeBase { get => stream->time_base; set => stream->time_base = value; }
 
 
     /// <summary>
-    /// Presentation timestamp (PTS) of the first frame in the stream, in stream time base.
+    /// Gets or sets the presentation timestamp of the first frame in the stream,
+    /// expressed in <see cref="TimeBase"/> units.
+    /// A value of <c>AV_NOPTS_VALUE</c> indicates that the start time is unknown.
     /// </summary>
     public long StartTime { get => stream->start_time; set => stream->start_time = value; }
 
 
     /// <summary>
-    /// Duration of the stream, in stream time base units.
+    /// Gets or sets the duration of the stream,
+    /// expressed in <see cref="TimeBase"/> units.
+    /// A value of 0 or <c>AV_NOPTS_VALUE</c> may indicate that the duration is unknown.
     /// </summary>
     public long Duration { get => stream->duration; set => stream->duration = value; }
 
 
     /// <summary>
-    /// Number of frames in this stream, if known.
+    /// Gets or sets the number of frames contained in the stream, if known.
+    /// Some demuxers may leave this value unset.
     /// </summary>
     public long NumberOfFrames
     {
@@ -76,7 +92,9 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Stream disposition flags (a combination of AV_DISPOSITION_* flags).
+    /// Gets or sets the stream disposition flags.
+    /// These flags describe special characteristics of the stream,
+    /// such as whether it is the default stream, forced, attached picture, or hearing impaired.
     /// </summary>
     public StreamDisposition Disposition
     {
@@ -85,7 +103,7 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Specifies which packets can be discarded at will.
+    /// Gets or sets which packets from this stream may be discarded during decoding.
     /// </summary>
     public DiscardFlags Discard
     {
@@ -94,7 +112,8 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Sample aspect ratio of the stream.
+    /// Gets or sets the sample aspect ratio of the stream.
+    /// This describes the aspect ratio of individual pixels rather than the displayed image.
     /// </summary>
     public Rational SampleAspectRatio
     {
@@ -103,12 +122,13 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Metadata associated with this stream.
+    /// Gets the metadata associated with this stream.
     /// </summary>
     public Collections.AVDictionary_ref Metadata => new(&stream->metadata, ignoreCase: true, ignoreSuffix: false);
 
     /// <summary>
-    /// Average frame rate of the stream.
+    /// Gets or sets the average frame rate of the stream.
+    /// For variable frame rate content this value represents the average rather than the instantaneous frame rate.
     /// </summary>
     public Rational AverageFrameRate
     {
@@ -117,12 +137,14 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Attached picture for streams with AV_DISPOSITION_ATTACHED_PIC disposition.
+    /// Gets a reference to the attached picture associated with this stream.
+    /// This is primarily used by formats that store album artwork or thumbnails.
     /// </summary>
     public AVPacket_ref AttachedPicture => new(&stream->attached_pic);
 
     /// <summary>
-    /// Flags indicating events happening on the stream.
+    /// Gets or sets event flags reported by FFmpeg for this stream.
+    /// These flags are used internally to notify the application of stream changes.
     /// </summary>
     public int EventFlags
     {
@@ -131,12 +153,15 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Real base framerate of the stream.
+    /// Gets the estimated real base frame rate of the stream.
+    /// This value is primarily intended for timing calculations and may differ from
+    /// <see cref="AverageFrameRate"/>.
     /// </summary>
     public Rational RealFrameRate => stream->r_frame_rate;
 
     /// <summary>
-    /// Number of bits in timestamps used for wrapping control.
+    /// Gets the number of bits used for presentation timestamp wrapping.
+    /// This is primarily relevant for container formats with limited timestamp ranges.
     /// </summary>
     public int PtsWrapBits => stream->pts_wrap_bits;
 
@@ -151,10 +176,13 @@ public unsafe class AVStream : Options.OptionQueryableBase, IEquatable<AVStream?
     }
 
     /// <summary>
-    /// Gets the specific codec ID used for the encoded data.
+    /// Gets the codec identifier describing the encoded data in this stream.
     /// </summary>
     public Codecs.CodecID CodecId => CodecParameters.CodecId;
 
+    /// <summary>
+    /// The pointer to the unmanaged _AVStream object
+    /// </summary>
     protected override unsafe void* Pointer => stream;
 
     /// <inheritdoc />

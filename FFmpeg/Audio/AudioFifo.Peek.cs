@@ -12,7 +12,7 @@ public unsafe partial class AudioFifo
     /// The <see cref="AVFrame"/> to receive audio samples.  
     /// If the frame has no buffer, its channel layout, sample format, and sample count can be automatically initialized:
     /// <list type="bullet">
-    /// <item><description>If <see cref="AVFrame.ChannelLayout.Channels"/> is 0, it is set to the default layout for the FIFO’s <see cref="Channels"/>.</description></item>
+    /// <item><description>If <see cref="AVFrame.ChannelLayout" href=".Channels"/> is 0, it is set to the default layout for the FIFO’s <see cref="Channels"/>.</description></item>
     /// <item><description>If <see cref="AVFrame.SampleFormat"/> is <see cref="SampleFormat.None"/>, it is set to the FIFO’s <see cref="Format"/>.</description></item>
     /// <item><description>If <see cref="AVFrame.SampleCount"/> is less than 1, it is set to the current <see cref="AudioFifo.Count"/> (peek all available samples).</description></item>
     /// </list>
@@ -130,7 +130,7 @@ public unsafe partial class AudioFifo
     /// </summary>
     /// <typeparam name="T">
     /// The unmanaged sample type (for example, <see cref="float"/> or <see cref="short"/>).  
-    /// Its size must match <see cref="Format.GetBytesPerSample()"/>.
+    /// Its size must match <see cref="SampleExtensions.GetBytesPerSample(SampleFormat)"/>.
     /// </typeparam>
     /// <param name="buffer">
     /// A writable span to receive interleaved audio samples for all channels.  
@@ -783,7 +783,7 @@ public unsafe partial class AudioFifo
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/> is <see langword="null"/>.</exception>
     /// <exception cref="NotSupportedException">
     /// Thrown when the number of channels does not match <see cref="Channels"/> or
-    /// when <c>sizeof(T)</c> does not match <see cref="Format.GetBytesPerSample()"/>.
+    /// when <c>sizeof(T)</c> does not match <c>Format.GetBytesPerSample()</c>.
     /// </exception>
     public unsafe AVResult32 Peek<T>(T[,] data) where T : unmanaged
     {

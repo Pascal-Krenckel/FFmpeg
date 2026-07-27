@@ -25,7 +25,7 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// Unlike <see cref="Create(string, Filter, string?, FilterGraph)"/>, this
     /// method only allocates the filter context. Before the filter can be used,
-    /// it must be initialized by calling one of the <see cref="Init"/> overloads.
+    /// it must be initialized by calling one of the <see cref="Init()"/> overloads.
     /// This overload is useful when filter options must be configured before
     /// initialization.
     /// </remarks>

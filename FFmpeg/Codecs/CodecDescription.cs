@@ -66,7 +66,7 @@ public readonly unsafe struct CodecDescription : IEquatable<CodecDescription>
     /// </summary>
     /// <param name="codecID">The codec ID to get the descriptor for.</param>
     /// <param name="descriptor">
-    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the codec ID was valid; otherwise, <see cref="default"/>.
+    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the codec ID was valid.
     /// </param>
     /// <returns>
     /// <c>true</c> if the descriptor was successfully retrieved; otherwise, <c>false</c>.
@@ -91,7 +91,7 @@ public readonly unsafe struct CodecDescription : IEquatable<CodecDescription>
     /// </summary>
     /// <param name="codec">The codec to get the descriptor for.</param>
     /// <param name="descriptor">
-    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the codec was valid; otherwise, <see cref="default"/>.
+    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the codec was valid.
     /// </param>
     /// <returns>
     /// <c>true</c> if the descriptor was successfully retrieved; otherwise, <c>false</c>.
@@ -104,7 +104,7 @@ public readonly unsafe struct CodecDescription : IEquatable<CodecDescription>
     /// </summary>
     /// <param name="name">The name of the codec to get the descriptor for.</param>
     /// <param name="descriptor">
-    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the name was valid; otherwise, <see cref="default"/>.
+    /// When this method returns, contains the <see cref="CodecDescription"/> instance if the name was valid.
     /// </param>
     /// <returns>
     /// <c>true</c> if the descriptor was successfully retrieved; otherwise, <c>false</c>.

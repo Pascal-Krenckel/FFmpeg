@@ -525,16 +525,22 @@ public unsafe partial class AudioFifo : IDisposable
     }
 
     /// <summary>
-    /// Peeks audio data from a packed FIFO buffer and deinterleaves it into planar channel buffers.
+    /// Peeks audio samples from a packed FIFO buffer and deinterleaves them into
+    /// separate planar channel buffers.
     /// </summary>
     /// <param name="data">
-    /// An array of pointers, one per channel, where the deinterleaved samples will be stored.
+    /// An array of pointers, one for each channel, that receives the deinterleaved
+    /// audio samples.
     /// </param>
     /// <param name="samples">
-    /// The number of audio samples to peek per channel.
+    /// The number of samples to peek for each channel.
+    /// </param>
+    /// <param name="offset">
+    /// The sample offset, relative to the beginning of the FIFO, at which to start peeking.
     /// </param>
     /// <returns>
-    /// The number of samples successfully peek, or an error code if the operation failed.
+    /// The number of samples successfully peeked per channel, or an error code if the
+    /// operation failed.
     /// </returns>
     private AVResult32 PeekPackedToPlanar(byte** data, int samples, int offset)
     {
@@ -601,16 +607,24 @@ public unsafe partial class AudioFifo : IDisposable
     public AVResult32 Drop(int samples) => ffmpeg.av_audio_fifo_drain(fifo, samples);
 
     /// <summary>
-    /// Drops (removes) a specified duration of samples from the start of the FIFO buffer.
+    /// Drops (removes) audio samples corresponding to the specified duration from
+    /// the beginning of the FIFO buffer.
     /// </summary>
-    /// <param name="duration">The number of samples to drop from the FIFO.</param>
-    /// <param name="sampleRate">The sample rate of the audio stream.</param>
+    /// <param name="duration">
+    /// The duration of audio to remove from the FIFO.
+    /// </param>
+    /// <param name="sampleRate">
+    /// The sample rate, in samples per second, used to convert the duration into
+    /// a sample count.
+    /// </param>
     /// <returns>
-    /// Returns 0 on success, or a negative error code if the operation fails.
+    /// <c>0</c> if the samples were successfully removed; otherwise, a negative
+    /// error code.
     /// </returns>
     /// <remarks>
-    /// This method reduces the number of available samples in the FIFO by <paramref name="samples"/>.  
-    /// Dropping more samples than are currently available in the FIFO will result in an error.
+    /// The specified <paramref name="duration"/> is converted to a sample count
+    /// using <paramref name="sampleRate"/>. Attempting to remove more samples than
+    /// are currently stored in the FIFO results in an error.
     /// </remarks>
     public AVResult32 Drop(TimeSpan duration, int sampleRate)
     {
@@ -657,11 +671,6 @@ public unsafe partial class AudioFifo : IDisposable
     {
         if (!disposedValue)
         {
-            if (disposing)
-            {
-                // TODO: Clean up managed state (managed objects) if needed
-            }
-
             if (fifo != null)
                 ffmpeg.av_audio_fifo_free(fifo);
             fifo = null;
@@ -682,7 +691,7 @@ public unsafe partial class AudioFifo : IDisposable
     /// </summary>
     /// <remarks>
     /// This method frees the underlying <see cref="ffmpeg.av_audio_fifo_free"/> and suppresses finalization.  
-    /// Always call <see cref="Dispose"/> when finished using an <see cref="AudioFifo"/> instance to avoid memory leaks.
+    /// Always call <see cref="Dispose()"/> when finished using an <see cref="AudioFifo"/> instance to free unmanaged memory.
     /// </remarks>
     public void Dispose()
     {

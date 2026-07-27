@@ -106,8 +106,9 @@ public class IOStreamContext : IOContext
         base.Dispose(disposing);
     }
 
-    /// <inherit doc/>
+    /// <inheritdoc />
     public override bool CanSeek => stream.CanSeek;
 
+    /// <inheritdoc />
     public override void Flush() => stream.Flush();
 }

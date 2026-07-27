@@ -30,9 +30,15 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.4</Version>
+		<Version>8.1.2.5</Version>
 		<PackageReleaseNotes>
-			___ 8.1.2.4 ---
+			--- 8.1.2.5 ---
+			Reworked filtering
+			Removed dupplicated function in filters, moved FilterContext Create[Filter] function in Audio/VideoFilters.
+			Documentation
+			Some BugFixes in FilterGraph
+			
+			--- 8.1.2.4 ---
 			BugFix: FormatContext.WritePacket wrote interleaved packets previously.
 			BugFix/full implementation: MediaSink is now fully implemented, some bugs got fixed
 			BugFix: SwsContext copies now into "readonly" AVFrame

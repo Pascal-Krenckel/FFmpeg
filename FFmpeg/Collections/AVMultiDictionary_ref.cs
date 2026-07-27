@@ -6,14 +6,18 @@ using System.Runtime.InteropServices;
 namespace FFmpeg.Collections;
 
 /// <summary>
-/// Represents a multi-dictionary that allows multiple values for a single key.
+/// Represents a managed reference to an FFmpeg <c>AVDictionary</c> that
+/// supports multiple values for the same key.
 /// </summary>
+/// <remarks>
+/// Unlike <see cref="AVMultiDictionary"/>, this type does not own the
+/// underlying dictionary. It provides direct access to an existing
+/// FFmpeg <c>AVDictionary</c>.
+/// </remarks>
 public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IReference<AVMultiDictionary>, IAVPointer<AutoGen._AVDictionary>
 {
-
-
     /// <summary>
-    /// Pointer to the underlying dictionary structure.
+    /// Gets a pointer to the referenced FFmpeg <c>AVDictionary</c>.
     /// </summary>
     internal readonly AutoGen._AVDictionary** dictionary = null;
     readonly AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => *dictionary;
@@ -25,10 +29,11 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
 
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="AVMultiDictionary_ref"/> class with an existing dictionary.
+    /// Initializes a new <see cref="AVMultiDictionary_ref"/> that references an
+    /// existing FFmpeg dictionary.
     /// </summary>
     /// <param name="dictionary">Pointer to an existing dictionary.</param>
-    /// <param name="ignoreCase">If set to <c>true</c>, the dictionary will ignore case when comparing keys.</param>
+    /// <param name="ignoreCase">If set to <see langword="true"/>, the dictionary will ignore case when comparing keys.</param>
     internal AVMultiDictionary_ref(AutoGen._AVDictionary** dictionary, bool ignoreCase = true)
     {
         this.dictionary = dictionary;
@@ -37,23 +42,27 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     }
 
     /// <summary>
-    /// Gets the values associated with the specified key.
+    /// Gets an enumerable sequence containing all values associated with the
+    /// specified key.
     /// </summary>
     /// <param name="key">The key whose values to get.</param>
     /// <returns>An enumerable collection of values associated with the specified key.</returns>
-    public IEnumerable<string> this[string key] => new AVMultiDictionaryKeyIterator(this, key);
+    public readonly IEnumerable<string> this[string key] => new AVMultiDictionaryKeyIterator(this, key);
 
     /// <summary>
-    /// Gets the number of key/value pairs contained in the dictionary.
+    /// Gets the total number of key/value pairs contained in the dictionary.
     /// </summary>
-    public int Count => AutoGen.ffmpeg.av_dict_count(*dictionary);
+    /// <remarks>
+    /// Multiple entries having the same key are counted individually.
+    /// </remarks>
+    public readonly int Count => AutoGen.ffmpeg.av_dict_count(*dictionary);
 
     /// <summary>
     /// Determines whether the dictionary contains the specified key.
     /// </summary>
     /// <param name="key">The key to locate in the dictionary.</param>
-    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
-    public bool Contains(string key)
+    /// <returns><see langword="true"/> if the dictionary contains an element with the specified key; otherwise, <see langword="false"/>.</returns>
+    public readonly bool Contains(string key)
     {
         if (dictionary == null)
             return false;
@@ -65,8 +74,11 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// Removes all values associated with the specified key.
     /// </summary>
     /// <param name="key">The key whose values to remove.</param>
-    /// <returns><c>true</c> if any values were removed; otherwise, <c>false</c>.</returns>
-    public bool RemoveAll(string key)
+    /// <returns><see langword="true"/> if any values were removed; otherwise, <see langword="false"/>.</returns>
+    /// /// <remarks>
+    /// All entries having the specified key are removed.
+    /// </remarks>
+    public readonly bool RemoveAll(string key)
     {
         bool ret = false;
         while (RemoveFirst(key))
@@ -78,8 +90,12 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// Removes the first value associated with the specified key.
     /// </summary>
     /// <param name="key">The key whose first value to remove.</param>
-    /// <returns><c>true</c> if a value was removed; otherwise, <c>false</c>.</returns>
-    public bool RemoveFirst(string key)
+    /// <returns><see langword="true"/> if a value was removed; otherwise, <see langword="false"/>.</returns>
+    /// <remarks>
+    /// If multiple values exist for the specified key, only the first matching
+    /// entry is removed.
+    /// </remarks>
+    public readonly bool RemoveFirst(string key)
     {
         bool b = Contains(key);
         return b && AutoGen.ffmpeg.av_dict_set(dictionary, key, null, (int)(Flags & ~AVDictionaryFlags.MultiKey)) >= 0;
@@ -90,7 +106,11 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// </summary>
     /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value of the element to add.</param>
-    public void Add(string key, string value)
+    /// <remarks>
+    /// Existing values are preserved. If the key already exists, the new value is
+    /// added as an additional entry.
+    /// </remarks>
+    public readonly void Add(string key, string value)
     {
         if (key == null)
             throw new ArgumentNullException(nameof(key));
@@ -100,7 +120,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// <summary>
     /// Clears all key/value pairs from the dictionary.
     /// </summary>
-    public void Clear()
+    public readonly void Clear()
     {
         List<string> keys = this.Select(g => g.Key).ToList();
         foreach (string? k in keys)
@@ -111,7 +131,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// Returns an enumerator that iterates through the dictionary.
     /// </summary>
     /// <returns>An enumerator that can be used to iterate through the dictionary.</returns>
-    public IEnumerator<IGrouping<string, string>> GetEnumerator() =>
+    public readonly IEnumerator<IGrouping<string, string>> GetEnumerator() =>
         new AVMultiDictionaryIterator(this)
         .GroupBy(kv => kv.Key, kv => kv.Value, GetComparer())
         .GetEnumerator();
@@ -120,14 +140,14 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     /// Gets the comparer used for comparing keys.
     /// </summary>
     /// <returns>An equality comparer for the dictionary keys.</returns>
-    private IEqualityComparer<string> GetComparer() =>
+    private readonly IEqualityComparer<string> GetComparer() =>
         Flags.HasFlag(AVDictionaryFlags.MatchCase) ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
 
     /// <summary>
     /// Returns an enumerator that iterates through the dictionary.
     /// </summary>
     /// <returns>An enumerator that can be used to iterate through the dictionary.</returns>
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    readonly IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     private class AVMultiDictionaryIterator(AVMultiDictionary_ref dict) : IEnumerator<KeyValuePair<string, string>>, IEnumerable<KeyValuePair<string, string>>
     {
@@ -190,12 +210,28 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     }
 
     /// <summary>
-    /// Converts the <see cref="AVMultiDictionary_ref"/> into an <see cref="AVDictionary_ref"/>
+    /// Returns a view of the referenced dictionary as an
+    /// <see cref="AVDictionary_ref"/>.
     /// </summary>
-    /// <returns>The <see cref="AVDictionary_ref"/> without the <see cref="AVDictionaryFlags.IgnoreSuffix"/> flag set.</returns>
-    public AVDictionary_ref AsAVDictionary() => new(dictionary, ignoreCase: !Flags.HasFlag(AVDictionaryFlags.MatchCase));
+    /// <remarks>
+    /// Since <see cref="AVDictionary_ref"/> does not support duplicate keys,
+    /// retrieving a value through the returned reference returns only the first
+    /// matching entry for each key.
+    /// </remarks>
+    public readonly AVDictionary_ref AsAVDictionary() => new(dictionary, ignoreCase: !Flags.HasFlag(AVDictionaryFlags.MatchCase));
 
-    public AVMultiDictionary? GetReferencedObject()
+    /// <summary>
+    /// Creates an independent copy of the referenced dictionary.
+    /// </summary>
+    /// <returns>
+    /// A new <see cref="AVMultiDictionary"/> containing the same entries, or
+    /// <see langword="null"/> if no dictionary is referenced.
+    /// </returns>
+    /// <remarks>
+    /// Since FFmpeg dictionaries are not reference counted, this method performs
+    /// a deep copy.
+    /// </remarks>
+    public readonly AVMultiDictionary? GetReferencedObject()
     {
         if (*dictionary == null)
             return null;
@@ -203,6 +239,15 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
         FFmpeg.Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_dict_copy(&copy, *dictionary, (int)Flags)); // OutOfMemoryException
         return new AVMultiDictionary(copy, !Flags.HasFlag(AVDictionaryFlags.MatchCase));
     }
+
+    /// <summary>
+    /// Replaces the referenced dictionary with a copy of the specified
+    /// dictionary.
+    /// </summary>
+    /// <param name="obj">
+    /// The dictionary to copy, or <see langword="null"/> to free the referenced
+    /// dictionary.
+    /// </param>
     public void SetReferencedObject(AVMultiDictionary? obj)
     {
         if (obj == null)
@@ -216,6 +261,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
         }
     }
 
-    public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
+    /// <inheritdoc cref="AVMultiDictionary"/>
+    public readonly override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
 
 }

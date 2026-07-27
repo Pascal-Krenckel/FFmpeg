@@ -178,7 +178,7 @@ public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// Thrown if the system cannot allocate enough memory to create a new buffer reference when setting a non-null object.
     /// </exception>
     /// <remarks>
-    /// This method updates the underlying <see cref="AVBufferRef"/> pointer to reference a new buffer object.
+    /// This method updates the underlying <see cref="FFmpeg.AutoGen._AVBufferRef"/> pointer to reference a new buffer object.
     /// If <paramref name="buffer"/> is <c>null</c>, the current reference is unlinked using <c>ffmpeg.av_buffer_unref</c>.
     /// If a new object is provided, the reference is updated with <c>ffmpeg.av_buffer_ref</c>, and an <see cref="OutOfMemoryException"/> is thrown if the allocation fails.
     /// </remarks>

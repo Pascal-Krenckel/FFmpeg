@@ -189,7 +189,7 @@ public sealed unsafe class Image : IDisposable
     /// </summary>
     /// <param name="dstFormat">The desired destination format for the conversion.</param>
     /// <returns>A new <see cref="Image"/> in the specified format.</returns>
-    /// <exception cref="AVException">Thrown if the conversion fails.</exception>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">Thrown if the conversion fails.</exception>
     public Image ConvertTo(ImageInfo dstFormat)
     {
         Image img = Create(dstFormat);
@@ -202,6 +202,31 @@ public sealed unsafe class Image : IDisposable
         return img;
     }
 
+    /// <summary>
+    /// Gets a span representing a single image plane.
+    /// </summary>
+    /// <param name="index">
+    /// The zero-based index of the plane to retrieve.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Span{T}"/> containing the bytes of the specified image plane.
+    /// </returns>
+    /// <remarks>
+    /// The returned span references the underlying image buffer and does not
+    /// allocate additional memory. Its length corresponds to the size of the plane
+    /// as determined by the current <see cref="PixelFormat"/>, <see cref="Width"/>,
+    /// and <see cref="Height"/>.
+    ///
+    /// <para>
+    /// Multi-planar pixel formats (such as YUV formats) expose separate planes for
+    /// components like luma and chroma, while packed pixel formats expose a single
+    /// plane.
+    /// </para>
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="index"/> is less than zero or greater than or
+    /// equal to <see cref="ImageInfo.Planes"/>.
+    /// </exception>
     public Span<byte> GetPlane(int index)
     {
         if (index < 0 || index >= Info.Planes)

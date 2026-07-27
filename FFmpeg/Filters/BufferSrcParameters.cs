@@ -104,7 +104,7 @@ public sealed unsafe class BufferSrcParameters : IDisposable, IAVPointer<AutoGen
 
     /// <summary>
     /// Finalizer for the <see cref="BufferSrcParameters"/> class.
-    /// Ensures that unmanaged resources are freed if <see cref="Dispose"/> is not called.
+    /// Ensures that unmanaged resources are freed if <see cref="Dispose()"/> is not called.
     /// </summary>
     ~BufferSrcParameters()
     {

@@ -33,7 +33,7 @@ public enum ColorPrimaries : int
 
     /// <summary>
     /// ITU-R BT.470 System B/G (625-line PAL/SECAM) color primaries.
-    /// Also used in ITU-R BT.601-6 625, ITU-R BT.1358 625, and ITU-R BT.1700 625 PAL & SECAM standards.
+    /// Also used in ITU-R BT.601-6 625, ITU-R BT.1358 625, and ITU-R BT.1700 625 PAL &amp; SECAM standards.
     /// </summary>
     BT470BG = AutoGen._AVColorPrimaries.AVCOL_PRI_BT470BG,
 

@@ -5,9 +5,13 @@ using FFmpeg.Utils;
 namespace FFmpeg.IO;
 
 /// <summary>
-/// Represents a managed wrapper for the unmanaged FFmpeg AVIOContext structure.
-/// This class provides access to various properties and methods related to AVIOContext.
+/// Represents a managed wrapper around FFmpeg's unmanaged <see cref="AutoGen._AVIOContext"/> structure.
 /// </summary>
+/// <remarks>
+/// An <see cref="AVIOContext"/> provides buffered input/output operations for media data.
+/// It can represent file-based I/O, network streams, memory buffers, or custom user-defined
+/// data sources. Instances own the underlying unmanaged context and release it when disposed.
+/// </remarks>
 public unsafe class AVIOContext : IDisposable, IAVPointer<AutoGen._AVIOContext>
 {
     /// <summary>
@@ -36,6 +40,17 @@ public unsafe class AVIOContext : IDisposable, IAVPointer<AutoGen._AVIOContext>
     // You have to use SetContext
     internal AVIOContext() { }
 
+    /// <summary>
+    /// Replaces the underlying unmanaged <see cref="AutoGen._AVIOContext"/>.
+    /// </summary>
+    /// <param name="context">
+    /// A pointer to the new unmanaged context.
+    /// </param>
+    /// <remarks>
+    /// If this instance already owns a different context, the previous context is released
+    /// before the new one is assigned.
+    /// This method is intended for derived classes that create custom AVIO contexts.
+    /// </remarks>
     protected void SetContext(AutoGen._AVIOContext** context)
     {
         if (this.context != null && context != this.context)
@@ -79,14 +94,41 @@ public unsafe class AVIOContext : IDisposable, IAVPointer<AutoGen._AVIOContext>
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
     }
-    // ToDo: avio_open2
+
+    /// <summary>
+    /// Opens an FFmpeg I/O context for the specified URL or file.
+    /// </summary>
+    /// <param name="pb">
+    /// Receives a pointer to the newly allocated unmanaged <see cref="AutoGen._AVIOContext"/>.
+    /// </param>
+    /// <param name="filename">
+    /// The URL or file path to open.
+    /// </param>
+    /// <param name="flags">
+    /// The access mode and additional flags used when opening the context.
+    /// </param>
+    /// <param name="ioContext">
+    /// When this method returns successfully, contains the managed wrapper around the opened
+    /// I/O context; otherwise <see langword="null"/>.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> indicating whether the operation succeeded.
+    /// </returns>
     internal static AVResult32 Open(AutoGen._AVIOContext** pb, string filename, int flags, out AVIOContext? ioContext)
     {
         int res = ffmpeg.avio_open(pb, filename, flags);
         ioContext = res >= 0 ? new AVIOContext(pb) { close = true } : null;
         return res;
     }
+    // ToDo: avio_open2
 
+    /// <summary>
+    /// Flushes any buffered output data to the underlying destination.
+    /// </summary>
+    /// <remarks>
+    /// This method has an effect only for writable I/O contexts.
+    /// For read-only contexts, calling this method typically has no effect.
+    /// </remarks>
     public virtual void Flush() => ffmpeg.avio_flush(*context);
 }
 

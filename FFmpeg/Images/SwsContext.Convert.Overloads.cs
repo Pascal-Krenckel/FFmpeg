@@ -90,10 +90,10 @@ public unsafe partial class SwsContext
     }
 
     /// <summary>
-    /// Converts the source <see cref="AVFrame"/> to a destination buffer represented as a <see cref="Span{byte}"/>.
+    /// Converts the source <see cref="AVFrame"/> to a destination buffer represented as a <see cref="Span{T}"/>.
     /// </summary>
     /// <param name="src">The source frame to be converted.</param>
-    /// <param name="dst">The destination buffer as a <see cref="Span{byte}"/>.</param>
+    /// <param name="dst">The destination buffer as a <see cref="Span{T}"/>.</param>
     /// <param name="dstAlign">Optional memory alignment for the destination buffer, default is 1.</param>
     /// <returns>An <see cref="AVResult32"/> value indicating success or failure of the conversion operation.</returns>
     /// <seealso cref="Convert(AVFrame, IntPtr, int)"/>

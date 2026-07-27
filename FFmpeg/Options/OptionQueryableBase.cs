@@ -12,7 +12,7 @@ namespace FFmpeg.Options;
 /// </summary>
 /// <remarks>
 /// This class provides methods for retrieving and modifying various options on AV-option-enabled classes, 
-/// facilitating interaction with their private data through the <see cref="av_opt_*"/> functions.
+/// facilitating interaction with their private data through the "av_opt_*" functions.
 /// </remarks>
 public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingContext
 {
@@ -787,7 +787,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
     /// <returns>Returns an <see cref="AVResult32"/> indicating the result of the operation. Possible values include success or various error codes.</returns>
     /// <remarks>
-    /// The option is retrieved as an <see cref="_AVRational"/> structure and assigned to the <see cref="Rational"/> output parameter.
+    /// The option is retrieved as an <see cref="Rational"/> structure and assigned to the <see cref="Rational"/> output parameter.
     /// This method is useful for options that represent rational values (e.g., frame rates or timebases).
     /// </remarks>
     public AVResult32 TryGetOption(string name, out Rational value, bool recursive = true)
@@ -818,14 +818,14 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     }
 
     /// <summary>
-    /// Attempts to retrieve an option as an <see cref="_AVSampleFormat"/> from the AV-option-enabled class.
+    /// Attempts to retrieve an option as an <see cref="SampleFormat"/> from the AV-option-enabled class.
     /// </summary>
     /// <param name="name">The name of the option to retrieve.</param>
-    /// <param name="value">When this method returns, contains the <see cref="_AVSampleFormat"/> value of the option, or a default value if the option is not found or if an error occurs.</param>
+    /// <param name="value">When this method returns, contains the <see cref="SampleFormat"/> value of the option, or a default value if the option is not found or if an error occurs.</param>
     /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
     /// <returns>Returns an <see cref="AVResult32"/> indicating the result of the operation. Possible values include success or various error codes.</returns>
     /// <remarks>
-    /// The option is retrieved as an <see cref="_AVSampleFormat"/> enumeration value, which represents audio sample formats.
+    /// The option is retrieved as an <see cref="SampleFormat"/> enumeration value, which represents audio sample formats.
     /// This method is useful for retrieving options related to audio data formats.
     /// </remarks>
     public AVResult32 TryGetOption(string name, out SampleFormat value, bool recursive = true)
@@ -991,7 +991,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// If the option is not found, the data type is incorrect, or any other error occurs, returns <see cref="int.MinValue"/>.
     /// </returns>
     /// <remarks>
-    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> and <see cref="ffmpeg.av_opt_get_binary"/> functions.
+    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> function.
     /// The binary data is copied into the provided <see cref="Span{Byte}"/>. If the span is too small to accommodate the data, a negative value representing the required size is returned.
     /// In case of errors such as invalid option names, incorrect data types, or other failures, <see cref="int.MinValue"/> is returned.
     /// To ensure the data is copied correctly, make sure the span is sufficiently sized based on the expected data size.
@@ -1206,7 +1206,6 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     }
 
     /// <inheritdoc cref="TryGetOption(Option, out object?, bool)"/>
-    /// <param name="name">The name of the option to retrieve.</param>
     public AVResult32 TryGetOption(string name, out object? value, bool recursive = true)
     {
         value = null;
@@ -1257,113 +1256,93 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     }
 
     /// <inheritdoc cref="TryGetOption(string, out long, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out long value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ulong, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out ulong value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out int, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out int value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out bool, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out bool value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out uint, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out uint value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out double, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out double value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out Rational, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out Rational value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out PixelFormat, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out PixelFormat value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out SampleFormat, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out SampleFormat value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out IDictionary{string, string}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out IDictionary<string, string> value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out Dictionary{string, string}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out Dictionary<string, string> value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out Collections.AVDictionary, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out Collections.AVDictionary value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ILookup{string,string}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out ILookup<string, string> value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out Collections.AVMultiDictionary, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out Collections.AVMultiDictionary value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out int,out int, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out int width, out int height, bool recursive = true) => TryGetOption(option.Name, out width, out height, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ValueTuple{int, int}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out (int Width, int Height) size, bool recursive = true) => TryGetOption(option.Name, out size, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out byte[], bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out byte[] value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out Memory{byte}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out Memory<byte> value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ReadOnlyMemory{byte}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, out ReadOnlyMemory<byte> value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, Span{byte}, bool)"/>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
     public AVResult32 TryGetOption(Option option, Span<byte> value, bool recursive = true) => TryGetOption(option.Name, value, recursive);
 
     /// <summary>
-    /// Attempts to retrieve the value of the specified <see cref="Option"/> and convert it to an <see cref="object"/> of the appropriate type.
+    /// Attempts to retrieve the value of the specified <see cref="Option"/> and
+    /// returns it as an <see cref="object"/> of the appropriate managed type.
     /// </summary>
-    /// <param name="option">The <see cref="Option"/> object representing the option whose value you want to retrieve.</param>
-    /// <param name="obj">
-    /// When this method returns, contains the value of the option as an <see cref="object"/> of the appropriate type. 
-    /// The type of the object depends on the option's type, as described in the remarks. 
-    /// If the option is not found or if an error occurs, this will be <see langword="null"/>.
+    /// <param name="option">
+    /// The option whose value should be retrieved.
     /// </param>
-    /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
+    /// <param name="obj">
+    /// When this method returns successfully, contains the option value converted
+    /// to the corresponding managed type. Otherwise, the value is unspecified.
+    /// </param>
+    /// <param name="recursive">
+    /// <see langword="true"/> to search recursively in child option containers;
+    /// otherwise, <see langword="false"/>.
+    /// </param>
     /// <returns>
-    /// Returns an <see cref="AVResult32"/> indicating the result of the operation. 
-    /// Possible values include:
-    /// <list type="bullet">
-    /// <item>
-    /// <description><see langword="0"/> if the operation was successful and the value has been retrieved and converted to the appropriate type.</description>
-    /// </item>
-    /// <item>
-    /// <description><see cref="AVResult32.InvalidArgument"/> if the option type is not supported or if there is an issue with the arguments.</description>
-    /// </item>
-    /// </list>
+    /// An <see cref="AVResult32"/> indicating whether the operation succeeded.
+    /// Returns <see cref="AVResult32.InvalidArgument"/> if the option type is not
+    /// supported by this overload or if the arguments are invalid.
     /// </returns>
     /// <remarks>
-    /// This method attempts to retrieve the value of the <see cref="Option"/> and convert it to a type corresponding to the option’s type:
+    /// <para>
+    /// The runtime type of <paramref name="obj"/> depends on the option type:
+    /// </para>
     /// <list type="table">
     /// <listheader>
     /// <term>Option Type</term>
-    /// <description>Returned Value Type</description>
+    /// <description>Managed Type</description>
     /// </listheader>
     /// <item>
     /// <term><see cref="OptionType.Color"/>, <see cref="OptionType.Flags"/>, <see cref="OptionType.Int32"/></term>
@@ -1387,11 +1366,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.Binary"/></term>
-    /// <description><see cref="byte[]"/></description>
+    /// <description><c>byte[]</c></description>
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.Dictionary"/></term>
-    /// <description><see cref="Dictionary{string, string}"/></description>
+    /// <description><see cref="Dictionary{TKey,TValue}"/> where <c>TKey</c> and <c>TValue</c> are <see cref="string"/>.</description>
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.Duration"/>, <see cref="OptionType.UInt64"/></term>
@@ -1399,7 +1378,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.ImageSize"/></term>
-    /// <description>A tuple of <see cref="int"/> representing width and height.</description>
+    /// <description><see cref="ValueTuple{T1,T2}"/> containing the width and height.</description>
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.PixelFormat"/></term>
@@ -1423,7 +1402,9 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </item>
     /// </list>
     /// <para>
-    /// If the option type is not implemented or not supported, such as <see cref="OptionType.ChannelLayout"/>, the method may return <see cref="AVResult32.InvalidArgument"/>.
+    /// Array options are supported only for <see cref="OptionType.String"/> and
+    /// <see cref="OptionType.Binary"/>. All other array option types return
+    /// <see cref="AVResult32.InvalidArgument"/>.
     /// </para>
     /// </remarks>
     public AVResult32 TryGetOption(Option option, out object? obj, bool recursive = true)

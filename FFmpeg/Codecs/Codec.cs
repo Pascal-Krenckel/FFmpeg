@@ -8,10 +8,15 @@ using System.Runtime.InteropServices;
 namespace FFmpeg.Codecs;
 
 /// <summary>
-/// Represents a codec in FFmpeg, providing access to its core information such as name, capabilities, 
-/// supported formats, and additional metadata. This struct allows interaction with codec details 
-/// in a managed, type-safe manner.
+/// Represents an FFmpeg codec descriptor.
+/// This structure provides managed access to the underlying native
+/// <see cref="AutoGen._AVCodec"/> structure, exposing codec information,
+/// capabilities, and supported encoding/decoding configurations.
 /// </summary>
+/// <remarks>
+/// A <see cref="Codec"/> instance does not own the underlying FFmpeg codec.
+/// The referenced codec descriptor is managed internally by FFmpeg and must not be freed manually.
+/// </remarks>
 public readonly unsafe struct Codec : IEquatable<Codec>
 {
 
@@ -48,9 +53,9 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     public CodecCapabilities Capabilities => codec != null ? (CodecCapabilities)codec->capabilities : default;
 
     /// <summary>
-    /// Gets the maximum value for low-resolution scaling supported by the codec. 
-    /// This is used to determine how much a video can be downscaled for low-resolution playback, 
-    /// particularly in situations where lower resolutions are required to improve performance.
+    /// Gets the maximum low-resolution decoding level supported by the codec.
+    /// Higher values indicate that the decoder can operate on progressively lower
+    /// resolution versions of the encoded stream.
     /// </summary>
     public byte MaxLowResolution => codec != null ? codec->max_lowres : (byte)0;
 
@@ -97,7 +102,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         get
         {
             if (codec == null)
-                return null;
+                return [];
             System.Diagnostics.Debug.Assert(sizeof(_AVPixelFormat) == sizeof(PixelFormat));
             int count;
             void* output = null;
@@ -106,11 +111,29 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         }
     }
 
-    // ToDo:
+    /// <summary>
+    /// Determines the most suitable pixel format supported by this codec for converting
+    /// from the specified source pixel format.
+    /// </summary>
+    /// <param name="src">The source pixel format to convert from.</param>
+    /// <param name="alphaUsed">
+    /// Indicates whether the alpha channel must be preserved when selecting a format.
+    /// </param>
+    /// <param name="loss">
+    /// Receives the information about quality losses introduced by the conversion.
+    /// </param>
+    /// <returns>
+    /// The best supported pixel format for the conversion, or <see cref="PixelFormat.None"/>
+    /// if no suitable format is available.
+    /// </returns>
     public PixelFormat GetBestPixelFormat(PixelFormat src, bool alphaUsed, out FFLoss loss)
     {
         _AVPixelFormat* output = null;
-
+        if (codec == null)
+        {
+            loss = FFLoss.None;
+            return PixelFormat.None;
+        }
         _ = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_PIX_FORMAT, 0, (void**)&output, null);
         if (output == null)
         {
@@ -123,10 +146,11 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         loss = (FFLoss)_loss;
         return pixFmt;
     }
-
+    /// <inheritdoc cref="GetBestPixelFormat(PixelFormat, bool, out FFLoss)"/>
     public PixelFormat GetBestPixelFormat(PixelFormat src, bool alphaUsed) => GetBestPixelFormat(src, alphaUsed, out _);
+    /// <inheritdoc cref="GetBestPixelFormat(PixelFormat, bool, out FFLoss)"/>
     public PixelFormat GetBestPixelFormat(PixelFormat src, out FFLoss loss) => GetBestPixelFormat(src, true, out loss);
-
+    /// <inheritdoc cref="GetBestPixelFormat(PixelFormat, bool, out FFLoss)"/>
     public PixelFormat GetBestPixelFormat(PixelFormat src) => GetBestPixelFormat(src, true, out _);
 
 
@@ -140,11 +164,11 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         get
         {
             if (codec == null)
-                return null;
+                return  [];
             void* output = null;
             int count;
             AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_RATE, 0, &output, &count);
-            return res.IsError || output == null ? [] : new ReadOnlySpan<int>(output, res);
+            return res.IsError || output == null ? [] : new ReadOnlySpan<int>(output, count);
         }
     }
 
@@ -158,7 +182,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         get
         {
             if (codec == null)
-                return null;
+                return [];
             System.Diagnostics.Debug.Assert(sizeof(SampleFormat) == sizeof(_AVSampleFormat));
             _AVSampleFormat* ptr = null;
             int count;
@@ -177,7 +201,6 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     {
         get
         {
-
             _AVProfile* ptr;
             if (codec == null || (ptr = codec->profiles) == null)
                 return new([]);
@@ -200,19 +223,25 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     public string? WrapperName => codec != null ? Marshal.PtrToStringUTF8((nint)codec->wrapper_name) : null;
 
     /// <summary>
-    /// Gets the array of supported channel layouts for the codec.
-    /// A channel layout describes how audio channels are positioned and ordered, such as stereo (left, right), 5.1 surround sound, etc.
-    /// This property returns the set of channel layouts that the codec can handle, which is useful for ensuring correct audio processing.
+    /// Gets the channel layouts supported by the codec.
+    /// A channel layout describes the arrangement of audio channels, such as mono,
+    /// stereo, or surround configurations.
     /// </summary>
+    /// <remarks>
+    /// This information is only available for audio codecs that expose supported
+    /// channel configurations.
+    /// </remarks>
     public ChannelLayoutConstList ChannelLayouts
     {
         get
         {
+            if (codec == null)
+                return [];
             _AVChannelLayout* ptr;
             int count;
-            AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_FORMAT, 0, (void**)&ptr, &count);
+            AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_CHANNEL_LAYOUT, 0, (void**)&ptr, &count);
 
-            return ptr == null || res.IsError ? [] : new ChannelLayoutConstList(ptr, res);
+            return ptr == null || res.IsError ? [] : new ChannelLayoutConstList(ptr, count);
         }
     }
 
@@ -281,14 +310,21 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     }
 
     /// <summary>
-    /// Indicates whether the codec is a decoder, meaning it can be used to decode media streams.
+    /// Gets a value indicating whether this codec can be used for decoding.
     /// </summary>
-    public bool IsDecoder => Convert.ToBoolean(ffmpeg.av_codec_is_decoder(codec));
+    /// <remarks>
+    /// Decoder codecs consume compressed packets and produce raw frames.
+    /// </remarks>
+    public bool IsDecoder => codec != null && Convert.ToBoolean(ffmpeg.av_codec_is_decoder(codec));
+
 
     /// <summary>
-    /// Indicates whether the codec is an encoder, meaning it can be used to encode media streams.
+    /// Gets a value indicating whether this codec can be used for encoding.
     /// </summary>
-    public bool IsEncoder => Convert.ToBoolean(ffmpeg.av_codec_is_encoder(codec));
+    /// <remarks>
+    /// Encoder codecs consume raw frames and produce compressed packets.
+    /// </remarks>
+    public bool IsEncoder => codec != null && Convert.ToBoolean(ffmpeg.av_codec_is_encoder(codec));
 
     /// <summary>
     /// Returns a string representation of the current <see cref="Codec"/> instance, 
@@ -318,7 +354,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     /// based on the memory pointer of the underlying FFmpeg codec structure.
     /// </summary>
     /// <returns>A hash code for the current <see cref="Codec"/> instance.</returns>
-    public override int GetHashCode() => HashCode.Combine((nint)codec);
+    public override int GetHashCode() => ((nint)codec).GetHashCode();
 
     /// <summary>
     /// Determines whether two <see cref="Codec"/> instances are equal by comparing their underlying codec structures.

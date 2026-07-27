@@ -6,20 +6,24 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.Formats;
 
-/// <summary>
-/// Provides a managed wrapper around the native <see cref="AutoGen._AVFormatContext"/> structure from the FFmpeg library.
-/// </summary>
 /// <remarks>
-/// The <see cref="FormatContext"/> class is a critical component in handling media streams with FFmpeg. It encapsulates the context used for handling input and output formats, including parsing and managing media files or streams.
-///
-/// This class provides a managed interface to the native <see cref="AutoGen._AVFormatContext"/> pointer, offering functionalities for opening media streams, querying and modifying format options, and interacting with other FFmpeg components.
+/// <see cref="FormatContext"/> provides the common functionality shared by
+/// demuxing and muxing format contexts. It wraps FFmpeg's native
+/// <see cref="AutoGen._AVFormatContext"/> structure and exposes a managed,
+/// object-oriented API for working with media containers, streams, metadata,
+/// and format-specific options.
 ///
 /// <para>
-/// As a wrapper around a native pointer, this class implements <see cref="IDisposable"/> to ensure proper cleanup of unmanaged resources. You should always dispose of instances of this class when they are no longer needed to avoid memory leaks and potential crashes.
+/// As a wrapper around unmanaged resources, this class implements
+/// <see cref="IDisposable"/>. Instances should be disposed when no longer
+/// needed to release the underlying FFmpeg resources.
 /// </para>
 ///
 /// <para>
-/// The class also inherits from <see cref="Options.OptionQueryableBase"/>, enabling access to FFmpeg's options querying and setting capabilities. This allows for configuring various aspects of media handling by setting or querying options on the format context.
+/// Because this class derives from
+/// <see cref="Options.OptionQueryableBase"/>, any FFmpeg options supported by
+/// <see cref="AutoGen._AVFormatContext"/> can be queried and modified through
+/// the managed options API.
 /// </para>
 /// </remarks>
 public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDisposable, IAVPointer<AutoGen._AVFormatContext>
@@ -46,10 +50,12 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     #region Constructions
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FormatContext"/> class with an existing <see cref="AutoGen._AVFormatContext"/>*.
+    /// Initializes a new <see cref="FormatContext"/> from an existing native
+    /// <see cref="AutoGen._AVFormatContext"/>.
     /// </summary>
-    /// <param name="context">The already allocated context.</param>
-    /// <param name="freeOnDispose">Indicates whether the underlying <see cref="AutoGen._AVFormatContext"/>* should be freed when this object is disposed.</param>
+    /// <param name="context">
+    /// The native format context to wrap.
+    /// </param>
     protected FormatContext(AutoGen._AVFormatContext* context) => Context = context;
 
     #endregion
@@ -57,15 +63,17 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     #region Streams
 
     /// <summary>
-    /// The array of streams associated with this format context.
+    /// Cached managed wrappers for the native streams.
     /// </summary>
     private AVStream[] streams = [];
 
     /// <summary>
-    /// Gets the collection of streams in this format context.
+    /// Cached managed wrappers for the native streams.
     /// </summary>
     /// <remarks>
-    /// This property returns a read-only list of streams. The list is updated if the underlying stream array does not match the current number of streams in the context.
+    /// The collection is synchronized with the underlying native stream array on
+    /// demand. If FFmpeg adds or replaces streams, the cached managed wrappers are
+    /// recreated automatically.
     /// </remarks>
     public IReadOnlyList<AVStream> Streams
     {
@@ -78,10 +86,12 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     }
 
     /// <summary>
-    /// Updates the internal stream array to reflect the current streams in the context.
+    /// Synchronizes the cached managed stream wrappers with the native stream array.
     /// </summary>
     /// <remarks>
-    /// This method initializes or refreshes the array of streams to match the number of streams in the format context. It should be called when the stream count has changed.
+    /// Existing wrapper instances are reused whenever possible. New wrappers are
+    /// created only when the underlying native stream pointers change or the number
+    /// of streams differs.
     /// </remarks>
     private void UpdateStreamArray()
     {
@@ -95,7 +105,8 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     }
 
     /// <summary>
-    /// Compares the internal stream array with the current streams in the format context.
+    /// Determines whether the cached stream wrappers still match the current native
+    /// stream array.
     /// </summary>
     /// <returns>
     /// <see langword="true"/> if the internal array matches the current streams, otherwise <see langword="false"/>.
@@ -119,12 +130,18 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
 
 
     #endregion
-
+    /// <summary>
+    /// Gets the chapters contained in the media.
+    /// </summary>
+    /// <remarks>
+    /// The returned collection provides access to the chapter entries stored in the
+    /// underlying format context.
+    /// </remarks>
     public virtual ChapterList Chapters => new(this, false);
 
     #region SetIOContext
     /// <summary>
-    /// Initializes the current <see cref="FormatContext"/> with the provided <see cref="IOContext"/>.
+    /// Associates a custom <see cref="IOContext"/> with this format context.
     /// </summary>
     /// <param name="context">
     /// The <see cref="IOContext"/> to associate with the current format context.
@@ -132,47 +149,52 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// <param name="options">
     /// The <see cref="IOOptions"/> specifying the operations (e.g., read or write) to be used with the context.
     /// </param>
-    /// <param name="buffer_size">
+    /// <param name="bufferSize">
     /// The size of the buffer to use for the I/O operations. Default is 32 KB.
     /// </param>
     /// <remarks>
-    /// This method is typically used to set up a custom I/O context for input or output operations in FFmpeg.
-    /// It wraps the initialization of the I/O context by calling <see cref="IOContext.InitContext"/> internally.
+    /// Calling this method replaces any previously associated
+    /// <see cref="IOContext"/>. The supplied context is initialized and attached to
+    /// this format context.
     /// </remarks>
-    public void SetContext(IOContext context, IOOptions options, int buffer_size = 32768) => context.InitContext(this, options, buffer_size);
+    public void SetContext(IOContext context, IOOptions options, int bufferSize = 32768) => context.InitContext(this, options, bufferSize);
     #endregion
 
-
+    /// <summary>
+    /// Gets the URL or filename associated with the format context.
+    /// </summary>
+    /// <remarks>
+    /// Returns <see langword="null"/> if no URL has been assigned.
+    /// </remarks>
     public string? Url => Context->url != null ? Marshal.PtrToStringAnsi((IntPtr)Context->url) : null;
 
+    /// <summary>
+    /// Gets the metadata associated with the format context.
+    /// </summary>
     public AVDictionary_ref Metadata => new(&Context->metadata, true, false);
-
-    public DateTime? StartTimeRealTime => Context->start_time_realtime != ffmpeg.AV_NOPTS_VALUE ? DateTime.UnixEpoch.AddMilliseconds(Context->start_time_realtime) : null;
+    /// <summary>
+    /// Gets the wall-clock time at which the media stream started.
+    /// </summary>
+    /// <remarks>
+    /// Returns <see langword="null"/> if the information is unavailable.
+    /// </remarks>
+    public DateTime? StartTimeRealTime => Context->start_time_realtime != ffmpeg.AV_NOPTS_VALUE ? DateTime.UnixEpoch.AddTicks(10*Context->start_time_realtime) : null;
 
     #region IDisposable
 
+    /// <summary>
+    /// Indicates whether the instance is disposed.
+    /// </summary>
     public bool IsDisposed { get; private set; }
 
     /// <summary>
-    /// Disposes of the resources used by the <see cref="FormatContext"/>.
+    /// Releases the resources used by the current format context.
     /// </summary>
-    /// <param name="disposing">Indicates whether the method is being called from the <see cref="Dispose"/> method or a finalizer.</param>
+    /// <param name="disposing">Indicates whether the method is being called from the <see cref="Dispose()"/> method or a finalizer.</param>
     protected virtual void Dispose(bool disposing)
     {
-        if (!IsDisposed)
-        {
-            if (disposing)
-                ioContext?.Dispose();
-            if (Context != null)
-            {
-                AutoGen._AVFormatContext* context = Context;
-                ffmpeg.avformat_close_input(&context);
-                Context = context;
-            }
-            IsDisposed = true;
-        }
+        IsDisposed = true;
     }
-
 
 
     /// <summary>
@@ -184,8 +206,11 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     }
 
     /// <summary>
-    /// Disposes of the resources used by the <see cref="FormatContext"/>.
+    /// Releases the resources associated with this format context.
     /// </summary>
+    /// <remarks>
+    /// Equivalent to calling <see cref="Dispose()"/>.
+    /// </remarks>
     public void Free()
         => Dispose();
 
@@ -201,26 +226,54 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     #endregion
 
 
-    // ToDo: -40 if not supported
+    /// <summary>
+    /// Retrieves the most recently output timestamp for a stream.
+    /// </summary>
+    /// <param name="streamIndex">
+    /// The index of the output stream.
+    /// </param>
+    /// <param name="timestamp">
+    /// Receives the output timestamp converted to the stream's time base.
+    /// </param>
+    /// <param name="wallTime">
+    /// Receives the corresponding wall-clock timestamp.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_get_output_timestamp()</c>.
+    /// </returns>
+    /// <remarks>
+    /// This method is primarily intended for monitoring the progress of output
+    /// devices or muxers that support timestamp reporting.
+    /// </remarks>
     public AVResult32 GetOutputTimestamp(int streamIndex, out TimeSpan timestamp, out TimeSpan wallTime)
     {
         Rational timeBase = Streams[streamIndex].TimeBase;
         long dts, wall;
         int res = ffmpeg.av_get_output_timestamp(Context, streamIndex, &dts, &wall);
         timestamp = dts * timeBase;
-        wallTime = TimeSpan.FromMilliseconds(wall);
+        wallTime = TimeSpan.FromTicks(10L*wall);
         return res;
     }
 
     #region FindBestStream
 
+
     /// <summary>
-    /// Finds the best stream of a given media type in the media file.
+    /// Finds the most appropriate stream of the specified media type.
     /// </summary>
-    /// <param name="type">The media type to search for.</param>
-    /// <returns>The index of the best stream, or a negative value if no suitable stream is found.</returns>
+    /// <param name="type">
+    /// The media type to search for.
+    /// </param>
+    /// <returns>
+    /// The zero-based stream index if a suitable stream is found; otherwise a
+    /// negative FFmpeg error code.
+    /// </returns>
+    /// <remarks>
+    /// This method calls FFmpeg's <c>av_find_best_stream()</c> using the default
+    /// stream selection behavior.
+    /// </remarks>
     public int FindBestStream(MediaType type)
-        => ffmpeg.av_find_best_stream(Context, (AutoGen._AVMediaType)type, -1, -1, null, 0);
+    => ffmpeg.av_find_best_stream(Context, (AutoGen._AVMediaType)type, -1, -1, null, 0);
 
     #endregion
 }

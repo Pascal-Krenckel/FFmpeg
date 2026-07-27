@@ -208,7 +208,8 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public bool Equals(Filter other) => filter == other.filter;
     /// <inheritdoc />
     public override int GetHashCode() => HashCode.Combine((nint)filter);
-
+    /// <inheritdoc />
     public static bool operator ==(Filter left, Filter right) => left.Equals(right);
+    /// <inheritdoc />
     public static bool operator !=(Filter left, Filter right) => !(left == right);
 }

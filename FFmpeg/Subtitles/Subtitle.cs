@@ -72,18 +72,16 @@ public unsafe class Subtitle : IReadOnlyList<SubtitleRect>, IDisposable
     {
         if (!disposedValue)
         {
-            if (disposing)
-            {
-                // Dispose managed resources here, if any.
-            }
-
             // Free the underlying AVSubtitle resources.
             Free();
             disposedValue = true;
         }
     }
 
-    //ToDo:
+
+    /// <summary>
+    /// Releases the resources used by the <see cref="Subtitle"/> instance.
+    /// </summary>
     public void Free()
     {
         AutoGen._AVSubtitle subtitle = this.subtitle;

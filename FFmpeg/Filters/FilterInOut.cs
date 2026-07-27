@@ -141,7 +141,7 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
         }
         return count;
     }
-
+    /// <inheritdoc />
     protected virtual void Dispose(bool disposing)
     {
         AutoGen._AVFilterInOut* head = this.head;
@@ -150,7 +150,7 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
         Count = 0;
 
     }
-
+    /// <inheritdoc />
     ~FilterInOutList()
     {
         Dispose(disposing: false);

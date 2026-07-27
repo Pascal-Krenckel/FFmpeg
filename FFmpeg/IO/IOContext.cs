@@ -4,9 +4,14 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.IO;
 /// <summary>
-/// Represents an abstract base class for handling custom I/O operations in FFmpeg.
-/// This class encapsulates an FFmpeg AVIOContext and manages its lifecycle and memory management.
+/// Represents a custom FFmpeg I/O context backed by managed code.
 /// </summary>
+/// <remarks>
+/// <see cref="IOContext"/> provides the callback implementations used by
+/// FFmpeg's <c>AVIOContext</c>, allowing media data to be read from or written
+/// to arbitrary managed sources such as <see cref="Stream"/> instances,
+/// memory buffers, network transports, or custom storage.
+/// </remarks>
 public abstract unsafe class IOContext : AVIOContext
 {
     private GCHandle gch;
@@ -14,12 +19,17 @@ public abstract unsafe class IOContext : AVIOContext
     /// <summary>
     /// Gets the <see cref="Formats.FormatContext"/> associated with this I/O context.
     /// </summary>
+    /// <remarks>
+    /// This property is assigned when the I/O context is attached to a format
+    /// context and remains valid until the context is disposed.
+    /// </remarks>
     public FormatContext FormatContext { get; private set; }
 
     #region Constructors
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="IOContext"/> class with the specified format context, I/O options, and buffer size.
+    /// Initializes a new <see cref="IOContext"/> and attaches it to the specified
+    /// format context.
     /// </summary>
     /// <param name="formatContext">The <see cref="Formats.FormatContext"/> to associate with this I/O context.</param>
     /// <param name="options">The I/O operations that this context will support, such as reading, writing, and seeking.</param>
@@ -58,12 +68,33 @@ public abstract unsafe class IOContext : AVIOContext
 
         FormatContext.ioContext = this;
     }
-    public IOContext() { gch = GCHandle.Alloc(this); FormatContext = null!; }
 
+    /// <summary>
+    /// Initializes a new <see cref="IOContext"/>
+    /// </summary>
+    public IOContext() { FormatContext = null!; }
+
+    /// <summary>
+    /// Attaches this I/O context to the specified format context.
+    /// </summary>
+    /// <param name="formatContext">
+    /// The format context that will use this custom I/O implementation.
+    /// </param>
+    /// <param name="options">
+    /// Specifies which callback operations should be enabled.
+    /// </param>
+    /// <param name="buffer_size">
+    /// The size, in bytes, of the internal FFmpeg I/O buffer.
+    /// </param>
+    /// <remarks>
+    /// This method allocates a native <c>AVIOContext</c> and installs the managed
+    /// callback functions required by FFmpeg.
+    /// </remarks>
     public void InitContext(FormatContext formatContext, IOOptions options, int buffer_size = 32768)
     {
         FormatContext = formatContext;
-        gch = GCHandle.Alloc(this);
+        if (!gch.IsAllocated)
+            gch = GCHandle.Alloc(this);
         formatContext.ioContext?.Dispose();
 
 
@@ -98,12 +129,12 @@ public abstract unsafe class IOContext : AVIOContext
     #endregion
 
     /// <summary>
-    /// When overridden in a derived class, gets a value indicating whether the current
-    ///     IoContext supports seeking.
+    /// Gets a value indicating whether this I/O context supports seeking.
     /// </summary>
-    /// <returns>
-    /// true if the IoContext supports seeking; otherwise, false.
-    /// </returns>
+    /// <remarks>
+    /// If this property returns <see langword="false"/>, FFmpeg treats the stream
+    /// as non-seekable.
+    /// </remarks>
     public abstract bool CanSeek { get; }
 
     #region statics IO
@@ -114,7 +145,11 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="opaque">A pointer to the user data (this object).</param>
     /// <param name="buffer">The buffer to read data into.</param>
     /// <param name="count">The number of bytes to read.</param>
-    /// <returns>The number of bytes read, or <see cref="AVResult32.EndOfFile"/> if the end of the file is reached.</returns>
+    /// <returns>
+    /// The number of bytes read, or an FFmpeg error code if the operation failed.
+    /// Returning zero indicates end-of-file and is automatically translated to
+    /// <see cref="AVResult32.EndOfFile"/>.
+    /// </returns>
     private static int ReadPacket(void* opaque, byte* buffer, int count)
     {
         AVResult32 result = ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).ReadPacket(new Span<byte>(buffer, count));
@@ -127,7 +162,9 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="opaque">A pointer to the user data (this object).</param>
     /// <param name="buffer">The buffer containing the data to write.</param>
     /// <param name="count">The number of bytes to write.</param>
-    /// <returns>The number of bytes written.</returns>
+    /// <returns>
+    /// The number of bytes written, or a negative FFmpeg error code.
+    /// </returns>
     private static int WritePacket(void* opaque, byte* buffer, int count) =>
         ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).WritePacket(new Span<byte>(buffer, count));
 
@@ -137,7 +174,9 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="opaque">A pointer to the user data (this object).</param>
     /// <param name="offset">The offset to seek to.</param>
     /// <param name="whence">The seek mode (e.g., from the start, from the current position, etc.).</param>
-    /// <returns>The new position within the stream, or a negative value on error.</returns>
+    /// <returns>
+    /// The new stream position, or a negative FFmpeg error code.
+    /// </returns>
     private static long Seek(void* opaque, long offset, int whence) =>
         ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).Seek(offset, (AVSeek)whence);
 
@@ -149,7 +188,10 @@ public abstract unsafe class IOContext : AVIOContext
     /// Reads data into the provided buffer.
     /// </summary>
     /// <param name="buffer">The buffer to read data into.</param>
-    /// <returns>The number of bytes read, or a negative value on error.</returns>
+    /// <returns>
+    /// The number of bytes read, zero to indicate end-of-file, or a negative
+    /// FFmpeg error code.
+    /// </returns>
     protected abstract AVResult32 ReadPacket(Span<byte> buffer);
 
     /// <summary>
@@ -165,6 +207,11 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="offset">The offset to seek to.</param>
     /// <param name="whence">The seek mode (e.g., from the start, from the current position, etc.).</param>
     /// <returns>The new position within the stream, or a negative value on error.</returns>
+    /// <remarks>
+    /// This method is called only if <see cref="CanSeek"/> is
+    /// <see langword="true"/> and the context was initialized with
+    /// <see cref="IOOptions.Seek"/>.
+    /// </remarks>
     protected abstract AVResult64 Seek(long offset, AVSeek whence);
     #endregion
 
@@ -184,7 +231,7 @@ public abstract unsafe class IOContext : AVIOContext
                 gch.Free();
 
             // Free the buffer and AVIOContext associated with the format context
-            if (FormatContext.Context != null)
+            if (FormatContext?.Context != null)
             {
                 if (FormatContext.Context->pb != null)
                     AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);
@@ -194,7 +241,7 @@ public abstract unsafe class IOContext : AVIOContext
             base.Dispose(disposing);
         }
     }
-
+    /// <inheritdoc />
     ~IOContext() => Dispose(false);
     #endregion
 }

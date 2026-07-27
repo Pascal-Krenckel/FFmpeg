@@ -676,11 +676,11 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
 
 
     /// <summary>
-    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>).
+    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{T}"/>).
     /// If successful, the parsed <see cref="Rational"/> is returned in the out parameter.
     /// </summary>
     /// <param name="s">
-    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// A <see cref="ReadOnlySpan{T}"/> representing the string to be parsed. The string should be in the format of either:
     /// - A rational number "numerator/denominator" (e.g., "1/2")
     /// - A decimal value (e.g., "3.14")
     /// </param>
@@ -693,11 +693,11 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     public static bool TryParse(ReadOnlySpan<char> s, out Rational value) => TryParse(s, null, out value);
 
     /// <summary>
-    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>), 
+    /// Tries to parse a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{T}"/>), 
     /// using a specified culture-specific formatting provider.
     /// </summary>
     /// <param name="s">
-    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// A <see cref="ReadOnlySpan{T}"/> representing the string to be parsed. The string should be in the format of either:
     /// - A rational number "numerator/denominator" (e.g., "1/2")
     /// - A decimal value (e.g., "3.14")
     /// </param>
@@ -740,11 +740,11 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     }
 
     /// <summary>
-    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>).
+    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{T}"/>).
     /// Throws a <see cref="FormatException"/> if parsing fails.
     /// </summary>
     /// <param name="s">
-    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// A <see cref="ReadOnlySpan{T}"/> representing the string to be parsed. The string should be in the format of either:
     /// - A rational number "numerator/denominator" (e.g., "1/2")
     /// - A decimal value (e.g., "3.14")
     /// </param>
@@ -757,11 +757,11 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     public static Rational Parse(ReadOnlySpan<char> s) => TryParse(s, out Rational r) ? r : throw new FormatException($"Invalid Rational format: '{s.ToString()}'");
 
     /// <summary>
-    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{char}"/>), 
+    /// Parses a <see cref="Rational"/> from a string representation (in the form of a <see cref="ReadOnlySpan{T}"/>), 
     /// using a specified culture-specific formatting provider. Throws a <see cref="FormatException"/> if parsing fails.
     /// </summary>
     /// <param name="s">
-    /// A <see cref="ReadOnlySpan{char}"/> representing the string to be parsed. The string should be in the format of either:
+    /// A <see cref="ReadOnlySpan{T}"/> representing the string to be parsed. The string should be in the format of either:
     /// - A rational number "numerator/denominator" (e.g., "1/2")
     /// - A decimal value (e.g., "3.14")
     /// </param>

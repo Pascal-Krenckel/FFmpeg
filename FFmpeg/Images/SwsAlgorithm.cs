@@ -146,8 +146,10 @@ public readonly struct SwsAlgorithm : IEquatable<SwsAlgorithm>
 
     /// <inheritdoc />
     public override int GetHashCode() => HashCode.Combine(AlgorithmFlags, Param1, Param2);
+    /// <inheritdoc />
 
     public static bool operator ==(SwsAlgorithm left, SwsAlgorithm right) => left.Equals(right);
+    /// <inheritdoc />
 
     public static bool operator !=(SwsAlgorithm left, SwsAlgorithm right) => !(left == right);
 }

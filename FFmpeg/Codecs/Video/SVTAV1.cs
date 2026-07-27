@@ -225,7 +225,53 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
     }
 
 
-    // If frame duration
+    /// <summary>
+    /// Creates an AVIF image sequence from the specified video frames.
+    /// </summary>
+    /// <param name="output">
+    /// The seekable output stream that receives the encoded AVIF data.
+    /// </param>
+    /// <param name="frames">
+    /// The frames to encode into the AVIF container.
+    /// All frames should use a consistent input resolution and pixel format.
+    /// </param>
+    /// <param name="closeStream">
+    /// <see langword="true"/> to close <paramref name="output"/> when encoding is
+    /// complete; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <param name="disposeFrames">
+    /// <see langword="true"/> to dispose the supplied frames after they have been
+    /// encoded; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// Thrown when <paramref name="output"/> does not support seeking.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="frames"/> does not contain any frames.
+    /// </exception>
+    /// <remarks>
+    /// This method creates an AVIF container using the
+    /// <see cref="OutputFormat.AVIF"/> muxer and encodes the frames using the
+    /// configured AV1 codec (typically libsvtav1).
+    ///
+    /// <para>
+    /// The output stream must support seeking because the AVIF muxer requires
+    /// random access while writing the container metadata.
+    /// </para>
+    ///
+    /// <para>
+    /// The output dimensions and pixel format are automatically inferred from the
+    /// first frame when they have not been explicitly configured. Frames that do
+    /// not match the configured output format are converted using a bicubic
+    /// <see cref="SwsContext"/> conversion.
+    /// </para>
+    ///
+    /// <para>
+    /// Existing frame timestamps are preserved. Use the overload accepting a
+    /// <see cref="TimeSpan"/> frame duration to create a constant frame-rate AVIF
+    /// sequence with generated timestamps.
+    /// </para>
+    /// </remarks>
     public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, bool closeStream = false, bool disposeFrames = false)
     {
 
@@ -301,6 +347,50 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
 
     }
 
+    /// <summary>
+    /// Creates an AVIF image sequence from the specified video frames using a fixed
+    /// frame duration.
+    /// </summary>
+    /// <param name="output">
+    /// The seekable output stream that receives the encoded AVIF data.
+    /// </param>
+    /// <param name="frames">
+    /// The frames to encode into the AVIF container.
+    /// </param>
+    /// <param name="frameDuration">
+    /// The duration of each frame in the generated AVIF sequence.
+    /// </param>
+    /// <param name="closeStream">
+    /// <see langword="true"/> to close <paramref name="output"/> when encoding is
+    /// complete; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <param name="disposeFrames">
+    /// <see langword="true"/> to dispose the supplied frames after they have been
+    /// encoded; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <exception cref="NotSupportedException">
+    /// Thrown when <paramref name="output"/> does not support seeking.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="frames"/> does not contain any frames.
+    /// </exception>
+    /// <remarks>
+    /// This method creates an AVIF animation sequence with a constant frame rate.
+    /// Each frame receives an automatically generated presentation timestamp and
+    /// duration based on <paramref name="frameDuration"/>.
+    ///
+    /// <para>
+    /// The output stream must support seeking because the AVIF muxer requires
+    /// random access while writing the container metadata.
+    /// </para>
+    ///
+    /// <para>
+    /// The output dimensions and pixel format are automatically inferred from the
+    /// first frame when they have not been explicitly configured. Frames that do
+    /// not match the configured output format are converted using a bicubic
+    /// <see cref="SwsContext"/> conversion.
+    /// </para>
+    /// </remarks>
     public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, TimeSpan frameDuration, bool closeStream = false, bool disposeFrames = false)
     {
         if (!output.CanSeek)

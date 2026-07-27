@@ -34,10 +34,6 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
     /// an existing unmanaged _AVCodecParameters pointer.
     /// </summary>
     /// <param name="existingPtr">Pointer to an existing _AVCodecParameters structure.</param>
-    /// <param name="takeOwnership">
-    /// If true, the wrapper will take ownership of the existing pointer and manage its lifetime.
-    /// If false, a new _AVCodecParameters structure is allocated and its fields are copied from the existing pointer.
-    /// </param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="existingPtr"/> is null.</exception>
     /// <exception cref="OutOfMemoryException">Thrown if memory allocation fails during copying.</exception>
     internal CodecParameters(AutoGen._AVCodecParameters* existingPtr) => codecParameters = existingPtr == null ? throw new ArgumentNullException(nameof(existingPtr)) : existingPtr;

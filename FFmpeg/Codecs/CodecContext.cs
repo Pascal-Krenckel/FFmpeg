@@ -460,7 +460,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
 
     /// <summary>
     /// Gets or sets codec flags that determine various encoding or decoding settings.
-    /// The flags are split between general codec flags (<see cref="AV_CODEC_FLAG_*"/>) and extended flags (<see cref="AV_CODEC_FLAG2_*"/>).
+    /// The flags are split between general codec flags (<c>AV_CODEC_FLAG_*</c>) and extended flags (<c>AV_CODEC_FLAG2_*</c>).
     /// <para>
     /// <b>Encoding:</b> Notify by the user.
     /// </para>
@@ -1165,7 +1165,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// The codec to be used to open the codec context. If <see langword="null"/>, the context is opened with the currently set codec.
     /// </param>
     /// <param name="dictionary">
-    /// An optional <see cref="IDictionary{string, string}"/> containing codec-specific options. If <see langword="null"/>, defaults are used.
+    /// An optional <see cref="IDictionary{TKey, TValue}"/> containing codec-specific options. If <see langword="null"/>, defaults are used.
     /// </param>
     /// <returns>
     /// An <see cref="AVResult32"/> indicating the result of the operation. Check for errors using <c>ThrowIfError()</c>.
@@ -1190,7 +1190,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// <param name="codec">
     /// The codec to be used to open the codec context. If <see langword="null"/>, the context is opened with the currently set codec.
     /// </param>
-    /// <param name="ICodecParameters">
+    /// <param name="codecParameters">
     /// Optional <see cref="ICodecParameters"/> to set before opening the codec. If <see langword="null"/>, only the codec is used.
     /// </param>
     /// <returns>
@@ -1407,22 +1407,100 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         }
     }
 
-    // ToDo: Docu, include info about TryAgain
+    /// <summary>
+    /// Decodes an encoded packet and returns the next available decoded frame.
+    /// </summary>
+    /// <param name="packet">
+    /// The packet to submit to the decoder, or <see langword="null"/> to signal
+    /// the end of the input stream and enter draining mode.
+    /// </param>
+    /// <param name="frame">
+    /// Receives the decoded frame if one is available.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> indicating the result of the operation.
+    /// </returns>
+    /// <remarks>
+    /// This convenience method combines <see cref="SendPacket(AVPacket?)"/> and
+    /// <see cref="ReceiveFrame(AVFrame)"/> into a single operation.
+    ///
+    /// <para>
+    /// Passing <see langword="null"/> for <paramref name="packet"/> flushes the
+    /// decoder. Continue calling this method with <see langword="null"/> until
+    /// <see cref="AVResult32.EndOfFile"/> is returned, indicating that all buffered
+    /// frames have been retrieved.
+    /// </para>
+    ///
+    /// <para>
+    /// Under normal circumstances this method never returns
+    /// <see cref="AVResult32.TryAgain"/>. If the decoder reports this condition
+    /// while accepting a packet, an <see cref="FFmpeg.Exceptions.FFmpegException"/>
+    /// is thrown instead. Applications that need to handle
+    /// <see cref="AVResult32.TryAgain"/> explicitly should use
+    /// <see cref="SendPacket(AVPacket?)"/> and
+    /// <see cref="ReceiveFrame(AVFrame)"/> directly.
+    /// </para>
+    /// </remarks>
     public AVResult32 Decode(AVPacket? packet, AVFrame frame)
     {
         AVResult32 res = SendPacket(packet);
         if (res == AVResult32.TryAgain)
-            res.ThrowIfError(); //  should never happen, since ReceiveFrame is always called afterwards, but if it does happen, you need to call ReceiveFrame until TryAgain 
-        // in draining mode SendPacket might return EOF
+            throw new FFmpeg.Exceptions.FFmpegException(
+                AVResult32.TryAgain,
+                "The decoder returned AVResult32.TryAgain while accepting a new packet. " +
+                "This should never occur when using Decode(), as each call immediately " +
+                "retrieves the available output frame. If this exception occurs, use the " +
+                "SendPacket()/ReceiveFrame() API directly."
+            );        // in draining mode SendPacket might return EOF
         return res.IsError && res != AVResult32.EndOfFile ? res : ReceiveFrame(frame);
     }
 
 
-    public AVResult32 Encode(AVFrame frame, AVPacket packet)
+    /// <summary>
+    /// Encodes a frame and returns the next available encoded packet.
+    /// </summary>
+    /// <param name="frame">
+    /// The frame to submit to the encoder, or <see langword="null"/> to signal
+    /// the end of the input stream and enter draining mode.
+    /// </param>
+    /// <param name="packet">
+    /// Receives the encoded packet if one is available.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> indicating the result of the operation.
+    /// </returns>
+    /// <remarks>
+    /// This convenience method combines <see cref="SendFrame(AVFrame?)"/> and
+    /// <see cref="ReceivePacket(AVPacket)"/> into a single operation.
+    ///
+    /// <para>
+    /// Passing <see langword="null"/> for <paramref name="frame"/> flushes the
+    /// encoder. Continue calling this method with <see langword="null"/> until
+    /// <see cref="AVResult32.EndOfFile"/> is returned, indicating that all buffered
+    /// packets have been retrieved.
+    /// </para>
+    ///
+    /// <para>
+    /// Under normal circumstances this method never returns
+    /// <see cref="AVResult32.TryAgain"/>. If the encoder reports this condition
+    /// while accepting a frame, an <see cref="FFmpeg.Exceptions.FFmpegException"/>
+    /// is thrown instead. Applications that need to handle
+    /// <see cref="AVResult32.TryAgain"/> explicitly should use
+    /// <see cref="SendFrame(AVFrame?)"/> and
+    /// <see cref="ReceivePacket(AVPacket)"/> directly.
+    /// </para>
+    /// </remarks>
+    public AVResult32 Encode(AVFrame? frame, AVPacket packet)
     {
         AVResult32 res = SendFrame(frame);
         if (res == AVResult32.TryAgain)
-            res.ThrowIfError(); //  should never happen, since ReceivePacket is always called afterwards, but if it does, you need to call ReveicePacket until TryAgain
+            throw new FFmpeg.Exceptions.FFmpegException(
+                AVResult32.TryAgain,
+                "The encoder returned AVResult32.TryAgain while accepting a new frame. " +
+                "This should never occur when using Encode(), as each call immediately " +
+                "retrieves the available output packet. If this exception occurs, use the " +
+                "SendFrame()/ReceivePacket() API directly."
+            );
         // in draining mode SendPacket might return EOF
         return res.IsError && res != AVResult32.EndOfFile ? res : ReceivePacket(packet);
     }

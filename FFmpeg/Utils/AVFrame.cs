@@ -146,28 +146,54 @@ public sealed unsafe class AVFrame : IDisposable
     public bool IsAudio => SampleRate > 0;
 
     /// <summary>
-    /// Gets a value indicating whether this frame has an associated buffer.
+    /// Gets a value indicating whether the frame owns an allocated data buffer.
     /// </summary>
+    /// <remarks>
+    /// A frame without a buffer may still contain metadata and format information,
+    /// but cannot store image or audio data until <see cref="CreateBuffer(int)"/> is called.
+    /// </remarks>
     public bool HasBuffer => Frame->buf[0] != null;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AVFrame"/> class, wrapping an existing unmanaged <see cref="AutoGen._AVFrame"/> structure.
-    /// Use <see cref="Allocate"/> to create a new instance instead of calling this constructor directly.
+    /// Use <see cref="Allocate()"/> to create a new instance instead of calling this constructor directly.
     /// </summary>
     /// <param name="frame">A pointer to an already allocated unmanaged AVFrame structure.</param>
     internal AVFrame(AutoGen._AVFrame* frame) => Frame = frame;
 
     /// <summary>
-    /// Gets the data buffers for the frame, represented as a span of pointers. <br/>
-    /// For video frames, the span contains pointers to pixel planes. <br/>
-    /// For audio frames, it contains pointers to audio channels.
+    /// Gets the data pointers for the frame.
     /// </summary>
+    /// <remarks>
+    /// For video frames, the span contains one pointer for each image plane.
+    /// For audio frames, it contains one pointer for packed audio or one pointer per
+    /// channel for planar audio.
+    /// </remarks>
     public ReadOnlySpan<IntPtr> Data => ExtendedData == null
                 ? []
                 : IsVideo
                 ? new(Frame->extended_data, PixelFormat.PlaneCount())
                 : SampleFormat.IsPacked() ? new(Frame->extended_data, 1) : new(Frame->extended_data, Frame->ch_layout.nb_channels);
 
+    /// <summary>
+    /// Gets the frame data for the specified plane or channel.
+    /// </summary>
+    /// <param name="index">
+    /// The zero-based plane index for video frames or channel index for planar audio frames.
+    /// For packed audio, only index <c>0</c> is valid.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Span{T}"/> over the requested frame data.
+    /// Returns an empty span if the specified plane or channel does not exist.
+    /// </returns>
+    /// <remarks>
+    /// For video frames, the returned span covers the complete image plane.
+    /// For audio frames, the returned span contains the sample data for the requested channel
+    /// (or the single packed buffer).
+    /// </remarks>
+    /// <exception cref="NotSupportedException">
+    /// Thrown if the frame is neither an audio nor a video frame.
+    /// </exception>
     public Span<byte> GetData(int index)
     {
         if (ExtendedData[index] == null)
@@ -190,6 +216,18 @@ public sealed unsafe class AVFrame : IDisposable
         throw new NotSupportedException("Only audio or video frames are supported");
     }
 
+    /// <summary>
+    /// Gets a span over one of the underlying frame buffers.
+    /// </summary>
+    /// <param name="bufferIndex">
+    /// The zero-based buffer index.
+    /// Indices 0-7 refer to the primary <c>buf</c> array, while higher indices refer
+    /// to <c>extended_buf</c>.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Span{T}"/> representing the requested buffer, or an empty span
+    /// if the buffer does not exist.
+    /// </returns>
     public Span<byte> GetBufferSpan(int bufferIndex)
     {
         if (bufferIndex < 8)
@@ -561,6 +599,14 @@ public sealed unsafe class AVFrame : IDisposable
     /// </summary>
     public void Unreference() => ffmpeg.av_frame_unref(Frame);
 
+    /// <summary>
+    /// Makes this frame reference the same underlying data as another frame.
+    /// Any data currently referenced by this frame is released first.
+    /// </summary>
+    /// <param name="src">The source frame to reference.</param>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">
+    /// Thrown if the reference operation fails.
+    /// </exception>
     public void Reference(AVFrame src)
     {
         Unreference();
@@ -573,16 +619,18 @@ public sealed unsafe class AVFrame : IDisposable
     public void Free() => Dispose();
 
     /// <summary>
-    /// Gets the media type of the frame based on its dimensions and sample count.
-    /// - If the frame has width and height set and no samples, it's video.
-    /// - If the frame has samples and no dimensions, it's audio.
-    /// - Otherwise, the type is unknown.
+    /// Gets the inferred media type represented by this frame.
     /// </summary>
-    public _AVMediaType MediaType => Width == 0 && Height == 0 && SampleCount > 0
+    /// <remarks>
+    /// The media type is determined from the frame dimensions and sample count.
+    /// If the frame does not clearly represent either audio or video,
+    /// <see cref="MediaType.Unknown"/> is returned.
+    /// </remarks>
+    public MediaType MediaType => (MediaType)(Width == 0 && Height == 0 && SampleCount > 0
                     ? _AVMediaType.AVMEDIA_TYPE_AUDIO
                     : Width > 0 && Height > 0 && SampleCount == 0
                     ? _AVMediaType.AVMEDIA_TYPE_VIDEO
-                    : _AVMediaType.AVMEDIA_TYPE_UNKNOWN;
+                    : _AVMediaType.AVMEDIA_TYPE_UNKNOWN);
 
     /// <summary>
     /// Creates a clone of the current frame. The cloned frame is an exact duplicate but with separate memory allocation.
@@ -613,6 +661,17 @@ public sealed unsafe class AVFrame : IDisposable
         return frame;
     }
 
+    /// <summary>
+    /// Copies all frame properties to another frame without copying the underlying
+    /// image or audio data.
+    /// </summary>
+    /// <param name="dst">
+    /// The destination frame that receives the frame properties.
+    /// </param>
+    /// <remarks>
+    /// This copies metadata such as timestamps, color information, sample aspect ratio,
+    /// and other frame properties. The frame buffers themselves are not copied.
+    /// </remarks>
     public void CopyPropertiesTo(AVFrame dst) => ffmpeg.av_frame_copy_props(dst.Frame, Frame);
 
     #region IDisposable

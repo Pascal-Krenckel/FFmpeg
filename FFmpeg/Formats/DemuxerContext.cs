@@ -3,15 +3,27 @@ using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;
 
-public unsafe class DemuxerContext : FormatContext
+/// <summary>
+/// Represents an FFmpeg input format context used for reading and demultiplexing
+/// media containers.
+/// </summary>
+/// <remarks>
+/// <see cref="DemuxerContext"/> provides access to media streams, metadata,
+/// chapters, and container information from an input source. It also exposes
+/// methods for reading packets, seeking within the media, retrieving stream
+/// information, and estimating stream properties.
+/// </remarks>
+public unsafe partial class DemuxerContext : FormatContext
 {
     #region Constructions
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="DemuxerContext"/> class with an existing <see cref="AutoGen._AVFormatContext"/>*.
+    /// Initializes a new <see cref="DemuxerContext"/> from an existing native
+    /// <see cref="AutoGen._AVFormatContext"/>.
     /// </summary>
-    /// <param name="context">The already allocated context.</param>
-    /// <param name="freeOnDispose">Indicates whether the underlying <see cref="AutoGen._AVFormatContext"/>* should be freed when this object is disposed.</param>
+    /// <param name="context">
+    /// The native input format context to wrap.
+    /// </param>
     protected DemuxerContext(AutoGen._AVFormatContext* context) : base(context)
     {
     }
@@ -20,838 +32,56 @@ public unsafe class DemuxerContext : FormatContext
     #endregion
 
     /// <summary>
-    /// Gets the input format associated with this context, if available.
+    /// Gets the input format associated with this demuxer.
     /// </summary>
+    /// <remarks>
+    /// Returns <see langword="null"/> if the input format has not yet been
+    /// determined.
+    /// </remarks>
     public InputFormat? InputFormat => Context->iformat != null ? new(Context->iformat) : null;
-
-    #region Properties
-
-    #endregion
-
-    #region Open
-
-    #region Open with string
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/>.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. If <see langword="null"/>, the format will be detected automatically.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input specified by the <paramref name="url"/> or device, using the provided <paramref name="input"/> format if specified. If <paramref name="url"/> is <see langword="null"/> and the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag, it is treated as a special device or input format that does not require a file path.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, InputFormat? input, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context;
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, url, iFormat, &dic);
-
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            ffmpeg.avformat_close_input(&context);
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return new DemuxerContext(context);
-    }
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/>.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. If <see langword="null"/>, the format will be detected automatically.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input specified by the <paramref name="url"/> or device, using the provided <paramref name="input"/> format if specified. If <paramref name="url"/> is <see langword="null"/> and the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag, it is treated as a special device or input format that does not require a file path.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, InputFormat? input, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context;
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, url, iFormat, &dic);
-
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            ffmpeg.avformat_close_input(&context);
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return new DemuxerContext(context);
-    }
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/>.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. If <see langword="null"/>, the format will be detected automatically.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input specified by the <paramref name="url"/> or device, using the provided <paramref name="input"/> format if specified. If <paramref name="url"/> is <see langword="null"/> and the <paramref name="input"/> has the <see cref="FormatFlags.NoFile"/> flag, it is treated as a special device or input format that does not require a file path. If a dictionary is provided as an <see cref="IDictionary{TKey, TValue}"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
-    {
-        if (dic is Collections.AVDictionary dictionary)
-        {
-            return Open(url, input, dictionary);
-        }
-        else if (dic == null)
-        {
-            return Open(url, input, null as Collections.AVDictionary, findStreamInfo);
-        }
-        else
-        {
-            using Collections.AVDictionary dic2 = new(dic);
-            DemuxerContext? result = Open(url, input, dic2);
-            dic.Clear();
-            foreach (KeyValuePair<string, string> kvp in dic2)
-                dic[kvp.Key] = kvp.Value;
-            return result;
-        }
-    }
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using only the URL.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the input format has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This overload calls the main <see cref="Open(string?, InputFormat?, Collections.AVDictionary?, bool)"/> method with <see langword="null"/> for both the input format and the dictionary.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, bool findStreamInfo = false)
-        => Open(url, null, null as Collections.AVDictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using the URL and input format.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the input format has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. If <see langword="null"/>, the format will be detected automatically.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This overload calls the main <see cref="Open(string?, InputFormat?, Collections.AVDictionary?, bool)"/> method with <see langword="null"/> for the dictionary.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, InputFormat? input, bool findStreamInfo = false)
-        => Open(url, input, null as Collections.AVDictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using the URL and a multi-dictionary.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the input format has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This overload calls the main <see cref="Open(string?, InputFormat?, Collections.AVDictionary?, bool)"/> method with <see langword="null"/> for the input format.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-        => Open(url, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using the URL and a dictionary.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the input format has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This overload calls the main <see cref="Open(string?, InputFormat?, Collections.AVDictionary?, bool)"/> method with <see langword="null"/> for the input format.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-        => Open(url, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using the URL and a dictionary of options.
-    /// </summary>
-    /// <param name="url">
-    /// The URL or path to the input media file or device. This can be <see langword="null"/> if the input format has the <see cref="FormatFlags.NoFile"/> flag set.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This overload calls the main <see cref="Open(string?, InputFormat?, IDictionary<string, string>?, bool)"/> method. If a dictionary is provided as an <see cref="IDictionary{TKey, TValue}"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally.
-    /// </remarks>
-    public static DemuxerContext Open(string? url, IDictionary<string, string>? dic, bool findStreamInfo = false)
-        => Open(url, null, dic, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using only the input format.
-    /// </summary>
-    /// <param name="input">
-    /// The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </remarks>
-    public static DemuxerContext Open(InputFormat input, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-        => Open(null as string, input, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using only the input format and a multi-dictionary.
-    /// </summary>
-    /// <param name="input">
-    /// The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </remarks>
-    public static DemuxerContext Open(InputFormat input, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-        => Open(null as string, input, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using only the input format and a dictionary of options.
-    /// </summary>
-    /// <param name="input">
-    /// The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path. If a dictionary is provided as an <see cref="IDictionary{TKey, TValue}"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally.
-    /// </remarks>
-    public static DemuxerContext Open(InputFormat input, IDictionary<string, string>? dic, bool findStreamInfo = false)
-        => Open(null as string, input, dic, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media file or device and initializes the <see cref="DemuxerContext"/> using only the input format.
-    /// </summary>
-    /// <param name="input">
-    /// The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media or device, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </remarks>
-    public static DemuxerContext Open(InputFormat input, bool findStreamInfo = false)
-        => Open(null as string, input, findStreamInfo);
-
-    #endregion
-
-    #region Open Overloads With Stream
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format and a dictionary of options.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. 
-    /// The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating that no file path is required. 
-    /// The <paramref name="dictionary"/> is used to pass additional options to the input. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, InputFormat? input, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null)
-            throw new OutOfMemoryException();
-        DemuxerContext formatContext = new(context);
-
-        _ = IOStreamContext.OpenRead(formatContext, stream);
-
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
-        formatContext.Context = context;
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            formatContext.Dispose();
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return formatContext;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format and a multi-dictionary of options.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. 
-    /// The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating that no file path is required. 
-    /// The <paramref name="dictionary"/> is used to pass additional options to the input. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, InputFormat? input, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null)
-            throw new OutOfMemoryException();
-        DemuxerContext formatContext = new(context);
-        _ = IOStreamContext.OpenRead(formatContext, stream);
-
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
-        formatContext.Context = context;
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            formatContext.Dispose();
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return formatContext;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format and a dictionary of options.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>. 
-    /// May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="input"/> format with <paramref name="url"/> set to <see langword="null"/>. 
-    /// The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating that no file path is required. 
-    /// If a dictionary is provided as an <see cref="IDictionary{TKey, TValue}"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
-    {
-        if (dic is null)
-            return Open(stream, input, findStreamInfo);
-        if (dic is Collections.AVDictionary avDic)
-            return Open(stream, input, avDic, findStreamInfo);
-        using Collections.AVDictionary dicCopy = new(dic);
-        DemuxerContext res = Open(stream, input, dicCopy, findStreamInfo);
-        dic.Clear();
-        foreach (KeyValuePair<string, string> kp in dicCopy)
-            dic[kp.Key] = kp.Value;
-        return res;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="input"/> format with <paramref name="url"/> and <paramref name="dictionary"/> set to <see langword="null"/>. 
-    /// The input format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating that no file path is required. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, InputFormat? input, bool findStreamInfo = false)
-        => Open(stream, input, null as Collections.AVDictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified multi-dictionary of options.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="dictionary"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// The <paramref name="dictionary"/> is used to pass additional options to the input. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-        => Open(stream, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified dictionary of options.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="dictionary"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// The <paramref name="dictionary"/> is used to pass additional options to the input. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-        => Open(stream, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified dictionary of options, which can be any <see cref="IDictionary{TKey, TValue}"/>.
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>. 
-    /// May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> and <paramref name="dic"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// If <paramref name="dic"/> is an <see cref="IDictionary{TKey, TValue}"/> other than <see cref="Collections.AVDictionary"/> or <see cref="Collections.AVMultiDictionary"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, IDictionary<string, string>? dic, bool findStreamInfo = false)
-        => Open(stream, null, dic, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> with default settings (no input format, no dictionary of options).
-    /// </summary>
-    /// <param name="stream">
-    /// The <see cref="Stream"/> to read the input media data from. It must support reading and seeking.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="stream"/> with <paramref name="url"/>, <paramref name="input"/>, and <paramref name="dictionary"/> all set to <see langword="null"/>. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(Stream stream, bool findStreamInfo = false)
-        => Open(stream, null, null as Collections.AVDictionary, findStreamInfo);
-
-    #endregion
-
-
-    #region Open Overloads With IOContext
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="input"/> format with <paramref name="url"/> and <paramref name="dictionary"/> set to <see langword="null"/>. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, InputFormat? input, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null)
-            throw new OutOfMemoryException();
-        DemuxerContext formatContext = new(context);
-        ioContext.InitContext(formatContext, IOOptions.Read);
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
-        formatContext.Context = context;
-
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            formatContext.Dispose();
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return formatContext;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified multi-dictionary of options and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="dictionary"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, InputFormat? input, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-    {
-        AutoGen._AVInputFormat* iFormat = input != null ? input.Value.Format : null;
-        AutoGen._AVFormatContext* context = ffmpeg.avformat_alloc_context();
-        if (context == null)
-            throw new OutOfMemoryException();
-        DemuxerContext formatContext = new(context);
-        if (ioContext.CanSeek)
-            ioContext.InitContext(formatContext, IOOptions.Read | IOOptions.Seek);
-        else
-            ioContext.InitContext(formatContext, IOOptions.Read);
-
-        AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
-        formatContext.Context = context;
-
-        dictionary?.dictionary = dic;
-        if (result.IsError)
-        {
-            formatContext.Dispose();
-            result.ThrowIfError();
-        }
-        if (findStreamInfo)
-            _ = ffmpeg.avformat_find_stream_info(context, null);
-
-        return formatContext;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified dictionary of options and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>. 
-    /// May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="dic"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// If <paramref name="dic"/> is an <see cref="IDictionary{TKey, TValue}"/> other than <see cref="Collections.AVDictionary"/> or <see cref="Collections.AVMultiDictionary"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, InputFormat? input, IDictionary<string, string>? dic, bool findStreamInfo = false)
-    {
-        if (dic is null)
-            return Open(ioContext, input, findStreamInfo);
-        if (dic is Collections.AVDictionary avDict)
-            return Open(ioContext, input, avDict, findStreamInfo);
-        using Collections.AVDictionary dicCopy = new(dic);
-        DemuxerContext res = Open(ioContext, input, dicCopy, findStreamInfo);
-        dic.Clear();
-        foreach (KeyValuePair<string, string> kp in dicCopy)
-            dic[kp.Key] = kp.Value;
-        return res;
-    }
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified input format and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="input">
-    /// Optional. The <see cref="Formats.InputFormat"/> to use for parsing the input. This format must have the <see cref="FormatFlags.NoFile"/> flag set, indicating it does not require a file path.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="input"/> format with <paramref name="url"/> and <paramref name="dictionary"/> set to <see langword="null"/>. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, InputFormat? input, bool findStreamInfo = false)
-        => Open(ioContext, input, null as Collections.AVDictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified multi-dictionary of options and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVMultiDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="dictionary"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, Collections.AVMultiDictionary? dictionary, bool findStreamInfo = false)
-        => Open(ioContext, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified dictionary of options and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="dictionary">
-    /// Optional. A <see cref="Collections.AVDictionary"/> containing additional options for the input. May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="dictionary"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, Collections.AVDictionary? dictionary, bool findStreamInfo = false)
-        => Open(ioContext, null, dictionary, findStreamInfo);
-
-    /// <summary>
-    /// Opens an input media stream and initializes the <see cref="DemuxerContext"/> using the specified dictionary of options and <see cref="IOContext"/>.
-    /// </summary>
-    /// <param name="ioContext">
-    /// The <see cref="IOContext"/> to handle I/O operations for the media stream. It is responsible for setting up reading and writing capabilities.
-    /// </param>
-    /// <param name="dic">
-    /// Optional. A dictionary of additional options for the input. This can be a <see cref="Collections.AVDictionary"/>, <see cref="Collections.AVMultiDictionary"/>, or a simple <see cref="IDictionary{TKey, TValue}"/>. 
-    /// May be <see langword="null"/>.
-    /// </param>
-    /// <param name="findStreamInfo">
-    /// Optional. If <see langword="true"/>, will call <see cref="ffmpeg.avformat_find_stream_info"/> after opening the input to find stream information.
-    /// </param>
-    /// <returns>
-    /// An <see cref="DemuxerContext"/> initialized with the input media stream, or <see langword="null"/> if the operation fails. Throws an <see cref="OutOfMemoryException"/> if memory allocation fails.
-    /// </returns>
-    /// <remarks>
-    /// This method opens the input using the specified <paramref name="ioContext"/> and <paramref name="dic"/> with <paramref name="url"/> and <paramref name="input"/> set to <see langword="null"/>. 
-    /// If <paramref name="dic"/> is an <see cref="IDictionary{TKey, TValue}"/> other than <see cref="Collections.AVDictionary"/> or <see cref="Collections.AVMultiDictionary"/>, it will be converted to a <see cref="Collections.AVDictionary"/> internally. 
-    /// The <paramref name="ioContext"/> is used to initialize the <see cref="DemuxerContext"/> with read and write capabilities. 
-    /// After opening the input, the <paramref name="findStreamInfo"/> flag determines if <see cref="ffmpeg.avformat_find_stream_info"/> will be called to find stream information.
-    /// </remarks>
-    public static DemuxerContext Open(IOContext ioContext, IDictionary<string, string>? dic, bool findStreamInfo = false)
-        => Open(ioContext, null, dic, findStreamInfo);
-
-    #endregion
-
-    #endregion
-
-
+ 
     #region FindStreamInfo
 
     /// <summary>
-    /// Finds the stream information from the media file.
+    /// Reads packets from the input to gather stream information.
     /// </summary>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    /// <remarks>
+    /// This method analyzes the input streams and populates codec parameters,
+    /// durations, frame rates, and other stream metadata. It should typically be
+    /// called immediately after opening an input.
+    /// </remarks>
     public AVResult32 FindStreamInfo() => ffmpeg.avformat_find_stream_info(Context, null);
 
     /// <summary>
-    /// Finds the stream information using a specified set of dictionary options.
+    /// Reads packets from the input to gather stream information using per-stream
+    /// option dictionaries.
     /// </summary>
-    /// <param name="options">An array of <see cref="Collections.AVDictionary"/> for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    public AVResult32 FindStreamInfo(Collections.AVDictionary[]? options)
-        => FindStreamInfo(options != null ? options.AsSpan() : []);
+    /// <param name="options">
+    /// An array containing one option dictionary for each stream, or
+    /// <see langword="null"/>.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    public AVResult32 FindStreamInfo(Collections.AVDictionary[]? options) => FindStreamInfo(options != null ? options.AsSpan() : []);
 
     /// <summary>
-    /// Finds the stream information using a span of dictionary options.
+    /// Reads packets from the input to gather stream information using per-stream
+    /// option dictionaries.
     /// </summary>
-    /// <param name="options">A span of <see cref="Collections.AVDictionary"/> for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the number of options does not match the stream count.</exception>
+    /// <param name="options">
+    /// A span containing one option dictionary for each stream.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the number of supplied option dictionaries does not equal
+    /// <see cref="FormatContext.StreamCount"/>.
+    /// </exception>
     public AVResult32 FindStreamInfo(Span<Collections.AVDictionary> options)
     {
         if (options == null || options.Length == 0)
@@ -868,19 +98,33 @@ public unsafe class DemuxerContext : FormatContext
     }
 
     /// <summary>
-    /// Finds the stream information using a specified set of multi-dictionary options.
+    /// Reads packets from the input to gather stream information using per-stream
+    /// option dictionaries.
     /// </summary>
-    /// <param name="options">An array of <see cref="Collections.AVMultiDictionary"/> for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="options">
+    /// An array containing one option dictionary for each stream, or
+    /// <see langword="null"/>.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
     public AVResult32 FindStreamInfo(Collections.AVMultiDictionary[]? options)
         => FindStreamInfo(options != null ? options.AsSpan() : []);
 
     /// <summary>
-    /// Finds the stream information using a span of multi-dictionary options.
+    /// Reads packets from the input to gather stream information using per-stream
+    /// option dictionaries.
     /// </summary>
-    /// <param name="options">A span of <see cref="Collections.AVMultiDictionary"/> for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the number of options does not match the stream count.</exception>
+    /// <param name="options">
+    /// A span containing one option dictionary for each stream.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the number of supplied option dictionaries does not equal
+    /// <see cref="FormatContext.StreamCount"/>.
+    /// </exception>
     public AVResult32 FindStreamInfo(Span<Collections.AVMultiDictionary> options)
     {
         if (options == null || options.Length == 0)
@@ -897,11 +141,23 @@ public unsafe class DemuxerContext : FormatContext
     }
 
     /// <summary>
-    /// Finds the stream information using a span of dictionaries represented as <see cref="IDictionary{TKey, TValue}"/>.
+    /// Reads packets from the input to gather stream information using managed
+    /// dictionaries.
     /// </summary>
-    /// <param name="options">A span of dictionaries for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the number of options does not match the stream count.</exception>
+    /// <param name="options">
+    /// A span containing one dictionary for each stream.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    /// <remarks>
+    /// FFmpeg may consume or modify option entries. The supplied dictionaries are
+    /// updated to reflect any changes made during the call.
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the number of supplied dictionaries does not equal
+    /// <see cref="FormatContext.StreamCount"/>.
+    /// </exception>
     public AVResult32 FindStreamInfo(Span<IDictionary<string, string>> options)
     {
         if (options == null || options.Length == 0)
@@ -923,10 +179,23 @@ public unsafe class DemuxerContext : FormatContext
     }
 
     /// <summary>
-    /// Finds the stream information using an array of dictionaries represented as <see cref="IDictionary{TKey, TValue}"/>.
+    /// Reads packets from the input to gather stream information using managed
+    /// dictionaries.
     /// </summary>
-    /// <param name="options">An array of dictionaries for each stream.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="options">
+    /// A span containing one dictionary for each stream.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>avformat_find_stream_info()</c>.
+    /// </returns>
+    /// <remarks>
+    /// FFmpeg may consume or modify option entries. The supplied dictionaries are
+    /// updated to reflect any changes made during the call.
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the number of supplied dictionaries does not equal
+    /// <see cref="FormatContext.StreamCount"/>.
+    /// </exception>
     public AVResult32 FindStreamInfo(IDictionary<string, string>[]? options)
         => FindStreamInfo(options != null ? options.AsSpan() : []);
 
@@ -935,10 +204,19 @@ public unsafe class DemuxerContext : FormatContext
     #region ReadFrame
 
     /// <summary>
-    /// Reads a frame from the input media file.
+    /// Reads the next packet from the input.
     /// </summary>
-    /// <param name="packet">The packet to read into.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="packet">
+    /// The packet that receives the demultiplexed data.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_read_frame()</c>.
+    /// </returns>
+    /// <remarks>
+    /// The packet is automatically unreferenced before reading. If the packet does
+    /// not already have a time base assigned, it is initialized from the
+    /// corresponding stream.
+    /// </remarks>
     public AVResult32 ReadPacket(AVPacket packet)
     {
         packet.Unreference(); // av_read_frame in contrast to receive frame/packet (codec context) does not unreference the packet
@@ -950,11 +228,7 @@ public unsafe class DemuxerContext : FormatContext
         return result;
     }
 
-    /// <summary>
-    /// Reads a frame from the input media file.
-    /// </summary>
-    /// <param name="packet">The packet to read into.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <inheritdoc cref="ReadPacket(AVPacket)"/>
     [Obsolete("Renamed to ReadPacket")]
     public AVResult32 ReadFrame(AVPacket packet)
     {
@@ -973,13 +247,19 @@ public unsafe class DemuxerContext : FormatContext
     #region GuessFrameRate
 
     /// <summary>
-    /// Guesses the frame rate of the given stream.
+    /// Estimates the frame rate of the specified stream.
     /// </summary>
-    /// <param name="avStream">The stream to analyze.</param>
-    /// <param name="frame">The frame, if available, to use for analysis.</param>
-    /// <returns>A <see cref="Rational"/> representing the guessed frame rate.</returns>
+    /// <param name="avStream">
+    /// The stream whose frame rate should be estimated.
+    /// </param>
+    /// <param name="frame">
+    /// An optional decoded frame used to improve the estimation.
+    /// </param>
+    /// <returns>
+    /// The estimated frame rate.
+    /// </returns>
     public Rational GuessFrameRate(AVStream avStream, AVFrame? frame)
-        => ffmpeg.av_guess_frame_rate(Context, avStream.stream, frame != null ? frame.Frame : null);
+            => ffmpeg.av_guess_frame_rate(Context, avStream.stream, frame != null ? frame.Frame : null);
 
     /// <summary>
     /// Guesses the frame rate of the given stream.
@@ -989,24 +269,13 @@ public unsafe class DemuxerContext : FormatContext
     public Rational GuessFrameRate(AVStream avStream)
         => ffmpeg.av_guess_frame_rate(Context, avStream.stream, null);
 
-    /// <summary>
-    /// Guesses the frame rate of the stream at the specified index.
-    /// </summary>
-    /// <param name="streamIndex">The index of the stream to analyze.</param>
-    /// <param name="frame">The frame, if available, to use for analysis.</param>
-    /// <returns>A <see cref="Rational"/> representing the guessed frame rate.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the stream index is out of range.</exception>
+    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" /
     public Rational GuessFrameRate(int streamIndex, AVFrame? frame)
         => streamIndex < 0 || streamIndex >= StreamCount
             ? throw new ArgumentOutOfRangeException(nameof(streamIndex))
             : (Rational)ffmpeg.av_guess_frame_rate(Context, Context->streams[streamIndex], frame != null ? frame.Frame : null);
 
-    /// <summary>
-    /// Guesses the frame rate of the stream at the specified index.
-    /// </summary>
-    /// <param name="streamIndex">The index of the stream to analyze.</param>
-    /// <returns>A <see cref="Rational"/> representing the guessed frame rate.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the stream index is out of range.</exception>
+    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" /
     public Rational GuessFrameRate(int streamIndex)
         => GuessFrameRate(streamIndex, null);
 
@@ -1015,10 +284,18 @@ public unsafe class DemuxerContext : FormatContext
     #region Seek
 
     /// <summary>
-    /// Seeks to a specific time in the media file.
+    /// Seeks to the specified presentation time.
     /// </summary>
-    /// <param name="time">The time to seek to.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="time">
+    /// The target presentation time.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_seek_frame()</c>.
+    /// </returns>
+    /// <remarks>
+    /// The seek is performed using FFmpeg's default stream selection and the
+    /// <c>AVSEEK_FLAG_BACKWARD</c> flag.
+    /// </remarks>
     public AVResult32 Seek(Rational time)
     {
         Rational timeBase = new(1, ffmpeg.AV_TIME_BASE);
@@ -1027,12 +304,20 @@ public unsafe class DemuxerContext : FormatContext
     }
 
     /// <summary>
-    /// Seeks to a specific time in the media file for a given stream.
+    /// Seeks to the specified presentation time within a stream.
     /// </summary>
-    /// <param name="time">The time to seek to.</param>
-    /// <param name="streamIndex">The index of the stream to seek within.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if the stream index is out of range.</exception>
+    /// <param name="time">
+    /// The target presentation time.
+    /// </param>
+    /// <param name="streamIndex">
+    /// The zero-based stream index.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_seek_frame()</c>.
+    /// </returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="streamIndex"/> is outside the valid range.
+    /// </exception>
     public AVResult32 Seek(Rational time, int streamIndex)
     {
         if (streamIndex < 0 || streamIndex >= StreamCount)
@@ -1043,36 +328,70 @@ public unsafe class DemuxerContext : FormatContext
     }
 
     /// <summary>
-    /// Seeks to a specific timestamp in the media file.
+    /// Seeks to the specified timestamp.
     /// </summary>
-    /// <param name="frame">The timestamp in to seek to.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="timestamp">
+    /// The target timestamp.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_seek_frame()</c>.
+    /// </returns>
     public AVResult32 Seek(long timestamp)
-        => ffmpeg.av_seek_frame(Context, -1, timestamp, ffmpeg.AVSEEK_FLAG_FRAME | ffmpeg.AVSEEK_FLAG_BACKWARD);
+            => ffmpeg.av_seek_frame(Context, -1, timestamp, ffmpeg.AVSEEK_FLAG_FRAME | ffmpeg.AVSEEK_FLAG_BACKWARD);
 
     /// <summary>
-    /// Seeks to a specific timestamp in the media file for a given stream.
+    /// Seeks to the specified timestamp within a stream.
     /// </summary>
-    /// <param name="frame">The timestamp number to seek to.</param>
-    /// <param name="streamIndex">The index of the stream to seek within.</param>
-    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    /// <param name="timestamp">
+    /// The target timestamp.
+    /// </param>
+    /// <param name="streamIndex">
+    /// The zero-based stream index.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_seek_frame()</c>.
+    /// </returns>
     public AVResult32 Seek(long timestamp, int streamIndex)
-        => ffmpeg.av_seek_frame(Context, streamIndex, timestamp, ffmpeg.AVSEEK_FLAG_FRAME | ffmpeg.AVSEEK_FLAG_BACKWARD);
+            => ffmpeg.av_seek_frame(Context, streamIndex, timestamp, ffmpeg.AVSEEK_FLAG_FRAME | ffmpeg.AVSEEK_FLAG_BACKWARD);
 
     #endregion
 
-    public long StartTime => Context->start_time;
-    public long Duration => Context->duration;
+    /// <summary>
+    /// Gets the start timestamp of the input.
+    /// </summary>
+    /// <remarks>
+    /// The value is expressed in <c>AV_TIME_BASE</c> units.
+    /// </remarks>
+    public long StartTime => Context->start_time; public long Duration => Context->duration;
+    /// <summary>
+    /// Gets the overall bit rate of the input, in bits per second.
+    /// </summary>
     public long BitRate => Context->bit_rate;
 
-
+    /// <inheritdoc/>
     public override ChapterList Chapters => new(this, true);
-
     // ToDo: Find Program, Add Program, FindBestStream overloads
 
     #region Dispose
-    protected override void Dispose(bool disposing) => base.Dispose(disposing);
+    /// <inheritdoc />
+    protected override void Dispose(bool disposing)
+    {
+        if (!IsDisposed)
+        {
+            if (disposing)
+                ioContext?.Dispose();
+            if (Context != null)
+            {
+                AutoGen._AVFormatContext* context = Context;
+                ffmpeg.avformat_close_input(&context);
+                Context = context;
+            }
+        }
+        base.Dispose(disposing);
+
+    }
     #endregion
 
+    /// <inheritdoc />
     public override string ToString() => InputFormat?.LongName ?? "Unknown";
 }

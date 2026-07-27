@@ -82,8 +82,7 @@ public sealed class Transcoder : IDisposable
         int height = bfSink?.BufferSinkHeight ?? InputCodecs[sourceIndex].Height;
         Rational timeBase = bfSink?.BufferSinkTimeBase ?? InputStreams[sourceIndex].TimeBase;
         PixelFormat pixFmt = bfSink?.BufferSinkPixelFormat ?? InputCodecs[sourceIndex].PixelFormat;
-        ChannelLayout? l = null;
-        if ((bfSink?.TryGetBufferSinkChannelLayout(out l) != true))
+        if ((bfSink?.TryGetBufferSinkChannelLayout(out ChannelLayout? l) != true))
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
         using ChannelLayout layout = l!;
         ColorRange colorRange = bfSink?.BufferSinkColorRange ?? InputCodecs[sourceIndex].ColorRange;
@@ -142,7 +141,7 @@ public sealed class Transcoder : IDisposable
                 {
                     FilterContext fctx = filter.OutputFilters.Single();
                     encoder.SampleRate = fctx.BufferSinkSampleRate;
-                    fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch);
+                    _  = fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch);
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
                     encoder.SampleFormat = fctx.BufferSinkSampleFormat;
@@ -202,8 +201,10 @@ public sealed class Transcoder : IDisposable
                             : sinkContext?.TimeBase.IsValidTimeBase == true ? sinkContext!.TimeBase : sourceStream.TimeBase;
                     }
 
+#pragma warning disable IDE0221 // Explizite Umwandlung hinzufügen
                     long startTB = (long)((Rational)startTime / sinkStream.TimeBase);
                     long durationTB = (long)((Rational)duration / sinkStream.TimeBase);
+#pragma warning restore IDE0221 // Explizite Umwandlung hinzufügen
 
                     sinkStream.StartTime = sinkStream.TimeBase.Rescale(sourceStream.StartTime, sourceStream.TimeBase); // rescale start time
                     sinkStream.Duration = sinkStream.TimeBase.Rescale(sourceStream.Duration, sourceStream.TimeBase); // rescale duration

@@ -409,7 +409,6 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// Copies audio data from an <see cref="AVFrame"/> into this buffer.
     /// </summary>
     /// <param name="source">The <see cref="AVFrame"/> containing the source audio data.</param>
-    /// <param name="startSrcSampleIndex">The starting sample index in the source frame.</param>
     /// <returns>The number of samples copied.</returns>
     /// <exception cref="ArgumentException">Thrown when the channel count in the source frame does not match the destination buffer.</exception>
     public int CopyFrom(AVFrame source)

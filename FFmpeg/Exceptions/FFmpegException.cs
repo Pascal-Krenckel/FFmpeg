@@ -64,7 +64,7 @@ public class FFmpegException : Exception
         if (error == AVResult32.Bug || error == AVResult32.Bug2)
             throw new FFmpegException(error);
         if (error == AVResult32.BufferTooSmall)
-            throw new BufferToSmallExcpetion();
+            throw new BufferTooSmallException();
         if (error == AVResult32.DecoderNotFound)
             throw new DecoderNotFoundException();
         throw new FFmpegException(error);

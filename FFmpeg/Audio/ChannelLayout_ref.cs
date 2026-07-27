@@ -248,7 +248,7 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
     /// </summary>
     /// <returns>An <see cref="int"/> that represents the hash code for the current instance.</returns>
     /// <remarks>
-    /// The hash code is computed based on the number of channels in the channel layout using <see cref="HashCode.Combine"/>.
+    /// The hash code is computed based on the number of channels in the channel layout.
     /// </remarks>
     public override int GetHashCode() => HashCode.Combine(Channels);
 

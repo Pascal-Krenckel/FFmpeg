@@ -6,16 +6,20 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.Collections;
 /// <summary>
-/// Represents a dictionary that wraps around the FFmpeg AVDictionary structure, allowing for 
-/// key-value pair management with additional features such as case-insensitive comparisons.
+/// Represents a managed reference to an FFmpeg <c>AVDictionary</c>.
 /// </summary>
+/// <remarks>
+/// Unlike <see cref="AVDictionary"/>, this type does not own the underlying
+/// dictionary. It provides direct access to an existing
+/// <c>AVDictionary</c> owned by another FFmpeg structure.
+/// </remarks>
 public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IReference<AVDictionary>, IAVPointer<AutoGen._AVDictionary>
 {
     /// <summary>
-    /// Gets the pointer to the underlying AVDictionary structure.
+    /// Gets a pointer to the referenced FFmpeg <c>AVDictionary</c>.
     /// </summary>
     internal AutoGen._AVDictionary** Pointer { get; } = null;
-    AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => *Pointer;
+    readonly AutoGen._AVDictionary* IAVPointer<AutoGen._AVDictionary>.Pointer => *Pointer;
 
     /// <summary>
     /// Gets the flags used for dictionary operations, which can include matching case or ignoring suffixes.
@@ -43,21 +47,21 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     /// <param name="key">The key whose value to get or set.</param>
     /// <returns>The value associated with the specified key.</returns>
     /// <exception cref="KeyNotFoundException">Thrown when the key is not found in the dictionary.</exception>
-    public string this[string key]
+    public readonly string this[string key]
     {
-        readonly get => TryGetValue(key, out string? value) ? value : throw new KeyNotFoundException();
+        get => TryGetValue(key, out string? value) ? value : throw new KeyNotFoundException();
         set => FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(Pointer, key, value, (int)Flags));
     }
 
     /// <summary>
     /// Gets a collection containing the keys in the dictionary.
     /// </summary>
-    public readonly ICollection<string> Keys => this.Select(kv => kv.Key).ToList();
+    public readonly ICollection<string> Keys => [.. this.Select(kv => kv.Key)];
 
     /// <summary>
     /// Gets a collection containing the values in the dictionary.
     /// </summary>
-    public readonly ICollection<string> Values => this.Select(kv => kv.Value).ToList();
+    public readonly ICollection<string> Values => [.. this.Select(kv => kv.Value)];
 
     /// <summary>
     /// Gets the number of key-value pairs contained in the dictionary.
@@ -65,7 +69,7 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     public readonly int Count => AutoGen.ffmpeg.av_dict_count(*Pointer);
 
     /// <summary>
-    /// Gets a value indicating whether the dictionary is read-only. This implementation always returns <see langword="false"/>.
+    /// Gets a value indicating whether the dictionary is read-only.
     /// </summary>
     public readonly bool IsReadOnly => false;
 
@@ -91,7 +95,7 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value to append to the existing value.</param>
     /// <exception cref="ArgumentNullException">Thrown when the key is <see langword="null"/>.</exception>
-    public void AppendText(string key, string value) => FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(Pointer, key, value, (int)(Flags | AVDictionaryFlags.Append)));
+    public readonly void AppendText(string key, string value) => FFmpegException.ThrowIfError(AutoGen.ffmpeg.av_dict_set(Pointer, key, value, (int)(Flags | AVDictionaryFlags.Append)));
 
     /// <summary>
     /// Adds the specified key-value pair to the dictionary.
@@ -204,9 +208,17 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     public readonly AVMultiDictionary_ref AsMultiDictionary() => new(Pointer, !Flags.HasFlag(AVDictionaryFlags.MatchCase));
 
     /// <summary>
-    /// Returns a copy of the referenced AVDictionary object, not a direct reference, since AVDictionary is not reference-counted.
+    /// Creates an independent copy of the referenced dictionary.
     /// </summary>
-    /// <returns>A copy of the referenced <see cref="AVDictionary"/> object, or <see langword="null"/> if the pointer is <see langword="null"/>.</returns>
+    /// <returns>
+    /// A new <see cref="AVDictionary"/> containing the same entries as the
+    /// referenced dictionary, or <see langword="null"/> if no dictionary is
+    /// referenced.
+    /// </returns>
+    /// <remarks>
+    /// Since FFmpeg dictionaries are not reference counted, this method performs
+    /// a deep copy rather than returning another reference.
+    /// </remarks>
     public readonly AVDictionary? GetReferencedObject()
     {
         if (*Pointer == null)
@@ -217,7 +229,7 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     }
 
     /// <summary>
-    /// Sets the referenced object to a copy of the provided AVDictionary. If <see langword="null"/>, the current dictionary is freed.
+    /// Replaces the referenced dictionary with a copy of the specified dictionary.
     /// </summary>
     /// <param name="dict">The dictionary to set as the referenced object, or <see langword="null"/> to free the current dictionary.</param>
     public void SetReferencedObject(AVDictionary? dict)
@@ -233,6 +245,20 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
         }
     }
 
+    /// <summary>
+    /// Replaces the contents of the referenced dictionary with the specified
+    /// metadata.
+    /// </summary>
+    /// <param name="metadata">
+    /// The metadata to copy into the referenced dictionary.
+    /// </param>
+    /// <remarks>
+    /// Existing entries are removed before the new entries are copied.
+    /// Specialized copy operations are used when
+    /// <paramref name="metadata"/> is an
+    /// <see cref="AVDictionary"/> or
+    /// <see cref="AVDictionary_ref"/>.
+    /// </remarks>
     public void Init(IDictionary<string, string> metadata)
     {
         Clear();
@@ -250,9 +276,20 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
                 this[kv.Key] = kv.Value;
         }
     }
-    public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
 
-    // ToDo: comments, Extract Interface
+    /// <inheritdoc cref="AVDictionary.ToString"/>
+    public readonly override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
+
+    /// <summary>
+    /// Copies all key/value pairs from the specified dictionary into the
+    /// referenced dictionary.
+    /// </summary>
+    /// <param name="dic">
+    /// The dictionary whose entries should be copied.
+    /// </param>
+    /// <remarks>
+    /// Existing keys are overwritten.
+    /// </remarks>
     public void CopyFrom(IDictionary<string, string> dic)
     {
         foreach (KeyValuePair<string, string> kv in dic)

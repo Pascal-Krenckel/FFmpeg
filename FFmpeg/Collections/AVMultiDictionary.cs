@@ -5,12 +5,17 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.Collections;
 /// <summary>
-/// Represents a multi-dictionary that allows multiple values for a single key.
+/// Represents a managed wrapper around FFmpeg's <c>AVDictionary</c> that
+/// supports multiple values for the same key.
 /// </summary>
+/// <remarks>
+/// Unlike <see cref="AVDictionary"/>, this class allows duplicate keys by
+/// storing multiple entries with the same key.
+/// </remarks>
 public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposable, IAVPointer<AutoGen._AVDictionary>
 {
     /// <summary>
-    /// A check variable used for internal operations.
+    /// Tracks modifications to detect changes during enumeration.
     /// </summary>
     private int _check = 0;
 
@@ -27,17 +32,20 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
 
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="AVMultiDictionary_ref"/> class with an existing dictionary.
+    /// Initializes a new empty <see cref="AVMultiDictionary"/>.
     /// </summary>
-    /// <param name="dictionary">Pointer to an existing dictionary.</param>
-    /// <param name="ignoreCase">If set to <c>true</c>, the dictionary will ignore case when comparing keys.</param>
+    /// <param name="ignoreCase">If set to <see langword="true"/>, the dictionary will ignore case when comparing keys.</param>
     public AVMultiDictionary(bool ignoreCase = true)
     {
         if (!ignoreCase)
             Flags |= AVDictionaryFlags.MatchCase;
     }
 
-    public AVMultiDictionary(ILookup<string, string> values, bool ignoreCase = false)
+    /// <summary>
+    /// Initializes a new <see cref="AVMultiDictionary"/> containing the values
+    /// from the specified lookup.
+    /// </summary>
+    public AVMultiDictionary(ILookup<string, string> values, bool ignoreCase = false) : this(ignoreCase)
     {
         foreach (IGrouping<string, string>? group in values)
         {
@@ -46,7 +54,11 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
         }
     }
 
-    public AVMultiDictionary(IDictionary<string, string> values, bool ignoreCase = false)
+    /// <summary>
+    /// Initializes a new <see cref="AVMultiDictionary"/> containing the specified
+    /// key/value pairs.
+    /// </summary>
+    public AVMultiDictionary(IDictionary<string, string> values, bool ignoreCase = false) : this(ignoreCase)
     {
         foreach (KeyValuePair<string, string> kv in values)
             Add(kv.Key, kv.Value);
@@ -56,22 +68,26 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
 
 
     /// <summary>
-    /// Gets the values associated with the specified key.
+    /// Gets an enumerable sequence containing all values associated with the
+    /// specified key.
     /// </summary>
     /// <param name="key">The key whose values to get.</param>
     /// <returns>An enumerable collection of values associated with the specified key.</returns>
     public IEnumerable<string> this[string key] => new AVMultiDictionaryKeyIterator(this, key);
 
     /// <summary>
-    /// Gets the number of key/value pairs contained in the dictionary.
+    /// Gets the total number of key/value pairs contained in the dictionary.
     /// </summary>
+    /// <remarks>
+    /// Multiple entries with the same key are counted individually.
+    /// </remarks>
     public int Count => AutoGen.ffmpeg.av_dict_count(dictionary);
 
     /// <summary>
     /// Determines whether the dictionary contains the specified key.
     /// </summary>
     /// <param name="key">The key to locate in the dictionary.</param>
-    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if the dictionary contains an element with the specified key; otherwise, <see langword="false"/>.</returns>
     public bool Contains(string key)
     {
         if (dictionary == null)
@@ -84,7 +100,11 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// Removes all values associated with the specified key.
     /// </summary>
     /// <param name="key">The key whose values to remove.</param>
-    /// <returns><c>true</c> if any values were removed; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if any values were removed; otherwise, <see langword="false"/>.</returns>
+    /// <remarks>
+    /// If multiple values exist for the specified key, only the first matching
+    /// entry is removed.
+    /// </remarks>
     public bool RemoveAll(string key)
     {
         bool ret = false;
@@ -97,7 +117,11 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// Removes the first value associated with the specified key.
     /// </summary>
     /// <param name="key">The key whose first value to remove.</param>
-    /// <returns><c>true</c> if a value was removed; otherwise, <c>false</c>.</returns>
+    /// <returns><see langword="true"/> if a value was removed; otherwise, <see langword="false"/>.</returns>
+    /// <remarks>
+    /// If multiple values exist for the specified key, only the first matching
+    /// entry is removed.
+    /// </remarks>
     public bool RemoveFirst(string key)
     {
         bool b = Contains(key);
@@ -118,6 +142,10 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     /// </summary>
     /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value of the element to add.</param>
+    /// <remarks>
+    /// This method does not replace existing values. If the key already exists,
+    /// an additional value is added.
+    /// </remarks>
     public void Add(string key, string value)
     {
         if (key == null)
@@ -131,7 +159,7 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
     }
 
     /// <summary>
-    /// Clears all key/value pairs from the dictionary.
+    /// Removes all key/value pairs from the dictionary.
     /// </summary>
     public void Clear()
     {
@@ -227,6 +255,10 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
         IEnumerator IEnumerable.GetEnumerator() => this;
     }
 
+
+    /// <summary>
+    /// Releases the unmanaged FFmpeg dictionary associated with this instance.
+    /// </summary>
     public void Dispose()
     {
         AutoGen._AVDictionary* dictionary = this.dictionary;
@@ -235,7 +267,16 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
         GC.SuppressFinalize(this);
     }
 
+    /// <inheritdoc />
     ~AVMultiDictionary() => Dispose();
+
+    /// <summary>
+    /// Returns a string representation of the dictionary.
+    /// </summary>
+    /// <returns>
+    /// A colon-separated list of key/value groups in the form
+    /// <c>key=value1,value2:key2=value3</c>.
+    /// </returns>
     public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
 
 }

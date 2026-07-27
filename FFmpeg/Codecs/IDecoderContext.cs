@@ -2,59 +2,67 @@
 
 namespace FFmpeg.Codecs;
 
+/// <summary>
+/// Defines the common functionality exposed by decoder contexts.
+/// </summary>
+/// <remarks>
+/// This interface provides access to codec information, configuration options,
+/// and common properties shared by all decoder context implementations.
+/// </remarks>
 public interface IDecoderContext : IDisposable, Options.IOptionQueryable
 {
     /// <summary>
-    /// Gets the codec that is used for encoding.
+    /// Gets the codec associated with this decoder.
     /// </summary>
     Codec Codec { get; }
 
     /// <summary>
-    /// Gets the type of media (video, audio, etc.) handled by the codec.
+    /// Gets the type of media handled by the decoder, such as video, audio, or subtitles.
     /// </summary>
     MediaType CodecType { get; }
 
     /// <summary>
-    /// Gets the specific codec identifier, which uniquely identifies the codec being used.
+    /// Gets the identifier of the codec associated with this decoder.
     /// </summary>
     CodecID CodecID { get; }
 
     /// <summary>
-    /// Gets or sets the FourCC (four-character code) tag for the codec.
-    /// 
+    /// Gets or sets the FourCC (four-character code) associated with the codec.
+    ///
     /// <para>
-    /// The codec tag is used to identify the codec in a container file. 
-    /// For encoding, this is set by the user. If not set, the default based on <see cref="CodecID"/> will be used.
+    /// The codec tag identifies the codec within a media container. During
+    /// decoding, it is typically populated from the input stream. During
+    /// encoding, it may be specified explicitly; otherwise, a default value
+    /// appropriate for the selected <see cref="CodecID"/> is used.
     /// </para>
+    ///
     /// <para>
-    /// The FourCC tag is stored with the least significant byte (LSB) first, so the string "ABCD" is represented as
-    /// <code>('D'&lt;&lt;24) + ('C'&lt;&lt;16) + ('B'&lt;&lt;8) + 'A'</code>.
+    /// The FourCC value is stored with the least significant byte (LSB) first.
+    /// For example, the string <c>"ABCD"</c> is represented as:
+    /// <code>('D' &lt;&lt; 24) + ('C' &lt;&lt; 16) + ('B' &lt;&lt; 8) + 'A'</code>.
     /// </para>
     /// </summary>
     FourCC CodecTag { get; set; }
 
-
     /// <summary>
-    /// Gets or sets the average bit rate for encoding.
-    /// 
-    /// <para>
-    /// The bit rate controls the amount of data processed per second during encoding. 
-    /// This must be set by the user unless a constant quantizer encoding mode is being used.
-    /// </para>
+    /// Gets or sets the average bit rate of the media stream.
     /// </summary>
+    /// <remarks>
+    /// During decoding, this value is typically read from the input stream.
+    /// During encoding, it controls the target average bit rate unless another
+    /// rate control mode is used.
+    /// </remarks>
     long BitRate { get; set; }
 
     /// <summary>
-    /// Gets or sets the codec flags, which provide additional control over codec behavior.
-    /// 
-    /// <para>
-    /// These flags can adjust how the encoder behaves during the encoding process.
-    /// </para>
+    /// Gets or sets codec-specific flags that control codec behavior.
     /// </summary>
     CodecFlags Flags { get; set; }
 
     /// <summary>
-    /// Gets or sets the timebase in which <c>pkt_dts</c>/<c>pts</c> and <see cref="AVPacket.DecompressionTimestamp"/>/<see cref="AVPacket.PresentationTimestamp"/> are expressed.
+    /// Gets or sets the time base in which packet timestamps
+    /// (<see cref="AVPacket.PresentationTimestamp"/> and
+    /// <see cref="AVPacket.DecompressionTimestamp"/>) are expressed.
     /// </summary>
     Rational PacketTimeBase { get; set; }
 }

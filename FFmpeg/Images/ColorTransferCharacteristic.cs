@@ -26,7 +26,7 @@ public enum ColorTransferCharacteristic : int
     Reserved = AutoGen._AVColorTransferCharacteristic.AVCOL_TRC_RESERVED,
 
     /// <summary>
-    /// ITU-R BT.470 System M (525-line NTSC) transfer characteristics, also known as ITU-R BT1700 625 PAL & SECAM.
+    /// ITU-R BT.470 System M (525-line NTSC) transfer characteristics, also known as ITU-R BT1700 625 PAL &amp; SECAM.
     /// </summary>
     Gamma22 = AutoGen._AVColorTransferCharacteristic.AVCOL_TRC_GAMMA22,
 

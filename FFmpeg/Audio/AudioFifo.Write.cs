@@ -570,7 +570,7 @@ public unsafe partial class AudioFifo
     /// </exception>
     /// <remarks>
     /// This method simply reinterprets each <typeparamref name="T"/> array as bytes and calls 
-    /// <see cref="Write(params byte[][])"/>.
+    /// <see cref="Write(byte[][])"/>.
     /// </remarks>
     public AVResult32 Write<T>(params T[][] data) where T : unmanaged
     {
@@ -699,7 +699,7 @@ public unsafe partial class AudioFifo
     /// </exception>
     /// <exception cref="NotSupportedException">
     /// Thrown when the number of provided channels (<c>data.GetLength(0)</c>) does not match the expected channel count.  
-    /// Or if the element size <c>sizeof(T)</c> does not match <see cref="Format.GetBytesPerSample()"/>.
+    /// Or if the element size <c>sizeof(T)</c> does not match <see cref="SampleExtensions.GetBytesPerSample(SampleFormat)"/>.
     /// </exception>
     public unsafe AVResult32 Write<T>(T[,] data) where T : unmanaged
     {
@@ -747,7 +747,8 @@ public unsafe partial class AudioFifo
     /// </summary>
     /// <typeparam name="T">
     /// The unmanaged sample type (for example, <see cref="float"/> or <see cref="short"/>).  
-    /// Its size must match <see cref="Format.GetBytesPerSample()"/>.
+    /// Its size must match <see cref="SampleExtensions.GetBytesPerSample(SampleFormat)"/>.
+    /// </typeparam>
     /// <param name="buffer">
     /// A read-only span containing interleaved audio samples for all channels.  
     /// Samples are packed: one sample per channel in sequence for each frame.

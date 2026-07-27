@@ -1,7 +1,18 @@
 ﻿namespace FFmpeg.Threading;
 
-// Provides a task scheduler that ensures a maximum concurrency level while
-// running on top of the thread pool.
+/// <summary>
+/// Provides a <see cref="TaskScheduler"/> that limits the number of tasks that
+/// can execute concurrently.
+/// </summary>
+/// <remarks>
+/// Tasks are queued and executed on the .NET thread pool while ensuring that no
+/// more than the configured maximum number of tasks run simultaneously.
+///
+/// <para>
+/// The maximum degree of parallelism can be changed at runtime using
+/// <see cref="SetMaxDegreeOfParallelism(int)"/>.
+/// </para>
+/// </remarks>
 public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
 {
     // Indicates whether the current thread is processing work items.
@@ -12,20 +23,29 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
     private readonly LinkedList<Task> _tasks = new(); // protected by lock(_tasks)
 
     // The maximum concurrency level allowed by this scheduler.
-    private int _maxDegreeOfParallelism;
+    private volatile int _maxDegreeOfParallelism;
 
     // Indicates whether the scheduler is currently processing work items.
     private int _delegatesQueuedOrRunning = 0;
 
-    // Creates a new instance with the specified degree of parallelism.
+    /// <summary>
+    /// Initializes a new instance of the
+    /// <see cref="LimitedConcurrencyLevelTaskScheduler"/> class.
+    /// </summary>
+    /// <param name="maxDegreeOfParallelism">
+    /// The maximum number of tasks that may execute concurrently.
+    /// </param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="maxDegreeOfParallelism"/> is less than one.
+    /// </exception>
     public LimitedConcurrencyLevelTaskScheduler(int maxDegreeOfParallelism)
     {
         if (maxDegreeOfParallelism < 1)
-            throw new ArgumentOutOfRangeException("maxDegreeOfParallelism");
+            throw new ArgumentOutOfRangeException(nameof(maxDegreeOfParallelism));
         _maxDegreeOfParallelism = maxDegreeOfParallelism;
     }
 
-    // Queues a task to the scheduler.
+    /// <inheritdoc/>
     protected sealed override void QueueTask(Task task)
     {
         // Add the task to the list of tasks to be processed.  If there aren't enough
@@ -76,7 +96,7 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
                                                              finally { _currentThreadIsProcessingItems = false; }
                                                          }, null);
 
-    // Attempts to execute the specified task on the current thread.
+    /// <inheritdoc />
     protected sealed override bool TryExecuteTaskInline(Task task, bool taskWasPreviouslyQueued)
     {
         // If this thread isn't already processing a task, we don't support inlining
@@ -91,19 +111,35 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
             return base.TryExecuteTask(task);
     }
 
-    // Attempt to remove a previously scheduled task from the scheduler.
+    /// <inheritdoc />
     protected sealed override bool TryDequeue(Task task)
     {
         lock (_tasks)
             return _tasks.Remove(task);
     }
 
-    // Gets the maximum concurrency level supported by this scheduler.
+    /// <inheritdoc />
     public sealed override int MaximumConcurrencyLevel => _maxDegreeOfParallelism;
+
+    /// <summary>
+    /// Sets the maximum number of tasks that may execute concurrently.
+    /// </summary>
+    /// <param name="maxDegreeOfParallelism">
+    /// The new maximum degree of parallelism.
+    /// </param>
+    /// <remarks>
+    /// If the new value is greater than the current concurrency level, additional
+    /// worker threads are queued immediately when possible. Reducing the value does
+    /// not cancel running tasks; instead, the new limit is enforced as currently
+    /// executing tasks complete.
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when <paramref name="maxDegreeOfParallelism"/> is less than one.
+    /// </exception>
     public void SetMaxDegreeOfParallelism(int maxDegreeOfParallelism)
     {
         if (maxDegreeOfParallelism < 1)
-            throw new ArgumentOutOfRangeException("maxDegreeOfParallelism");
+            throw new ArgumentOutOfRangeException(nameof(maxDegreeOfParallelism));
         if (Monitor.TryEnter(_tasks))
         {
             try  // try enter _tasks and if successful, adjust the running threads if needed
@@ -125,7 +161,7 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
         }
     }
 
-    // Gets an enumerable of the tasks currently scheduled on this scheduler.
+    /// <inheritdoc />
     protected sealed override IEnumerable<Task> GetScheduledTasks()
     {
         bool lockTaken = false;

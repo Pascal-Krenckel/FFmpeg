@@ -1,4 +1,5 @@
-﻿using FFmpeg.Codecs;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Codecs;
 using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.HW;
@@ -65,6 +66,37 @@ public class MediaSource : IDisposable
         }
     }
 
+    /// <summary>
+    /// Replaces the codec context for the specified stream with a new context using
+    /// the specified codec.
+    /// </summary>
+    /// <param name="codec">
+    /// The codec to use for the new codec context.
+    /// </param>
+    /// <param name="streamIndex">
+    /// The zero-based index of the stream whose codec context should be replaced.
+    /// </param>
+    /// <returns>
+    /// The newly created <see cref="CodecContext"/>.
+    /// </returns>
+    /// <remarks>
+    /// The existing codec context for the stream, if any, is disposed before the
+    /// new context is created.
+    ///
+    /// <para>
+    /// The new codec context is initialized from the stream's
+    /// <see cref="CodecParameters"/>, configured with the current hardware device
+    /// type, and assigned the stream's packet time base.
+    /// </para>
+    ///
+    /// <para>
+    /// For video streams, the frame rate is initialized using
+    /// <see cref="DemuxerContext.GuessFrameRate(AVStream, AVFrame?)"/>.
+    /// </para>
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="streamIndex"/> is outside the range of available streams.
+    /// </exception>
     public CodecContext SetCodec(Codec codec, int streamIndex)
     {
         if (codecContexts.Length != Streams.Count)
@@ -79,6 +111,7 @@ public class MediaSource : IDisposable
         return codecContexts[streamIndex];
     }
 
+    /// <inheritdoc cref="FormatContext.Metadata" />
     public AVDictionary_ref Metadata => FormatContext.Metadata;
 
     /// <summary>
@@ -178,7 +211,7 @@ public class MediaSource : IDisposable
         return res.IsError ? res : CodecContexts[srcPacket.StreamIndex].ReceiveFrame(dstFrame);
     }
 
-    /// <inheritdoc cref=CodecContext.DecodeSubtitle(AVPacket, out Subtitles.Subtitle) />
+    /// <inheritdoc cref="CodecContext.DecodeSubtitle(AVPacket, Subtitles.Subtitle)" />
     public AVResult32 DecodeSubtitle(AVPacket srcPacket, Subtitles.Subtitle subtitle) => codecContexts[srcPacket.StreamIndex].DecodeSubtitle(srcPacket, subtitle);
 
 
@@ -380,8 +413,40 @@ public class MediaSource : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    // ToDo: Beschriftung, TryAgain
-    public AVResult32 Decode(AVPacket packet, AVFrame frame) => CodecContexts[packet.StreamIndex].Decode(packet, frame);
+    /// <summary>
+    /// Decodes a packet and writes the next available decoded frame into the specified
+    /// <see cref="AVFrame"/>.
+    /// </summary>
+    /// <param name="packet">
+    /// The encoded packet to submit to the decoder.
+    /// </param>
+    /// <param name="frame">
+    /// Receives the decoded frame if one is available.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> indicating the result of the decoding operation.
+    /// </returns>
+    /// <remarks>
+    /// This method forwards the packet to the decoder associated with
+    /// <see cref="AVPacket.StreamIndex"/>.
+    ///
+    /// <para>
+    /// A successful return value indicates that a decoded frame was written to
+    /// <paramref name="frame"/>.
+    /// </para>
+    ///
+    /// <para>
+    /// <see cref="AVResult32.TryAgain"/> indicates that the decoder requires additional
+    /// input packets before it can produce another frame.
+    /// </para>
+    ///
+    /// <para>
+    /// <see cref="AVResult32.EndOfFile"/> indicates that the decoder has been fully
+    /// drained and no more frames are available.
+    /// </para>
+    /// </remarks>
+    public AVResult32 Decode(AVPacket packet, AVFrame frame)
+        => CodecContexts[packet.StreamIndex].Decode(packet, frame);
 
     #endregion
 }

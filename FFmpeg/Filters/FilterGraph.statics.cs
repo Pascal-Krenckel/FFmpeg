@@ -31,25 +31,42 @@ public sealed unsafe partial class FilterGraph
 
 
     /// <summary>
-    /// Attempts to create a filter graph from the specified filter graph description.
+    /// Attempts to create a <see cref="FilterGraph"/> by parsing the specified
+    /// FFmpeg filter graph description.
     /// </summary>
     /// <param name="inputs">
-    /// When this method returns successfully, contains any unlinked input endpoints
-    /// remaining after parsing; otherwise, <see langword="null"/>.
+    /// When this method returns successfully, contains the collection of unlinked
+    /// input endpoints remaining after parsing the filter graph; otherwise,
+    /// <see langword="null"/>.
     /// </param>
     /// <param name="filter">
     /// The FFmpeg filter graph description to parse.
     /// </param>
     /// <param name="outputs">
-    /// When this method returns successfully, contains any unlinked output endpoints
-    /// remaining after parsing; otherwise, <see langword="null"/>.
+    /// When this method returns successfully, contains the collection of unlinked
+    /// output endpoints remaining after parsing the filter graph; otherwise,
+    /// <see langword="null"/>.
     /// </param>
     /// <param name="filterGraph">
-    /// When this method returns successfully, contains the created
+    /// When this method returns successfully, contains the newly created
     /// <see cref="FilterGraph"/>; otherwise, <see langword="null"/>.
     /// </param>
     /// <returns>
-    public static AVResult32 TryCreate(out FilterInOutList? inputs, string filter, out FilterInOutList? outputs, out FilterGraph? filterGraph)
+    /// <c>0</c> if the filter graph was successfully created and parsed;
+    /// otherwise, a negative FFmpeg error code.
+    /// </returns>
+    /// <remarks>
+    /// This method allocates a new <see cref="FilterGraph"/> and parses the
+    /// specified filter graph description using FFmpeg. Any filter endpoints that
+    /// are not connected during parsing are returned through
+    /// <paramref name="inputs"/> and <paramref name="outputs"/> so they can be
+    /// linked manually.
+    /// </remarks>
+    public static AVResult32 TryCreate(
+        out FilterInOutList? inputs,
+        string filter,
+        out FilterInOutList? outputs,
+        out FilterGraph? filterGraph)
     {
         filterGraph = Allocate();
         _AVFilterInOut* @in;

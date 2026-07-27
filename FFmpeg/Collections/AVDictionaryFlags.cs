@@ -6,6 +6,9 @@
 /// </summary>
 internal enum AVDictionaryFlags
 {
+    /// <summary>
+    /// None
+    /// </summary>
     None = 0,
 
     /// <summary>

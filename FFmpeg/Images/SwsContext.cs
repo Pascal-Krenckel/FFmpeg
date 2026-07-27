@@ -444,6 +444,9 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>
+    /// Ensures the unmanaged data gets released.
+    /// </summary>
     ~SwsContext() => Dispose();
 
 }

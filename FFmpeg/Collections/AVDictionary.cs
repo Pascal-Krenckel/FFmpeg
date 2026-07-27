@@ -5,8 +5,12 @@ using System.Runtime.InteropServices;
 
 namespace FFmpeg.Collections;
 /// <summary>
-/// Represents a dictionary that wraps around the FFmpeg AVDictionary structure.
+/// Represents a managed wrapper around FFmpeg's <c>AVDictionary</c> structure.
 /// </summary>
+/// <remarks>
+/// This class implements <see cref="IDictionary{TKey,TValue}"/> and provides
+/// managed access to FFmpeg metadata dictionaries.
+/// </remarks>
 public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposable, IAVPointer<AutoGen._AVDictionary>
 {
     private int _check = 0;
@@ -34,7 +38,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
 
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="AVDictionary_ref"/> class with an existing FFmpeg AVDictionary.
+    /// Initializes a new empty <see cref="AVDictionary"/>.
     /// </summary>
     /// <param name="ignoreCase">If set to <c>true</c>, the dictionary will ignore case when comparing keys.</param>
     /// <param name="ignoreSuffix">If set to <c>true</c>, the dictionary will ignore suffixes when comparing keys.</param>
@@ -45,7 +49,21 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
         if (ignoreSuffix)
             Flags |= AVDictionaryFlags.IgnoreSuffix;
     }
-
+    /// <summary>
+    /// Initializes a new <see cref="AVDictionary"/> containing the specified
+    /// key/value pairs.
+    /// </summary>
+    /// <param name="dict">
+    /// The key/value pairs used to initialize the dictionary.
+    /// </param>
+    /// <param name="ignoreCase">
+    /// <see langword="true"/> to perform case-insensitive key lookups;
+    /// otherwise, <see langword="false"/>.
+    /// </param>
+    /// <param name="ignoreSuffix">
+    /// <see langword="true"/> to ignore suffixes during key comparisons;
+    /// otherwise, <see langword="false"/>.
+    /// </param>
     public AVDictionary(IEnumerable<KeyValuePair<string, string>> dict, bool ignoreCase = true, bool ignoreSuffix = false) : this(ignoreCase, ignoreSuffix)
     {
         foreach (KeyValuePair<string, string> pair in dict)
@@ -75,12 +93,12 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// <summary>
     /// Gets a collection containing the keys in the dictionary.
     /// </summary>
-    public ICollection<string> Keys => this.Select(kv => kv.Key).ToList();
+    public ICollection<string> Keys => [.. this.Select(kv => kv.Key)];
 
     /// <summary>
     /// Gets a collection containing the values in the dictionary.
     /// </summary>
-    public ICollection<string> Values => this.Select(kv => kv.Value).ToList();
+    public ICollection<string> Values => [.. this.Select(kv => kv.Value)];
 
     /// <summary>
     /// Gets the number of key-value pairs contained in the dictionary.
@@ -109,7 +127,8 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     }
 
     /// <summary>
-    /// Appends the specified value to the existing value under key. If the key doesn't exist. The key is added to the dictionary.
+    /// Appends the specified text to the value associated with the specified key.
+    /// If the key does not exist, a new entry is created.
     /// </summary>
     /// <param name="key">The key of the element to add.</param>
     /// <param name="value">The value to append to the existing value.</param>
@@ -131,7 +150,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     public void Add(KeyValuePair<string, string> item) => Add(item.Key, item.Value);
 
     /// <summary>
-    /// Removes all keys and values from the dictionary.
+    /// Removes all key/value pairs from the dictionary.
     /// </summary>
     public void Clear()
     {
@@ -144,21 +163,25 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// Determines whether the dictionary contains a specific key-value pair.
     /// </summary>
     /// <param name="item">The key-value pair to locate in the dictionary.</param>
-    /// <returns><c>true</c> if the key-value pair is found; otherwise, <c>false</c>.</returns>
+    /// <returns><c>true</c> if the key-value pair is found; otherwise, <see langword="false"/>.</returns>
     public bool Contains(KeyValuePair<string, string> item) => TryGetValue(item.Key, out string? value) && item.Value.Equals(value);
 
     /// <summary>
     /// Determines whether the dictionary contains a specific key.
     /// </summary>
     /// <param name="key">The key to locate in the dictionary.</param>
-    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
+    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <see langword="false"/>.</returns>
     public bool ContainsKey(string key) => TryGetValue(key, out _);
 
-    /// <summary>
-    /// Copies the elements of the dictionary to an array, starting at a particular array index.
-    /// </summary>
-    /// <param name="array">The one-dimensional array that is the destination of the elements copied from the dictionary.</param>
-    /// <param name="arrayIndex">The zero-based index in the array at which copying begins.</param>
+    /// <exception cref="ArgumentNullException">
+    /// <paramref name="array"/> is <see langword="null"/>.
+    /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="arrayIndex"/> is negative.
+    /// </exception>
+    /// <exception cref="ArgumentException">
+    /// The destination array is too small.
+    /// </exception>
     public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
     {
         foreach (KeyValuePair<string, string> kv in this)
@@ -175,7 +198,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// Removes the value with the specified key from the dictionary.
     /// </summary>
     /// <param name="key">The key of the element to remove.</param>
-    /// <returns><c>true</c> if the element is successfully found and removed; otherwise, <c>false</c>.</returns>
+    /// <returns><c>true</c> if the element is successfully found and removed; otherwise, <see langword="false"/>.</returns>
     public bool Remove(string key)
     {
         bool b = ContainsKey(key);
@@ -189,7 +212,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// Removes the specified key-value pair from the dictionary.
     /// </summary>
     /// <param name="item">The key-value pair to remove.</param>
-    /// <returns><c>true</c> if the key-value pair is successfully found and removed; otherwise, <c>false</c>.</returns>
+    /// <returns><c>true</c> if the key-value pair is successfully found and removed; otherwise, <see langword="false"/>.</returns>
     public bool Remove(KeyValuePair<string, string> item)
     {
         bool b = TryGetValue(item.Key, out string? value);
@@ -205,8 +228,11 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// Gets the value associated with the specified key.
     /// </summary>
     /// <param name="key">The key whose value to get.</param>
-    /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.</param>
-    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <c>false</c>.</returns>
+    /// <param name="value">
+    /// When this method returns, contains the value associated with
+    /// <paramref name="key"/> if the key was found; otherwise,
+    /// <see cref="string.Empty"/>.
+    /// </param>    /// <returns><c>true</c> if the dictionary contains an element with the specified key; otherwise, <see langword="false"/>.</returns>
     public bool TryGetValue(string key, out string value)
     {
         AutoGen._AVDictionaryEntry* entry = AutoGen.ffmpeg.av_dict_get(dictionary, key, null, (int)Flags);
@@ -258,7 +284,12 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
             _count = dict.Count;
         }
     }
-
+    /// <summary>
+    /// Releases the unmanaged FFmpeg dictionary associated with this instance.
+    /// </summary>
+    /// <remarks>
+    /// After this method has been called, the dictionary should no longer be used.
+    /// </remarks>
     public void Dispose()
     {
         AutoGen._AVDictionary* dict = dictionary;
@@ -266,8 +297,15 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
         dictionary = dict;
         GC.SuppressFinalize(this);
     }
-
+    /// <inheritdoc />
     ~AVDictionary() => Dispose();
 
+    /// <summary>
+    /// Returns a string representation of the dictionary.
+    /// </summary>
+    /// <returns>
+    /// A colon-separated list of key/value pairs in the form
+    /// <c>key=value:key2=value2</c>.
+    /// </returns>
     public override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
 }
