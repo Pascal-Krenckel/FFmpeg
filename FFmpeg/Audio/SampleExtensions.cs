@@ -168,6 +168,14 @@ public static class SampleExtensions
         /// <param name="name">The name of the sample format.</param>
         /// <returns>The corresponding <see cref="SampleFormat"/>.</returns>
         public static SampleFormat Parse(string name) => (SampleFormat)ffmpeg.av_get_sample_fmt(name);
+
+        /// <summary>
+        /// Gets the FFmpeg name of this sample format.
+        /// </summary>
+        /// <returns>
+        /// The FFmpeg name of the sample format, or <see langword="null"/> if the sample format is not recognized.
+        /// </returns>
+        public string ToFFmpegString() => ffmpeg.av_get_sample_fmt_name((_AVSampleFormat)format);
     }
 }
 
