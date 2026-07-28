@@ -23,10 +23,41 @@ public class IOStreamContext : IOContext
     public IOStreamContext(FormatContext context, Stream stream, IOOptions options, int bufferSize = 32768)
         : base(context, stream.CanSeek ? (options | IO.IOOptions.Seek) : options, bufferSize) => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
 
-    public IOStreamContext(Stream stream) : base() => this.stream = stream;
-    public IOStreamContext(Stream stream, bool closeStreamOnDispose) : base()
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IOStreamContext"/> class
+    /// using the specified stream.
+    /// </summary>
+    /// <param name="stream">
+    /// The .NET <see cref="Stream"/> to use for I/O operations.
+    /// </param>
+    /// <remarks>
+    /// The underlying stream is disposed when this <see cref="IOStreamContext"/> is disposed.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when <paramref name="stream"/> is <see langword="null"/>.
+    /// </exception>
+    public IOStreamContext(Stream stream)
+        : base()
+        => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="IOStreamContext"/> class
+    /// using the specified stream.
+    /// </summary>
+    /// <param name="stream">
+    /// The .NET <see cref="Stream"/> to use for I/O operations.
+    /// </param>
+    /// <param name="closeStreamOnDispose">
+    /// <see langword="true"/> to dispose the underlying stream when this
+    /// <see cref="IOStreamContext"/> is disposed; otherwise, <see langword="false"/>.
+    /// </param>
+    /// <exception cref="ArgumentNullException">
+    /// Thrown when <paramref name="stream"/> is <see langword="null"/>.
+    /// </exception>
+    public IOStreamContext(Stream stream, bool closeStreamOnDispose)
+        : base()
     {
-        this.stream = stream;
+        this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
         this.closeStreamOnDispose = closeStreamOnDispose;
     }
 

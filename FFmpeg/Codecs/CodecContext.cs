@@ -1,5 +1,6 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
+using FFmpeg.Exceptions;
 using FFmpeg.Images;
 using FFmpeg.Unsafe;
 using FFmpeg.Utils;
@@ -310,7 +311,20 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         return context;
     }
 
-    // ToDo:
+
+    /// <summary>
+    /// Creates and opens an encoder configured from the specified stream.
+    /// </summary>
+    /// <param name="stream">
+    /// The stream whose codec identifier, codec parameters, time base, and frame rate
+    /// are used to configure the encoder.
+    /// </param>
+    /// <returns>
+    /// An opened <see cref="CodecContext"/> configured for encoding the specified stream.
+    /// </returns>
+    /// <exception cref="FFmpegException">
+    /// Thrown if the encoder cannot be found, allocated, configured, or opened.
+    /// </exception>
     public static CodecContext OpenEncoder(Formats.AVStream stream)
     {
         CodecContext ctx = CodecContext.Allocate(Codec.FindEncoder(stream.CodecId));
@@ -1546,7 +1560,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// <summary>
     /// Releases the resources used by the <see cref="CodecContext"/> class.
     /// <para>
-    /// This method is called by both the public <see cref="Dispose"/> method and the finalizer. 
+    /// This method is called by both the public <see cref="Dispose()"/> method and the finalizer. 
     /// If <c>disposing</c> is <c>true</c>, it indicates that the method was called directly or indirectly by a user's code.
     /// If <c>disposing</c> is <c>false</c>, it indicates that the method was called by the runtime from inside the finalizer.
     /// </para>
@@ -1556,7 +1570,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// </para>
     /// </summary>
     /// <param name="disposing">
-    /// A boolean value indicating whether the method is being called from the <see cref="Dispose"/> method (<c>true</c>) 
+    /// A boolean value indicating whether the method is being called from the <see cref="Dispose()"/> method (<c>true</c>) 
     /// or from the finalizer (<c>false</c>).
     /// </param>
     private void Dispose(bool disposing)

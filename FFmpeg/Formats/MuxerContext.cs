@@ -19,7 +19,7 @@ namespace FFmpeg.Formats;
 /// <para>
 /// A muxer can write to a file, a <see cref="Stream"/>, or a custom
 /// <see cref="IOContext"/>. After opening a muxer, one or more streams should
-/// be added and configured before calling <see cref="WriteHeader"/>. Encoded
+/// be added and configured before calling <see cref="WriteHeader()"/>. Encoded
 /// packets can then be written using <see cref="WritePacket(IPacket?)"/> or
 /// <see cref="WritePacketInterleaved(IPacket?)"/>. Once all packets have been
 /// written, <see cref="WriteTrailer"/> should be called to finalize the

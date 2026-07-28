@@ -38,8 +38,8 @@ public unsafe partial class AudioFifo
     /// Planar ↔ packed conversions are handled automatically:
     /// <list type="bullet">
     /// <item>If the frame's format exactly matches the FIFO format, the data is peek directly using <c>ffmpeg.av_audio_fifo_peek</c>.</item>
-    /// <item>If the FIFO stores planar but the frame is packed, the data is converted from planar to packed using <see cref="PeekPlanarToPacked"/>.</item>
-    /// <item>If the FIFO stores packed but the frame is planar, the data is converted from packed to planar using <see cref="PeekPackedToPlanar"/>.</item>
+    /// <item>If the FIFO stores planar but the frame is packed, the data is converted from planar to packed.</item>
+    /// <item>If the FIFO stores packed but the frame is planar, the data is converted from packed to planar.</item>
     /// </list>
     /// </para>
     /// <para>

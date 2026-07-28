@@ -269,13 +269,13 @@ public unsafe partial class DemuxerContext : FormatContext
     public Rational GuessFrameRate(AVStream avStream)
         => ffmpeg.av_guess_frame_rate(Context, avStream.stream, null);
 
-    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" /
+    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" />
     public Rational GuessFrameRate(int streamIndex, AVFrame? frame)
         => streamIndex < 0 || streamIndex >= StreamCount
             ? throw new ArgumentOutOfRangeException(nameof(streamIndex))
             : (Rational)ffmpeg.av_guess_frame_rate(Context, Context->streams[streamIndex], frame != null ? frame.Frame : null);
 
-    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" /
+    /// <inheritdoc cref = "GuessFrameRate(AVStream, AVFrame?)" />
     public Rational GuessFrameRate(int streamIndex)
         => GuessFrameRate(streamIndex, null);
 
@@ -362,7 +362,10 @@ public unsafe partial class DemuxerContext : FormatContext
     /// <remarks>
     /// The value is expressed in <c>AV_TIME_BASE</c> units.
     /// </remarks>
-    public long StartTime => Context->start_time; public long Duration => Context->duration;
+    public long StartTime => Context->start_time;
+    
+    /// <inheritdoc cref="AutoGen._AVFormatContext.duration" />
+    public long Duration => Context->duration;
     /// <summary>
     /// Gets the overall bit rate of the input, in bits per second.
     /// </summary>

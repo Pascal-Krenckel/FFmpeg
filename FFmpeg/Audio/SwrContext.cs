@@ -147,7 +147,7 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
 
     /// <summary>
     /// Initializes a new empty <see cref="SwrContext"/> instance.
-    /// Configuration should be done manually via property setters or <see cref="Config"/>.
+    /// Configuration should be done manually via property setters or <see cref="Config(AVFrame, AVFrame)"/>.
     /// </summary>
     public SwrContext()
     {
@@ -184,7 +184,7 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
     /// <remarks>
     /// This method updates the internal configuration using frame metadata. 
     /// <br/>
-    /// <strong>Note:</strong> You do <b>not</b> need to call <see cref="Init"/> manually if you use <see cref="Convert"/> afterwards,
+    /// <strong>Note:</strong> You do <b>not</b> need to call <see cref="Init"/> manually if you use <see cref="Convert(AVFrame, AVFrame)"/> afterwards,
     /// as it will initialize the context if necessary.
     /// </remarks>
     /// <param name="src">Source AVFrame.</param>
@@ -199,7 +199,7 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
     /// <remarks>
     /// This method closes any existing context configuration, reallocates the context, and sets new parameters.
     /// <br/>
-    /// <strong>Note:</strong> You do <b>not</b> need to call <see cref="Init"/> manually if you use <see cref="Convert"/> afterwards,
+    /// <strong>Note:</strong> You do <b>not</b> need to call <see cref="Init"/> manually if you use <see cref="Convert(AVFrame, AVFrame)"/> afterwards,
     /// as it will initialize the context if necessary.
     /// </remarks>
     /// <param name="srcLayout">Source channel layout.</param>

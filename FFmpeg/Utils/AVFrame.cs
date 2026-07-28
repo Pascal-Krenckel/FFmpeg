@@ -702,7 +702,7 @@ public sealed unsafe class AVFrame : IDisposable
     }
 
     /// <summary>
-    /// Finalizer for the frame, ensures that unmanaged resources are cleaned up if <see cref="Dispose"/> was not called.
+    /// Finalizer for the frame, ensures that unmanaged resources are cleaned up if <see cref="Dispose()"/> was not called.
     /// </summary>
     ~AVFrame()
     {
