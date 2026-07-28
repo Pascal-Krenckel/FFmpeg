@@ -207,6 +207,44 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     public static implicit operator double(Rational r)
         => (double)r.Numerator / r.Denominator;
 
+    /// <summary>
+    /// Explicitly converts a <see cref="Rational"/> to a <see cref="long"/> by
+    /// truncating its fractional part.
+    /// </summary>
+    /// <param name="r">The <see cref="Rational"/> value to convert.</param>
+    /// <returns>
+    /// The integral part of the rational value, truncated toward zero.
+    /// </returns>
+    public static explicit operator long(Rational r) => (long)((double)r.Numerator / r.Denominator);
+
+    /// <summary>
+    /// Explicitly converts a <see cref="Rational"/> to an <see cref="int"/> by
+    /// truncating its fractional part.
+    /// </summary>
+    /// <param name="r">The <see cref="Rational"/> value to convert.</param>
+    /// <returns>
+    /// The integral part of the rational value, truncated toward zero.
+    /// </returns>
+    public static explicit operator int(Rational r) => (int)((double)r.Numerator / r.Denominator);
+
+    /// <summary>
+    /// Implicitly converts an <see cref="int"/> to a <see cref="Rational"/>.
+    /// </summary>
+    /// <param name="i">The integer value to convert.</param>
+    /// <returns>
+    /// A <see cref="Rational"/> representing <paramref name="i"/> with a denominator of <c>1</c>.
+    /// </returns>
+    public static implicit operator Rational(int i) => new(i, 1);
+
+    /// <summary>
+    /// Explicitly converts a <see cref="long"/> to a <see cref="Rational"/>.
+    /// </summary>
+    /// <param name="l">The integer value to convert.</param>
+    /// <returns>
+    /// A <see cref="Rational"/> representing <paramref name="l"/> with a denominator of <c>1</c>.
+    /// </returns>
+    public static explicit operator Rational(long l) => new(l, 1);
+
     #endregion
 
     #region Operators
