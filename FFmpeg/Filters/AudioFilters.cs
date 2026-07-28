@@ -1,4 +1,5 @@
 ﻿using FFmpeg.Audio;
+using FFmpeg.Collections;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Filters;
@@ -189,4 +190,78 @@ public static class AudioFilters
         context.Init().ThrowIfError();
         return context;
     }
+
+    /// <summary>
+    /// Creates an audio buffer sink filter context.
+    /// </summary>
+    /// <param name="name">The name to assign to the filter context.</param>
+    /// <param name="graph">The <see cref="FilterGraph"/> to which the filter context belongs.</param>
+    /// <returns>A new <see cref="FilterContext"/> configured as an audio buffer sink.</returns>
+    public static FilterContext CreateSink(string name, FilterGraph graph)
+        => FilterContext.Create(name, Filter.AudioBufferSink, graph);
+
+    /// <summary>
+    /// Creates an audio format filter context configured for a specific sample format,
+    /// sample rate, and channel layout.
+    /// </summary>
+    /// <param name="name">The name to assign to the filter context.</param>
+    /// <param name="sampleFormat">The sample format to convert the input audio to.</param>
+    /// <param name="sampleRate">The sample rate to convert the input audio to, in samples per second.</param>
+    /// <param name="channelLayout">The channel layout to use for the output audio.</param>
+    /// <param name="graph">The <see cref="FilterGraph"/> to which the filter context belongs.</param>
+    /// <returns>
+    /// A new <see cref="FilterContext"/> configured to convert audio to the specified format,
+    /// sample rate, and channel layout.
+    /// </returns>
+    public static FilterContext CreateFormat(
+        string name,
+        SampleFormat sampleFormat,
+        int sampleRate,
+        ChannelLayout channelLayout,
+        FilterGraph graph)
+    {
+        var context = FilterContext.Allocate(name, Filter.AudioFormat, graph)!;
+        context.SetOption("f", sampleFormat.ToFFmpegString()).ThrowIfError();
+        context.SetOption("r", sampleRate.ToString()).ThrowIfError();
+        context.SetOption("cl", channelLayout.ToString()).ThrowIfError();
+        context.Init().ThrowIfError();
+        return context;
+    }
+
+    /// <summary>
+    /// Creates an audio format filter context configured with one or more sample formats,
+    /// sample rates, and channel layouts.
+    /// </summary>
+    /// <param name="name">The name to assign to the filter context.</param>
+    /// <param name="sampleFormats">
+    /// The sample formats to which the input audio may be converted.
+    /// </param>
+    /// <param name="sampleRates">
+    /// The sample rates to which the input audio may be converted, in samples per second.
+    /// </param>
+    /// <param name="channelLayouts">
+    /// The channel layouts to use for the output audio.
+    /// </param>
+    /// <param name="graph">The <see cref="FilterGraph"/> to which the filter context belongs.</param>
+    /// <returns>
+    /// A new <see cref="FilterContext"/> configured with the specified audio format constraints.
+    /// </returns>
+    public static FilterContext CreateFormat(
+        string name,
+        ReadOnlySpan<SampleFormat> sampleFormats,
+        ReadOnlySpan<int> sampleRates,
+        ReadOnlySpan<ChannelLayout> channelLayouts,
+        FilterGraph graph)
+    {
+        var context = FilterContext.Allocate(name, Filter.AudioFormat, graph)!;
+        if (!sampleFormats.IsEmpty)
+            context.SetOption("f", string.Join('|', sampleFormats, SampleExtensions.ToFFmpegString)).ThrowIfError();
+        if (!sampleRates.IsEmpty)
+            context.SetOption("r", string.Join('|', sampleRates)).ThrowIfError();
+        if (!channelLayouts.IsEmpty)
+            context.SetOption("cl", string.Join('|', channelLayouts)).ThrowIfError();
+        context.Init().ThrowIfError();
+        return context;
+    }
+
 }
