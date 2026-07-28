@@ -197,6 +197,27 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public static Filter FramePack => GetFilterByName("framepack");
 
     /// <summary>
+    /// Gets the filter that downloads hardware-accelerated frames to system memory.
+    /// </summary>
+    public static Filter HWDownload => GetFilterByName("hwdownload");
+
+    /// <summary>
+    /// Gets the filter that uploads frames from system memory to hardware-accelerated memory.
+    /// </summary>
+    public static Filter HWUpload => GetFilterByName("hwupload");
+
+    /// <summary>
+    /// Gets the video format filter, which converts video frames to one or more specified pixel formats.
+    /// </summary>
+    public static Filter VideoFormat => GetFilterByName("format");
+
+    /// <summary>
+    /// Gets the audio format filter, which converts audio frames to one or more specified sample formats,
+    /// sample rates, channel layouts, or channel counts.
+    /// </summary>
+    public static Filter AudioFormat => GetFilterByName("aformat");
+
+    /// <summary>
     /// Returns the name of the filter as a string.
     /// </summary>
     /// <returns>The name of the filter.</returns>
