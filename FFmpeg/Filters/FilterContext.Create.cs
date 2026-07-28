@@ -44,6 +44,33 @@ public unsafe partial class FilterContext
     /// <param name="filter">
     /// The filter to create.
     /// </param>
+    /// <param name="graph">
+    /// The filter graph that will own the filter.
+    /// </param>
+    /// <returns>
+    /// The initialized <see cref="FilterContext"/>.
+    /// </returns>
+    /// <remarks>
+    /// Unlike <see cref="Allocate"/>, this method both allocates and initializes
+    /// the filter. After the method returns successfully, the filter is ready to
+    /// be linked into a filter graph and used.
+    /// </remarks>
+    public static FilterContext Create(string name, Filter filter, FilterGraph graph)
+    {
+        AutoGen._AVFilterContext* context;
+        ((AVResult32)ffmpeg.avfilter_graph_create_filter(&context, filter.filter, name, default(string), null, graph.graph)).ThrowIfError();
+        return new(context);
+    }
+
+    /// <summary>
+    /// Creates and initializes a filter within the specified filter graph.
+    /// </summary>
+    /// <param name="name">
+    /// The name of the filter instance.
+    /// </param>
+    /// <param name="filter">
+    /// The filter to create.
+    /// </param>
     /// <param name="args">
     /// An optional filter argument string, or <see langword="null"/> to use the
     /// filter's default settings.
