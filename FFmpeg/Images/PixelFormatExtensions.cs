@@ -1,4 +1,6 @@
-﻿namespace FFmpeg.Images;
+﻿using FFmpeg.AutoGen;
+
+namespace FFmpeg.Images;
 
 /// <summary>
 /// Provides extension methods for working with <see cref="PixelFormat"/> values.
@@ -9,6 +11,16 @@
 /// </remarks>
 public static class PixelFormatExtensions
 {
+    /// <summary>
+    /// Gets the FFmpeg name of the specified pixel format.
+    /// </summary>
+    /// <param name="pixelFormat">The pixel format to convert to its FFmpeg name.</param>
+    /// <returns>
+    /// The FFmpeg name of the pixel format, or <see langword="null"/> if the pixel format is not recognized.
+    /// </returns>
+    public static string ToFFmpegString(this PixelFormat pixelFormat)
+        => ffmpeg.av_get_pix_fmt_name((_AVPixelFormat)pixelFormat);
+
     /// <summary>
     /// Gets the number of data planes used by the pixel format.
     /// </summary>
