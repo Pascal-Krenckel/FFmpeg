@@ -98,6 +98,20 @@ public unsafe struct CodecParameters_ref : ICodecParameters
     }
 
     /// <summary>
+    /// Gets or sets how the alpha channel is represented in relation to the color components.
+    /// </summary>
+    /// <remarks>
+    /// <see cref="AlphaMode.Premultiplied"/> indicates that the color components are already
+    /// multiplied by the alpha value, while <see cref="AlphaMode.Straight"/> indicates that
+    /// the alpha channel is stored independently of the color components.
+    /// </remarks>
+    public AlphaMode AlphaMode
+    {
+        get => (AlphaMode)codecParameters->alpha_mode;
+        set => codecParameters->alpha_mode = (_AVAlphaMode)value;
+    }
+
+    /// <summary>
     /// Gets or sets the codec tag, which is additional information about the codec (corresponding to the AVI FOURCC).
     /// </summary>
     public FourCC CodecTag

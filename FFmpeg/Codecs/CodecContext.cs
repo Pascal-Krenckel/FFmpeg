@@ -1053,6 +1053,19 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         }
     }
 
+    /// <summary>
+    /// Gets or sets how the alpha channel is represented in relation to the color components.
+    /// </summary>
+    /// <remarks>
+    /// <see cref="AlphaMode.Premultiplied"/> indicates that the color components are already
+    /// multiplied by the alpha value, while <see cref="AlphaMode.Straight"/> indicates that
+    /// the alpha channel is stored independently of the color components.
+    /// </remarks>
+    public AlphaMode AlphaMode
+    {
+        get => (AlphaMode)context->alpha_mode;
+        set => context->alpha_mode = (_AVAlphaMode)value;
+    }
 
     #endregion
 
