@@ -818,7 +818,7 @@ public enum CodecID : int
     /// <summary>
     /// webp anim codec
     /// </summary>
-    WEBP_ANIM = AutoGen._AVCodecID.AV_CODEC_ID_WEBP_ANIM,
+    //WEBP_ANIM = AutoGen._AVCodecID.AV_CODEC_ID_WEBP_ANIM,
 
     /// <summary>A dummy ID pointing at the start of audio codecs.</summary>
     FirstAudio = AutoGen._AVCodecID.AV_CODEC_ID_FIRST_AUDIO,
@@ -1618,7 +1618,7 @@ public enum CodecID : int
     /// <summary>
     /// The metadata ITUT_T35 codec
     /// </summary>
-    ITUT_T35 = AutoGen._AVCodecID.AV_CODEC_ID_ITUT_T35,
+    //ITUT_T35 = AutoGen._AVCodecID.AV_CODEC_ID_ITUT_T35,
 
     /// <summary>Adaptive Differential Pulse Code Modulation (ADPCM) IMA Xbox format.</summary>
     ADPCM_IMA_XBOX = AutoGen._AVCodecID.AV_CODEC_ID_ADPCM_IMA_XBOX,
@@ -1659,7 +1659,7 @@ public enum CodecID : int
     /// <summary>
     /// The Apple Positional Audio Codec 
     /// </summary>
-    APPLE_APAC = AutoGen._AVCodecID.AV_CODEC_ID_APPLE_APAC,
+    //APPLE_APAC = AutoGen._AVCodecID.AV_CODEC_ID_APPLE_APAC,
 
 }
 
