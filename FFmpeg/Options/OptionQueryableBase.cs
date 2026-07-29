@@ -454,6 +454,18 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     }
 
     /// <summary>
+    /// Sets an option by name using an enum value.
+    /// </summary>
+    /// <typeparam name="T">The enumeration type of the value.</typeparam>
+    /// <param name="name">The option name to set.</param>
+    /// <param name="value">The enum value to set.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the success of the operation.</returns>
+    public AVResult32 SetOption<T>(string name, T value, bool recursive = true)
+        where T : Enum
+        => SetOption(name, Convert.ToInt64(value), recursive);
+
+    /// <summary>
     /// Sets an option by name with a generic object value.
     /// </summary>
     /// <param name="name">The option name to set.</param>
@@ -486,6 +498,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
             ? SetOption(name, lookup, recursive)
             : TryConvert(value, out ChannelLayout layout) ? SetOption(name, layout, recursive) : (AVResult32)AVResult32.InvalidData;
     }
+
 
 
 
@@ -600,7 +613,6 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     public AVResult32 SetOption(Option option, SampleFormat value, bool recursive = true)
         => SetOption(option.Name, value, recursive);
 
-
     /// <summary>
     /// Sets an option using an <see cref="Option"/> and a dictionary of key-value pairs.
     /// </summary>
@@ -620,6 +632,18 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(Option option, ILookup<string, string> values, bool recursive = true)
         => SetOption(option.Name, values, recursive);
+
+    /// <summary>
+    /// Sets an option using an <see cref="Option"/> and an enum value.
+    /// </summary>
+    /// <typeparam name="T">The enum type of the value to set.</typeparam>
+    /// <param name="option">The AVOption to set.</param>
+    /// <param name="value">The enum value to set.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An AVResult32 indicating the success of the operation.</returns>
+    public AVResult32 SetOption<T>(Option option, T value, bool recursive = true)
+        where T : Enum
+        => SetOption(option.Name, value, recursive);
 
     /// <summary>
     /// Sets an option using an <see cref="Option"/> and a generic object value.
@@ -692,6 +716,21 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         return res;
     }
 
+    /// <summary>
+    /// Attempts to retrieve an option as an enum value from the AV-option-enabled class.
+    /// </summary>
+    /// <typeparam name="T">The enum type of the option value.</typeparam>
+    /// <param name="name">The name of the option to retrieve.</param>
+    /// <param name="value">When this method returns, contains the enum value of the option, or the default value if the option could not be retrieved.</param>
+    /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
+    /// <returns>Returns an <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    public AVResult32 TryGetOption<T>(string name, out T value, bool recursive = true)
+        where T : Enum
+    {
+        AVResult32 res = TryGetOption(name, out long v, recursive);
+        value = (T)Enum.ToObject(typeof(T), v);
+        return res;
+    }
 
     /// <summary>
     /// Attempts to retrieve an option as a 64-bit unsigned integer from the AV-option-enabled class.
@@ -1257,6 +1296,9 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
 
     /// <inheritdoc cref="TryGetOption(string, out long, bool)"/>
     public AVResult32 TryGetOption(Option option, out long value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
+    
+    /// <inheritdoc cref="TryGetOption(string, out long, bool)"/>
+    public AVResult32 TryGetOption<T>(Option option, out T value, bool recursive = true) where T:Enum => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ulong, bool)"/>
     public AVResult32 TryGetOption(Option option, out ulong value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
@@ -1418,7 +1460,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
             obj = null;
             return AVResult32.InvalidArgument;
         }
-
+        
         switch (type)
         {
             case OptionType.Color:
@@ -1431,9 +1473,9 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
                 res = TryGetOption(option, out long l, recursive);
                 obj = l;
                 return res;
-            case OptionType.Constant:
             case OptionType.Double:
             case OptionType.Float:
+            case OptionType.Constant:
                 res = TryGetOption(option, out double d, recursive);
                 obj = d;
                 return res;
@@ -1581,6 +1623,5 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// Returns an <see cref="AVResult32"/> indicating the result of the operation.
     /// </returns>
     public AVResult32 TryGetOption(Option option, out Audio.ChannelLayout layout, bool recursive = true) => TryGetOption(option.Name, out layout, recursive);
-
 
 }
