@@ -168,6 +168,25 @@ public unsafe class MuxerContext : FormatContext
     }
 
     /// <summary>
+    /// Adds a stream based on the codec parameters of the 
+    /// </summary>
+    /// <param name="copyStream">The stream that contains the codec parameters we want to copy</param>
+    /// <returns>The added stream.</returns>
+    public AVStream AddStream(AVStream copyStream)
+    {
+        AutoGen._AVStream* res = ffmpeg.avformat_new_stream(Context, null);
+        if (res == null)
+            throw new OutOfMemoryException();
+        res->id = res->index;
+
+        var newStream = new AVStream(res);
+        newStream.CodecParameters.CopyFrom(copyStream.CodecParameters);
+        newStream.TimeBase = copyStream.TimeBase;
+        return newStream;
+    }
+
+
+    /// <summary>
     /// Adds a new stream to the output container and copies codec parameters
     /// from an existing source.
     /// </summary>
@@ -392,6 +411,7 @@ public unsafe class MuxerContext : FormatContext
         {
             ioContext?.Dispose();
         }
+        ffmpeg.avio_close(Context->pb);
         ffmpeg.avformat_free_context(Context);
         Context = null;
         base.Dispose(disposing);

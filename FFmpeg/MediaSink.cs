@@ -125,6 +125,18 @@ public class MediaSink : IDisposable
     }
 
     /// <summary>
+    /// Adds a stream based on the codec parameters of the 
+    /// </summary>
+    /// <param name="copyStream">The stream that contains the codec parameters we want to copy</param>
+    /// <returns>The added stream.</returns>
+    public AVStream AddStream(AVStream copyStream)
+    {
+        CheckDisposed();
+        codecContexts.Add(null);
+        return FormatContext.AddStream(copyStream);
+    }
+
+    /// <summary>
     /// Associates an encoder context with an existing stream.
     /// </summary>
     /// <param name="codec">
@@ -387,7 +399,7 @@ public class MediaSink : IDisposable
     /// </remarks>
     public AVResult32 WriteTrailer()
     {
-        if (trailerWritten)
+        if (trailerWritten || !headerWritten)
             return 0;
         for (int i = 0; i < CodecContexts.Count; i++)
         {
