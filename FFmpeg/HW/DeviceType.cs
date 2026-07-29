@@ -81,3 +81,18 @@ public enum DeviceType : int
     OHCODEC = AutoGen._AVHWDeviceType.AV_HWDEVICE_TYPE_OHCODEC,
 }
 
+/// <summary>
+/// Extension class for <see cref="DeviceType"/>
+/// </summary>
+public static class DeviceTypeExtensions
+{
+    extension(DeviceType type)
+    {
+        /// <inheritdoc cref="ffmpeg.av_hwdevice_get_type_name(AutoGen._AVHWDeviceType)"
+        public string ToFFmpegString() => ffmpeg.av_hwdevice_get_type_name((AutoGen._AVHWDeviceType)type);
+
+        /// <inheritdoc cref="ffmpeg.av_hwdevice_find_type_by_name(string)"/>
+        public static DeviceType Parse(string name) => (DeviceType)ffmpeg.av_hwdevice_find_type_by_name(name);
+
+    }
+}
