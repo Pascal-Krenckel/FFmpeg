@@ -1,4 +1,6 @@
 using FFmpeg.Audio;
+using FFmpeg.Filters;
+using FFmpeg.Filters.AudioFilters;
 using System.Runtime.InteropServices;
 
 namespace FFmpegTest;

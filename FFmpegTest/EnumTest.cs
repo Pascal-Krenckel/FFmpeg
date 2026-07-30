@@ -98,6 +98,8 @@ public class EnumTest
 
     [TestMethod]
     public void TestHWDeviceType() => TestEnum<FFmpeg.HW.DeviceType, _AVHWDeviceType>();
+    [TestMethod]
+    public void TestAlphaMode() => TestEnum<FFmpeg.Images.AlphaMode, _AVAlphaMode>();
 
     [TestMethod]
     public void TestColorPrimaries() => TestEnum<FFmpeg.Images.ColorPrimaries, _AVColorPrimaries>();
@@ -107,6 +109,15 @@ public class EnumTest
 
     [TestMethod]
     public void TestChromaLocation() => TestEnum<FFmpeg.Images.ChromaLocation, _AVChromaLocation>();
+    
+    [TestMethod]
+    public void TestStereo3DType() => TestEnum<FFmpeg.SideData.Stereo3DType, _AVStereo3DType>();
+
+    [TestMethod]
+    public void TestFrameSideDataType() => TestEnum<FFmpeg.SideData.FrameSideDataType, _AVFrameSideDataType>();
+
+    [TestMethod]
+    public void TestPacketSideDataType() => TestEnum<FFmpeg.SideData.PacketSideDataType, _AVPacketSideDataType>();
 
     [TestMethod]
     public void TestColorTransferCharacteristic() => TestEnum<FFmpeg.Images.ColorTransferCharacteristic, _AVColorTransferCharacteristic>();
