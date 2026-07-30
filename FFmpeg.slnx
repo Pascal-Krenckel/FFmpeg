@@ -5,6 +5,7 @@
     <File Path="ffmpeg-binaries/avfilter-11.dll" />
     <File Path="ffmpeg-binaries/avformat-62.dll" />
     <File Path="ffmpeg-binaries/avutil-60.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/FFmpegDotNet.bin.winx64.nuspec" />
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/README.md" />
     <File Path="ffmpeg-binaries/LICENSE.txt" />
     <File Path="ffmpeg-binaries/swresample-6.dll" />
