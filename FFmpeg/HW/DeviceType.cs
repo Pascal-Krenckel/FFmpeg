@@ -88,7 +88,7 @@ public static class DeviceTypeExtensions
 {
     extension(DeviceType type)
     {
-        /// <inheritdoc cref="ffmpeg.av_hwdevice_get_type_name(AutoGen._AVHWDeviceType)"
+        /// <inheritdoc cref="ffmpeg.av_hwdevice_get_type_name(AutoGen._AVHWDeviceType)"/>
         public string ToFFmpegString() => ffmpeg.av_hwdevice_get_type_name((AutoGen._AVHWDeviceType)type);
 
         /// <inheritdoc cref="ffmpeg.av_hwdevice_find_type_by_name(string)"/>
