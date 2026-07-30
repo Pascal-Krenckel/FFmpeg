@@ -30,8 +30,10 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.5</Version>
+		<Version>8.1.2.6</Version>
 		<PackageReleaseNotes>
+			--- 8.1.2.6 --- 
+			FFmpegDotNet._AutoGen was not build against FFmpeg 8.1.2 but master - FFmpeg 9.0 (pre)
 			--- 8.1.2.5 ---
 			Reworked filtering
 			Removed dupplicated function in filters, moved FilterContext Create[Filter] function in Audio/VideoFilters.
@@ -71,7 +73,7 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<PackageReference Include="System.IO.Pipelines" Version="10.0.10" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 		<PackageReference Include="System.Security.Permissions" Version="10.0.10" />
-		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[8.1.2.1,8.2)" />
+		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[8.1.2.2,9)" />
 		<ProjectReference Condition=" $(Configuration) == 'Debug' " Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
