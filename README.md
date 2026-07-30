@@ -24,17 +24,17 @@ The **FFmpeg (.NET Wrapper)** library provides a **high-level, managed abstracti
 - [FFmpeg binaries](https://ffmpeg.org/download.html) available in your system path  
 
 #### Supported FFmpeg Versions
-FFmpeg 8.1.2 "Hoare"
+FFmpeg 8.0+ "Huffman/Hoare"
 
 | Library       | Version |
 |----------------|----------|
-| avcodec        | 63       |
-| avdevice       | 63       |
-| avfilter       | 12       |
-| avformat       | 63       |
-| avutil         | 61       |
-| swresample     | 7        |
-| swscale        | 10        |
+| avcodec        | 62       |
+| avdevice       | 62       |
+| avfilter       | 11       |
+| avformat       | 62       |
+| avutil         | 60       |
+| swresample     | 6        |
+| swscale        | 9        |
  
 ### 2. Loading FFmpeg Libraries
 
@@ -111,6 +111,8 @@ Examples include:
 - Audio resampling with `SwrContext`
 - Image scaling and pixel format conversion with `SwsContext`
 - Using `MediaSource` for simplified decoding
+- Encoding
+- Filters
 
 The examples are intentionally kept small and focused, with each project demonstrating a single feature or workflow.
 
