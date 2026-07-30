@@ -75,27 +75,27 @@ public sealed class Transcoder : IDisposable
             throw new ArgumentException(nameof(sinkIndex), $"The output stream #{sinkIndex} is already linked.");
         if (!transCoderMap.TryGetValue(sourceIndex, out List<TranscodingMap>? list))
             transCoderMap[sourceIndex] = list = [];
-        FilterContext? bfSink = null;
+        IBufferSink? bfSink = null;
         if (filter != null)
             bfSink = filter.OutputFilters.Single();
-        int width = bfSink?.BufferSinkWidth ?? InputCodecs[sourceIndex].Width;
-        int height = bfSink?.BufferSinkHeight ?? InputCodecs[sourceIndex].Height;
-        Rational timeBase = bfSink?.BufferSinkTimeBase ?? InputStreams[sourceIndex].TimeBase;
-        PixelFormat pixFmt = bfSink?.BufferSinkPixelFormat ?? InputCodecs[sourceIndex].PixelFormat;
-        if ((bfSink?.TryGetBufferSinkChannelLayout(out ChannelLayout? l) != true))
+        int width = bfSink?.Width ?? InputCodecs[sourceIndex].Width;
+        int height = bfSink?.Height ?? InputCodecs[sourceIndex].Height;
+        Rational timeBase = bfSink?.TimeBase ?? InputStreams[sourceIndex].TimeBase;
+        PixelFormat pixFmt = bfSink?.PixelFormat ?? InputCodecs[sourceIndex].PixelFormat;
+        if ((bfSink?.TryGetChannelLayout(out ChannelLayout? l) != true))
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
         using ChannelLayout layout = l!;
-        ColorRange colorRange = bfSink?.BufferSinkColorRange ?? InputCodecs[sourceIndex].ColorRange;
-        ColorSpace colorSpace = bfSink?.BufferSinkColorSpace ?? InputCodecs[sourceIndex].ColorSpace;
+        ColorRange colorRange = bfSink?.ColorRange ?? InputCodecs[sourceIndex].ColorRange;
+        ColorSpace colorSpace = bfSink?.ColorSpace ?? InputCodecs[sourceIndex].ColorSpace;
 
         Rational frameRate = InputCodecs[sourceIndex].FrameRate;
-        if (bfSink?.BufferSinkFrameRate.IsValidTimeBase == true)
-            frameRate = bfSink.BufferSinkFrameRate;
+        if (bfSink?.FrameRate.IsValidTimeBase == true)
+            frameRate = bfSink.FrameRate;
 
 
-        Rational sampleAspectRatio = bfSink?.BufferSinkSampleAspectRatio ?? InputCodecs[sourceIndex].SampleAspectRatio;
-        SampleFormat sampleFmt = bfSink?.BufferSinkSampleFormat ?? InputCodecs[sourceIndex].SampleFormat;
-        int sampleRate = bfSink?.BufferSinkSampleRate ?? InputCodecs[sourceIndex].SampleRate;
+        Rational sampleAspectRatio = bfSink?.PixelAspectRatio ?? InputCodecs[sourceIndex].SampleAspectRatio;
+        SampleFormat sampleFmt = bfSink?.SampleFormat ?? InputCodecs[sourceIndex].SampleFormat;
+        int sampleRate = bfSink?.SampleRate ?? InputCodecs[sourceIndex].SampleRate;
 
         if (sinkCodec != null)
         {
@@ -139,23 +139,23 @@ public sealed class Transcoder : IDisposable
                 CodecContext encoder = CodecContext.Allocate(Codec.FindEncoder(InputCodecs[sourceIndex].CodecID));
                 if (encoder.CodecType == Utils.MediaType.Audio)
                 {
-                    FilterContext fctx = filter.OutputFilters.Single();
-                    encoder.SampleRate = fctx.BufferSinkSampleRate;
-                    _  = fctx.TryGetBufferSinkChannelLayout(out ChannelLayout? ch);
+                    IBufferSink fctx = filter.OutputFilters.Single();
+                    encoder.SampleRate = fctx.SampleRate;
+                    _  = fctx.TryGetChannelLayout(out ChannelLayout? ch);
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
-                    encoder.SampleFormat = fctx.BufferSinkSampleFormat;
-                    encoder.TimeBase = fctx.BufferSinkTimeBase;
+                    encoder.SampleFormat = fctx.SampleFormat;
+                    encoder.TimeBase = fctx.TimeBase;
                 }
                 else if (encoder.CodecType == Utils.MediaType.Video)
                 {
-                    FilterContext fctx = filter.OutputFilters.Single();
-                    encoder.TimeBase = fctx.BufferSinkTimeBase;
-                    encoder.PixelFormat = fctx.BufferSinkPixelFormat;
-                    encoder.FrameRate = fctx.BufferSinkFrameRate;
-                    encoder.Width = fctx.BufferSinkWidth;
-                    encoder.Height = fctx.BufferSinkHeight;
-                    encoder.SampleAspectRatio = fctx.BufferSinkSampleAspectRatio;
+                    IBufferSink fctx = filter.OutputFilters.Single();
+                    encoder.TimeBase = fctx.TimeBase;
+                    encoder.PixelFormat = fctx.PixelFormat;
+                    encoder.FrameRate = fctx.FrameRate;
+                    encoder.Width = fctx.Width;
+                    encoder.Height = fctx.Height;
+                    encoder.SampleAspectRatio = fctx.PixelAspectRatio;
                 }
                 Sink.SetCodecContext(encoder, sinkIndex);
             }
@@ -316,7 +316,7 @@ public sealed class Transcoder : IDisposable
         if (!drainState.HasFlag(DrainState.FilterDraining))
         {
             foreach (TranscodingMap map in transCoderMap.SelectMany(kv => kv.Value))
-                _ = map.InputFilter?.SendFrame(null);
+                _ = (map.InputFilter as IBufferSource)?.SendFrame(null);
         }
 
         drainState |= DrainState.FilterDraining;
@@ -325,7 +325,7 @@ public sealed class Transcoder : IDisposable
         {
             if (map.InputFilter != null)
             {
-                res = map.OutputFilter!.ReceiveFrame(filteredFrame);
+                res = (map.OutputFilter! as IBufferSink).ReceiveFrame(filteredFrame);
                 if (res == AVResult32.EndOfFile)
                     continue;
                 if (res.IsError)
@@ -525,10 +525,10 @@ public sealed class Transcoder : IDisposable
         AVResult32 res;
         if (map.InputFilter != null)
         {
-            res = map.InputFilter.SendFrame(readFrame);
+            res = (map.InputFilter as IBufferSource).SendFrame(readFrame);
             if (res.IsError)
                 return res;
-            res = map.OutputFilter!.ReceiveFrame(filteredFrame);
+            res = (map.OutputFilter! as IBufferSink).ReceiveFrame(filteredFrame);
             if (res.IsError)
                 return res;
         }
