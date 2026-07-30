@@ -14,7 +14,7 @@ namespace FFmpeg.Filters;
 /// options, pads, links, and methods for sending or receiving frames from
 /// buffer source and sink filters.
 /// </remarks>
-public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPointer<_AVFilterContext>
+public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPointer<_AVFilterContext>, IBufferSource, IBufferSink
 {
     /// <summary>
     /// Gets a pointer to the filter context, used for option queries.
@@ -56,11 +56,19 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
 
 
     /// <summary>
-    /// Gets or sets the hardware device context used by the filter.
+    /// Gets the hardware device context used by the filter.
     /// </summary>
     /// <remarks>
-    /// This property is primarily used by hardware-accelerated filters that require
-    /// access to a GPU or other hardware device.
+    /// <para>
+    /// Hardware-accelerated filters use this device context to determine the hardware
+    /// device on which their operations are performed.
+    /// </para>
+    /// <para>
+    /// For filters such as <see cref="HWUpload"/>, the device context specifies the
+    /// hardware device to which system-memory frames are uploaded unless the filter
+    /// is configured to derive a device using its <see cref="HWUpload.DeriveDevice"/>
+    /// property.
+    /// </para>
     /// </remarks>
     public HW.DeviceContext_ref HwDeviceContext => new(&context->hw_device_ctx, false);
 
@@ -171,50 +179,7 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
         return ret;
     }
 
-    /// <summary>
-    /// Sends a frame to a buffer source filter.
-    /// </summary>
-    /// <param name="frame">
-    /// The frame to send, or <see langword="null"/> to signal end-of-stream.
-    /// </param>
-    /// <param name="keepRef">
-    /// <see langword="true"/> to keep a reference to the supplied frame;
-    /// <see langword="false"/> to transfer ownership when possible.
-    /// </param>
-    /// <returns>
-    /// The result returned by FFmpeg.
-    /// </returns>
-    public AVResult32 SendFrame(AVFrame? frame, bool keepRef = false)
-    {
-        AutoGen._AVFrame* f = frame != null ? frame.Frame : null;
-        return keepRef ? ffmpeg.av_buffersrc_write_frame(context, f) : ffmpeg.av_buffersrc_add_frame(context, f);
-    }
 
-    /// <summary>
-    /// Signals end-of-stream to the buffer source filter.
-    /// </summary>
-    /// <returns>
-    /// The result returned by FFmpeg.
-    /// </returns>
-    public AVResult32 Drain() => SendFrame(null);
-
-    /// <summary>
-    /// Receives a frame from a buffer sink filter.
-    /// </summary>
-    /// <param name="frame">
-    /// The destination frame that receives the filtered data.
-    /// </param>
-    /// <returns>
-    /// The result returned by FFmpeg.
-    /// </returns>
-    public AVResult32 ReceiveFrame(AVFrame frame)
-    {
-        frame.Unreference();
-        int res = ffmpeg.av_buffersink_get_frame(context, frame.Frame);
-        frame.TimeBase = ffmpeg.av_buffersink_get_time_base(context);
-        frame.BestEffortTimestamp = frame.PresentationTimestamp;
-        return res;
-    }
 
     /// <summary>
     /// Returns a string that identifies the filter context.
@@ -312,6 +277,9 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
         }
     }
 
+    unsafe _AVFilterContext* IBufferSource.Context => context;
+    unsafe _AVFilterContext* IBufferSink.Context => context;
+
     /// <summary>
     /// Gets the link connected to the specified input pad.
     /// </summary>
@@ -340,5 +308,12 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
             ? throw new ArgumentOutOfRangeException(nameof(index), "Index is out of range for filter links.")
             : context->outputs[index] != null ? new FilterLink(context->outputs[index]) : null;
 
+    /// <summary>
+    /// This frees the filter context and removes it from it's filter graph
+    /// </summary>
+    public void Delete()
+    {
+        ffmpeg.avfilter_free(context);
+    }
 }
 

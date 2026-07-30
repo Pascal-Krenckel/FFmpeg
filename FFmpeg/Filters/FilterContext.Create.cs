@@ -1,4 +1,5 @@
-﻿using FFmpeg.Collections;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Collections;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Filters;
@@ -6,6 +7,8 @@ namespace FFmpeg.Filters;
 public unsafe partial class FilterContext
 {
 
+    internal static _AVFilterContext* AllocateInternal(string name, Filter filter, FilterGraph graph) => ffmpeg.avfilter_graph_alloc_filter(graph.graph, filter.filter, name);
+ 
     /// <summary>
     /// Allocates a filter context without initializing it.
     /// </summary>
@@ -55,12 +58,7 @@ public unsafe partial class FilterContext
     /// the filter. After the method returns successfully, the filter is ready to
     /// be linked into a filter graph and used.
     /// </remarks>
-    public static FilterContext Create(string name, Filter filter, FilterGraph graph)
-    {
-        AutoGen._AVFilterContext* context;
-        ((AVResult32)ffmpeg.avfilter_graph_create_filter(&context, filter.filter, name, default(string), null, graph.graph)).ThrowIfError();
-        return new(context);
-    }
+    public static FilterContext Create(string name, Filter filter, FilterGraph graph) => Create(name,filter,default(string),graph);
 
     /// <summary>
     /// Creates and initializes a filter within the specified filter graph.
@@ -181,6 +179,37 @@ public unsafe partial class FilterContext
         FilterContext? filterContext = Allocate(name, filter, graph);
         filterContext!.Init(dictionary).ThrowIfError();
         return filterContext;
+    }
+
+    /// <summary>
+    /// Creates a managed wrapper of the specified filter context type for the current native filter context.
+    /// </summary>
+    /// <typeparam name="T">
+    /// The managed filter context type to create.
+    /// </typeparam>
+    /// <returns>
+    /// A managed wrapper of type <typeparamref name="T"/> referencing the current native filter context.
+    /// </returns>
+    /// <exception cref="InvalidCastException">
+    /// <typeparamref name="T"/> does not provide a constructor accepting an <c>_AVFilterContext*</c>.
+    /// </exception>
+    /// <remarks>
+    /// This method does not verify that the underlying native filter is compatible with
+    /// <typeparamref name="T"/>. The caller is responsible for ensuring that the requested
+    /// type corresponds to the native filter context.
+    /// </remarks>
+    public unsafe T As<T>() where T : FilterContext
+    {
+        if (this is T typed)
+            return typed;
+        var constructors = typeof(T).GetConstructors(
+            System.Reflection.BindingFlags.NonPublic |
+            System.Reflection.BindingFlags.Public |
+            System.Reflection.BindingFlags.Instance);
+
+        var constructor = constructors.FirstOrDefault() ?? throw new InvalidCastException();
+
+        return (T)constructor.Invoke([(IntPtr)context]);
     }
 
 }

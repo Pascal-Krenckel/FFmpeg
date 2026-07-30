@@ -207,6 +207,11 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public static Filter HWUpload => GetFilterByName("hwupload");
 
     /// <summary>
+    /// Gets the filter that uploads frames from system memory to cuda device.
+    /// </summary>
+    public static Filter HWUploadCuda => GetFilterByName("hwupload_cuda");
+
+    /// <summary>
     /// Gets the video format filter, which converts video frames to one or more specified pixel formats.
     /// </summary>
     public static Filter VideoFormat => GetFilterByName("format");

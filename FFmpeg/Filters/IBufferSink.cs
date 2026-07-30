@@ -1,33 +1,54 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
+using FFmpeg.IO;
 using FFmpeg.Utils;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 
 namespace FFmpeg.Filters;
 
-public unsafe partial class FilterContext
+/// <summary>
+/// Interface to access ReceiveFrame
+/// </summary>
+public unsafe interface IBufferSink
 {
     /// <summary>
-    /// Sets the parameters of a buffer source filter.
+    /// Pointer to the internal filter context
     /// </summary>
-    /// <param name="parameters">
-    /// The buffer source parameters to apply.
-    /// </param>
-    /// <returns>
-    /// The result of the operation.
-    /// </returns>
-    public AVResult32 SetBufferSourceParameters(BufferSrcParameters parameters) =>
-        ffmpeg.av_buffersrc_parameters_set(context, parameters.parameters);
+    protected _AVFilterContext* Context { get; }
 
     /// <summary>
-    /// Gets the sample format produced by the buffer sink filter.
+    /// Receives a frame from a buffer sink filter.
     /// </summary>
-    /// <remarks>
-    /// This property is only valid for audio buffer sink filters.
-    /// </remarks>
-    public SampleFormat BufferSinkSampleFormat =>
-        (SampleFormat)ffmpeg.av_buffersink_get_format(context);
+    /// <param name="frame">
+    /// The destination frame that receives the filtered data.
+    /// </param>
+    /// <returns>
+    /// The result returned by FFmpeg.
+    /// </returns>
+    public AVResult32 ReceiveFrame(AVFrame frame)
+    {
+        frame.Unreference();
+        int res = ffmpeg.av_buffersink_get_frame(Context, frame.Frame);
+        frame.TimeBase = ffmpeg.av_buffersink_get_time_base(Context);
+        frame.BestEffortTimestamp = frame.PresentationTimestamp;
+        return res;
+    }
+
+    /// <summary>
+    /// Gets the media type produced by the buffer sink filter.
+    /// </summary>
+    public MediaType MediaType =>
+        (MediaType)ffmpeg.av_buffersink_get_type(Context);
+
+    /// <summary>
+    /// Gets the time base of frames produced by the buffer sink filter.
+    /// </summary>
+    public Rational TimeBase =>
+        ffmpeg.av_buffersink_get_time_base(Context);
 
     /// <summary>
     /// Gets the pixel format produced by the buffer sink filter.
@@ -35,20 +56,8 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public PixelFormat BufferSinkPixelFormat =>
-        (PixelFormat)ffmpeg.av_buffersink_get_format(context);
-
-    /// <summary>
-    /// Gets the media type produced by the buffer sink filter.
-    /// </summary>
-    public MediaType BufferSinkType =>
-        (MediaType)ffmpeg.av_buffersink_get_type(context);
-
-    /// <summary>
-    /// Gets the time base of frames produced by the buffer sink filter.
-    /// </summary>
-    public Rational BufferSinkTimeBase =>
-        ffmpeg.av_buffersink_get_time_base(context);
+    public PixelFormat PixelFormat =>
+        (PixelFormat)ffmpeg.av_buffersink_get_format(Context);
 
     /// <summary>
     /// Gets the frame rate of frames produced by the buffer sink filter.
@@ -56,8 +65,8 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public Rational BufferSinkFrameRate =>
-        ffmpeg.av_buffersink_get_frame_rate(context);
+    public Rational FrameRate =>
+        ffmpeg.av_buffersink_get_frame_rate(Context);
 
     /// <summary>
     /// Gets the width of frames produced by the buffer sink filter.
@@ -65,8 +74,8 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public int BufferSinkWidth =>
-        ffmpeg.av_buffersink_get_w(context);
+    public int Width =>
+        ffmpeg.av_buffersink_get_w(Context);
 
     /// <summary>
     /// Gets the height of frames produced by the buffer sink filter.
@@ -74,17 +83,8 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public int BufferSinkHeight =>
-        ffmpeg.av_buffersink_get_h(context);
-
-    /// <summary>
-    /// Gets the sample aspect ratio of frames produced by the buffer sink filter.
-    /// </summary>
-    /// <remarks>
-    /// This property is only valid for video buffer sink filters.
-    /// </remarks>
-    public Rational BufferSinkSampleAspectRatio =>
-        ffmpeg.av_buffersink_get_sample_aspect_ratio(context);
+    public int Height =>
+        ffmpeg.av_buffersink_get_h(Context);
 
     /// <summary>
     /// Gets the color space of frames produced by the buffer sink filter.
@@ -92,8 +92,26 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public ColorSpace BufferSinkColorSpace =>
-        (ColorSpace)ffmpeg.av_buffersink_get_colorspace(context);
+    public ColorSpace ColorSpace =>
+        (ColorSpace)ffmpeg.av_buffersink_get_colorspace(Context);
+
+    /// <summary>
+    /// Gets the sample aspect ratio of frames produced by the buffer sink filter.
+    /// </summary>
+    /// <remarks>
+    /// This property is only valid for video buffer sink filters.
+    /// </remarks>
+    public Rational PixelAspectRatio =>
+        ffmpeg.av_buffersink_get_sample_aspect_ratio(Context);
+
+    /// <summary>
+    /// Gets the alpha mode of frames produced by the buffer sink filter.
+    /// </summary>
+    /// <remarks>
+    /// This property is only valid for video buffer sink filters.
+    /// </remarks>
+    public AlphaMode AlphaMode => (AlphaMode)ffmpeg.av_buffersink_get_alpha_mode(Context);
+    
 
     /// <summary>
     /// Gets the color range of frames produced by the buffer sink filter.
@@ -101,8 +119,8 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public ColorRange BufferSinkColorRange =>
-        (ColorRange)ffmpeg.av_buffersink_get_color_range(context);
+    public ColorRange ColorRange =>
+        (ColorRange)ffmpeg.av_buffersink_get_color_range(Context);
 
     /// <summary>
     /// Gets the number of channels in audio frames produced by the buffer sink filter.
@@ -110,10 +128,17 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for audio buffer sink filters.
     /// </remarks>
-    public int BufferSinkChannels =>
-        ffmpeg.av_buffersink_get_channels(context);
+    public int Channels =>
+        ffmpeg.av_buffersink_get_channels(Context);
 
-
+    /// <summary>
+    /// Gets the sample format produced by the buffer sink filter.
+    /// </summary>
+    /// <remarks>
+    /// This property is only valid for audio buffer sink filters.
+    /// </remarks>
+    public SampleFormat SampleFormat =>
+        (SampleFormat)ffmpeg.av_buffersink_get_format(Context);
 
     /// <summary>
     /// Attempts to retrieve the channel layout of audio frames produced by the buffer sink filter.
@@ -129,10 +154,10 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This method is only valid for audio buffer sink filters.
     /// </remarks>
-    public bool TryGetBufferSinkChannelLayout([NotNullWhen(true)] out Audio.ChannelLayout? layout)
+    public bool TryGetChannelLayout([NotNullWhen(true)] out Audio.ChannelLayout? layout)
     {
         _AVChannelLayout l;
-        if (ffmpeg.av_buffersink_get_ch_layout(context, &l) < 0)
+        if (ffmpeg.av_buffersink_get_ch_layout(Context, &l) < 0)
         {
             layout = null;
             return false;
@@ -147,6 +172,6 @@ public unsafe partial class FilterContext
     /// <remarks>
     /// This property is only valid for audio buffer sink filters.
     /// </remarks>
-    public int BufferSinkSampleRate =>
-        ffmpeg.av_buffersink_get_sample_rate(context);
+    public int SampleRate =>
+        ffmpeg.av_buffersink_get_sample_rate(Context);
 }
