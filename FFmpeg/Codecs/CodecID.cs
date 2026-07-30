@@ -475,7 +475,8 @@ public enum CodecID : int
     /// <summary>DXTory video codec (used in DXTory format).</summary>
     DXTory = AutoGen._AVCodecID.AV_CODEC_ID_DXTORY,
 
-
+    /// <summary>V410 10-bit YUV 4:4:4 video codec.</summary>
+    V410 = AutoGen._AVCodecID.@AV_CODEC_ID_V410,
 
     /// <summary>XWD image format codec (used in XWD format).</summary>
     XWD = AutoGen._AVCodecID.AV_CODEC_ID_XWD,
@@ -611,6 +612,12 @@ public enum CodecID : int
 
     /// <summary>TARGA Y216 video codec (used in TARGA Y216 format).</summary>
     TARGAY216 = AutoGen._AVCodecID.AV_CODEC_ID_TARGA_Y216,
+
+    /// <summary>V308 8-bit YUV 4:4:4 video.</summary>
+    V308 = AutoGen._AVCodecID.@AV_CODEC_ID_V308,
+
+    /// <summary>V408 8-bit YUV 4:4:4 video with an alpha channel.</summary>
+    V408 = AutoGen._AVCodecID.@AV_CODEC_ID_V408,
 
     /// <summary>YUV4 video codec (used in YUV4 format).</summary>
     YUV4 = AutoGen._AVCodecID.AV_CODEC_ID_YUV4,
