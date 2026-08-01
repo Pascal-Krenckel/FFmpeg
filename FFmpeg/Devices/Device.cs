@@ -75,7 +75,8 @@ public static unsafe class Device
     /// <remarks>
     /// Call this method to re-enumerate the audio output device formats if the
     /// available formats may have changed since the collection was first initialized.
-    /// </remarks>    public static void ReInitAudioOutputDevices() => AudioOutputDevices = InitAudioOutputDevices();
+    /// </remarks>  
+    public static void ReInitAudioOutputDevices() => AudioOutputDevices = InitAudioOutputDevices();
     private static ReadOnlyCollection<OutputFormat> InitAudioOutputDevices()
     {
         lock (_lock)
