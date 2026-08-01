@@ -279,11 +279,6 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     /// <returns>An enumerator over the graph's filters.</returns>
     public IEnumerator<FilterContext> GetEnumerator() => new FilterEnumerator(this);
 
-    /// <summary>
-    /// Returns a read-only span over the filters contained in the graph.
-    /// </summary>
-    /// <returns>A read-only span over the graph's filters.</returns>
-    public ReadOnlySpan<FilterContext> AsSpan() => new(graph->filters, Count);
 
     /// <summary>
     /// Gets a read-only list view over all filters contained in the graph.
