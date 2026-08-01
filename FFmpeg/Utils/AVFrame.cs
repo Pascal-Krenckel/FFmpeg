@@ -3,6 +3,7 @@ using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
 using FFmpeg.Collections;
 using FFmpeg.Images;
+using FFmpeg.Unsafe;
 
 namespace FFmpeg.Utils;
 
@@ -10,12 +11,13 @@ namespace FFmpeg.Utils;
 /// Represents a decoded audio or video frame in memory. This structure holds raw data for video frames or audio samples. <br/>
 /// It provides methods and properties to access and manipulate this data, as well as to manage the associated resources.
 /// </summary>
-public sealed unsafe class AVFrame : IDisposable
+public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
 {
     /// <summary>
     /// Gets the underlying unmanaged <see cref="AutoGen._AVFrame"/> structure.
     /// </summary>
     internal AutoGen._AVFrame* Frame { get; private set; } = null;
+    unsafe _AVFrame* IAVPointer<_AVFrame>.Pointer => Frame;
 
     /// <summary>
     /// Gets the capacity (in bytes) of the specified buffer index in the frame.  

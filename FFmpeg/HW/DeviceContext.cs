@@ -1,9 +1,13 @@
-﻿namespace FFmpeg.HW;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unsafe;
+using FFmpeg.Utils;
+
+namespace FFmpeg.HW;
 
 /// <summary>
 /// Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.
 /// </summary>
-public unsafe class DeviceContext : IDisposable, IEquatable<DeviceContext?>
+public unsafe class DeviceContext : IDisposable, IEquatable<DeviceContext?>, IAVPointer<_AVHWDeviceContext>
 {
     /// <summary>
     /// A pointer to the FFmpeg buffer reference that holds the hardware device context data.
@@ -17,6 +21,8 @@ public unsafe class DeviceContext : IDisposable, IEquatable<DeviceContext?>
     internal DeviceContext(AutoGen._AVBufferRef* buffer) =>
         // Increase the reference count for the buffer
         this.buffer = buffer;
+
+    unsafe _AVHWDeviceContext* IAVPointer<_AVHWDeviceContext>.Pointer => (buffer == null) ? null : (_AVHWDeviceContext*)buffer->data;
 
     /// <summary>
     /// Releases the resources used by this <see cref="DeviceContext"/> instance and un-references the buffer.
@@ -66,5 +72,6 @@ public unsafe class DeviceContext : IDisposable, IEquatable<DeviceContext?>
     /// <param name="right">The second <see cref="DeviceContext"/> to compare.</param>
     /// <returns>true if the specified instances are not equal; otherwise, false.</returns>
     public static bool operator !=(DeviceContext? left, DeviceContext? right) => !(left == right);
+
 }
 

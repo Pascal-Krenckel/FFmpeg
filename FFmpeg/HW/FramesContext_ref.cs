@@ -1,4 +1,7 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Images;
+using FFmpeg.Unsafe;
+using FFmpeg.Utils;
 using System.Diagnostics;
 
 namespace FFmpeg.HW;
@@ -6,12 +9,13 @@ namespace FFmpeg.HW;
 /// Represents a pointer to an FFmpeg hardware device context buffer reference. 
 /// This is used to manage hardware-accelerated contexts in FFmpeg.
 /// </summary>
-public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>, Utils.IReference<FramesContext>
+public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>, Utils.IReference<FramesContext>, IAVPointer<_AVHWFramesContext>
 {
     /// <summary>
     /// Pointer to the buffer reference for the hardware device context.
     /// </summary>
     internal readonly AutoGen._AVBufferRef** buffer;
+
 
     /// <summary>
     /// Determines whether the <see cref="FramesContext_ref"/> is read-only.
@@ -113,5 +117,63 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
     /// <param name="right">The second instance to compare.</param>
     /// <returns><see langword="true"/> if the instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(FramesContext_ref? left, FramesContext_ref? right) => !(left == right);
+
+    /// <summary>
+    /// The internal parent device context managed by the enclosing frames context
+    /// </summary>
+    public DeviceContext_ref DeviceContext
+    {
+        get
+        {
+            return new DeviceContext_ref(&Pointer->device_ref, true);
+        }
+    }
+
+    /// <inheritdoc cref="_AVHWFramesContext.height"/>
+    public int Height => Pointer->height;
+    /// <inheritdoc cref="_AVHWFramesContext.width"/>
+    public int Width => Pointer->width;
+
+    /// <inheritdoc cref="_AVHWFramesContext.sw_format"/>
+    public PixelFormat SwFormat => (PixelFormat)Pointer->sw_format;
+    /// <inheritdoc cref="_AVHWFramesContext.format"/>
+    public PixelFormat HwFormat => (PixelFormat)Pointer->format;
+
+    internal _AVHWFramesContext* Pointer
+    {
+        get
+        {
+            CheckDisposed();
+            IAVPointer<_AVHWFramesContext> iAVPointer = ((IAVPointer<_AVHWFramesContext>)this);
+            return iAVPointer.Pointer;
+        }
+    }
+
+    /// <summary>
+    /// Returns the internal hwctx as a VulkanFramesContext.
+    /// </summary>
+    public Vulkan.VulkanFramesContext AsVulkan() => new((_AVVulkanFramesContext*)Pointer->hwctx);
+
+    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer
+    {
+        get
+        {
+            if (buffer == null || (*buffer) == null)
+                return null;
+            return (_AVHWFramesContext*)(*buffer)->data;
+        }
+    }
+
+    /// <summary>
+    /// True if the instance does not contain any Frames Context.
+    /// </summary>
+    public bool IsEmpty => buffer == null || *buffer == null;
+
+    private void CheckDisposed()
+    {
+        if (buffer == null || (*buffer) == null)
+            throw new ObjectDisposedException(GetType().FullName);
+    }
+
 
 }

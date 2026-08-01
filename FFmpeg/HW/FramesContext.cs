@@ -1,8 +1,11 @@
-﻿namespace FFmpeg.HW;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Unsafe;
+
+namespace FFmpeg.HW;
 /// <summary>
 /// Represents a hardware device context in FFmpeg, encapsulating the buffer reference for hardware acceleration.
 /// </summary>
-public unsafe class FramesContext : IDisposable, IEquatable<FramesContext?>
+public unsafe class FramesContext : IDisposable, IEquatable<FramesContext?>, IAVPointer<_AVHWFramesContext>
 {
     /// <summary>
     /// A pointer to the FFmpeg buffer reference that holds the hardware device context data.
@@ -16,6 +19,8 @@ public unsafe class FramesContext : IDisposable, IEquatable<FramesContext?>
     internal FramesContext(AutoGen._AVBufferRef* buffer) =>
         // Increase the reference count for the buffer
         this.buffer = buffer;
+
+    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer => (buffer==null) ? null : (_AVHWFramesContext*)buffer->data;
 
     /// <summary>
     /// Releases the resources used by this <see cref="FramesContext"/> instance and un-references the buffer.

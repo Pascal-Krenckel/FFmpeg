@@ -1,4 +1,7 @@
-﻿using FFmpeg.Utils;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.HW.Vulkan;
+using FFmpeg.Unsafe;
+using FFmpeg.Utils;
 using System.Diagnostics;
 
 namespace FFmpeg.HW;
@@ -7,7 +10,7 @@ namespace FFmpeg.HW;
 /// Represents a pointer to an FFmpeg hardware device context buffer reference. 
 /// This is used to manage hardware-accelerated contexts in FFmpeg.
 /// </summary>
-public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>, Utils.IReference<DeviceContext>
+public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>, Utils.IReference<DeviceContext>, IAVPointer<_AVHWDeviceContext>
 {
     /// <summary>
     /// Pointer to the buffer reference for the hardware device context.
@@ -25,6 +28,36 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
     /// If <see langword="true"/>, attempting to modify the context will result in a <see cref="NotSupportedException"/>.
     /// </summary>
     public bool IsReadOnly => isReadOnly;
+
+    internal _AVHWDeviceContext* Pointer
+    {
+        get
+        {
+            CheckDisposed();
+            return (_AVHWDeviceContext*)(*buffer)->data;
+        }
+    }
+
+    private void CheckDisposed()
+    {
+        if (buffer == null || *buffer == null)
+            throw new ObjectDisposedException(GetType().FullName);
+    }
+
+    unsafe _AVHWDeviceContext* IAVPointer<_AVHWDeviceContext>.Pointer
+    {
+        get
+        {
+            if (buffer == null || *buffer == null)
+                return null;
+            return (_AVHWDeviceContext*)(*buffer)->data;
+        }
+    }
+
+    /// <summary>
+    /// Returns the internal hwctx as VulkanDeviceContext
+    /// </summary>
+    public VulkanDeviceContext AsVulkan() => new((_AVVulkanDeviceContext*)Pointer->hwctx);
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DeviceContext_ref"/> struct.
@@ -66,6 +99,9 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
             ? throw new OutOfMemoryException("Failed to reference the buffer for the new device context.")
             : new DeviceContext(dev);
     }
+
+    /// <inheritdoc cref="_AVHWDeviceContext.type" />
+    public DeviceType DeviceType => (DeviceType)Pointer->type;
 
     /// <inheritdoc />
     public void SetReferencedObject(DeviceContext? device)
@@ -117,5 +153,6 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
     /// <returns><see langword="true"/> if the instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(DeviceContext_ref? left, DeviceContext_ref? right) => !(left == right);
 
+    
 }
 
