@@ -30,8 +30,10 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.6</Version>
+		<Version>8.1.2.7</Version>
 		<PackageReleaseNotes>
+			--- 8.1.2.7 ---
+			Readme fixed
 			--- 8.1.2.6 --- 
 			FFmpegDotNet._AutoGen was not build against FFmpeg 8.1.2 but master - FFmpeg 9.0 (pre)
 			--- 8.1.2.5 ---
