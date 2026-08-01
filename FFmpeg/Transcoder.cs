@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace FFmpeg;
 // a one to one transcoder supporting -ss
+/// <summary>
+/// A small transcoder class supporting filter. Instead of using this, please use ffmpeg directly if possible, as transcoding is complicated and thats exactly what ffmpeg.exe is for. 
+/// </summary>
 public sealed class Transcoder : IDisposable
 {
     private MediaSource Source { get; }
@@ -232,6 +235,7 @@ public sealed class Transcoder : IDisposable
             PreviewOutputStreamIndex = Sink.FormatContext.FindBestStream(MediaType.Audio);
     }
     private DrainState drainState = DrainState.None;
+   
     [Flags]
     private enum DrainState { None, DecoderDraining = 0b1, DecoderDrained = 0b11, FilterDraining = 0b100, FilterDrained = 0b1100, EncoderDraining = 0b10000, EncoderDrained = 0b110000 };
     private void DrainDecoders()
