@@ -205,6 +205,7 @@ public class MediaSource : IDisposable
     /// <param name="srcPacket">The <see cref="AVPacket"/> to send to the codec context.</param>
     /// <param name="dstFrame">The <see cref="AVFrame"/> to receive the decoded frame.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation.</returns>
+    [Obsolete("Use Decode")]
     public AVResult32 ReadFrame(AVPacket srcPacket, AVFrame dstFrame)
     {
         AVResult32 res = CodecContexts[srcPacket.StreamIndex].SendPacket(srcPacket);
