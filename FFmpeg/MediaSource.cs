@@ -264,12 +264,6 @@ public class MediaSource : IDisposable
                     res = AVResult32.TryAgain;
                     continue;
                 }
-
-                if (packet.Flags.HasFlag(PacketFlags.Discard))
-                {
-                    res = AVResult32.TryAgain;
-                    continue;
-                }
                 CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();
             }
             res = CodecContexts[packet.StreamIndex].ReceiveFrame(frame);
