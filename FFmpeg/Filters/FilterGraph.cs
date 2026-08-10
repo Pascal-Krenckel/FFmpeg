@@ -265,7 +265,7 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     /// </remarks>
     public string Dump()
     {
-        byte* buff = ffmpeg.avfilter_graph_dump(graph, null);
+        byte* buff = ffmpeg.avfilter_graph_dump(graph, (byte*)null);
         if (buff == null)
             return "Error";
         string dump = Marshal.PtrToStringUTF8((nint)buff);
@@ -400,7 +400,7 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     }
 
     /// <summary>
-    /// Creates a copy of the filter graph.
+    /// Creates a unconfigured copy of the filter graph.
     /// </summary>
     /// <returns>
     /// A new <see cref="FilterGraph"/> containing equivalent filters and connections.
@@ -408,6 +408,9 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     /// <remarks>
     /// The copied graph contains newly allocated filter contexts configured with the
     /// same options and topology as the original graph.
+    ///  There is not ffmpeg function. 
+    ///  This function tries to recreate the filter graph with the same paramters.
+    ///  Buffer sinks and filter contexts named auto_* are not configured.
     /// </remarks>
     public FilterGraph Copy()
     {
@@ -415,6 +418,7 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
         foreach (FilterContext context in this)
         {
             using Collections.AVMultiDictionary dictionary = [];
+            if(!context.Name.StartsWith("auto_") && (context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink)))
             foreach (Option o in context.GetOptions(true))
             {
                 if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
@@ -436,6 +440,17 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
             }
         }
         return copy;
+    }
+
+    /// <summary>
+    /// Creates a copy of the filter graph and disposed the old one.
+    /// </summary>
+    public void Flush()
+    {
+        using var copy = Copy();
+        var ptr = graph;
+        graph = copy.graph;
+        copy.graph = ptr;
     }
 
     private class FilterEnumerator(FilterGraph filterGraph) : IEnumerator<FilterContext>
