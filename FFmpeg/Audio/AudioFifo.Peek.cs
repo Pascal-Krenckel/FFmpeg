@@ -117,7 +117,7 @@ public unsafe partial class AudioFifo
     {
         fixed (byte* bufferPtr = buffer)
         {
-            int samples = buffer.Length / Format.GetBytesPerSample();
+            int samples = buffer.Length / Format.GetBytesPerSample() / Channels;
 
             return Format.IsPlanar()
                 ? PeekPlanarToPacked(bufferPtr, samples)
