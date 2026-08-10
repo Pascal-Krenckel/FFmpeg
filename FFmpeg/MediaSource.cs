@@ -3,6 +3,7 @@ using FFmpeg.Codecs;
 using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.HW;
+using FFmpeg.IO;
 using FFmpeg.Utils;
 
 namespace FFmpeg;
@@ -15,6 +16,9 @@ public class MediaSource : IDisposable
     /// Gets the format context associated with this media source.
     /// </summary>
     public DemuxerContext FormatContext { get; private set; }
+
+    /// <inheritdoc cref="FormatContext.Seekable"/>
+    public Seekable Seekable => FormatContext.Seekable;
     private readonly AVPacket packet = new() { StreamIndex = -1 };
     private readonly DeviceType hwType = DeviceType.None;
 
