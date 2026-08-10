@@ -173,7 +173,7 @@ public unsafe partial class DemuxerContext : FormatContext
         _ = IOStreamContext.OpenRead(formatContext, stream);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
+        AVResult32 result = ffmpeg.avformat_open_input(&context, (byte*)null, iFormat, &dic);
         formatContext.Context = context;
         dictionary?.dictionary = dic;
         if (result.IsError)
@@ -221,7 +221,7 @@ public unsafe partial class DemuxerContext : FormatContext
         _ = IOStreamContext.OpenRead(formatContext, stream);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
+        AVResult32 result = ffmpeg.avformat_open_input(&context, (byte*)null, iFormat, &dic);
         formatContext.Context = context;
         dictionary?.dictionary = dic;
         if (result.IsError)
@@ -308,7 +308,7 @@ public unsafe partial class DemuxerContext : FormatContext
         DemuxerContext formatContext = new(context);
         ioContext.InitContext(formatContext, IOOptions.Read);
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
+        AVResult32 result = ffmpeg.avformat_open_input(&context, (byte*)null, iFormat, &dic);
         formatContext.Context = context;
 
         dictionary?.dictionary = dic;
@@ -354,7 +354,7 @@ public unsafe partial class DemuxerContext : FormatContext
             ioContext.InitContext(formatContext, IOOptions.Read);
 
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
-        AVResult32 result = ffmpeg.avformat_open_input(&context, null, iFormat, &dic);
+        AVResult32 result = ffmpeg.avformat_open_input(&context, (byte*)null, iFormat, &dic);
         formatContext.Context = context;
 
         dictionary?.dictionary = dic;
