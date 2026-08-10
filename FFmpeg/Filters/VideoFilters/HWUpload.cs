@@ -50,7 +50,7 @@ public unsafe class HWUpload : FilterContext
     /// <remarks>
     /// The returned filter is not initialized. A hardware device must be assigned
     /// through <see cref="FilterContext.HwDeviceContext"/> or
-    /// <see cref="DeriveDevice"/> before calling <see cref="FilterContext.Init"/>.
+    /// <see cref="DeriveDevice"/> before calling <see cref="FilterContext.Init()"/>.
     /// </remarks>
     public static HWUpload Allocate(string name, FilterGraph graph)
     {
