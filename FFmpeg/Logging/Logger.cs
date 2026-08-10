@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using FFmpeg.AutoGen;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace FFmpeg.Logging;
 
@@ -12,7 +14,7 @@ namespace FFmpeg.Logging;
 public static class Logger
 {
     private static readonly AutoGen.av_log_set_callback_callback _callback;
-
+    
     static unsafe Logger()
     {
         _callback = LogCallback;
@@ -92,27 +94,30 @@ public static class Logger
             &printPrefix);
 
         string message = Encoding.UTF8.GetString(buffer, size);
-
-        if (avcl != null)
+        try
         {
-            string contextName = ffmpeg.av_default_item_name(avcl);
-            ClassCategory category =
-                (ClassCategory)ffmpeg.av_default_get_category(avcl);
+            if (avcl != null)
+            {
+                string contextName = ffmpeg.av_default_item_name(avcl);
+                ClassCategory category =
+                    (ClassCategory)ffmpeg.av_default_get_category(avcl);
 
-            LogMessageReceived?.Invoke(
-                message,
-                (LogLevel)logLevel,
-                category,
-                contextName);
+                LogMessageReceived?.Invoke(
+                    message,
+                    (LogLevel)logLevel,
+                    category,
+                    contextName);
+            }
+            else
+            {
+                LogMessageReceived?.Invoke(
+                    message,
+                    (LogLevel)logLevel,
+                    ClassCategory.None,
+                    null);
+            }
         }
-        else
-        {
-            LogMessageReceived?.Invoke(
-                message,
-                (LogLevel)logLevel,
-                ClassCategory.None,
-                null);
-        }
+        catch { }
     }
 
     /// <summary>
