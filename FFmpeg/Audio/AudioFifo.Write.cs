@@ -5,52 +5,6 @@ namespace FFmpeg.Audio;
 
 public unsafe partial class AudioFifo
 {
-    /// <summary>
-    /// Writes audio data from an <see cref="AVFrame"/> into the <see cref="AudioFifo"/> buffer.
-    /// </summary>
-    /// <param name="frame">
-    /// The <see cref="AVFrame"/> containing audio samples to write.  
-    /// The frame’s number of channels must match the FIFO’s <see cref="Channels"/> property, 
-    /// and the sample format must match the planar/packed layout of the FIFO's <see cref="Format"/>.
-    /// </param>
-    /// <returns>
-    /// An <see cref="AVResult32"/> value representing either:
-    /// <list type="bullet">
-    /// <item><description>The number of samples successfully written to the FIFO (if the operation succeeded).</description></item>
-    /// <item><description>An error code (if the operation failed).</description></item>
-    /// </list>
-    /// </returns>
-    /// <exception cref="ArgumentException">
-    /// Thrown if the frame's channel count does not match the FIFO’s <see cref="Channels"/>, 
-    /// or if the frame's planar/packed layout does not match the FIFO's <see cref="Format"/>.
-    /// </exception>
-    /// <remarks>
-    /// <para>
-    /// The <see cref="AudioFifo"/> stores all audio data according to the <see cref="Format"/> specified when the FIFO was created.  
-    /// This method does not convert between sample types (e.g., float ↔ int16); doing so must be handled by the caller.
-    /// </para>
-    /// <para>
-    /// Planar ↔ packed conversions are handled automatically:
-    /// <list type="bullet">
-    /// <item>If the frame's format exactly matches the FIFO format, the data is written directly using <c>ffmpeg.av_audio_fifo_write</c>.</item>
-    /// <item>If the FIFO expects planar but the frame is packed, the data is converted from packed to planar using <see cref="WritePackedToPlanar"/>.</item>
-    /// <item>If the FIFO expects packed but the frame is planar, the data is converted from planar to packed using <see cref="WritePlanarToPacked"/>.</item>
-    /// </list>
-    /// </para>
-    /// <para>
-    /// To avoid unnecessary copying, it is recommended to provide frames in the same planar/packed layout as the FIFO’s <see cref="Format"/>.
-    /// </para>
-    /// </remarks>
-    public AVResult32 Write(AVFrame frame) => frame.ChannelLayout.Channels != Channels
-            ? throw new ArgumentException("Frame channel count does not match the audio FIFO.", nameof(frame))
-            : frame.SampleFormat.AsPlanar() != Format.AsPlanar()
-            ? throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame))
-            : frame.SampleFormat == Format
-            ? (AVResult32)ffmpeg.av_audio_fifo_write(fifo, (void**)frame.ExtendedData, frame.SampleCount)
-            : Format.IsPlanar()
-            ? WritePackedToPlanar(frame.ExtendedData[0], frame.SampleCount)
-            : WritePlanarToPacked(frame.ExtendedData, frame.SampleCount);
-
     #region Packed/Mono
     /// <summary>
     /// Writes packed multi-channel audio data from a single contiguous buffer.

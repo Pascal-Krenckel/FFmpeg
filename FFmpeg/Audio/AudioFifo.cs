@@ -73,6 +73,51 @@ public unsafe partial class AudioFifo : IDisposable
     }
 
     #region Write Helper Functions
+    /// <summary>
+    /// Writes audio data from an <see cref="AVFrame"/> into the <see cref="AudioFifo"/> buffer.
+    /// </summary>
+    /// <param name="frame">
+    /// The <see cref="AVFrame"/> containing audio samples to write.  
+    /// The frame’s number of channels must match the FIFO’s <see cref="Channels"/> property, 
+    /// and the sample format must match the planar/packed layout of the FIFO's <see cref="Format"/>.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> value representing either:
+    /// <list type="bullet">
+    /// <item><description>The number of samples successfully written to the FIFO (if the operation succeeded).</description></item>
+    /// <item><description>An error code (if the operation failed).</description></item>
+    /// </list>
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown if the frame's channel count does not match the FIFO’s <see cref="Channels"/>, 
+    /// or if the frame's planar/packed layout does not match the FIFO's <see cref="Format"/>.
+    /// </exception>
+    /// <remarks>
+    /// <para>
+    /// The <see cref="AudioFifo"/> stores all audio data according to the <see cref="Format"/> specified when the FIFO was created.  
+    /// This method does not convert between sample types (e.g., float ↔ int16); doing so must be handled by the caller.
+    /// </para>
+    /// <para>
+    /// Planar ↔ packed conversions are handled automatically:
+    /// <list type="bullet">
+    /// <item>If the frame's format exactly matches the FIFO format, the data is written directly using <c>ffmpeg.av_audio_fifo_write</c>.</item>
+    /// <item>If the FIFO expects planar but the frame is packed, the data is converted from packed to planar using <see cref="WritePackedToPlanar"/>.</item>
+    /// <item>If the FIFO expects packed but the frame is planar, the data is converted from planar to packed using <see cref="WritePlanarToPacked"/>.</item>
+    /// </list>
+    /// </para>
+    /// <para>
+    /// To avoid unnecessary copying, it is recommended to provide frames in the same planar/packed layout as the FIFO’s <see cref="Format"/>.
+    /// </para>
+    /// </remarks>
+    public AVResult32 Write(AVFrame frame) => frame.ChannelLayout.Channels != Channels
+            ? throw new ArgumentException("Frame channel count does not match the audio FIFO.", nameof(frame))
+            : frame.SampleFormat.AsPlanar() != Format.AsPlanar()
+            ? throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame))
+            : frame.SampleFormat == Format
+            ? ffmpeg.av_audio_fifo_write(fifo, (void**)frame.ExtendedData, frame.SampleCount)
+            : Format.IsPlanar()
+            ? WritePackedToPlanar(frame.ExtendedData[0], frame.SampleCount)
+            : WritePlanarToPacked(frame.ExtendedData, frame.SampleCount);
     private AVResult32 WritePackedToPacked(byte* data, int samples) => ffmpeg.av_audio_fifo_write(fifo, (void**)&data, samples);
     private AVResult32 WritePlanarToPlanar(byte** data, int samples) => ffmpeg.av_audio_fifo_write(fifo, (void**)data, samples);
 
@@ -205,6 +250,88 @@ public unsafe partial class AudioFifo : IDisposable
     #endregion
 
     #region Read Helper Functions
+    /// <summary>
+    /// Reads audio data from the <see cref="AudioFifo"/> buffer into an <see cref="AVFrame"/>.
+    /// </summary>
+    /// <param name="frame">
+    /// The <see cref="AVFrame"/> to receive audio samples.  
+    /// If the frame has no buffer, its channel layout, sample format, and sample count can be automatically initialized:
+    /// <list type="bullet">
+    /// <item><description>If <see cref="AVFrame.ChannelLayout"/>.Channels is 0, it is set to the default layout for the FIFO’s <see cref="Channels"/>.</description></item>
+    /// <item><description>If <see cref="AVFrame.SampleFormat"/> is <see cref="SampleFormat.None"/>, it is set to the FIFO’s <see cref="Format"/>.</description></item>
+    /// <item><description>If <see cref="AVFrame.SampleCount"/> is less than 1, it is set to the current <see cref="AudioFifo.Count"/> (read all available samples).</description></item>
+    /// </list>
+    /// If the frame already has a buffer and any of these properties are unset, an exception is thrown.
+    /// </param>
+    /// <returns>
+    /// An <see cref="AVResult32"/> value representing either:
+    /// <list type="bullet">
+    /// <item><description>The number of samples successfully read from the FIFO (if the operation succeeded).</description></item>
+    /// <item><description>An error code (if the operation failed).</description></item>
+    /// </list>
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown if the frame already has a buffer allocated and some properties would need to be set,  
+    /// or if, after initialization, the frame’s channel count or planar/packed layout does not match the FIFO.
+    /// </exception>
+    /// <remarks>
+    /// <para>
+    /// The <see cref="AudioFifo"/> stores all audio data according to the <see cref="Format"/> specified when the FIFO was created.  
+    /// This method does not convert between sample types (e.g., float ↔ int16); doing so must be handled by the caller.
+    /// </para>
+    /// <para>
+    /// Planar ↔ packed conversions are handled automatically:
+    /// <list type="bullet">
+    /// <item>If the frame's format exactly matches the FIFO format, the data is read directly using <c>ffmpeg.av_audio_fifo_read</c>.</item>
+    /// <item>If the FIFO stores planar but the frame is packed, the data is converted from planar to packed using <see cref="ReadPlanarToPacked"/>.</item>
+    /// <item>If the FIFO stores packed but the frame is planar, the data is converted from packed to planar using <see cref="ReadPackedToPlanar"/>.</item>
+    /// </list>
+    /// </para>
+    /// <para>
+    /// To avoid unnecessary copying, it is recommended to provide frames in the same planar/packed layout as the FIFO’s <see cref="Format"/>.
+    /// </para>
+    /// </remarks>
+    public AVResult32 Read(AVFrame frame)
+    {
+        if (frame == null)
+            throw new ArgumentNullException(nameof(frame));
+
+        bool needsInitialization = frame.ChannelLayout.Channels == 0 || frame.SampleFormat == SampleFormat.None || frame.SampleCount <= 0;
+
+        if (frame.HasBuffer && needsInitialization)
+            throw new ArgumentException("Cannot set properties on a frame that already has a buffer.", nameof(frame));
+
+        // Initialize properties only if the frame does not have a buffer
+        if (!frame.HasBuffer)
+        {
+            if (frame.ChannelLayout.Channels == 0)
+                frame.ChannelLayout.SetReferencedObject(ChannelLayout.CreateDefault(Channels));
+
+            if (frame.SampleFormat == SampleFormat.None)
+                frame.SampleFormat = Format;
+
+            if (frame.SampleCount <= 0)
+                frame.SampleCount = Count;
+        }
+
+        // Validate after initialization
+        if (frame.ChannelLayout.Channels != Channels)
+            throw new ArgumentException("Frame channel count does not match the audio FIFO.", nameof(frame));
+
+        if (frame.SampleFormat.AsPlanar() != Format.AsPlanar())
+            throw new ArgumentException("Frame planar/packed layout does not match the audio FIFO.", nameof(frame));
+
+        // Create the buffer only if the frame did not already have one
+        if (!frame.HasBuffer)
+            frame.CreateBuffer().ThrowIfError();
+
+        // Read from FIFO
+        return frame.SampleFormat == Format
+            ? ffmpeg.av_audio_fifo_read(fifo, (void**)frame.ExtendedData, frame.SampleCount)
+            : Format.IsPlanar()
+            ? ReadPlanarToPacked(frame.ExtendedData[0], frame.SampleCount)
+            : ReadPackedToPlanar(frame.ExtendedData, frame.SampleCount);
+    }
 
     private AVResult32 ReadPackedToPacked(byte* data, int samples) =>
         ffmpeg.av_audio_fifo_read(fifo, (void**)&data, samples);
@@ -639,7 +766,10 @@ public unsafe partial class AudioFifo : IDisposable
     /// After calling this method, the FIFO will contain zero samples.  
     /// This does not change the capacity of the FIFO, only the number of stored samples.
     /// </remarks>
-    public void Clear() => ffmpeg.av_audio_fifo_reset(fifo);
+    public void Clear()
+    {
+        ffmpeg.av_audio_fifo_reset(fifo);
+    }
 
 
     /// <summary>
@@ -672,7 +802,9 @@ public unsafe partial class AudioFifo : IDisposable
         if (!disposedValue)
         {
             if (fifo != null)
+            {
                 ffmpeg.av_audio_fifo_free(fifo);
+            }
             fifo = null;
             disposedValue = true;
         }
@@ -691,7 +823,7 @@ public unsafe partial class AudioFifo : IDisposable
     /// </summary>
     /// <remarks>
     /// This method frees the underlying <see cref="ffmpeg.av_audio_fifo_free"/> and suppresses finalization.  
-    /// Always call <see cref="Dispose()"/> when finished using an <see cref="AudioFifo"/> instance to free unmanaged memory.
+    /// Always call <see cref="Dispose()"/> when finishedReading using an <see cref="AudioFifo"/> instance to free unmanaged memory.
     /// </remarks>
     public void Dispose()
     {
