@@ -354,6 +354,20 @@ public unsafe partial class DemuxerContext : FormatContext
     public AVResult32 Seek(long timestamp, int streamIndex)
             => ffmpeg.av_seek_frame(Context, streamIndex, timestamp, ffmpeg.AVSEEK_FLAG_FRAME | ffmpeg.AVSEEK_FLAG_BACKWARD);
 
+    /// <summary>
+    /// Seeks to the specified byte position within a stream. This method uses the flag any, since the position might not be a key frame.
+    /// </summary>
+    /// <param name="position">
+    /// The target byte position in that stream.
+    /// </param>
+    /// <param name="streamIndex">
+    /// The zero-based stream index.
+    /// </param>
+    /// <returns>
+    /// The result returned by <c>av_seek_frame()</c>.
+    /// </returns>
+    public AVResult32 SeekBytes(long position, int streamIndex)
+            => ffmpeg.av_seek_frame(Context, streamIndex, position, ffmpeg.AVSEEK_FLAG_BACKWARD | ffmpeg.AVSEEK_FLAG_BYTE | ffmpeg.AVSEEK_FLAG_ANY);
     #endregion
 
     /// <summary>
