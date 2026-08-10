@@ -548,6 +548,34 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
     public ChannelLayout_ref ChannelLayout => new(&Frame->ch_layout, false);
 
     /// <summary>
+    /// Gets the total size of the data in bytes across all planes.
+    /// </summary>
+    public long Size
+    {
+        get
+        {
+            if (IsAudio)
+            {
+                if (SampleFormat.IsPacked())
+                    return Frame->linesize[0];
+                else
+                    return Frame->linesize[0] * Frame->ch_layout.nb_channels;
+            }
+            if (IsVideo)
+            {
+                ulong_array4 sizes = new();
+                long_array4 linesize = new();
+                for (uint i = 0; i < linesize.Length; i++)
+                    linesize[i] = LineSize[i];
+                AVResult32 res = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, in linesize);
+                res.ThrowIfError();
+                return (long)(sizes[0] + sizes[1] + sizes[2] + sizes[3]);
+            }
+            throw new NotSupportedException("Only audio or video frames are supported");            
+        }
+    }
+
+    /// <summary>
     /// Gets or sets the duration of the frame, in the same units as <see cref="PresentationTimestamp"/>.
     /// A value of 0 indicates an unknown duration.
     /// </summary>
