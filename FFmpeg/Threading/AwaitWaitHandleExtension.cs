@@ -107,5 +107,3 @@ public static class AwaitWaitHandleExtension
                                                                        });
     }
 }
-
-
