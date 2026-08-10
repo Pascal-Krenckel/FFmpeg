@@ -37,3 +37,24 @@ public enum AVSeek : int
     Current = SeekOrigin.Current,
 }
 
+/// <summary>
+/// Specifies the types of seeking supported by an I/O context.
+/// </summary>
+[Flags]
+public enum Seekable
+{
+    /// <summary>
+    /// Seeking by byte position is supported.
+    /// </summary>
+    Byte = ffmpeg.AVIO_SEEKABLE_NORMAL,
+
+    /// <summary>
+    /// Seeking by timestamp is supported.
+    /// </summary>
+    Time = ffmpeg.AVIO_SEEKABLE_TIME,
+
+    /// <summary>
+    /// Seeking is not supported
+    /// </summary>
+    None = 0,
+}

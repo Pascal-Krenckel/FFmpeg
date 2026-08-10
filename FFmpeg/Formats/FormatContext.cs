@@ -158,6 +158,16 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// this format context.
     /// </remarks>
     public void SetContext(IOContext context, IOOptions options, int bufferSize = 32768) => context.InitContext(this, options, bufferSize);
+    
+    /// <summary>
+    /// Gets the types of seeking supported by the underlying I/O context.
+    /// </summary>
+    /// <remarks>
+    /// The value indicates which seeking operations are supported by the underlying
+    /// <see cref="AVIOContext"/>. Derived classes can modify this value when creating
+    /// or configuring a custom I/O context.
+    /// </remarks>
+    public Seekable Seekable => Context->pb != null ? (Seekable)(Context->pb->seekable) : Seekable.None;
     #endregion
 
     /// <summary>

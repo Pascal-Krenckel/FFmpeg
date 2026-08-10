@@ -213,10 +213,23 @@ public abstract unsafe class IOContext : AVIOContext
     /// <see cref="IOOptions.Seek"/>.
     /// </remarks>
     protected abstract AVResult64 Seek(long offset, AVSeek whence);
+
+    /// <summary>
+    /// Gets or sets the types of seeking supported by the underlying I/O context.
+    /// </summary>
+    /// <remarks>
+    /// The value indicates which seeking operations are supported by the underlying
+    /// <see cref="AVIOContext"/>. Derived classes can modify this value when creating
+    /// or configuring a custom I/O context.
+    /// </remarks>
+    public Seekable Seekable
+    {
+        get => (Seekable)FormatContext.Context->pb->seekable;
+        protected set => FormatContext.Context->pb->seekable = (int)value;
+    }   
     #endregion
 
     #region Dispose
-
     private bool disposedValue = false;
 
     /// <summary>
