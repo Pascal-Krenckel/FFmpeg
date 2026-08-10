@@ -42,7 +42,10 @@ public class IOStreamContext : IOContext
     /// </exception>
     public IOStreamContext(Stream stream)
         : base()
-        => this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
+    {
+        this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
+        Seekable = stream.CanSeek ? Seekable.Byte : Seekable.None;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="IOStreamContext"/> class
