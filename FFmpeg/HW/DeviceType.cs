@@ -51,7 +51,7 @@ public enum DeviceType : int
     DRM = AutoGen._AVHWDeviceType.AV_HWDEVICE_TYPE_DRM,
 
     /// <summary>
-    /// OpenCL (Open Computing Language), a framework for cross-platform GPU and CPU acceleration.
+    /// OpenCL (Create Computing Language), a framework for cross-platform GPU and CPU acceleration.
     /// </summary>
     OpenCL = AutoGen._AVHWDeviceType.AV_HWDEVICE_TYPE_OPENCL,
 
