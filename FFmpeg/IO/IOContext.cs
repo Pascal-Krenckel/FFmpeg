@@ -40,7 +40,7 @@ public abstract unsafe class IOContext : AVIOContext
         FormatContext = formatContext;
         gch = GCHandle.Alloc(this);
         formatContext.ioContext?.Dispose();
-
+        
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
