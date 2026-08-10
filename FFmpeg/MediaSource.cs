@@ -281,22 +281,7 @@ public class MediaSource : IDisposable
     public void FlushBuffers()
     {
         for (int i = 0; i < CodecContexts.Count; i++)
-        {
             CodecContexts[i].FlushBuffers();
-
-            if (CodecContexts[i].HardwareDeviceContext != null)
-            { // if hw accel then recreate the context, it seek seems to fail otherwise
-                CodecContext @new = CodecContext.Allocate(CodecContexts[i].Codec);
-                CodecContexts[i].CopyParameters(@new);
-                _ = @new.SetHWDeviceType(hwType);
-                @new.PacketTimeBase = CodecContexts[i].PacketTimeBase;
-                _ = @new.Open(@new.Codec);
-                CodecContexts[i].Dispose();
-                codecContexts[i] = @new;
-
-            }
-        }
-
     }
 
 
