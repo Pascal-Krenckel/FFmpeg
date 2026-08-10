@@ -66,6 +66,7 @@ public class IOStreamContext : IOContext
     {
         this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
         this.closeStreamOnDispose = closeStreamOnDispose;
+        Seekable = stream.CanSeek ? Seekable.Byte : Seekable.None;
     }
 
     /// <summary>
