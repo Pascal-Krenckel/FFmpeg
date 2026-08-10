@@ -33,6 +33,20 @@ public static class PixelFormatExtensions
     public static int PlaneCount(this PixelFormat pixelFormat) => ffmpeg.av_pix_fmt_count_planes((AutoGen._AVPixelFormat)pixelFormat);
 
     /// <summary>
+    /// Gets the bits per pixel.
+    /// </summary>
+    /// <param name="pixelFormat">
+    /// The pixel format to query.
+    /// </param>
+    /// <returns>
+    /// The bits per pixel.
+    /// </returns>
+    public unsafe static int BitsPerPixel(this PixelFormat pixelFormat)
+    {
+        return ffmpeg.av_get_bits_per_pixel(ffmpeg.av_pix_fmt_desc_get((_AVPixelFormat)pixelFormat));
+    }
+
+    /// <summary>
     /// Swaps the byte order of a pixel format.
     /// </summary>
     /// <param name="pixelFormat">
