@@ -1,8 +1,5 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.AudioFilters;
 
@@ -81,7 +78,7 @@ public unsafe class AudioFormat : FilterContext
                 sampleRate,
                 "The sample rate must be greater than zero.");
 
-        var context = Allocate(name, graph);
+        AudioFormat context = Allocate(name, graph);
 
         context.SetOption("f", sampleFormat.ToFFmpegString()).ThrowIfError();
         context.SetOption("r", sampleRate.ToString()).ThrowIfError();
@@ -128,8 +125,8 @@ public unsafe class AudioFormat : FilterContext
         ReadOnlySpan<int> sampleRates,
         ReadOnlySpan<ChannelLayout> channelLayouts,
         FilterGraph graph)
-    {        
-        var context = Allocate(name, graph);
+    {
+        AudioFormat context = Allocate(name, graph);
 
         if (!sampleFormats.IsEmpty)
             context.SetOption(

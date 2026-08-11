@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace FFmpegTest;
-
-using System.Text.Json.Serialization;
-
-using System;
-using System.Text.Json.Serialization;
 
 public sealed class FourCCConverter() : JsonConverter<FourCC>
 {
@@ -21,26 +11,20 @@ public sealed class FourCCConverter() : JsonConverter<FourCC>
         {
             ReadOnlySpan<char> str = reader.GetString()!;
 
-            if (str.Length == 0)
-                throw new JsonException($"Could not convert \"{reader.GetString()!}\" to a FourCC value");
-            if (str.StartsWith("0x"))
-                return uint.Parse(str[2..], System.Globalization.NumberStyles.HexNumber);
-            else if (str[0] == 'x')
-                return uint.Parse(str[1..], System.Globalization.NumberStyles.HexNumber);
-            else if (char.IsDigit(str[0]))
-                return uint.Parse(str);
-            else
-                return str;
+            return str.Length == 0
+                ? throw new JsonException($"Could not convert \"{reader.GetString()!}\" to a FourCC value")
+                : str.StartsWith("0x")
+                ? (FourCC)uint.Parse(str[2..], System.Globalization.NumberStyles.HexNumber)
+                : str[0] == 'x'
+                ? (FourCC)uint.Parse(str[1..], System.Globalization.NumberStyles.HexNumber)
+                : char.IsDigit(str[0]) ? (FourCC)uint.Parse(str) : (FourCC)str;
         }
-        else if (reader.TokenType == JsonTokenType.Number)
-            return reader.GetUInt32();
         else
-            throw new JsonException($"Could not parse token of type {reader.TokenType} as FourCC");
+            return reader.TokenType == JsonTokenType.Number
+            ? (FourCC)reader.GetUInt32()
+            : throw new JsonException($"Could not parse token of type {reader.TokenType} as FourCC");
     }
-    public override void Write(Utf8JsonWriter writer, FourCC value, JsonSerializerOptions options)
-    {
-        writer.WriteStringValue($"0x{(uint)value:x}");
-    }
+    public override void Write(Utf8JsonWriter writer, FourCC value, JsonSerializerOptions options) => writer.WriteStringValue($"0x{(uint)value:x}");
 }
 
 public class FFProbeJson
@@ -48,7 +32,7 @@ public class FFProbeJson
     private static readonly JsonSerializerOptions OPTIONS = new()
     {
         NumberHandling = JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.AllowNamedFloatingPointLiterals,
-        Converters = {new FourCCConverter()}
+        Converters = { new FourCCConverter() }
     };
 
     [JsonPropertyName("streams")]

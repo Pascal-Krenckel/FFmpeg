@@ -85,7 +85,7 @@ public sealed class Transcoder : IDisposable
         int height = bfSink?.Height ?? InputCodecs[sourceIndex].Height;
         Rational timeBase = bfSink?.TimeBase ?? InputStreams[sourceIndex].TimeBase;
         PixelFormat pixFmt = bfSink?.PixelFormat ?? InputCodecs[sourceIndex].PixelFormat;
-        if ((bfSink?.TryGetChannelLayout(out ChannelLayout? l) != true))
+        if (bfSink?.TryGetChannelLayout(out ChannelLayout? l) != true)
             l = InputCodecs[sourceIndex].ChannelLayout.GetReferencedObject()!;
         using ChannelLayout layout = l!;
         ColorRange colorRange = bfSink?.ColorRange ?? InputCodecs[sourceIndex].ColorRange;
@@ -144,7 +144,7 @@ public sealed class Transcoder : IDisposable
                 {
                     IBufferSink fctx = filter.OutputFilters.Single();
                     encoder.SampleRate = fctx.SampleRate;
-                    _  = fctx.TryGetChannelLayout(out ChannelLayout? ch);
+                    _ = fctx.TryGetChannelLayout(out ChannelLayout? ch);
                     encoder.ChannelLayout.CopyFrom(ch);
                     ch.Dispose();
                     encoder.SampleFormat = fctx.SampleFormat;
@@ -235,7 +235,7 @@ public sealed class Transcoder : IDisposable
             PreviewOutputStreamIndex = Sink.FormatContext.FindBestStream(MediaType.Audio);
     }
     private DrainState drainState = DrainState.None;
-   
+
     [Flags]
     private enum DrainState { None, DecoderDraining = 0b1, DecoderDrained = 0b11, FilterDraining = 0b100, FilterDrained = 0b1100, EncoderDraining = 0b10000, EncoderDrained = 0b110000 };
     private void DrainDecoders()

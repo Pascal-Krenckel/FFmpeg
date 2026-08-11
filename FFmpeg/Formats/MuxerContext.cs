@@ -179,7 +179,7 @@ public unsafe class MuxerContext : FormatContext
             throw new OutOfMemoryException();
         res->id = res->index;
 
-        var newStream = new AVStream(res);
+        AVStream newStream = new(res);
         newStream.CodecParameters.CopyFrom(copyStream.CodecParameters);
         newStream.TimeBase = copyStream.TimeBase;
         return newStream;
@@ -406,12 +406,12 @@ public unsafe class MuxerContext : FormatContext
 
     /// <inheritdoc />
     protected override void Dispose(bool disposing)
-    {        
+    {
         if (disposing)
         {
             ioContext?.Dispose();
         }
-        ffmpeg.avio_close(Context->pb);
+        _ = ffmpeg.avio_close(Context->pb);
         ffmpeg.avformat_free_context(Context);
         Context = null;
         base.Dispose(disposing);

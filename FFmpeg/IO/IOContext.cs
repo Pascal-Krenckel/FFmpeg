@@ -40,7 +40,7 @@ public abstract unsafe class IOContext : AVIOContext
         FormatContext = formatContext;
         gch = GCHandle.Alloc(this);
         formatContext.ioContext?.Dispose();
-        
+
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
@@ -72,7 +72,7 @@ public abstract unsafe class IOContext : AVIOContext
     /// <summary>
     /// Initializes a new <see cref="IOContext"/>
     /// </summary>
-    public IOContext() { FormatContext = null!; }
+    public IOContext() => FormatContext = null!;
 
     /// <summary>
     /// Attaches this I/O context to the specified format context.
@@ -226,7 +226,7 @@ public abstract unsafe class IOContext : AVIOContext
     {
         get => (Seekable)FormatContext.Context->pb->seekable;
         protected set => FormatContext.Context->pb->seekable = (int)value;
-    }   
+    }
     #endregion
 
     #region Dispose

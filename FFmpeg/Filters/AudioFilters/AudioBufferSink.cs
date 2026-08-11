@@ -1,12 +1,7 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
-using FFmpeg.Filters.VideoFilters;
-using FFmpeg.IO;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace FFmpeg.Filters.AudioFilters;
 
@@ -84,7 +79,8 @@ public unsafe class AudioBufferSink : FilterContext, IBufferSink
     /// </exception>
     public AVResult32 ReceiveFrame(AVFrame frame)
     {
-        if(frame == null) throw new ArgumentNullException(nameof(frame),"´frame was null");
+        if (frame == null)
+            throw new ArgumentNullException(nameof(frame), "´frame was null");
 
         frame.Unreference();
 

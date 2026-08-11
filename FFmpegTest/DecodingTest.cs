@@ -1,31 +1,23 @@
 using FFmpeg.Audio;
-using FFmpeg.AutoGen;
 using FFmpeg.Codecs;
 using FFmpeg.Formats;
 using FFmpeg.Images;
 using FFmpeg.Utils;
-using System.Net.Sockets;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics.Arm;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace FFmpegTest;
 
 [TestClass]
 public class DecodingTest
 {
-    private string jsonFile = @"Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4.json";
+    private readonly string jsonFile = @"Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4.json";
 
-    private string bgraFile = @"Test-Files\n123.bgra";
-    private string yuvFile = @"Test-Files\n123.yuv";
-    private string audioFileS16le = @"Test-Files\10s-11s.s16le.pcm";
-    private string audioFileF32le = @"Test-Files\10s-11s.f32le.pcm";
+    private readonly string bgraFile = @"Test-Files\n123.bgra";
+    private readonly string yuvFile = @"Test-Files\n123.yuv";
+    private readonly string audioFileS16le = @"Test-Files\10s-11s.s16le.pcm";
+    private readonly string audioFileF32le = @"Test-Files\10s-11s.f32le.pcm";
 
-    DemuxerContext? demuxerContext;
-    FFProbeJson? ffProbe;
+    private DemuxerContext? demuxerContext;
+    private FFProbeJson? ffProbe;
 
     [TestInitialize]
     public void Initialize()
@@ -36,16 +28,13 @@ public class DecodingTest
     }
 
     [TestCleanup]
-    public void Cleanup()
-    {
-        demuxerContext?.Dispose();
-    }
+    public void Cleanup() => demuxerContext?.Dispose();
 
     [TestMethod]
     public void CheckFormatProperties()
     {
 
-        var expectedFormat = InputFormat.FindFormat(ffProbe!.Format.FormatName);
+        InputFormat? expectedFormat = InputFormat.FindFormat(ffProbe!.Format.FormatName);
         Assert.AreEqual(expectedFormat, demuxerContext!.InputFormat);
         Assert.AreEqual(ffProbe.Format.NbStreams, demuxerContext.StreamCount);
         Assert.AreEqual(ffProbe.Format.StartTime, (double)(demuxerContext.StartTime * Rational.TIME_BASE));
@@ -57,7 +46,7 @@ public class DecodingTest
     public void CheckStreamProperties()
     {
         Assert.HasCount(ffProbe!.Streams.Length, demuxerContext!.Streams);
-        foreach (var probeStream in ffProbe.Streams)
+        foreach (Stream probeStream in ffProbe.Streams)
             CheckStreamProperties(probeStream, demuxerContext.Streams[probeStream.Index]);
     }
 
@@ -77,7 +66,7 @@ public class DecodingTest
             Assert.AreEqual(probeStream.Profile, avStream.CodecParameters.Profile.Name);
             Assert.AreEqual(probeStream.Width, avStream.CodecParameters.Width);
             Assert.AreEqual(probeStream.Height, avStream.CodecParameters.Height);
-            Assert.AreEqual(PixelFormat.Parse((probeStream.PixFmt)), avStream.CodecParameters.PixelFormat);
+            Assert.AreEqual(PixelFormat.Parse(probeStream.PixFmt), avStream.CodecParameters.PixelFormat);
             Assert.AreEqual(Rational.Parse(probeStream.SampleAspectRatio), avStream.SampleAspectRatio);
             Assert.AreEqual(probeStream.Level, avStream.CodecParameters.Level);
 
@@ -104,7 +93,7 @@ public class DecodingTest
     }
     public static void SelectStream(DemuxerContext context, int index)
     {
-        foreach (var stream in context.Streams)
+        foreach (AVStream stream in context.Streams)
             stream.Discard = DiscardFlags.All;
         context.Streams[index].Discard = DiscardFlags.Default;
     }
@@ -116,10 +105,10 @@ public class DecodingTest
         return index;
     }
 
-    public static AVResult32 SeekAndRead(DemuxerContext input,int streamIndex, CodecContext codec, AVFrame frame, TimeSpan seek)
+    public static AVResult32 SeekAndRead(DemuxerContext input, int streamIndex, CodecContext codec, AVFrame frame, TimeSpan seek)
     {
-        using var packet = AVPacket.Allocate();
-        var result = input.Seek(seek, streamIndex);
+        using AVPacket packet = AVPacket.Allocate();
+        AVResult32 result = input.Seek(seek, streamIndex);
         if (result.IsError)
             return result;
         codec.FlushBuffers(); // we seeked so flush the codecs internal buffers
@@ -131,7 +120,7 @@ public class DecodingTest
                 result = input.ReadPacket(packet);
                 if (result.IsError)
                     return result;
-                if(packet.Flags.HasFlag(PacketFlags.Discard))
+                if (packet.Flags.HasFlag(PacketFlags.Discard))
                 {
                     result = AVResult32.TryAgain;
                     continue;
@@ -141,7 +130,7 @@ public class DecodingTest
                     return result;
                 result = codec.ReceiveFrame(frame);
             } while (result.IsTryAgain);
-        } while (!result.IsError && (frame.GetPresentationTimestamp()+frame.Duration) * frame.TimeBase < seek);
+        } while (!result.IsError && (frame.GetPresentationTimestamp() + frame.Duration) * frame.TimeBase < seek);
         return result;
     }
 
@@ -150,13 +139,13 @@ public class DecodingTest
     {
         int frameNr = 123;
         byte[] yuv = File.ReadAllBytes(yuvFile);
-        int videoIndex = SelectStream(demuxerContext!,MediaType.Video);
+        int videoIndex = SelectStream(demuxerContext!, MediaType.Video);
         TimeSpan estimatedPTS = frameNr / demuxerContext!.Streams[videoIndex].RealFrameRate;
         Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
         using CodecContext decoder = CodecContext.Open(c, demuxerContext.Streams[videoIndex].CodecParameters);
         using AVFrame frame = AVFrame.Allocate();
 
-        SeekAndRead(demuxerContext,videoIndex,decoder,frame, estimatedPTS).ThrowIfError();
+        SeekAndRead(demuxerContext, videoIndex, decoder, frame, estimatedPTS).ThrowIfError();
 
 
         using Image image = Image.FromPixelCopy(new ImageInfo(frame.Width, frame.Height, PixelFormat.YUV420P), yuv);

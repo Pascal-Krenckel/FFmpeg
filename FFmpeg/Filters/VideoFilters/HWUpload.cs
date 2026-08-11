@@ -1,9 +1,5 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.HW;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -54,7 +50,7 @@ public unsafe class HWUpload : FilterContext
     /// </remarks>
     public static HWUpload Allocate(string name, FilterGraph graph)
     {
-        var ptr = AllocateInternal(name, Filter.HWUpload, graph);
+        _AVFilterContext* ptr = AllocateInternal(name, Filter.HWUpload, graph);
         return new(ptr);
     }
 
@@ -76,7 +72,7 @@ public unsafe class HWUpload : FilterContext
     /// </returns>
     public static HWUpload Create(string name, HW.DeviceContext hwContext, FilterGraph graph)
     {
-        var upload = Allocate(name, graph);
+        HWUpload upload = Allocate(name, graph);
         upload.HwDeviceContext.SetReferencedObject(hwContext);
         upload.Init().ThrowIfError();
         return upload;
@@ -101,8 +97,8 @@ public unsafe class HWUpload : FilterContext
     /// <inheritdoc cref="Create(string, HW.DeviceContext, FilterGraph)"/>
     public static HWUpload Create(string name, HW.DeviceContext_ref hwContext, FilterGraph graph)
     {
-        var upload = Allocate(name, graph);
-        using var hwC = hwContext.GetReferencedObject();
+        HWUpload upload = Allocate(name, graph);
+        using DeviceContext? hwC = hwContext.GetReferencedObject();
         upload.HwDeviceContext.SetReferencedObject(hwC);
         upload.Init().ThrowIfError();
         return upload;
@@ -130,7 +126,7 @@ public unsafe class HWUpload : FilterContext
     /// </remarks>
     public static HWUpload Create(string name, DeviceType deviceType, FilterGraph graph)
     {
-        var upload = Allocate(name, graph);
+        HWUpload upload = Allocate(name, graph);
         upload.DeriveDevice = deviceType;
         upload.Init().ThrowIfError();
         return upload;

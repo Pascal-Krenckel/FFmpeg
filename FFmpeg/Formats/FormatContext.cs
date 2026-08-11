@@ -158,7 +158,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// this format context.
     /// </remarks>
     public void SetContext(IOContext context, IOOptions options, int bufferSize = 32768) => context.InitContext(this, options, bufferSize);
-    
+
     /// <summary>
     /// Gets the types of seeking supported by the underlying I/O context.
     /// </summary>
@@ -167,7 +167,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// <see cref="AVIOContext"/>. Derived classes can modify this value when creating
     /// or configuring a custom I/O context.
     /// </remarks>
-    public Seekable Seekable => Context->pb != null ? (Seekable)(Context->pb->seekable) : Seekable.None;
+    public Seekable Seekable => Context->pb != null ? (Seekable)Context->pb->seekable : Seekable.None;
     #endregion
 
     /// <summary>
@@ -188,7 +188,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// <remarks>
     /// Returns <see langword="null"/> if the information is unavailable.
     /// </remarks>
-    public DateTime? StartTimeRealTime => Context->start_time_realtime != ffmpeg.AV_NOPTS_VALUE ? DateTime.UnixEpoch.AddTicks(10*Context->start_time_realtime) : null;
+    public DateTime? StartTimeRealTime => Context->start_time_realtime != ffmpeg.AV_NOPTS_VALUE ? DateTime.UnixEpoch.AddTicks(10 * Context->start_time_realtime) : null;
 
     #region IDisposable
 
@@ -201,10 +201,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// Releases the resources used by the current format context.
     /// </summary>
     /// <param name="disposing">Indicates whether the method is being called from the <see cref="Dispose()"/> method or a finalizer.</param>
-    protected virtual void Dispose(bool disposing)
-    {
-        IsDisposed = true;
-    }
+    protected virtual void Dispose(bool disposing) => IsDisposed = true;
 
 
     /// <summary>
@@ -261,7 +258,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
         long dts, wall;
         int res = ffmpeg.av_get_output_timestamp(Context, streamIndex, &dts, &wall);
         timestamp = dts * timeBase;
-        wallTime = TimeSpan.FromTicks(10L*wall);
+        wallTime = TimeSpan.FromTicks(10L * wall);
         return res;
     }
 

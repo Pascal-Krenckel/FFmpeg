@@ -1,23 +1,17 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Unsafe;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.HW.Vulkan;
 
 /// <summary>
 /// Represents a Vulkan device context associated with an FFmpeg hardware device.
 /// </summary>
-public unsafe readonly struct VulkanDeviceContext : IAVPointer<_AVVulkanDeviceContext>
+public readonly unsafe struct VulkanDeviceContext : IAVPointer<_AVVulkanDeviceContext>
 {
-    readonly _AVVulkanDeviceContext* context;
+    private readonly _AVVulkanDeviceContext* context;
 
-    internal VulkanDeviceContext(_AVVulkanDeviceContext* context)
-    {
-        this.context = context;
-    }
+    internal VulkanDeviceContext(_AVVulkanDeviceContext* context) => this.context = context;
 
     unsafe _AVVulkanDeviceContext* IAVPointer<_AVVulkanDeviceContext>.Pointer => context;
 
@@ -34,11 +28,7 @@ public unsafe readonly struct VulkanDeviceContext : IAVPointer<_AVVulkanDeviceCo
     /// Thrown if the frame does not have an associated hardware device context, or if the
     /// associated device is not a Vulkan device.
     /// </exception>
-    public static VulkanDeviceContext FromAVFrame(AVFrame frame)
-    {
-        if (frame.FramesContext.IsEmpty || frame.FramesContext.DeviceContext.DeviceType != DeviceType.Vulkan)
-            throw new InvalidOperationException();
-
-        return frame.FramesContext.DeviceContext.AsVulkan();
-    }
+    public static VulkanDeviceContext FromAVFrame(AVFrame frame) => frame.FramesContext.IsEmpty || frame.FramesContext.DeviceContext.DeviceType != DeviceType.Vulkan
+            ? throw new InvalidOperationException()
+            : frame.FramesContext.DeviceContext.AsVulkan();
 }

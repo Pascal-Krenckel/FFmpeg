@@ -1,12 +1,8 @@
 ﻿using FFmpeg.Audio;
 using FFmpeg.AutoGen;
 using FFmpeg.Images;
-using FFmpeg.IO;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -29,7 +25,7 @@ public unsafe interface IBufferSink
     /// <returns>
     /// The result returned by FFmpeg.
     /// </returns>
-    public AVResult32 ReceiveFrame(AVFrame frame)
+    AVResult32 ReceiveFrame(AVFrame frame)
     {
         frame.Unreference();
         int res = ffmpeg.av_buffersink_get_frame(Context, frame.Frame);
@@ -41,13 +37,13 @@ public unsafe interface IBufferSink
     /// <summary>
     /// Gets the media type produced by the buffer sink filter.
     /// </summary>
-    public MediaType MediaType =>
+    MediaType MediaType =>
         (MediaType)ffmpeg.av_buffersink_get_type(Context);
 
     /// <summary>
     /// Gets the time base of frames produced by the buffer sink filter.
     /// </summary>
-    public Rational TimeBase =>
+    Rational TimeBase =>
         ffmpeg.av_buffersink_get_time_base(Context);
 
     /// <summary>
@@ -56,7 +52,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public PixelFormat PixelFormat =>
+    PixelFormat PixelFormat =>
         (PixelFormat)ffmpeg.av_buffersink_get_format(Context);
 
     /// <summary>
@@ -65,7 +61,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public Rational FrameRate =>
+    Rational FrameRate =>
         ffmpeg.av_buffersink_get_frame_rate(Context);
 
     /// <summary>
@@ -74,7 +70,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public int Width =>
+    int Width =>
         ffmpeg.av_buffersink_get_w(Context);
 
     /// <summary>
@@ -83,7 +79,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public int Height =>
+    int Height =>
         ffmpeg.av_buffersink_get_h(Context);
 
     /// <summary>
@@ -92,7 +88,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public ColorSpace ColorSpace =>
+    ColorSpace ColorSpace =>
         (ColorSpace)ffmpeg.av_buffersink_get_colorspace(Context);
 
     /// <summary>
@@ -101,7 +97,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public Rational PixelAspectRatio =>
+    Rational PixelAspectRatio =>
         ffmpeg.av_buffersink_get_sample_aspect_ratio(Context);
 
     /// <summary>
@@ -110,8 +106,8 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public AlphaMode AlphaMode => (AlphaMode)ffmpeg.av_buffersink_get_alpha_mode(Context);
-    
+    AlphaMode AlphaMode => (AlphaMode)ffmpeg.av_buffersink_get_alpha_mode(Context);
+
 
     /// <summary>
     /// Gets the color range of frames produced by the buffer sink filter.
@@ -119,7 +115,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for video buffer sink filters.
     /// </remarks>
-    public ColorRange ColorRange =>
+    ColorRange ColorRange =>
         (ColorRange)ffmpeg.av_buffersink_get_color_range(Context);
 
     /// <summary>
@@ -128,7 +124,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for audio buffer sink filters.
     /// </remarks>
-    public int Channels =>
+    int Channels =>
         ffmpeg.av_buffersink_get_channels(Context);
 
     /// <summary>
@@ -137,7 +133,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for audio buffer sink filters.
     /// </remarks>
-    public SampleFormat SampleFormat =>
+    SampleFormat SampleFormat =>
         (SampleFormat)ffmpeg.av_buffersink_get_format(Context);
 
     /// <summary>
@@ -154,7 +150,7 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This method is only valid for audio buffer sink filters.
     /// </remarks>
-    public bool TryGetChannelLayout([NotNullWhen(true)] out Audio.ChannelLayout? layout)
+    bool TryGetChannelLayout([NotNullWhen(true)] out Audio.ChannelLayout? layout)
     {
         _AVChannelLayout l;
         if (ffmpeg.av_buffersink_get_ch_layout(Context, &l) < 0)
@@ -172,6 +168,6 @@ public unsafe interface IBufferSink
     /// <remarks>
     /// This property is only valid for audio buffer sink filters.
     /// </remarks>
-    public int SampleRate =>
+    int SampleRate =>
         ffmpeg.av_buffersink_get_sample_rate(Context);
 }

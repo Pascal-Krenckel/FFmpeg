@@ -472,17 +472,15 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <param name="value">The value to set (can be string, long, double, etc.).</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
-    public AVResult32 SetOption(string name, object value, bool recursive = true)
-    {
-        if (TryConvert(value, out string str))
-            return SetOption(name, str, recursive);
-        if (TryConvert(value, out long l))
-            return SetOption(name, l, recursive);
-        if (TryConvert(value, out double d))
-            return SetOption(name, d, recursive);
-        if (TryConvert(value, out Rational r))
-            return SetOption(name, r, recursive);
-        return value is byte[] bytes
+    public AVResult32 SetOption(string name, object value, bool recursive = true) => TryConvert(value, out string str)
+            ? SetOption(name, str, recursive)
+            : TryConvert(value, out long l)
+            ? SetOption(name, l, recursive)
+            : TryConvert(value, out double d)
+            ? SetOption(name, d, recursive)
+            : TryConvert(value, out Rational r)
+            ? SetOption(name, r, recursive)
+            : value is byte[] bytes
             ? SetOption(name, bytes.AsSpan(), recursive)
             : value is Memory<byte> memory
             ? SetOption(name, memory, recursive)
@@ -497,7 +495,6 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
             : TryConvert(value, out ILookup<string, string> lookup)
             ? SetOption(name, lookup, recursive)
             : TryConvert(value, out ChannelLayout layout) ? SetOption(name, layout, recursive) : (AVResult32)AVResult32.InvalidData;
-    }
 
 
 
@@ -1296,9 +1293,9 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
 
     /// <inheritdoc cref="TryGetOption(string, out long, bool)"/>
     public AVResult32 TryGetOption(Option option, out long value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
-    
+
     /// <inheritdoc cref="TryGetOption(string, out long, bool)"/>
-    public AVResult32 TryGetOption<T>(Option option, out T value, bool recursive = true) where T:Enum => TryGetOption(option.Name, out value, recursive);
+    public AVResult32 TryGetOption<T>(Option option, out T value, bool recursive = true) where T : Enum => TryGetOption(option.Name, out value, recursive);
 
     /// <inheritdoc cref="TryGetOption(string, out ulong, bool)"/>
     public AVResult32 TryGetOption(Option option, out ulong value, bool recursive = true) => TryGetOption(option.Name, out value, recursive);
@@ -1460,7 +1457,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
             obj = null;
             return AVResult32.InvalidArgument;
         }
-        
+
         switch (type)
         {
             case OptionType.Color:

@@ -164,7 +164,7 @@ public readonly unsafe struct Codec : IEquatable<Codec>
         get
         {
             if (codec == null)
-                return  [];
+                return [];
             void* output = null;
             int count;
             AVResult32 res = ffmpeg.avcodec_get_supported_config(null, codec, _AVCodecConfig.AV_CODEC_CONFIG_SAMPLE_RATE, 0, &output, &count);

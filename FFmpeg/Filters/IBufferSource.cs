@@ -1,9 +1,5 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.IO;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters;
 
@@ -26,7 +22,7 @@ public unsafe interface IBufferSource
     /// <returns>
     /// The result of the operation.
     /// </returns>
-    public AVResult32 SetBufferSourceParameters(BufferSrcParameters parameters) =>
+    AVResult32 SetBufferSourceParameters(BufferSrcParameters parameters) =>
         ffmpeg.av_buffersrc_parameters_set(Context, parameters.parameters);
 
     /// <summary>
@@ -42,7 +38,7 @@ public unsafe interface IBufferSource
     /// <returns>
     /// The result returned by FFmpeg.
     /// </returns>
-    public AVResult32 SendFrame(AVFrame? frame, bool keepRef = false)
+    AVResult32 SendFrame(AVFrame? frame, bool keepRef = false)
     {
         AutoGen._AVFrame* f = frame != null ? frame.Frame : null;
         return keepRef ? ffmpeg.av_buffersrc_write_frame(Context, f) : ffmpeg.av_buffersrc_add_frame(Context, f);
@@ -54,6 +50,6 @@ public unsafe interface IBufferSource
     /// <returns>
     /// The result returned by FFmpeg.
     /// </returns>
-    public AVResult32 Drain() => SendFrame(null);
+    AVResult32 Drain() => SendFrame(null);
 
 }

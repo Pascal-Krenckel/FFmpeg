@@ -1,6 +1,7 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Collections;
 using FFmpeg.Utils;
+using System.Reflection;
 
 namespace FFmpeg.Filters;
 
@@ -8,7 +9,7 @@ public unsafe partial class FilterContext
 {
 
     internal static _AVFilterContext* AllocateInternal(string name, Filter filter, FilterGraph graph) => ffmpeg.avfilter_graph_alloc_filter(graph.graph, filter.filter, name);
- 
+
     /// <summary>
     /// Allocates a filter context without initializing it.
     /// </summary>
@@ -58,7 +59,7 @@ public unsafe partial class FilterContext
     /// the filter. After the method returns successfully, the filter is ready to
     /// be linked into a filter graph and used.
     /// </remarks>
-    public static FilterContext Create(string name, Filter filter, FilterGraph graph) => Create(name,filter,default(string),graph);
+    public static FilterContext Create(string name, Filter filter, FilterGraph graph) => Create(name, filter, default(string), graph);
 
     /// <summary>
     /// Creates and initializes a filter within the specified filter graph.
@@ -202,12 +203,12 @@ public unsafe partial class FilterContext
     {
         if (this is T typed)
             return typed;
-        var constructors = typeof(T).GetConstructors(
+        ConstructorInfo[] constructors = typeof(T).GetConstructors(
             System.Reflection.BindingFlags.NonPublic |
             System.Reflection.BindingFlags.Public |
             System.Reflection.BindingFlags.Instance);
 
-        var constructor = constructors.FirstOrDefault() ?? throw new InvalidCastException();
+        ConstructorInfo constructor = constructors.FirstOrDefault() ?? throw new InvalidCastException();
 
         return (T)constructor.Invoke([(IntPtr)context]);
     }

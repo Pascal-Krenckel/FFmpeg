@@ -64,7 +64,7 @@ internal static class SpanExtension
             return sb.ToString();
         }
 
-        public static string Join<T>(char separator, ReadOnlySpan<T> span, Func<T,string> toString)
+        public static string Join<T>(char separator, ReadOnlySpan<T> span, Func<T, string> toString)
         {
             if (span.IsEmpty)
                 return string.Empty;
@@ -73,7 +73,7 @@ internal static class SpanExtension
             StringBuilder sb = new();
             _ = sb.Append(toString(span[0]));
             for (int i = 1; i < span.Length; i++)
-                _ = sb.Append(separator).Append(toString( span[i]));
+                _ = sb.Append(separator).Append(toString(span[i]));
             return sb.ToString();
         }
 

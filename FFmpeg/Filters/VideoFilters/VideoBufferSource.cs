@@ -1,9 +1,7 @@
 ﻿using FFmpeg.AutoGen;
+using FFmpeg.Codecs;
 using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -225,7 +223,7 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         if (ptr == null)
             throw new NullReferenceException();
 
-        var context = new VideoBufferSource(ptr)
+        VideoBufferSource context = new(ptr)
         {
             Width = ctx.Width,
             Height = ctx.Height,
@@ -279,8 +277,8 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         if (ptr == null)
             throw new NullReferenceException();
 
-        var parameters = stream.CodecParameters;
-        var context = new VideoBufferSource(ptr)
+        CodecParameters_ref parameters = stream.CodecParameters;
+        VideoBufferSource context = new(ptr)
         {
             Width = parameters.Width,
             Height = parameters.Height,

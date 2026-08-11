@@ -418,12 +418,12 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
         foreach (FilterContext context in this)
         {
             using Collections.AVMultiDictionary dictionary = [];
-            if(!context.Name.StartsWith("auto_") && (context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink)))
-            foreach (Option o in context.GetOptions(true))
-            {
-                if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
-                    dictionary.Add(o.Name, value!);
-            }
+            if (!context.Name.StartsWith("auto_") && context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink))
+                foreach (Option o in context.GetOptions(true))
+                {
+                    if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
+                        dictionary.Add(o.Name, value!);
+                }
 
             _ = FilterContext.Create(context.Name, context.Filter, dictionary, copy);
         }
@@ -447,8 +447,8 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     /// </summary>
     public void Flush()
     {
-        using var copy = Copy();
-        var ptr = graph;
+        using FilterGraph copy = Copy();
+        _AVFilterGraph* ptr = graph;
         graph = copy.graph;
         copy.graph = ptr;
     }

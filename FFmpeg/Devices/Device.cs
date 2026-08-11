@@ -18,7 +18,7 @@ namespace FFmpeg.Devices;
 /// </remarks>
 public static unsafe class Device
 {
-    static readonly object _lock = new();
+    private static readonly object _lock = new();
     static Device() => RegisterAllDevices();
 
     private static void RegisterAllDevices()

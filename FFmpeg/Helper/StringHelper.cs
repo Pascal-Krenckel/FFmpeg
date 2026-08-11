@@ -14,7 +14,7 @@ internal static unsafe class StringHelper
     }
 
     extension(string)
-    {     
+    {
         public static string Join<T>(char separator, IReadOnlyList<T> span, Func<T, string> toString)
         {
             if (span.Count == 0)

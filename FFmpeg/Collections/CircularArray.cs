@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
+﻿using System.Collections;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace FFmpeg.Collections;
 
@@ -18,7 +14,7 @@ namespace FFmpeg.Collections;
 /// <typeparam name="T">The type of elements stored in the collection.</typeparam>
 public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
 {
-    T[] data;
+    private T[] data;
 
     /// <summary>
     /// The physical index of the first logical element, i.e. logical index 0.
@@ -52,19 +48,13 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     /// <summary>
     /// Creates an empty <see cref="CircularArray{T}"/> with a small default capacity.
     /// </summary>
-    public CircularArray()
-    {
-        data = new T[16];
-    }
+    public CircularArray() => data = new T[16];
 
     /// <summary>
     /// Creates an empty <see cref="CircularArray{T}"/> with the given initial capacity.
     /// </summary>
     /// <param name="capacity">The number of elements the backing array can hold before it needs to grow.</param>
-    public CircularArray(int capacity)
-    {
-        data = new T[capacity];
-    }
+    public CircularArray(int capacity) => data = new T[capacity];
 
     /// <summary>
     /// Creates a <see cref="CircularArray{T}"/> containing a copy of <paramref name="list"/>'s elements.
@@ -116,7 +106,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         data = new T[list.Count];
         Count = list.Count;
         int index = 0;
-        foreach (var item in list)
+        foreach (T? item in list)
             data[index++] = item;
     }
 
@@ -128,7 +118,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     public CircularArray(IEnumerable<T> list)
     {
         data = new T[25];
-        foreach (var item in list)
+        foreach (T? item in list)
             Add(item);
     }
 
@@ -140,7 +130,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     private void Resize(int newCapacity)
     {
         T[] newData = new T[newCapacity];
-        GetSpans(out var first, out var second);
+        GetSpans(out Span<T> first, out Span<T> second);
         first.CopyTo(newData);
         second.CopyTo(newData.AsSpan(first.Length));
         Head = 0;
@@ -157,7 +147,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     public bool IsReadOnly => false;
 
     T IList<T>.this[int index] { get => this[index]; set => this[index] = value; }
-    T IReadOnlyList<T>.this[int index] { get => this[index]; }
+    T IReadOnlyList<T>.this[int index] => this[index];
 
     /// <summary>
     /// Returns the live elements as one or two contiguous <see cref="Span{T}"/> slices over the
@@ -224,7 +214,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     // bind to it structurally with no boxing. Only IEnumerable<T>/IEnumerable
     // consumers (LINQ, non-generic foreach, etc.) pay the boxing cost, via the
     // explicit interface implementations below.
-    public CircularArrayEnumerator GetEnumerator() => new CircularArrayEnumerator(this);
+    public CircularArrayEnumerator GetEnumerator() => new(this);
     IEnumerator<T> IEnumerable<T>.GetEnumerator() => GetEnumerator();
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -238,9 +228,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         if (Head < Tail)
         {
             int index = Array.IndexOf(data, item, Head, Count);
-            if (index < 0)
-                return -1;
-            return index - Head;
+            return index < 0 ? -1 : index - Head;
         }
         else
         {
@@ -248,9 +236,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
             if (index >= 0)
                 return index - Head;
             index = Array.IndexOf(data, item, 0, Tail);
-            if (index >= 0)
-                return index + (Capacity - Head);
-            return -1;
+            return index >= 0 ? index + (Capacity - Head) : -1;
         }
     }
 
@@ -308,7 +294,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
                 InsertRange(index, crlist);
                 return;
             default:
-                var tmp = data.ToList();
+                List<T> tmp = data.ToList();
                 InsertRange(index, (IList<T>)tmp);
                 return;
         }
@@ -531,11 +517,11 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         int physicalStart = (Head + start) % Capacity;
         int firstLength = Math.Min(src.Length, Capacity - physicalStart);
 
-        src.Slice(0, firstLength).CopyTo(data.AsSpan(physicalStart, firstLength));
+        src[..firstLength].CopyTo(data.AsSpan(physicalStart, firstLength));
 
         int remaining = src.Length - firstLength;
         if (remaining > 0)
-            src.Slice(firstLength).CopyTo(data.AsSpan(0, remaining));
+            src[firstLength..].CopyTo(data.AsSpan(0, remaining));
     }
 
     /// <summary>
@@ -553,7 +539,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         int physicalStart = (Head + start) % Capacity;
         int firstLength = Math.Min(src.Count, Capacity - physicalStart);
 
-        var copySpan = data.AsSpan(physicalStart, firstLength);
+        Span<T> copySpan = data.AsSpan(physicalStart, firstLength);
         for (int i = 0; i < firstLength; i++)
             copySpan[i] = src[i];
 
@@ -581,7 +567,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         int physicalStart = (Head + start) % Capacity;
         int firstLength = Math.Min(src.Count, Capacity - physicalStart);
 
-        var copySpan = data.AsSpan(physicalStart, firstLength);
+        Span<T> copySpan = data.AsSpan(physicalStart, firstLength);
         for (int i = 0; i < firstLength; i++)
             copySpan[i] = src[i];
 
@@ -609,9 +595,9 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         int physicalStart = (Head + start) % Capacity;
         int firstLength = Math.Min(src.Count, Capacity - physicalStart);
 
-        var copySpan = data.AsSpan(physicalStart, firstLength);
+        Span<T> copySpan = data.AsSpan(physicalStart, firstLength);
         int count = 0;
-        var iterator = src.GetEnumerator();
+        IEnumerator<T> iterator = src.GetEnumerator();
 
         for (; count < firstLength && iterator.MoveNext(); count++)
             copySpan[count] = iterator.Current;
@@ -639,9 +625,9 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         int physicalStart = (Head + start) % Capacity;
         int firstLength = Math.Min(src.Count, Capacity - physicalStart);
 
-        var copySpan = data.AsSpan(physicalStart, firstLength);
+        Span<T> copySpan = data.AsSpan(physicalStart, firstLength);
         int count = 0;
-        var iterator = src.GetEnumerator();
+        IEnumerator<T> iterator = src.GetEnumerator();
 
         for (; count < firstLength && iterator.MoveNext(); count++)
             copySpan[count] = iterator.Current;
@@ -821,7 +807,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     /// <param name="arrayIndex">The index in <paramref name="array"/> to start writing at.</param>
     public void CopyTo(T[] array, int arrayIndex)
     {
-        GetSpans(out var first, out var second);
+        GetSpans(out Span<T> first, out Span<T> second);
         first.CopyTo(array.AsSpan(arrayIndex));
         second.CopyTo(array.AsSpan(arrayIndex + first.Length));
     }
@@ -866,10 +852,7 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         }
 
         /// <inheritdoc/>
-        public void Reset()
-        {
-            _index = -1;
-        }
+        public void Reset() => _index = -1;
 
         /// <inheritdoc/>
         public readonly void Dispose() { }

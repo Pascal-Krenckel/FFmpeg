@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FFmpeg.Collections;
 
 namespace FFmpegTest;
-
-using FFmpeg.Collections;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 [TestClass]
 public class CircularArrayTests
@@ -18,8 +8,8 @@ public class CircularArrayTests
     [TestMethod]
     public void Add_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
         for (int i = 0; i < 1000; i++)
         {
@@ -33,8 +23,8 @@ public class CircularArrayTests
     [TestMethod]
     public void RemoveAt_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
         for (int i = 0; i < 100; i++)
         {
@@ -42,7 +32,7 @@ public class CircularArrayTests
             list.Add(i);
         }
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         while (list.Count > 0)
         {
@@ -58,10 +48,10 @@ public class CircularArrayTests
     [TestMethod]
     public void Insert_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         for (int i = 0; i < 1000; i++)
         {
@@ -77,17 +67,17 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertRange_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         for (int i = 0; i < 500; i++)
         {
             int index = random.Next(list.Count + 1);
             int count = random.Next(1, 20);
 
-            var values = new int[count];
+            int[] values = new int[count];
 
             for (int j = 0; j < values.Length; j++)
                 values[j] = random.Next();
@@ -102,22 +92,22 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertRange_MatchesList_List()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         for (int i = 0; i < 500; i++)
         {
             int index = random.Next(list.Count + 1);
             int count = random.Next(1, 20);
 
-            var values = new int[count].ToList();
+            List<int> values = new int[count].ToList();
 
             for (int j = 0; j < values.Count; j++)
                 values[j] = random.Next();
 
-            circular.InsertRange(index, (IEnumerable<int>)values);
+            circular.InsertRange(index, values);
             list.InsertRange(index, values);
 
             AssertEqual(list, circular);
@@ -127,17 +117,17 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertRange_MatchesList_ReadOnlyList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         for (int i = 0; i < 500; i++)
         {
             int index = random.Next(list.Count + 1);
             int count = random.Next(1, 20);
 
-            var values = new Queue<int>();
+            Queue<int> values = new();
 
             for (int j = 0; j < count; j++)
                 values.Enqueue(random.Next());
@@ -152,10 +142,10 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAndRemove_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
-        var random = new Random(12345);
+        Random random = new(12345);
 
         for (int i = 0; i < 5000; i++)
         {
@@ -182,8 +172,8 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAndRemove_WithWrapping_MatchesList()
     {
-        var circular = new CircularArray<int>(16);
-        var list = new List<int>();
+        CircularArray<int> circular = new(16);
+        List<int> list = [];
 
         // Move Head away from zero and create a wrapped representation.
         for (int i = 0; i < 12; i++)
@@ -200,7 +190,7 @@ public class CircularArrayTests
 
         AssertEqual(list, circular);
 
-        var random = new Random(42);
+        Random random = new(42);
 
         for (int i = 0; i < 5000; i++)
         {
@@ -227,8 +217,8 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAtBeginning_WhenWrapped_MatchesList()
     {
-        var circular = new CircularArray<int>(10);
-        var list = new List<int>();
+        CircularArray<int> circular = new(10);
+        List<int> list = [];
 
         for (int i = 0; i < 7; i++)
         {
@@ -257,8 +247,8 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAtEnd_WhenWrapped_MatchesList()
     {
-        var circular = new CircularArray<int>(10);
-        var list = new List<int>();
+        CircularArray<int> circular = new(10);
+        List<int> list = [];
 
         for (int i = 0; i < 7; i++)
         {
@@ -286,8 +276,8 @@ public class CircularArrayTests
     [TestMethod]
     public void RemoveFromBeginning_WhenWrapped_MatchesList()
     {
-        var circular = new CircularArray<int>(16);
-        var list = new List<int>();
+        CircularArray<int> circular = new(16);
+        List<int> list = [];
 
         for (int i = 0; i < 12; i++)
         {
@@ -315,8 +305,8 @@ public class CircularArrayTests
     [TestMethod]
     public void RemoveFromEnd_WhenWrapped_MatchesList()
     {
-        var circular = new CircularArray<int>(16);
-        var list = new List<int>();
+        CircularArray<int> circular = new(16);
+        List<int> list = [];
 
         for (int i = 0; i < 12; i++)
         {
@@ -346,7 +336,7 @@ public class CircularArrayTests
     [TestMethod]
     public void Clear_MatchesList()
     {
-        var circular = new CircularArray<int>();
+        CircularArray<int> circular = [];
 
         for (int i = 0; i < 100; i++)
             circular.Add(i);
@@ -360,8 +350,8 @@ public class CircularArrayTests
     [TestMethod]
     public void Indexer_MatchesList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
         for (int i = 0; i < 100; i++)
         {
@@ -392,8 +382,8 @@ public class CircularArrayTests
     [TestMethod]
     public void ContainsAndIndexOf_MatchList()
     {
-        var circular = new CircularArray<int>();
-        var list = new List<int>();
+        CircularArray<int> circular = [];
+        List<int> list = [];
 
         for (int i = 0; i < 100; i++)
         {
@@ -418,8 +408,8 @@ public class CircularArrayTests
     [TestMethod]
     public void CopyTo_MatchesList()
     {
-        var circular = new CircularArray<int>(10);
-        var list = new List<int>();
+        CircularArray<int> circular = new(10);
+        List<int> list = [];
 
         for (int i = 0; i < 8; i++)
         {
@@ -442,8 +432,8 @@ public class CircularArrayTests
 
         AssertEqual(list, circular);
 
-        var a = new int[30];
-        var b = new int[30];
+        int[] a = new int[30];
+        int[] b = new int[30];
 
         circular.CopyTo(a, 7);
         list.CopyTo(b, 7);
@@ -459,23 +449,23 @@ public class CircularArrayTests
         for (int i = 0; i < values.Length; i++)
             values[i] = i * 7;
 
-        var expected = new List<int>(values);
+        List<int> expected = [.. values];
 
         AssertEqual(expected, new CircularArray<int>(values));
-        AssertEqual(expected, new CircularArray<int>((IReadOnlyList<int>)values));
-        AssertEqual(expected, new CircularArray<int>((IList<int>)values));
-        AssertEqual(expected, new CircularArray<int>((ICollection<int>)values));
-        AssertEqual(expected, new CircularArray<int>((IEnumerable<int>)values));
+        AssertEqual(expected, [.. (IReadOnlyList<int>)values]);
+        AssertEqual(expected, [.. (IList<int>)values]);
+        AssertEqual(expected, [.. (ICollection<int>)values]);
+        AssertEqual(expected, [.. (IEnumerable<int>)values]);
         AssertEqual(expected, new CircularArray<int>(values.AsSpan()));
     }
 
     [TestMethod]
     public void RandomizedOperations_MatchList()
     {
-        var circular = new CircularArray<int>(4);
-        var list = new List<int>();
+        CircularArray<int> circular = new(4);
+        List<int> list = [];
 
-        var random = new Random(0x12345678);
+        Random random = new(0x12345678);
 
         for (int operation = 0; operation < 100_000; operation++)
         {
@@ -512,7 +502,7 @@ public class CircularArrayTests
                     int index = random.Next(list.Count + 1);
                     int count = random.Next(1, 15);
 
-                    var values = new int[count];
+                    int[] values = new int[count];
 
                     for (int i = 0; i < count; i++)
                         values[i] = random.Next();

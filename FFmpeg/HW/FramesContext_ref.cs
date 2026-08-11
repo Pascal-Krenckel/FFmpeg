@@ -121,13 +121,7 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
     /// <summary>
     /// The internal parent device context managed by the enclosing frames context
     /// </summary>
-    public DeviceContext_ref DeviceContext
-    {
-        get
-        {
-            return new DeviceContext_ref(&Pointer->device_ref, true);
-        }
-    }
+    public DeviceContext_ref DeviceContext => new(&Pointer->device_ref, true);
 
     /// <inheritdoc cref="_AVHWFramesContext.height"/>
     public int Height => Pointer->height;
@@ -144,7 +138,7 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
         get
         {
             CheckDisposed();
-            IAVPointer<_AVHWFramesContext> iAVPointer = ((IAVPointer<_AVHWFramesContext>)this);
+            IAVPointer<_AVHWFramesContext> iAVPointer = this;
             return iAVPointer.Pointer;
         }
     }
@@ -154,15 +148,7 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
     /// </summary>
     public Vulkan.VulkanFramesContext AsVulkan() => new((_AVVulkanFramesContext*)Pointer->hwctx);
 
-    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer
-    {
-        get
-        {
-            if (buffer == null || (*buffer) == null)
-                return null;
-            return (_AVHWFramesContext*)(*buffer)->data;
-        }
-    }
+    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer => buffer == null || (*buffer) == null ? (_AVHWFramesContext*)null : (_AVHWFramesContext*)(*buffer)->data;
 
     /// <summary>
     /// True if the instance does not contain any Frames Context.

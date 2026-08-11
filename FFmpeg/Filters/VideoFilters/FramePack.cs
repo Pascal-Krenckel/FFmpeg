@@ -1,8 +1,5 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.SideData;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -47,7 +44,7 @@ public unsafe class FramePack : FilterContext
     /// </remarks>
     public static FramePack Allocate(string name, FilterGraph graph)
     {
-        var ptr = AllocateInternal(name, Filter.FramePack, graph);
+        _AVFilterContext* ptr = AllocateInternal(name, Filter.FramePack, graph);
         return new(ptr);
     }
 
@@ -66,7 +63,7 @@ public unsafe class FramePack : FilterContext
     /// </returns>
     public static FramePack Create(string name, FilterGraph graph)
     {
-        var framePack = Allocate(name, graph);
+        FramePack framePack = Allocate(name, graph);
         framePack.Init().ThrowIfError();
         return framePack;
     }
@@ -89,7 +86,7 @@ public unsafe class FramePack : FilterContext
     /// </returns>
     public static FramePack Create(string name, Stereo3DType format, FilterGraph graph)
     {
-        var framePack = Allocate(name, graph);
+        FramePack framePack = Allocate(name, graph);
         framePack.Format = format;
         framePack.Init().ThrowIfError();
         return framePack;
@@ -123,8 +120,8 @@ public unsafe class FramePack : FilterContext
     /// </remarks>
     public static FramePack Create(string name, string format, FilterGraph graph)
     {
-        var framePack = Allocate(name, graph);
-        framePack.SetOption("format", format);
+        FramePack framePack = Allocate(name, graph);
+        _ = framePack.SetOption("format", format);
         framePack.Init().ThrowIfError();
         return framePack;
     }

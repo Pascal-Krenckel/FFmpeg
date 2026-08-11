@@ -278,7 +278,7 @@ public unsafe struct AVDictionary_ref : IDictionary<string, string>, Utils.IRefe
     }
 
     /// <inheritdoc cref="AVDictionary.ToString"/>
-    public readonly override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
+    public override readonly string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={kv.Value}"));
 
     /// <summary>
     /// Copies all key/value pairs from the specified dictionary into the

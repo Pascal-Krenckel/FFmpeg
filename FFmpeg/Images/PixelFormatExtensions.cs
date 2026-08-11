@@ -41,10 +41,7 @@ public static class PixelFormatExtensions
     /// <returns>
     /// The bits per pixel.
     /// </returns>
-    public unsafe static int BitsPerPixel(this PixelFormat pixelFormat)
-    {
-        return ffmpeg.av_get_bits_per_pixel(ffmpeg.av_pix_fmt_desc_get((_AVPixelFormat)pixelFormat));
-    }
+    public static unsafe int BitsPerPixel(this PixelFormat pixelFormat) => ffmpeg.av_get_bits_per_pixel(ffmpeg.av_pix_fmt_desc_get((_AVPixelFormat)pixelFormat));
 
     /// <summary>
     /// Swaps the byte order of a pixel format.

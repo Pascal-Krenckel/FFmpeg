@@ -20,7 +20,7 @@ public unsafe class FramesContext : IDisposable, IEquatable<FramesContext?>, IAV
         // Increase the reference count for the buffer
         this.buffer = buffer;
 
-    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer => (buffer==null) ? null : (_AVHWFramesContext*)buffer->data;
+    unsafe _AVHWFramesContext* IAVPointer<_AVHWFramesContext>.Pointer => (buffer == null) ? null : (_AVHWFramesContext*)buffer->data;
 
     /// <summary>
     /// Releases the resources used by this <see cref="FramesContext"/> instance and un-references the buffer.

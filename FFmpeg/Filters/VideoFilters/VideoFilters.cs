@@ -1,7 +1,5 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Images;
+﻿using FFmpeg.Images;
 using FFmpeg.Utils;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -14,7 +12,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// the created filter.
 /// </remarks>
 public static class VideoFilters
-{   
+{
 
     /// <summary>
     /// Creates a video scale filter.
@@ -81,7 +79,7 @@ public static class VideoFilters
     /// </returns>
     public static FilterContext CreateFormat(string name, PixelFormat format, FilterGraph graph)
     {
-        var context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
+        FilterContext context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
         context.SetOption("pix_fmts", format.ToFFmpegString()).ThrowIfError();
         context.Init().ThrowIfError();
         return context;
@@ -105,10 +103,10 @@ public static class VideoFilters
     /// </exception>
     public static FilterContext CreateFormat(string name, FilterGraph graph, params ReadOnlySpan<PixelFormat> formats)
     {
-        var context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
+        FilterContext context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
         if (formats.IsEmpty)
             throw new ArgumentException(nameof(formats));
-        context.Init($"pix_fmts={string.Join('|',formats, PixelFormatExtensions.ToFFmpegString)}").ThrowIfError();
+        context.Init($"pix_fmts={string.Join('|', formats, PixelFormatExtensions.ToFFmpegString)}").ThrowIfError();
         return context;
     }
 

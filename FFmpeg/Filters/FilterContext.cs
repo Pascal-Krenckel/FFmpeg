@@ -311,9 +311,6 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     /// <summary>
     /// This frees the filter context and removes it from it's filter graph
     /// </summary>
-    public void Delete()
-    {
-        ffmpeg.avfilter_free(context);
-    }
+    public void Delete() => ffmpeg.avfilter_free(context);
 }
 

@@ -23,7 +23,7 @@ public class RationalTest
         Assert.AreEqual(new Rational(16, 9), Rational.Parse(str_aspect_ratio));
         Assert.AreEqual(new Rational(5, 2), Rational.Parse(str_double));
         Assert.AreEqual(new Rational(5, 2), Rational.Parse(str_double_german, CultureInfo.GetCultureInfo("de-DE")));
-        Assert.Throws<FormatException>(() => Rational.Parse(str_invalid));
+        _ = Assert.Throws<FormatException>(() => Rational.Parse(str_invalid));
     }
 
     [TestMethod]
@@ -61,11 +61,11 @@ public class RationalTest
     public void TestToString_DefaultFormat()
     {
         // Arrange
-        var rational = new Rational(3, 4);  // Example rational number: 3/4
-        var expected = "3/4";
+        Rational rational = new(3, 4);  // Example rational number: 3/4
+        string expected = "3/4";
 
         // Act
-        var actual = rational.ToString(null, null);
+        string actual = rational.ToString(null, null);
 
         // Assert
         Assert.AreEqual(expected, actual);
@@ -75,11 +75,11 @@ public class RationalTest
     public void TestToString_DoubleFormat()
     {
         // Arrange
-        var rational = new Rational(3, 4);  // Example rational number: 3/4
-        var expected = "0.75";  // Should convert to double and format
+        Rational rational = new(3, 4);  // Example rational number: 3/4
+        string expected = "0.75";  // Should convert to double and format
 
         // Act
-        var actual = rational.ToString("DF2", null); // "D2" means double format with 2 decimal places
+        string actual = rational.ToString("DF2", null); // "D2" means double format with 2 decimal places
 
         // Assert
         Assert.AreEqual(expected, actual);
@@ -89,11 +89,11 @@ public class RationalTest
     public void TestToString_CustomIntegerFormat()
     {
         // Arrange
-        var rational = new Rational(3, 4);  // Example rational number: 3/4
-        var expected = "3|4";  // Custom format with pipe symbol as delimiter
+        Rational rational = new(3, 4);  // Example rational number: 3/4
+        string expected = "3|4";  // Custom format with pipe symbol as delimiter
 
         // Act
-        var actual = rational.ToString("|", null);  // Custom format with delimiter "|"
+        string actual = rational.ToString("|", null);  // Custom format with delimiter "|"
 
         // Assert
         Assert.AreEqual(expected, actual);
@@ -103,11 +103,11 @@ public class RationalTest
     public void TestToString_CustomIntegerFormatWithProvider()
     {
         // Arrange
-        var rational = new Rational(123456789, 1000000);  // Example rational number: 123456789/1000000
-        var expected = "123,456,789/1,000,000";  // Custom format with culture-specific number formatting
+        Rational rational = new(123456789, 1000000);  // Example rational number: 123456789/1000000
+        string expected = "123,456,789/1,000,000";  // Custom format with culture-specific number formatting
 
         // Act
-        var actual = rational.ToString("/#,0", new System.Globalization.CultureInfo("en-US"));
+        string actual = rational.ToString("/#,0", new System.Globalization.CultureInfo("en-US"));
 
         // Assert
         Assert.AreEqual(expected, actual);
@@ -117,11 +117,11 @@ public class RationalTest
     public void TestToString_EmptyFormat()
     {
         // Arrange
-        var rational = new Rational(5, 7);  // Example rational number: 5/7
-        var expected = "5/7";
+        Rational rational = new(5, 7);  // Example rational number: 5/7
+        string expected = "5/7";
 
         // Act
-        var actual = rational.ToString("", null);  // No format provided, should default to "numerator/denominator"
+        string actual = rational.ToString("", null);  // No format provided, should default to "numerator/denominator"
 
         // Assert
         Assert.AreEqual(expected, actual);
@@ -131,11 +131,11 @@ public class RationalTest
     public void TestToString_NullFormat()
     {
         // Arrange
-        var rational = new Rational(1, 2);  // Example rational number: 1/2
-        var expected = "1/2";
+        Rational rational = new(1, 2);  // Example rational number: 1/2
+        string expected = "1/2";
 
         // Act
-        var actual = rational.ToString(null, null);  // Null format provided, should default to "numerator/denominator"
+        string actual = rational.ToString(null, null);  // Null format provided, should default to "numerator/denominator"
 
         // Assert
         Assert.AreEqual(expected, actual);

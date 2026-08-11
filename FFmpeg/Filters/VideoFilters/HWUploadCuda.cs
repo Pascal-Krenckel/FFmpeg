@@ -1,7 +1,4 @@
 ﻿using FFmpeg.AutoGen;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -39,7 +36,7 @@ public unsafe class HWUploadCuda : FilterContext
     /// </remarks>
     public static HWUploadCuda Allocate(string name, FilterGraph graph)
     {
-        var ptr = AllocateInternal(name, Filter.HWUploadCuda, graph);
+        _AVFilterContext* ptr = AllocateInternal(name, Filter.HWUploadCuda, graph);
         return new(ptr);
     }
 
@@ -61,7 +58,7 @@ public unsafe class HWUploadCuda : FilterContext
     /// </returns>
     public static HWUploadCuda Create(string name, int device, FilterGraph graph)
     {
-        var upload = Allocate(name, graph);
+        HWUploadCuda upload = Allocate(name, graph);
         upload.Device = device;
         upload.Init().ThrowIfError();
         return upload;

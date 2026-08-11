@@ -1,10 +1,5 @@
-﻿using FFmpeg.Formats;
-using FFmpeg.Images;
-using FFmpeg.IO;
+﻿using FFmpeg.Images;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -42,8 +37,8 @@ public unsafe class VideoBufferSink : FilterContext, IBufferSink
     /// </exception>
     public AVResult32 ReceiveFrame(AVFrame frame)
     {
-        if(frame == null)
-         throw new ArgumentNullException(nameof(frame),"The provided argument was null");
+        if (frame == null)
+            throw new ArgumentNullException(nameof(frame), "The provided argument was null");
 
         frame.Unreference();
 

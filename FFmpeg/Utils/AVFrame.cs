@@ -556,10 +556,7 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
         {
             if (IsAudio)
             {
-                if (SampleFormat.IsPacked())
-                    return Frame->linesize[0];
-                else
-                    return Frame->linesize[0] * Frame->ch_layout.nb_channels;
+                return SampleFormat.IsPacked() ? Frame->linesize[0] : Frame->linesize[0] * Frame->ch_layout.nb_channels;
             }
             if (IsVideo)
             {
@@ -571,7 +568,7 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
                 res.ThrowIfError();
                 return (long)(sizes[0] + sizes[1] + sizes[2] + sizes[3]);
             }
-            throw new NotSupportedException("Only audio or video frames are supported");            
+            throw new NotSupportedException("Only audio or video frames are supported");
         }
     }
 

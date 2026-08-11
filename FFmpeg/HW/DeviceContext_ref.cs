@@ -44,15 +44,7 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
             throw new ObjectDisposedException(GetType().FullName);
     }
 
-    unsafe _AVHWDeviceContext* IAVPointer<_AVHWDeviceContext>.Pointer
-    {
-        get
-        {
-            if (buffer == null || *buffer == null)
-                return null;
-            return (_AVHWDeviceContext*)(*buffer)->data;
-        }
-    }
+    unsafe _AVHWDeviceContext* IAVPointer<_AVHWDeviceContext>.Pointer => buffer == null || *buffer == null ? (_AVHWDeviceContext*)null : (_AVHWDeviceContext*)(*buffer)->data;
 
     /// <summary>
     /// Returns the internal hwctx as VulkanDeviceContext
@@ -153,6 +145,6 @@ public readonly unsafe struct DeviceContext_ref : IEquatable<DeviceContext_ref>,
     /// <returns><see langword="true"/> if the instances are not equal; otherwise, <see langword="false"/>.</returns>
     public static bool operator !=(DeviceContext_ref? left, DeviceContext_ref? right) => !(left == right);
 
-    
+
 }
 

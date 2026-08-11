@@ -1,7 +1,4 @@
 ﻿using FFmpeg.AutoGen;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.Filters.VideoFilters;
 
@@ -44,7 +41,7 @@ public unsafe class HWDownload : FilterContext
     /// </remarks>
     public static HWDownload Allocate(string name, FilterGraph graph)
     {
-        var ptr = AllocateInternal(name, Filter.HWDownload, graph);
+        _AVFilterContext* ptr = AllocateInternal(name, Filter.HWDownload, graph);
         return new(ptr);
     }
 
@@ -62,7 +59,7 @@ public unsafe class HWDownload : FilterContext
     /// </returns>
     public static HWDownload Create(string name, FilterGraph graph)
     {
-        var download = Allocate(name, graph);
+        HWDownload download = Allocate(name, graph);
         download.Init().ThrowIfError();
         return download;
     }

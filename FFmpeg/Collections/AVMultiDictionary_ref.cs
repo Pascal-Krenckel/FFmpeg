@@ -262,6 +262,6 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
     }
 
     /// <inheritdoc cref="AVMultiDictionary"/>
-    public readonly override string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
+    public override readonly string ToString() => string.Join(':', this.Select(kv => $"{kv.Key}={string.Join(',', kv)}"));
 
 }

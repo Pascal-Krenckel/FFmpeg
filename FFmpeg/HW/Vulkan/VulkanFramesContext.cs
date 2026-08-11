@@ -1,9 +1,6 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Unsafe;
 using FFmpeg.Utils;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FFmpeg.HW.Vulkan;
 
@@ -12,12 +9,9 @@ namespace FFmpeg.HW.Vulkan;
 /// </summary>
 public readonly unsafe struct VulkanFramesContext : IAVPointer<_AVVulkanFramesContext>
 {
-    readonly internal _AVVulkanFramesContext* context;
+    internal readonly _AVVulkanFramesContext* context;
 
-    internal VulkanFramesContext(_AVVulkanFramesContext* context)
-    {
-        this.context = context;
-    }
+    internal VulkanFramesContext(_AVVulkanFramesContext* context) => this.context = context;
 
     unsafe _AVVulkanFramesContext* IAVPointer<_AVVulkanFramesContext>.Pointer => context;
 
@@ -36,11 +30,7 @@ public readonly unsafe struct VulkanFramesContext : IAVPointer<_AVVulkanFramesCo
     /// Thrown if the frame does not have an associated hardware frames context, or if
     /// the associated device is not a Vulkan device.
     /// </exception>
-    public static VulkanFramesContext FromAVFrame(AVFrame frame)
-    {
-        if (frame.FramesContext.IsEmpty || frame.FramesContext.DeviceContext.DeviceType != DeviceType.Vulkan)
-            throw new InvalidOperationException();
-
-        return frame.FramesContext.AsVulkan();
-    }
+    public static VulkanFramesContext FromAVFrame(AVFrame frame) => frame.FramesContext.IsEmpty || frame.FramesContext.DeviceContext.DeviceType != DeviceType.Vulkan
+            ? throw new InvalidOperationException()
+            : frame.FramesContext.AsVulkan();
 }

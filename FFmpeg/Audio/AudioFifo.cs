@@ -766,10 +766,7 @@ public unsafe partial class AudioFifo : IDisposable
     /// After calling this method, the FIFO will contain zero samples.  
     /// This does not change the capacity of the FIFO, only the number of stored samples.
     /// </remarks>
-    public void Clear()
-    {
-        ffmpeg.av_audio_fifo_reset(fifo);
-    }
+    public void Clear() => ffmpeg.av_audio_fifo_reset(fifo);
 
 
     /// <summary>

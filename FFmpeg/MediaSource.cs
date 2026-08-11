@@ -1,5 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Codecs;
+﻿using FFmpeg.Codecs;
 using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.HW;

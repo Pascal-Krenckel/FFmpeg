@@ -1,6 +1,5 @@
 ﻿using FFmpeg.AutoGen;
 using FFmpeg.Unsafe;
-using FFmpeg.Utils;
 
 namespace FFmpeg.HW;
 

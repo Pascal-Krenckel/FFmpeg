@@ -1,5 +1,4 @@
-﻿using FFmpeg.IO;
-using FFmpeg.Utils;
+﻿using FFmpeg.Utils;
 
 namespace FFmpeg.Formats;
 
@@ -39,7 +38,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// determined.
     /// </remarks>
     public InputFormat? InputFormat => Context->iformat != null ? new(Context->iformat) : null;
- 
+
     #region FindStreamInfo
 
     /// <summary>
@@ -377,7 +376,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// The value is expressed in <c>AV_TIME_BASE</c> units.
     /// </remarks>
     public long StartTime => Context->start_time;
-    
+
     /// <inheritdoc cref="AutoGen._AVFormatContext.duration" />
     public long Duration => Context->duration;
     /// <summary>
