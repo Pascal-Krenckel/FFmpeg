@@ -1,4 +1,9 @@
 <Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
   <Folder Name="/FFmpeg-Binaries/">
     <File Path="ffmpeg-binaries/avcodec-62.dll" />
     <File Path="ffmpeg-binaries/avdevice-62.dll" />
