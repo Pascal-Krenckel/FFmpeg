@@ -355,6 +355,9 @@ public class MediaSink : IDisposable
     /// <param name="stream">
     /// The destination stream.
     /// </param>
+    /// <param name="leaveOpen">
+    /// False if the stream should be closed when the <see cref="MediaSink"/> gets disposed.
+    /// </param>
     /// <param name="outputFormat">
     /// The output format.
     /// </param>
@@ -362,9 +365,9 @@ public class MediaSink : IDisposable
     /// A new <see cref="MediaSink"/>, or <see langword="null"/> if the output
     /// could not be created.
     /// </returns>
-    public static MediaSink? Create(Stream stream, OutputFormat outputFormat)
+    public static MediaSink? Create(Stream stream, OutputFormat outputFormat, bool leaveOpen = false)
     {
-        MuxerContext? res = MuxerContext.Open(stream, outputFormat);
+        MuxerContext? res = MuxerContext.Open(stream, outputFormat,!leaveOpen);
         return res == null ? null : new(res);
     }
 
