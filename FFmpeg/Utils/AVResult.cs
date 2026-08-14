@@ -98,10 +98,7 @@ public readonly struct AVResult32 : IEquatable<AVResult32>, IEquatable<int>
     /// <value><c>true</c> if the result is less than 0 or (EAGAIN); otherwise, <c>false</c>.</value>
     public bool IsError => value < 0;
 
-    /// <summary>
-    /// Throws an exception if the result represents an error.
-    /// </summary>
-    /// <exception cref="FFmpegException">Thrown when the result represents an error.</exception>
+    /// <inheritdoc cref="FFmpegException.ThrowIfError(int)"/>
     public void ThrowIfError() => FFmpegException.ThrowIfError(value);
 
 
@@ -500,10 +497,7 @@ public readonly struct AVResult64 : IEquatable<AVResult64>, IEquatable<long>
     /// <value><c>true</c> if the result is less than 0; otherwise, <c>false</c>.</value>
     public bool IsError => value < 0;
 
-    /// <summary>
-    /// Throws an exception if the result represents an error.
-    /// </summary>
-    /// <exception cref="FFmpegException">Thrown when the result represents an error.</exception>
+    /// <inheritdoc cref="FFmpegException.ThrowIfError(int)"/>
     public void ThrowIfError()
     {
         if (IsError)
