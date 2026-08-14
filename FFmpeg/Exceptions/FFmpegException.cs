@@ -39,12 +39,16 @@ public class FFmpegException : Exception
     /// </summary>
     /// <param name="error">The FFmpeg error code.</param>
     /// <exception cref="FFmpegException">Thrown if the error code is negative.</exception>
+    /// <exception cref="OutOfMemoryException">Thrown if the error code is ENOMEM.</exception>
+    /// <exception cref="IOException">Thrown if the error code is EPIPE.</exception>
+    /// <exception cref="ArgumentException">Thrown if the error code is EINVAL or E2BIG.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the error code is ERANGE.</exception>
     public static void ThrowIfError(int error)
     {
         if (error >= 0)
             return;
         if (error == AVResult32.TryAgain)
-            return; // ToDo:
+            throw new TryAgainException();
         if (error == AVResult32.OptionNotFound)
             throw new OptionNotFoundException();
         if (error == AVResult32.OutOfMemory)
