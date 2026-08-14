@@ -271,6 +271,57 @@ public class MediaSource : IDisposable
         return res.IsError ? res : (AVResult32)packet.StreamIndex;
     }
 
+    /// <summary>
+    /// Reads a packet and decodes it into a frame. Continues until a frame is successfully decoded or no more frames can be read. <br/>
+    /// This methods does not transfer a HwFrame to Ram.
+    /// </summary>
+    /// <param name="frame">The <see cref="AVFrame"/> to populate with the decoded frame.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating the result of the operation. Returns the stream index if successful; otherwise, the error result.</returns>
+    public AVResult32 ReadAndDecodeHWAVFrame(AVFrame frame)
+    {
+
+        AVResult32 res = 0;
+        do
+        {
+            if (res == AVResult32.TryAgain || packet.StreamIndex == -1)
+            {
+                res = FormatContext.ReadPacket(packet);
+
+                if (res == AVResult32.EndOfFile)
+                {
+                    foreach (CodecContext? ctx in codecContexts.Where(ctx => ctx.CodecType is MediaType.Audio or MediaType.Video))
+                        _ = ctx.DrainDecoder();
+                    for (int i = 0; i < codecContexts.Length; i++)
+                    {
+                        if (codecContexts[i].CodecType is MediaType.Audio or MediaType.Video)
+                        {
+                            res = codecContexts[i].ReceiveHWFrame(frame);
+                            if (!res.IsError)
+                                return i;
+                            else if (res != AVResult32.EndOfFile)
+                                return res;
+
+                        }
+                    }
+
+                    return AVResult32.EndOfFile;
+                }
+                res.ThrowIfError();
+                // ToDo: decode other media types
+                if (Streams[packet.StreamIndex].Discard.HasFlag(DiscardFlags.All) ||
+                    (CodecContexts[packet.StreamIndex].CodecType != MediaType.Audio &&
+                    CodecContexts[packet.StreamIndex].CodecType != MediaType.Video))
+                {
+                    res = AVResult32.TryAgain;
+                    continue;
+                }
+                CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();
+            }
+            res = CodecContexts[packet.StreamIndex].ReceiveHWFrame(frame);
+        } while (res == AVResult32.TryAgain);
+
+        return res.IsError ? res : (AVResult32)packet.StreamIndex;
+    }
 
     /// <summary>
     /// Flushes the buffers of all codec contexts, clearing any buffered data.
