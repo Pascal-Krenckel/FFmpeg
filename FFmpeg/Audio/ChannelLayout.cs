@@ -49,6 +49,10 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         }
     }
 
+    /// <inheritdoc cref="_AVChannelLayout_u.mask" />
+    public ulong Mask => layout.u.mask;
+
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ChannelLayout"/> class with no predefined layout.
     /// </summary>
@@ -307,8 +311,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         AutoGen._AVChannelLayout layout = this.layout;
 
         // Get the required size for the layout description.
-        AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);
-
+        AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);        
 
         if (res.IsError)
             return string.Empty;
