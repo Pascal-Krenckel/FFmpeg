@@ -272,13 +272,13 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
     /// sequence with generated timestamps.
     /// </para>
     /// </remarks>
-    public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, bool closeStream = false, bool disposeFrames = false)
+    public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, bool closeStream = true, bool disposeFrames = false)
     {
 
         if (!output.CanSeek)
             throw new NotSupportedException("The stream has to be seekable for the AVIF format context");
 
-        using MuxerContext context = MuxerContext.Open(output, OutputFormat.AVIF!.Value, closeStream)!;
+        using MediaSink context = MediaSink.Create(output, OutputFormat.AVIF!.Value, closeStream)!;
 
         IEnumerator<AVFrame> enumerator = frames.GetEnumerator();
         try
@@ -295,13 +295,10 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
             if (PixelFormat == PixelFormat.None)
                 PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
             using SwsContext swsContext = new(firstFrame.Width, firstFrame.Height, firstFrame.PixelFormat, Width, Height, PixelFormat, SwsAlgorithm.Bicubic());
-            using CodecContext codecContext = CreateCodecContext();
-            _ = context.AddStream(codecContext);
+            _ = context.AddStream(CreateCodecContext());
             context.WriteHeader().ThrowIfError();
             using AVFrame convertedFrame = AVFrame.Allocate();
-            using AVPacket packet = AVPacket.Allocate();
             AVFrame frameToWrite;
-            AVResult32 result;
             do
             {
                 AVFrame current = enumerator.Current;
@@ -313,25 +310,11 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
                 }
                 else
                     frameToWrite = current;
-                result = codecContext.Encode(frameToWrite, packet);
-                if (result.IsTryAgain)
-                    continue;
-                result.ThrowIfError();
-                packet.StreamIndex = 0;
-                context.WritePacketInterleaved(packet).ThrowIfError();
+                context.WriteFrame(convertedFrame, 0).ThrowIfError();
                 if (disposeFrames)
                     enumerator.Current.Dispose();
             } while (enumerator.MoveNext());
-
-            codecContext.DrainEncoder().ThrowIfError();
-
-            while (!(result = codecContext.ReceivePacket(packet)).IsError)
-            {
-                packet.StreamIndex = 0;
-                context.WritePacketInterleaved(packet).ThrowIfError();
-            }
-            if (result != AVResult32.EndOfFile)
-                result.ThrowIfError();
+           
             context.WriteTrailer().ThrowIfError();
         }
         finally
