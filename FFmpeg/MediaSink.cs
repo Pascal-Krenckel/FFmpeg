@@ -367,7 +367,7 @@ public class MediaSink : IDisposable
     /// </returns>
     public static MediaSink? Create(Stream stream, OutputFormat outputFormat, bool leaveOpen = false)
     {
-        MuxerContext? res = MuxerContext.Open(stream, outputFormat,!leaveOpen);
+        MuxerContext? res = MuxerContext.Open(stream, outputFormat, !leaveOpen);
         return res == null ? null : new(res);
     }
 
