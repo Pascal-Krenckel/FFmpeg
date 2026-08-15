@@ -9,7 +9,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GeneratePackageOnBuild Condition=" $(Configuration) == 'Release' ">true</GeneratePackageOnBuild>
 		<GenerateDocumentationFile Condition=" $(Configuration) == 'Release' ">True</GenerateDocumentationFile>
-
+	
 		<Title>FFmpeg</Title>
 		<Authors>Pascal Krenckel</Authors>
 		<Description>A .NET wrapper library for FFmpeg using FFmpeg.AutoGen. This library provides a managed interface for FFmpeg's raw C API by wrapping around the unsafe pointers and structs provided by FFmpeg.AutoGen. It offers a higher-level, object-oriented approach to access and manipulate FFmpeg's core functionality, making it easier to integrate FFmpeg into .NET applications.
@@ -24,6 +24,7 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<Copyright>Copyright (c) 2026 Pascal Krenckel. All rights reserved.</Copyright>
 		<PackageProjectUrl>https://github.com/Pascal-Krenckel/FFmpeg</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Pascal-Krenckel/FFmpeg</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>ffmpeg</PackageTags>
 		<PackageId>FFmpegDotNet</PackageId>
@@ -78,6 +79,10 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		  <PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="System.IO.Pipelines" Version="10.0.11" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 		<PackageReference Include="System.Security.Permissions" Version="10.0.11" />
