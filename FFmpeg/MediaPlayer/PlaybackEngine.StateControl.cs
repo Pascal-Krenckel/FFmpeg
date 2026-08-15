@@ -33,7 +33,7 @@ public partial class PlaybackEngine
             source.Seek(pts).ThrowIfError();
             mediaBuffer.Clear();
             FlushFilters();
-            Clock.Seeked(pts*Rational.TIME_BASE);
+            Clock.Seeked(pts * Rational.TIME_BASE);
 
             if (running)
                 _ = PlayInternally();
@@ -86,7 +86,7 @@ public partial class PlaybackEngine
                     bool running = State == PlayerState.Playing;
 
                     _ = PauseInternally();
-                    var result = source.SeekExactly(pts, index);
+                    AVResult32 result = source.SeekExactly(pts, index);
                     mediaBuffer.Clear();
                     mediaBuffer.FinishWriting();
                     FlushFilters();
@@ -109,14 +109,14 @@ public partial class PlaybackEngine
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Faulted?.Invoke(this, ex);
             PlayerStateChanged?.Invoke(this, PlayerState.Faulted);
             throw;
         }
         Seeked?.Invoke(this, EventArgs.Empty);
-        if(State == PlayerState.Finished)
+        if (State == PlayerState.Finished)
             PlayerStateChanged?.Invoke(this, PlayerState.Finished);
         return true;
     }
@@ -164,7 +164,7 @@ public partial class PlaybackEngine
             if (State == PlayerState.Faulted)
                 throw new InvalidOperationException("The player is in a faulted state, please restart the player.");
             if (State == PlayerState.Finished)
-                if(!SeekInternally(0))
+                if (!SeekInternally(0))
                     return false;
             decodingCts.Cancel();
             decodingCts.Dispose();

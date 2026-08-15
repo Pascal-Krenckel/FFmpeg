@@ -278,8 +278,8 @@ public sealed partial class PlaybackEngine : IDisposable
             await DrainFilter(token);
             HandleFinished(token);
         }
-        catch(OperationCanceledException) { }
-        catch(Exception ex)
+        catch (OperationCanceledException) { }
+        catch (Exception ex)
         {
             Logging.Logger.Error(ex.ToString());
         }

@@ -198,7 +198,7 @@ public partial class PlaybackEngine
                     AudioFrameReady?.Invoke(this, EventArgs.Empty);
                     lastAudioPTS = nextAudioPTS;
                 }
-                catch(Exception ex) 
+                catch (Exception ex)
                 {
                     Logging.Logger.Error($"[{nameof(PlaybackEngine)}.{nameof(AudioFrameReady)}] {ex}");
                 }
@@ -257,7 +257,7 @@ public partial class PlaybackEngine
                     VideoFrameReady?.Invoke(this, EventArgs.Empty);
                     lastVideoPTS = nextVideoPTS;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Logging.Logger.Error($"[{nameof(PlaybackEngine)}.{nameof(VideoFrameReady)}] {ex}");
                 }

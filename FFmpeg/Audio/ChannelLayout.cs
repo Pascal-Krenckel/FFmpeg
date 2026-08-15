@@ -311,7 +311,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         AutoGen._AVChannelLayout layout = this.layout;
 
         // Get the required size for the layout description.
-        AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);        
+        AVResult32 res = ffmpeg.av_channel_layout_describe(&layout, null, 0);
 
         if (res.IsError)
             return string.Empty;

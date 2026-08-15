@@ -314,7 +314,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
                 if (disposeFrames)
                     enumerator.Current.Dispose();
             } while (enumerator.MoveNext());
-           
+
             context.WriteTrailer().ThrowIfError();
         }
         finally

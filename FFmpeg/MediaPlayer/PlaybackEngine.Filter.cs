@@ -33,7 +33,8 @@ public partial class PlaybackEngine
                 audioOut = audioFilterGraph.OutputFilters.Single().As<AudioBufferSink>();
                 _ = audioFilterGraph.Config();
             }
-            else SetAudioFilter(audioFilter);
+            else
+                SetAudioFilter(audioFilter);
         }
     }
 
