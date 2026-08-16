@@ -4,6 +4,7 @@ using FFmpeg.Filters.AudioFilters;
 using FFmpeg.Filters.VideoFilters;
 using FFmpeg.Formats;
 using FFmpeg.Images;
+using FFmpeg.Threading;
 using FFmpeg.Utils;
 
 namespace FFmpeg.MediaPlayer;
@@ -469,7 +470,7 @@ public sealed partial class PlaybackEngine : IDisposable
             {
                 State = PlayerState.Finished;
                 mediaBuffer.Clear();
-                _ = PlayerStateChanged?.BeginInvoke(this, PlayerState.Finished, null, null);
+                _ = PlayerStateChanged?.InvokeAsync(this, PlayerState.Finished);
             }
         }
         finally { Monitor.Exit(_lock); }
