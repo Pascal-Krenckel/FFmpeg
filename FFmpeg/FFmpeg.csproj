@@ -31,8 +31,10 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.9</Version>
+		<Version>8.1.2.10</Version>
 		<PackageReleaseNotes>
+			--- 8.1.2.10 ---
+			FFmpeg.Helper.Exceptions include now static extenstions for easy throwing, especially under .netstandard (e.g. ObjectDisposeException.ThrowIfTrue(bool,this))
 			--- 8.1.2.9 ---
 			Added FFmpegWorkQueue, a concurrency-limited work queue for asynchronous FFmpeg operations.
 			Supports cancellable send/receive operations for codecs and filters, hardware frame reception, arbitrary FFmpeg work such as seeking, configurable concurrency, and synchronous/asynchronous disposal.
