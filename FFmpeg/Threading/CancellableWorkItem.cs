@@ -106,10 +106,11 @@ public sealed class CancellableWorkItem
     {
         if (!Monitor.TryEnter(_lock))
             return;
-
         try
         {
             token.Dispose();
+            if (tcs.Task.IsCompleted)
+                return;
             _ = tcs.TrySetResult(action());
         }
         catch (Exception ex)
