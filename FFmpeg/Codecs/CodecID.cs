@@ -822,9 +822,9 @@ public enum CodecID : int
     /// </summary>
     JPEGXS = AutoGen._AVCodecID.AV_CODEC_ID_JPEGXS,
 
-    /// <summary>
-    /// webp anim codec
-    /// </summary>
+    ///// <summary>
+    ///// webp anim codec
+    ///// </summary>
     //WEBP_ANIM = AutoGen._AVCodecID.AV_CODEC_ID_WEBP_ANIM,
 
     /// <summary>A dummy ID pointing at the start of audio codecs.</summary>
@@ -1622,9 +1622,9 @@ public enum CodecID : int
     /// <summary>SMPTE 436M ANC codec.</summary>
     SMPTE_436M_ANC = AutoGen._AVCodecID.AV_CODEC_ID_SMPTE_436M_ANC,
 
-    /// <summary>
-    /// The metadata ITUT_T35 codec
-    /// </summary>
+    ///// <summary>
+    ///// The metadata ITUT_T35 codec
+    ///// </summary>
     //ITUT_T35 = AutoGen._AVCodecID.AV_CODEC_ID_ITUT_T35,
 
     /// <summary>Adaptive Differential Pulse Code Modulation (ADPCM) IMA Xbox format.</summary>
@@ -1663,9 +1663,9 @@ public enum CodecID : int
     /// <summary>AHX audio codec.</summary>
     AHX = AutoGen._AVCodecID.AV_CODEC_ID_AHX,
 
-    /// <summary>
-    /// The Apple Positional Audio Codec 
-    /// </summary>
+    ///// <summary>
+    ///// The Apple Positional Audio Codec 
+    ///// </summary>
     //APPLE_APAC = AutoGen._AVCodecID.AV_CODEC_ID_APPLE_APAC,
 
 }
