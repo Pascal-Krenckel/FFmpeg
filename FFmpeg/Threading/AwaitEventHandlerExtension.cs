@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FFmpeg.Threading;
+﻿namespace FFmpeg.Threading;
 
 /// <summary>
 /// Provides extension methods for asynchronously invoking event handlers.
