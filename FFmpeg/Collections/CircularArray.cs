@@ -301,10 +301,10 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    /// Inserts the elements of <paramref name="data"/>, in order, starting at the given logical index.
+    /// Inserts the elements of <paramref name="items"/>, in order, starting at the given logical index.
     /// </summary>
     /// <param name="index">The logical index to insert at. Valid range is <c>[0, Count]</c>; <c>Count</c> appends.</param>
-    /// <param name="data">The elements to insert.</param>
+    /// <param name="items">The elements to insert.</param>
     /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
     public void InsertRange(int index, ReadOnlySpan<T> items)
     {
@@ -342,10 +342,10 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
 
 
     /// <summary>
-    /// Inserts the elements of <paramref name="data"/>, in order, starting at the given logical index.
+    /// Inserts the elements of <paramref name="items"/>, in order, starting at the given logical index.
     /// </summary>
     /// <param name="index">The logical index to insert at. Valid range is <c>[0, Count]</c>; <c>Count</c> appends.</param>
-    /// <param name="data">The elements to insert.</param>
+    /// <param name="items">The elements to insert.</param>
     /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
     private void InsertRange(int index, IList<T> items)
     {
@@ -382,10 +382,10 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    /// Inserts the elements of <paramref name="data"/>, in order, starting at the given logical index.
+    /// Inserts the elements of <paramref name="items"/>, in order, starting at the given logical index.
     /// </summary>
     /// <param name="index">The logical index to insert at. Valid range is <c>[0, Count]</c>; <c>Count</c> appends.</param>
-    /// <param name="data">The elements to insert.</param>
+    /// <param name="items">The elements to insert.</param>
     /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
     private void InsertRange(int index, IReadOnlyList<T> items)
     {
@@ -423,10 +423,10 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
 
 
     /// <summary>
-    /// Inserts the elements of <paramref name="data"/>, in order, starting at the given logical index.
+    /// Inserts the elements of <paramref name="items"/>, in order, starting at the given logical index.
     /// </summary>
     /// <param name="index">The logical index to insert at. Valid range is <c>[0, Count]</c>; <c>Count</c> appends.</param>
-    /// <param name="data">The elements to insert.</param>
+    /// <param name="items">The elements to insert.</param>
     /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
     private void InsertRange(int index, ICollection<T> items)
     {
@@ -463,10 +463,10 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    /// Inserts the elements of <paramref name="data"/>, in order, starting at the given logical index.
+    /// Inserts the elements of <paramref name="items"/>, in order, starting at the given logical index.
     /// </summary>
     /// <param name="index">The logical index to insert at. Valid range is <c>[0, Count]</c>; <c>Count</c> appends.</param>
-    /// <param name="data">The elements to insert.</param>
+    /// <param name="items">The elements to insert.</param>
     /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
     private void InsertRange(int index, IReadOnlyCollection<T> items)
     {
@@ -764,18 +764,16 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    /// Adds the elements of <paramref name="data"/>, in order at the end of the list.
+    /// Adds the elements of <paramref name="items"/>, in order at the end of the list.
     /// </summary>
-    /// <param name="data">The elements to insert.</param>
-    /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
-    public void AddRange(ReadOnlySpan<T> item) => InsertRange(Count, item);
+    /// <param name="items">The elements to insert.</param>
+    public void AddRange(ReadOnlySpan<T> items) => InsertRange(Count, items);
 
     /// <summary>
-    /// Adds the elements of <paramref name="data"/>, in order at the end of the list.
+    /// Adds the elements of <paramref name="items"/>, in order at the end of the list.
     /// </summary>
-    /// <param name="data">The elements to insert.</param>
-    /// <exception cref="IndexOutOfRangeException"><paramref name="index"/> is negative or greater than <see cref="Count"/>.</exception>
-    public void AddRange(IEnumerable<T> item) => InsertRange(Count, item);
+    /// <param name="items">The elements to insert.</param>
+    public void AddRange(IEnumerable<T> items) => InsertRange(Count, items);
 
 
     /// <summary>
@@ -787,7 +785,9 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         Array.Clear(data, 0, Count);
     }
 
-
+    /// <summary>
+    /// Resizes the array to that the data fits perfectly into it.
+    /// </summary>
     public void ShrinkToFit()
     {
         if (data.Length == Count)
