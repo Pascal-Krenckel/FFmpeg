@@ -983,7 +983,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
     /// <returns>Returns an <see cref="AVResult32"/> indicating the result of the operation. Possible values include success or various error codes.</returns>
     /// <remarks>
-    /// The width and height are retrieved as separate integers using the <see cref="ffmpeg.av_opt_get_image_size"/> function.
+    /// The width and height are retrieved as separate integers using the <see cref="ffmpeg.av_opt_get_image_size(void*, string, int, int*, int*)"/> function.
     /// This method is useful for options that specify image dimensions, such as video frame sizes or image resolutions.
     /// </remarks>
     public AVResult32 TryGetOption(string name, out int width, out int height, bool recursive = true)
@@ -1003,7 +1003,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <param name="recursive">Specifies whether to search for the option recursively in child options.</param>
     /// <returns>Returns an <see cref="AVResult32"/> indicating the result of the operation. Possible values include success or various error codes.</returns>
     /// <remarks>
-    /// The width and height are retrieved as a tuple using the <see cref="ffmpeg.av_opt_get_image_size"/> function.
+    /// The width and height are retrieved as a tuple using the <see cref="ffmpeg.av_opt_get_image_size(void*, string, int, int*, int*)"/> function.
     /// This method is useful for quickly obtaining image dimensions as a single tuple value, which can simplify code that requires both width and height together.
     /// </remarks>
     public AVResult32 TryGetOption(string name, out (int Width, int Height) size, bool recursive = true)
@@ -1027,7 +1027,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// If the option is not found, the data type is incorrect, or any other error occurs, returns <see cref="int.MinValue"/>.
     /// </returns>
     /// <remarks>
-    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> function.
+    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2(void*, string, string, int, int, void**)"/> function.
     /// The binary data is copied into the provided <see cref="Span{Byte}"/>. If the span is too small to accommodate the data, a negative value representing the required size is returned.
     /// In case of errors such as invalid option names, incorrect data types, or other failures, <see cref="int.MinValue"/> is returned.
     /// To ensure the data is copied correctly, make sure the span is sufficiently sized based on the expected data size.
@@ -1079,7 +1079,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </list>
     /// </returns>
     /// <remarks>
-    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> function. 
+    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2(void*, string, string, int, int, void**)"/> function. 
     /// If the option contains binary data, it is copied into a new <see cref="byte"/> array. 
     /// If the option is not found or does not contain binary data, or if there is an issue with the size, appropriate error codes are returned:
     /// <list type="bullet">
@@ -1141,7 +1141,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </list>
     /// </returns>
     /// <remarks>
-    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> function. 
+    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2(void*, string, string, int, int, void**)"/> function. 
     /// If the option contains binary data, it is copied into a new <see cref="byte"/> array, which is then wrapped in a <see cref="Memory{Byte}"/> object.
     /// If the option is not found, or the data type is not binary, or there are issues with the data size, appropriate error codes are returned:
     /// <list type="bullet">
@@ -1202,7 +1202,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </list>
     /// </returns>
     /// <remarks>
-    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2"/> function. 
+    /// The method retrieves the option data as binary using the <see cref="ffmpeg.av_opt_find2(void*, string, string, int, int, void**)"/> function. 
     /// If the option contains binary data, it is copied into a new <see cref="byte"/> array, which is then wrapped in a <see cref="ReadOnlyMemory{Byte}"/> object.
     /// If the option is not found, or the data type is not binary, or there are issues with the data size, appropriate error codes are returned:
     /// <list type="bullet">
@@ -1269,7 +1269,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </returns>
     /// <remarks>
     /// This method handles options of type binary separately by calling the <see cref="TryGetOption(string, out ReadOnlyMemory{byte}, bool)"/> overload. 
-    /// For other types, it retrieves the option's value as a UTF-8 string using the <see cref="ffmpeg.av_opt_get"/> function.
+    /// For other types, it retrieves the option's value as a UTF-8 string using the <see cref="ffmpeg.av_opt_get(void*, string, int, byte**)"/> function.
     /// If the option is not found or if there are issues with retrieving its value, appropriate error codes are returned:
     /// <list type="bullet">
     /// <item>

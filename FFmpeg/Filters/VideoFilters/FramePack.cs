@@ -40,7 +40,7 @@ public unsafe class FramePack : FilterContext
     /// </returns>
     /// <remarks>
     /// The returned filter is not initialized. Configure the filter and call
-    /// <see cref="FilterContext.Init"/> before using it.
+    /// <see cref="FilterContext.Init()"/> before using it.
     /// </remarks>
     public static FramePack Allocate(string name, FilterGraph graph)
     {

@@ -317,7 +317,5 @@ public partial class PlaybackEngine
     /// the faulted state. Use <see cref="Restart"/> to reset the player and
     /// attempt to resume playback.
     /// </remarks>
-    /// <param name="sender">The media player that encountered the fault.</param>
-    /// <param name="e">The exception that caused the playback pipeline to fault.</param>
     public event EventHandler<Exception>? Faulted;
 }

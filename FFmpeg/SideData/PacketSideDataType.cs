@@ -2,7 +2,7 @@
 
 namespace FFmpeg.SideData;
 
-/// <summary>Types of side data that can be associated with an <see cref="AVPacket"/>.</summary>
+/// <summary>Types of side data that can be associated with an <see cref="FFmpeg.Utils.AVPacket"/>.</summary>
 public enum PacketSideDataType
 {
     /// <summary>A palette containing exactly <c>AVPALETTE_SIZE</c> bytes, indicating that a new palette is present.</summary>

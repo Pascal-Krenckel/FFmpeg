@@ -1,5 +1,8 @@
 ﻿namespace FFmpeg.MediaPlayer;
 
+/// <summary>
+/// An extension class containg extension methods for <see cref="IMediaClock"/>
+/// </summary>
 public static class ClockExtension
 {
     extension(IMediaClock @this)

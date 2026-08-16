@@ -64,9 +64,9 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     /// device on which their operations are performed.
     /// </para>
     /// <para>
-    /// For filters such as <see cref="HWUpload"/>, the device context specifies the
+    /// For filters such as <see cref="VideoFilters.HWUpload"/>, the device context specifies the
     /// hardware device to which system-memory frames are uploaded unless the filter
-    /// is configured to derive a device using its <see cref="HWUpload.DeriveDevice"/>
+    /// is configured to derive a device using its <see cref="VideoFilters.HWUpload.DeriveDevice"/>
     /// property.
     /// </para>
     /// </remarks>

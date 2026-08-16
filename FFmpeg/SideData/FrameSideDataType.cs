@@ -2,7 +2,7 @@
 
 namespace FFmpeg.SideData;
 
-/// <summary>Types of side data that can be associated with an <see cref="AVFrame"/>.</summary>
+/// <summary>Types of side data that can be associated with an <see cref="FFmpeg.Utils.AVFrame"/>.</summary>
 public enum FrameSideDataType
 {
     /// <summary>The data is an <c>AVPanScan</c> structure.</summary>

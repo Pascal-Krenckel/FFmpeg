@@ -36,7 +36,7 @@ public unsafe class HWDownload : FilterContext
     /// A newly allocated <see cref="HWDownload"/> filter context.
     /// </returns>
     /// <remarks>
-    /// The returned filter is not initialized. Call <see cref="FilterContext.Init"/>
+    /// The returned filter is not initialized. Call <see cref="FilterContext.Init()"/>
     /// before using the filter.
     /// </remarks>
     public static HWDownload Allocate(string name, FilterGraph graph)

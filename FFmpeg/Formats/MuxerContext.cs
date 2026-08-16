@@ -50,7 +50,7 @@ public unsafe class MuxerContext : FormatContext
 
     /// <summary>
     /// Allocates a new <see cref="MuxerContext"/> for output operations using the specified filename and output format.
-    /// This function wraps the <see cref="ffmpeg.avformat_alloc_output_context2"/> function.
+    /// This function wraps the <see cref="ffmpeg.avformat_alloc_output_context2(_AVFormatContext**, _AVOutputFormat*, string, string)"/> function.
     /// </summary>
     /// <param name="filename">
     /// The name of the file to use for output. Can be <see langword="null"/> if the output format does not require a filename.

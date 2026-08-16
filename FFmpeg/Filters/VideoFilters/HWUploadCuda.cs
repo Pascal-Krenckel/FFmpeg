@@ -31,7 +31,7 @@ public unsafe class HWUploadCuda : FilterContext
     /// A newly allocated <see cref="HWUploadCuda"/> filter context.
     /// </returns>
     /// <remarks>
-    /// The returned filter is not initialized. Call <see cref="FilterContext.Init"/>
+    /// The returned filter is not initialized. Call <see cref="FilterContext.Init()"/>
     /// after configuring any desired options.
     /// </remarks>
     public static HWUploadCuda Allocate(string name, FilterGraph graph)
