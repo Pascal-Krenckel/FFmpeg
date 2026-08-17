@@ -364,7 +364,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         else
         {
             using Collections.AVDictionary dictionary = new(values);
-            return ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+            var result = ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+            values.Clear();
+            foreach (var item in dictionary)
+                values.Add(item);
+            return result;
         }
     }
 
