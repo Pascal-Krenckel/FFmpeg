@@ -109,6 +109,7 @@ public class MediaSource : IDisposable
         codecContexts[streamIndex].SetCodecParameters(Streams[streamIndex].CodecParameters);
         _ = codecContexts[streamIndex].SetHWDeviceType(hwType);
         codecContexts[streamIndex].PacketTimeBase = Streams[streamIndex].TimeBase;
+        codecContexts[streamIndex].TimeBase = Streams[streamIndex].TimeBase;
         if (codecContexts[streamIndex].CodecType == MediaType.Video)
             codecContexts[streamIndex].FrameRate = FormatContext.GuessFrameRate(Streams[streamIndex], null);
         return codecContexts[streamIndex];
