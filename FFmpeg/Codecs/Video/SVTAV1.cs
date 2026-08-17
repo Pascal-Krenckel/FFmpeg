@@ -1,4 +1,5 @@
 ﻿using FFmpeg.Codecs.Video.LibSVTAV1;
+using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.Images;
 using FFmpeg.Utils;
@@ -16,9 +17,24 @@ namespace FFmpeg.Codecs.Video;
 /// <param name="width">The width of the video.</param>
 /// <param name="height">The height of the video.</param>
 /// <param name="timeBase">The time base for the video.</param>
+/// <param name="framerate">The frame rate for the video.</param>
 /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
-public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCodec(Codec.FindEncoder("libsvtav1") ?? throw new NotSupportedException(), width, height, timeBase)
+public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational framerate) : VideoCodec(Codec.FindEncoder("libsvtav1") ?? throw new NotSupportedException(), width, height, timeBase,framerate)
 {
+    /// <summary>
+    /// Represents the SVT-AV1 video codec. If the time base is too large opening the codec will fail without specifing the frame rate.
+    /// </summary>
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="SVTAV1"/> class.
+    /// </remarks>
+    /// <param name="width">The width of the video.</param>
+    /// <param name="height">The height of the video.</param>
+    /// <param name="timeBase">The time base for the video.</param>
+    /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
+    public SVTAV1(int width, int height, Rational timeBase) : this(width, height,timeBase,Rational.Zero)
+    {
+
+    }
 
     /// <summary>
     /// Gets a value indicating whether the SVT-AV1 encoder is supported.
