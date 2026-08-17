@@ -196,7 +196,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase) : VideoCode
     /// <inheritdoc />
     protected override void AddCodecOptions(CodecContext context)
     {
-        Dictionary<string, string> dic = new(AdditionalSVTParameters);
+        using AVDictionary dic = new(AdditionalSVTParameters);
 
         if (Profile.HasValue)
             context.Profile = Profile.Value;
