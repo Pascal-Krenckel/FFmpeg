@@ -344,6 +344,11 @@ public readonly unsafe struct OutputFormat
     /// Gets the DASH (Dynamic Adaptive Streaming over HTTP) output format.
     /// </summary>
     public static OutputFormat? DASH => FindFormat("dash");                  // DASH
+
+    /// <summary>
+    /// Gets the NULL output format.
+    /// </summary>
+    public static OutputFormat? NULL => FindFormat("null");                  // NULL
 }
 
 
