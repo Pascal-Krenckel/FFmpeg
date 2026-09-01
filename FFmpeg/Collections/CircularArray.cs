@@ -654,8 +654,8 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
         if (index > Count / 2)
         {
             CopyRange(index + 1, index, Count - index - 1);
-            data[Tail] = default!;
             Count--;
+            data[Tail] = default!;
         }
         else
         {
