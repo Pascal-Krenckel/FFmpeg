@@ -475,9 +475,6 @@ public enum CodecID : int
     /// <summary>DXTory video codec (used in DXTory format).</summary>
     DXTory = AutoGen._AVCodecID.AV_CODEC_ID_DXTORY,
 
-    /// <summary>V410 10-bit YUV 4:4:4 video codec.</summary>
-    V410 = AutoGen._AVCodecID.@AV_CODEC_ID_V410,
-
     /// <summary>XWD image format codec (used in XWD format).</summary>
     XWD = AutoGen._AVCodecID.AV_CODEC_ID_XWD,
 
@@ -522,6 +519,11 @@ public enum CodecID : int
 
     /// <summary>WebP image format codec.</summary>
     WebP = AutoGen._AVCodecID.AV_CODEC_ID_WEBP,
+
+    /// <summary>
+    /// WebP animation codec.
+    /// </summary>
+    WebPAnim = AutoGen._AVCodecID.@AV_CODEC_ID_WEBP_ANIM,
 
     /// <summary>HNM4 video codec (used in HNM4 format).</summary>
     HNM4Video = AutoGen._AVCodecID.AV_CODEC_ID_HNM4_VIDEO,
@@ -612,12 +614,6 @@ public enum CodecID : int
 
     /// <summary>TARGA Y216 video codec (used in TARGA Y216 format).</summary>
     TARGAY216 = AutoGen._AVCodecID.AV_CODEC_ID_TARGA_Y216,
-
-    /// <summary>V308 8-bit YUV 4:4:4 video.</summary>
-    V308 = AutoGen._AVCodecID.@AV_CODEC_ID_V308,
-
-    /// <summary>V408 8-bit YUV 4:4:4 video with an alpha channel.</summary>
-    V408 = AutoGen._AVCodecID.@AV_CODEC_ID_V408,
 
     /// <summary>YUV4 video codec (used in YUV4 format).</summary>
     YUV4 = AutoGen._AVCodecID.AV_CODEC_ID_YUV4,
@@ -1622,11 +1618,6 @@ public enum CodecID : int
     /// <summary>SMPTE 436M ANC codec.</summary>
     SMPTE_436M_ANC = AutoGen._AVCodecID.AV_CODEC_ID_SMPTE_436M_ANC,
 
-    ///// <summary>
-    ///// The metadata ITUT_T35 codec
-    ///// </summary>
-    //ITUT_T35 = AutoGen._AVCodecID.AV_CODEC_ID_ITUT_T35,
-
     /// <summary>Adaptive Differential Pulse Code Modulation (ADPCM) IMA Xbox format.</summary>
     ADPCM_IMA_XBOX = AutoGen._AVCodecID.AV_CODEC_ID_ADPCM_IMA_XBOX,
 
@@ -1663,10 +1654,10 @@ public enum CodecID : int
     /// <summary>AHX audio codec.</summary>
     AHX = AutoGen._AVCodecID.AV_CODEC_ID_AHX,
 
-    ///// <summary>
-    ///// The Apple Positional Audio Codec 
-    ///// </summary>
-    //APPLE_APAC = AutoGen._AVCodecID.AV_CODEC_ID_APPLE_APAC,
+    /// <summary>
+    /// The Apple Positional Audio Codec 
+    /// </summary>
+    APPLE_APAC = AutoGen._AVCodecID.AV_CODEC_ID_APPLE_APAC,
 
 }
 
