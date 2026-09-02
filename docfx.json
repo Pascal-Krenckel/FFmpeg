@@ -5,17 +5,13 @@
     {
       "src": [
         {
-          "src": ".",
+          "src": "FFmpeg/bin/Release/net10.0",
           "files": [
-            "FFmpeg/FFmpeg.csproj"
+            "FFmpeg.dll"
           ]
         }
       ],
-      "dest": "api",
-      "properties": {
-        "Configuration": "Release",
-        "TargetFramework": "net10.0"
-      }
+      "dest": "api"
     }
   ],
 
@@ -28,9 +24,7 @@
         ]
       }
     ],
-
     "output": "_site",
-
     "template": [
       "default"
     ]
