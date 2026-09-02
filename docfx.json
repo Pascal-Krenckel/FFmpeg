@@ -19,7 +19,6 @@
     "content": [
       {
         "files": [
-          "README.md",
 		      "index.md",
           "api/**.yml"
         ]
