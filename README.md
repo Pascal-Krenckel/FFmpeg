@@ -1,6 +1,6 @@
 ﻿# FFmpeg (.NET Wrapper)
 
-A **.NET wrapper library for FFmpeg** built using [FFmpeg.AutoGen](https://github.com/Ruslan-B/FFmpeg.AutoGen).  
+A **.NET wrapper library for FFmpeg** built using [FFmpeg.AutoGen](https://github.com/Pascal-Krenckel/FFmpeg.AutoGen).  
 This library provides a **managed, object-oriented interface** to FFmpeg’s C API — making it easier, safer, and more intuitive to use FFmpeg in .NET applications.
 
 ---
@@ -8,7 +8,7 @@ This library provides a **managed, object-oriented interface** to FFmpeg’s C A
 ## 📖 Overview
 
 [FFmpeg](https://ffmpeg.org/) is a powerful open-source multimedia framework for handling video, audio, and streams.  
-While [FFmpeg.AutoGen](https://github.com/Ruslan-B/FFmpeg.AutoGen) exposes FFmpeg’s native C API to .NET, it requires working directly with pointers and unsafe memory operations.
+While [FFmpeg.AutoGen](https://github.com/Pascal-Krenckel/FFmpeg.AutoGen) exposes FFmpeg’s native C API to .NET, it requires working directly with pointers and unsafe memory operations.
 
 The **FFmpeg (.NET Wrapper)** library provides a **high-level, managed abstraction** over FFmpeg.AutoGen — letting you access FFmpeg’s encoding, decoding, transcoding, and streaming capabilities safely from C#.
 
