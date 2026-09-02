@@ -1,29 +1,30 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+
   "metadata": [
     {
       "src": [
         {
-          "src": "../FFmpeg/FFmpeg",
+          "src": ".",
           "files": [
-            "**/*.csproj"
+            "FFmpeg/FFmpeg.csproj"
           ]
         }
       ],
       "dest": "api"
     }
   ],
+
   "build": {
     "content": [
       {
         "files": [
-          "**/*.{md,yml}"
-        ],
-        "exclude": [
-          "_site/**"
+          "api/**.yml",
+          "api/index.md"
         ]
       }
     ],
+
     "resource": [
       {
         "files": [
@@ -31,16 +32,11 @@
         ]
       }
     ],
+
     "output": "_site",
+
     "template": [
-      "default",
-      "modern"
-    ],
-    "globalMetadata": {
-      "_appName": "FFmpegDotNet",
-      "_appTitle": "FFmpegDotNet",
-      "_enableSearch": true,
-      "pdf": false
-    }
+      "default"
+    ]
   }
 }
