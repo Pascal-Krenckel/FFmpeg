@@ -11,16 +11,16 @@
     <File Path="ffmpeg-binaries/README.md" />
   </Folder>
   <Folder Name="/FFmpeg-Binaries/binaries/">
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avcodec-62.dll" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avdevice-62.dll" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avfilter-11.dll" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avformat-62.dll" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avutil-60.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avcodec-63.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avdevice-63.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avfilter-12.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avformat-63.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/avutil-61.dll" />
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/ffmpeg.exe" />
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/ffplay.exe" />
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/ffprobe.exe" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swresample-6.dll" />
-    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swscale-9.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swresample-7.dll" />
+    <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swscale-10.dll" />
   </Folder>
   <Project Path="FFmpeg.AutoGen/FFmpeg.AutoGen/FFmpeg.AutoGen.csproj" />
   <Project Path="FFmpeg/FFmpeg.csproj" />
