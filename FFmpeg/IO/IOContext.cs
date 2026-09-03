@@ -224,8 +224,18 @@ public abstract unsafe class IOContext : AVIOContext
     /// </remarks>
     public Seekable Seekable
     {
-        get => (Seekable)FormatContext.Context->pb->seekable;
-        protected set => FormatContext.Context->pb->seekable = (int)value;
+        get => FormatContext.Seekable;
+        protected set
+        {
+#if NET6_0_OR_GREATER
+            FormatContext.Context->pb->seekable = (int)value;
+#else
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                ((FFmpeg.AutoGen._AVIOContext_win*)FormatContext.Context->pb)->seekable = (int)value;
+            else
+                FormatContext.Context->pb->seekable = (int)value;
+#endif
+        }
     }
     #endregion
 

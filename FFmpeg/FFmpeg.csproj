@@ -52,7 +52,7 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<PackageReference Include="System.IO.Pipelines" Version="10.0.11" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 		<PackageReference Include="System.Security.Permissions" Version="10.0.11" />
-		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[9.0.1,10)" />
+		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[9.0.1.1,10)" />
 		<ProjectReference Condition=" $(Configuration) == 'Debug' " Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
