@@ -22,6 +22,10 @@
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swresample-7.dll" />
     <File Path="ffmpeg-binaries/FFmpegDotNet.bin.winx64/ffmpeg/win-x64/swscale-10.dll" />
   </Folder>
+  <Folder Name="/ghActions/">
+    <File Path=".github/workflows/documentation.yml" />
+    <File Path=".github/workflows/Release.yml" />
+  </Folder>
   <Project Path="FFmpeg.AutoGen/FFmpeg.AutoGen/FFmpeg.AutoGen.csproj" />
   <Project Path="FFmpeg/FFmpeg.csproj" />
   <Project Path="FFmpegTest/FFmpegTest.csproj" />
