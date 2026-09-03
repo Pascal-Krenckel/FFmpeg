@@ -36,7 +36,7 @@ jobs:
           mkdir -p release-assets
 
           for dir in FFmpeg/bin/Release/*/; do
-            name="$(basename "$dir")"
+            name="FFmpeg.$(basename "$dir")"
 
             (
               cd "$dir"
