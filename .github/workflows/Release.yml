@@ -45,7 +45,6 @@ jobs:
           done
 
       - name: Create draft release
-        if: github.event_name == 'push'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
