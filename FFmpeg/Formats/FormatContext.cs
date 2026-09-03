@@ -171,14 +171,14 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     {
         get
         {
-//#if NET6_0_OR_GREATER
-//            return (Seekable)Context->pb->seekable;
-//#else
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#if NET6_0_OR_GREATER
+            return (Seekable)Context->pb->seekable;
+#else
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return (Seekable)((FFmpeg.AutoGen._AVIOContext_win*)Context->pb)->seekable;
             else
                 return (Seekable)Context->pb->seekable;
-//#endif
+#endif
         }
     }
     #endregion
