@@ -1,6 +1,6 @@
 ﻿# FFmpeg (.NET Wrapper)
 
-[![NuGet](https://img.shields.io/nuget/v/FFmpegDotNet.svg)](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/)
+[![NuGet](https://img.shields.io/nuget/v/FFmpegDotNet.svg)](https://www.nuget.org/packages/FFmpegDotNet/)
 [![License](https://img.shields.io/badge/license-LGPL--2.1-blue.svg)](LICENSE)
 
 A **.NET wrapper library for FFmpeg**, built on top of [FFmpeg.AutoGen](https://github.com/Pascal-Krenckel/FFmpeg.AutoGen).
