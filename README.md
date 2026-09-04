@@ -67,7 +67,7 @@ Install the wrapper from NuGet:
 dotnet add package FFmpegDotNet
 ```
 
-If you don't already have FFmpeg installed on your system, the [FFmpegDotNet.bin.winx64](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/) package bundles the LGPL FFmpeg binaries for Windows x64:
+If you don't already have FFmpeg installed on your system, the [![NuGet](https://img.shields.io/nuget/v/FFmpegDotNet.bin.winx64.svg)](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64.svg/) [FFmpegDotNet.bin.winx64](https://www.nuget.org/packages/FFmpegDotNet.bin.winx64/) package bundles the LGPL FFmpeg binaries for Windows x64:
 
 ```bash
 dotnet add package FFmpegDotNet.bin.winx64
