@@ -370,11 +370,12 @@ public readonly unsafe struct ChannelLayout_ref : IChannelLayout, IEquatable<Cha
         CheckReadOnly();
 
         Span<byte> bytes = new((byte*)&ptr->u.map[channelNumber].name, 16);
+
+        // NUL-terminated char[16] in FFmpeg: at most 15 bytes of text. Validate before clearing.
+        if (Encoding.UTF8.GetByteCount(name) >= bytes.Length)
+            throw new ArgumentException("The UTF-8 encoded channel name must be shorter than 16 bytes.", nameof(name));
+
         bytes.Clear();
-
-        if (Encoding.UTF8.GetByteCount(name) > bytes.Length)
-            throw new ArgumentException("The UTF-8 encoded channel name must not exceed 16 bytes.", nameof(name));
-
         _ = Encoding.UTF8.GetBytes(name, bytes);
     }
 
