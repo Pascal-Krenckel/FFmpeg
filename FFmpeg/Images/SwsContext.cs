@@ -146,6 +146,10 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
             (AutoGen._AVPixelFormat)dstFormat,
             (int)algorithm.AlgorithmFlags, null, null, @params
         );
+        // sws_getContext returns NULL for unsupported formats or invalid sizes; without this
+        // check the first Convert would pass NULL to sws_scale and crash the process.
+        if (context == null)
+            throw new ArgumentException($"Cannot create a scaler from {srcW}x{srcH} {srcFormat} to {dstW}x{dstH} {dstFormat}.");
         SourceWidth = srcW;
         SourceHeight = srcH;
         SourceFormat = srcFormat;
@@ -154,7 +158,12 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         DestinationFormat = dstFormat;
         Algorithm = algorithm;
     }
-    private SwsContext() => context = ffmpeg.sws_alloc_context();
+    private SwsContext()
+    {
+        context = ffmpeg.sws_alloc_context();
+        if (context == null)
+            throw new OutOfMemoryException("Failed to allocate the scaler context.");
+    }
 
     /// <summary>
     /// Allocates an unconfigured <see cref="SwsContext"/>.
