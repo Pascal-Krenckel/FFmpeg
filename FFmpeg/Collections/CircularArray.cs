@@ -225,6 +225,9 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     /// <returns>The zero-based logical index of the first matching element, or -1 if none is found.</returns>
     public int IndexOf(T item)
     {
+        // When empty, Head == Tail and the wrapped branch below would scan stale slots.
+        if (Count == 0)
+            return -1;
         if (Head < Tail)
         {
             int index = Array.IndexOf(data, item, Head, Count);
