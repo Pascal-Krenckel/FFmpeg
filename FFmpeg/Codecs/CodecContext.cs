@@ -913,6 +913,39 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     public ChannelLayout_ref ChannelLayout => context != null ? new(&context->ch_layout, IsOpen) : default;
 
     /// <summary>
+    /// Gets or sets the subtitle header (e.g. the ASS script header), or <see langword="null"/> if there is none.
+    /// </summary>
+    /// <remarks>
+    /// Decoders of text subtitles set it when they are opened. When transcoding subtitles, copy it from the
+    /// decoder to the encoder before opening the encoder, as the <c>ffmpeg</c> tool does.
+    /// The value is copied; it can only be set before the context is opened.
+    /// </remarks>
+    public byte[]? SubtitleHeader
+    {
+        get => context == null || context->subtitle_header == null || context->subtitle_header_size <= 0
+            ? null
+            : new ReadOnlySpan<byte>(context->subtitle_header, context->subtitle_header_size).ToArray();
+        set
+        {
+            if (context == null)
+                throw new ObjectDisposedException(nameof(CodecContext));
+            if (IsOpen)
+                throw new InvalidOperationException("The subtitle header can only be set before the codec context is opened.");
+            ffmpeg.av_freep(&context->subtitle_header);
+            context->subtitle_header_size = 0;
+            if (value == null || value.Length == 0)
+                return;
+            // FFmpeg treats the header as a string, so keep it NUL-terminated.
+            byte* header = (byte*)ffmpeg.av_mallocz((ulong)value.Length + 1);
+            if (header == null)
+                throw new OutOfMemoryException();
+            value.CopyTo(new Span<byte>(header, value.Length));
+            context->subtitle_header = header;
+            context->subtitle_header_size = value.Length;
+        }
+    }
+
+    /// <summary>
     /// Gets or sets the frame size for audio encoding/decoding, which represents the number of samples per channel in each frame.
     /// <para>
     /// <b>Encoding:</b> Notify by libavcodec during encoding to define the number of samples per frame. Each frame submitted must have exactly this number of samples, except the last frame.
