@@ -136,7 +136,11 @@ public abstract unsafe class IOContext : AVIOContext
 
         FormatContext.ioContext = this;
         SetContext(&FormatContext.Context->pb);
+        if (pendingSeekable is Seekable seekable)
+            Seekable = seekable;
     }
+
+    private Seekable? pendingSeekable;
     #endregion
 
     /// <summary>
@@ -262,9 +266,16 @@ public abstract unsafe class IOContext : AVIOContext
     /// </remarks>
     public Seekable Seekable
     {
-        get => FormatContext.Seekable;
+        get => FormatContext != null && FormatContext.Context != null && FormatContext.Context->pb != null
+            ? FormatContext.Seekable
+            : pendingSeekable ?? Seekable.None;
         protected set
         {
+            // Constructors that defer InitContext() have no native context yet;
+            // remember the value and apply it once the context is attached.
+            pendingSeekable = value;
+            if (FormatContext == null || FormatContext.Context == null || FormatContext.Context->pb == null)
+                return;
 #if NET6_0_OR_GREATER
             FormatContext.Context->pb->seekable = (int)value;
 #else
