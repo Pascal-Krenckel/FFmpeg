@@ -107,7 +107,7 @@ internal struct VideoBuffer(PixelFormat format, int width, int height) : IDispos
             return false;
         TimeSpan first = frame.GetPresentationTimestamp() * frame.TimeBase;
         TimeSpan last = (_buffer[^1].GetPresentationTimestamp() + _buffer[^1].Duration) * _buffer[^1].TimeBase;
-        return first >= pts && pts < last;
+        return pts >= first && pts < last;
     }
 
     /// <summary>
