@@ -256,7 +256,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     /// <param name="r">The <see cref="Rational"/> number to multiply.</param>
     /// <returns>A new <see cref="Rational"/> that represents the product of the integer and the rational number.</returns>
     public static Rational operator *(int value, Rational r)
-        => new(value * r.Numerator, r.Denominator);
+        => new((long)value * r.Numerator, (long)r.Denominator);
 
     /// <summary>
     /// Multiplies a long integer by a <see cref="Rational"/>.
@@ -286,10 +286,10 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     public static Rational operator +(Rational a, Rational b)
     {
         // Find a common denominator by multiplying the denominators.
-        long commonDenominator = a.Denominator * b.Denominator;
+        long commonDenominator = (long)a.Denominator * b.Denominator;
 
         // Adjust the numerators to have the common denominator and add them.
-        long numeratorSum = (a.Numerator * b.Denominator) + (b.Numerator * a.Denominator);
+        long numeratorSum = ((long)a.Numerator * b.Denominator) + ((long)b.Numerator * a.Denominator);
 
         return new Rational(numeratorSum, commonDenominator);
     }
@@ -304,10 +304,10 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     public static Rational operator -(Rational a, Rational b)
     {
         // Find a common denominator by multiplying the denominators.
-        long commonDenominator = a.Denominator * b.Denominator;
+        long commonDenominator = (long)a.Denominator * b.Denominator;
 
         // Adjust the numerators to have the common denominator and subtract them.
-        long numeratorDifference = (a.Numerator * b.Denominator) - (b.Numerator * a.Denominator);
+        long numeratorDifference = ((long)a.Numerator * b.Denominator) - ((long)b.Numerator * a.Denominator);
 
         return new Rational(numeratorDifference, commonDenominator);
     }
