@@ -1262,7 +1262,9 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// </remarks>
     public AVResult32 DecodeSubtitle(AVPacket packet, Subtitles.Subtitle subtitle)
     {
-        subtitle?.Free();
+        if (subtitle == null)
+            throw new ArgumentNullException(nameof(subtitle), "A Subtitle instance is required to receive the decoded subtitle.");
+        subtitle.Free();
         if (!IsOpen)
             Open(null).ThrowIfError();
         if (CodecType != MediaType.Subtitle)
@@ -1274,8 +1276,6 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         // Decoding the subtitle from the given packet
         int res = ffmpeg.avcodec_decode_subtitle2(context, &sub, &b, packet.packet);
 
-        // Creating the subtitle object from the decoded AVSubtitle
-        subtitle ??= new();
         subtitle.subtitle = sub;
 
         return res;
@@ -1311,8 +1311,12 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
 
         // Prepare the packet for encoding
         packet.Unreference();  // Ensure the packet is unreferenced before use
-        packet.TimeBase = ffmpeg.AV_TIME_BASE;
+        // AVSubtitle.pts is in AV_TIME_BASE units, i.e. a time base of 1/AV_TIME_BASE.
+        // (Assigning the int AV_TIME_BASE would give 1000000/1.)
+        packet.TimeBase = Rational.TIME_BASE;
         packet.DecompressionTimestamp = packet.PresentationTimestamp = subtitle.PresentationTime;
+        // end_display_time is in milliseconds relative to pts, as is the packet duration.
+        packet.Duration = (long)subtitle.EndDisplayTime * (ffmpeg.AV_TIME_BASE / 1000);
 
         // Allocate space for the encoded subtitle (maximum 1MB)
         packet.Resize(1024 * 1024);
