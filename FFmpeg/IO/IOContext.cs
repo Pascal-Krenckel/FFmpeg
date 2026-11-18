@@ -297,7 +297,7 @@ public abstract unsafe class IOContext : AVIOContext
             pendingSeekable = value;
             if (FormatContext == null || FormatContext.Context == null || FormatContext.Context->pb == null)
                 return;
-            FormatContext.Context->pb->seekable = (int)value;
+            AVIOContextLayout.SetSeekable(FormatContext.Context->pb, (int)value);
         }
     }
     #endregion

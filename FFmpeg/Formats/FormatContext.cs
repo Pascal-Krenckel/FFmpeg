@@ -167,7 +167,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// <see cref="AVIOContext"/>. Derived classes can modify this value when creating
     /// or configuring a custom I/O context.
     /// </remarks>
-    public Seekable Seekable => Context->pb != null ? (Seekable)Context->pb->seekable : Seekable.None;
+    public Seekable Seekable => Context->pb != null ? (Seekable)AVIOContextLayout.GetSeekable(Context->pb) : Seekable.None;
     #endregion
 
     /// <summary>
