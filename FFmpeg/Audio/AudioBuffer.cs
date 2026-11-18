@@ -318,7 +318,7 @@ public sealed unsafe class AudioBuffer : IDisposable
             else if (Format.IsPacked())
                 CopyFromPackedToPlanar(Info, Planes[0], startSrcSampleIndex, destination.Planes, destination.Samples, samplesToCopy);
             else
-                CopyFromPlanarToPlanar(Info, Planes, startSrcSampleIndex, destination.Planes, destination.Samples, samplesToCopy);
+                CopyFromPlanarToPacked(Info, Planes, startSrcSampleIndex, destination.Planes[0], destination.Samples, samplesToCopy);
 
             destination.Samples += samplesToCopy;
             return samplesToCopy;
@@ -439,10 +439,10 @@ public sealed unsafe class AudioBuffer : IDisposable
                 CopyFromPlanarToPlanar(Info, source.ExtendedData, 0, Planes, Samples, samplesToCopy);
             else if (Format.IsPacked() && source.SampleFormat.IsPacked())
                 CopyFromPackedToPacked(Info, source.ExtendedData[0], 0, Planes[0], Samples, samplesToCopy);
-            else if (Format.IsPacked())
+            else if (source.SampleFormat.IsPacked())
                 CopyFromPackedToPlanar(Info, source.ExtendedData[0], 0, Planes, Samples, samplesToCopy);
             else
-                CopyFromPlanarToPlanar(Info, source.ExtendedData, 0, Planes, Samples, samplesToCopy);
+                CopyFromPlanarToPacked(Info, source.ExtendedData, 0, Planes[0], Samples, samplesToCopy);
 
             Samples += samplesToCopy;
             return samplesToCopy;
