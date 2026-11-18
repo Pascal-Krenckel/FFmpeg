@@ -407,11 +407,27 @@ public unsafe class MuxerContext : FormatContext
     /// <inheritdoc />
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
+        // Guard against double Dispose: Context is null afterwards and
+        // dereferencing it would be an access violation.
+        if (IsDisposed || Context == null)
         {
-            ioContext?.Dispose();
+            base.Dispose(disposing);
+            return;
         }
-        _ = ffmpeg.avio_close(Context->pb);
+
+        // A plain AVIOContext (opened from a file name) only owns native memory and
+        // keeps a pointer into this AVFormatContext, so it must be closed before the
+        // format context is freed - also on the finalizer path, otherwise its own
+        // finalizer could later run against freed memory.
+        // A managed IOContext may own a managed Stream and is only disposed explicitly.
+        if (disposing || ioContext is not IOContext)
+            ioContext?.Dispose();
+
+        // Only close pb ourselves when no wrapper owns it; calling avio_close on a
+        // custom (managed) AVIOContext would treat our GCHandle as a URLContext.
+        if (ioContext == null && Context->pb != null)
+            _ = ffmpeg.avio_closep(&Context->pb);
+
         ffmpeg.avformat_free_context(Context);
         Context = null;
         base.Dispose(disposing);
