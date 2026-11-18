@@ -83,7 +83,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// </exception>
     public AVResult32 FindStreamInfo(Span<Collections.AVDictionary> options)
     {
-        if (options == null || options.Length == 0)
+        if (options.Length == 0)
             return ffmpeg.avformat_find_stream_info(Context, null);
         if (options.Length != StreamCount)
             throw new ArgumentOutOfRangeException(nameof(options));
@@ -126,7 +126,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// </exception>
     public AVResult32 FindStreamInfo(Span<Collections.AVMultiDictionary> options)
     {
-        if (options == null || options.Length == 0)
+        if (options.Length == 0)
             return ffmpeg.avformat_find_stream_info(Context, null);
         if (options.Length != StreamCount)
             throw new ArgumentOutOfRangeException(nameof(options));
@@ -159,7 +159,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// </exception>
     public AVResult32 FindStreamInfo(Span<IDictionary<string, string>> options)
     {
-        if (options == null || options.Length == 0)
+        if (options.Length == 0)
             return ffmpeg.avformat_find_stream_info(Context, null);
         if (options.Length != StreamCount)
             throw new ArgumentOutOfRangeException(nameof(options));
