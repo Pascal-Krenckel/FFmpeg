@@ -677,13 +677,17 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
         {
-            byte* src = *(byte**)ptr;
+            // The option's field (at dst, not at the start of the object) is a uint8_t*
+            // immediately followed by an int with the length in bytes.
+            byte* src = *(byte**)dst;
             if (src == null)
             {
                 value = string.Empty;
                 return 0;
             }
-            long size = *((int*)ptr + 1);
+            long size = *(int*)((byte**)dst + 1);
+            if (size < 0)
+                return AVResult32.InvalidArgument;
             if ((size * 2) + 1 > int.MaxValue)
                 return AVResult32.InvalidArgument;
             byte[] buffer = new byte[size];
@@ -1045,10 +1049,10 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
         {
-            byte* src = *(byte**)ptr;
+            byte* src = *(byte**)dst; // the field: uint8_t* data, followed by int size
             if (src == null)
                 return 0;
-            long size = *((int*)ptr + 1);
+            long size = *(int*)((byte**)dst + 1);
             if ((size * 2) + 1 > int.MaxValue)
                 return int.MinValue;
             if (size > value.Length)
@@ -1106,13 +1110,13 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
         {
-            byte* src = *(byte**)ptr;
+            byte* src = *(byte**)dst; // the field: uint8_t* data, followed by int size
             if (src == null)
             {
                 value = [];
                 return 0;
             }
-            long size = *((int*)ptr + 1);
+            long size = *(int*)((byte**)dst + 1);
             if ((size * 2) + 1 > int.MaxValue)
                 return AVResult32.InvalidArgument;
             value = new byte[size];
@@ -1168,11 +1172,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
         {
-            byte* src = *(byte**)ptr;
+            byte* src = *(byte**)dst; // the field: uint8_t* data, followed by int size
             if (src == null)
                 return 0;
 
-            long size = *((int*)ptr + 1);
+            long size = *(int*)((byte**)dst + 1);
             if ((size * 2) + 1 > int.MaxValue)
                 return AVResult32.InvalidArgument;
             byte[] bytes = new byte[size];
@@ -1229,11 +1233,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
         {
-            byte* src = *(byte**)ptr;
+            byte* src = *(byte**)dst; // the field: uint8_t* data, followed by int size
             if (src == null)
                 return 0;
 
-            long size = *((int*)ptr + 1);
+            long size = *(int*)((byte**)dst + 1);
             if ((size * 2) + 1 > int.MaxValue)
                 return AVResult32.InvalidArgument;
             byte[] bytes = new byte[size];
