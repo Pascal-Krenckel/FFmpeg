@@ -303,7 +303,7 @@ public unsafe partial class DemuxerContext : FormatContext
         if (context == null)
             throw new OutOfMemoryException();
         DemuxerContext formatContext = new(context);
-        ioContext.InitContext(formatContext, IOOptions.Read);
+        ioContext.InitContext(formatContext, ioContext.CanSeek ? IOOptions.Read | IOOptions.Seek : IOOptions.Read);
         AutoGen._AVDictionary* dic = dictionary != null ? dictionary.dictionary : null;
         AVResult32 result = ffmpeg.avformat_open_input(&context, (byte*)null, iFormat, &dic);
         formatContext.Context = context;
