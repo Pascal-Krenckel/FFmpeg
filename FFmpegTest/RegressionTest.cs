@@ -107,6 +107,37 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public unsafe void SubtitleRect_SetText_ReplacesAndClears()
+    {
+        // SubtitleRect has no public constructor; wrap a zeroed native rect directly.
+        FFmpeg.AutoGen._AVSubtitleRect* native = (FFmpeg.AutoGen._AVSubtitleRect*)FFmpeg.AutoGen.ffmpeg.av_mallocz((ulong)sizeof(FFmpeg.AutoGen._AVSubtitleRect));
+        try
+        {
+            System.Reflection.ConstructorInfo ctor = typeof(FFmpeg.Subtitles.SubtitleRect).GetConstructor(
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                [typeof(FFmpeg.AutoGen._AVSubtitleRect*)])!;
+            FFmpeg.Subtitles.SubtitleRect rect = (FFmpeg.Subtitles.SubtitleRect)ctor.Invoke([System.Reflection.Pointer.Box(native, typeof(FFmpeg.AutoGen._AVSubtitleRect*))]);
+
+            rect.Text = "first";
+            rect.Text = "second, replacing the first";
+            Assert.AreEqual("second, replacing the first", rect.Text);
+            rect.ASS = "Dialogue: 0,0:00:00.00,0:00:01.00,Default,,0,0,0,,hi";
+            rect.ASS = "replaced";
+            Assert.AreEqual("replaced", rect.ASS);
+
+            rect.Text = null!;
+            rect.ASS = null!;
+            Assert.IsTrue(native->text == null && native->ass == null);
+        }
+        finally
+        {
+            FFmpeg.AutoGen.ffmpeg.av_freep(&native->text);
+            FFmpeg.AutoGen.ffmpeg.av_freep(&native->ass);
+            FFmpeg.AutoGen.ffmpeg.av_free(native);
+        }
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];
