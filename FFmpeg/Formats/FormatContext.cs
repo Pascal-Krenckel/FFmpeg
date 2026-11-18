@@ -189,7 +189,7 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     /// <remarks>
     /// Returns <see langword="null"/> if no URL has been assigned.
     /// </remarks>
-    public string? Url => Context->url != null ? Marshal.PtrToStringAnsi((IntPtr)Context->url) : null;
+    public string? Url => Context->url != null ? Marshal.PtrToStringUTF8((IntPtr)Context->url) : null;
 
     /// <summary>
     /// Gets the metadata associated with the format context.
