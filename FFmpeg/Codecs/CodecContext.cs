@@ -907,7 +907,10 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// <b>Decoding:</b> May be set by the user if known, but the decoder may override it based on the actual stream data.
     /// </para>
     /// </summary>
-    public ChannelLayout_ref ChannelLayout => context != null ? new(&context->ch_layout, true) : default;
+    /// <remarks>
+    /// The layout can be changed until the context is opened; afterwards it is read-only.
+    /// </remarks>
+    public ChannelLayout_ref ChannelLayout => context != null ? new(&context->ch_layout, IsOpen) : default;
 
     /// <summary>
     /// Gets or sets the frame size for audio encoding/decoding, which represents the number of samples per channel in each frame.
