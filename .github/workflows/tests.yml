@@ -27,11 +27,11 @@ jobs:
         run: dotnet build FFmpeg/FFmpeg.csproj -c Release
 
       - name: Test
-        run: dotnet test FFmpegTest/FFmpegTest.csproj -c Release --logger "trx;LogFileName=results.trx"
+        run: dotnet test FFmpegTest/FFmpegTest.csproj -c Release --logger "trx;LogFileName=results.trx" --results-directory TestResults
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: FFmpegTest/TestResults/*.trx
+          path: TestResults/*.trx
