@@ -134,10 +134,35 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// <summary>
     /// Gets or sets the size of the packet's data in bytes.
     /// </summary>
+    /// <remarks>
+    /// The size can only be set within the packet's existing allocation; use
+    /// <see cref="Resize(int)"/> to grow the packet. Otherwise <see cref="Data"/> would
+    /// expose memory beyond the end of the buffer.
+    /// </remarks>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// The value is negative or larger than the packet's allocated buffer.
+    /// </exception>
     public int Size
     {
         get => packet->size;
-        set => packet->size = value;
+        set
+        {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value), "Size must not be negative.");
+            if (value <= packet->size)
+            {
+                // Also zeroes the padding after the new end, as FFmpeg requires.
+                ffmpeg.av_shrink_packet(packet, value);
+                return;
+            }
+
+            long capacity = packet->buf != null
+                ? (long)packet->buf->size - (packet->data - packet->buf->data) - ffmpeg.AV_INPUT_BUFFER_PADDING_SIZE
+                : packet->size;
+            if (value > capacity)
+                throw new ArgumentOutOfRangeException(nameof(value), "Size exceeds the packet's buffer. Use Resize to grow the packet.");
+            packet->size = value;
+        }
     }
 
     /// <summary>
