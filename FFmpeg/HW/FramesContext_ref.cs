@@ -64,23 +64,27 @@ public readonly unsafe struct FramesContext_ref : IEquatable<FramesContext_ref>,
     /// <inheritdoc />
     public FramesContext? GetReferencedObject()
     {
+        // Nothing attached: av_buffer_ref(NULL) would dereference NULL.
+        if (*buffer == null)
+            return null;
         AutoGen._AVBufferRef* dev = ffmpeg.av_buffer_ref(*buffer);
-        return buffer == null
-            ? throw new OutOfMemoryException("Failed to reference the buffer for the new device context.")
+        return dev == null
+            ? throw new OutOfMemoryException("Failed to reference the buffer for the new frames context.")
             : new FramesContext(dev);
     }
 
     /// <inheritdoc />
     public void SetReferencedObject(FramesContext? device)
     {
+        // Releasing the reference modifies the owner just like replacing it.
+        if (IsReadOnly)
+            throw new NotSupportedException("Cannot modify a read-only device context.");
         if (device == null)
         {
             ffmpeg.av_buffer_unref(buffer);
         }
         else
         {
-            if (IsReadOnly)
-                throw new NotSupportedException("Cannot modify a read-only device context.");
             AVResult32 result = ffmpeg.av_buffer_replace(buffer, device.buffer);
             result.ThrowIfError();
         }
