@@ -784,8 +784,11 @@ public class CircularArray<T> : IEnumerable<T>, IList<T>, IReadOnlyList<T>
     /// </summary>
     public void Clear()
     {
+        // Clear the whole backing array (the live range may wrap) before resetting
+        // Count, so removed items are no longer referenced and can be collected.
+        Array.Clear(data, 0, data.Length);
+        Head = 0;
         Count = 0;
-        Array.Clear(data, 0, Count);
     }
 
     /// <summary>
