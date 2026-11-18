@@ -328,7 +328,9 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     /// <param name="r2">The <see cref="Rational"/> divisor.</param>
     /// <returns>A long representing the result of dividing the <see cref="TimeSpan"/> by the <see cref="Rational"/>.</returns>
     public static long operator /(TimeSpan t, Rational r2)
-        => (long)((Rational)t / r2);
+        // Exact integer rescale (rounded to nearest). Going through double and
+        // av_d2q/av_reduce saturates at int.MaxValue units (~6.6 h at 1/90000).
+        => ffmpeg.av_rescale_q(t.Ticks, new _AVRational { num = 1, den = (int)TimeSpan.TicksPerSecond }, r2);
 
     /// <summary>
     /// Compares two <see cref="Rational"/> numbers for less than.
