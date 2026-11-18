@@ -121,7 +121,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// </summary>
     /// <param name="nb">The number of channels to initialize the layout with.</param>
     /// <exception cref="OutOfMemoryException">Thrown if memory allocation fails during initialization.</exception>
-    /// <exception cref="ArgumentException">Thrown if the number of channels provided is invalid.</exception>
+    /// <exception cref="ArgumentException">Thrown if the number of channels provided is invalid. The layout is left uninitialized.</exception>
     public void Init(int nb)
     {
 
@@ -129,11 +129,14 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         // Initialize the layout with a custom number of channels and handle errors.
         ffmpeg.av_channel_layout_uninit(&l);
         int res = ffmpeg.av_channel_layout_custom_init(&l, nb);
+        // Store the result even on failure: the old custom map has already been freed,
+        // so keeping the previous value would leave a dangling pointer (double free on Dispose).
+        layout = l;
         if (res == AVResult32.OutOfMemory)
             throw new OutOfMemoryException("Insufficient memory to initialize the channel layout.");
         else if (res == AVResult32.InvalidArgument)
             throw new ArgumentException("Invalid number of channels specified for the channel layout.");
-        layout = l;
+        FFmpegException.ThrowIfError(res);
     }
 
     /// <summary>
