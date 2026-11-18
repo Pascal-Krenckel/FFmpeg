@@ -216,7 +216,7 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
     /// <paramref name="channelNumber"/> is outside the valid range.
     /// </exception>
     /// <exception cref="ArgumentException">
-    /// <paramref name="name"/> is too long to fit into the fixed-size channel name.
+    /// <paramref name="name"/> is 16 or more bytes in UTF-8 (the fixed-size name needs a terminating NUL).
     /// </exception>
     /// <exception cref="InvalidOperationException">
     /// The channel layout is not a custom channel layout.
@@ -226,11 +226,13 @@ public unsafe class ChannelLayout : IEquatable<ChannelLayout>, IChannelLayout, I
         ValidateCustomChannel(channelNumber);
 
         Span<byte> bytes = new((byte*)&layout.u.map[channelNumber].name, 16);
+
+        // FFmpeg reads the name as a NUL-terminated char[16] (e.g. "@%s" in av_channel_layout_describe),
+        // so at most 15 bytes of text fit. Validate before clearing so a rejected name keeps the old one.
+        if (Encoding.UTF8.GetByteCount(name) >= bytes.Length)
+            throw new ArgumentException("The UTF-8 encoded channel name must be shorter than 16 bytes.", nameof(name));
+
         bytes.Clear();
-
-        if (Encoding.UTF8.GetByteCount(name) > bytes.Length)
-            throw new ArgumentException("The UTF-8 encoded channel name must not exceed 16 bytes.", nameof(name));
-
         _ = Encoding.UTF8.GetBytes(name, bytes);
     }
 
