@@ -9,12 +9,6 @@ namespace FFmpegTest;
 [TestClass]
 public class DecodingTest
 {
-    private readonly string jsonFile = @"Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4.json";
-
-    private readonly string bgraFile = @"Test-Files\n123.bgra";
-    private readonly string yuvFile = @"Test-Files\n123.yuv";
-    private readonly string audioFileS16le = @"Test-Files\10s-11s.s16le.pcm";
-    private readonly string audioFileF32le = @"Test-Files\10s-11s.f32le.pcm";
 
     private DemuxerContext? demuxerContext;
     private FFProbeJson? ffProbe;
@@ -22,8 +16,8 @@ public class DecodingTest
     [TestInitialize]
     public void Initialize()
     {
-        ffProbe = FFProbeJson.Parse(File.ReadAllText(jsonFile))!;
-        string videoFile = Path.Combine(Path.GetDirectoryName(jsonFile)!, ffProbe.Format.Filename);
+        ffProbe = FFProbeJson.Parse(File.ReadAllText(TestFiles.VideoProbeJson))!;
+        string videoFile = TestFiles.Get(ffProbe.Format.Filename);
         demuxerContext = DemuxerContext.Open(videoFile, true);
     }
 
@@ -144,7 +138,7 @@ public class DecodingTest
     public void DecodingYUV420p()
     {
         int frameNr = 123;
-        byte[] yuv = File.ReadAllBytes(yuvFile);
+        byte[] yuv = File.ReadAllBytes(TestFiles.Yuv);
         int videoIndex = SelectStream(demuxerContext!, MediaType.Video);
         TimeSpan estimatedPTS = frameNr / demuxerContext!.Streams[videoIndex].RealFrameRate;
         Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
@@ -170,7 +164,7 @@ public class DecodingTest
     public void DecodingAndConversionBGRA()
     {
         int frameNr = 123;
-        byte[] bgra = File.ReadAllBytes(bgraFile);
+        byte[] bgra = File.ReadAllBytes(TestFiles.Bgra);
         int videoIndex = SelectStream(demuxerContext!, MediaType.Video);
         TimeSpan estimatedPTS = frameNr / demuxerContext!.Streams[videoIndex].RealFrameRate;
         Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
@@ -184,4 +178,73 @@ public class DecodingTest
         Assert.IsTrue(image.GetPlane(0).SequenceEqual(bgra));
     }
 
+    [TestMethod]
+    public void DecodingAudio_MatchesReferencePcm()
+    {
+        // Test-Files/10s-11s.*.pcm hold the 5.1 AC-3 track from 10 s to 11 s, decoded with
+        //   ffmpeg -ss 10 -i <video> -map 0:a -t 1 -f f32le (and -f s16le)
+        // That seek starts a fresh decoder at the audio packet at 8.128 s and discards
+        // the samples before 10 s. The AC-3 decoder dithers with a pseudo-random sequence
+        // that starts with the decoder, so its output depends on where decoding started;
+        // starting at the same packet reproduces the reference exactly.
+        TimeSpan decoderStart = TimeSpan.FromMilliseconds(8128);
+        TimeSpan start = TimeSpan.FromSeconds(10);
+        int audioIndex = SelectStream(demuxerContext!, MediaType.Audio);
+        AVStream stream = demuxerContext!.Streams[audioIndex];
+        int sampleRate = stream.CodecParameters.SampleRate;
+        int channels = stream.CodecParameters.Channels;
+        long firstPacketPts = decoderStart / stream.TimeBase;
+        long target = start / new Rational(1, sampleRate);
+
+        Codec c = Codec.FindDecoder(stream.CodecParameters.CodecId)!.Value;
+        using CodecContext decoder = CodecContext.Open(c, stream.CodecParameters);
+        using AVFrame frame = AVFrame.Allocate();
+        using AVPacket packet = AVPacket.Allocate();
+
+        // The decoder delivers planar float; the FIFO converts to packed, as in the reference.
+        using AudioFifo fifo = new(SampleFormat.Float32, channels);
+        while (fifo.Count < sampleRate)
+        {
+            AVResult32 result = decoder.ReceiveFrame(frame);
+            if (result.IsTryAgain)
+            {
+                // Read from the beginning; feed the decoder from the 8.128 s packet on.
+                do
+                    demuxerContext.ReadPacket(packet).ThrowIfError();
+                while (packet.StreamIndex != audioIndex || packet.PresentationTimestamp < firstPacketPts);
+                decoder.SendPacket(packet).ThrowIfError();
+                continue;
+            }
+            result.ThrowIfError();
+
+            // Decoded timestamps are in the time base of the packets, i.e. the stream's.
+            long frameStart = Rational.Rescale(frame.GetPresentationTimestamp(), stream.TimeBase, new Rational(1, sampleRate));
+            if (frameStart + frame.SampleCount <= target)
+                continue;
+            Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
+            if (frameStart < target)
+                fifo.Drop((int)(target - frameStart)).ThrowIfError();
+        }
+
+        float[] decoded = new float[sampleRate * channels];
+        Assert.AreEqual(sampleRate, (int)fifo.Read<float>(decoded.AsSpan()));
+
+        float[] expected = System.Runtime.InteropServices.MemoryMarshal.Cast<byte, float>(File.ReadAllBytes(TestFiles.AudioF32le)).ToArray();
+        short[] expected16 = System.Runtime.InteropServices.MemoryMarshal.Cast<byte, short>(File.ReadAllBytes(TestFiles.AudioS16le)).ToArray();
+        Assert.HasCount(decoded.Length, expected);
+        Assert.HasCount(decoded.Length, expected16);
+
+        float maxDiff = 0;
+        int maxDiff16 = 0;
+        for (int i = 0; i < decoded.Length; i++)
+        {
+            maxDiff = Math.Max(maxDiff, Math.Abs(decoded[i] - expected[i]));
+            int asInt16 = (int)Math.Clamp(MathF.Round(decoded[i] * 32768f), short.MinValue, short.MaxValue);
+            maxDiff16 = Math.Max(maxDiff16, Math.Abs(asInt16 - expected16[i]));
+        }
+        // Same decoder, same start packet: the float output matches exactly; allow only
+        // last-bit differences from SIMD code paths on other CPUs.
+        Assert.IsTrue(maxDiff <= 1e-6f, $"Decoded float samples differ from the reference by up to {maxDiff}.");
+        Assert.IsTrue(maxDiff16 <= 1, $"Decoded samples differ from the 16-bit reference by up to {maxDiff16} LSB.");
+    }
 }

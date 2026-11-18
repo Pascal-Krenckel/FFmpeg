@@ -31,22 +31,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Test-Files\10s-11s.f32le.pcm">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Test-Files\10s-11s.s16le.pcm">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Test-Files\n123.bgra">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-		<None Update="Test-Files\n123.yuv">
+		<!-- Every file in Test-Files is copied next to the test assembly (see TestFiles). -->
+		<None Update="Test-Files\**\*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
