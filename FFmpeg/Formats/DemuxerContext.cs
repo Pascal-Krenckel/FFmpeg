@@ -394,14 +394,24 @@ public unsafe partial class DemuxerContext : FormatContext
     {
         if (!IsDisposed)
         {
-            if (disposing)
-                ioContext?.Dispose();
+            // Close the format context first: FFmpeg's read_close may still use pb.
+            // With custom I/O, avformat_close_input leaves pb alone, and Context may
+            // already be null if avformat_open_input failed and freed it.
             if (Context != null)
             {
                 AutoGen._AVFormatContext* context = Context;
                 ffmpeg.avformat_close_input(&context);
                 Context = context;
             }
+
+            // Then free the custom I/O context. It holds its own AVIOContext pointer, so
+            // this is safe even after FFmpeg freed the format context. On the finalizer
+            // path only native memory is released (a managed Stream is left alone).
+            if (disposing)
+                ioContext?.Dispose();
+            else
+                ioContext?.ReleaseNative();
+            ioContext = null;
         }
         base.Dispose(disposing);
 

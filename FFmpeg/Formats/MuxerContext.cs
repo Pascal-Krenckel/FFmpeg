@@ -99,7 +99,7 @@ public unsafe class MuxerContext : FormatContext
             return null;
         if (filename != null && !(format?.Flags == FormatFlags.NoFile))
         {
-            AVResult32 result = AVIOContext.Open(&output.Context->pb, filename, ffmpeg.AVIO_FLAG_WRITE, out output.ioContext);
+            AVResult32 result = AVIOContext.Open(output, filename, ffmpeg.AVIO_FLAG_WRITE, out output.ioContext);
             if (result.IsError)
             {
                 output.Dispose();
@@ -415,18 +415,19 @@ public unsafe class MuxerContext : FormatContext
             return;
         }
 
-        // A plain AVIOContext (opened from a file name) only owns native memory and
-        // keeps a pointer into this AVFormatContext, so it must be closed before the
-        // format context is freed - also on the finalizer path, otherwise its own
-        // finalizer could later run against freed memory.
-        // A managed IOContext may own a managed Stream and is only disposed explicitly.
-        if (disposing || ioContext is not IOContext)
+        // Release the I/O context; it also clears Context->pb. On the finalizer path only
+        // the native part is released, since a managed IOContext may own a Stream that
+        // must not be touched from the finalizer thread.
+        if (disposing)
             ioContext?.Dispose();
+        else
+            ioContext?.ReleaseNative();
 
         // Only close pb ourselves when no wrapper owns it; calling avio_close on a
         // custom (managed) AVIOContext would treat our GCHandle as a URLContext.
         if (ioContext == null && Context->pb != null)
             _ = ffmpeg.avio_closep(&Context->pb);
+        ioContext = null;
 
         ffmpeg.avformat_free_context(Context);
         Context = null;
