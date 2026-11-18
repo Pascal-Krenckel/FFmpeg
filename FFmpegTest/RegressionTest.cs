@@ -138,6 +138,26 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public unsafe void HardwareContextRef_Empty_ReturnsNull()
+    {
+        // An empty hw_device_ctx / hw_frames_ctx field, as on any software frame or codec.
+        FFmpeg.AutoGen._AVBufferRef* field = null;
+        foreach (Type type in new[] { typeof(FFmpeg.HW.DeviceContext_ref), typeof(FFmpeg.HW.FramesContext_ref) })
+        {
+            System.Reflection.ConstructorInfo ctor = type.GetConstructor(
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                [typeof(FFmpeg.AutoGen._AVBufferRef**), typeof(bool)])!;
+            object reference = ctor.Invoke([System.Reflection.Pointer.Box(&field, typeof(FFmpeg.AutoGen._AVBufferRef**)), true]);
+            Assert.IsNull(type.GetMethod("GetReferencedObject")!.Invoke(reference, null), type.Name);
+
+            // Read-only references must not release the owner's context either.
+            System.Reflection.TargetInvocationException e = Assert.Throws<System.Reflection.TargetInvocationException>(
+                () => type.GetMethod("SetReferencedObject")!.Invoke(reference, [null]));
+            Assert.IsInstanceOfType<NotSupportedException>(e.InnerException);
+        }
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];
