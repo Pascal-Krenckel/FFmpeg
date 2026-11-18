@@ -16,6 +16,17 @@ public abstract unsafe class IOContext : AVIOContext
 {
     private GCHandle gch;
 
+    // The delegates handed to native code must stay alive for as long as any
+    // AVIOContext may call them. Storing them in static fields keeps them rooted;
+    // a delegate created inline would be collectable as soon as the constructor
+    // returned, and the next native read/write/seek would jump into freed memory.
+    private static readonly AutoGen.avio_alloc_context_read_packet s_readDelegate = ReadPacket;
+    private static readonly AutoGen.avio_alloc_context_write_packet s_writeDelegate = WritePacket;
+    private static readonly AutoGen.avio_alloc_context_seek s_seekDelegate = Seek;
+    private static readonly AutoGen.avio_alloc_context_read_packet_func s_read = s_readDelegate;
+    private static readonly AutoGen.avio_alloc_context_write_packet_func s_write = s_writeDelegate;
+    private static readonly AutoGen.avio_alloc_context_seek_func s_seek = s_seekDelegate;
+
     /// <summary>
     /// Gets the <see cref="Formats.FormatContext"/> associated with this I/O context.
     /// </summary>
@@ -45,15 +56,15 @@ public abstract unsafe class IOContext : AVIOContext
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
         AutoGen.avio_alloc_context_read_packet_func _read = options.HasFlag(IOOptions.Read)
-            ? (AutoGen.avio_alloc_context_read_packet_func)IOContext.ReadPacket
+            ? s_read
             : null;
 
         AutoGen.avio_alloc_context_write_packet_func _write = options.HasFlag(IOOptions.Write)
-            ? (AutoGen.avio_alloc_context_write_packet_func)IOContext.WritePacket
+            ? s_write
             : null;
 
         AutoGen.avio_alloc_context_seek_func _seek = options.HasFlag(IOOptions.Seek)
-            ? (AutoGen.avio_alloc_context_seek_func)IOContext.Seek
+            ? s_seek
             : null;
 
         formatContext.Context->pb = AutoGen.ffmpeg.avio_alloc_context(
@@ -102,15 +113,15 @@ public abstract unsafe class IOContext : AVIOContext
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
         AutoGen.avio_alloc_context_read_packet_func _read = options.HasFlag(IOOptions.Read)
-            ? (AutoGen.avio_alloc_context_read_packet_func)IOContext.ReadPacket
+            ? s_read
             : null;
 
         AutoGen.avio_alloc_context_write_packet_func _write = options.HasFlag(IOOptions.Write)
-            ? (AutoGen.avio_alloc_context_write_packet_func)IOContext.WritePacket
+            ? s_write
             : null;
 
         AutoGen.avio_alloc_context_seek_func _seek = options.HasFlag(IOOptions.Seek)
-            ? (AutoGen.avio_alloc_context_seek_func)IOContext.Seek
+            ? s_seek
             : null;
 
         formatContext.Context->pb = AutoGen.ffmpeg.avio_alloc_context(
