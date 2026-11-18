@@ -27,7 +27,9 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// Initializes a new instance of the <see cref="AVPacket"/> class using an existing unmanaged <see cref="AutoGen._AVPacket"/> pointer.
     /// </summary>
     /// <param name="packet">A pointer to an unmanaged <see cref="AutoGen._AVPacket"/> structure.</param>
-    internal AVPacket(AutoGen._AVPacket* packet) : this() => this.packet = packet;
+    // Must not chain to this(): that would av_packet_alloc() a second packet and
+    // leak it immediately when it is overwritten here.
+    internal AVPacket(AutoGen._AVPacket* packet) => this.packet = packet;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="AVPacket"/> class with a specified payload size.
