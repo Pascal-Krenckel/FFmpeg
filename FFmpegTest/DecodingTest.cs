@@ -181,23 +181,25 @@ public class DecodingTest
     [TestMethod]
     public void DecodingAudio_MatchesReferencePcm()
     {
-        // Test-Files/10s-11s.*.pcm hold the decoded 5.1 AC-3 track from 10 s to 11 s
-        // as packed float and as packed 16-bit samples.
+        // Test-Files/10s-11s.*.pcm hold the 5.1 AC-3 track from 10 s to 11 s, decoded with
+        //   ffmpeg -ss 10 -i <video> -map 0:a -t 1 -f f32le (and -f s16le)
+        // That seek starts a fresh decoder at the audio packet at 8.128 s and discards
+        // the samples before 10 s. The AC-3 decoder dithers with a pseudo-random sequence
+        // that starts with the decoder, so its output depends on where decoding started;
+        // starting at the same packet reproduces the reference exactly.
+        TimeSpan decoderStart = TimeSpan.FromMilliseconds(8128);
         TimeSpan start = TimeSpan.FromSeconds(10);
         int audioIndex = SelectStream(demuxerContext!, MediaType.Audio);
         AVStream stream = demuxerContext!.Streams[audioIndex];
         int sampleRate = stream.CodecParameters.SampleRate;
         int channels = stream.CodecParameters.Channels;
+        long firstPacketPts = decoderStart / stream.TimeBase;
+        long target = start / new Rational(1, sampleRate);
 
         Codec c = Codec.FindDecoder(stream.CodecParameters.CodecId)!.Value;
         using CodecContext decoder = CodecContext.Open(c, stream.CodecParameters);
         using AVFrame frame = AVFrame.Allocate();
         using AVPacket packet = AVPacket.Allocate();
-
-        // av_seek_frame lands on a keyframe near the target, which by design can also be
-        // after it. Start at 0 s (always exact) and decode forward to the target instead.
-        demuxerContext.Seek(TimeSpan.Zero, audioIndex).ThrowIfError();
-        decoder.FlushBuffers();
 
         // The decoder delivers planar float; the FIFO converts to packed, as in the reference.
         using AudioFifo fifo = new(SampleFormat.Float32, channels);
@@ -206,17 +208,17 @@ public class DecodingTest
             AVResult32 result = decoder.ReceiveFrame(frame);
             if (result.IsTryAgain)
             {
-                demuxerContext.ReadPacket(packet).ThrowIfError();
-                if (packet.StreamIndex == audioIndex)
-                    decoder.SendPacket(packet).ThrowIfError();
+                // Read from the beginning; feed the decoder from the 8.128 s packet on.
+                do
+                    demuxerContext.ReadPacket(packet).ThrowIfError();
+                while (packet.StreamIndex != audioIndex || packet.PresentationTimestamp < firstPacketPts);
+                decoder.SendPacket(packet).ThrowIfError();
                 continue;
             }
             result.ThrowIfError();
 
-            // Skip frames that end before the target; trim the one that contains it.
             // Decoded timestamps are in the time base of the packets, i.e. the stream's.
             long frameStart = Rational.Rescale(frame.GetPresentationTimestamp(), stream.TimeBase, new Rational(1, sampleRate));
-            long target = (long)Math.Round(start.TotalSeconds * sampleRate);
             if (frameStart + frame.SampleCount <= target)
                 continue;
             Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
@@ -232,18 +234,17 @@ public class DecodingTest
         Assert.HasCount(decoded.Length, expected);
         Assert.HasCount(decoded.Length, expected16);
 
-        // AC-3 blocks overlap, and the reference may have been decoded starting near 10 s;
-        // ignore the first 1536 samples (one AC-3 frame) in case its decoder was not primed.
-        const int skipSamples = 1536;
         float maxDiff = 0;
         int maxDiff16 = 0;
-        for (int i = skipSamples * channels; i < decoded.Length; i++)
+        for (int i = 0; i < decoded.Length; i++)
         {
             maxDiff = Math.Max(maxDiff, Math.Abs(decoded[i] - expected[i]));
             int asInt16 = (int)Math.Clamp(MathF.Round(decoded[i] * 32768f), short.MinValue, short.MaxValue);
             maxDiff16 = Math.Max(maxDiff16, Math.Abs(asInt16 - expected16[i]));
         }
-        Assert.IsTrue(maxDiff < 1e-4f, $"Decoded float samples differ from the reference by up to {maxDiff}.");
-        Assert.IsTrue(maxDiff16 <= 2, $"Decoded samples differ from the 16-bit reference by up to {maxDiff16} LSB.");
+        // Same decoder, same start packet: the float output matches exactly; allow only
+        // last-bit differences from SIMD code paths on other CPUs.
+        Assert.IsTrue(maxDiff <= 1e-6f, $"Decoded float samples differ from the reference by up to {maxDiff}.");
+        Assert.IsTrue(maxDiff16 <= 1, $"Decoded samples differ from the 16-bit reference by up to {maxDiff16} LSB.");
     }
 }
