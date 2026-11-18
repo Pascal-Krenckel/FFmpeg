@@ -363,6 +363,9 @@ public sealed class Transcoder : IDisposable
                 res = res2;
             if (res.IsError && !res.IsTryAgain)
                 return res;
+            // No packet was produced for this output (writePacket is empty).
+            if (res.IsTryAgain)
+                continue;
 
             res = Sink.WritePacket(writePacket);
             if (res.IsError)
@@ -477,6 +480,9 @@ public sealed class Transcoder : IDisposable
                     res = Source.Decode(readPacket, readFrame);
                     if (res.IsError)
                         return res;
+                    // Decode each packet once, even when it feeds several outputs; sending it
+                    // again would make the decoder treat it as the next packet.
+                    frameDecoded = true;
                 }
                 // decode
                 AVResult32 res2 = ProcessFrame(map);
