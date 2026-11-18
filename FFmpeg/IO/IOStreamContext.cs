@@ -21,7 +21,7 @@ public class IOStreamContext : IOContext
     /// <param name="bufferSize">The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="stream"/> is <c>null</c>.</exception>
     public IOStreamContext(FormatContext context, Stream stream, IOOptions options, int bufferSize = 32768)
-        : base(context, stream.CanSeek ? (options | IO.IOOptions.Seek) : options, bufferSize)
+        : base(context, (stream ?? throw new ArgumentNullException(nameof(stream))).CanSeek ? (options | IO.IOOptions.Seek) : options, bufferSize)
     {
         this.stream = stream ?? throw new ArgumentNullException(nameof(stream));
         Seekable = stream.CanSeek ? Seekable.Byte : Seekable.None;
