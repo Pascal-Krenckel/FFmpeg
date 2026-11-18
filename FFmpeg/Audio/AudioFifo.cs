@@ -53,6 +53,9 @@ public unsafe partial class AudioFifo : IDisposable
         Format = format;
         Channels = channels;
         fifo = ffmpeg.av_audio_fifo_alloc((_AVSampleFormat)Format, Channels, 1);
+        // NULL for an invalid format or channel count (or out of memory); using it would crash.
+        if (fifo == null)
+            throw new ArgumentException($"Cannot create an audio FIFO for {Format} with {Channels} channel(s).");
     }
 
     /// <summary>
@@ -70,6 +73,9 @@ public unsafe partial class AudioFifo : IDisposable
         Format = format;
         Channels = channels;
         fifo = ffmpeg.av_audio_fifo_alloc((_AVSampleFormat)Format, Channels, capacity);
+        // NULL for an invalid format or channel count (or out of memory); using it would crash.
+        if (fifo == null)
+            throw new ArgumentException($"Cannot create an audio FIFO for {Format} with {Channels} channel(s).");
     }
 
     #region Write Helper Functions

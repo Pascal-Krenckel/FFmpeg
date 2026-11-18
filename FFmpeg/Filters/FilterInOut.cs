@@ -230,6 +230,8 @@ public unsafe class FilterInOutList : IDisposable, IEnumerable<FilterInOutEntry>
     public FilterInOutEntry Add(string linkName, FilterContext filter, int filterPadIndex)
     {
         AutoGen._AVFilterInOut* inout = ffmpeg.avfilter_inout_alloc();
+        if (inout == null)
+            throw new OutOfMemoryException();
         inout->name = ffmpeg.av_strdup(linkName);
         inout->filter_ctx = filter.context;
         inout->pad_idx = filterPadIndex;
