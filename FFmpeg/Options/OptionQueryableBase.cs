@@ -430,8 +430,8 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <summary>
     /// Sets multiple options using a reference to a lookup collection of key-value pairs.
     /// </summary>
-    /// <param name="name">The option name to set.</param>
-    /// <param name="values">The lookup collection of key-value pairs to set as options.</param>
+    /// <param name="name">Not used; every entry of <paramref name="values"/> is applied as its own option (<c>av_opt_set_dict2</c>).</param>
+    /// <param name="values">The lookup collection of key-value pairs to set as options. On return it contains the entries that were not found.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(string name, ref ILookup<string, string> values, bool recursive = true)
@@ -450,7 +450,9 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         else
         {
             using Collections.AVMultiDictionary dictionary = new(values);
-            int res = ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+            AutoGen._AVDictionary* p = dictionary.dictionary;
+            int res = ffmpeg.av_opt_set_dict2(Pointer, &p, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+            dictionary.dictionary = p;
             values = dictionary.SelectMany(group => group, (g, Value) => (g.Key, Value)).ToLookup(kv => kv.Key, kv => kv.Value);
             return res;
         }
