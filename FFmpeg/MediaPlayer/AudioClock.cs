@@ -102,7 +102,8 @@ public sealed class AudioClock : IMediaClock
             return;
 
         _clockAnchor = Position;
-        _stopwatch.Stop();
+        // The elapsed time is now part of the anchor; reset so it is not counted again.
+        _stopwatch.Reset();
         ClockChanged?.Invoke(this, EventArgs.Empty);
     }
 
