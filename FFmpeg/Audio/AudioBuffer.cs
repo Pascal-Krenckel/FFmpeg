@@ -259,12 +259,15 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <param name="startSrcSampleIndex">The starting sample index in the source buffer.</param>
     /// <returns>The number of samples per channel that were copied.</returns>
     /// <exception cref="ArgumentException">Thrown when the destination buffer length is not a multiple of BytesPerSample and Channels.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="startSrcSampleIndex"/> is negative or greater than <see cref="Samples"/>.</exception>
     public int CopyToPackedUncheckedType(Span<byte> destination, int startSrcSampleIndex = 0)
     {
         int samplesPerChannel = destination.Length / Channels / BytesPerSample;
         if (destination.Length != samplesPerChannel * Channels * BytesPerSample)
             throw new ArgumentException("The length of buffer must be a multiple of BytesPerSample*Channels");
 
+        if ((uint)startSrcSampleIndex > (uint)Samples)
+            throw new ArgumentOutOfRangeException(nameof(startSrcSampleIndex));
         int samplesToCopy = Math.Min(Samples - startSrcSampleIndex, samplesPerChannel);
         if (samplesToCopy <= 0)
             return 0;
@@ -303,14 +306,19 @@ public sealed unsafe class AudioBuffer : IDisposable
     /// <param name="startSrcSampleIndex">The starting sample index in the source buffer.</param>
     /// <returns>The number of samples copied.</returns>
     /// <exception cref="ArgumentException">Thrown when the number of channels does not match between the source and destination buffers.</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="startSrcSampleIndex"/> is negative or greater than <see cref="Samples"/>.</exception>
     public int CopyTo(AudioBuffer destination, int startSrcSampleIndex = 0)
     {
         if (Channels != destination.Channels)
             throw new ArgumentException("Copying is only possible if the number of channels match. Please use SwrContext to convert.", nameof(destination));
 
+        if ((uint)startSrcSampleIndex > (uint)Samples)
+            throw new ArgumentOutOfRangeException(nameof(startSrcSampleIndex));
         if (destination.Format.AsPlanar() == Format.AsPlanar())
         {
             int samplesToCopy = Math.Min(destination.Capacity - destination.Samples, Samples - startSrcSampleIndex);
+            if (samplesToCopy <= 0)
+                return 0;
             if (Format.IsPlanar() && destination.Format.IsPlanar())
                 CopyFromPlanarToPlanar(Info, Planes, startSrcSampleIndex, destination.Planes, destination.Samples, samplesToCopy);
             else if (Format.IsPacked() && destination.Format.IsPacked())
@@ -430,11 +438,13 @@ public sealed unsafe class AudioBuffer : IDisposable
     public int CopyFrom(AVFrame source)
     {
         if (Channels != source.ChannelLayout.Channels)
-            throw new ArgumentException(nameof(source), "Copying is only possible if the number of channels match. Please use SwrContext to convert.");
+            throw new ArgumentException("Copying is only possible if the number of channels match. Please use SwrContext to convert.", nameof(source));
 
         if (source.SampleFormat.AsPlanar() == Format.AsPlanar())
         {
             int samplesToCopy = Math.Min(Capacity - Samples, source.SampleCount);
+            if (samplesToCopy <= 0)
+                return 0;
             if (Format.IsPlanar() && source.SampleFormat.IsPlanar())
                 CopyFromPlanarToPlanar(Info, source.ExtendedData, 0, Planes, Samples, samplesToCopy);
             else if (Format.IsPacked() && source.SampleFormat.IsPacked())
