@@ -1,43 +1,56 @@
 ﻿using FFmpeg.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FFmpegTest;
 
 [TestClass]
+[DoNotParallelize] // the logger and its level are process-wide
 public class LoggingTest
 {
+    private readonly List<(LogLevel Level, string Message)> messages = [];
+    private LogLevel previousLevel;
+
     [TestInitialize]
     public void Initialize()
     {
-        FFmpeg.FFmpegLoader.Initialize();
+        previousLevel = Logger.Level;
+        Logger.LogMessageReceived += LogMessage;
+    }
+
+    [TestCleanup]
+    public void Cleanup()
+    {
+        // Runs even when an assertion failed, so other tests see the original state.
+        Logger.LogMessageReceived -= LogMessage;
+        Logger.Level = previousLevel;
     }
 
     [TestMethod]
     public void TestLogging()
     {
-
-        StringWriter sw = new();
-        FFmpeg.Logging.Logger.Level = FFmpeg.Logging.LogLevel.Debug;
-        FFmpeg.Logging.Logger.LogMessageReceived += LogMessage;
-        Logger.WriteLine(FFmpeg.Logging.LogLevel.Debug, "Test message Debug");
-        Logger.WriteLine(FFmpeg.Logging.LogLevel.Info, "Test message Info");
-        Logger.WriteLine(FFmpeg.Logging.LogLevel.Trace, "Test message Trace");
-        FFmpeg.Logging.Logger.LogMessageReceived -= LogMessage;
+        Logger.Level = LogLevel.Debug;
+        Logger.WriteLine(LogLevel.Debug, "Test message Debug");
+        Logger.WriteLine(LogLevel.Info, "Test message Info");
+        Logger.WriteLine(LogLevel.Trace, "Test message Trace"); // above the level: filtered out
 
         Assert.HasCount(2, messages);
-        Assert.AreEqual(FFmpeg.Logging.LogLevel.Debug, messages[0].Item1);
-        Assert.AreEqual("Test message Debug\n", messages[0].Item2);
-        Assert.AreEqual(FFmpeg.Logging.LogLevel.Info, messages[1].Item1);
-        Assert.AreEqual("Test message Info\n", messages[1].Item2);
-      
+        Assert.AreEqual(LogLevel.Debug, messages[0].Level);
+        Assert.AreEqual("Test message Debug\n", messages[0].Message);
+        Assert.AreEqual(LogLevel.Info, messages[1].Level);
+        Assert.AreEqual("Test message Info\n", messages[1].Message);
     }
-    private List<(LogLevel, string)> messages = [];
-    private void LogMessage(string message, LogLevel level, ClassCategory category, string? contextName)
+
+    [TestMethod]
+    public void LevelFiltersMessages()
     {
-        messages.Add((level, message));
+        Logger.Level = LogLevel.Warning;
+        Logger.WriteLine(LogLevel.Info, "filtered");
+        Logger.WriteLine(LogLevel.Error, "kept");
+
+        Assert.HasCount(1, messages);
+        Assert.AreEqual(LogLevel.Error, messages[0].Level);
+        Assert.AreEqual("kept\n", messages[0].Message);
     }
+
+    private void LogMessage(string message, LogLevel level, ClassCategory category, string? contextName)
+        => messages.Add((level, message));
 }
