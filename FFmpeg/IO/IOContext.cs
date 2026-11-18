@@ -94,8 +94,11 @@ public abstract unsafe class IOContext : AVIOContext
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
 
+        // Weak: a strong handle would root this instance (and its format context) forever,
+        // so their finalizers could never run. While native code may call back, the format
+        // context references this instance, which keeps it alive.
         if (!gch.IsAllocated)
-            gch = GCHandle.Alloc(this);
+            gch = GCHandle.Alloc(this, GCHandleType.Weak);
 
         AutoGen.avio_alloc_context_read_packet_func _read = options.HasFlag(IOOptions.Read)
             ? s_read
@@ -163,13 +166,18 @@ public abstract unsafe class IOContext : AVIOContext
     /// Returning zero indicates end-of-file and is automatically translated to
     /// <see cref="AVResult32.EndOfFile"/>.
     /// </returns>
+    private static IOContext? FromOpaque(void* opaque)
+        => opaque == null ? null : GCHandle.FromIntPtr((nint)opaque).Target as IOContext;
+
     private static int ReadPacket(void* opaque, byte* buffer, int count)
     {
         // Exceptions must never propagate into native FFmpeg frames: on Linux/macOS
         // the runtime terminates the process, on Windows the behaviour is undefined.
         try
         {
-            AVResult32 result = ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).ReadPacket(new Span<byte>(buffer, count));
+            if (FromOpaque(opaque) is not IOContext ctx)
+                return AVResult32.IOError;
+            AVResult32 result = ctx.ReadPacket(new Span<byte>(buffer, count));
             return result == 0 ? AVResult32.EndOfFile : result;
         }
         catch (Exception)
@@ -191,7 +199,9 @@ public abstract unsafe class IOContext : AVIOContext
     {
         try
         {
-            return ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).WritePacket(new Span<byte>(buffer, count));
+            return FromOpaque(opaque) is IOContext ctx
+                ? ctx.WritePacket(new Span<byte>(buffer, count))
+                : AVResult32.IOError;
         }
         catch (Exception)
         {
@@ -212,7 +222,9 @@ public abstract unsafe class IOContext : AVIOContext
     {
         try
         {
-            return ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).Seek(offset, (AVSeek)whence);
+            return FromOpaque(opaque) is IOContext ctx
+                ? ctx.Seek(offset, (AVSeek)whence)
+                : AVResult64.IOError;
         }
         catch (Exception)
         {
