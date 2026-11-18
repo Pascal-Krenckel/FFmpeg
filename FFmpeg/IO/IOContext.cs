@@ -135,13 +135,24 @@ public abstract unsafe class IOContext : AVIOContext
         formatContext.Context->pb = pb;
         formatContext.ioContext = this;
         FormatContext = formatContext;
-        disposedValue = false;
+        IsWritable = options.HasFlag(IOOptions.Write);
+        if (disposedValue)
+        {
+            // Dispose() suppressed finalization; the new native context needs it again.
+            GC.ReRegisterForFinalize(this);
+            disposedValue = false;
+        }
 
         if (pendingSeekable is Seekable seekable)
             Seekable = seekable;
     }
 
     private Seekable? pendingSeekable;
+
+    /// <summary>
+    /// Gets a value indicating whether the attached native context was created for writing.
+    /// </summary>
+    private protected bool IsWritable { get; private set; }
     #endregion
 
     /// <summary>

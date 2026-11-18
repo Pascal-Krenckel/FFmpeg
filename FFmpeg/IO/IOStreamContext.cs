@@ -152,8 +152,10 @@ public class IOStreamContext : IOContext
     public override void Flush()
     {
         // First push FFmpeg's buffered bytes into the stream (via WritePacket),
-        // then flush the stream itself.
-        if (HasNativeContext)
+        // then flush the stream itself. Only for writing: on a reading context
+        // avio_flush discards buffered input without moving the position, so the
+        // demuxer would silently skip data.
+        if (HasNativeContext && IsWritable)
             base.Flush();
         stream.Flush();
     }
