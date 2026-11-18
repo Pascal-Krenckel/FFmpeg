@@ -95,7 +95,7 @@ public unsafe partial class AudioFifo
 
         // Peek from FIFO at specified offset
         return frame.SampleFormat == Format
-            ? (AVResult32)ffmpeg.av_audio_fifo_peek_at(fifo, (void**)frame.ExtendedData, frame.SampleCount, offset)
+            ? PeekAtClamped((void**)frame.ExtendedData, frame.SampleCount, offset)
             : Format.IsPlanar()
             ? PeekPlanarToPacked(frame.ExtendedData[0], frame.SampleCount, offset)
             : PeekPackedToPlanar(frame.ExtendedData, frame.SampleCount, offset);
@@ -124,7 +124,7 @@ public unsafe partial class AudioFifo
     /// </returns>
     /// <remarks>
     /// The number of channels is determined from the current audio stream's <see cref="Channels"/> property.  
-    /// The total number of samples is calculated as <c>buffer.Length / Format.GetBytesPerSample()</c>.  
+    /// The total number of samples is calculated as <c>buffer.Length / Format.GetBytesPerSample() / Channels</c>.  
     /// Planar ↔ packed conversions are handled automatically:
     /// <list type="bullet">
     /// <item>If the FIFO stores packed data, samples are peeked directly using <see cref="PeekPackedToPacked(byte*, int, int)"/>.</item>
@@ -135,7 +135,7 @@ public unsafe partial class AudioFifo
     {
         fixed (byte* bufferPtr = buffer)
         {
-            int samples = buffer.Length / Format.GetBytesPerSample();
+            int samples = buffer.Length / Format.GetBytesPerSample() / Channels;
             return Format.IsPlanar()
                 ? PeekPlanarToPacked(bufferPtr, samples, offset)
                 : PeekPackedToPacked(bufferPtr, samples, offset);

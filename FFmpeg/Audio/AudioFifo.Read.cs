@@ -24,7 +24,7 @@ public unsafe partial class AudioFifo
     /// </returns>
     /// <remarks>
     /// The number of channels is determined from the current audio stream's <see cref="Channels"/> property.  
-    /// The total number of samples is calculated as <c>buffer.Length / Format.GetBytesPerSample()</c>.
+    /// The total number of samples is calculated as <c>buffer.Length / Format.GetBytesPerSample() / Channels</c>.
     /// Planar ↔ packed conversions are handled automatically:
     /// <list type="bullet">
     /// <item>If the FIFO stores packed data, samples are read directly using <see cref="ReadPackedToPacked(byte*, int)"/>.</item>
