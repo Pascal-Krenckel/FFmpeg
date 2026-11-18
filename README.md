@@ -122,7 +122,30 @@ if (result != AVResult32.EndOfFile)
 dst.WriteTrailer().ThrowIfError();
 ```
 
-> **Note:** Real transcoding — decoding, re-encoding with a specific codec, and optionally running frames through a `FilterGraph` — is significantly more involved than a stream copy, since you're responsible for driving the decode/filter/encode loop yourself (see the [Filters example](https://github.com/Pascal-Krenckel/FFmpeg.Examples) for a full walkthrough using `CodecContext`, `FilterGraph`, and `MediaSink`). If you just need a straightforward file-to-file transcode with no custom filtering or frame-level access, it's often simpler and more robust to shell out to `ffmpeg.exe` directly (e.g. via `System.Diagnostics.Process`) and reserve `MediaSource`/`MediaSink` for scenarios where you need in-process control.
+### Transcoding
+
+`Transcoder` drives the whole decode → filter → encode → mux loop, like the `ffmpeg` command line tool with `-vf`/`-af` filters:
+
+```csharp
+using FFmpeg;
+using FFmpeg.Codecs;
+using FFmpeg.Utils;
+
+FFmpegLoader.Initialize();
+
+using Transcoder transcoder = Transcoder.Create("input.mkv", "output.mp4");
+transcoder.CopyStream(transcoder.FindBestInputStream(MediaType.Audio));        // -c:a copy
+transcoder.TranscodeStream(transcoder.FindBestInputStream(MediaType.Video),    // -c:v mpeg4 -vf scale=1280:-2 -b:v 4M
+    CodecID.MPEG4,
+    filter: "scale=1280:-2",
+    configure: encoder => encoder.BitRate = 4_000_000);
+transcoder.Start = TimeSpan.FromSeconds(10);                                   // -ss 10 (before -i)
+transcoder.Duration = TimeSpan.FromMinutes(1);                                 // -t 60
+transcoder.ProgressChanged += (_, progress) => Console.WriteLine(progress);
+await transcoder.RunAsync();
+```
+
+Encoder properties you don't set (size, pixel/sample format, sample rate, channel layout, time base) are taken from the filtered frames; the ones you set are enforced by the filter graph. Re-encoded streams are trimmed frame-exactly, copied streams start at the keyframe before `Start`, as with `ffmpeg`. For a frame-level pipeline of your own, see the [Filters example](https://github.com/Pascal-Krenckel/FFmpeg.Examples), which uses `CodecContext`, `FilterGraph` and `MediaSink` directly.
 
 For finer control over decoding, filtering, or encoding, see the [high-level abstractions](#high-level-abstractions) below or browse the [example projects](https://github.com/Pascal-Krenckel/FFmpeg.Examples).
 
@@ -156,7 +179,7 @@ If your goal is simply to read, decode, encode, or transcode media, use these in
 |-------|-------------|
 | `MediaSource` | Simplifies reading and decoding frames from a file or stream. Handles demuxing and decoding internally. |
 | `MediaSink` | Simplifies encoding and writing frames to a file or stream. Handles muxing and encoding internally. |
-| `Transcoder` | Reads from one source and writes to another, performing full media transcoding in a few lines of code. For simple file-to-file transcodes, consider calling `ffmpeg.exe` directly instead — see the note in [Quick Start](#quick-start). |
+| `Transcoder` | Reads from a `MediaSource` and writes to a `MediaSink`, copying, re-encoding or filtering each stream (simple filter graphs as with `ffmpeg -vf`/`-af`), with exact `Start`/`Duration` trimming, progress events and preview frames. See [Transcoding](#transcoding). |
 
 These abstractions are ideal for typical scenarios such as:
 
