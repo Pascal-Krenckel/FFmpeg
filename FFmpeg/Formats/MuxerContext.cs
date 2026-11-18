@@ -330,7 +330,9 @@ public unsafe class MuxerContext : FormatContext
             return (AVResult32)ffmpeg.av_write_frame(Context, null);
         else
         {
-            if (packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
+            // Packets without a time base (0/1) are taken to be in the stream's time base
+            // already; "rescaling" from 0/1 would set every timestamp to 0.
+            if (packet.TimeBase.Numerator != 0 && packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
                 ffmpeg.av_packet_rescale_ts(packet.Packet, packet.TimeBase, Streams[packet.StreamIndex].TimeBase);
             return (AVResult32)ffmpeg.av_write_frame(Context, packet.Packet);
         }
@@ -355,7 +357,9 @@ public unsafe class MuxerContext : FormatContext
             return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, null);
         else
         {
-            if (packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
+            // Packets without a time base (0/1) are taken to be in the stream's time base
+            // already; "rescaling" from 0/1 would set every timestamp to 0.
+            if (packet.TimeBase.Numerator != 0 && packet.TimeBase != Streams[packet.StreamIndex].TimeBase)
                 ffmpeg.av_packet_rescale_ts(packet.Packet, packet.TimeBase, Streams[packet.StreamIndex].TimeBase);
             return (AVResult32)ffmpeg.av_interleaved_write_frame(Context, packet.Packet);
         }
