@@ -163,8 +163,17 @@ public abstract unsafe class IOContext : AVIOContext
     /// </returns>
     private static int ReadPacket(void* opaque, byte* buffer, int count)
     {
-        AVResult32 result = ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).ReadPacket(new Span<byte>(buffer, count));
-        return result == 0 ? AVResult32.EndOfFile : result;
+        // Exceptions must never propagate into native FFmpeg frames: on Linux/macOS
+        // the runtime terminates the process, on Windows the behaviour is undefined.
+        try
+        {
+            AVResult32 result = ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).ReadPacket(new Span<byte>(buffer, count));
+            return result == 0 ? AVResult32.EndOfFile : result;
+        }
+        catch (Exception)
+        {
+            return AVResult32.IOError;
+        }
     }
 
     /// <summary>
@@ -176,8 +185,17 @@ public abstract unsafe class IOContext : AVIOContext
     /// <returns>
     /// The number of bytes written, or a negative FFmpeg error code.
     /// </returns>
-    private static int WritePacket(void* opaque, byte* buffer, int count) =>
-        ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).WritePacket(new Span<byte>(buffer, count));
+    private static int WritePacket(void* opaque, byte* buffer, int count)
+    {
+        try
+        {
+            return ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).WritePacket(new Span<byte>(buffer, count));
+        }
+        catch (Exception)
+        {
+            return AVResult32.IOError;
+        }
+    }
 
     /// <summary>
     /// Static method to seek to a specific position in the stream.
@@ -188,8 +206,17 @@ public abstract unsafe class IOContext : AVIOContext
     /// <returns>
     /// The new stream position, or a negative FFmpeg error code.
     /// </returns>
-    private static long Seek(void* opaque, long offset, int whence) =>
-        ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target).Seek(offset, (AVSeek)whence);
+    private static long Seek(void* opaque, long offset, int whence)
+    {
+        try
+        {
+            return ((IOContext)GCHandle.FromIntPtr((nint)opaque).Target!).Seek(offset, (AVSeek)whence);
+        }
+        catch (Exception)
+        {
+            return AVResult64.IOError;
+        }
+    }
 
     #endregion
 
