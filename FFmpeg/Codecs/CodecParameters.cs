@@ -176,7 +176,9 @@ public sealed unsafe class CodecParameters : IDisposable, ICodecParameters
         codecParameters->extradata_size = data.Length;
         if (!data.IsEmpty)
         {
-            codecParameters->extradata = (byte*)ffmpeg.av_malloc((ulong)data.Length);
+            // FFmpeg requires AV_INPUT_BUFFER_PADDING_SIZE zeroed bytes after extradata,
+            // because bitstream readers may read past the end.
+            codecParameters->extradata = (byte*)ffmpeg.av_mallocz((ulong)data.Length + ffmpeg.AV_INPUT_BUFFER_PADDING_SIZE);
             if (codecParameters->extradata == null)
             {
                 codecParameters->extradata_size = 0;
