@@ -9,12 +9,6 @@ namespace FFmpegTest;
 [TestClass]
 public class DecodingTest
 {
-    private readonly string jsonFile = @"Test-Files\mp4-example-video-download-full-hd-1920x1080.1min.mp4.json";
-
-    private readonly string bgraFile = @"Test-Files\n123.bgra";
-    private readonly string yuvFile = @"Test-Files\n123.yuv";
-    private readonly string audioFileS16le = @"Test-Files\10s-11s.s16le.pcm";
-    private readonly string audioFileF32le = @"Test-Files\10s-11s.f32le.pcm";
 
     private DemuxerContext? demuxerContext;
     private FFProbeJson? ffProbe;
@@ -22,8 +16,8 @@ public class DecodingTest
     [TestInitialize]
     public void Initialize()
     {
-        ffProbe = FFProbeJson.Parse(File.ReadAllText(jsonFile))!;
-        string videoFile = Path.Combine(Path.GetDirectoryName(jsonFile)!, ffProbe.Format.Filename);
+        ffProbe = FFProbeJson.Parse(File.ReadAllText(TestFiles.VideoProbeJson))!;
+        string videoFile = TestFiles.Get(ffProbe.Format.Filename);
         demuxerContext = DemuxerContext.Open(videoFile, true);
     }
 
@@ -144,7 +138,7 @@ public class DecodingTest
     public void DecodingYUV420p()
     {
         int frameNr = 123;
-        byte[] yuv = File.ReadAllBytes(yuvFile);
+        byte[] yuv = File.ReadAllBytes(TestFiles.Yuv);
         int videoIndex = SelectStream(demuxerContext!, MediaType.Video);
         TimeSpan estimatedPTS = frameNr / demuxerContext!.Streams[videoIndex].RealFrameRate;
         Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
@@ -170,7 +164,7 @@ public class DecodingTest
     public void DecodingAndConversionBGRA()
     {
         int frameNr = 123;
-        byte[] bgra = File.ReadAllBytes(bgraFile);
+        byte[] bgra = File.ReadAllBytes(TestFiles.Bgra);
         int videoIndex = SelectStream(demuxerContext!, MediaType.Video);
         TimeSpan estimatedPTS = frameNr / demuxerContext!.Streams[videoIndex].RealFrameRate;
         Codec c = Codec.FindDecoder(demuxerContext.Streams[videoIndex].CodecParameters.CodecId)!.Value;
