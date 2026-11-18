@@ -11,11 +11,11 @@ public class AudioFifoTest
     [TestMethod]
     public void WriteAndReadBytes()
     {
-        AudioFifo fifo = new(SampleFormat.UInt8, 2);
+        using AudioFifo fifo = new(SampleFormat.UInt8, 2);
 
         byte[] buffer = new byte[1024];
         byte[] read = new byte[1024];
-        Random.Shared.NextBytes(buffer);
+        new Random(1234).NextBytes(buffer);
         _ = Assert.Throws<NotSupportedException>(() => fifo.Write(buffer, buffer, buffer));
         _ = Assert.Throws<NotSupportedException>(() => fifo.Write(buffer.AsSpan(), buffer.AsSpan(), buffer.AsSpan()));
         Assert.AreEqual(buffer.Length, 2 * (int)fifo.Write(buffer));
@@ -31,10 +31,10 @@ public class AudioFifoTest
     [TestMethod]
     public void WriteAndReadInts()
     {
-        AudioFifo fifo = new(SampleFormat.Int32Planar, 3);
+        using AudioFifo fifo = new(SampleFormat.Int32Planar, 3);
         int[] buffer = new int[3 * 1024]; // packed to planar;
         int[] readCh1 = new int[1024], readCh2 = new int[1024], readCh3 = new int[1024];
-        Random.Shared.NextBytes(MemoryMarshal.AsBytes(buffer.AsSpan()));
+        new Random(1234).NextBytes(MemoryMarshal.AsBytes(buffer.AsSpan()));
 
         Assert.AreEqual(1024, (int)fifo.Write(buffer));
 
