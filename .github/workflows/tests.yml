@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  test:
+    # The test project references the Windows x64 FFmpeg binaries (FFmpegDotNet.bin.winx64).
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Build library (all target frameworks)
+        run: dotnet build FFmpeg/FFmpeg.csproj -c Release
+
+      - name: Test
+        run: dotnet test FFmpegTest/FFmpegTest.csproj -c Release --logger "trx;LogFileName=results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: FFmpegTest/TestResults/*.trx
