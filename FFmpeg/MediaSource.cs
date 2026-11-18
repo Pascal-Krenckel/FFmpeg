@@ -49,8 +49,10 @@ public class MediaSource : IDisposable
             {
                 if (this.codecContexts.Length == Streams.Count)
                     return this.codecContexts;
-                CodecContext[] codecContexts = new CodecContext[Streams.Count];
-                int old = this.codecContexts.Length;
+                // Grow the existing array so the decoders of earlier streams are kept
+                // (streams can appear mid-file, e.g. in MPEG-TS).
+                CodecContext[] codecContexts = this.codecContexts;
+                int old = codecContexts.Length;
                 Array.Resize(ref codecContexts, Streams.Count);
                 for (int i = old; i < Streams.Count; i++)
                 {
