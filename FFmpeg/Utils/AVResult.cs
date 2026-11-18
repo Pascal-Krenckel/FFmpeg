@@ -371,14 +371,25 @@ public readonly struct AVResult32 : IEquatable<AVResult32>, IEquatable<int>
     {
         if (!IsError)
             return value.ToString();
-        int v = value;
-        string str =
-        typeof(AVResult32).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
-            .Where(p => p.CanRead && !p.IsSpecialName && (p.PropertyType == typeof(int) || p.PropertyType == typeof(AVResult32)))
-            .Where(p => (int)p.GetValue(null) == v)
-            .Select(p => p.Name).FirstOrDefault();
-        return string.IsNullOrEmpty(str) ? value.ToString() : str;
+        return s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
     }
+
+    // Built once on first use instead of reflecting over every property on each call.
+    private static readonly Lazy<Dictionary<int, string>> s_names = new(() =>
+    {
+        Dictionary<int, string> names = [];
+        foreach (System.Reflection.PropertyInfo p in typeof(AVResult32).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public))
+        {
+            if (!p.CanRead || p.IsSpecialName || p.GetIndexParameters().Length != 0)
+                continue;
+            object? v = p.GetValue(null);
+            if (v is int i)
+                _ = names.TryAdd(i, p.Name);
+            else if (v is AVResult32 r)
+                _ = names.TryAdd(r.value, p.Name);
+        }
+        return names;
+    });
     #endregion
 }
 
@@ -767,14 +778,25 @@ public readonly struct AVResult64 : IEquatable<AVResult64>, IEquatable<long>
     {
         if (!IsError)
             return value.ToString();
-        long v = value;
-        string str =
-        typeof(AVResult64).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
-            .Where(p => p.CanRead && !p.IsSpecialName && (p.PropertyType == typeof(long) || p.PropertyType == typeof(AVResult64)))
-            .Where(p => Convert.ToInt64(p.GetValue(null) is AVResult64 r ? (long)r : p.GetValue(null)) == v)
-            .Select(p => p.Name).FirstOrDefault();
-        return string.IsNullOrEmpty(str) ? value.ToString() : str;
+        return s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
     }
+
+    // Built once on first use instead of reflecting over every property on each call.
+    private static readonly Lazy<Dictionary<long, string>> s_names = new(() =>
+    {
+        Dictionary<long, string> names = [];
+        foreach (System.Reflection.PropertyInfo p in typeof(AVResult64).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public))
+        {
+            if (!p.CanRead || p.IsSpecialName || p.GetIndexParameters().Length != 0)
+                continue;
+            object? v = p.GetValue(null);
+            if (v is long l)
+                _ = names.TryAdd(l, p.Name);
+            else if (v is AVResult64 r)
+                _ = names.TryAdd(r.value, p.Name);
+        }
+        return names;
+    });
 
     #endregion
 }
