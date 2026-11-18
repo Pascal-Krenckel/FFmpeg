@@ -56,8 +56,10 @@ public class MediaSource : IDisposable
                 Array.Resize(ref codecContexts, Streams.Count);
                 for (int i = old; i < Streams.Count; i++)
                 {
-                    Codec hwCodec = GetCodec?.Invoke(Streams[i]) ?? Codec.FindDecoder(Streams[i].CodecParameters.CodecId)!.Value;
-                    codecContexts[i] = CodecContext.Allocate(hwCodec);
+                    // Streams without a decoder (data, attachments, unknown codecs) get a context
+                    // without a codec instead of throwing for every caller of CodecContexts.
+                    Codec? decoder = GetCodec?.Invoke(Streams[i]) ?? Codec.FindDecoder(Streams[i].CodecParameters.CodecId);
+                    codecContexts[i] = CodecContext.Allocate(decoder);
                     codecContexts[i].SetCodecParameters(Streams[i].CodecParameters);
                     _ = codecContexts[i].SetHWDeviceType(hwType);
                     codecContexts[i].PacketTimeBase = Streams[i].TimeBase;
