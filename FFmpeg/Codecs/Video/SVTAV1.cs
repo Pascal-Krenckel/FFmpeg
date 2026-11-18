@@ -320,13 +320,20 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
                 AVFrame current = enumerator.Current;
                 if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
                 {
+                    // The encoder may still hold the previous converted frame (lookahead), so
+                    // convert into a fresh buffer instead of overwriting the old one.
+                    convertedFrame.Unreference();
+                    convertedFrame.Width = Width;
+                    convertedFrame.Height = Height;
+                    convertedFrame.PixelFormat = PixelFormat;
+                    convertedFrame.CreateBuffer().ThrowIfError();
                     swsContext.Convert(current, convertedFrame).ThrowIfError();
                     frameToWrite = convertedFrame;
                     current.CopyPropertiesTo(convertedFrame);
                 }
                 else
                     frameToWrite = current;
-                context.WriteFrame(convertedFrame, 0).ThrowIfError();
+                context.WriteFrame(frameToWrite, 0).ThrowIfError();
                 if (disposeFrames)
                     enumerator.Current.Dispose();
             } while (enumerator.MoveNext());
@@ -424,6 +431,13 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
                 AVFrame current = enumerator.Current;
                 if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
                 {
+                    // The encoder may still hold the previous converted frame (lookahead), so
+                    // convert into a fresh buffer instead of overwriting the old one.
+                    convertedFrame.Unreference();
+                    convertedFrame.Width = Width;
+                    convertedFrame.Height = Height;
+                    convertedFrame.PixelFormat = PixelFormat;
+                    convertedFrame.CreateBuffer().ThrowIfError();
                     swsContext.Convert(current, convertedFrame).ThrowIfError();
                     frameToWrite = convertedFrame;
                     current.CopyPropertiesTo(convertedFrame);
@@ -434,14 +448,16 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
                 frameToWrite.TimeBase = codecContext.TimeBase;
                 frameToWrite.Duration = 1;
                 result = codecContext.Encode(frameToWrite, packet);
+                // The encoder holds its own reference now, so the input can be released even
+                // when no packet came out yet.
+                if (disposeFrames)
+                    enumerator.Current.Dispose();
                 if (result.IsTryAgain)
                     continue;
                 result.ThrowIfError();
                 packet.Duration = 1;
                 packet.StreamIndex = 0;
                 context.WritePacketInterleaved(packet).ThrowIfError();
-                if (disposeFrames)
-                    enumerator.Current.Dispose();
             } while (enumerator.MoveNext());
 
             codecContext.DrainEncoder().ThrowIfError();
