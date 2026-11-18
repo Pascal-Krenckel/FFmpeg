@@ -510,31 +510,31 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         get => (context != null && context->extradata_size > 0 && context->extradata != null) ? new ReadOnlySpan<byte>(context->extradata, context->extradata_size) : [];
         set
         {
-            if (releaseExtraData && context->extradata != null)
-            {
-                ffmpeg.av_free(context->extradata);
-            }
+            // libavcodec owns extradata (avcodec_free_context always frees it, including
+            // extradata copied in by avcodec_parameters_to_context), so always free the
+            // previous buffer here instead of leaking it.
+            ffmpeg.av_freep(&context->extradata);
+            context->extradata_size = 0;
+            releaseExtraData = false;
 
-            if (value.IsEmpty)
+            if (!value.IsEmpty)
             {
-                releaseExtraData = false;
-                context->extradata = null;
-                context->extradata_size = 0;
-            }
-            else
-            {
-                context->extradata = (byte*)ffmpeg.av_malloc((ulong)value.Length);
-                if (context->extradata == null)
+                // Bitstream readers may over-read: FFmpeg requires
+                // AV_INPUT_BUFFER_PADDING_SIZE zeroed bytes after the payload.
+                ulong allocSize = (ulong)value.Length + ffmpeg.AV_INPUT_BUFFER_PADDING_SIZE;
+                byte* buffer = (byte*)ffmpeg.av_mallocz(allocSize);
+                if (buffer == null)
                 {
                     throw new OutOfMemoryException("Failed to allocate memory for extra data.");
                 }
 
-                context->extradata_size = value.Length;
-                releaseExtraData = true;
                 fixed (byte* src = value)
                 {
-                    Buffer.MemoryCopy(src, context->extradata, value.Length, value.Length);
+                    Buffer.MemoryCopy(src, buffer, value.Length, value.Length);
                 }
+                context->extradata = buffer;
+                context->extradata_size = value.Length;
+                releaseExtraData = true;
             }
         }
     }
