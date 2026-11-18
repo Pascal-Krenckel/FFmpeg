@@ -220,8 +220,8 @@ public unsafe partial class AudioFifo : IDisposable
                             for (int b = 0; b < sampleSize; b++)
                             {
                                 // Write data from the unpacked input to the interleaved buffer
-                                bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b] =
-                                    data[channel][(sampleIndex * sampleSize) + b];
+                                bufferPtr[(sampleIndex * Channels * sampleSize) + (channel * sampleSize) + b] =
+                                    data[channel][((samplesCopied + sampleIndex) * sampleSize) + b];
                             }
                         }
                     }
@@ -374,9 +374,12 @@ public unsafe partial class AudioFifo : IDisposable
 
                     // Read planar samples from the FIFO into the temporary buffer
                     AVResult32 res = ffmpeg.av_audio_fifo_read(fifo, (void**)ptr, samplesToCopy);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and interleave the planar data into the user’s packed buffer
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
@@ -386,10 +389,9 @@ public unsafe partial class AudioFifo : IDisposable
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
             }
 
@@ -431,24 +433,26 @@ public unsafe partial class AudioFifo : IDisposable
                     int samplesToCopy = Math.Min(samplesPerChannel, samples - samplesCopied);
                     // Read packed samples from the FIFO into the temporary buffer
                     AVResult32 res = ffmpeg.av_audio_fifo_read(fifo, (void**)&bufferPtr, samplesToCopy);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and deinterleave the packed data into the user’s planar buffers
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][(sampleIndex * sampleSize) + b] =
-                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
+                                data[channel][((samplesCopied + sampleIndex) * sampleSize) + b] =
+                                    bufferPtr[(sampleIndex * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
 
                 return samplesCopied;
@@ -463,6 +467,21 @@ public unsafe partial class AudioFifo : IDisposable
 
 
     #region Peek Helper Functions
+
+    /// <summary>
+    /// Like <c>av_audio_fifo_peek_at</c>, but returns fewer samples instead of failing
+    /// when fewer than <paramref name="samples"/> are stored after <paramref name="offset"/>
+    /// (av_audio_fifo_peek clamps, av_audio_fifo_peek_at returns EINVAL).
+    /// </summary>
+    private AVResult32 PeekAtClamped(void** data, int samples, int offset)
+    {
+        int available = Count - offset;
+        if (offset < 0 || available < 0)
+            return ffmpeg.av_audio_fifo_peek_at(fifo, data, samples, offset); // let FFmpeg report the error
+        if (available == 0 || samples <= 0)
+            return 0;
+        return ffmpeg.av_audio_fifo_peek_at(fifo, data, Math.Min(samples, available), offset);
+    }
 
     private AVResult32 PeekPackedToPacked(byte* data, int samples) =>
         ffmpeg.av_audio_fifo_peek(fifo, (void**)&data, samples);
@@ -504,10 +523,13 @@ public unsafe partial class AudioFifo : IDisposable
                     int samplesToCopy = Math.Min(samplesPerChannel, samples - samplesCopied);
 
                     // Peek planar samples from the FIFO into the temporary buffer
-                    AVResult32 res = ffmpeg.av_audio_fifo_peek(fifo, (void**)ptr, samplesToCopy);
+                    AVResult32 res = PeekAtClamped((void**)ptr, samplesToCopy, samplesCopied);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and interleave the planar data into the user’s packed buffer
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
@@ -517,10 +539,9 @@ public unsafe partial class AudioFifo : IDisposable
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
             }
 
@@ -562,25 +583,27 @@ public unsafe partial class AudioFifo : IDisposable
                     int samplesToCopy = Math.Min(samplesPerChannel, samples - samplesCopied);
 
                     // Peek packed samples from the FIFO into the temporary buffer
-                    AVResult32 res = ffmpeg.av_audio_fifo_peek(fifo, (void**)&bufferPtr, samplesToCopy);
+                    AVResult32 res = PeekAtClamped((void**)&bufferPtr, samplesToCopy, samplesCopied);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and deinterleave the packed data into the user’s planar buffers
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][(sampleIndex * sampleSize) + b] =
-                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
+                                data[channel][((samplesCopied + sampleIndex) * sampleSize) + b] =
+                                    bufferPtr[(sampleIndex * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
 
                 return samplesCopied;
@@ -596,10 +619,10 @@ public unsafe partial class AudioFifo : IDisposable
     #region PeekAt Helper Functions
 
     private AVResult32 PeekPackedToPacked(byte* data, int samples, int offset) =>
-        ffmpeg.av_audio_fifo_peek_at(fifo, (void**)&data, samples, offset);
+        PeekAtClamped((void**)&data, samples, offset);
 
     private AVResult32 PeekPlanarToPlanar(byte** data, int samples, int offset) =>
-        ffmpeg.av_audio_fifo_peek_at(fifo, (void**)data, samples, offset);
+        PeekAtClamped((void**)data, samples, offset);
 
     private AVResult32 PeekPlanarToPacked(byte* data, int samples, int offset)
     {
@@ -623,10 +646,13 @@ public unsafe partial class AudioFifo : IDisposable
                     int samplesToCopy = Math.Min(samplesPerChannel, samples - samplesCopied);
 
                     // Peek planar samples from the FIFO into the temporary buffer
-                    AVResult32 res = ffmpeg.av_audio_fifo_peek_at(fifo, (void**)ptr, samplesToCopy, offset);
+                    AVResult32 res = PeekAtClamped((void**)ptr, samplesToCopy, offset + samplesCopied);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and interleave the planar data into the user’s packed buffer
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
@@ -636,10 +662,9 @@ public unsafe partial class AudioFifo : IDisposable
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
             }
 
@@ -687,25 +712,27 @@ public unsafe partial class AudioFifo : IDisposable
                     int samplesToCopy = Math.Min(samplesPerChannel, samples - samplesCopied);
 
                     // Peek packed samples from the FIFO into the temporary buffer
-                    AVResult32 res = ffmpeg.av_audio_fifo_peek_at(fifo, (void**)&bufferPtr, samplesToCopy, offset);
+                    AVResult32 res = PeekAtClamped((void**)&bufferPtr, samplesToCopy, offset + samplesCopied);
+                    if (res <= 0)
+                        return samplesCopied > 0 ? samplesCopied : res;
 
+                    // Copy only the samples FFmpeg actually returned.
                     // Copy and deinterleave the packed data into the user’s planar buffers
-                    for (int sampleIndex = 0; sampleIndex < samplesToCopy; sampleIndex++)
+                    for (int sampleIndex = 0; sampleIndex < res; sampleIndex++)
                     {
                         for (int channel = 0; channel < Channels; channel++)
                         {
                             for (int b = 0; b < sampleSize; b++)
                             {
-                                data[channel][(sampleIndex * sampleSize) + b] =
-                                    bufferPtr[((samplesCopied + sampleIndex) * Channels * sampleSize) + (channel * sampleSize) + b];
+                                data[channel][((samplesCopied + sampleIndex) * sampleSize) + b] =
+                                    bufferPtr[(sampleIndex * Channels * sampleSize) + (channel * sampleSize) + b];
                             }
                         }
                     }
 
-                    if (res <= 0)
-                        return samplesCopied > 0 ? samplesCopied : res;
-
                     samplesCopied += res;
+                    if (res < samplesToCopy)
+                        break; // the FIFO holds no more samples
                 }
 
                 return samplesCopied;
