@@ -236,6 +236,8 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer, IAVPointer<AutoGen._
             throw new NullReferenceException();
         AutoGen._AVBufferRef* @ref = reference;
         AVResult32 res = ffmpeg.av_buffer_replace(&@ref, src.Reference);
+        // av_buffer_replace released the old reference and created a new one; keep it.
+        reference = @ref;
         res.ThrowIfError(); // may throw OutOfMemoryException
     }
 
@@ -249,6 +251,9 @@ public sealed unsafe class AVBuffer : IDisposable, IBuffer, IAVPointer<AutoGen._
         if (src.IsNull)
             return false;
         AutoGen._AVBufferRef* @ref = reference;
-        return ffmpeg.av_buffer_replace(&@ref, src.Reference) >= 0;
+        bool ok = ffmpeg.av_buffer_replace(&@ref, src.Reference) >= 0;
+        // av_buffer_replace released the old reference and created a new one; keep it.
+        reference = @ref;
+        return ok;
     }
 }
