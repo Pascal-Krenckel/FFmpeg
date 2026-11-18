@@ -21,6 +21,8 @@ namespace FFmpeg.Codecs;
 public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposable, IAudioDecoder, IAudioEncoder, IVideoDecoder, IVideoEncoder, IAVPointer<AutoGen._AVCodecContext>
 {
     internal AutoGen._AVCodecContext* context;
+    // Weak: a strong handle to itself would keep every undisposed CodecContext alive
+    // forever, so its finalizer could never free the native context.
     private readonly GCHandle handle;
     private readonly AVFrame hardwareFrame = AVFrame.Allocate()!;
     private HW.CodecHWConfig hardwareConfig = default;
@@ -46,7 +48,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         {
             throw new OutOfMemoryException("Failed to allocate codec context. Ensure sufficient memory is available.");
         }
-        handle = GCHandle.Alloc(this);
+        handle = GCHandle.Alloc(this, GCHandleType.Weak);
         context->opaque = (void*)(nint)handle;
     }
 
@@ -57,7 +59,7 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     internal CodecContext(AutoGen._AVCodecContext* context)
     {
         this.context = context;
-        handle = GCHandle.Alloc(this);
+        handle = GCHandle.Alloc(this, GCHandleType.Weak);
         context->opaque = (void*)(nint)handle;
     }
 
@@ -404,16 +406,24 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     /// <returns>The pixel format supported by the hardware device, or <see cref="_AVPixelFormat.AV_PIX_FMT_NONE"/> if none are supported.</returns>
     internal static AutoGen._AVPixelFormat GetFormatHW(AutoGen._AVCodecContext* context, AutoGen._AVPixelFormat* formats)
     {
-        // Retrieve the CodecContext from the opaque pointer.
-        CodecContext ctx = (CodecContext)GCHandle.FromIntPtr((nint)context->opaque).Target;
-
-        // Check the list of formats and return the one that matches the hardware configuration.
-        for (int i = 0; formats[i] != _AVPixelFormat.AV_PIX_FMT_NONE; i++)
+        // Exceptions must not propagate into native code.
+        try
         {
-            if (formats[i] == (_AVPixelFormat)ctx.hardwareConfig.PixelFormat)
+            // Retrieve the CodecContext from the opaque pointer.
+            if (context->opaque == null || GCHandle.FromIntPtr((nint)context->opaque).Target is not CodecContext ctx)
+                return _AVPixelFormat.AV_PIX_FMT_NONE;
+
+            // Check the list of formats and return the one that matches the hardware configuration.
+            for (int i = 0; formats[i] != _AVPixelFormat.AV_PIX_FMT_NONE; i++)
             {
-                return formats[i];
+                if (formats[i] == (_AVPixelFormat)ctx.hardwareConfig.PixelFormat)
+                {
+                    return formats[i];
+                }
             }
+        }
+        catch (Exception)
+        {
         }
 
         return _AVPixelFormat.AV_PIX_FMT_NONE;
@@ -1601,6 +1611,9 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
             hardwareFrame.Dispose();
         }
 
+        // Clear the back-pointer before freeing the handle, so a late callback cannot
+        // resolve a freed (possibly reused) handle.
+        context->opaque = null;
         if (handle.IsAllocated)
         {
             handle.Free();
