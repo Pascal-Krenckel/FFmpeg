@@ -14,6 +14,11 @@ public static class Logger
 {
     private static readonly av_log_set_callback_callback _callback;
 
+    // FFmpeg's print_prefix is state carried between av_log calls: a line can be logged in
+    // several pieces, and only the first piece of a line gets the "[ctx @ 0x...]" prefix.
+    private static readonly object s_formatLock = new();
+    private static int s_printPrefix = 1;
+
     static unsafe Logger()
     {
         _callback = LogCallback;
@@ -67,32 +72,45 @@ public static class Logger
         if (UseDefaultLogger)
             ffmpeg.av_log_default_callback(avcl, logLevel, format, arguments);
 
-        int printPrefix = IncludePrefix ? 1 : 0;
+        string message;
+        lock (s_formatLock)
+        {
+            int initialPrefix = IncludePrefix ? s_printPrefix : 0;
 
-        int size = ffmpeg.av_log_format_line2(
-            avcl,
-            logLevel,
-            format,
-            arguments,
-            null,
-            0,
-            &printPrefix);
+            // The size query updates print_prefix too, so use a scratch copy for it.
+            int printPrefix = initialPrefix;
+            int size = ffmpeg.av_log_format_line2(
+                avcl,
+                logLevel,
+                format,
+                arguments,
+                null,
+                0,
+                &printPrefix);
 
-        if (size <= 0)
-            return;
+            if (size <= 0)
+                return;
 
-        byte* buffer = stackalloc byte[size + 1];
+            byte[] buffer = new byte[size + 1];
+            printPrefix = initialPrefix;
+            fixed (byte* p = buffer)
+            {
+                size = ffmpeg.av_log_format_line2(
+                    avcl,
+                    logLevel,
+                    format,
+                    arguments,
+                    p,
+                    buffer.Length,
+                    &printPrefix);
+            }
 
-        size = ffmpeg.av_log_format_line2(
-            avcl,
-            logLevel,
-            format,
-            arguments,
-            buffer,
-            size + 1,
-            &printPrefix);
-
-        string message = Encoding.UTF8.GetString(buffer, size);
+            // FFmpeg sets this to 1 when the message ended with a newline.
+            s_printPrefix = printPrefix;
+            if (size <= 0)
+                return;
+            message = Encoding.UTF8.GetString(buffer, 0, Math.Min(size, buffer.Length - 1));
+        }
         try
         {
             if (avcl != null)
