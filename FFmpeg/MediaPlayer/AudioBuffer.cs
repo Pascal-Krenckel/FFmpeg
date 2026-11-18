@@ -342,7 +342,7 @@ internal struct AudioBuffer(SampleFormat format, int channels, int sampleRate) :
 
             while (start < end)
             {
-                int m = (end - start) / 2;
+                int m = start + ((end - start) / 2);
                 AudioPresentationInfo info = orderedList[m];
 
                 if (pts < info.PTS)
