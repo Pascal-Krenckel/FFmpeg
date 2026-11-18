@@ -149,5 +149,12 @@ public class IOStreamContext : IOContext
     public override bool CanSeek => stream.CanSeek;
 
     /// <inheritdoc />
-    public override void Flush() => stream.Flush();
+    public override void Flush()
+    {
+        // First push FFmpeg's buffered bytes into the stream (via WritePacket),
+        // then flush the stream itself.
+        if (HasNativeContext)
+            base.Flush();
+        stream.Flush();
+    }
 }
