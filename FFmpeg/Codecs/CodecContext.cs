@@ -385,8 +385,13 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
         }
 
         // Notify the function pointer to handle format selection based on hardware configuration.
-        context->get_format = (_AVCodecContext_get_format_func)GetFormatHW;
+        // Use the statically rooted delegate: an inline conversion would create a
+        // delegate that the GC may collect while FFmpeg still calls it.
+        context->get_format = s_getFormatHW;
     }
+
+    private static readonly _AVCodecContext_get_format s_getFormatHWDelegate = GetFormatHW;
+    private static readonly _AVCodecContext_get_format_func s_getFormatHW = s_getFormatHWDelegate;
 
     /// <summary>
     /// Callback function to get the pixel format supported by the hardware device.
