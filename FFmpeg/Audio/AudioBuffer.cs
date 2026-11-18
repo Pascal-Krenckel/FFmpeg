@@ -87,8 +87,13 @@ public sealed unsafe class AudioBuffer : IDisposable
     public bool TryMakeWriteable()
     {
         AutoGen._AVBufferRef* reference = buffer.Reference;
+        byte* oldData = reference->data;
         AVResult32 res = ffmpeg.av_buffer_make_writable(&reference);
         buffer = new AudioBufferRef(reference);
+        // If the data was copied into a new buffer (FFmpeg may keep the same AVBufferRef and only
+        // swap its contents), the plane pointers in the header still point into the shared original.
+        if (res >= 0 && reference->data != oldData)
+            buffer.RebasePlanes();
         return res >= 0;
     }
 
@@ -341,7 +346,18 @@ public sealed unsafe class AudioBuffer : IDisposable
         if (buffer == null)
             throw new OutOfMemoryException();
         Buffer.MemoryCopy(this.buffer.Reference->data, buffer->data, buffer->size, buffer->size);
-        return new AudioBuffer(new(buffer));
+        AudioBufferRef copy = new(buffer);
+        try
+        {
+            // The copied header still holds plane pointers into this buffer.
+            copy.RebasePlanes();
+        }
+        catch
+        {
+            ffmpeg.av_buffer_unref(&buffer);
+            throw;
+        }
+        return new AudioBuffer(copy);
     }
 
     /// <summary>

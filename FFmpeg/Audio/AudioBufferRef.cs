@@ -123,6 +123,14 @@ internal readonly unsafe struct AudioBufferRef
     public byte* Buffer => Reference->data + DATA_OFFSET;
 
     /// <summary>
+    /// Recomputes the plane pointers stored in the header so they point into this buffer.
+    /// Required after the bytes were copied into a new allocation (the stored pointers are absolute).
+    /// </summary>
+    public void RebasePlanes()
+        => FFmpeg.Exceptions.FFmpegException.ThrowIfError(
+            ffmpeg.av_samples_fill_arrays(Planes, LineSizes, Buffer, Channels, Capacity, (AutoGen._AVSampleFormat)Format, Alignment));
+
+    /// <summary>
     /// Allocates a new <see cref="AudioBufferRef"/> for the specified format, channels, alignment, and capacity.
     /// </summary>
     /// <param name="format">The sample format of the audio buffer.</param>
