@@ -171,6 +171,9 @@ public abstract unsafe class FormatContext : Options.OptionQueryableBase, IDispo
     {
         get
         {
+            // No I/O context attached (e.g. a muxer with NoFile): nothing is seekable.
+            if (Context->pb == null)
+                return Seekable.None;
 #if NET6_0_OR_GREATER
             return (Seekable)Context->pb->seekable;
 #else
