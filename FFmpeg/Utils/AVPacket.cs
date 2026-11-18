@@ -151,8 +151,13 @@ public unsafe class AVPacket : IDisposable, IPacket
                 throw new ArgumentOutOfRangeException(nameof(value), "Size must not be negative.");
             if (value <= packet->size)
             {
-                // Also zeroes the padding after the new end, as FFmpeg requires.
-                ffmpeg.av_shrink_packet(packet, value);
+                // With a refcounted buffer, av_shrink_packet also zeroes the padding after
+                // the new end. Without one (data FFmpeg doesn't own) there may be no padding
+                // to write into, so only change the size.
+                if (packet->buf != null)
+                    ffmpeg.av_shrink_packet(packet, value);
+                else
+                    packet->size = value;
                 return;
             }
 
