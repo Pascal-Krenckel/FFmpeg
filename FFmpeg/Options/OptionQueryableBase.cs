@@ -364,12 +364,10 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         }
         else
         {
+            // av_opt_set_dict_val copies the dictionary and never consumes entries,
+            // so the caller's collection (which may be read-only) is left untouched.
             using Collections.AVDictionary dictionary = new(values);
-            var result = ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
-            values.Clear();
-            foreach (var item in dictionary)
-                values.Add(item);
-            return result;
+            return ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
         }
     }
 
