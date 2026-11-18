@@ -10,9 +10,6 @@ namespace FFmpegTest;
 [TestClass]
 public class RegressionTest
 {
-    [TestInitialize]
-    public void FFmpegInit() => FFmpeg.FFmpegLoader.Initialize();
-
     [TestMethod]
     public void Rational_AddSubtract_LargeDenominators_DoNotOverflow()
     {

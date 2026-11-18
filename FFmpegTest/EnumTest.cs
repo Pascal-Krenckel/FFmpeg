@@ -10,9 +10,6 @@ namespace FFmpegTest;
 [TestClass]
 public class EnumTest
 {
-    [TestInitialize]
-    public void FFmpegInit() => FFmpeg.FFmpegLoader.Initialize();
-
     public static Dictionary<string, string> Match(string[] left, string[] right)
     {
         Dictionary<string, string> dic = [];
