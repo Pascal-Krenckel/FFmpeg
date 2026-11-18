@@ -83,7 +83,7 @@ public partial class PlaybackEngine
 
                 CancellationToken token = presentAudioCts.Token;
                 presentAudioTask = taskFactory.StartNew(() => PresentAudio(token));
-                _ = presentAudioTask.ContinueWith(HandleException, TaskContinuationOptions.NotOnFaulted);
+                _ = presentAudioTask.ContinueWith(HandleException, TaskContinuationOptions.OnlyOnFaulted);
             }
         }
     }
