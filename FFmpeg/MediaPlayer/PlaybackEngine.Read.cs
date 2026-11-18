@@ -80,8 +80,12 @@ public partial class PlaybackEngine
     /// alignment, and other data associated with <see cref="AVFrame"/>.
     /// </para>
     /// </remarks>
-    public unsafe void SetBufferSize(long bufferSizeInBytes)
+    /// <exception cref="ArgumentOutOfRangeException"><paramref name="bufferSizeInBytes"/> is not positive.</exception>
+    /// <exception cref="InvalidOperationException">No data rate could be estimated for the selected streams.</exception>
+    public void SetBufferSize(long bufferSizeInBytes)
     {
+        if (bufferSizeInBytes <= 0)
+            throw new ArgumentOutOfRangeException(nameof(bufferSizeInBytes));
         long bpsVideo = 0;
         long bpsAudio = 0;
 
@@ -91,26 +95,24 @@ public partial class PlaybackEngine
         {
             if (videoFilterGraph == null)
             {
-                bpsVideo = (long)(
-                    source.CodecContexts[videoStreamIndex]
-                        .context->bits_per_raw_sample *
-                    (double)source.CodecContexts[videoStreamIndex].FrameRate / 8);
+                // Buffered video consists of decoded frames, so the data rate is
+                // frame size * frame rate (bits_per_raw_sample is per component, not per frame).
+                Codecs.CodecContext codec = source.CodecContexts[videoStreamIndex];
 
-                if (bpsVideo <= 0)
-                {
-                    Rational frameRate = source.GuessFramerate(videoStreamIndex);
+                Rational frameRate = codec.FrameRate;
+                if (!frameRate.IsValidTimeBase)
+                    frameRate = source.GuessFramerate(videoStreamIndex);
+                if (!frameRate.IsValidTimeBase)
+                    frameRate = new(60, 1);
 
-                    long frameSize =
-                        (long)source.CodecContexts[videoStreamIndex].Width *
-                         source.CodecContexts[videoStreamIndex].Height *
-                         source.CodecContexts[videoStreamIndex]
-                             .SoftwarePixelFormat.BitsPerPixel() / 8;
+                // sw_pix_fmt is only known once decoding has started.
+                PixelFormat pixelFormat = codec.SoftwarePixelFormat != PixelFormat.None
+                    ? codec.SoftwarePixelFormat
+                    : codec.PixelFormat;
 
-                    if (!frameRate.IsValidTimeBase)
-                        frameRate = new(60, 1);
+                long frameSize = (long)codec.Width * codec.Height * pixelFormat.BitsPerPixel() / 8;
 
-                    bpsVideo = (long)(frameSize * (double)frameRate);
-                }
+                bpsVideo = (long)(frameSize * (double)frameRate);
             }
             else
             {
@@ -162,8 +164,10 @@ public partial class PlaybackEngine
         #endregion
 
         long bps = bpsVideo + bpsAudio;
+        if (bps <= 0)
+            throw new InvalidOperationException("The data rate of the selected streams could not be determined.");
 
         mediaBuffer.MaxBufferDuration =
-            TimeSpan.FromSeconds(bufferSizeInBytes / bps);
+            TimeSpan.FromSeconds((double)bufferSizeInBytes / bps);
     }
 }
