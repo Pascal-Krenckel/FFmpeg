@@ -37,6 +37,17 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public void AVPacket_PresentationTime_LongDurations()
+    {
+        using AVPacket packet = AVPacket.Allocate();
+        packet.TimeBase = new Rational(1, 90000);
+        packet.PresentationTime = TimeSpan.FromHours(10);
+        Assert.AreEqual(3_240_000_000L, packet.PresentationTimestamp);
+        packet.DecompressionTime = TimeSpan.FromHours(10);
+        Assert.AreEqual(3_240_000_000L, packet.DecompressionTimestamp);
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];

@@ -333,6 +333,18 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
         => ffmpeg.av_rescale_q(t.Ticks, new _AVRational { num = 1, den = (int)TimeSpan.TicksPerSecond }, r2);
 
     /// <summary>
+    /// Converts a time in seconds to a timestamp in <paramref name="timeBase"/> units,
+    /// rounded to the nearest unit.
+    /// </summary>
+    /// <remarks>
+    /// Unlike <c>(long)(time / timeBase)</c>, this does not build an intermediate
+    /// <see cref="Rational"/>, which is limited to 32-bit numerators and would saturate
+    /// (e.g. at about 35.8 minutes for AV_TIME_BASE).
+    /// </remarks>
+    internal static long ToTimestamp(Rational time, Rational timeBase)
+        => ffmpeg.av_rescale_q(time.Numerator, new _AVRational { num = 1, den = time.Denominator }, timeBase);
+
+    /// <summary>
     /// Compares two <see cref="Rational"/> numbers for less than.
     /// </summary>
     /// <param name="left">The first <see cref="Rational"/> number to compare.</param>

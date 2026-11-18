@@ -22,7 +22,7 @@ public readonly unsafe struct AVPacket_ref : IPacket, IReference<AVPacket>
     public TimeSpan PresentationTime
     {
         get => PresentationTimestamp * TimeBase;
-        set => PresentationTimestamp = (long)((Rational)value / TimeBase);
+        set => PresentationTimestamp = value / TimeBase;
     }
 
     /// <inheritdoc />
@@ -36,7 +36,7 @@ public readonly unsafe struct AVPacket_ref : IPacket, IReference<AVPacket>
     public TimeSpan DecompressionTime
     {
         get => DecompressionTimestamp * TimeBase;
-        set => DecompressionTimestamp = (long)((Rational)value / TimeBase);
+        set => DecompressionTimestamp = value / TimeBase;
     }
 
     /// <inheritdoc />
