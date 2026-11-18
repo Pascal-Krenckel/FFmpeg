@@ -129,7 +129,7 @@ public class RegressionTest
         using IOStreamContext context = new(new MemoryStream(), false);
         Assert.IsTrue(context.CanSeek);
         Assert.AreEqual(Seekable.Byte, context.Seekable);
-        _ = Assert.Throws<ArgumentNullException>(() => new IOStreamContext((Stream)null!, false));
+        _ = Assert.Throws<ArgumentNullException>(() => new IOStreamContext((System.IO.Stream)null!, false));
     }
 
     [TestMethod]
