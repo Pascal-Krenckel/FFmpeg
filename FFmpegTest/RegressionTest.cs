@@ -158,6 +158,24 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public void AVBuffer_ReplaceWithIBuffer_UsesNewReference()
+    {
+        using FFmpeg.Collections.AVBuffer target = FFmpeg.Collections.AVBuffer.Allocate(16);
+        using FFmpeg.Collections.AVBuffer source = FFmpeg.Collections.AVBuffer.Allocate(32);
+        source.AsSpan().Fill(0x5A);
+
+        target.ReplaceWith((FFmpeg.Collections.IBuffer)source);
+        Assert.AreEqual(32, target.Length);
+        Assert.AreEqual((byte)0x5A, target[0]);
+        Assert.AreEqual(2, source.ReferenceCount);
+
+        using FFmpeg.Collections.AVBuffer other = FFmpeg.Collections.AVBuffer.Allocate(8);
+        Assert.IsTrue(other.TryReplaceWith((FFmpeg.Collections.IBuffer)source));
+        Assert.AreEqual(32, other.Length);
+        Assert.AreEqual(3, source.ReferenceCount);
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];
