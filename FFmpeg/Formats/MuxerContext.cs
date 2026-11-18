@@ -97,7 +97,9 @@ public unsafe class MuxerContext : FormatContext
         MuxerContext? output = AllocateOutput(filename, format);
         if (output == null)
             return null;
-        if (filename != null && !(format?.Flags == FormatFlags.NoFile))
+        // Check the format actually chosen (it may have been guessed from the file name),
+        // and test the flag bit: Flags usually contains other flags as well.
+        if (filename != null && (output.Context->oformat->flags & ffmpeg.AVFMT_NOFILE) == 0)
         {
             AVResult32 result = AVIOContext.Open(output, filename, ffmpeg.AVIO_FLAG_WRITE, out output.ioContext);
             if (result.IsError)
