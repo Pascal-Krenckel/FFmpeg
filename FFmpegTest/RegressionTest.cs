@@ -1,6 +1,9 @@
+﻿using FFmpeg.Audio;
 using FFmpeg.Collections;
 using FFmpeg.IO;
+using FFmpeg.MediaPlayer;
 using FFmpeg.Utils;
+using System.Runtime.InteropServices;
 
 namespace FFmpegTest;
 
@@ -233,5 +236,87 @@ public class RegressionTest
         packet.Size = 16;
         _ = Assert.Throws<ArgumentOutOfRangeException>(() => packet.Size = 1 << 20);
         _ = Assert.Throws<ArgumentOutOfRangeException>(() => packet.Size = -1);
+    }
+
+    [TestMethod]
+    public void ChannelLayout_FailedInit_DoesNotKeepFreedMap()
+    {
+        ChannelLayout layout = new();
+        layout.Init(2);
+        _ = Assert.Throws<ArgumentException>(() => layout.Init(0));
+        Assert.AreEqual(0, layout.Channels);
+        layout.Dispose(); // would free the old map a second time
+    }
+
+    [TestMethod]
+    public void ChannelLayout_CustomName_MustLeaveRoomForTerminator()
+    {
+        using ChannelLayout layout = new();
+        layout.Init(1);
+        layout.SetCustomChannelName(0, "fifteen-chars!!");
+        _ = Assert.Throws<ArgumentException>(() => layout.SetCustomChannelName(0, "sixteen-chars!!!"));
+        Assert.AreEqual("fifteen-chars!!", layout.GetCustomChannelName(0));
+    }
+
+    private static float[] ReadPacked(FFmpeg.Audio.AudioBuffer buffer)
+    {
+        float[] data = new float[buffer.Samples * buffer.Channels];
+        _ = buffer.CopyToPacked<float>(data);
+        return data;
+    }
+
+    [TestMethod]
+    public void AudioBuffer_CopyAndMakeWriteable_DoNotShareData()
+    {
+        float[] samples = [1, 2, 3, 4, 5, 6, 7, 8];
+        using FFmpeg.Audio.AudioBuffer source = FFmpeg.Audio.AudioBuffer.Allocate(new AudioBufferInfo(SampleFormat.Float32Planar, 2), 4);
+        _ = source.CopyFromPlanar<float>(samples);
+
+        using (FFmpeg.Audio.AudioBuffer copy = source.Copy())
+        {
+            copy.Clear();
+            _ = copy.CopyFromPlanar<float>(new float[8]);
+        }
+        CollectionAssert.AreEqual(samples, ReadPacked(source));
+
+        using (FFmpeg.Audio.AudioBuffer clone = source.Clone())
+        {
+            clone.MakeWriteable();
+            clone.Clear();
+            _ = clone.CopyFromPlanar<float>(new float[8]);
+        }
+        CollectionAssert.AreEqual(samples, ReadPacked(source));
+    }
+
+    [TestMethod]
+    public void AudioBuffer_CopyTo_PlanarToPacked()
+    {
+        float[] samples = [1, 2, 3, 4, 5, 6, 7, 8];
+        using FFmpeg.Audio.AudioBuffer planar = FFmpeg.Audio.AudioBuffer.Allocate(new AudioBufferInfo(SampleFormat.Float32Planar, 2), 4);
+        _ = planar.CopyFromPlanar<float>(samples);
+        using FFmpeg.Audio.AudioBuffer packed = FFmpeg.Audio.AudioBuffer.Allocate(new AudioBufferInfo(SampleFormat.Float32, 2), 4);
+
+        Assert.AreEqual(4, planar.CopyTo(packed));
+        CollectionAssert.AreEqual(samples, MemoryMarshal.Cast<byte, float>(packed.AsReadOnlySpanPacked()).ToArray());
+
+        _ = Assert.Throws<ArgumentOutOfRangeException>(() => planar.CopyTo(packed, 5));
+        Assert.AreEqual(0, planar.CopyTo(packed, 4));
+    }
+
+    [TestMethod]
+    public void AudioClock_Pause_DoesNotCountElapsedTimeTwice()
+    {
+        AudioClock clock = new(48000) { AutoRun = true };
+        System.Diagnostics.Stopwatch wall = System.Diagnostics.Stopwatch.StartNew();
+        clock.Start();
+        Thread.Sleep(100);
+        clock.Pause();
+        TimeSpan paused = clock.Position;
+        wall.Stop();
+
+        Assert.IsTrue(paused <= wall.Elapsed, $"Clock reports {paused} after {wall.Elapsed} of real time.");
+        clock.Start();
+        Assert.IsTrue(clock.Position - paused < TimeSpan.FromMilliseconds(50));
+        clock.Pause();
     }
 }
