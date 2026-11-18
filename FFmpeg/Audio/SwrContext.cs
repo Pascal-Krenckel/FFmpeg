@@ -262,6 +262,8 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
     /// </returns>
     public AVResult32 Convert(AVFrame? src, AudioBuffer dst, int dstSampleIndex)
     {
+        if ((uint)dstSampleIndex > (uint)dst.Capacity)
+            throw new ArgumentOutOfRangeException(nameof(dstSampleIndex));
         if (!EnsureInitialize(out AVResult32 res))
             return res;
 
@@ -278,7 +280,7 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
 
         res = src == null
             ? ffmpeg.swr_convert(context, dstBuffer, dst.Capacity - dstSampleIndex, null, 0)
-            : ffmpeg.swr_convert(context, dstBuffer, dst.Capacity - dst.Samples, src.ExtendedData, src.SampleCount);
+            : ffmpeg.swr_convert(context, dstBuffer, dst.Capacity - dstSampleIndex, src.ExtendedData, src.SampleCount);
 
         if (res.IsError)
             return res;
@@ -312,6 +314,8 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
     /// </returns>
     public AVResult32 Convert(AudioBuffer src, int srcSampleIndex, AVFrame? dst)
     {
+        if ((uint)srcSampleIndex > (uint)src.Samples)
+            throw new ArgumentOutOfRangeException(nameof(srcSampleIndex));
         if (!EnsureInitialize(out AVResult32 res))
             return res;
 
@@ -369,6 +373,10 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
 
         if (dst == null)
             return Convert(src, srcSampleIndex, null);
+        if ((uint)dstSampleIndex > (uint)dst.Capacity)
+            throw new ArgumentOutOfRangeException(nameof(dstSampleIndex));
+        if ((uint)srcSampleIndex > (uint)src.Samples)
+            throw new ArgumentOutOfRangeException(nameof(srcSampleIndex));
 
         if (!EnsureInitialize(out AVResult32 res))
             return res;
@@ -395,7 +403,8 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
             dstBuffer[0] = dst.Planes[0] + (dst.BytesPerSample * dstSampleIndex * dst.Channels);
         }
 
-        res = ffmpeg.swr_convert(context, dstBuffer, dst.Capacity - dst.Samples, srcBuffer, src.Samples - srcSampleIndex);
+        // Output starts at dstSampleIndex, so measure the free space from there.
+        res = ffmpeg.swr_convert(context, dstBuffer, dst.Capacity - dstSampleIndex, srcBuffer, src.Samples - srcSampleIndex);
         if (res < 0)
             return res;
 
