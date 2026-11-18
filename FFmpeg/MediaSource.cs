@@ -229,50 +229,7 @@ public class MediaSource : IDisposable
     /// <param name="frame">The <see cref="AVFrame"/> to populate with the decoded frame.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation. Returns the stream index if successful; otherwise, the error result.</returns>
     public AVResult32 ReadAndDecodeAVFrame(AVFrame frame)
-    {
-
-        AVResult32 res = 0;
-        do
-        {
-            if (res == AVResult32.TryAgain || packet.StreamIndex == -1)
-            {
-                res = FormatContext.ReadPacket(packet);
-
-                if (res == AVResult32.EndOfFile)
-                {
-                    foreach (CodecContext? ctx in codecContexts.Where(ctx => ctx.CodecType is MediaType.Audio or MediaType.Video))
-                        _ = ctx.DrainDecoder();
-                    for (int i = 0; i < codecContexts.Length; i++)
-                    {
-                        if (codecContexts[i].CodecType is MediaType.Audio or MediaType.Video)
-                        {
-                            res = codecContexts[i].ReceiveFrame(frame);
-                            if (!res.IsError)
-                                return i;
-                            else if (res != AVResult32.EndOfFile)
-                                return res;
-
-                        }
-                    }
-
-                    return AVResult32.EndOfFile;
-                }
-                res.ThrowIfError();
-                // ToDo: decode other media types
-                if (Streams[packet.StreamIndex].Discard.HasFlag(DiscardFlags.All) ||
-                    (CodecContexts[packet.StreamIndex].CodecType != MediaType.Audio &&
-                    CodecContexts[packet.StreamIndex].CodecType != MediaType.Video))
-                {
-                    res = AVResult32.TryAgain;
-                    continue;
-                }
-                CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();
-            }
-            res = CodecContexts[packet.StreamIndex].ReceiveFrame(frame);
-        } while (res == AVResult32.TryAgain);
-
-        return res.IsError ? res : (AVResult32)packet.StreamIndex;
-    }
+        => ReadAndDecode(frame, static (codec, f) => codec.ReceiveFrame(f));
 
     /// <summary>
     /// Reads a packet and decodes it into a frame. Continues until a frame is successfully decoded or no more frames can be read. <br/>
@@ -281,7 +238,20 @@ public class MediaSource : IDisposable
     /// <param name="frame">The <see cref="AVFrame"/> to populate with the decoded frame.</param>
     /// <returns>An <see cref="AVResult32"/> indicating the result of the operation. Returns the stream index if successful; otherwise, the error result.</returns>
     public AVResult32 ReadAndDecodeHWAVFrame(AVFrame frame)
+        => ReadAndDecode(frame, static (codec, f) => codec.ReceiveHWFrame(f));
+
+    /// <summary>
+    /// <see langword="true"/> once the end of the input was reached and the decoders were
+    /// told to drain; reset by <see cref="FlushBuffers"/> (and therefore by every seek).
+    /// </summary>
+    private bool draining;
+
+    private static bool IsAudioOrVideo(CodecContext codec) => codec.CodecType is MediaType.Audio or MediaType.Video;
+
+    private AVResult32 ReadAndDecode(AVFrame frame, Func<CodecContext, AVFrame, AVResult32> receive)
     {
+        if (draining)
+            return ReceiveDrained(frame, receive);
 
         AVResult32 res = 0;
         do
@@ -289,41 +259,43 @@ public class MediaSource : IDisposable
             if (res == AVResult32.TryAgain || packet.StreamIndex == -1)
             {
                 res = FormatContext.ReadPacket(packet);
-
                 if (res == AVResult32.EndOfFile)
                 {
-                    foreach (CodecContext? ctx in codecContexts.Where(ctx => ctx.CodecType is MediaType.Audio or MediaType.Video))
+                    // Flush every decoder once, then hand out their remaining frames,
+                    // one per call, until all of them report end of file.
+                    foreach (CodecContext ctx in CodecContexts.Where(IsAudioOrVideo))
                         _ = ctx.DrainDecoder();
-                    for (int i = 0; i < codecContexts.Length; i++)
-                    {
-                        if (codecContexts[i].CodecType is MediaType.Audio or MediaType.Video)
-                        {
-                            res = codecContexts[i].ReceiveHWFrame(frame);
-                            if (!res.IsError)
-                                return i;
-                            else if (res != AVResult32.EndOfFile)
-                                return res;
-
-                        }
-                    }
-
-                    return AVResult32.EndOfFile;
+                    draining = true;
+                    return ReceiveDrained(frame, receive);
                 }
                 res.ThrowIfError();
                 // ToDo: decode other media types
                 if (Streams[packet.StreamIndex].Discard.HasFlag(DiscardFlags.All) ||
-                    (CodecContexts[packet.StreamIndex].CodecType != MediaType.Audio &&
-                    CodecContexts[packet.StreamIndex].CodecType != MediaType.Video))
+                    !IsAudioOrVideo(CodecContexts[packet.StreamIndex]))
                 {
                     res = AVResult32.TryAgain;
                     continue;
                 }
                 CodecContexts[packet.StreamIndex].SendPacket(packet).ThrowIfError();
             }
-            res = CodecContexts[packet.StreamIndex].ReceiveHWFrame(frame);
+            res = receive(CodecContexts[packet.StreamIndex], frame);
         } while (res == AVResult32.TryAgain);
-
         return res.IsError ? res : (AVResult32)packet.StreamIndex;
+    }
+
+    private AVResult32 ReceiveDrained(AVFrame frame, Func<CodecContext, AVFrame, AVResult32> receive)
+    {
+        for (int i = 0; i < codecContexts.Length; i++)
+        {
+            if (!IsAudioOrVideo(codecContexts[i]))
+                continue;
+            AVResult32 res = receive(codecContexts[i], frame);
+            if (!res.IsError)
+                return i;
+            if (res != AVResult32.EndOfFile)
+                return res;
+        }
+        return AVResult32.EndOfFile;
     }
 
     /// <summary>
@@ -331,6 +303,8 @@ public class MediaSource : IDisposable
     /// </summary>
     public void FlushBuffers()
     {
+        // Flushed decoders accept packets again.
+        draining = false;
         for (int i = 0; i < CodecContexts.Count; i++)
             CodecContexts[i].FlushBuffers();
     }
