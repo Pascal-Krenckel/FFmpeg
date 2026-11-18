@@ -145,7 +145,7 @@ transcoder.ProgressChanged += (_, progress) => Console.WriteLine(progress);
 await transcoder.RunAsync();
 ```
 
-Encoder properties you don't set (size, pixel/sample format, sample rate, channel layout, time base) are taken from the filtered frames; the ones you set are enforced by the filter graph. Re-encoded streams are trimmed frame-exactly, copied streams start at the keyframe before `Start`, as with `ffmpeg`. For a frame-level pipeline of your own, see the [Filters example](https://github.com/Pascal-Krenckel/FFmpeg.Examples), which uses `CodecContext`, `FilterGraph` and `MediaSink` directly.
+A filter can also be passed as a `FilterGraph` object (with its unlinked input and output, e.g. from `FilterGraph.Create(out inputs, "...", out outputs)`); the transcoder uses it as a template and works on copies of it. Encoder properties you don't set (size, pixel/sample format, sample rate, channel layout, time base) are taken from the filtered frames; the ones you set are enforced by the filter graph. Re-encoded streams are trimmed frame-exactly, copied streams start at the keyframe before `Start`, as with `ffmpeg`. For a frame-level pipeline of your own, see the [Filters example](https://github.com/Pascal-Krenckel/FFmpeg.Examples), which uses `CodecContext`, `FilterGraph` and `MediaSink` directly.
 
 For finer control over decoding, filtering, or encoding, see the [high-level abstractions](#high-level-abstractions) below or browse the [example projects](https://github.com/Pascal-Krenckel/FFmpeg.Examples).
 
