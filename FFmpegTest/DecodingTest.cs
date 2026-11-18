@@ -178,4 +178,66 @@ public class DecodingTest
         Assert.IsTrue(image.GetPlane(0).SequenceEqual(bgra));
     }
 
+    [TestMethod]
+    public void DecodingAudio_MatchesReferencePcm()
+    {
+        // Test-Files/10s-11s.*.pcm hold the decoded 5.1 AC-3 track from 10 s to 11 s
+        // as packed float and as packed 16-bit samples.
+        TimeSpan start = TimeSpan.FromSeconds(10);
+        int audioIndex = SelectStream(demuxerContext!, MediaType.Audio);
+        AVStream stream = demuxerContext!.Streams[audioIndex];
+        int sampleRate = stream.CodecParameters.SampleRate;
+        int channels = stream.CodecParameters.Channels;
+
+        Codec c = Codec.FindDecoder(stream.CodecParameters.CodecId)!.Value;
+        using CodecContext decoder = CodecContext.Open(c, stream.CodecParameters);
+        using AVFrame frame = AVFrame.Allocate();
+        using AVPacket packet = AVPacket.Allocate();
+
+        SeekAndRead(demuxerContext, audioIndex, decoder, frame, start).ThrowIfError();
+
+        // The decoder delivers planar float; the FIFO converts to packed, as in the reference.
+        using AudioFifo fifo = new(SampleFormat.Float32, channels);
+        TimeSpan firstFrameStart = frame.GetPresentationTimestamp() * frame.TimeBase;
+        int samplesBeforeStart = (int)Math.Round((start - firstFrameStart).TotalSeconds * sampleRate);
+        Assert.IsTrue(samplesBeforeStart >= 0 && samplesBeforeStart < frame.SampleCount, $"Seek landed {samplesBeforeStart} samples away from the start.");
+        Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
+        fifo.Drop(samplesBeforeStart).ThrowIfError();
+
+        // Decode until one second of audio is buffered.
+        while (fifo.Count < sampleRate)
+        {
+            AVResult32 result = decoder.ReceiveFrame(frame);
+            if (result.IsTryAgain)
+            {
+                demuxerContext.ReadPacket(packet).ThrowIfError();
+                decoder.SendPacket(packet).ThrowIfError();
+                continue;
+            }
+            result.ThrowIfError();
+            Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
+        }
+
+        float[] decoded = new float[sampleRate * channels];
+        Assert.AreEqual(sampleRate, (int)fifo.Read<float>(decoded.AsSpan()));
+
+        float[] expected = System.Runtime.InteropServices.MemoryMarshal.Cast<byte, float>(File.ReadAllBytes(TestFiles.AudioF32le)).ToArray();
+        short[] expected16 = System.Runtime.InteropServices.MemoryMarshal.Cast<byte, short>(File.ReadAllBytes(TestFiles.AudioS16le)).ToArray();
+        Assert.HasCount(decoded.Length, expected);
+        Assert.HasCount(decoded.Length, expected16);
+
+        // AC-3 frames overlap, so the first frame decoded after a seek can differ slightly
+        // from a continuous decode; compare from the second frame (1536 samples) on.
+        const int skipSamples = 1536;
+        float maxDiff = 0;
+        int maxDiff16 = 0;
+        for (int i = skipSamples * channels; i < decoded.Length; i++)
+        {
+            maxDiff = Math.Max(maxDiff, Math.Abs(decoded[i] - expected[i]));
+            int asInt16 = (int)Math.Clamp(MathF.Round(decoded[i] * 32768f), short.MinValue, short.MaxValue);
+            maxDiff16 = Math.Max(maxDiff16, Math.Abs(asInt16 - expected16[i]));
+        }
+        Assert.IsTrue(maxDiff < 1e-4f, $"Decoded float samples differ from the reference by up to {maxDiff}.");
+        Assert.IsTrue(maxDiff16 <= 2, $"Decoded samples differ from the 16-bit reference by up to {maxDiff16} LSB.");
+    }
 }
