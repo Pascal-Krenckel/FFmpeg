@@ -767,9 +767,11 @@ public readonly struct AVResult64 : IEquatable<AVResult64>, IEquatable<long>
     {
         if (!IsError)
             return value.ToString();
+        long v = value;
         string str =
         typeof(AVResult64).GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
             .Where(p => p.CanRead && !p.IsSpecialName && (p.PropertyType == typeof(long) || p.PropertyType == typeof(AVResult64)))
+            .Where(p => Convert.ToInt64(p.GetValue(null) is AVResult64 r ? (long)r : p.GetValue(null)) == v)
             .Select(p => p.Name).FirstOrDefault();
         return string.IsNullOrEmpty(str) ? value.ToString() : str;
     }
