@@ -156,9 +156,10 @@ public sealed unsafe class Image : IDisposable
     /// <returns>A new <see cref="Image"/> with copied pixel data.</returns>
     public static Image FromPixelCopy(ImageInfo info, ReadOnlySpan<byte> data)
     {
-        Image image = Create(info);
+        // Validate before allocating, so a rejected call does not leak the buffer.
         if (data.Length < info.BufferSize)
             throw new ArgumentException("Data span is smaller than the required buffer size.", nameof(data));
+        Image image = Create(info);
         fixed (byte* dataPtr = data)
             Buffer.MemoryCopy(dataPtr, (void*)image.Data, info.BufferSize, info.BufferSize);
         return image;
@@ -231,15 +232,16 @@ public sealed unsafe class Image : IDisposable
     {
         if (index < 0 || index >= Info.Planes)
             throw new ArgumentOutOfRangeException(nameof(index));
+        // Use the image's alignment, as BufferSize, GetPlanes and GetLineSize do;
+        // av_image_fill_linesizes alone assumes alignment 1.
         byte_ptrArray4 ptrs = new();
         int_array4 lines = new();
+        ((AVResult32)ffmpeg.av_image_fill_arrays(ref ptrs, ref lines, (byte*)Data, (_AVPixelFormat)PixelFormat, Width, Height, Info.Alignment)).ThrowIfError();
         ulong_array4 sizes = new();
         long_array4 linesL = new();
-        _ = ffmpeg.av_image_fill_linesizes(ref lines, (_AVPixelFormat)PixelFormat, Width);
         for (uint i = 0; i < 4; i++)
             linesL[i] = lines[i];
-        _ = ffmpeg.av_image_fill_pointers(ref ptrs, (_AVPixelFormat)PixelFormat, Height, (byte*)Data, lines);
-        _ = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, linesL);
+        ((AVResult32)ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, linesL)).ThrowIfError();
         return new Span<byte>(ptrs[(uint)index], (int)sizes[(uint)index]);
     }
 
