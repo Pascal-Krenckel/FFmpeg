@@ -283,6 +283,9 @@ public sealed partial class PlaybackEngine : IDisposable
         catch (Exception ex)
         {
             Logging.Logger.Error(ex.ToString());
+            // Let the task fault so the HandleException continuation moves the player to Faulted;
+            // otherwise the player would stay in Playing forever after a decoding error.
+            throw;
         }
         finally { frame.Dispose(); }
     }
