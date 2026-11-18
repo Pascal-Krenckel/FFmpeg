@@ -292,7 +292,7 @@ public abstract unsafe class IOContext : AVIOContext
                 gch.Free();
 
             // Free the buffer and AVIOContext associated with the format context
-            if (FormatContext?.Context != null)
+            if (FormatContext != null && FormatContext.Context != null)
             {
                 if (FormatContext.Context->pb != null)
                     AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);
