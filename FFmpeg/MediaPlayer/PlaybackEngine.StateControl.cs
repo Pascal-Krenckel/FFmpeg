@@ -249,7 +249,7 @@ public partial class PlaybackEngine
                 case PlayerState.Paused:
                     if (!SeekInternally(0))
                         return State = PlayerState.Paused;
-                    return PlayerState.Stopped;
+                    return State = PlayerState.Stopped;
                 case PlayerState.Playing:
                     _ = PauseInternally();
                     if (SeekInternally(0))
