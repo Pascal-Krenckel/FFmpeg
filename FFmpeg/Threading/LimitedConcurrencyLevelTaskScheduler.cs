@@ -77,7 +77,9 @@ public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
                                                                      {
                                                                          // When there are no more items to be processed,
                                                                          // note that we're done processing, and get out.
-                                                                         if (_tasks.Count == 0)
+                                                                         // Also stop when the limit was lowered by SetMaxDegreeOfParallelism,
+                                                                         // so the concurrency actually drops while work keeps arriving.
+                                                                         if (_tasks.Count == 0 || _delegatesQueuedOrRunning > _maxDegreeOfParallelism)
                                                                          {
                                                                              --_delegatesQueuedOrRunning;
                                                                              break;
