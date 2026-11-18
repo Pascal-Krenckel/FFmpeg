@@ -373,6 +373,18 @@ public class MediaSource : IDisposable
             result = ReadPacket(packet);
             if (result.IsError)
                 return result;
+            if (packet.StreamIndex != streamIndex)
+            {
+                // Keep the other audio/video decoders fed, but only the requested stream
+                // decides when the target has been reached.
+                if (IsAudioOrVideo(CodecContexts[packet.StreamIndex]) && !Streams[packet.StreamIndex].Discard.HasFlag(DiscardFlags.All))
+                {
+                    result = Decode(packet, frame);
+                    if (result.IsError && !result.IsTryAgain)
+                        return result;
+                }
+                continue;
+            }
             if ((packet.PresentationTimestamp + packet.Duration) * packet.TimeBase < timeSpan)
             {
                 result = Decode(packet, frame);
