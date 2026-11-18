@@ -293,6 +293,9 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// <param name="dst">The destination packet to move the data to.</param>
     public void MoveTo(IPacket dst)
     {
+        // Same packet: unreferencing first would leave nothing to move or copy.
+        if (dst.Packet == packet)
+            return;
         dst.Unreference();
         ffmpeg.av_packet_move_ref(dst.Packet, packet);
     }
@@ -304,6 +307,9 @@ public unsafe class AVPacket : IDisposable, IPacket
     /// <param name="dst">The destination packet to clone the data to.</param>
     public void CloneTo(IPacket dst)
     {
+        // Same packet: unreferencing first would leave nothing to move or copy.
+        if (dst.Packet == packet)
+            return;
         dst.Unreference();
         ((AVResult32)ffmpeg.av_packet_ref(dst.Packet, packet)).ThrowIfError();
         ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
