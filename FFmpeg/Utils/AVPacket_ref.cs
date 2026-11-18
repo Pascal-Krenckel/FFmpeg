@@ -137,6 +137,9 @@ public readonly unsafe struct AVPacket_ref : IPacket, IReference<AVPacket>
     ///<inheritdoc />
     public void SetReferencedObject(AVPacket? packet)
     {
+        // Same packet: unreferencing first would leave nothing to reference.
+        if (packet != null && packet.packet == this.packet)
+            return;
         Unreference();
         if (packet != null)
         {
@@ -149,12 +152,18 @@ public readonly unsafe struct AVPacket_ref : IPacket, IReference<AVPacket>
     /// <inheritdoc />
     public void MoveTo(IPacket dst)
     {
+        // Same packet: unreferencing first would leave nothing to move or copy.
+        if (dst.Packet == packet)
+            return;
         dst.Unreference();
         ffmpeg.av_packet_move_ref(dst.Packet, packet);
     }
     /// <inheritdoc />
     public void CloneTo(IPacket dst)
     {
+        // Same packet: unreferencing first would leave nothing to move or copy.
+        if (dst.Packet == packet)
+            return;
         dst.Unreference();
         ((AVResult32)ffmpeg.av_packet_ref(dst.Packet, packet)).ThrowIfError();
         ((AVResult32)ffmpeg.av_packet_copy_props(dst.Packet, packet)).ThrowIfError();
