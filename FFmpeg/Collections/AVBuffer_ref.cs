@@ -92,7 +92,8 @@ public readonly unsafe struct AVBuffer_ref : IBuffer, IEquatable<AVBuffer_ref>, 
     /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
     public AVBuffer Copy()
     {
-        if (this == null)
+        // A struct is never null; check the wrapped reference instead.
+        if (this.buffer == null || *this.buffer == null)
             throw new NullReferenceException();
         AVBuffer buffer = AVBuffer.Allocate(Length); // may throw OutOfMemoryException        
         AsSpan().CopyTo(buffer.AsSpan());
