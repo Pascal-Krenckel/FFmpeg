@@ -1385,10 +1385,39 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     public AVResult32 SendFrame(AVFrame? frame)
     {
         if (!IsOpen)
+        {
+            // FFmpeg requires an encoder's time base to be set before avcodec_open2. Like the
+            // ffmpeg tool, take it from the first frame when none was configured.
+            if (!TimeBase.IsValidTimeBase && frame?.TimeBase.IsValidTimeBase == true)
+                TimeBase = frame.TimeBase;
             Open(null).ThrowIfError();
-        if (frame?.TimeBase.IsValidTimeBase == true)
-            TimeBase = frame.TimeBase; // set this to frames time base, so receive package uses the right timebase.
-        return ffmpeg.avcodec_send_frame(context, frame != null ? frame.Frame : null);
+        }
+
+        if (frame == null || !frame.TimeBase.IsValidTimeBase || !TimeBase.IsValidTimeBase || frame.TimeBase == TimeBase)
+            return ffmpeg.avcodec_send_frame(context, frame != null ? frame.Frame : null);
+
+        // Frame timestamps must be in the encoder's time base, which must not change once the
+        // encoder is open (many encoders read it in avcodec_open2, e.g. for rate control).
+        // Rescale the frame for this call and restore it afterwards; avcodec_send_frame keeps
+        // its own reference, so the caller's frame is left unchanged.
+        long pts = frame.PresentationTimestamp;
+        long duration = frame.Duration;
+        Rational frameTimeBase = frame.TimeBase;
+        try
+        {
+            if (pts != ffmpeg.AV_NOPTS_VALUE)
+                frame.PresentationTimestamp = Rational.Rescale(pts, frameTimeBase, TimeBase);
+            if (duration > 0)
+                frame.Duration = Rational.Rescale(duration, frameTimeBase, TimeBase);
+            frame.TimeBase = TimeBase;
+            return ffmpeg.avcodec_send_frame(context, frame.Frame);
+        }
+        finally
+        {
+            frame.PresentationTimestamp = pts;
+            frame.Duration = duration;
+            frame.TimeBase = frameTimeBase;
+        }
     }
 
     /// <summary>
