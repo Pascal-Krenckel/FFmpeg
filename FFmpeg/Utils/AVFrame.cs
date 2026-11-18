@@ -576,8 +576,10 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
             {
                 ulong_array4 sizes = new();
                 long_array4 linesize = new();
+                // Absolute strides: bottom-up images (negative line sizes) would otherwise
+                // produce a negative, wrapped-around size.
                 for (uint i = 0; i < linesize.Length; i++)
-                    linesize[i] = LineSize[i];
+                    linesize[i] = Math.Abs(LineSize[i]);
                 AVResult32 res = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, in linesize);
                 res.ThrowIfError();
                 return (long)(sizes[0] + sizes[1] + sizes[2] + sizes[3]);
@@ -650,6 +652,9 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
     /// </exception>
     public void Reference(AVFrame src)
     {
+        // Unreferencing first would leave nothing to reference.
+        if (ReferenceEquals(src, this))
+            return;
         Unreference();
         ((AVResult32)ffmpeg.av_frame_ref(Frame, src.Frame)).ThrowIfError();
     }
@@ -680,7 +685,7 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
     public AVFrame Clone()
     {
         AutoGen._AVFrame* frame = ffmpeg.av_frame_clone(Frame);
-        return new(frame);
+        return frame == null ? throw new OutOfMemoryException("Failed to clone the frame.") : new(frame);
     }
 
     /// <summary>
@@ -692,14 +697,25 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
     public AVFrame Copy()
     {
         AVFrame frame = Allocate();
-        frame.Format = Format;
-        frame.Width = Width;
-        frame.Height = Height;
-        frame.SampleCount = SampleCount;
-        Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy_props(frame.Frame, Frame));
-        frame.CreateBuffer().ThrowIfError();
-        Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy(frame.Frame, Frame));
-        return frame;
+        try
+        {
+            frame.Format = Format;
+            frame.Width = Width;
+            frame.Height = Height;
+            frame.SampleCount = SampleCount;
+            // av_frame_copy_props does not copy the channel layout, but av_frame_get_buffer
+            // needs it to allocate audio buffers.
+            Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_channel_layout_copy(&frame.Frame->ch_layout, &Frame->ch_layout));
+            Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy_props(frame.Frame, Frame));
+            frame.CreateBuffer().ThrowIfError();
+            Exceptions.FFmpegException.ThrowIfError(ffmpeg.av_frame_copy(frame.Frame, Frame));
+            return frame;
+        }
+        catch
+        {
+            frame.Dispose();
+            throw;
+        }
     }
 
     /// <summary>
