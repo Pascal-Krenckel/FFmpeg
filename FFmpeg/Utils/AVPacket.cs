@@ -103,7 +103,7 @@ public unsafe class AVPacket : IDisposable, IPacket
     public TimeSpan PresentationTime
     {
         get => PresentationTimestamp * TimeBase;
-        set => PresentationTimestamp = (long)((Rational)value / TimeBase);
+        set => PresentationTimestamp = value / TimeBase;
     }
 
     /// <summary>
@@ -123,7 +123,7 @@ public unsafe class AVPacket : IDisposable, IPacket
     public TimeSpan DecompressionTime
     {
         get => DecompressionTimestamp * TimeBase;
-        set => DecompressionTimestamp = (long)((Rational)value / TimeBase);
+        set => DecompressionTimestamp = value / TimeBase;
     }
 
     /// <summary>

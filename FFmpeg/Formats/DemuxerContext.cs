@@ -297,8 +297,7 @@ public unsafe partial class DemuxerContext : FormatContext
     /// </remarks>
     public AVResult32 Seek(Rational time)
     {
-        Rational timeBase = new(1, ffmpeg.AV_TIME_BASE);
-        long l = (long)(time / timeBase);
+        long l = Rational.ToTimestamp(time, new Rational(1, ffmpeg.AV_TIME_BASE));
         return ffmpeg.av_seek_frame(Context, -1, l, ffmpeg.AVSEEK_FLAG_BACKWARD);
     }
 
@@ -321,8 +320,7 @@ public unsafe partial class DemuxerContext : FormatContext
     {
         if (streamIndex < 0 || streamIndex >= StreamCount)
             throw new ArgumentOutOfRangeException(nameof(streamIndex));
-        Rational timeBase = Context->streams[streamIndex]->time_base;
-        long l = (long)(time / timeBase);
+        long l = Rational.ToTimestamp(time, Context->streams[streamIndex]->time_base);
         return ffmpeg.av_seek_frame(Context, streamIndex, l, ffmpeg.AVSEEK_FLAG_BACKWARD);
     }
 

@@ -206,10 +206,8 @@ public sealed class Transcoder : IDisposable
                             : sinkContext?.TimeBase.IsValidTimeBase == true ? sinkContext!.TimeBase : sourceStream.TimeBase;
                     }
 
-#pragma warning disable IDE0221 // Explizite Umwandlung hinzufügen
-                    long startTB = (long)((Rational)startTime / sinkStream.TimeBase);
-                    long durationTB = (long)((Rational)duration / sinkStream.TimeBase);
-#pragma warning restore IDE0221 // Explizite Umwandlung hinzufügen
+                    long startTB = startTime / sinkStream.TimeBase;
+                    long durationTB = duration / sinkStream.TimeBase;
 
                     sinkStream.StartTime = sinkStream.TimeBase.Rescale(sourceStream.StartTime, sourceStream.TimeBase); // rescale start time
                     sinkStream.Duration = sinkStream.TimeBase.Rescale(sourceStream.Duration, sourceStream.TimeBase); // rescale duration
