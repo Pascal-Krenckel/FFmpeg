@@ -73,6 +73,8 @@ public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) 
         if (chapter == null)
         {
             chapter = (_AVChapter*)ffmpeg.av_mallocz((ulong)sizeof(_AVChapter));
+            if (chapter == null)
+                throw new OutOfMemoryException("Failed to allocate a chapter.");
             newChapter = true;
         }
         chapter->id = id;
@@ -172,7 +174,10 @@ public readonly unsafe struct ChapterList(FormatContext context, bool readOnly) 
             if (Chapters[index]->metadata != null)
                 ffmpeg.av_dict_free(&Chapters[index]->metadata);
             ffmpeg.av_freep(&Chapters[index]);
-            Chapters[index] = Chapters[Count - 1];
+            // Shift the following chapters down instead of moving the last one into the
+            // gap: muxers write chapters in array order, so the order must be preserved.
+            for (long i = index; i < Count - 1; i++)
+                Chapters[i] = Chapters[i + 1];
             Chapters[Count - 1] = null;
             context.Context->nb_chapters--;
         }
