@@ -346,30 +346,16 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         => ffmpeg.av_opt_set_sample_fmt(Pointer, name, (AutoGen._AVSampleFormat)format, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
 
     /// <summary>
-    /// Sets an option by name with a dictionary of key-value pairs.
+    /// Sets multiple options from a dictionary of key-value pairs (<c>av_opt_set_dict2</c>).
     /// </summary>
-    /// <param name="name">The option name to set.</param>
-    /// <param name="values">The dictionary of key-value pairs to set.</param>
+    /// <param name="name">Not used; every entry of <paramref name="values"/> is applied as its own option.</param>
+    /// <param name="values">The options to set. On return it contains only the entries that were not found.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(string name, IDictionary<string, string> values, bool recursive = true)
-    {
-        if (values is AVDictionary_ref pDic)
-        {
-            return ffmpeg.av_opt_set_dict_val(Pointer, name, *pDic.Pointer, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
-        }
-        else if (values is Collections.AVDictionary dic)
-        {
-            return ffmpeg.av_opt_set_dict_val(Pointer, name, dic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
-        }
-        else
-        {
-            // av_opt_set_dict_val copies the dictionary and never consumes entries,
-            // so the caller's collection (which may be read-only) is left untouched.
-            using Collections.AVDictionary dictionary = new(values);
-            return ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
-        }
-    }
+        // av_opt_set_dict2: every entry is applied as its own option; entries that were
+        // consumed are removed from values, the unused ones remain (same as FFmpeg).
+        => SetOption(values, recursive);
 
     /// <summary>
     /// Sets an option by name with a lookup collection of key-value pairs.
@@ -616,10 +602,10 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         => SetOption(option.Name, value, recursive);
 
     /// <summary>
-    /// Sets an option using an <see cref="Option"/> and a dictionary of key-value pairs.
+    /// Sets multiple options from a dictionary of key-value pairs (<c>av_opt_set_dict2</c>).
     /// </summary>
-    /// <param name="option">The AVOption to set.</param>
-    /// <param name="values">The dictionary of key-value pairs to set.</param>
+    /// <param name="option">Not used; every entry of <paramref name="values"/> is applied as its own option.</param>
+    /// <param name="values">The options to set. On return it contains only the entries that were not found.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(Option option, IDictionary<string, string> values, bool recursive = true)
