@@ -82,7 +82,7 @@ public unsafe struct SubtitleRect
         get => Marshal.PtrToStringUTF8((nint)rects->text);
         set
         {
-            ffmpeg.av_freep(rects->text); // Free the existing text memory
+            ffmpeg.av_freep(&rects->text); // av_freep takes the address of the pointer and sets it to NULL
             if (value != null)
                 rects->text = ffmpeg.av_strdup(value); // Duplicate the new text string
         }
@@ -97,7 +97,7 @@ public unsafe struct SubtitleRect
         get => Marshal.PtrToStringUTF8((nint)rects->ass);
         set
         {
-            ffmpeg.av_freep(rects->ass); // Free the existing ASS memory
+            ffmpeg.av_freep(&rects->ass); // av_freep takes the address of the pointer and sets it to NULL
             if (value != null)
                 rects->ass = ffmpeg.av_strdup(value); // Duplicate the new ASS string
         }
