@@ -86,12 +86,13 @@ internal struct VideoBuffer(PixelFormat format, int width, int height) : IDispos
     /// Removes and returns the next frame, transferring ownership of the frame
     /// to the caller.
     /// </summary>
-    public readonly AVFrame? Read()
+    public AVFrame? Read()
     {
         if (Count == 0)
             return null;
         AVFrame frame = _buffer[0];
         _buffer.RemoveAt(0);
+        BufferSize -= frame.Size;
         return frame;
     }
 
@@ -116,12 +117,11 @@ internal struct VideoBuffer(PixelFormat format, int width, int height) : IDispos
     /// <returns>
     /// The presentation timestamp of the first frame remaining in the buffer.
     /// </returns>
-    public readonly void Seek(TimeSpan pts)
+    public void Seek(TimeSpan pts)
     {
         while (_buffer.Count > 0 && pts > (_buffer[0].GetPresentationTimestamp() + _buffer[0].Duration) * _buffer[0].TimeBase)
         {
-            _buffer[0].Dispose();
-            _buffer.RemoveAt(0);
+            DropFirst();
         }
     }
 
@@ -131,23 +131,31 @@ internal struct VideoBuffer(PixelFormat format, int width, int height) : IDispos
     /// <returns>
     /// The presentation timestamp of the first frame remaining in the buffer.
     /// </returns>
-    public readonly void RemoveExpired(TimeSpan pts)
+    public void RemoveExpired(TimeSpan pts)
     {
         while (_buffer.Count > 1 && pts > (_buffer[0].GetPresentationTimestamp() + _buffer[0].Duration) * _buffer[0].TimeBase)
         {
-            _buffer[0].Dispose();
-            _buffer.RemoveAt(0);
+            DropFirst();
         }
     }
 
     /// <summary>
     /// Removes and disposes all frames currently stored in the buffer.
     /// </summary>
-    public readonly void Clear()
+    public void Clear()
     {
         for (int i = 0; i < _buffer.Count; i++)
             _buffer[i].Dispose();
         _buffer.Clear();
+        BufferSize = 0;
+    }
+
+    private void DropFirst()
+    {
+        AVFrame frame = _buffer[0];
+        _buffer.RemoveAt(0);
+        BufferSize -= frame.Size;
+        frame.Dispose();
     }
 
     public void Dispose()

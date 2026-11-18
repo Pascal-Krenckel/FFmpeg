@@ -35,8 +35,16 @@ public sealed class MediaBuffer : IDisposable
 {
     private bool finishedWriting = false;
     private readonly object _lock = new();
-    private readonly AudioBuffer? _audio;
-    private readonly VideoBuffer? _video;
+    // Stored as a plain, non-readonly field so that calls mutate the buffer in place.
+    // Through Nullable<T>.Value or a readonly field every call would operate on a copy,
+    // and state such as BufferSize or _disposed would be lost.
+    private AudioBuffer _audio;
+    private readonly bool _hasAudio;
+    // Stored as a plain, non-readonly field so that calls mutate the buffer in place.
+    // Through Nullable<T>.Value or a readonly field every call would operate on a copy,
+    // and state such as BufferSize or _disposed would be lost.
+    private VideoBuffer _video;
+    private readonly bool _hasVideo;
     private volatile bool _disposed = false;
     private readonly ManualResetEvent? _canReadAudioEvent, _canWriteAudioEvent, _canReadVideoEvent, _canWriteVideoEvent;
 
@@ -52,8 +60,8 @@ public sealed class MediaBuffer : IDisposable
         get
         {
             lock (_lock)
-                return _audio != null &&
-                            _audio.Value.Duration < MaxBufferDuration &&
+                return _hasAudio &&
+                            _audio.Duration < MaxBufferDuration &&
                             !_disposed;
         }
     }
@@ -70,8 +78,8 @@ public sealed class MediaBuffer : IDisposable
         get
         {
             lock (_lock)
-                return _video != null &&
-                        _video.Value.Duration < MaxBufferDuration &&
+                return _hasVideo &&
+                        _video.Duration < MaxBufferDuration &&
                         !_disposed;
         }
     }
@@ -80,16 +88,16 @@ public sealed class MediaBuffer : IDisposable
     /// Gets a value indicating whether audio data is currently available for reading.
     /// </summary>
     public bool CanReadAudio =>
-        _audio != null &&
-        _audio.Value.CanRead &&
+        _hasAudio &&
+        _audio.CanRead &&
         !_disposed;
 
     /// <summary>
     /// Gets a value indicating whether a video frame is currently available for reading.
     /// </summary>
     public bool CanReadVideo =>
-        _video != null &&
-        _video.Value.CanRead &&
+        _hasVideo &&
+        _video.CanRead &&
         !_disposed;
 
     /// <summary>
@@ -233,6 +241,7 @@ public sealed class MediaBuffer : IDisposable
     {
         if (pixFmt != PixelFormat.None)
         {
+            _hasVideo = true;
             _video = new(pixFmt, width, height);
             _canWriteVideoEvent = new(true);
             _canReadVideoEvent = new(false);
@@ -240,6 +249,7 @@ public sealed class MediaBuffer : IDisposable
 
         if (smpFmt != SampleFormat.None)
         {
+            _hasAudio = true;
             _audio = new(smpFmt, channels, sampleRate);
             _canWriteAudioEvent = new(true);
             _canReadAudioEvent = new(false);
@@ -276,7 +286,7 @@ public sealed class MediaBuffer : IDisposable
                         return 0;
                     if (finishedWriting)
                         throw new InvalidOperationException("The media buffer is in read only mode.");
-                    int ret = _audio!.Value.Write(frame);
+                    int ret = _audio.Write(frame);
                     UpdateEvents();
                     return ret;
                 }
@@ -295,7 +305,7 @@ public sealed class MediaBuffer : IDisposable
                         return 0;
                     if (finishedWriting)
                         throw new InvalidOperationException("The media buffer is in read only mode.");
-                    _video!.Value.Write(frame);
+                    _video.Write(frame);
                     UpdateEvents();
                     return 1;
                 }
@@ -335,12 +345,12 @@ public sealed class MediaBuffer : IDisposable
         CheckDisposed();
 
         return frame.IsAudio
-            ? _audio.HasValue
+            ? _hasAudio
                 ? WriteAudioAsync(frame, token)
                 : throw new NotSupportedException(
                 "The buffer does not support audio data.")
             : frame.IsVideo
-            ? _video.HasValue
+            ? _hasVideo
                 ? WriteVideoAsync(frame, token)
                 : throw new NotSupportedException(
                 "The buffer does not support video data.")
@@ -372,7 +382,7 @@ public sealed class MediaBuffer : IDisposable
             CheckDisposed();
             if (finishedWriting)
                 throw new InvalidOperationException("The media buffer is in read only mode.");
-            int i = _audio!.Value.Write(frame);
+            int i = _audio.Write(frame);
             UpdateEvents();
             return i;
         }
@@ -402,7 +412,7 @@ public sealed class MediaBuffer : IDisposable
             CheckDisposed();
             if (finishedWriting)
                 throw new InvalidOperationException("The media buffer is in read only mode.");
-            _video!.Value.Write(frame);
+            _video.Write(frame);
             UpdateEvents();
             return 1;
         }
@@ -428,7 +438,7 @@ public sealed class MediaBuffer : IDisposable
         {
             CheckDisposed();
 
-            AVFrame? frame = _video!.Value.Read();
+            AVFrame? frame = _video.Read();
             UpdateEvents();
             return frame;
         }
@@ -495,7 +505,7 @@ public sealed class MediaBuffer : IDisposable
         {
             CheckDisposed();
 
-            int i = _audio!.Value.Read(data, out pts);
+            int i = _audio.Read(data, out pts);
             UpdateEvents();
             return i;
         }
@@ -553,7 +563,7 @@ public sealed class MediaBuffer : IDisposable
     public bool PeekVideo(
         [NotNullWhen(true)] out AVFrame? frame)
     {
-        if (!_video.HasValue)
+        if (!_hasVideo)
         {
             frame = null;
             return false;
@@ -562,7 +572,7 @@ public sealed class MediaBuffer : IDisposable
         lock (_lock)
         {
             CheckDisposed();
-            return _video!.Value.Peek(out frame);
+            return _video.Peek(out frame);
         }
     }
 
@@ -587,8 +597,8 @@ public sealed class MediaBuffer : IDisposable
         lock (_lock)
         {
             CheckDisposed();
-            return _audio.HasValue &&
-                   _audio.Value.Peek(out pts);
+            return _hasAudio &&
+                   _audio.Peek(out pts);
         }
     }
 
@@ -613,7 +623,7 @@ public sealed class MediaBuffer : IDisposable
         out TimeSpan pts)
         where T : unmanaged
     {
-        if (!_audio.HasValue)
+        if (!_hasAudio)
         {
             pts = default;
             return 0;
@@ -622,7 +632,7 @@ public sealed class MediaBuffer : IDisposable
         lock (_lock)
         {
             CheckDisposed();
-            return _audio.Value.Peek(data, out pts);
+            return _audio.Peek(data, out pts);
         }
     }
 
@@ -644,7 +654,7 @@ public sealed class MediaBuffer : IDisposable
     {
         CheckDisposed();
 
-        return !_audio.HasValue ? Task.CompletedTask : _canReadAudioEvent!.AsTask(token);
+        return !_hasAudio ? Task.CompletedTask : _canReadAudioEvent!.AsTask(token);
     }
 
     /// <summary>
@@ -665,7 +675,7 @@ public sealed class MediaBuffer : IDisposable
     {
         CheckDisposed();
 
-        return !_video.HasValue ? Task.CompletedTask : _canReadVideoEvent!.AsTask(token);
+        return !_hasVideo ? Task.CompletedTask : _canReadVideoEvent!.AsTask(token);
     }
 
     /// <summary>
@@ -681,8 +691,10 @@ public sealed class MediaBuffer : IDisposable
         {
             CheckDisposed();
 
-            _audio?.Seek(pts);
-            _video?.Seek(pts);
+            if (_hasAudio)
+                _audio.Seek(pts);
+            if (_hasVideo)
+                _video.Seek(pts);
 
             UpdateEvents();
         }
@@ -697,8 +709,8 @@ public sealed class MediaBuffer : IDisposable
     /// to the specified timestamp; otherwise, <see langword="false"/>.
     /// </returns>
     public bool CanSeek(TimeSpan pts) =>
-        _audio?.CanSeek(pts) != false &&
-        _video?.CanSeek(pts) != false;
+        (!_hasAudio || _audio.CanSeek(pts)) &&
+        (!_hasVideo || _video.CanSeek(pts));
 
     /// <summary>
     /// Gets or sets the target maximum duration of buffered media.
@@ -746,7 +758,7 @@ public sealed class MediaBuffer : IDisposable
         get
         {
             lock (_lock)
-                return _video?.Duration ?? TimeSpan.Zero;
+                return _hasVideo ? _video.Duration : TimeSpan.Zero;
         }
     }
 
@@ -758,7 +770,7 @@ public sealed class MediaBuffer : IDisposable
         get
         {
             lock (_lock)
-                return _audio?.Duration ?? TimeSpan.Zero;
+                return _hasAudio ? _audio.Duration : TimeSpan.Zero;
         }
     }
 
@@ -774,8 +786,10 @@ public sealed class MediaBuffer : IDisposable
         {
             CheckDisposed();
 
-            _audio?.Clear();
-            _video?.Clear();
+            if (_hasAudio)
+                _audio.Clear();
+            if (_hasVideo)
+                _video.Clear();
 
             UpdateEvents();
         }
@@ -793,8 +807,10 @@ public sealed class MediaBuffer : IDisposable
 
             _disposed = true;
 
-            _audio?.Dispose();
-            _video?.Dispose();
+            if (_hasAudio)
+                _audio.Dispose();
+            if (_hasVideo)
+                _video.Dispose();
 
             _ = _canReadAudioEvent?.Set();
             _ = _canWriteAudioEvent?.Set();
@@ -884,12 +900,12 @@ public sealed class MediaBuffer : IDisposable
     /// <param name="position">The presentation time stamp.</param>
     public void RemoveExpiredAudio(TimeSpan position)
     {
-        if (!_audio.HasValue)
+        if (!_hasAudio)
             return;
         lock (_lock)
         {
             CheckDisposed();
-            _audio.Value.Seek(position);
+            _audio.Seek(position);
         }
     }
 
@@ -899,12 +915,12 @@ public sealed class MediaBuffer : IDisposable
     /// <param name="position">The presentation time stamp.</param>
     public void RemoveExpiredVideo(TimeSpan position)
     {
-        if (!_video.HasValue)
+        if (!_hasVideo)
             return;
         lock (_lock)
         {
             CheckDisposed();
-            _video.Value.RemoveExpired(position);
+            _video.RemoveExpired(position);
         }
     }
 }
