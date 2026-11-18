@@ -152,4 +152,18 @@ public unsafe class AudioBufferSink : FilterContext, IBufferSink
     /// </value>
     public int SampleRate =>
         ffmpeg.av_buffersink_get_sample_rate(context);
+
+    /// <summary>
+    /// Makes the sink return frames with exactly <paramref name="frameSize"/> samples per channel
+    /// (only the last frame may be shorter), as encoders without
+    /// <see cref="Codecs.CodecCapabilities.VariableFrameSize"/> require (e.g. AAC needs 1024).
+    /// </summary>
+    /// <param name="frameSize">The number of samples per frame, or 0 to return frames as they come.</param>
+    /// <remarks>Call it after the graph has been configured (<c>av_buffersink_set_frame_size</c>).</remarks>
+    public void SetFrameSize(int frameSize)
+    {
+        if (frameSize < 0)
+            throw new ArgumentOutOfRangeException(nameof(frameSize));
+        ffmpeg.av_buffersink_set_frame_size(context, (uint)frameSize);
+    }
 }
