@@ -84,6 +84,29 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public void Image_GetPlane_UsesImageAlignment()
+    {
+        // Width 33 is not a multiple of the alignment, so aligned rows are padded.
+        FFmpeg.Images.ImageInfo info = new(33, 10, FFmpeg.Images.PixelFormat.YUV420P, 32);
+        using FFmpeg.Images.Image image = FFmpeg.Images.Image.Create(info);
+        Span<IntPtr> planes = stackalloc IntPtr[4];
+        Span<int> lineSizes = stackalloc int[4];
+        Assert.AreEqual(3, (int)image.GetPlanes(planes, lineSizes));
+
+        int[] rows = [10, 5, 5];
+        for (int p = 0; p < 3; p++)
+        {
+            Span<byte> plane = image.GetPlane(p);
+            unsafe
+            {
+                fixed (byte* start = plane)
+                    Assert.AreEqual(planes[p], (IntPtr)start, $"Start of plane {p}");
+            }
+            Assert.AreEqual(lineSizes[p] * rows[p], plane.Length, $"Size of plane {p}");
+        }
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];
