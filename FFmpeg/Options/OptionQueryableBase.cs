@@ -1393,8 +1393,12 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <description>Managed Type</description>
     /// </listheader>
     /// <item>
-    /// <term><see cref="OptionType.Color"/>, <see cref="OptionType.Flags"/>, <see cref="OptionType.Int32"/></term>
+    /// <term><see cref="OptionType.Flags"/>, <see cref="OptionType.Int32"/></term>
     /// <description><see cref="int"/></description>
+    /// </item>
+    /// <item>
+    /// <term><see cref="OptionType.Color"/></term>
+    /// <description><see cref="string"/> in FFmpeg's <c>0xRRGGBBAA</c> form.</description>
     /// </item>
     /// <item>
     /// <term><see cref="OptionType.Int64"/></term>
@@ -1421,7 +1425,11 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <description><see cref="Dictionary{TKey,TValue}"/> where <c>TKey</c> and <c>TValue</c> are <see cref="string"/>.</description>
     /// </item>
     /// <item>
-    /// <term><see cref="OptionType.Duration"/>, <see cref="OptionType.UInt64"/></term>
+    /// <term><see cref="OptionType.Duration"/></term>
+    /// <description><see cref="long"/> in microseconds.</description>
+    /// </item>
+    /// <item>
+    /// <term><see cref="OptionType.UInt64"/></term>
     /// <description><see cref="ulong"/></description>
     /// </item>
     /// <item>
@@ -1450,9 +1458,8 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// </item>
     /// </list>
     /// <para>
-    /// Array options are supported only for <see cref="OptionType.String"/> and
-    /// <see cref="OptionType.Binary"/>. All other array option types return
-    /// <see cref="AVResult32.InvalidArgument"/>.
+    /// Array options of any element type are returned as the <see cref="string"/>
+    /// produced by <c>av_opt_get</c> (elements separated by the option's separator, <c>,</c> by default).
     /// </para>
     /// </remarks>
     public AVResult32 TryGetOption(Option option, out object? obj, bool recursive = true)
@@ -1461,15 +1468,23 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         bool array = option.Type.HasFlag(OptionType.ArrayFlag);
         OptionType type = option.Type & ~OptionType.ArrayFlag;
 
-        if (array && type != OptionType.String && type != OptionType.Binary)
+        // av_opt_get serializes any array option to a string ("a,b,c"); the single-value
+        // readers below would misinterpret the array field.
+        if (array)
         {
-            obj = null;
-            return AVResult32.InvalidArgument;
+            res = TryGetOption(option, out string? arrayString, recursive);
+            obj = arrayString;
+            return res;
         }
 
         switch (type)
         {
             case OptionType.Color:
+                // Stored as four RGBA bytes, which av_opt_get_int does not read;
+                // av_opt_get returns FFmpeg's text form "0xRRGGBBAA".
+                res = TryGetOption(option, out string? color, recursive);
+                obj = color;
+                return res;
             case OptionType.Flags:
             case OptionType.Int32:
                 res = TryGetOption(option, out int i, recursive);
@@ -1503,6 +1518,10 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
                 obj = dict;
                 return res;
             case OptionType.Duration:
+                // Signed 64-bit microseconds; may be negative.
+                res = TryGetOption(option, out long microseconds, recursive);
+                obj = microseconds;
+                return res;
             case OptionType.UInt64:
                 res = TryGetOption(option, out ulong u, recursive);
                 obj = u;
@@ -1516,7 +1535,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
                 obj = pix_fmt;
                 return res;
             case OptionType.SampleFormat:
-                res = TryGetOption(option, out SampleFormat sample_fmt);
+                res = TryGetOption(option, out SampleFormat sample_fmt, recursive);
                 obj = sample_fmt;
                 return res;
             case OptionType.Bool:
