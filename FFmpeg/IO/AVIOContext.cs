@@ -48,6 +48,11 @@ public unsafe class AVIOContext : IDisposable, IAVPointer<AutoGen._AVIOContext>
         => context != null ? context : throw new ObjectDisposedException(GetType().Name);
 
     /// <summary>
+    /// Gets a value indicating whether an unmanaged context is currently attached.
+    /// </summary>
+    private protected bool HasNativeContext => context != null;
+
+    /// <summary>
     /// Gets a value indicating whether the end of the file (EOF) has been reached.
     /// </summary>
     public bool EOF => Convert.ToBoolean(NativeContext->eof_reached);
