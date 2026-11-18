@@ -67,7 +67,9 @@ public sealed class Transcoder : IDisposable
     public int FindBestInputStream(MediaType mediaType) => Source.FindBestStream(mediaType);
 
 
-    // filter must have 1 ctx for in and 1 ctx for out
+    // filter must have 1 ctx for in and 1 ctx for out.
+    // The caller keeps ownership of filter and must keep it alive (and dispose it)
+    // for as long as this transcoder uses it.
     public int MapStream(int sourceIndex, CodecContext? sinkCodec, FilterGraph? filter)
     {
         int sinkIndex = Sink.Streams.Count;
@@ -724,12 +726,10 @@ public sealed class Transcoder : IDisposable
         public int OutputIndex;
         public FilterContext? InputFilter;
         public FilterContext? OutputFilter;
-        private readonly FilterGraph? Filter;
         public SwsContext? ImageScaler;
         public SwrContext? AudioResampler;
         public readonly void Dispose()
         {
-            Filter?.Dispose();
             ImageScaler?.Dispose();
             AudioResampler?.Dispose();
         }
