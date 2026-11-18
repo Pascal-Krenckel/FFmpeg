@@ -31,8 +31,18 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.13</Version>
+		<Version>8.1.2.14</Version>
 		<PackageReleaseNotes>
+			--- 8.1.2.14 ---
+			Many BugFixes found in a code review:
+			IO: custom IOContext callbacks are rooted and no longer let exceptions escape into native code; IOContext/CodecContext can be finalized; use-after-free when opening custom IO failed; IOStreamContext no longer throws on construction; seeking works for seekable IOContexts; AVIOContext.seekable was read from the wrong offset on Windows (32-bit C long).
+			Formats/Codecs: MuxerContext double dispose, NoFile check and time base rescaling; extradata is padded as FFmpeg requires; SendFrame no longer changes an open encoder's time base; encoded subtitle packets use a correct time base; MediaSource keeps its decoders, drains all of them at end of file and SeekExactly ends only for the requested stream; seeks past ~35 minutes and timestamp setters past ~6.6 hours no longer overflow.
+			Utils: Rational +, - and int * Rational overflow; TimeSpan / Rational saturated; AVPacket leak and Size overrun; AVFrame.GetData/Copy/Size/Clone for bottom-up and audio frames; AVBuffer.ReplaceWith use-after-free; Move/Clone/Reference onto itself emptied the packet; AVResult64.ToString named wrong errors.
+			Audio: AudioFifo layout conversion and peeks beyond one chunk, pinning of channel spans; SwrContext wrote past the buffer when converting at an offset; AudioBuffer Copy/MakeWriteable shared data through stale plane pointers, planar-to-packed copies were wrong, start index is validated; AudioClock counted time twice after Pause; ChannelLayout.Init kept a freed map after a failure, custom channel names must be NUL-terminated.
+			Collections: CircularArray.IndexOf/Clear, AVChapter removal keeps its order, SubtitleRect text setters crashed, hardware device/frames context references crashed when empty.
+			Options: binary options were read from the wrong address, the generic getter for color, duration and array options, bool in SetOption(name, object), SetOption with dictionaries uses av_opt_set_dict2.
+			MediaPlayer: VideoBuffer/AudioBuffer lost writes and CanSeek was reversed, AudioBuffer binary search could loop forever, SetBufferSize estimate, Stop state, decoding errors now fault the player.
+			Misc: SVTAV1.CreateAvif encoded the wrong frame; Transcoder decoded a packet twice; Logger kept no prefix state across av_log calls; FormatContext.Url is read as UTF-8; SwsContext throws if it cannot be created.
 			--- 8.1.2.13 ---
 			BugFix: CircularArray.RemoveAt cleared the wrong slot.
 			--- 8.1.2.12 ---
