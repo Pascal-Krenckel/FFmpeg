@@ -194,28 +194,34 @@ public class DecodingTest
         using AVFrame frame = AVFrame.Allocate();
         using AVPacket packet = AVPacket.Allocate();
 
-        SeekAndRead(demuxerContext, audioIndex, decoder, frame, start).ThrowIfError();
+        // av_seek_frame lands on a keyframe near the target, which by design can also be
+        // after it. Start at 0 s (always exact) and decode forward to the target instead.
+        demuxerContext.Seek(TimeSpan.Zero, audioIndex).ThrowIfError();
+        decoder.FlushBuffers();
 
         // The decoder delivers planar float; the FIFO converts to packed, as in the reference.
         using AudioFifo fifo = new(SampleFormat.Float32, channels);
-        TimeSpan firstFrameStart = frame.GetPresentationTimestamp() * frame.TimeBase;
-        int samplesBeforeStart = (int)Math.Round((start - firstFrameStart).TotalSeconds * sampleRate);
-        Assert.IsTrue(samplesBeforeStart >= 0 && samplesBeforeStart < frame.SampleCount, $"Seek landed {samplesBeforeStart} samples away from the start.");
-        Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
-        fifo.Drop(samplesBeforeStart).ThrowIfError();
-
-        // Decode until one second of audio is buffered.
         while (fifo.Count < sampleRate)
         {
             AVResult32 result = decoder.ReceiveFrame(frame);
             if (result.IsTryAgain)
             {
                 demuxerContext.ReadPacket(packet).ThrowIfError();
-                decoder.SendPacket(packet).ThrowIfError();
+                if (packet.StreamIndex == audioIndex)
+                    decoder.SendPacket(packet).ThrowIfError();
                 continue;
             }
             result.ThrowIfError();
+
+            // Skip frames that end before the target; trim the one that contains it.
+            // Decoded timestamps are in the time base of the packets, i.e. the stream's.
+            long frameStart = Rational.Rescale(frame.GetPresentationTimestamp(), stream.TimeBase, new Rational(1, sampleRate));
+            long target = (long)Math.Round(start.TotalSeconds * sampleRate);
+            if (frameStart + frame.SampleCount <= target)
+                continue;
             Assert.AreEqual(frame.SampleCount, (int)fifo.Write(frame));
+            if (frameStart < target)
+                fifo.Drop((int)(target - frameStart)).ThrowIfError();
         }
 
         float[] decoded = new float[sampleRate * channels];
@@ -226,8 +232,8 @@ public class DecodingTest
         Assert.HasCount(decoded.Length, expected);
         Assert.HasCount(decoded.Length, expected16);
 
-        // AC-3 frames overlap, so the first frame decoded after a seek can differ slightly
-        // from a continuous decode; compare from the second frame (1536 samples) on.
+        // AC-3 blocks overlap, and the reference may have been decoded starting near 10 s;
+        // ignore the first 1536 samples (one AC-3 frame) in case its decoder was not primed.
         const int skipSamples = 1536;
         float maxDiff = 0;
         int maxDiff16 = 0;
