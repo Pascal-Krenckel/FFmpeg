@@ -199,12 +199,16 @@ public unsafe partial class AudioFifo
         byte** ptrs = stackalloc byte*[2];
         int samples = Math.Min(left.Length, right.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(left));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(right));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = left, p1 = right)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -251,13 +255,17 @@ public unsafe partial class AudioFifo
         byte** ptrs = stackalloc byte*[3];
         int samples = Math.Min(ch1.Length, Math.Min(ch2.Length, ch3.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -307,14 +315,18 @@ public unsafe partial class AudioFifo
         byte** ptrs = stackalloc byte*[4];
         int samples = Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -369,15 +381,19 @@ public unsafe partial class AudioFifo
         int samples = Math.Min(Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)), ch5.Length)
                                / Format.GetBytesPerSample(), int.MaxValue);
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4, p4 = ch5)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
+            ptrs[4] = p4;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -417,16 +433,20 @@ public unsafe partial class AudioFifo
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(ch5.Length, ch6.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4, p4 = ch5, p5 = ch6)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
+            ptrs[4] = p4;
+            ptrs[5] = p5;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -489,17 +509,21 @@ public unsafe partial class AudioFifo
         int samples = Math.Min(Math.Min(Math.Min(ch1.Length, ch2.Length), Math.Min(ch3.Length, ch4.Length)),
                                Math.Min(Math.Min(ch5.Length, ch6.Length), ch7.Length)) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4, p4 = ch5, p5 = ch6, p6 = ch7)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
+            ptrs[4] = p4;
+            ptrs[5] = p5;
+            ptrs[6] = p6;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -565,18 +589,22 @@ public unsafe partial class AudioFifo
                                Math.Min(Math.Min(ch5.Length, ch6.Length), Math.Min(ch7.Length, ch8.Length)))
                                / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4, p4 = ch5, p5 = ch6, p6 = ch7, p7 = ch8)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
+            ptrs[4] = p4;
+            ptrs[5] = p5;
+            ptrs[6] = p6;
+            ptrs[7] = p7;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
@@ -646,19 +674,23 @@ public unsafe partial class AudioFifo
                                                  Math.Min(ch7.Length, ch8.Length))),
                                ch9.Length) / Format.GetBytesPerSample();
 
-        ptrs[0] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch1));
-        ptrs[1] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch2));
-        ptrs[2] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch3));
-        ptrs[3] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch4));
-        ptrs[4] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch5));
-        ptrs[5] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch6));
-        ptrs[6] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch7));
-        ptrs[7] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch8));
-        ptrs[8] = (byte*)System.Runtime.CompilerServices.Unsafe.AsPointer(ref MemoryMarshal.GetReference(ch9));
+        // Pin the spans: native code must not see memory the GC may move.
+        fixed (byte* p0 = ch1, p1 = ch2, p2 = ch3, p3 = ch4, p4 = ch5, p5 = ch6, p6 = ch7, p7 = ch8, p8 = ch9)
+        {
+            ptrs[0] = p0;
+            ptrs[1] = p1;
+            ptrs[2] = p2;
+            ptrs[3] = p3;
+            ptrs[4] = p4;
+            ptrs[5] = p5;
+            ptrs[6] = p6;
+            ptrs[7] = p7;
+            ptrs[8] = p8;
 
-        return Format.IsPlanar()
-            ? PeekPlanarToPlanar(ptrs, samples, offset)
-            : PeekPackedToPlanar(ptrs, samples, offset);
+            return Format.IsPlanar()
+                ? PeekPlanarToPlanar(ptrs, samples, offset)
+                : PeekPackedToPlanar(ptrs, samples, offset);
+        }
     }
 
     /// <summary>
