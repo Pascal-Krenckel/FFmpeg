@@ -229,4 +229,32 @@ public class TranscoderTest
         transcoder.Duration = TimeSpan.FromMilliseconds(100);
         _ = Assert.Throws<ArgumentException>(() => transcoder.Run());
     }
+
+    [TestMethod]
+    public void TranscodeStream_WithFilterGraphObject()
+    {
+        string file = NewOutput(".mkv");
+        using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
+        {
+            FFmpeg.Filters.FilterGraph video = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? videoIn, "scale=320:-2,hflip", out FFmpeg.Filters.FilterInOutList? videoOut);
+            transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, videoIn!, video, videoOut!);
+            FFmpeg.Filters.FilterGraph audio = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? audioIn, "volume=0.5", out FFmpeg.Filters.FilterInOutList? audioOut);
+            transcoder.FilterStream(AudioIndex, audioIn!, audio, audioOut!);
+            transcoder.Duration = TimeSpan.FromSeconds(1);
+            transcoder.Run();
+        }
+
+        using MediaSource result = MediaSource.Open(file);
+        Assert.AreEqual(320, result.Streams[0].CodecParameters.Width);
+        Assert.AreEqual(CodecID.AC3, result.Streams[1].CodecParameters.CodecId);
+    }
+
+    [TestMethod]
+    public void TranscodeStream_WithFilterGraphObject_RejectsTwoOutputs()
+    {
+        string file = NewOutput(".mkv");
+        using Transcoder transcoder = Transcoder.Create(VideoFile, file);
+        FFmpeg.Filters.FilterGraph graph = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? inputs, "split[a][b]", out FFmpeg.Filters.FilterInOutList? outputs);
+        _ = Assert.Throws<ArgumentException>(() => transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, inputs!, graph, outputs!));
+    }
 }
