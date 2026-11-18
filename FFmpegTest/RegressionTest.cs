@@ -48,6 +48,42 @@ public class RegressionTest
     }
 
     [TestMethod]
+    public void AudioFifo_LayoutConversion_LargerThanOneChunk()
+    {
+        // More samples than one internal conversion chunk, in both FIFO layouts.
+        const int n = 40000;
+        float[] left = Enumerable.Range(0, n).Select(i => (float)i).ToArray();
+        float[] right = Enumerable.Range(0, n).Select(i => -(float)i - 1).ToArray();
+        float[] packed = new float[2 * n];
+        for (int i = 0; i < n; i++)
+        {
+            packed[2 * i] = left[i];
+            packed[(2 * i) + 1] = right[i];
+        }
+
+        foreach (FFmpeg.Audio.SampleFormat format in new[] { FFmpeg.Audio.SampleFormat.Float32, FFmpeg.Audio.SampleFormat.Float32Planar })
+        {
+            using FFmpeg.Audio.AudioFifo fifo = new(format, 2);
+            Assert.AreEqual(n, (int)fifo.Write<float>(left, right));
+
+            float[] peekedPacked = new float[2 * n];
+            Assert.AreEqual(n, (int)fifo.Peek(System.Runtime.InteropServices.MemoryMarshal.AsBytes(peekedPacked.AsSpan())));
+            CollectionAssert.AreEqual(packed, peekedPacked);
+
+            const int offset = 5000;
+            float[] l = new float[n - offset];
+            float[] r = new float[n - offset];
+            Assert.AreEqual(n - offset, (int)fifo.Peek<float>(l, r, offset));
+            CollectionAssert.AreEqual(left.Skip(offset).ToArray(), l);
+            CollectionAssert.AreEqual(right.Skip(offset).ToArray(), r);
+
+            float[] readPacked = new float[2 * n];
+            Assert.AreEqual(n, (int)fifo.Read<float>(readPacked.AsSpan()));
+            CollectionAssert.AreEqual(packed, readPacked);
+        }
+    }
+
+    [TestMethod]
     public void CircularArray_Empty_ContainsAndRemove()
     {
         CircularArray<int> array = [];
