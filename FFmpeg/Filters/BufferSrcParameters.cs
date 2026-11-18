@@ -94,7 +94,10 @@ public sealed unsafe class BufferSrcParameters : IDisposable, IAVPointer<AutoGen
                 // TODO: Cleanup managed objects if needed
             }
 
-            // Free unmanaged memory
+            // Free unmanaged memory. av_free only frees the struct; a custom channel layout
+            // set through ChannelLayout owns a separately allocated channel map.
+            if (parameters != null)
+                ffmpeg.av_channel_layout_uninit(&parameters->ch_layout);
             ffmpeg.av_free(parameters);
             parameters = null;
 
