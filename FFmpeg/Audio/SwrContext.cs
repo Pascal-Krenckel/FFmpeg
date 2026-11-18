@@ -152,6 +152,8 @@ public unsafe class SwrContext : Options.OptionQueryableBase, IDisposable, IAVPo
     public SwrContext()
     {
         context = ffmpeg.swr_alloc();
+        if (context == null)
+            throw new OutOfMemoryException("Failed to allocate the resampler context.");
         SourceFormat = SampleFormat.None;
         DestinationFormat = SampleFormat.None;
         SourceLayout = new ChannelLayout();
