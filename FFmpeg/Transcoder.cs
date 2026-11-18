@@ -214,7 +214,7 @@ public sealed unsafe class Transcoder : IDisposable
         CodecParameters_ref parameters = stream.CodecParameters;
         parameters.CodecTag = 0;
         CopyStreamProperties(inputStream, stream);
-        AddOutput(new Output(outputIndex, inputIndex, inputStream.MediaType, null, null, null, null));
+        AddOutput(new Output(outputIndex, inputIndex, inputStream.MediaType, null, null, null));
         return outputIndex;
     }
 
@@ -236,7 +236,44 @@ public sealed unsafe class Transcoder : IDisposable
     /// <param name="encoderOptions">Private encoder options passed when the encoder is opened (e.g. <c>preset</c>, <c>crf</c>).</param>
     /// <returns>The index of the new output stream.</returns>
     public int TranscodeStream(int inputIndex, Codec encoder, string? filter = null, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
-        => AddTranscodedStream(inputIndex, encoder, string.IsNullOrWhiteSpace(filter) ? null : filter, null, configure, encoderOptions);
+        => AddTranscodedStream(inputIndex, encoder, string.IsNullOrWhiteSpace(filter) ? null : new TextFilter(filter!), configure, encoderOptions);
+
+    /// <summary>
+    /// Adds an output stream that decodes the input stream, runs it through a filter graph created by
+    /// <paramref name="filterFactory"/> and encodes it with <paramref name="encoder"/>.
+    /// </summary>
+    /// <param name="inputIndex">The index of an audio or video input stream.</param>
+    /// <param name="encoder">The encoder to use.</param>
+    /// <param name="filterFactory">
+    /// Returns the filter graph description (one input, one output) for the frames described by the
+    /// <see cref="FilterGraphContext"/>, e.g. <c>ctx =&gt; $"scale={ctx.Width / 2}:-2"</c>. It is called
+    /// whenever the transcoder builds the graph: before the first frame and again when the decoded
+    /// format changes mid-stream (<see cref="FilterGraphContext.IsRebuild"/>).
+    /// </param>
+    /// <param name="configure">Called with the new encoder context; see <see cref="TranscodeStream(int, Codec, string?, Action{CodecContext}?, IDictionary{string, string}?)"/>.</param>
+    /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
+    /// <returns>The index of the new output stream.</returns>
+    public int TranscodeStream(int inputIndex, Codec encoder, Func<FilterGraphContext, string> filterFactory, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
+        => AddTranscodedStream(inputIndex, encoder, new TextFactoryFilter(filterFactory ?? throw new ArgumentNullException(nameof(filterFactory))), configure, encoderOptions);
+
+    /// <summary>
+    /// Adds an output stream that decodes the input stream, runs it through a filter graph object created
+    /// by <paramref name="filterFactory"/> and encodes it with <paramref name="encoder"/>.
+    /// </summary>
+    /// <param name="inputIndex">The index of an audio or video input stream.</param>
+    /// <param name="encoder">The encoder to use.</param>
+    /// <param name="filterFactory">
+    /// Creates a new, unconfigured filter graph with one unlinked input and one unlinked output for the
+    /// frames described by the <see cref="FilterGraphContext"/>. It is called whenever the transcoder builds
+    /// the graph: before the first frame and again when the decoded format changes mid-stream. The
+    /// transcoder takes ownership of the returned graph and lists.
+    /// This is the recommended way to use filter graph objects that cannot be described by a string.
+    /// </param>
+    /// <param name="configure">Called with the new encoder context; see <see cref="TranscodeStream(int, Codec, string?, Action{CodecContext}?, IDictionary{string, string}?)"/>.</param>
+    /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
+    /// <returns>The index of the new output stream.</returns>
+    public int TranscodeStream(int inputIndex, Codec encoder, FilterGraphFactory filterFactory, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
+        => AddTranscodedStream(inputIndex, encoder, new GraphFactoryFilter(filterFactory ?? throw new ArgumentNullException(nameof(filterFactory))), configure, encoderOptions);
 
     /// <summary>
     /// Adds an output stream that decodes the input stream, runs it through <paramref name="filter"/>
@@ -249,27 +286,38 @@ public sealed unsafe class Transcoder : IDisposable
     /// An unconfigured filter graph with one unlinked input and one unlinked output, e.g. from
     /// <see cref="FilterGraph.Create(out FilterInOutList?, string, out FilterInOutList?)"/> or built with
     /// <see cref="FilterContext.Create(string, Filter, string?, FilterGraph)"/>. It is used as a template:
-    /// every graph the transcoder configures (initially and after a format change) is a
-    /// <see cref="FilterGraph.Copy"/> of it, so options set on its filters are kept.
+    /// every graph the transcoder configures is a <see cref="FilterGraph.Copy"/> of it.
     /// </param>
     /// <param name="outputs">The unlinked output of <paramref name="filter"/>; must contain exactly one entry.</param>
     /// <param name="configure">Called with the new encoder context; see <see cref="TranscodeStream(int, Codec, string?, Action{CodecContext}?, IDictionary{string, string}?)"/>.</param>
     /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
     /// <returns>The index of the new output stream.</returns>
-    /// <remarks>The transcoder takes ownership of <paramref name="inputs"/>, <paramref name="filter"/> and <paramref name="outputs"/>, also when the call fails.</remarks>
+    /// <remarks>
+    /// <para>The transcoder takes ownership of <paramref name="inputs"/>, <paramref name="filter"/> and <paramref name="outputs"/>, also when the call fails.</para>
+    /// <para>
+    /// <b>Warning:</b> passing a filter graph object is possible, but not recommended if the graph may have
+    /// to be set up again, which happens when the decoded format changes mid-stream (e.g. a resolution change).
+    /// A configured graph cannot be flushed or reset, so the transcoder recreates it with
+    /// <see cref="FilterGraph.Copy"/>, which rebuilds the filters only from their options and links:
+    /// state that is not an option (e.g. hardware device or frames contexts) is lost, and options that
+    /// were derived from the original format are kept unchanged. Prefer a filter description string or a
+    /// factory (<see cref="TranscodeStream(int, Codec, FilterGraphFactory, Action{CodecContext}?, IDictionary{string, string}?)"/>),
+    /// which create the graph from scratch for every build.
+    /// </para>
+    /// </remarks>
     public int TranscodeStream(int inputIndex, Codec encoder, FilterInOutList inputs, FilterGraph filter, FilterInOutList outputs, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
     {
-        FilterTemplate? template = null;
+        TemplateFilter? template = null;
         try
         {
-            template = FilterTemplate.Create(inputs, filter, outputs);
-            int index = AddTranscodedStream(inputIndex, encoder, null, template, configure, encoderOptions);
+            template = TemplateFilter.Create(inputs, filter, outputs);
+            int index = AddTranscodedStream(inputIndex, encoder, template, configure, encoderOptions);
             template = null; // owned by the output now
             return index;
         }
         finally
         {
-            // FilterTemplate.Create takes over the graph (and disposes it if it fails); the lists are
+            // TemplateFilter.Create takes over the graph (and disposes it if it fails); the lists are
             // only needed to find the unlinked pads.
             inputs?.Dispose();
             outputs?.Dispose();
@@ -277,7 +325,7 @@ public sealed unsafe class Transcoder : IDisposable
         }
     }
 
-    private int AddTranscodedStream(int inputIndex, Codec encoder, string? filter, FilterTemplate? template, Action<CodecContext>? configure, IDictionary<string, string>? encoderOptions)
+    private int AddTranscodedStream(int inputIndex, Codec encoder, StreamFilter? filter, Action<CodecContext>? configure, IDictionary<string, string>? encoderOptions)
     {
         CheckConfigurable();
         AVStream inputStream = GetInputStream(inputIndex);
@@ -288,7 +336,7 @@ public sealed unsafe class Transcoder : IDisposable
             throw new ArgumentException($"{encoder.Name} is not an encoder.", nameof(encoder));
         if (encoder.MediaType != type)
             throw new ArgumentException($"The encoder {encoder.Name} encodes {encoder.MediaType}, but input stream #{inputIndex} is a {type} stream.", nameof(encoder));
-        if (type == MediaType.Subtitle && (filter != null || template != null))
+        if (type == MediaType.Subtitle && filter != null)
             throw new NotSupportedException("Subtitle streams cannot be filtered.");
         if (Source.CodecContexts[inputIndex].Codec.codec == null)
             throw new NotSupportedException($"There is no decoder for input stream #{inputIndex} ({inputStream.CodecParameters.CodecId}).");
@@ -300,7 +348,7 @@ public sealed unsafe class Transcoder : IDisposable
             int outputIndex = Sink.Streams.Count;
             AVStream stream = Sink.AddStream(encoder);
             CopyStreamProperties(inputStream, stream);
-            Output output = new(outputIndex, inputIndex, type, context, filter, template,
+            Output output = new(outputIndex, inputIndex, type, context, filter ?? new TextFilter(null),
                 encoderOptions == null ? null : new Dictionary<string, string>(encoderOptions))
             {
                 UserFrameRate = context.FrameRate.IsValidTimeBase,
@@ -337,10 +385,32 @@ public sealed unsafe class Transcoder : IDisposable
     {
         if (string.IsNullOrWhiteSpace(filter))
             throw new ArgumentException("A filter is required.", nameof(filter));
-        CodecID codecId = GetInputStream(inputIndex).CodecParameters.CodecId;
-        return TranscodeStream(inputIndex, Codec.FindEncoder(codecId) ?? throw new NotSupportedException($"No encoder found for {codecId}; use TranscodeStream with another encoder."),
-            filter, configure, encoderOptions);
+        return TranscodeStream(inputIndex, GetInputEncoder(inputIndex), filter, configure, encoderOptions);
     }
+
+    /// <summary>
+    /// Adds an output stream that filters the input stream with a graph from <paramref name="filterFactory"/>
+    /// and re-encodes it with the default encoder of the input codec.
+    /// </summary>
+    /// <param name="inputIndex">The index of an audio or video input stream.</param>
+    /// <param name="filterFactory">See <see cref="TranscodeStream(int, Codec, Func{FilterGraphContext, string}, Action{CodecContext}?, IDictionary{string, string}?)"/>.</param>
+    /// <param name="configure">Called with the new encoder context.</param>
+    /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
+    /// <returns>The index of the new output stream.</returns>
+    public int FilterStream(int inputIndex, Func<FilterGraphContext, string> filterFactory, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
+        => TranscodeStream(inputIndex, GetInputEncoder(inputIndex), filterFactory, configure, encoderOptions);
+
+    /// <summary>
+    /// Adds an output stream that filters the input stream with a graph object from <paramref name="filterFactory"/>
+    /// and re-encodes it with the default encoder of the input codec.
+    /// </summary>
+    /// <param name="inputIndex">The index of an audio or video input stream.</param>
+    /// <param name="filterFactory">See <see cref="TranscodeStream(int, Codec, FilterGraphFactory, Action{CodecContext}?, IDictionary{string, string}?)"/>.</param>
+    /// <param name="configure">Called with the new encoder context.</param>
+    /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
+    /// <returns>The index of the new output stream.</returns>
+    public int FilterStream(int inputIndex, FilterGraphFactory filterFactory, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
+        => TranscodeStream(inputIndex, GetInputEncoder(inputIndex), filterFactory, configure, encoderOptions);
 
     /// <summary>
     /// Adds an output stream that filters the input stream with a filter graph object and re-encodes it
@@ -353,14 +423,21 @@ public sealed unsafe class Transcoder : IDisposable
     /// <param name="configure">Called with the new encoder context.</param>
     /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
     /// <returns>The index of the new output stream.</returns>
-    /// <remarks>The transcoder takes ownership of <paramref name="inputs"/>, <paramref name="filter"/> and <paramref name="outputs"/>, also when the call fails.</remarks>
+    /// <remarks>
+    /// <para>The transcoder takes ownership of <paramref name="inputs"/>, <paramref name="filter"/> and <paramref name="outputs"/>, also when the call fails.</para>
+    /// <para>
+    /// <b>Warning:</b> passing a filter graph object is possible, but not recommended if the graph may have to
+    /// be set up again (when the decoded format changes mid-stream): it is then recreated with
+    /// <see cref="FilterGraph.Copy"/>, which only keeps the filters' options and links. Prefer a filter
+    /// string or a factory.
+    /// </para>
+    /// </remarks>
     public int FilterStream(int inputIndex, FilterInOutList inputs, FilterGraph filter, FilterInOutList outputs, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
     {
-        Codec? encoder;
+        Codec encoder;
         try
         {
-            CodecID codecId = GetInputStream(inputIndex).CodecParameters.CodecId;
-            encoder = Codec.FindEncoder(codecId) ?? throw new NotSupportedException($"No encoder found for {codecId}; use TranscodeStream with another encoder.");
+            encoder = GetInputEncoder(inputIndex);
         }
         catch
         {
@@ -369,7 +446,13 @@ public sealed unsafe class Transcoder : IDisposable
             outputs?.Dispose();
             throw;
         }
-        return TranscodeStream(inputIndex, encoder.Value, inputs, filter, outputs, configure, encoderOptions);
+        return TranscodeStream(inputIndex, encoder, inputs, filter, outputs, configure, encoderOptions);
+    }
+
+    private Codec GetInputEncoder(int inputIndex)
+    {
+        CodecID codecId = GetInputStream(inputIndex).CodecParameters.CodecId;
+        return Codec.FindEncoder(codecId) ?? throw new NotSupportedException($"No encoder found for {codecId}; use TranscodeStream with another encoder.");
     }
 
     private AVStream GetInputStream(int inputIndex)
@@ -946,11 +1029,25 @@ public sealed unsafe class Transcoder : IDisposable
 
     private void BuildGraph(Output output, SourceFormat format)
     {
+        bool rebuild = output.SourceFormat != null;
         output.DisposeGraph();
         bool video = output.Type == MediaType.Video;
-        // A configured graph cannot be reset, so every build starts from a fresh graph: a copy of the
-        // template graph, or the parsed filter description.
-        FilterGraph graph = output.FilterTemplate?.Graph.Copy() ?? FilterGraph.Allocate();
+        // A configured graph cannot be flushed or reset, so every build starts from a fresh graph
+        // that contains the user part (parsed description, copy of the template or factory result).
+        FilterGraphContext context = new(Source.Streams[output.InputIndex], output.Index, output.Encoder!, rebuild)
+        {
+            TimeBase = format.TimeBase,
+            Width = format.Width,
+            Height = format.Height,
+            PixelFormat = format.Video ? format.PixelFormat : PixelFormat.None,
+            SampleAspectRatio = format.SampleAspectRatio,
+            FrameRate = format.FrameRate,
+            SampleFormat = format.Video ? SampleFormat.None : format.SampleFormat,
+            SampleRate = format.SampleRate,
+            Channels = format.ChannelLayout?.Channels ?? 0,
+            ChannelLayout = format.ChannelLayout?.ToString(),
+        };
+        FilterGraph graph = output.Filter!.CreateGraph(context, out FilterContext userInput, out int userInputPad, out FilterContext userOutput, out int userOutputPad);
         try
         {
             FilterContext source;
@@ -979,25 +1076,9 @@ public sealed unsafe class Transcoder : IDisposable
             if (Start > TimeSpan.Zero)
                 Append(video ? "trim" : "atrim", $"start={FormatSeconds(originUs)}");
 
-            if (output.FilterTemplate is FilterTemplate template)
-            {
-                graph.Link(last, lastPad, graph.FindFilter(template.InputFilter)!, template.InputPad).ThrowIfError();
-                last = graph.FindFilter(template.OutputFilter)!;
-                lastPad = template.OutputPad;
-            }
-            else
-            {
-                graph.Parse(out FilterInOutList filterInputs, output.Filter ?? (video ? "null" : "anull"), out FilterInOutList filterOutputs).ThrowIfError();
-                using (filterInputs)
-                using (filterOutputs)
-                {
-                    if (filterInputs.Count != 1 || filterOutputs.Count != 1)
-                        throw new ArgumentException($"The filter of output stream #{output.Index} must have exactly one input and one output: '{output.Filter}'.");
-                    graph.Link(last, lastPad, filterInputs[0].Filter!, filterInputs[0].PadIdx).ThrowIfError();
-                    last = filterOutputs[0].Filter!;
-                    lastPad = filterOutputs[0].PadIdx;
-                }
-            }
+            graph.Link(last, lastPad, userInput, userInputPad).ThrowIfError();
+            last = userOutput;
+            lastPad = userOutputPad;
 
             foreach ((string name, string args) in GetEncoderConstraints(output))
                 Append(name, args);
@@ -1341,14 +1422,13 @@ public sealed unsafe class Transcoder : IDisposable
         public bool Finished { get; set; }
     }
 
-    private sealed class Output(int index, int inputIndex, MediaType type, CodecContext? encoder, string? filter, FilterTemplate? filterTemplate, Dictionary<string, string>? encoderOptions) : IDisposable
+    private sealed class Output(int index, int inputIndex, MediaType type, CodecContext? encoder, StreamFilter? filter, Dictionary<string, string>? encoderOptions) : IDisposable
     {
         public int Index { get; } = index;
         public int InputIndex { get; } = inputIndex;
         public MediaType Type { get; } = type;
         public CodecContext? Encoder { get; } = encoder;
-        public string? Filter { get; } = filter;
-        public FilterTemplate? FilterTemplate { get; } = filterTemplate;
+        public StreamFilter? Filter { get; } = filter;
         public Dictionary<string, string>? EncoderOptions { get; } = encoderOptions;
         public bool UserFrameRate { get; init; }
 
@@ -1375,48 +1455,126 @@ public sealed unsafe class Transcoder : IDisposable
         public void Dispose()
         {
             DisposeGraph();
-            FilterTemplate?.Dispose();
+            Filter?.Dispose();
             if (!Registered)
                 Encoder?.Dispose();
         }
     }
 
-    /// <summary>
-    /// An unconfigured filter graph with one unlinked input and output, copied for every build.
-    /// </summary>
-    private sealed class FilterTemplate : IDisposable
+    /// <summary>The user part of an output's filter graph; creates a new graph for every build.</summary>
+    private abstract class StreamFilter : IDisposable
     {
-        private FilterTemplate(FilterGraph graph, string inputFilter, int inputPad, string outputFilter, int outputPad)
+        /// <summary>Creates a new graph with the user filters and returns their unlinked input and output pad.</summary>
+        public abstract FilterGraph CreateGraph(FilterGraphContext context, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad);
+
+        public virtual void Dispose() { }
+
+        protected static FilterGraph Parse(string? description, MediaType type, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
         {
-            Graph = graph;
-            InputFilter = inputFilter;
-            InputPad = inputPad;
-            OutputFilter = outputFilter;
-            OutputPad = outputPad;
+            description ??= type == MediaType.Video ? "null" : "anull";
+            FilterGraph graph = FilterGraph.Allocate();
+            try
+            {
+                graph.Parse(out FilterInOutList inputs, description, out FilterInOutList outputs).ThrowIfError();
+                using (inputs)
+                using (outputs)
+                    GetPads(inputs, outputs, $"'{description}'", out input, out inputPad, out output, out outputPad);
+                return graph;
+            }
+            catch
+            {
+                graph.Dispose();
+                throw;
+            }
         }
 
-        public FilterGraph Graph { get; }
-        public string InputFilter { get; }
-        public int InputPad { get; }
-        public string OutputFilter { get; }
-        public int OutputPad { get; }
+        protected static void GetPads(FilterInOutList inputs, FilterInOutList outputs, string what, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
+        {
+            if (inputs == null || outputs == null || inputs.Count != 1 || outputs.Count != 1 || inputs[0].Filter == null || outputs[0].Filter == null)
+                throw new ArgumentException($"The filter graph {what} must have exactly one unlinked input and one unlinked output.");
+            input = inputs[0].Filter!;
+            inputPad = inputs[0].PadIdx;
+            output = outputs[0].Filter!;
+            outputPad = outputs[0].PadIdx;
+        }
+    }
+
+    /// <summary>A filter description, parsed for every build.</summary>
+    private sealed class TextFilter(string? description) : StreamFilter
+    {
+        public override FilterGraph CreateGraph(FilterGraphContext context, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
+            => Parse(description, context.MediaType, out input, out inputPad, out output, out outputPad);
+    }
+
+    /// <summary>A filter description created for every build.</summary>
+    private sealed class TextFactoryFilter(Func<FilterGraphContext, string> factory) : StreamFilter
+    {
+        public override FilterGraph CreateGraph(FilterGraphContext context, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
+        {
+            string description = factory(context);
+            return Parse(string.IsNullOrWhiteSpace(description) ? null : description, context.MediaType, out input, out inputPad, out output, out outputPad);
+        }
+    }
+
+    /// <summary>A filter graph object created for every build.</summary>
+    private sealed class GraphFactoryFilter(FilterGraphFactory factory) : StreamFilter
+    {
+        public override FilterGraph CreateGraph(FilterGraphContext context, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
+        {
+            (FilterInOutList inputs, FilterGraph graph, FilterInOutList outputs) = factory(context);
+            if (graph == null)
+            {
+                inputs?.Dispose();
+                outputs?.Dispose();
+                throw new InvalidOperationException($"The filter graph factory of output stream #{context.OutputStreamIndex} returned no graph.");
+            }
+            try
+            {
+                GetPads(inputs, outputs, $"of output stream #{context.OutputStreamIndex}", out input, out inputPad, out output, out outputPad);
+                return graph;
+            }
+            catch
+            {
+                graph.Dispose();
+                throw;
+            }
+            finally
+            {
+                inputs?.Dispose();
+                outputs?.Dispose();
+            }
+        }
+    }
+
+    /// <summary>An unconfigured filter graph, copied for every build.</summary>
+    private sealed class TemplateFilter : StreamFilter
+    {
+        private readonly FilterGraph graph;
+        private readonly string inputFilter, outputFilter;
+        private readonly int inputPad, outputPad;
+
+        private TemplateFilter(FilterGraph graph, string inputFilter, int inputPad, string outputFilter, int outputPad)
+        {
+            this.graph = graph;
+            this.inputFilter = inputFilter;
+            this.inputPad = inputPad;
+            this.outputFilter = outputFilter;
+            this.outputPad = outputPad;
+        }
 
         /// <summary>Takes ownership of <paramref name="graph"/>; disposes it if the arguments are invalid.</summary>
-        public static FilterTemplate Create(FilterInOutList inputs, FilterGraph graph, FilterInOutList outputs)
+        public static TemplateFilter Create(FilterInOutList inputs, FilterGraph graph, FilterInOutList outputs)
         {
             try
             {
                 if (graph == null)
                     throw new ArgumentNullException(nameof(graph));
-                if (inputs == null || outputs == null)
-                    throw new ArgumentNullException(inputs == null ? nameof(inputs) : nameof(outputs));
-                if (inputs.Count != 1 || outputs.Count != 1 || inputs[0].Filter == null || outputs[0].Filter == null)
-                    throw new ArgumentException("The filter graph must have exactly one unlinked input and one unlinked output.");
-                FilterTemplate template = new(graph, inputs[0].Filter!.Name, inputs[0].PadIdx, outputs[0].Filter!.Name, outputs[0].PadIdx);
+                GetPads(inputs, outputs, "", out FilterContext input, out int inputPad, out FilterContext output, out int outputPad);
+                TemplateFilter template = new(graph, input.Name, inputPad, output.Name, outputPad);
                 // Fail now rather than at the first frame if the graph cannot be copied.
                 using (FilterGraph copy = graph.Copy())
                 {
-                    if (copy.FindFilter(template.InputFilter) == null || copy.FindFilter(template.OutputFilter) == null)
+                    if (copy.FindFilter(template.inputFilter) == null || copy.FindFilter(template.outputFilter) == null)
                         throw new ArgumentException("The unlinked input and output must be filters of the graph.");
                 }
                 return template;
@@ -1428,7 +1586,17 @@ public sealed unsafe class Transcoder : IDisposable
             }
         }
 
-        public void Dispose() => Graph.Dispose();
+        public override FilterGraph CreateGraph(FilterGraphContext context, out FilterContext input, out int inputPad, out FilterContext output, out int outputPad)
+        {
+            FilterGraph copy = graph.Copy();
+            input = copy.FindFilter(inputFilter)!;
+            inputPad = this.inputPad;
+            output = copy.FindFilter(outputFilter)!;
+            outputPad = this.outputPad;
+            return copy;
+        }
+
+        public override void Dispose() => graph.Dispose();
     }
 
     /// <summary>The format a filter graph was configured for.</summary>
@@ -1559,4 +1727,88 @@ public readonly struct TranscodingProgress(TimeSpan position, TimeSpan totalDura
 
     /// <inheritdoc/>
     public override string ToString() => Percent is double p ? $"{Position} / {TotalDuration} ({p:F1} %)" : Position.ToString();
+}
+
+/// <summary>
+/// Creates a new, unconfigured filter graph with exactly one unlinked input and one unlinked output
+/// for a <see cref="Transcoder"/> output stream.
+/// </summary>
+/// <param name="context">The stream and the format of the frames that will enter the graph.</param>
+/// <returns>The unlinked input, the graph and the unlinked output; the transcoder takes ownership of all three.</returns>
+/// <example>
+/// <code>
+/// transcoder.TranscodeStream(0, encoder, ctx =&gt;
+/// {
+///     FilterGraph graph = FilterGraph.Create(out FilterInOutList? inputs, $"scale={ctx.Width / 2}:-2", out FilterInOutList? outputs);
+///     return (inputs!, graph, outputs!);
+/// });
+/// </code>
+/// </example>
+public delegate (FilterInOutList Inputs, FilterGraph Graph, FilterInOutList Outputs) FilterGraphFactory(FilterGraphContext context);
+
+/// <summary>
+/// Describes the filter graph a <see cref="Transcoder"/> is about to build: the input stream and the
+/// format of the decoded frames that will enter it.
+/// </summary>
+public sealed class FilterGraphContext
+{
+    internal FilterGraphContext(AVStream inputStream, int outputStreamIndex, CodecContext encoder, bool isRebuild)
+    {
+        InputStream = inputStream;
+        OutputStreamIndex = outputStreamIndex;
+        Encoder = encoder;
+        IsRebuild = isRebuild;
+        MediaType = inputStream.MediaType;
+    }
+
+    /// <summary>Gets the input stream.</summary>
+    public AVStream InputStream { get; }
+
+    /// <summary>Gets the index of the output stream the graph feeds.</summary>
+    public int OutputStreamIndex { get; }
+
+    /// <summary>Gets the media type (audio or video).</summary>
+    public MediaType MediaType { get; }
+
+    /// <summary>
+    /// Gets the encoder of the output stream. It is open when <see cref="IsRebuild"/> is <see langword="true"/>;
+    /// the transcoder then converts the graph output to the format it was opened with.
+    /// </summary>
+    public CodecContext Encoder { get; }
+
+    /// <summary>
+    /// Gets whether the graph is rebuilt because the decoded format changed mid-stream
+    /// (<see langword="false"/> for the first graph).
+    /// </summary>
+    public bool IsRebuild { get; }
+
+    /// <summary>Gets the time base of the frames entering the graph.</summary>
+    public Rational TimeBase { get; internal init; }
+
+    /// <summary>Gets the frame width (video).</summary>
+    public int Width { get; internal init; }
+
+    /// <summary>Gets the frame height (video).</summary>
+    public int Height { get; internal init; }
+
+    /// <summary>Gets the pixel format (video).</summary>
+    public PixelFormat PixelFormat { get; internal init; }
+
+    /// <summary>Gets the sample aspect ratio (video).</summary>
+    public Rational SampleAspectRatio { get; internal init; }
+
+    /// <summary>Gets the frame rate as known by the decoder (video); may be invalid.</summary>
+    public Rational FrameRate { get; internal init; }
+
+    /// <summary>Gets the sample format (audio).</summary>
+    public SampleFormat SampleFormat { get; internal init; }
+
+    /// <summary>Gets the sample rate (audio).</summary>
+    public int SampleRate { get; internal init; }
+
+    /// <summary>Gets the number of channels (audio).</summary>
+    public int Channels { get; internal init; }
+
+    /// <summary>Gets the channel layout description, e.g. <c>"5.1(side)"</c> (audio), usable in filter descriptions.</summary>
+    public string? ChannelLayout { get; internal init; }
 }
