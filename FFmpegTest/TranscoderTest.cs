@@ -257,4 +257,40 @@ public class TranscoderTest
         FFmpeg.Filters.FilterGraph graph = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? inputs, "split[a][b]", out FFmpeg.Filters.FilterInOutList? outputs);
         _ = Assert.Throws<ArgumentException>(() => transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, inputs!, graph, outputs!));
     }
+
+    [TestMethod]
+    public void TranscodeStream_WithFilterFactories()
+    {
+        string file = NewOutput(".mkv");
+        List<FilterGraphContext> videoCalls = [];
+        List<FilterGraphContext> audioCalls = [];
+        using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
+        {
+            transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, ctx =>
+            {
+                videoCalls.Add(ctx);
+                return $"scale={ctx.Width / 4}:-2";
+            });
+            transcoder.FilterStream(AudioIndex, ctx =>
+            {
+                audioCalls.Add(ctx);
+                FFmpeg.Filters.FilterGraph graph = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? inputs, "volume=0.5", out FFmpeg.Filters.FilterInOutList? outputs);
+                return (inputs!, graph, outputs!);
+            });
+            transcoder.Duration = TimeSpan.FromSeconds(1);
+            transcoder.Run();
+        }
+
+        Assert.AreEqual(1, videoCalls.Count);
+        Assert.AreEqual(1920, videoCalls[0].Width);
+        Assert.AreEqual(1080, videoCalls[0].Height);
+        Assert.IsFalse(videoCalls[0].IsRebuild);
+        Assert.AreEqual(1, audioCalls.Count);
+        Assert.AreEqual(48000, audioCalls[0].SampleRate);
+        Assert.AreEqual(6, audioCalls[0].Channels);
+
+        using MediaSource result = MediaSource.Open(file);
+        Assert.AreEqual(480, result.Streams[0].CodecParameters.Width);
+        Assert.AreEqual(CodecID.AC3, result.Streams[1].CodecParameters.CodecId);
+    }
 }
