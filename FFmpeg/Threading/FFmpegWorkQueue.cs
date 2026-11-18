@@ -12,8 +12,13 @@ namespace FFmpeg.Threading;
 /// </summary>
 /// <remarks>
 /// <para>
-/// <see cref="FFmpegWorkQueue"/> serializes access to FFmpeg codec and filter
-/// operations while allowing multiple independent operations to execute concurrently.
+/// <see cref="FFmpegWorkQueue"/> executes FFmpeg codec and filter operations on its
+/// worker threads, so that multiple independent operations can run concurrently.
+/// It does not serialize them: like the underlying FFmpeg contexts, a codec context or
+/// filter graph must not be used by two operations at the same time, and queued
+/// operations may start in any order when more than one worker is active. Callers must
+/// await an operation before queueing the next one for the same context (or use a
+/// single worker).
 /// The number of active workers is controlled by <see cref="DesiredConcurrency"/>.
 /// </para>
 /// <para>
