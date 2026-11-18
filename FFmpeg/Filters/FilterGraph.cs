@@ -443,8 +443,15 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     }
 
     /// <summary>
-    /// Creates a copy of the filter graph and disposed the old one.
+    /// Replaces the filter graph with a fresh, unconfigured copy and frees the old one,
+    /// discarding all buffered frames.
     /// </summary>
+    /// <remarks>
+    /// Every <see cref="FilterContext"/> obtained from this graph before the call refers to
+    /// freed memory afterwards. Look them up again (for example via <see cref="InputFilters"/>,
+    /// <see cref="OutputFilters"/> or <see cref="FindFilter(string)"/>) and call
+    /// <see cref="Config"/> before using the graph.
+    /// </remarks>
     public void Flush()
     {
         using FilterGraph copy = Copy();
