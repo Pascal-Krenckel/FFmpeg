@@ -122,6 +122,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
                 case TypeCode.UInt64:
                 case TypeCode.Byte:
                 case TypeCode.SByte:
+                case TypeCode.Boolean: // FFmpeg stores boolean options as integers (0/1)
                     value = (T)Convert.ChangeType(source, typeof(T));
                     return true;
                 default:
