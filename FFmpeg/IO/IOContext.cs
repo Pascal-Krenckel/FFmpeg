@@ -46,38 +46,9 @@ public abstract unsafe class IOContext : AVIOContext
     /// <param name="options">The I/O operations that this context will support, such as reading, writing, and seeking.</param>
     /// <param name="buffer_size">The size of the buffer to allocate for I/O operations. Defaults to 32,768 bytes.</param>
     protected IOContext(FormatContext formatContext, IOOptions options, int buffer_size = 32768)
-        : base(&formatContext.Context->pb)
     {
-        FormatContext = formatContext;
-        gch = GCHandle.Alloc(this);
-        formatContext.ioContext?.Dispose();
-
-        if (formatContext.Context->pb != null)
-            AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
-
-        AutoGen.avio_alloc_context_read_packet_func _read = options.HasFlag(IOOptions.Read)
-            ? s_read
-            : null;
-
-        AutoGen.avio_alloc_context_write_packet_func _write = options.HasFlag(IOOptions.Write)
-            ? s_write
-            : null;
-
-        AutoGen.avio_alloc_context_seek_func _seek = options.HasFlag(IOOptions.Seek)
-            ? s_seek
-            : null;
-
-        formatContext.Context->pb = AutoGen.ffmpeg.avio_alloc_context(
-            (byte*)AutoGen.ffmpeg.av_malloc((ulong)buffer_size),
-            buffer_size,
-            Convert.ToInt32(options.HasFlag(IOOptions.Write)),
-            (void*)GCHandle.ToIntPtr(gch),
-            _read,
-            _write,
-            _seek
-        );
-
-        FormatContext.ioContext = this;
+        FormatContext = null!;
+        Attach(formatContext, options, buffer_size);
     }
 
     /// <summary>
@@ -102,15 +73,29 @@ public abstract unsafe class IOContext : AVIOContext
     /// callback functions required by FFmpeg.
     /// </remarks>
     public void InitContext(FormatContext formatContext, IOOptions options, int buffer_size = 32768)
+        => Attach(formatContext, options, buffer_size);
+
+    private void Attach(FormatContext formatContext, IOOptions options, int bufferSize)
     {
-        FormatContext = formatContext;
-        if (!gch.IsAllocated)
-            gch = GCHandle.Alloc(this);
-        formatContext.ioContext?.Dispose();
+        if (formatContext == null)
+            throw new ArgumentNullException(nameof(formatContext));
+        if (formatContext.Context == null)
+            throw new ObjectDisposedException(nameof(Formats.FormatContext));
+        if (bufferSize <= 0)
+            throw new ArgumentOutOfRangeException(nameof(bufferSize));
 
+        // Release a native context this instance may still hold from an earlier attach;
+        // this also detaches it from that earlier format context.
+        ReleaseNative();
 
+        // Release whatever I/O the format context used before.
+        if (formatContext.ioContext != null && formatContext.ioContext != this)
+            formatContext.ioContext.Dispose();
         if (formatContext.Context->pb != null)
             AutoGen.ffmpeg.avio_context_free(&formatContext.Context->pb);
+
+        if (!gch.IsAllocated)
+            gch = GCHandle.Alloc(this);
 
         AutoGen.avio_alloc_context_read_packet_func _read = options.HasFlag(IOOptions.Read)
             ? s_read
@@ -124,18 +109,31 @@ public abstract unsafe class IOContext : AVIOContext
             ? s_seek
             : null;
 
-        formatContext.Context->pb = AutoGen.ffmpeg.avio_alloc_context(
-            (byte*)AutoGen.ffmpeg.av_malloc((ulong)buffer_size),
-            buffer_size,
+        byte* buffer = (byte*)AutoGen.ffmpeg.av_malloc((ulong)bufferSize);
+        if (buffer == null)
+            throw new OutOfMemoryException("Failed to allocate the I/O buffer.");
+
+        AutoGen._AVIOContext* pb = AutoGen.ffmpeg.avio_alloc_context(
+            buffer,
+            bufferSize,
             Convert.ToInt32(options.HasFlag(IOOptions.Write)),
             (void*)GCHandle.ToIntPtr(gch),
             _read,
             _write,
             _seek
         );
+        if (pb == null)
+        {
+            AutoGen.ffmpeg.av_free(buffer);
+            throw new OutOfMemoryException("Failed to allocate the I/O context.");
+        }
 
-        FormatContext.ioContext = this;
-        SetContext(&FormatContext.Context->pb);
+        SetContext(pb, formatContext, ownsBuffer: true);
+        formatContext.Context->pb = pb;
+        formatContext.ioContext = this;
+        FormatContext = formatContext;
+        disposedValue = false;
+
         if (pendingSeekable is Seekable seekable)
             Seekable = seekable;
     }
@@ -299,21 +297,21 @@ public abstract unsafe class IOContext : AVIOContext
     {
         if (!disposedValue)
         {
-            if (gch.IsAllocated)
-                gch.Free();
-
-            // Free the buffer and AVIOContext associated with the format context
-            if (FormatContext != null && FormatContext.Context != null)
-            {
-                if (FormatContext.Context->pb != null)
-                    AutoGen.ffmpeg.av_freep(&FormatContext.Context->pb->buffer);
-                AutoGen.ffmpeg.avio_context_free(&FormatContext.Context->pb);
-            }
-            disposedValue = true;
+            // Frees our own AVIOContext (and its buffer) and clears the owning format
+            // context's pb. On the finalizer path a live format context does this itself
+            // after closing; the GCHandle is freed in OnNativeReleased either way.
             base.Dispose(disposing);
+            disposedValue = disposing || !gch.IsAllocated;
         }
     }
+
     /// <inheritdoc />
-    ~IOContext() => Dispose(false);
+    private protected override void OnNativeReleased()
+    {
+        // Native code can no longer call back into this instance.
+        if (gch.IsAllocated)
+            gch.Free();
+    }
+    // No finalizer here: AVIOContext's finalizer already calls Dispose(false).
     #endregion
 }
