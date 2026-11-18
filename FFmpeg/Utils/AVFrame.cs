@@ -198,7 +198,11 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
     /// </exception>
     public Span<byte> GetData(int index)
     {
-        if (ExtendedData[index] == null)
+        if (index < 0)
+            throw new ArgumentOutOfRangeException(nameof(index));
+        // extended_data has one entry per plane (per channel for planar audio);
+        // reading past that is out of bounds.
+        if (ExtendedData == null || index >= Data.Length || ExtendedData[index] == null)
             return [];
         if (IsAudio)
             return new(Frame->extended_data[index], Frame->linesize[0]);
@@ -207,12 +211,22 @@ public sealed unsafe class AVFrame : IDisposable, IAVPointer<_AVFrame>
             uint uindex = (uint)index;
             ulong_array4 sizes = new();
             long_array4 linesize = new();
+            // Plane sizes from the absolute strides: negative strides (bottom-up images,
+            // e.g. after vflip) would otherwise give a negative size.
             for (uint i = 0; i < linesize.Length; i++)
-                linesize[i] = LineSize[i];
+                linesize[i] = Math.Abs(LineSize[i]);
             AVResult32 res = ffmpeg.av_image_fill_plane_sizes(ref sizes, (_AVPixelFormat)PixelFormat, Height, in linesize);
             res.ThrowIfError();
             int length = (int)sizes[uindex];
-            byte* data = linesize[uindex] >= 0 ? ExtendedData[index] : ExtendedData[index] - length;
+            int stride = LineSize[index];
+            byte* data = ExtendedData[index];
+            if (stride < 0 && length > 0)
+            {
+                // data points at the first (top) row, which is the last row in memory;
+                // the plane's memory starts (rows - 1) strides further on.
+                int rows = length / -stride;
+                data += (long)(rows - 1) * stride;
+            }
             return new(data, length);
         }
         throw new NotSupportedException("Only audio or video frames are supported");
