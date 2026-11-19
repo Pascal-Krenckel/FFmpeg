@@ -45,8 +45,6 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
     private _AVFrame* destinationView;
 
     // Configuration of fixed (legacy) contexts.
-    private readonly int fixedSourceWidth, fixedSourceHeight, fixedDestinationWidth, fixedDestinationHeight;
-    private readonly PixelFormat fixedSourceFormat = PixelFormat.None, fixedDestinationFormat = PixelFormat.None;
     private readonly SwsAlgorithm fixedAlgorithm;
 
     unsafe _SwsContext* IAVPointer<_SwsContext>.Pointer => context;
@@ -118,12 +116,12 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         // check the first Convert would pass NULL to sws_scale and crash the process.
         if (context == null)
             throw new ArgumentException($"Cannot create a scaler from {srcW}x{srcH} {srcFormat} to {dstW}x{dstH} {dstFormat}.");
-        fixedSourceWidth = srcW;
-        fixedSourceHeight = srcH;
-        fixedSourceFormat = srcFormat;
-        fixedDestinationWidth = dstW;
-        fixedDestinationHeight = dstH;
-        fixedDestinationFormat = dstFormat;
+        SourceWidth = srcW;
+        SourceHeight = srcH;
+        SourceFormat = srcFormat;
+        DestinationWidth = dstW;
+        DestinationHeight = dstH;
+        DestinationFormat = dstFormat;
         fixedAlgorithm = algorithm;
     }
 
@@ -660,14 +658,15 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
     /// <param name="dst">The destination image.</param>
     /// <returns>A non-negative value on success, otherwise the FFmpeg error; a fixed context returns
     /// <see cref="AVResult32.InvalidArgument"/> for sizes or formats it was not created for.</returns>
+    [Obsolete]
     public AVResult32 Convert(AVFrame src, Image dst)
     {
         if (IsDynamic)
             return Convert(src, dst.Data, dst.Info);
 
-        if (src.Height != fixedSourceHeight || src.Width != fixedSourceWidth || (PixelFormat)src.Format != fixedSourceFormat)
+        if (src.Height != SourceHeight || src.Width != SourceWidth || (PixelFormat)src.Format != SourceFormat)
             return AVResult32.InvalidArgument;
-        if (dst.Height != fixedDestinationHeight || dst.Width != fixedDestinationWidth || dst.PixelFormat != fixedDestinationFormat)
+        if (dst.Height != DestinationHeight || dst.Width != DestinationWidth || dst.PixelFormat != DestinationFormat)
             return AVResult32.InvalidArgument;
         AutoGen.byte_ptrArray8 srcData = src.Frame->data;
         AutoGen.int_array8 srcLines = src.Frame->linesize;
@@ -675,7 +674,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         Span<int> dstLines = stackalloc int[4];
         _ = dst.GetPlanes(dstData, dstLines);
         fixed (void* dstDataPtr = dstData, dstLinesPtr = dstLines)
-            return ffmpeg.sws_scale(Context, (byte**)&srcData, (int*)&srcLines, 0, fixedSourceHeight, (byte**)dstDataPtr, (int*)dstLinesPtr);
+            return ffmpeg.sws_scale(Context, (byte**)&srcData, (int*)&srcLines, 0, SourceHeight, (byte**)dstDataPtr, (int*)dstLinesPtr);
     }
 
     /// <summary>
@@ -685,14 +684,15 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
     /// <param name="dst">The destination frame; see <see cref="Convert(AVFrame, AVFrame)"/>.</param>
     /// <returns>A non-negative value on success, otherwise the FFmpeg error; a fixed context returns
     /// <see cref="AVResult32.InvalidArgument"/> for sizes or formats it was not created for.</returns>
+    [Obsolete]
     public AVResult32 Convert(Image src, AVFrame dst)
     {
         if (IsDynamic)
             return Convert(src.Data, src.Info, dst);
 
-        if (dst.Height != fixedDestinationHeight || dst.Width != fixedDestinationWidth || (PixelFormat)dst.Format != fixedDestinationFormat)
+        if (dst.Height != DestinationHeight || dst.Width != DestinationWidth || (PixelFormat)dst.Format != DestinationFormat)
             return AVResult32.InvalidArgument;
-        if (src.Height != fixedSourceHeight || src.Width != fixedSourceWidth || src.PixelFormat != fixedSourceFormat)
+        if (src.Height != SourceHeight || src.Width != SourceWidth || src.PixelFormat != SourceFormat)
             return AVResult32.InvalidArgument;
 
         Span<IntPtr> srcData = stackalloc IntPtr[4];
@@ -704,7 +704,7 @@ public sealed unsafe partial class SwsContext : Options.OptionQueryableBase, IDi
         AutoGen.int_array8 dstLines = dst.Frame->linesize;
 
         fixed (void* srcDataPtr = srcData, srcLinesPtr = srcLines)
-            return ffmpeg.sws_scale(Context, (byte**)srcDataPtr, (int*)srcLinesPtr, 0, fixedSourceHeight, (byte**)&dstData, (int*)&dstLines);
+            return ffmpeg.sws_scale(Context, (byte**)srcDataPtr, (int*)srcLinesPtr, 0, SourceHeight, (byte**)&dstData, (int*)&dstLines);
     }
 
     #endregion
