@@ -3,6 +3,8 @@ using System.Text;
 
 namespace FFmpeg.Codecs.Video.LibSVTAV1;
 
+#pragma warning disable CS0618 // VBRBiasPct is kept (obsolete) for compatibility.
+
 /// <summary>
 /// Represents the bitrate control settings for the SVT-AV1 encoder.
 /// Provides configuration options for different bitrate control modes and adaptive quantization.
@@ -114,6 +116,7 @@ public struct BitrateControl : IEquatable<BitrateControl>
     /// Gets or sets the bias for CBR/VBR encoding.
     /// A value of 0 is CBR-like and 100 is VBR-like.
     /// </summary>
+    [Obsolete("SVT-AV1 2.0 and later have no bias-pct parameter; SVT-AV1 ignores it with a warning.")]
     public int? VBRBiasPct { get; set; }
 
     /// <summary>
@@ -162,7 +165,7 @@ public struct BitrateControl : IEquatable<BitrateControl>
         if (MaxBitrate.HasValue)
             _ = sb.Append($"mbr={MaxBitrate.Value}b:");
         if (VBRBiasPct.HasValue)
-            _ = sb.AppendLine($"bias-pct={VBRBiasPct.Value}:");
+            _ = sb.Append($"bias-pct={VBRBiasPct.Value}:");
 
         if (sb.Length > 0 && sb[^1] == ':')
             sb.Length--; // Remove trailing colon
@@ -248,4 +251,4 @@ public struct BitrateControl : IEquatable<BitrateControl>
     /// <returns><c>true</c> if both objects are not equal; otherwise, <c>false</c>.</returns>
     public static bool operator !=(BitrateControl left, BitrateControl right) => !(left == right);
 }
-
+#pragma warning restore CS0618

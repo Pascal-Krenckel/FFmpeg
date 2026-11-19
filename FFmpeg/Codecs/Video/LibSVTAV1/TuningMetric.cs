@@ -9,6 +9,8 @@
 /// <item><see cref="VQ"/> (0) - Visual Quality: Optimized for subjective visual quality.</item>
 /// <item><see cref="PSNR"/> (1) - Peak Signal-to-Noise Ratio: Optimized for objective image quality measurement. This is the default metric.</item>
 /// <item><see cref="SSIM"/> (2) - Structural Similarity Index: Optimized for perceived visual quality, measuring structural similarity between images.</item>
+/// <item><see cref="IQ"/> (3), <see cref="MSSSIM"/> (4), <see cref="VMAF"/> (5) - added in SVT-AV1 4.x; older versions reject them.</item>
+/// <item>SVT-AV1 only allows CRF rate control with <see cref="SSIM"/>, <see cref="IQ"/>, <see cref="MSSSIM"/> and <see cref="VMAF"/>.</item>
 /// </list>
 /// </remarks>
 public enum TuningMetric : int
@@ -30,5 +32,20 @@ public enum TuningMetric : int
     /// This metric assesses image quality based on structural similarity and perceived changes in the image.
     /// </summary>
     SSIM = 2,
+
+    /// <summary>
+    /// Image Quality (IQ): optimized for still images only (e.g. AVIF). SVT-AV1 4.0 and later.
+    /// </summary>
+    IQ = 3,
+
+    /// <summary>
+    /// Multi-scale SSIM, for video and still images. SVT-AV1 4.x.
+    /// </summary>
+    MSSSIM = 4,
+
+    /// <summary>
+    /// Optimized for the VMAF metric, video only. SVT-AV1 4.2 and later.
+    /// </summary>
+    VMAF = 5,
 }
 

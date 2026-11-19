@@ -1,45 +1,65 @@
 ﻿using FFmpeg.Codecs.Video.LibSVTAV1;
-using FFmpeg.Collections;
 using FFmpeg.Formats;
 using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Diagnostics.CodeAnalysis;
-using System.Text;
 
 namespace FFmpeg.Codecs.Video;
 
 /// <summary>
-/// Represents the SVT-AV1 video codec.
+/// Settings for the SVT-AV1 encoder (<c>libsvtav1</c>).
 /// </summary>
 /// <remarks>
-/// Initializes a new instance of the <see cref="SVTAV1"/> class.
+/// <para>
+/// The SVT-AV1 specific settings are passed in <c>-svtav1-params</c>, which SVT-AV1 parses after FFmpeg's own
+/// options, so they take precedence. SVT-AV1 reports parameters it does not know as a warning in the log.
+/// SVT-AV1 needs frames of at least 64×64 pixels.
+/// </para>
+/// <para>
+/// SVT-AV1 takes its frame rate from <see cref="VideoCodec.Framerate"/> or, if that is not set, from the time base
+/// (1/time base), so a time base like 1/90000 fails without a frame rate.
+/// </para>
 /// </remarks>
-/// <param name="width">The width of the video.</param>
-/// <param name="height">The height of the video.</param>
-/// <param name="timeBase">The time base for the video.</param>
-/// <param name="framerate">The frame rate for the video.</param>
-/// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
-public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational framerate) : VideoCodec(Codec.FindEncoder("libsvtav1") ?? throw new NotSupportedException(), width, height, timeBase, framerate)
+public class SVTAV1 : VideoCodec
 {
+    private const string EncoderName = "libsvtav1";
+
     /// <summary>
-    /// Represents the SVT-AV1 video codec. If the time base is too large opening the codec will fail without specifing the frame rate.
+    /// Initializes the settings with a size, time base and frame rate.
     /// </summary>
-    /// <remarks>
-    /// Initializes a new instance of the <see cref="SVTAV1"/> class.
-    /// </remarks>
+    /// <param name="width">The width of the video.</param>
+    /// <param name="height">The height of the video.</param>
+    /// <param name="timeBase">The time base for the video.</param>
+    /// <param name="framerate">The frame rate for the video.</param>
+    /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
+    public SVTAV1(int width, int height, Rational timeBase, Rational framerate) : base(FindEncoder(EncoderName), width, height, timeBase, framerate)
+    {
+    }
+
+    /// <summary>
+    /// Initializes the settings with a size and time base. If the time base is too large opening the codec will fail
+    /// without specifying the frame rate.
+    /// </summary>
     /// <param name="width">The width of the video.</param>
     /// <param name="height">The height of the video.</param>
     /// <param name="timeBase">The time base for the video.</param>
     /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
     public SVTAV1(int width, int height, Rational timeBase) : this(width, height, timeBase, Rational.Zero)
     {
+    }
 
+    /// <summary>
+    /// Initializes the settings without a size, time base or frame rate, e.g. for the <see cref="Transcoder"/>.
+    /// </summary>
+    /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
+    public SVTAV1() : base(FindEncoder(EncoderName))
+    {
     }
 
     /// <summary>
     /// Gets a value indicating whether the SVT-AV1 encoder is supported.
     /// </summary>
-    public static bool IsSupported => Codec.FindEncoder("libsvtav1") != null;
+    public static bool IsSupported => Codec.FindEncoder(EncoderName) != null;
 
     /// <summary>
     /// Gets or sets the profile to be used for encoding.
@@ -47,7 +67,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     public Profile? Profile { get; set; }
 
     /// <summary>
-    /// Gets or sets the encoding preset.
+    /// Gets or sets the encoding preset: -1 (slowest, research) to 13 (fastest). Lower presets give smaller files.
     /// </summary>
     public int? Preset { get; set; }
 
@@ -57,9 +77,10 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     public BitrateControl? BitrateControl { get; set; }
 
     /// <summary>
-    /// Gets or sets the Constant Rate Factor (CRF) value.
-    /// Setting this value is equivalent to `--rc 0 --aq-mode 2 --qp x [1-63]`.
+    /// Gets or sets the Constant Rate Factor (CRF): 0 to 70, lower is better quality. Setting it is equivalent to
+    /// <c>--rc 0 --aq-mode 2 --qp x</c>.
     /// </summary>
+    /// <remarks>For quarter steps (SVT-AV1 2.2 and later) use <see cref="Quality"/>.</remarks>
     [DisallowNull]
     public int? CRF
     {
@@ -73,7 +94,14 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     }
 
     /// <summary>
-    /// Specifies whether to use PSNR or VQ or SSIM as the tuning metric.
+    /// Gets or sets the constant rate factor as SVT-AV1's <c>crf</c> parameter: 0 to 70 in quarter steps (e.g. 27.25),
+    /// lower is better quality. It selects CRF rate control with adaptive quantization (aq-mode 2).
+    /// </summary>
+    /// <remarks>Applied after <see cref="BitrateControl"/>, so it overrides its rate control mode.</remarks>
+    public double? Quality { get; set; }
+
+    /// <summary>
+    /// Specifies the metric to tune for.
     /// </summary>
     public TuningMetric? Tune { get; set; }
 
@@ -112,7 +140,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     }
 
     /// <summary>
-    /// Gets or sets the GOP size as a <see cref="TimeSpan"/>.
+    /// Gets or sets the GOP size as a <see cref="TimeSpan"/> (whole seconds).
     /// Use <see cref="KeyFrameInterval"/> for frames.
     /// </summary>
     public TimeSpan? KeyFrameIntervalAsTimeSpan
@@ -137,7 +165,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     public ScreenContentMode? ScreenContentMode { get; set; }
 
     /// <summary>
-    /// Gets or sets the level of film grain.
+    /// Gets or sets the level of film grain synthesis, 0 (off) to 50.
     /// </summary>
     public int? FilmGrain { get; set; }
 
@@ -147,99 +175,82 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     public bool? FilmGrainDenoise { get; set; }
 
     /// <summary>
-    /// Gets or sets whether fast decoding is enabled.
+    /// Gets or sets whether fast decoding is enabled (level 1); see <see cref="FastDecodeLevel"/>.
     /// </summary>
     public bool? FastDecode { get; set; }
 
     /// <summary>
-    /// Gets or sets the number of logical processors used for encoding.
-    /// A value of 0 means all processors are used.
+    /// Gets or sets the fast decode level: 0 (off), 1 or 2 (faster decoding, slightly larger files). Takes
+    /// precedence over <see cref="FastDecode"/>.
     /// </summary>
-    public int? Threads { get; set; }
+    public int? FastDecodeLevel { get; set; }
 
     /// <summary>
-    /// Gets additional SVT parameters that are not directly exposed through properties.
+    /// Gets or sets the level of parallelism (<c>lp</c>): 1 to 6 sets how many threads and pictures SVT-AV1 handles
+    /// at once; 0 chooses from the number of cores.
+    /// </summary>
+    public int? LevelOfParallelism { get; set; }
+
+    /// <summary>
+    /// Gets or sets the level of parallelism (<c>lp</c>).
+    /// </summary>
+    /// <remarks>Since SVT-AV1 2.0 this is not the number of logical processors; see <see cref="LevelOfParallelism"/>.</remarks>
+    [Obsolete("SVT-AV1's lp is the level of parallelism (0-6), not the number of processors. Use LevelOfParallelism.")]
+    public int? Threads
+    {
+        get => LevelOfParallelism;
+        set => LevelOfParallelism = value;
+    }
+
+    /// <summary>
+    /// Gets additional SVT parameters that are not directly exposed through properties (<c>-svtav1-params</c>), e.g.
+    /// <c>["enable-variance-boost"] = "1"</c>. They are applied after the typed settings.
     /// </summary>
     public Dictionary<string, string> AdditionalSVTParameters { get; } = [];
 
-    /// <inheritdoc />
-    public override string ToString()
+    /// <summary>
+    /// Gets the SVT-AV1 parameters the settings translate to (the value of <c>-svtav1-params</c>).
+    /// </summary>
+    /// <returns>The parameters in the order they are applied.</returns>
+    public Dictionary<string, string> GetSVTParameters()
     {
-        StringBuilder sb = new();
-
-        if (PixelFormat != PixelFormat.None)
-            _ = sb.Append($" -pix_fmt {AutoGen.ffmpeg.av_get_pix_fmt_name((AutoGen._AVPixelFormat)PixelFormat)}");
-
-        _ = sb.Append($" {string.Join(' ', AdditionalParameters.Select(kv => $"--{kv.Key}={kv.Value}"))}");
-
-        StringBuilder svtParams = new();
-
-        if (Profile.HasValue)
-            _ = svtParams.Append($"profile={Profile.Value.ProfileID}:");
+        Dictionary<string, string> svt = [];
         if (Preset.HasValue)
-            _ = svtParams.Append($"preset={Preset.Value}:");
-        if (BitrateControl.HasValue)
-            _ = svtParams.Append($"{BitrateControl.Value}:");
+            svt["preset"] = Preset.Value.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        BitrateControl?.AddToDictionary(svt);
+        if (Quality.HasValue)
+            svt["crf"] = Quality.Value.ToString("R", System.Globalization.CultureInfo.InvariantCulture);
         if (Tune.HasValue)
-            _ = svtParams.Append($"tune={(int)Tune.Value}:");
-        if (GOPSettings.HasValue)
-            _ = svtParams.Append($"{GOPSettings.Value}:");
+            svt["tune"] = ((int)Tune.Value).ToString();
+        GOPSettings?.AddToDictionary(svt);
         if (EnableOverlays.HasValue)
-            _ = svtParams.Append($"enable-overlays={(EnableOverlays.Value ? 1 : 0)}:");
+            svt["enable-overlays"] = EnableOverlays.Value ? "1" : "0";
         if (ScreenContentMode.HasValue)
-            _ = svtParams.Append($"scm={(int)ScreenContentMode.Value}:");
+            svt["scm"] = ((int)ScreenContentMode.Value).ToString();
         if (FilmGrain.HasValue)
-            _ = svtParams.Append($"film-grain={FilmGrain.Value}:");
+            svt["film-grain"] = FilmGrain.Value.ToString();
         if (FilmGrainDenoise.HasValue)
-            _ = svtParams.Append($"film-grain-denoise={(FilmGrainDenoise.Value ? 1 : 0)}:");
-        if (FastDecode.HasValue)
-            _ = svtParams.Append($"fast-decode={(FastDecode.Value ? 1 : 0)}:");
-        if (Threads.HasValue)
-            _ = svtParams.Append($"lp={Threads}:");
+            svt["film-grain-denoise"] = FilmGrainDenoise.Value ? "1" : "0";
+        if (FastDecodeLevel.HasValue)
+            svt["fast-decode"] = FastDecodeLevel.Value.ToString();
+        else if (FastDecode.HasValue)
+            svt["fast-decode"] = FastDecode.Value ? "1" : "0";
+        if (LevelOfParallelism.HasValue)
+            svt["lp"] = LevelOfParallelism.Value.ToString();
         foreach (KeyValuePair<string, string> pair in AdditionalSVTParameters)
-            _ = svtParams.Append($"{pair.Key}={pair.Value}:");
-
-        if (svtParams.Length > 0)
-        {
-            if (svtParams[^1] == ':')
-                svtParams.Length--;
-            _ = sb.Append($" -svtav1-params \"{svtParams}\"");
-        }
-
-        return sb.ToString();
+            svt[pair.Key] = pair.Value;
+        return svt;
     }
 
     /// <inheritdoc />
-    protected override void AddCodecOptions(CodecContext context)
+    protected override void CollectOptions(EncoderOptions options)
     {
-        using AVDictionary dic = new(AdditionalSVTParameters);
-
         if (Profile.HasValue)
-            context.Profile = Profile.Value;
-        if (Preset.HasValue)
-            dic["preset"] = Preset.Value.ToString();
-        if (BitrateControl.HasValue)
-            BitrateControl.Value.AddToDictionary(dic);
-        if (Tune.HasValue)
-            dic["tune"] = ((int)Tune.Value).ToString();
-        if (GOPSettings.HasValue)
-            GOPSettings.Value.AddToDictionary(dic);
-        if (EnableOverlays.HasValue)
-            dic["enable-overlays"] = EnableOverlays.Value ? "1" : "0";
-        if (ScreenContentMode.HasValue)
-            dic["scm"] = ((int)ScreenContentMode.Value).ToString();
-        if (FilmGrain.HasValue)
-            dic["film-grain"] = FilmGrain.Value.ToString();
-        if (FilmGrainDenoise.HasValue)
-            dic["film-grain-denoise"] = FilmGrainDenoise.Value ? "1" : "0";
-        if (FastDecode.HasValue)
-            dic["fast-decode"] = FastDecode.Value ? "1" : "0";
-        if (Threads.HasValue)
-            dic["lp"] = Threads.Value.ToString();
-
-        context.SetOption("svtav1-params", dic).ThrowIfError();
+            options.SetContext("profile", Profile.Value.ProfileID);
+        // svtav1-params is a dictionary option: set as a dictionary, not as separate options (which libsvtav1
+        // does not have and which FFmpeg would silently leave unused).
+        options.SetPrivate("svtav1-params", GetSVTParameters());
     }
-
 
     /// <summary>
     /// Creates an AVIF image sequence from the specified video frames.
@@ -484,5 +495,4 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
             }
         }
     }
-
 }
