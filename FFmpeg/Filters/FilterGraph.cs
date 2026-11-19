@@ -420,7 +420,9 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
             foreach (FilterContext context in this)
             {
                 using Collections.AVMultiDictionary dictionary = [];
-                if (!context.Name.StartsWith("auto_") && context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink))
+                // Options of auto-inserted conversion filters depend on the negotiated formats and are
+                // recreated by the next configuration. Sink options (accepted formats) are kept.
+                if (!context.Name.StartsWith("auto_"))
                     foreach (Option o in context.GetOptions(true))
                     {
                         // Only options that were set: unset ones can have a string form that cannot be
