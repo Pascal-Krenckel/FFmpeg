@@ -86,7 +86,8 @@ public abstract class VideoCodec(Codec codec, int width, int height, Rational ti
             context.PixelFormat = Codec.SupportedPixelFormats.FirstOrDefault(PixelFormat.None);
         }
         // Notify additional parameters and apply codec-specific options
-        context.SetOption(AdditionalParameters).ThrowIfError();
+        // SetOptions removes the options it set from the dictionary; pass a copy to keep AdditionalParameters.
+        context.SetOptions(new Dictionary<string, string>(AdditionalParameters)).ThrowIfError();
         AddCodecOptions(context);
         return context;
     }
