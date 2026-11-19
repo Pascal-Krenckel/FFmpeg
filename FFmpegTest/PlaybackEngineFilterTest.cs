@@ -55,8 +55,8 @@ public class PlaybackEngineFilterTest
         Assert.AreEqual(320, player.Width);
         Assert.AreEqual(24000, player.SampleRate);
 
-        player.SetVideoFilter((string?)null);
-        player.SetAudioFilter((string?)null);
+        player.SetVideoFilter(null);
+        player.SetAudioFilter(null);
         Assert.AreEqual(1920, player.Width);
         Assert.AreEqual(48000, player.SampleRate);
     }

@@ -116,19 +116,15 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
     public static AudioBufferSource Create(
         string name,
         BufferSrcParameters parameters,
-        FilterGraph graph)
-    {
-        if (parameters.SampleRate <= 0)
-            throw new ArgumentException(
+        FilterGraph graph) => parameters.SampleRate <= 0
+            ? throw new ArgumentException(
                 "The buffer source parameters must specify a positive sample rate.",
-                nameof(parameters));
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+                nameof(parameters))
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetBufferSourceParameters(parameters).ThrowIfError();
             context.Init().ThrowIfError();
         });
-    }
 
     /// <summary>
     /// Creates and initializes an audio buffer source filter using the specified
@@ -163,28 +159,23 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
         int sampleRate,
         SampleFormat sampleFormat,
         int channels,
-        FilterGraph graph)
-    {
-        if (sampleRate <= 0)
-            throw new ArgumentOutOfRangeException(
+        FilterGraph graph) => sampleRate <= 0
+            ? throw new ArgumentOutOfRangeException(
                 nameof(sampleRate),
                 sampleRate,
-                "The sample rate must be greater than zero.");
-
-        if (channels <= 0)
-            throw new ArgumentOutOfRangeException(
+                "The sample rate must be greater than zero.")
+            : channels <= 0
+            ? throw new ArgumentOutOfRangeException(
                 nameof(channels),
                 channels,
-                "The number of channels must be greater than zero.");
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+                "The number of channels must be greater than zero.")
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetOption("sample_rate", sampleRate).ThrowIfError();
             context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
             context.SetOption("channels", channels).ThrowIfError();
             context.Init().ThrowIfError();
         });
-    }
 
     /// <summary>
     /// Creates and initializes an audio buffer source filter using the specified
@@ -219,22 +210,18 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
         int sampleRate,
         SampleFormat sampleFormat,
         ChannelLayout channelLayout,
-        FilterGraph graph)
-    {
-        if (sampleRate <= 0)
-            throw new ArgumentOutOfRangeException(
+        FilterGraph graph) => sampleRate <= 0
+            ? throw new ArgumentOutOfRangeException(
                 nameof(sampleRate),
                 sampleRate,
-                "The sample rate must be greater than zero.");
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+                "The sample rate must be greater than zero.")
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetOption("sample_rate", sampleRate).ThrowIfError();
             context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
             context.SetOption("channel_layout", channelLayout).ThrowIfError();
             context.Init().ThrowIfError();
         });
-    }
 
     /// <summary>
     /// Creates and initializes an audio buffer source filter using the settings

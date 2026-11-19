@@ -1,5 +1,4 @@
-﻿using FFmpeg.AutoGen;
-using FFmpeg.Images;
+﻿using FFmpeg.Images;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Filters.VideoFilters;
@@ -84,10 +83,7 @@ public unsafe class VideoBufferSink : FilterContext, IBufferSink
     /// <exception cref="FFmpeg.Exceptions.FFmpegException">
     /// The filter could not be allocated or initialized.
     /// </exception>
-    public static VideoBufferSink Create(string name, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
-    }
+    public static VideoBufferSink Create(string name, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
 
     /// <summary>
     /// Creates a video buffer sink that only accepts the given pixel formats. The graph converts to one

@@ -131,67 +131,108 @@ public class FiltersTest
         Assert.AreEqual(ExpressionEvaluation.PerFrame, scale.Evaluation);
 
         Crop crop = Crop.Allocate("crop", graph);
-        crop.Width = "100"; crop.Height = "50"; crop.X = "10"; crop.Y = "20"; crop.KeepAspect = true; crop.Exact = true;
+        crop.Width = "100";
+        crop.Height = "50";
+        crop.X = "10";
+        crop.Y = "20";
+        crop.KeepAspect = true;
+        crop.Exact = true;
         Assert.AreEqual("20", crop.Y);
         Assert.IsTrue(crop.Exact);
 
         Pad pad = Pad.Allocate("pad", graph);
-        pad.Width = "ow"; pad.Height = "ih+20"; pad.X = "0"; pad.Y = "10"; pad.Color = "red"; pad.Aspect = new Rational(16, 9); pad.Evaluation = ExpressionEvaluation.PerFrame;
+        pad.Width = "ow";
+        pad.Height = "ih+20";
+        pad.X = "0";
+        pad.Y = "10";
+        pad.Color = "red";
+        pad.Aspect = new Rational(16, 9);
+        pad.Evaluation = ExpressionEvaluation.PerFrame;
         Assert.AreEqual("0xff0000ff", pad.Color);
         Assert.AreEqual(new Rational(16, 9), pad.Aspect);
 
         Fps fps = Fps.Allocate("fps", graph);
-        fps.FrameRate = "ntsc"; fps.Rounding = FpsRounding.Up; fps.EofAction = FpsEofAction.Pass; fps.StartTime = 1.5;
+        fps.FrameRate = "ntsc";
+        fps.Rounding = FpsRounding.Up;
+        fps.EofAction = FpsEofAction.Pass;
+        fps.StartTime = 1.5;
         Assert.AreEqual(FpsRounding.Up, fps.Rounding);
         Assert.AreEqual(FpsEofAction.Pass, fps.EofAction);
         Assert.AreEqual(1.5, fps.StartTime);
 
         Transpose transpose = Transpose.Allocate("transpose", graph);
-        transpose.Direction = TransposeDirection.ClockwiseFlip; transpose.Passthrough = TransposePassthrough.Portrait;
+        transpose.Direction = TransposeDirection.ClockwiseFlip;
+        transpose.Passthrough = TransposePassthrough.Portrait;
         Assert.AreEqual(TransposeDirection.ClockwiseFlip, transpose.Direction);
         Assert.AreEqual(TransposePassthrough.Portrait, transpose.Passthrough);
 
         SetSar setSar = SetSar.Allocate("setsar", graph);
-        setSar.Ratio = "4/3"; setSar.Max = 1000;
+        setSar.Ratio = "4/3";
+        setSar.Max = 1000;
         Assert.AreEqual(1000, setSar.Max);
         SetDar setDar = SetDar.Allocate("setdar", graph);
-        setDar.Ratio = "16/9"; setDar.Max = 1000;
+        setDar.Ratio = "16/9";
+        setDar.Max = 1000;
         Assert.AreEqual("16/9", setDar.Ratio);
 
         SetPts setPts = SetPts.Allocate("setpts", graph);
-        setPts.Expression = "PTS-STARTPTS"; setPts.StripFps = true;
+        setPts.Expression = "PTS-STARTPTS";
+        setPts.StripFps = true;
         Assert.AreEqual("PTS-STARTPTS", setPts.Expression);
 
         Trim trim = Trim.Allocate("trim", graph);
-        trim.Start = TimeSpan.FromSeconds(1); trim.End = TimeSpan.FromSeconds(2); trim.StartPts = 10; trim.EndPts = 20;
-        trim.Duration = TimeSpan.FromMilliseconds(500); trim.StartFrame = 3; trim.EndFrame = 9;
+        trim.Start = TimeSpan.FromSeconds(1);
+        trim.End = TimeSpan.FromSeconds(2);
+        trim.StartPts = 10;
+        trim.EndPts = 20;
+        trim.Duration = TimeSpan.FromMilliseconds(500);
+        trim.StartFrame = 3;
+        trim.EndFrame = 9;
         Assert.AreEqual(TimeSpan.FromSeconds(2), trim.End);
         Assert.AreEqual(9, trim.EndFrame);
 
         Yadif yadif = Yadif.Allocate("yadif", graph);
-        yadif.Mode = YadifMode.SendField; yadif.Parity = YadifParity.BottomFieldFirst; yadif.Deinterlace = YadifDeinterlace.Interlaced;
+        yadif.Mode = YadifMode.SendField;
+        yadif.Parity = YadifParity.BottomFieldFirst;
+        yadif.Deinterlace = YadifDeinterlace.Interlaced;
         Assert.AreEqual(YadifParity.BottomFieldFirst, yadif.Parity);
 
         Fade fade = Fade.Allocate("fade", graph);
-        fade.Type = FadeType.Out; fade.StartFrame = 5; fade.FrameCount = 10; fade.StartTime = TimeSpan.FromSeconds(3);
-        fade.Duration = TimeSpan.FromSeconds(1); fade.Alpha = true; fade.Color = "white";
+        fade.Type = FadeType.Out;
+        fade.StartFrame = 5;
+        fade.FrameCount = 10;
+        fade.StartTime = TimeSpan.FromSeconds(3);
+        fade.Duration = TimeSpan.FromSeconds(1);
+        fade.Alpha = true;
+        fade.Color = "white";
         Assert.AreEqual(FadeType.Out, fade.Type);
         Assert.AreEqual(TimeSpan.FromSeconds(3), fade.StartTime);
 
         Overlay overlay = Overlay.Allocate("overlay", graph);
-        overlay.X = "W-w"; overlay.Y = "H-h"; overlay.EofAction = OverlayEofAction.Pass; overlay.Evaluation = ExpressionEvaluation.Once;
-        overlay.Shortest = true; overlay.Format = OverlayFormat.Yuv444; overlay.RepeatLast = false; overlay.AlphaMode = AlphaMode.Premultiplied;
+        overlay.X = "W-w";
+        overlay.Y = "H-h";
+        overlay.EofAction = OverlayEofAction.Pass;
+        overlay.Evaluation = ExpressionEvaluation.Once;
+        overlay.Shortest = true;
+        overlay.Format = OverlayFormat.Yuv444;
+        overlay.RepeatLast = false;
+        overlay.AlphaMode = AlphaMode.Premultiplied;
         Assert.AreEqual(OverlayFormat.Yuv444, overlay.Format);
         Assert.AreEqual(AlphaMode.Premultiplied, overlay.AlphaMode);
 
         Volume volume = Volume.Allocate("volume", graph);
-        volume.Expression = "-6dB"; volume.Precision = VolumePrecision.Double; volume.Evaluation = ExpressionEvaluation.PerFrame;
-        volume.ReplayGain = ReplayGainMode.Track; volume.ReplayGainPreamp = 2; volume.ReplayGainNoClip = false;
+        volume.Expression = "-6dB";
+        volume.Precision = VolumePrecision.Double;
+        volume.Evaluation = ExpressionEvaluation.PerFrame;
+        volume.ReplayGain = ReplayGainMode.Track;
+        volume.ReplayGainPreamp = 2;
+        volume.ReplayGainNoClip = false;
         Assert.AreEqual(ReplayGainMode.Track, volume.ReplayGain);
         Assert.AreEqual(VolumePrecision.Double, volume.Precision);
 
         AResample resample = AResample.Allocate("aresample", graph);
-        resample.SampleRate = 44100; resample.Async = 1000;
+        resample.SampleRate = 44100;
+        resample.Async = 1000;
         Assert.AreEqual(1000, resample.Async);
 
         ATempo tempo = ATempo.Allocate("atempo", graph);
@@ -200,7 +241,11 @@ public class FiltersTest
         _ = Assert.Throws<ArgumentOutOfRangeException>(() => tempo.Tempo = 0.1, "Values outside 0.5-100 must be rejected.");
 
         AMix mix = AMix.Allocate("amix", graph);
-        mix.Inputs = 3; mix.Duration = AMixDuration.First; mix.DropoutTransition = 0.5; mix.Weights = "1 2 3"; mix.Normalize = false;
+        mix.Inputs = 3;
+        mix.Duration = AMixDuration.First;
+        mix.DropoutTransition = 0.5;
+        mix.Weights = "1 2 3";
+        mix.Normalize = false;
         Assert.AreEqual(3, mix.Inputs);
         Assert.AreEqual(0.5, mix.DropoutTransition, 1e-6);
 
@@ -209,20 +254,38 @@ public class FiltersTest
         Assert.AreEqual("N/SR/TB", aSetPts.Expression);
 
         ATrim aTrim = ATrim.Allocate("atrim", graph);
-        aTrim.Start = TimeSpan.FromSeconds(1); aTrim.End = TimeSpan.FromSeconds(2); aTrim.StartPts = 1; aTrim.EndPts = 2;
-        aTrim.Duration = TimeSpan.FromSeconds(1); aTrim.StartSample = 100; aTrim.EndSample = 200;
+        aTrim.Start = TimeSpan.FromSeconds(1);
+        aTrim.End = TimeSpan.FromSeconds(2);
+        aTrim.StartPts = 1;
+        aTrim.EndPts = 2;
+        aTrim.Duration = TimeSpan.FromSeconds(1);
+        aTrim.StartSample = 100;
+        aTrim.EndSample = 200;
         Assert.AreEqual(200, aTrim.EndSample);
 
         AFade aFade = AFade.Allocate("afade", graph);
-        aFade.Type = FadeType.Out; aFade.StartSample = 10; aFade.SampleCount = 100; aFade.StartTime = TimeSpan.FromSeconds(1);
-        aFade.Duration = TimeSpan.FromSeconds(2); aFade.Curve = AudioFadeCurve.None; aFade.Silence = 0.1; aFade.Unity = 0.9;
+        aFade.Type = FadeType.Out;
+        aFade.StartSample = 10;
+        aFade.SampleCount = 100;
+        aFade.StartTime = TimeSpan.FromSeconds(1);
+        aFade.Duration = TimeSpan.FromSeconds(2);
+        aFade.Curve = AudioFadeCurve.None;
+        aFade.Silence = 0.1;
+        aFade.Unity = 0.9;
         Assert.AreEqual(AudioFadeCurve.None, aFade.Curve);
         Assert.AreEqual(100, aFade.SampleCount);
 
         LoudNorm loudNorm = LoudNorm.Allocate("loudnorm", graph);
-        loudNorm.IntegratedLoudness = -16; loudNorm.LoudnessRange = 11; loudNorm.TruePeak = -1.5;
-        loudNorm.MeasuredIntegratedLoudness = -20; loudNorm.MeasuredLoudnessRange = 5; loudNorm.MeasuredTruePeak = -3;
-        loudNorm.MeasuredThreshold = -30; loudNorm.Offset = 0.5; loudNorm.Linear = false; loudNorm.DualMono = true;
+        loudNorm.IntegratedLoudness = -16;
+        loudNorm.LoudnessRange = 11;
+        loudNorm.TruePeak = -1.5;
+        loudNorm.MeasuredIntegratedLoudness = -20;
+        loudNorm.MeasuredLoudnessRange = 5;
+        loudNorm.MeasuredTruePeak = -3;
+        loudNorm.MeasuredThreshold = -30;
+        loudNorm.Offset = 0.5;
+        loudNorm.Linear = false;
+        loudNorm.DualMono = true;
         Assert.AreEqual(-16, loudNorm.IntegratedLoudness);
         Assert.IsTrue(loudNorm.DualMono);
 
@@ -486,7 +549,7 @@ public class FiltersTest
     {
         using FilterGraph graph = FilterGraph.Allocate();
         FilterContext scale = Scale.Create("scale", 10, 10, graph);
-        _ = Assert.Throws<InvalidCastException>(() => scale.As<Crop>());
+        _ = Assert.Throws<InvalidCastException>(scale.As<Crop>);
         Assert.AreEqual("scale", scale.As<Scale>().Name);
     }
 

@@ -49,7 +49,7 @@ public sealed class SsimScore
         {
             if (!entry.Key.StartsWith(Prefix, StringComparison.Ordinal))
                 continue;
-            string name = entry.Key.Substring(Prefix.Length);
+            string name = entry.Key[Prefix.Length..];
             if (!FilterMetadata.TryParse(entry.Value, out double value))
                 continue;
             if (name == "All")

@@ -70,14 +70,11 @@ public unsafe class HWUpload : FilterContext
     /// <returns>
     /// An initialized <see cref="HWUpload"/> filter context.
     /// </returns>
-    public static HWUpload Create(string name, HW.DeviceContext hwContext, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            c.HwDeviceContext.SetReferencedObject(hwContext);
-            c.Init().ThrowIfError();
-        });
-    }
+    public static HWUpload Create(string name, HW.DeviceContext hwContext, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                                      {
+                                                                                                          c.HwDeviceContext.SetReferencedObject(hwContext);
+                                                                                                          c.Init().ThrowIfError();
+                                                                                                      });
 
     /// <summary>
     /// Creates and initializes an <see cref="HWUpload"/> filter using the specified
@@ -96,15 +93,12 @@ public unsafe class HWUpload : FilterContext
     /// An initialized <see cref="HWUpload"/> filter context.
     /// </returns>
     /// <inheritdoc cref="Create(string, HW.DeviceContext, FilterGraph)"/>
-    public static HWUpload Create(string name, HW.DeviceContext_ref hwContext, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            using DeviceContext? hwC = hwContext.GetReferencedObject();
-            c.HwDeviceContext.SetReferencedObject(hwC);
-            c.Init().ThrowIfError();
-        });
-    }
+    public static HWUpload Create(string name, HW.DeviceContext_ref hwContext, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                                          {
+                                                                                                              using DeviceContext? hwC = hwContext.GetReferencedObject();
+                                                                                                              c.HwDeviceContext.SetReferencedObject(hwC);
+                                                                                                              c.Init().ThrowIfError();
+                                                                                                          });
 
     /// <summary>
     /// Creates and initializes an <see cref="HWUpload"/> filter by deriving a hardware
@@ -126,14 +120,11 @@ public unsafe class HWUpload : FilterContext
     /// This is equivalent to configuring the <c>derive_device</c> option before
     /// initializing the filter.
     /// </remarks>
-    public static HWUpload Create(string name, DeviceType deviceType, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            c.SetOption("derive_device", deviceType.ToFFmpegString()).ThrowIfError();
-            c.Init().ThrowIfError();
-        });
-    }
+    public static HWUpload Create(string name, DeviceType deviceType, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                                 {
+                                                                                                     c.SetOption("derive_device", deviceType.ToFFmpegString()).ThrowIfError();
+                                                                                                     c.Init().ThrowIfError();
+                                                                                                 });
 
     /// <summary>
     /// Gets or sets the type of hardware device to derive from the device associated

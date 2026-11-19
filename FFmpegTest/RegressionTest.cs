@@ -153,7 +153,7 @@ public class RegressionTest
             // Read-only references must not release the owner's context either.
             System.Reflection.TargetInvocationException e = Assert.Throws<System.Reflection.TargetInvocationException>(
                 () => type.GetMethod("SetReferencedObject")!.Invoke(reference, [null]));
-            Assert.IsInstanceOfType<NotSupportedException>(e.InnerException);
+            _ = Assert.IsInstanceOfType<NotSupportedException>(e.InnerException);
         }
     }
 
@@ -192,9 +192,7 @@ public class RegressionTest
     [TestMethod]
     public void CircularArray_Clear_ReleasesItems()
     {
-        CircularArray<string> array = new(3);
-        array.Add("a");
-        array.Add("b");
+        CircularArray<string> array = [with(3), "a", "b"];
         array.RemoveAt(0);
         array.Add("c");
         array.Add("d"); // wraps around
@@ -211,7 +209,7 @@ public class RegressionTest
     [TestMethod]
     public void AVResult64_ToString_NamesTheActualError()
     {
-        Assert.AreEqual("EndOfFile", ((AVResult64)(long)FFmpeg.AutoGen.ffmpeg.AVERROR_EOF).ToString());
+        Assert.AreEqual("EndOfFile", ((AVResult64)FFmpeg.AutoGen.ffmpeg.AVERROR_EOF).ToString());
         Assert.AreEqual("OutOfMemory", ((AVResult64)(-12L)).ToString());
     }
 
@@ -221,7 +219,7 @@ public class RegressionTest
         using IOStreamContext context = new(new MemoryStream(), false);
         Assert.IsTrue(context.CanSeek);
         Assert.AreEqual(Seekable.Byte, context.Seekable);
-        _ = Assert.Throws<ArgumentNullException>(() => new IOStreamContext((System.IO.Stream)null!, false));
+        _ = Assert.Throws<ArgumentNullException>(() => new IOStreamContext(null!, false));
     }
 
     [TestMethod]

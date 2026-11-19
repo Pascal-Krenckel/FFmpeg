@@ -229,13 +229,19 @@ public class QualityMetricsTest
     {
         using FilterGraph graph = FilterGraph.Allocate();
         Ssim ssim = Ssim.Allocate("ssim", graph);
-        ssim.StatsFile = "ssim.log"; ssim.Shortest = true; ssim.RepeatLast = false;
+        ssim.StatsFile = "ssim.log";
+        ssim.Shortest = true;
+        ssim.RepeatLast = false;
         Assert.AreEqual("ssim.log", ssim.StatsFile);
         Assert.IsTrue(ssim.Shortest);
         Assert.IsFalse(ssim.RepeatLast);
 
         Psnr psnr = Psnr.Allocate("psnr", graph);
-        psnr.StatsFile = "psnr.log"; psnr.StatsVersion = 2; psnr.OutputMax = true; psnr.Shortest = true; psnr.RepeatLast = false;
+        psnr.StatsFile = "psnr.log";
+        psnr.StatsVersion = 2;
+        psnr.OutputMax = true;
+        psnr.Shortest = true;
+        psnr.RepeatLast = false;
         Assert.AreEqual(2, psnr.StatsVersion);
         Assert.IsTrue(psnr.OutputMax);
         _ = Assert.Throws<ArgumentOutOfRangeException>(() => psnr.StatsVersion = 3);
@@ -246,8 +252,13 @@ public class QualityMetricsTest
             return;
         }
         LibVmaf vmaf = LibVmaf.Allocate("vmaf", graph);
-        vmaf.LogPath = "vmaf.json"; vmaf.LogFormat = VmafLogFormat.Json; vmaf.Pool = VmafPoolMethod.HarmonicMean;
-        vmaf.VmafThreads = 2; vmaf.Subsample = 3; vmaf.Model = "version=vmaf_v0.6.1neg"; vmaf.Feature = "name=psnr";
+        vmaf.LogPath = "vmaf.json";
+        vmaf.LogFormat = VmafLogFormat.Json;
+        vmaf.Pool = VmafPoolMethod.HarmonicMean;
+        vmaf.VmafThreads = 2;
+        vmaf.Subsample = 3;
+        vmaf.Model = "version=vmaf_v0.6.1neg";
+        vmaf.Feature = "name=psnr";
         vmaf.Shortest = true;
         Assert.AreEqual("vmaf.json", vmaf.LogPath);
         Assert.AreEqual(VmafLogFormat.Json, vmaf.LogFormat);

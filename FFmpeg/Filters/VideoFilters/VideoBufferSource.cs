@@ -107,16 +107,13 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         int height,
         PixelFormat format,
         Rational timeBase,
-        FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), context =>
-        {
-            context.SetOption("pix_fmt", (AutoGen._AVPixelFormat)format).ThrowIfError();
-            context.SetOption("video_size", width, height).ThrowIfError();
-            context.SetOption("time_base", timeBase).ThrowIfError();
-            context.Init().ThrowIfError();
-        });
-    }
+        FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), context =>
+                                   {
+                                       context.SetOption("pix_fmt", (AutoGen._AVPixelFormat)format).ThrowIfError();
+                                       context.SetOption("video_size", width, height).ThrowIfError();
+                                       context.SetOption("time_base", timeBase).ThrowIfError();
+                                       context.Init().ThrowIfError();
+                                   });
 
     /// <summary>
     /// Allocates an uninitialized video buffer source filter.
@@ -172,10 +169,9 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         FilterGraph graph)
     {
         bool isVideo = !(parameters.Width == 0 && parameters.Height == 0);
-        if (!isVideo)
-            throw new ArgumentException("The bufferSrcParameters are not video parameters");
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+        return !isVideo
+            ? throw new ArgumentException("The bufferSrcParameters are not video parameters")
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetBufferSourceParameters(parameters).ThrowIfError();
             context.Init().ThrowIfError();
@@ -211,12 +207,9 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
     public static VideoBufferSource Create(
         string name,
         Codecs.CodecContext ctx,
-        FilterGraph graph)
-    {
-        if (ctx.CodecType != MediaType.Video)
-            throw new ArgumentException("The codec context does not represent a video stream.", nameof(ctx));
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+        FilterGraph graph) => ctx.CodecType != MediaType.Video
+            ? throw new ArgumentException("The codec context does not represent a video stream.", nameof(ctx))
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetOption("width", ctx.Width).ThrowIfError();
             context.SetOption("height", ctx.Height).ThrowIfError();
@@ -230,7 +223,6 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
             context.SetOption("alpha_mode", (int)ctx.AlphaMode).ThrowIfError();
             context.Init().ThrowIfError();
         });
-    }
 
     /// <summary>
     /// Creates and initializes a video buffer source filter from an input stream.

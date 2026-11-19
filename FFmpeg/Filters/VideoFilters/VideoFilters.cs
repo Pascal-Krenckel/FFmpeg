@@ -35,10 +35,7 @@ public static class VideoFilters
     /// <remarks>
     /// The scale filter resizes video frames to the specified dimensions.
     /// </remarks>
-    public static FilterContext CreateScale(string name, int width, int height, FilterGraph graph)
-    {
-        return FilterContext.Create(name, Filter.Scale, string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}:{1}", width, height), graph);
-    }
+    public static FilterContext CreateScale(string name, int width, int height, FilterGraph graph) => FilterContext.Create(name, Filter.Scale, string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}:{1}", width, height), graph);
 
     /// <summary>
     /// Creates a video frame rate filter.
@@ -59,10 +56,7 @@ public static class VideoFilters
     /// The FPS filter converts the input stream to the specified output frame
     /// rate by dropping or duplicating frames as needed.
     /// </remarks>
-    public static FilterContext CreateFPS(string name, Rational fps, FilterGraph graph)
-    {
-        return FilterContext.Create(name, Filter.FPS, fps.ToString(), graph);
-    }
+    public static FilterContext CreateFPS(string name, Rational fps, FilterGraph graph) => FilterContext.Create(name, Filter.FPS, fps.ToString(), graph);
 
     /// <summary>
     /// Creates a video format filter context that converts input video frames to the specified pixel format.
@@ -73,10 +67,7 @@ public static class VideoFilters
     /// <returns>
     /// A new <see cref="FilterContext"/> configured to convert video frames to the specified pixel format.
     /// </returns>
-    public static FilterContext CreateFormat(string name, PixelFormat format, FilterGraph graph)
-    {
-        return FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={format.ToFFmpegString()}", graph);
-    }
+    public static FilterContext CreateFormat(string name, PixelFormat format, FilterGraph graph) => FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={format.ToFFmpegString()}", graph);
 
     /// <summary>
     /// Creates a video format filter context that converts input video frames to one of the specified
@@ -94,12 +85,9 @@ public static class VideoFilters
     /// <exception cref="ArgumentException">
     /// Thrown when <paramref name="formats"/> is empty.
     /// </exception>
-    public static FilterContext CreateFormat(string name, FilterGraph graph, params ReadOnlySpan<PixelFormat> formats)
-    {
-        if (formats.IsEmpty)
-            throw new ArgumentException("At least one pixel format is required.", nameof(formats));
-        return FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={string.Join('|', formats, PixelFormatExtensions.ToFFmpegString)}", graph);
-    }
+    public static FilterContext CreateFormat(string name, FilterGraph graph, params ReadOnlySpan<PixelFormat> formats) => formats.IsEmpty
+            ? throw new ArgumentException("At least one pixel format is required.", nameof(formats))
+            : FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={string.Join('|', formats, PixelFormatExtensions.ToFFmpegString)}", graph);
 
 
 }

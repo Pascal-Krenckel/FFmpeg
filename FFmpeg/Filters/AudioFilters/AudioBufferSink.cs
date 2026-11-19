@@ -52,10 +52,7 @@ public unsafe class AudioBufferSink : FilterContext, IBufferSink
     /// <exception cref="FFmpeg.Exceptions.FFmpegException">
     /// The filter could not be allocated or initialized.
     /// </exception>
-    public static AudioBufferSink Create(string name, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
-    }
+    public static AudioBufferSink Create(string name, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
 
     /// <summary>
     /// Creates an audio buffer sink that only accepts the given formats (options <c>sample_formats</c>,

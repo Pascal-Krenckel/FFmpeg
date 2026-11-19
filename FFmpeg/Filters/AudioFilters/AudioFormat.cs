@@ -70,22 +70,18 @@ public unsafe class AudioFormat : FilterContext
         SampleFormat sampleFormat,
         int sampleRate,
         ChannelLayout channelLayout,
-        FilterGraph graph)
-    {
-        if (sampleRate <= 0)
-            throw new ArgumentOutOfRangeException(
+        FilterGraph graph) => sampleRate <= 0
+            ? throw new ArgumentOutOfRangeException(
                 nameof(sampleRate),
                 sampleRate,
-                "The sample rate must be greater than zero.");
-
-        return InitializeOrDelete(Allocate(name, graph), context =>
+                "The sample rate must be greater than zero.")
+            : InitializeOrDelete(Allocate(name, graph), context =>
         {
             context.SetOption("f", sampleFormat.ToFFmpegString()).ThrowIfError();
             context.SetOption("r", sampleRate.ToString(System.Globalization.CultureInfo.InvariantCulture)).ThrowIfError();
             context.SetOption("cl", channelLayout.ToString()).ThrowIfError();
             context.Init().ThrowIfError();
         });
-    }
 
     /// <summary>
     /// Creates and initializes an audio format filter configured with one or more

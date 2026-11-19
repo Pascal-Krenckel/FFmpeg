@@ -56,14 +56,11 @@ public unsafe class HWUploadCuda : FilterContext
     /// <returns>
     /// An initialized <see cref="HWUploadCuda"/> filter context.
     /// </returns>
-    public static HWUploadCuda Create(string name, int device, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            c.SetOption("device", device).ThrowIfError();
-            c.Init().ThrowIfError();
-        });
-    }
+    public static HWUploadCuda Create(string name, int device, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                          {
+                                                                                              c.SetOption("device", device).ThrowIfError();
+                                                                                              c.Init().ThrowIfError();
+                                                                                          });
 
     /// <summary>
     /// Gets or sets the index of the CUDA device used by the filter.

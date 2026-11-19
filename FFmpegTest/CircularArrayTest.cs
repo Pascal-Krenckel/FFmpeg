@@ -172,7 +172,7 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAndRemove_WithWrapping_MatchesList()
     {
-        CircularArray<int> circular = new(16);
+        CircularArray<int> circular = [with(16)];
         List<int> list = [];
 
         // Move Head away from zero and create a wrapped representation.
@@ -217,7 +217,7 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAtBeginning_WhenWrapped_MatchesList()
     {
-        CircularArray<int> circular = new(10);
+        CircularArray<int> circular = [with(10)];
         List<int> list = [];
 
         for (int i = 0; i < 7; i++)
@@ -247,7 +247,7 @@ public class CircularArrayTests
     [TestMethod]
     public void InsertAtEnd_WhenWrapped_MatchesList()
     {
-        CircularArray<int> circular = new(10);
+        CircularArray<int> circular = [with(10)];
         List<int> list = [];
 
         for (int i = 0; i < 7; i++)
@@ -276,7 +276,7 @@ public class CircularArrayTests
     [TestMethod]
     public void RemoveFromBeginning_WhenWrapped_MatchesList()
     {
-        CircularArray<int> circular = new(16);
+        CircularArray<int> circular = [with(16)];
         List<int> list = [];
 
         for (int i = 0; i < 12; i++)
@@ -305,7 +305,7 @@ public class CircularArrayTests
     [TestMethod]
     public void RemoveFromEnd_WhenWrapped_MatchesList()
     {
-        CircularArray<int> circular = new(16);
+        CircularArray<int> circular = [with(16)];
         List<int> list = [];
 
         for (int i = 0; i < 12; i++)
@@ -408,7 +408,7 @@ public class CircularArrayTests
     [TestMethod]
     public void CopyTo_MatchesList()
     {
-        CircularArray<int> circular = new(10);
+        CircularArray<int> circular = [with(10)];
         List<int> list = [];
 
         for (int i = 0; i < 8; i++)
@@ -451,18 +451,18 @@ public class CircularArrayTests
 
         List<int> expected = [.. values];
 
-        AssertEqual(expected, new CircularArray<int>(values));
+        AssertEqual(expected, [with(values)]);
         AssertEqual(expected, [.. (IReadOnlyList<int>)values]);
         AssertEqual(expected, [.. (IList<int>)values]);
         AssertEqual(expected, [.. (ICollection<int>)values]);
         AssertEqual(expected, [.. (IEnumerable<int>)values]);
-        AssertEqual(expected, new CircularArray<int>(values.AsSpan()));
+        AssertEqual(expected, [with(values.AsSpan())]);
     }
 
     [TestMethod]
     public void RandomizedOperations_MatchList()
     {
-        CircularArray<int> circular = new(4);
+        CircularArray<int> circular = [with(4)];
         List<int> list = [];
 
         Random random = new(0x12345678);

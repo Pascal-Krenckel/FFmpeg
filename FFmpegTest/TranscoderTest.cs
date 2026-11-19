@@ -63,8 +63,8 @@ public class TranscoderTest
         string file = NewOutput(".mkv");
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
-            transcoder.TranscodeStream(AudioIndex, CodecID.AAC);
+            _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
+            _ = transcoder.TranscodeStream(AudioIndex, CodecID.AAC);
             transcoder.Start = TimeSpan.FromSeconds(10);
             transcoder.Duration = TimeSpan.FromSeconds(2);
             transcoder.Run();
@@ -92,7 +92,7 @@ public class TranscoderTest
         string file = NewOutput(".mkv");
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.CopyStream(VideoIndex);
+            _ = transcoder.CopyStream(VideoIndex);
             transcoder.Start = TimeSpan.FromSeconds(10);
             transcoder.Duration = TimeSpan.FromSeconds(2);
             transcoder.Run();
@@ -116,7 +116,7 @@ public class TranscoderTest
         string file = NewOutput(".mkv");
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.FilterStream(AudioIndex, "volume=0.5");
+            _ = transcoder.FilterStream(AudioIndex, "volume=0.5");
             transcoder.Start = TimeSpan.FromSeconds(10);
             transcoder.Duration = TimeSpan.FromSeconds(1);
             transcoder.Run();
@@ -133,13 +133,13 @@ public class TranscoderTest
         string file = NewOutput(".mkv");
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, configure: encoder =>
+            _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, configure: encoder =>
             {
                 encoder.Width = 320;
                 encoder.Height = 180;
                 encoder.FrameRate = new Rational(25, 1);
             });
-            transcoder.TranscodeStream(AudioIndex, CodecID.MP2, configure: encoder =>
+            _ = transcoder.TranscodeStream(AudioIndex, CodecID.MP2, configure: encoder =>
             {
                 using ChannelLayout stereo = ChannelLayout.CreateStereo();
                 encoder.ChannelLayout.SetReferencedObject(stereo);
@@ -166,7 +166,7 @@ public class TranscoderTest
         int progressEvents = 0;
         TranscodingProgress last = default;
         using Transcoder transcoder = Transcoder.Create(VideoFile, file);
-        transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
+        _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
         transcoder.Duration = TimeSpan.FromSeconds(1);
         transcoder.ProgressInterval = TimeSpan.Zero;
         transcoder.ProgressChanged += (_, progress) => { progressEvents++; last = progress; };
@@ -188,8 +188,8 @@ public class TranscoderTest
         using CancellationTokenSource cancel = new();
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
-            transcoder.CopyStream(AudioIndex);
+            _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=320:-2");
+            _ = transcoder.CopyStream(AudioIndex);
             transcoder.ProgressInterval = TimeSpan.Zero;
             transcoder.ProgressChanged += (_, progress) =>
             {
@@ -201,7 +201,7 @@ public class TranscoderTest
         }
 
         long frames = Decode(file, 0).Count;
-        Assert.IsTrue(frames >= 60 && frames < 600, $"Unexpected frame count {frames}.");
+        Assert.IsTrue(frames is >= 60 and < 600, $"Unexpected frame count {frames}.");
     }
 
     [TestMethod]
@@ -213,7 +213,7 @@ public class TranscoderTest
         _ = Assert.Throws<ArgumentOutOfRangeException>(() => transcoder.CopyStream(42));
         _ = Assert.Throws<InvalidOperationException>(() => transcoder.Run());
 
-        transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=160:-2");
+        _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "scale=160:-2");
         transcoder.Duration = TimeSpan.FromMilliseconds(100);
         _ = transcoder.ProcessNext();
         _ = Assert.Throws<InvalidOperationException>(() => transcoder.CopyStream(AudioIndex));
@@ -225,7 +225,7 @@ public class TranscoderTest
     {
         string file = NewOutput(".mkv");
         using Transcoder transcoder = Transcoder.Create(VideoFile, file);
-        transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "split[a][b]");
+        _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "split[a][b]");
         transcoder.Duration = TimeSpan.FromMilliseconds(100);
         _ = Assert.Throws<ArgumentException>(() => transcoder.Run());
     }
@@ -237,9 +237,9 @@ public class TranscoderTest
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
             FFmpeg.Filters.FilterGraph video = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? videoIn, "scale=320:-2,hflip", out FFmpeg.Filters.FilterInOutList? videoOut);
-            transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, videoIn!, video, videoOut!);
+            _ = transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, videoIn!, video, videoOut!);
             FFmpeg.Filters.FilterGraph audio = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? audioIn, "volume=0.5", out FFmpeg.Filters.FilterInOutList? audioOut);
-            transcoder.FilterStream(AudioIndex, audioIn!, audio, audioOut!);
+            _ = transcoder.FilterStream(AudioIndex, audioIn!, audio, audioOut!);
             transcoder.Duration = TimeSpan.FromSeconds(1);
             transcoder.Run();
         }
@@ -266,12 +266,12 @@ public class TranscoderTest
         List<FilterGraphContext> audioCalls = [];
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, ctx =>
+            _ = transcoder.TranscodeStream(VideoIndex, Codec.FindEncoder(CodecID.MPEG4)!.Value, ctx =>
             {
                 videoCalls.Add(ctx);
                 return $"scale={ctx.Width / 4}:-2";
             });
-            transcoder.FilterStream(AudioIndex, ctx =>
+            _ = transcoder.FilterStream(AudioIndex, ctx =>
             {
                 audioCalls.Add(ctx);
                 FFmpeg.Filters.FilterGraph graph = FFmpeg.Filters.FilterGraph.Create(out FFmpeg.Filters.FilterInOutList? inputs, "volume=0.5", out FFmpeg.Filters.FilterInOutList? outputs);
@@ -302,7 +302,7 @@ public class TranscoderTest
         string file = NewOutput(".mkv");
         using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
         {
-            transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "trim=end_frame=5,scale=160:-2");
+            _ = transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "trim=end_frame=5,scale=160:-2");
             transcoder.Duration = TimeSpan.FromSeconds(1);
             transcoder.Run();
         }

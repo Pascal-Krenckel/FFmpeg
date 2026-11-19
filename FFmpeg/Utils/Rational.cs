@@ -894,9 +894,9 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
 
         char delim = format[0];
         StringBuilder formatString = new StringBuilder("{0:").Append(format[1..])
-            .Append("}")
+            .Append('}')
             .Append(delim)
-            .Append("{1:").Append(format[1..]).Append("}");
+            .Append("{1:").Append(format[1..]).Append('}');
 
         return string.Format(formatProvider, formatString.ToString(), Numerator, Denominator);
     }

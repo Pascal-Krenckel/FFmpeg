@@ -61,10 +61,7 @@ public unsafe class FramePack : FilterContext
     /// <returns>
     /// An initialized <see cref="FramePack"/> filter context.
     /// </returns>
-    public static FramePack Create(string name, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
-    }
+    public static FramePack Create(string name, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
 
     /// <summary>
     /// Creates and initializes a <see cref="FramePack"/> filter using the specified
@@ -82,14 +79,11 @@ public unsafe class FramePack : FilterContext
     /// <returns>
     /// An initialized <see cref="FramePack"/> filter context.
     /// </returns>
-    public static FramePack Create(string name, Stereo3DType format, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            c.SetOption("format", (int)format).ThrowIfError();
-            c.Init().ThrowIfError();
-        });
-    }
+    public static FramePack Create(string name, Stereo3DType format, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                                {
+                                                                                                    c.SetOption("format", (int)format).ThrowIfError();
+                                                                                                    c.Init().ThrowIfError();
+                                                                                                });
 
     /// <summary>
     /// Creates and initializes a <see cref="FramePack"/> filter using the specified
@@ -117,14 +111,11 @@ public unsafe class FramePack : FilterContext
     /// <item><description><c>frameseq</c> - views are temporally interleaved.</description></item>
     /// </list>
     /// </remarks>
-    public static FramePack Create(string name, string format, FilterGraph graph)
-    {
-        return InitializeOrDelete(Allocate(name, graph), c =>
-        {
-            c.SetOption("format", format).ThrowIfError();
-            c.Init().ThrowIfError();
-        });
-    }
+    public static FramePack Create(string name, string format, FilterGraph graph) => InitializeOrDelete(Allocate(name, graph), c =>
+                                                                                          {
+                                                                                              c.SetOption("format", format).ThrowIfError();
+                                                                                              c.Init().ThrowIfError();
+                                                                                          });
 
     /// <summary>
     /// Gets or sets the arrangement used to pack the two stereoscopic views.

@@ -120,7 +120,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     public void Add(string key, string value)
     {
 #if NET8_0_OR_GREATER
-         ArgumentNullException.ThrowIfNull(key, nameof(key));
+        ArgumentNullException.ThrowIfNull(key, nameof(key));
 #else
         if (key == null)
             throw new ArgumentNullException(nameof(key));

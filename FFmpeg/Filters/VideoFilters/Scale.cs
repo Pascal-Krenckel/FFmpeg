@@ -1,5 +1,4 @@
 ﻿using FFmpeg.AutoGen;
-using FFmpeg.Utils;
 
 namespace FFmpeg.Filters.VideoFilters;
 

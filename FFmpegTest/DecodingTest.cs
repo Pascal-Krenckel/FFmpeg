@@ -37,10 +37,7 @@ public class DecodingTest
     }
 
     [TestMethod]
-    public void CheckSeekableBitAlignment()
-    {
-        Assert.AreEqual(FFmpeg.IO.Seekable.Byte, demuxerContext!.Seekable);
-    }
+    public void CheckSeekableBitAlignment() => Assert.AreEqual(FFmpeg.IO.Seekable.Byte, demuxerContext!.Seekable);
 
     [TestMethod]
     public void CheckStreamProperties()
