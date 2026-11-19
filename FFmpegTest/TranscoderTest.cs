@@ -293,4 +293,19 @@ public class TranscoderTest
         Assert.AreEqual(480, result.Streams[0].CodecParameters.Width);
         Assert.AreEqual(CodecID.AC3, result.Streams[1].CodecParameters.CodecId);
     }
+
+    [TestMethod]
+    public void UserFilterThatEndsEarly_EndsTheOutput()
+    {
+        // trim closes the graph after 5 frames; the buffer source then answers AVERROR_EOF to every
+        // further frame, which must end the output instead of failing the transcode.
+        string file = NewOutput(".mkv");
+        using (Transcoder transcoder = Transcoder.Create(VideoFile, file))
+        {
+            transcoder.TranscodeStream(VideoIndex, CodecID.MPEG4, "trim=end_frame=5,scale=160:-2");
+            transcoder.Duration = TimeSpan.FromSeconds(1);
+            transcoder.Run();
+        }
+        Assert.AreEqual(5, Decode(file, 0).Count);
+    }
 }

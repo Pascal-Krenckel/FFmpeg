@@ -799,7 +799,7 @@ public sealed unsafe class Transcoder : IDisposable
         {
             if (output.Graph == null)
                 BuildGraph(output, SourceFormat.FromDecoder(Source.CodecContexts[output.InputIndex], Source.Streams[output.InputIndex]));
-            output.BufferSource!.SendFrame(null).ThrowIfError();
+            SendToGraph(output, null);
             PullFilteredFrames(output);
         }
 
@@ -950,6 +950,9 @@ public sealed unsafe class Transcoder : IDisposable
 
     private void FilterFrame(Output output, AVFrame frame)
     {
+        // The graph has ended (its end trim was reached); later frames, e.g. reordered ones, are not needed.
+        if (output.GraphEnded)
+            return;
         if (output.Graph == null)
         {
             BuildGraph(output, SourceFormat.FromFrame(frame, Source.CodecContexts[output.InputIndex]));
@@ -967,14 +970,31 @@ public sealed unsafe class Transcoder : IDisposable
             }
             else
             {
-                output.BufferSource!.SendFrame(null).ThrowIfError();
+                SendToGraph(output, null);
                 PullFilteredFrames(output);
             }
             BuildGraph(output, SourceFormat.FromFrame(frame, Source.CodecContexts[output.InputIndex]));
         }
 
-        output.BufferSource!.SendFrame(frame, keepRef: true).ThrowIfError();
+        SendToGraph(output, frame);
         PullFilteredFrames(output);
+    }
+
+    /// <summary>
+    /// Sends a frame (or <see langword="null"/> to flush) to the buffer source. When the graph needs no more
+    /// input it answers AVERROR_EOF; that ends the output instead of being an error.
+    /// </summary>
+    private static void SendToGraph(Output output, AVFrame? frame)
+    {
+        if (output.GraphEnded)
+            return;
+        AVResult32 res = output.BufferSource!.SendFrame(frame, keepRef: true);
+        if (res == AVResult32.EndOfFile)
+        {
+            output.GraphEnded = true;
+            return;
+        }
+        res.ThrowIfError();
     }
 
     private void PullFilteredFrames(Output output)
@@ -1431,6 +1451,9 @@ public sealed unsafe class Transcoder : IDisposable
         public bool Registered { get; set; }
         public bool CopyStarted { get; set; }
         public long LastDts { get; set; } = ffmpeg.AV_NOPTS_VALUE;
+
+        /// <summary>The buffer source reported end of file: the graph takes no more input.</summary>
+        public bool GraphEnded { get; set; }
 
         public FilterGraph? Graph { get; set; }
         public IBufferSource? BufferSource { get; set; }
