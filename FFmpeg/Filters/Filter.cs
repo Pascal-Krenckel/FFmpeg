@@ -223,6 +223,106 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public static Filter AudioFormat => GetFilterByName("aformat");
 
     /// <summary>
+    /// Gets the <c>crop</c> filter.
+    /// </summary>
+    public static Filter Crop => GetFilterByName("crop");
+
+    /// <summary>
+    /// Gets the <c>pad</c> filter.
+    /// </summary>
+    public static Filter Pad => GetFilterByName("pad");
+
+    /// <summary>
+    /// Gets the <c>transpose</c> filter.
+    /// </summary>
+    public static Filter Transpose => GetFilterByName("transpose");
+
+    /// <summary>
+    /// Gets the <c>hflip</c> filter.
+    /// </summary>
+    public static Filter HFlip => GetFilterByName("hflip");
+
+    /// <summary>
+    /// Gets the <c>vflip</c> filter.
+    /// </summary>
+    public static Filter VFlip => GetFilterByName("vflip");
+
+    /// <summary>
+    /// Gets the <c>setsar</c> filter.
+    /// </summary>
+    public static Filter SetSar => GetFilterByName("setsar");
+
+    /// <summary>
+    /// Gets the <c>setdar</c> filter.
+    /// </summary>
+    public static Filter SetDar => GetFilterByName("setdar");
+
+    /// <summary>
+    /// Gets the <c>setpts</c> filter.
+    /// </summary>
+    public static Filter SetPts => GetFilterByName("setpts");
+
+    /// <summary>
+    /// Gets the <c>trim</c> filter.
+    /// </summary>
+    public static Filter Trim => GetFilterByName("trim");
+
+    /// <summary>
+    /// Gets the <c>yadif</c> filter.
+    /// </summary>
+    public static Filter Yadif => GetFilterByName("yadif");
+
+    /// <summary>
+    /// Gets the <c>fade</c> filter.
+    /// </summary>
+    public static Filter Fade => GetFilterByName("fade");
+
+    /// <summary>
+    /// Gets the <c>overlay</c> filter.
+    /// </summary>
+    public static Filter Overlay => GetFilterByName("overlay");
+
+    /// <summary>
+    /// Gets the <c>volume</c> filter.
+    /// </summary>
+    public static Filter Volume => GetFilterByName("volume");
+
+    /// <summary>
+    /// Gets the <c>aresample</c> filter.
+    /// </summary>
+    public static Filter AResample => GetFilterByName("aresample");
+
+    /// <summary>
+    /// Gets the <c>atempo</c> filter.
+    /// </summary>
+    public static Filter ATempo => GetFilterByName("atempo");
+
+    /// <summary>
+    /// Gets the <c>amix</c> filter.
+    /// </summary>
+    public static Filter AMix => GetFilterByName("amix");
+
+    /// <summary>
+    /// Gets the <c>asetpts</c> filter.
+    /// </summary>
+    public static Filter ASetPts => GetFilterByName("asetpts");
+
+    /// <summary>
+    /// Gets the <c>atrim</c> filter.
+    /// </summary>
+    public static Filter ATrim => GetFilterByName("atrim");
+
+    /// <summary>
+    /// Gets the <c>afade</c> filter.
+    /// </summary>
+    public static Filter AFade => GetFilterByName("afade");
+
+    /// <summary>
+    /// Gets the <c>loudnorm</c> filter.
+    /// </summary>
+    public static Filter LoudNorm => GetFilterByName("loudnorm");
+
+    /// <summary>
     /// Returns the name of the filter as a string.
     /// </summary>
     /// <returns>The name of the filter.</returns>
