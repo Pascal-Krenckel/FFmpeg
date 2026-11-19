@@ -283,6 +283,22 @@ public readonly unsafe struct Filter : IEquatable<Filter>, IAVPointer<_AVFilter>
     public static Filter Overlay => GetFilterByName("overlay");
 
     /// <summary>
+    /// Gets the <c>ssim</c> filter.
+    /// </summary>
+    public static Filter Ssim => GetFilterByName("ssim");
+
+    /// <summary>
+    /// Gets the <c>psnr</c> filter.
+    /// </summary>
+    public static Filter Psnr => GetFilterByName("psnr");
+
+    /// <summary>
+    /// Gets the <c>libvmaf</c> filter.
+    /// </summary>
+    /// <exception cref="ArgumentException">FFmpeg was built without libvmaf (<c>--enable-libvmaf</c>).</exception>
+    public static Filter LibVmaf => GetFilterByName("libvmaf");
+
+    /// <summary>
     /// Gets the <c>volume</c> filter.
     /// </summary>
     public static Filter Volume => GetFilterByName("volume");
