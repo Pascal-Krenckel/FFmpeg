@@ -252,6 +252,8 @@ public class SVTAV1 : VideoCodec
         options.SetPrivate("svtav1-params", GetSVTParameters());
     }
 
+    #region AVIF
+
     /// <summary>
     /// Creates an AVIF image sequence from the specified video frames.
     /// </summary>
@@ -259,8 +261,8 @@ public class SVTAV1 : VideoCodec
     /// The seekable output stream that receives the encoded AVIF data.
     /// </param>
     /// <param name="frames">
-    /// The frames to encode into the AVIF container.
-    /// All frames should use a consistent input resolution and pixel format.
+    /// The frames to encode into the AVIF container. Their timestamps are kept, so they need a valid
+    /// <see cref="AVFrame.TimeBase"/> unless <see cref="VideoCodec.TimeBase"/> is set.
     /// </param>
     /// <param name="closeStream">
     /// <see langword="true"/> to close <paramref name="output"/> when encoding is
@@ -276,93 +278,26 @@ public class SVTAV1 : VideoCodec
     /// <exception cref="ArgumentException">
     /// Thrown when <paramref name="frames"/> does not contain any frames.
     /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// Neither the settings nor the first frame have a time base.
+    /// </exception>
     /// <remarks>
-    /// This method creates an AVIF container using the
-    /// <see cref="OutputFormat.AVIF"/> muxer and encodes the frames using the
-    /// configured AV1 codec (typically libsvtav1).
-    ///
     /// <para>
-    /// The output stream must support seeking because the AVIF muxer requires
-    /// random access while writing the container metadata.
+    /// The output stream must support seeking because the AVIF muxer requires random access while writing the
+    /// container metadata.
     /// </para>
-    ///
     /// <para>
-    /// The output dimensions and pixel format are automatically inferred from the
-    /// first frame when they have not been explicitly configured. Frames that do
-    /// not match the configured output format are converted using a bicubic
-    /// <see cref="SwsContext"/> conversion.
+    /// The size and pixel format are taken from the first frame when they are not set (the settings are not
+    /// changed). Frames that do not match are converted with a bicubic <see cref="SwsContext"/>; the frames passed
+    /// in are not modified.
     /// </para>
-    ///
     /// <para>
-    /// Existing frame timestamps are preserved. Use the overload accepting a
-    /// <see cref="TimeSpan"/> frame duration to create a constant frame-rate AVIF
+    /// Use the overload accepting a <see cref="TimeSpan"/> frame duration to create a constant frame-rate AVIF
     /// sequence with generated timestamps.
     /// </para>
     /// </remarks>
     public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, bool closeStream = true, bool disposeFrames = false)
-    {
-
-        if (!output.CanSeek)
-            throw new NotSupportedException("The stream has to be seekable for the AVIF format context");
-
-        using MediaSink context = MediaSink.Create(output, OutputFormat.AVIF!.Value, closeStream)!;
-
-        IEnumerator<AVFrame> enumerator = frames.GetEnumerator();
-        try
-        {
-            if (!enumerator.MoveNext())
-                throw new ArgumentException("No frames found.");
-            AVFrame firstFrame = enumerator.Current;
-            if (!TimeBase.IsValidTimeBase)
-                TimeBase = firstFrame.TimeBase;
-            if (Width <= 0)
-                Width = firstFrame.Width;
-            if (Height <= 0)
-                Height = firstFrame.Height;
-            if (PixelFormat == PixelFormat.None)
-                PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
-            using SwsContext swsContext = new(SwsAlgorithm.Bicubic());
-            _ = context.AddStream(CreateCodecContext());
-            context.WriteHeader().ThrowIfError();
-            using AVFrame convertedFrame = AVFrame.Allocate();
-            AVFrame frameToWrite;
-            do
-            {
-                AVFrame current = enumerator.Current;
-                if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
-                {
-                    // The encoder may still hold the previous converted frame (lookahead), so
-                    // convert into a fresh buffer instead of overwriting the old one.
-                    convertedFrame.Unreference();
-                    convertedFrame.Width = Width;
-                    convertedFrame.Height = Height;
-                    convertedFrame.PixelFormat = PixelFormat;
-                    convertedFrame.CreateBuffer().ThrowIfError();
-                    swsContext.Convert(current, convertedFrame).ThrowIfError();
-                    frameToWrite = convertedFrame;
-                    current.CopyPropertiesTo(convertedFrame);
-                }
-                else
-                    frameToWrite = current;
-                context.WriteFrame(frameToWrite, 0).ThrowIfError();
-                if (disposeFrames)
-                    enumerator.Current.Dispose();
-            } while (enumerator.MoveNext());
-
-            context.WriteTrailer().ThrowIfError();
-        }
-        finally
-        {
-            if (disposeFrames)
-            {
-                enumerator.Current.Dispose();
-                while (enumerator.MoveNext())
-                    enumerator.Current.Dispose();
-                enumerator.Dispose();
-            }
-        }
-
-    }
+        => WriteAvif(output, frames, null, closeStream, disposeFrames);
 
     /// <summary>
     /// Creates an AVIF image sequence from the specified video frames using a fixed
@@ -391,108 +326,180 @@ public class SVTAV1 : VideoCodec
     /// <exception cref="ArgumentException">
     /// Thrown when <paramref name="frames"/> does not contain any frames.
     /// </exception>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="frameDuration"/> is not positive.
+    /// </exception>
     /// <remarks>
-    /// This method creates an AVIF animation sequence with a constant frame rate.
-    /// Each frame receives an automatically generated presentation timestamp and
-    /// duration based on <paramref name="frameDuration"/>.
-    ///
     /// <para>
-    /// The output stream must support seeking because the AVIF muxer requires
-    /// random access while writing the container metadata.
+    /// Each frame gets a generated timestamp and duration based on <paramref name="frameDuration"/>; the frames passed
+    /// in are not modified.
     /// </para>
-    ///
     /// <para>
-    /// The output dimensions and pixel format are automatically inferred from the
-    /// first frame when they have not been explicitly configured. Frames that do
-    /// not match the configured output format are converted using a bicubic
-    /// <see cref="SwsContext"/> conversion.
+    /// The output stream must support seeking because the AVIF muxer requires random access while writing the
+    /// container metadata.
+    /// </para>
+    /// <para>
+    /// The size and pixel format are taken from the first frame when they are not set (the settings are not
+    /// changed). Frames that do not match are converted with a bicubic <see cref="SwsContext"/>.
     /// </para>
     /// </remarks>
     public void CreateAvif(Stream output, IEnumerable<AVFrame> frames, TimeSpan frameDuration, bool closeStream = false, bool disposeFrames = false)
     {
+        if (frameDuration <= TimeSpan.Zero)
+            throw new ArgumentOutOfRangeException(nameof(frameDuration), frameDuration, "The frame duration must be positive.");
+        WriteAvif(output, frames, frameDuration, closeStream, disposeFrames);
+    }
+
+    private void WriteAvif(Stream output, IEnumerable<AVFrame> frames, TimeSpan? frameDuration, bool closeStream, bool disposeFrames)
+    {
         if (!output.CanSeek)
             throw new NotSupportedException("The stream has to be seekable for the AVIF format context");
 
-        using MuxerContext context = MuxerContext.Open(output, OutputFormat.AVIF!.Value, closeStream)!;
-
         IEnumerator<AVFrame> enumerator = frames.GetEnumerator();
+        AVFrame? notDisposed = null;
         try
         {
             if (!enumerator.MoveNext())
-                throw new ArgumentException("No frames found.");
-            AVFrame firstFrame = enumerator.Current;
-            TimeBase = frameDuration;
-            if (Width == 0)
-                Width = firstFrame.Width;
-            if (Height == 0)
-                Height = firstFrame.Height;
+                throw new ArgumentException("No frames found.", nameof(frames));
+            notDisposed = disposeFrames ? enumerator.Current : null;
+
+            using CodecContext encoder = CreateCodecContext();
+            AVFrame first = enumerator.Current;
+            if (Width <= 0)
+                encoder.Width = first.Width;
+            if (Height <= 0)
+                encoder.Height = first.Height;
             if (PixelFormat == PixelFormat.None)
-                PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
-            using SwsContext swsContext = new(SwsAlgorithm.Bicubic());
-            using CodecContext codecContext = CreateCodecContext();
-            _ = context.AddStream(codecContext);
-            context.WriteHeader().ThrowIfError();
-            using AVFrame convertedFrame = AVFrame.Allocate();
+                encoder.PixelFormat = Codec.GetBestPixelFormat(first.PixelFormat);
+            Rational timeBase = frameDuration.HasValue
+                ? (Rational)frameDuration.Value
+                : TimeBase.IsValidTimeBase ? TimeBase
+                : first.TimeBase.IsValidTimeBase ? first.TimeBase
+                : throw new InvalidOperationException("The frames need a time base; set TimeBase or use the overload with a frame duration.");
+            encoder.TimeBase = timeBase;
+            if (!Framerate.IsValidTimeBase)
+            {
+                // Without a frame rate libsvtav1 uses 1/time base (1000 fps for milliseconds), and SVT-AV1 only accepts
+                // 1-240 fps. Here the frame rate only steers rate control.
+                double fps = frameDuration.HasValue ? 1 / frameDuration.Value.TotalSeconds
+                    : first.Duration > 0 ? (double)timeBase.Denominator / (first.Duration * timeBase.Numerator) : 25;
+                encoder.FrameRate = AutoGen.ffmpeg.av_d2q(Math.Clamp(fps, 1, 240), 1001);
+            }
+
+            using SwsContext scaler = new(SwsAlgorithm.Bicubic());
+            using AVFrame input = AVFrame.Allocate();
             using AVPacket packet = AVPacket.Allocate();
-            AVFrame frameToWrite;
-            AVResult32 result;
+
+            // The encoder may still hold the previous input (lookahead), so every frame gets a fresh reference or
+            // buffer instead of overwriting the previous one; the caller's frames are never modified.
+            void Prepare(AVFrame current)
+            {
+                input.Unreference();
+                if (current.Width == encoder.Width && current.Height == encoder.Height && current.PixelFormat == encoder.PixelFormat)
+                {
+                    input.Reference(current);
+                }
+                else
+                {
+                    current.CopyPropertiesTo(input);
+                    // The color properties describe the source format; let the scaler set those of the new format.
+                    input.ColorSpace = ColorSpace.Unspecified;
+                    input.ColorRange = ColorRange.Unspecified;
+                    input.ChromaLocation = ChromaLocation.Unspecified;
+                    input.Width = encoder.Width;
+                    input.Height = encoder.Height;
+                    input.PixelFormat = encoder.PixelFormat;
+                    input.CreateBuffer().ThrowIfError();
+                    scaler.Convert(current, input).ThrowIfError();
+                }
+                if (frameDuration.HasValue)
+                {
+                    input.TimeBase = timeBase;
+                    input.Duration = 1;
+                }
+            }
+
+            OutputFormat avif = OutputFormat.AVIF ?? throw new NotSupportedException("The loaded FFmpeg libraries have no AVIF muxer.");
+            using MuxerContext muxer = MuxerContext.Open(output, avif, closeStream)
+                ?? throw new InvalidOperationException("The AVIF muxer could not be created.");
+
+            // Like the ffmpeg tool: take the color properties from the first frame and open the encoder before the
+            // header is written, so the stream gets the encoder's parameters (extradata) and a global header.
+            Prepare(first);
+            if (encoder.ColorSpace == ColorSpace.Unspecified)
+                encoder.ColorSpace = input.ColorSpace;
+            if (encoder.ColorRange == ColorRange.Unspecified)
+                encoder.ColorRange = input.ColorRange;
+            if (encoder.ColorPrimaries == ColorPrimaries.Unspecified)
+                encoder.ColorPrimaries = input.ColorPrimaries;
+            if (encoder.ColorTransferCharacteristic == ColorTransferCharacteristic.Unspecified)
+                encoder.ColorTransferCharacteristic = input.ColorTransferCharacteristic;
+            if (avif.Flags.HasFlag(FormatFlags.GlobalHeader))
+                encoder.Flags |= CodecFlags.GlobalHeader;
+            encoder.Open(null).ThrowIfError();
+            _ = muxer.AddStream(encoder);
+            muxer.WriteHeader().ThrowIfError();
+
             long frameIndex = 0;
+            long frameDurationInTimeBase = 0;
+            bool firstFrame = true;
             do
             {
                 AVFrame current = enumerator.Current;
-                if (current.Width != Width || current.Height != Height || current.PixelFormat != PixelFormat)
+                if (!firstFrame)
                 {
-                    // The encoder may still hold the previous converted frame (lookahead), so
-                    // convert into a fresh buffer instead of overwriting the old one.
-                    convertedFrame.Unreference();
-                    convertedFrame.Width = Width;
-                    convertedFrame.Height = Height;
-                    convertedFrame.PixelFormat = PixelFormat;
-                    convertedFrame.CreateBuffer().ThrowIfError();
-                    swsContext.Convert(current, convertedFrame).ThrowIfError();
-                    frameToWrite = convertedFrame;
-                    current.CopyPropertiesTo(convertedFrame);
+                    notDisposed = disposeFrames ? current : null;
+                    Prepare(current);
                 }
-                else
-                    frameToWrite = current;
-                frameToWrite.PresentationTimestamp = frameIndex++;
-                frameToWrite.TimeBase = codecContext.TimeBase;
-                frameToWrite.Duration = 1;
-                result = codecContext.Encode(frameToWrite, packet);
-                // The encoder holds its own reference now, so the input can be released even
-                // when no packet came out yet.
+                firstFrame = false;
+                if (frameDuration.HasValue)
+                    input.PresentationTimestamp = frameIndex++;
+                if (input.Duration > 0)
+                {
+                    frameDurationInTimeBase = !input.TimeBase.IsValidTimeBase || input.TimeBase == timeBase
+                        ? input.Duration
+                        : AutoGen.ffmpeg.av_rescale_q(input.Duration, input.TimeBase, timeBase);
+                }
+                encoder.SendFrame(input).ThrowIfError();
+                WritePackets(encoder, muxer, packet, frameDurationInTimeBase);
                 if (disposeFrames)
-                    enumerator.Current.Dispose();
-                if (result.IsTryAgain)
-                    continue;
-                result.ThrowIfError();
-                packet.Duration = 1;
-                packet.StreamIndex = 0;
-                context.WritePacketInterleaved(packet).ThrowIfError();
+                {
+                    current.Dispose();
+                    notDisposed = null;
+                }
             } while (enumerator.MoveNext());
 
-            codecContext.DrainEncoder().ThrowIfError();
-
-            while (!(result = codecContext.ReceivePacket(packet)).IsError)
-            {
-                packet.Duration = 1;
-                packet.StreamIndex = 0;
-                context.WritePacketInterleaved(packet).ThrowIfError();
-            }
-            if (result != AVResult32.EndOfFile)
-                result.ThrowIfError();
-            context.WriteTrailer().ThrowIfError();
+            encoder.SendFrame(null).ThrowIfError();
+            WritePackets(encoder, muxer, packet, frameDurationInTimeBase);
+            muxer.WriteTrailer().ThrowIfError();
         }
         finally
         {
             if (disposeFrames)
             {
-
-                enumerator.Current.Dispose();
+                notDisposed?.Dispose();
                 while (enumerator.MoveNext())
-                    enumerator.Current.Dispose();
-                enumerator.Dispose();
+                    enumerator.Current?.Dispose();
             }
+            enumerator.Dispose();
         }
     }
+
+    private static void WritePackets(CodecContext encoder, MuxerContext muxer, AVPacket packet, long frameDuration)
+    {
+        AVResult32 result;
+        while (!(result = encoder.ReceivePacket(packet)).IsError)
+        {
+            // libsvtav1 does not pass the frame durations on. Without a duration the muxer ends the track's edit list
+            // at the start of the last frame, so players drop that frame.
+            if (packet.Duration <= 0 && frameDuration > 0)
+                packet.Duration = frameDuration;
+            packet.StreamIndex = 0;
+            muxer.WritePacketInterleaved(packet).ThrowIfError();
+        }
+        if (!result.IsTryAgain && result != AVResult32.EndOfFile)
+            result.ThrowIfError();
+    }
+
+    #endregion
 }
