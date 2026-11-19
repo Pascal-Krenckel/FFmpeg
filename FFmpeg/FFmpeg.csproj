@@ -36,10 +36,26 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>9.9.1.0</Version>
+		<Version>9.9.2.0</Version>
 		<PackageReleaseNotes>
 			FFmpeg 9.0.1 - "Lei"
 			Version numbering scheme changed: FFMpegMajor.Major.Minor.Patch
+
+			--- 9.9.2.0 ---
+			Typed filters (namespaces Filters.VideoFilters and Filters.AudioFilters) with Allocate/Create and a property for every FFmpeg option; setters throw if FFmpeg rejects the value:
+			video: Scale, Crop, Pad, Fps, Transpose, HFlip, VFlip, SetSar, SetDar, SetPts, Trim, Yadif, Fade, Overlay; audio: Volume, AResample, ATempo, AMix, ASetPts, ATrim, AFade, LoudNorm.
+			Quality metrics: Ssim and Psnr, with SsimScore/PsnrScore to read the per-frame scores from the frame metadata and SsimStatistics/PsnrStatistics to compute the averages the way FFmpeg logs them. LibVmaf (needs an FFmpeg built with --enable-libvmaf, see LibVmaf.IsAvailable) with VmafLog to read its XML log.
+			Added: BufferSrcParameters.AlphaMode/HWFramesContext, VideoBufferSource.SampleAspectRatio (the misspelled PixelAspectRation is obsolete), accepted output formats for VideoBufferSink/AudioBufferSink (Create overloads and Accepted* properties).
+			BugFix: FilterLink.SourcePadIndex/DestinationPadIndex were wrong (AVFilterPad is opaque in FFmpeg 9), so FilterGraph.Copy broke graphs with filters that have several pads (split, overlay, ...).
+			BugFix: FilterGraph.Copy dropped the options of buffer sinks and leaked the new graph when it failed; parsing a graph did not initialize the in/out lists; FilterContext.Delete left a dangling pointer.
+			BugFix: the Transcoder failed and the PlaybackEngine faulted when a filter graph stopped taking input (e.g. trim); the output now ends there and later frames are dropped.
+			BugFix: SubtitleRect.ToString returned null for bitmap subtitles.
+			Behaviour changes:
+			The Create methods of filters throw when the initialization fails and remove the filter from the graph again.
+			FilterContext.As&lt;T&gt; and the typed filter constructors throw InvalidCastException for a filter of another type.
+			The PlaybackEngine throws when its filter graph cannot be configured again after a flush.
+			SubtitleRect.Text and ASS are nullable (they are NULL for bitmap subtitles).
+			The package no longer depends on System.IO.Pipelines and System.Security.Permissions (both were unused).
 
 			--- 9.9.1.0 ---
 			Transcoder rewritten (breaking change), modelled on MediaSource/MediaSink and the ffmpeg command line tool:
