@@ -25,8 +25,11 @@ public partial class SwsContext
     /// This helper is intended for applications that repeatedly convert frames
     /// whose dimensions or pixel formats may change during playback or encoding.
     /// </remarks>
+    [Obsolete("A dynamic context (new SwsContext()) adapts to every image and never needs to be replaced.")]
     public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, Codecs.CodecContext dst)
     {
+        if (context is { IsDynamic: true })
+            return context;
         if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
@@ -57,8 +60,11 @@ public partial class SwsContext
     /// This helper is intended for applications that repeatedly convert frames
     /// whose dimensions or pixel formats may change during playback or encoding.
     /// </remarks>
+    [Obsolete("A dynamic context (new SwsContext()) adapts to every image and never needs to be replaced.")]
     public static SwsContext CheckContext(SwsContext? context, AVFrame src, Codecs.CodecContext dst)
     {
+        if (context is { IsDynamic: true })
+            return context;
         if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
@@ -87,8 +93,11 @@ public partial class SwsContext
     /// This helper is intended for applications that repeatedly convert frames
     /// whose dimensions or pixel formats may change during playback or encoding.
     /// </remarks>
+    [Obsolete("A dynamic context (new SwsContext()) adapts to every image and never needs to be replaced.")]
     public static SwsContext CheckContext(SwsContext? context, Codecs.CodecContext src, AVFrame dst)
     {
+        if (context is { IsDynamic: true })
+            return context;
         if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
@@ -117,8 +126,11 @@ public partial class SwsContext
     /// This helper is intended for applications that repeatedly convert frames
     /// whose dimensions or pixel formats may change during playback or encoding.
     /// </remarks>
+    [Obsolete("A dynamic context (new SwsContext()) adapts to every image and never needs to be replaced.")]
     public static SwsContext CheckContext(SwsContext? context, AVFrame src, AVFrame dst)
     {
+        if (context is { IsDynamic: true })
+            return context;
         if (context == null || context.SourceFormat != src.PixelFormat || context.SourceHeight != src.Height || context.SourceWidth != src.Width
             || context.DestinationFormat != dst.PixelFormat || context.DestinationHeight != dst.Height || context.DestinationWidth != dst.Width)
         {
