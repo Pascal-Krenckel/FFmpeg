@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: |
             8.0.x
-            10.0.x
+            11.0.x
 
       - name: Build library (all target frameworks)
         run: dotnet build FFmpeg/FFmpeg.csproj -c Release
