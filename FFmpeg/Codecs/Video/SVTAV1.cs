@@ -310,7 +310,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
                 Height = firstFrame.Height;
             if (PixelFormat == PixelFormat.None)
                 PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
-            using SwsContext swsContext = new(firstFrame.Width, firstFrame.Height, firstFrame.PixelFormat, Width, Height, PixelFormat, SwsAlgorithm.Bicubic());
+            using SwsContext swsContext = new(SwsAlgorithm.Bicubic());
             _ = context.AddStream(CreateCodecContext());
             context.WriteHeader().ThrowIfError();
             using AVFrame convertedFrame = AVFrame.Allocate();
@@ -417,7 +417,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
                 Height = firstFrame.Height;
             if (PixelFormat == PixelFormat.None)
                 PixelFormat = Codec.GetBestPixelFormat(firstFrame.PixelFormat);
-            using SwsContext swsContext = new(firstFrame.Width, firstFrame.Height, firstFrame.PixelFormat, Width, Height, PixelFormat, SwsAlgorithm.Bicubic());
+            using SwsContext swsContext = new(SwsAlgorithm.Bicubic());
             using CodecContext codecContext = CreateCodecContext();
             _ = context.AddStream(codecContext);
             context.WriteHeader().ThrowIfError();
