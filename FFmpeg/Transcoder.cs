@@ -219,6 +219,26 @@ public sealed unsafe class Transcoder : IDisposable
 
     /// <summary>
     /// Adds an output stream that decodes the input stream, runs it through an optional simple filter
+    /// graph and encodes it with typed encoder settings, e.g. <see cref="Codecs.Video.X264"/> or
+    /// <see cref="Codecs.Audio.Opus"/>.
+    /// </summary>
+    /// <param name="inputIndex">The index of an audio or video input stream.</param>
+    /// <param name="encoder">
+    /// The encoder settings; they are applied when the stream is added (<see cref="EncoderSettings.Configure"/>), so
+    /// later changes have no effect. Size, pixel format, frame rate, sample format, sample rate and channel layout
+    /// that are set are enforced; unset ones are taken from the filter output.
+    /// </param>
+    /// <param name="filter">
+    /// A filter graph description with one input and one output, as for <c>ffmpeg -vf</c>/<c>-af</c>, or
+    /// <see langword="null"/>.
+    /// </param>
+    /// <returns>The index of the new output stream.</returns>
+    /// <exception cref="ArgumentException">The encoder rejects a setting, or does not match the stream type.</exception>
+    public int TranscodeStream(int inputIndex, EncoderSettings encoder, string? filter = null)
+        => TranscodeStream(inputIndex, encoder.Codec, filter, encoder.Configure);
+
+    /// <summary>
+    /// Adds an output stream that decodes the input stream, runs it through an optional simple filter
     /// graph and encodes it with <paramref name="encoder"/>.
     /// </summary>
     /// <param name="inputIndex">The index of an audio, video or subtitle input stream.</param>
