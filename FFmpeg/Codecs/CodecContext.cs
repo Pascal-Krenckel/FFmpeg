@@ -824,6 +824,31 @@ public sealed unsafe class CodecContext : Options.OptionQueryableBase, IDisposab
     }
 
     /// <summary>
+    /// Gets the color ranges the encoder accepts with the current settings (e.g. only <see cref="ColorRange.JPEG"/> for
+    /// <c>mjpeg</c> unless <c>strict</c> is -1); empty if the encoder accepts any.
+    /// </summary>
+    /// <remarks>Wraps <c>avcodec_get_supported_config</c> with <c>AV_CODEC_CONFIG_COLOR_RANGE</c>.</remarks>
+    public ReadOnlySpan<ColorRange> SupportedColorRanges => GetSupportedConfig<ColorRange>(_AVCodecConfig.AV_CODEC_CONFIG_COLOR_RANGE);
+
+    /// <summary>
+    /// Gets the color spaces the encoder accepts with the current settings; empty if the encoder accepts any.
+    /// </summary>
+    /// <remarks>Wraps <c>avcodec_get_supported_config</c> with <c>AV_CODEC_CONFIG_COLOR_SPACE</c>.</remarks>
+    public ReadOnlySpan<ColorSpace> SupportedColorSpaces => GetSupportedConfig<ColorSpace>(_AVCodecConfig.AV_CODEC_CONFIG_COLOR_SPACE);
+
+    private ReadOnlySpan<T> GetSupportedConfig<T>(_AVCodecConfig config) where T : unmanaged, Enum
+    {
+        if (context == null || context->codec == null)
+            return [];
+        System.Diagnostics.Debug.Assert(sizeof(T) == sizeof(int));
+        void* output = null;
+        int count;
+        // The lists are static data of the codec.
+        AVResult32 res = ffmpeg.avcodec_get_supported_config(context, null, config, 0, &output, &count);
+        return output == null || res.IsError ? [] : new(output, count);
+    }
+
+    /// <summary>
     /// Gets or sets the chroma sample location, which defines the position of the chroma samples relative to the luma samples in the video.
     /// <para>
     /// <b>Encoding:</b> Must be set by the user to specify the chroma sample location for encoding.
