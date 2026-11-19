@@ -84,13 +84,13 @@
 			<PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.400">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="System.IO.Pipelines" Version="10.0.11" />
+		<PackageReference Include="System.IO.Pipelines" Version="11.0.0" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
-		<PackageReference Include="System.Security.Permissions" Version="10.0.11" />
+		<PackageReference Include="System.Security.Permissions" Version="11.0.0" />
 		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[9.0.1.1,10)" />
 		<ProjectReference Condition=" $(Configuration) == 'Debug' " Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
