@@ -421,6 +421,10 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
             if (!context.Name.StartsWith("auto_") && context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink))
                 foreach (Option o in context.GetOptions(true))
                 {
+                    // Only options that were set: unset ones can have a string form that cannot be
+                    // parsed back (e.g. aresample's unset channel layouts read as "0 channels").
+                    if (!context.TryIsSetToDefault(o.Name, out bool isDefault, true).IsError && isDefault)
+                        continue;
                     if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
                         dictionary.Add(o.Name, value!);
                 }
