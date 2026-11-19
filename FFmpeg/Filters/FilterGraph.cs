@@ -415,33 +415,41 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
     public FilterGraph Copy()
     {
         FilterGraph copy = FilterGraph.Allocate();
-        foreach (FilterContext context in this)
+        try
         {
-            using Collections.AVMultiDictionary dictionary = [];
-            if (!context.Name.StartsWith("auto_") && context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink))
-                foreach (Option o in context.GetOptions(true))
-                {
-                    // Only options that were set: unset ones can have a string form that cannot be
-                    // parsed back (e.g. aresample's unset channel layouts read as "0 channels").
-                    if (!context.TryIsSetToDefault(o.Name, out bool isDefault, true).IsError && isDefault)
-                        continue;
-                    if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
-                        dictionary.Add(o.Name, value!);
-                }
-
-            _ = FilterContext.Create(context.Name, context.Filter, dictionary, copy);
-        }
-        foreach (FilterContext context in this)
-        {
-            foreach (FilterLink l in context.OutputFilterLinks)
+            foreach (FilterContext context in this)
             {
-                copy.Link(
-                        copy.FindFilter(l.SourceContext.Name!)!,
-                        l.SourcePadIndex,
-                        copy.FindFilter(l.DestinationContext.Name!)!,
-                        l.DestinationPadIndex)
-                    .ThrowIfError();
+                using Collections.AVMultiDictionary dictionary = [];
+                if (!context.Name.StartsWith("auto_") && context.Filter != Filter.VideoBufferSink && (context.Filter != Filter.AudioBufferSink))
+                    foreach (Option o in context.GetOptions(true))
+                    {
+                        // Only options that were set: unset ones can have a string form that cannot be
+                        // parsed back (e.g. aresample's unset channel layouts read as "0 channels").
+                        if (!context.TryIsSetToDefault(o.Name, out bool isDefault, true).IsError && isDefault)
+                            continue;
+                        if (!context.TryGetOption(o, out string? value, true).IsError && !string.IsNullOrEmpty(value))
+                            dictionary.Add(o.Name, value!);
+                    }
+
+                _ = FilterContext.Create(context.Name, context.Filter, dictionary, copy);
             }
+            foreach (FilterContext context in this)
+            {
+                foreach (FilterLink l in context.OutputFilterLinks)
+                {
+                    copy.Link(
+                            copy.FindFilter(l.SourceContext.Name!)!,
+                            l.SourcePadIndex,
+                            copy.FindFilter(l.DestinationContext.Name!)!,
+                            l.DestinationPadIndex)
+                        .ThrowIfError();
+                }
+            }
+        }
+        catch
+        {
+            copy.Dispose();
+            throw;
         }
         return copy;
     }
