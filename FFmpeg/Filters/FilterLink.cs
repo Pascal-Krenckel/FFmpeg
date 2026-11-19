@@ -30,20 +30,24 @@ public unsafe class FilterLink : IAVPointer<_AVFilterLink>
     public FilterContext DestinationContext => new(link->dst);
 
     /// <summary>
-    /// Gets the index of the output pad on the source filter associated with this link.
+    /// Gets the index of the output pad of <see cref="SourceContext"/> this link starts at.
     /// </summary>
-    public int SourcePadIndex => Find(link->src->output_pads, link->srcpad);
+    public int SourcePadIndex => IndexOf(link->src->outputs, link->src->nb_outputs);
 
     /// <summary>
-    /// Gets the index of the input pad on the destination filter associated with this link.
+    /// Gets the index of the input pad of <see cref="DestinationContext"/> this link ends at.
     /// </summary>
-    public int DestinationPadIndex => Find(link->dst->input_pads, link->dstpad);
+    public int DestinationPadIndex => IndexOf(link->dst->inputs, link->dst->nb_inputs);
 
-    /// <summary>
-    /// Finds the index of a filter pad within a pad array.
-    /// </summary>
-    /// <param name="pads">The beginning of the filter pad array.</param>
-    /// <param name="pad">The filter pad whose index should be determined.</param>
-    /// <returns>The zero-based index of <paramref name="pad"/> within <paramref name="pads"/>.</returns>
-    private int Find(_AVFilterPad* pads, _AVFilterPad* pad) => (int)(pads - pad);
+    // AVFilterPad is opaque in FFmpeg 9 (its size is unknown here), so the pad pointer cannot be used
+    // to compute the index. The filter's links array is indexed by pad, so look the link up there.
+    private int IndexOf(_AVFilterLink** links, uint count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (links[i] == link)
+                return i;
+        }
+        return -1;
+    }
 }
