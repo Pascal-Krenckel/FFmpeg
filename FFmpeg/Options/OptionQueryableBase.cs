@@ -685,7 +685,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         value = default;
         void* ptr;
         AutoGen._AVOption* ptrOption = ffmpeg.av_opt_find2(Pointer, name, null, 0, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0, &ptr);
-        if (ptrOption == null || ptr == null || (ptrOption->offset <= 0 && !ptrOption->type.HasFlag(OptionType.Constant)))
+        if (ptrOption == null || ptr == null || (ptrOption->offset <= 0 && !ptrOption->type.HasFlag(AutoGen._AVOptionType.AV_OPT_TYPE_CONST)))
             return AVResult32.OptionNotFound;
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
