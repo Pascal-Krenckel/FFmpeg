@@ -1,8 +1,14 @@
 ﻿namespace FFmpeg.Images;
 
 /// <summary>
-/// Represents the various flags and scaling algorithms used in FFmpeg's libswscale for sws_getContext.
+/// The flags of a <see cref="SwsContext"/> (<c>SwsContext.flags</c>, option <c>sws_flags</c>).
 /// </summary>
+/// <remarks>
+/// The scaler flags (<see cref="FastBilinear"/> to <see cref="Spline"/>) select the scaling filter; only one may be set.
+/// For dynamic contexts FFmpeg recommends <see cref="SwsContext.Scaler"/> instead, which overrides them unless it is
+/// <see cref="SwsScaler.Auto"/>. <see cref="FastBilinear"/>, <see cref="Experimental"/> and <see cref="Bicublin"/>
+/// have no <see cref="SwsScaler"/> equivalent.
+/// </remarks>
 [Flags]
 public enum SwsFlags
 {
@@ -62,7 +68,8 @@ public enum SwsFlags
     Spline = AutoGen._SwsFlags.SWS_SPLINE,
 
     /// <summary>
-    /// Return an error on underspecified conversions.
+    /// Return an error on underspecified conversions (e.g. an unspecified color space or range) instead of
+    /// assuming defaults. Dynamic contexts only.
     /// </summary>
     Strict = AutoGen._SwsFlags.SWS_STRICT,
 
@@ -92,12 +99,20 @@ public enum SwsFlags
     BitExact = AutoGen._SwsFlags.SWS_BITEXACT,
 
     /// <summary>
-    /// Output directly in BGR format.
+    /// Allow/prefer experimental new code paths (the unstable <see cref="SwsBackend"/>s). These may be faster, slower or
+    /// produce different output, and their behaviour may change at any time; FFmpeg intends them for testing only.
     /// </summary>
+    Unstable = AutoGen._SwsFlags.SWS_UNSTABLE,
+
+    /// <summary>
+    /// Has no effect (deprecated by FFmpeg).
+    /// </summary>
+    [Obsolete("This flag has no effect in FFmpeg.")]
     DirectBGR = AutoGen._SwsFlags.SWS_DIRECT_BGR,
 
     /// <summary>
-    /// Apply error diffusion to the output.
+    /// Apply error diffusion to the output (deprecated by FFmpeg).
     /// </summary>
+    [Obsolete("Set SwsContext.Dither to SwsDither.ErrorDiffusion instead.")]
     ErrorDiffusion = AutoGen._SwsFlags.SWS_ERROR_DIFFUSION,
 }
