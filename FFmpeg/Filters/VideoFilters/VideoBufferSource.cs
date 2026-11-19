@@ -394,15 +394,22 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
     }
 
     /// <summary>
-    /// Gets or sets the sample aspect ratio of the video frames.
+    /// Gets or sets the sample (pixel) aspect ratio of the frames (option <c>sar</c>).
     /// </summary>
-    /// <value>
-    /// The sample aspect ratio of the video frames.
-    /// </value>
+    public Rational SampleAspectRatio
+    {
+        get => TryGetOption("sar", out Rational sar).IsError ? 0 : sar;
+        set => SetOption("sar", value);
+    }
+
+    /// <summary>
+    /// Gets or sets the sample (pixel) aspect ratio of the frames.
+    /// </summary>
+    [Obsolete("Misspelled; use SampleAspectRatio.")]
     public Rational PixelAspectRation
     {
-        get => TryGetOption("sar", out Rational h).IsError ? 0 : h;
-        set => SetOption("sar", value);
+        get => SampleAspectRatio;
+        set => SampleAspectRatio = value;
     }
 
     /// <summary>
