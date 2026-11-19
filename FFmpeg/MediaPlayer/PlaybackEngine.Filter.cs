@@ -109,6 +109,7 @@ public partial class PlaybackEngine
 
             mediaBuffer.Dispose();
             videoFilterGraph?.Dispose();
+            videoFilterGraph = null;
             videoIn = null;
             videoOut = null;
             if (graph != null)
@@ -245,6 +246,7 @@ public partial class PlaybackEngine
                 throw new ArgumentException("@in and @out must contain exactly one filter.");
             mediaBuffer.Dispose();
             audioFilterGraph?.Dispose();
+            audioFilterGraph = null;
             audioIn = null;
             audioOut = null;
             if (graph != null)
