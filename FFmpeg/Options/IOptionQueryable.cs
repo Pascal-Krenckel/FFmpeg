@@ -64,7 +64,14 @@ public interface IOptionQueryable
     AVResult32 SetOption(Option option, string value, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(IDictionary{string, string}, bool)"/>
+    [Obsolete("Use SetOptions; SetOption(name, dictionary) sets a dictionary option.")]
     AVResult32 SetOption(IDictionary<string, string> values, bool recursive = true);
+
+    /// <inheritdoc cref="OptionQueryableBase.SetOptions(IDictionary{string, string}, bool)"/>
+    AVResult32 SetOptions(IDictionary<string, string> values, bool recursive = true);
+
+    /// <inheritdoc cref="OptionQueryableBase.SetOptions(ref ILookup{string, string}, bool)"/>
+    AVResult32 SetOptions(ref ILookup<string, string> values, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(string, ValueTuple{int, int}, bool)"/>
     AVResult32 SetOption(string name, (int Width, int Height) size, bool recursive = true);
@@ -106,6 +113,7 @@ public interface IOptionQueryable
     AVResult32 SetOption(string name, ReadOnlySpan<byte> span, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(string, ref ILookup{string, string}, bool)"/>
+    [Obsolete("Use SetOptions(ref values); the name is not used.")]
     AVResult32 SetOption(string name, ref ILookup<string, string> values, bool recursive = true);
 
     /// <inheritdoc cref="OptionQueryableBase.SetOption(string, string, bool)"/>
