@@ -4,6 +4,8 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
+		<!-- CS8981: the global alias "ffmpeg" deliberately mirrors the name of FFmpeg.AutoGen's ffmpeg class. -->
+		<NoWarn>$(NoWarn);CS8981</NoWarn>
 		<LangVersion>Latest</LangVersion>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<ImplicitUsings>enable</ImplicitUsings>
@@ -84,21 +86,12 @@
 			<PackagePath>\</PackagePath>
 		</None>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="11.0.100">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="System.IO.Pipelines" Version="11.0.0" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
-		<PackageReference Include="System.Security.Permissions" Version="11.0.0" />
 		<PackageReference Condition=" $(Configuration) == 'Release' " Include="FFmpegDotNet._AutoGen" Version="[9.0.1.1,10)" />
 		<ProjectReference Condition=" $(Configuration) == 'Debug' " Include="..\FFmpeg.AutoGen\FFmpeg.AutoGen\FFmpeg.AutoGen.csproj" />
 		<Using Include="FFmpeg.AutoGen.ffmpeg">
 			<Alias>ffmpeg</Alias>
 		</Using>
 		<Using Include="FFmpeg.Helper" />
-		<Using Include="System.Runtime.CompilerServices.IsExternalInit">
-			<Static>True</Static>
-		</Using>
 	</ItemGroup>
 </Project>
