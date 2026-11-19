@@ -25,6 +25,7 @@
   <Folder Name="/ghActions/">
     <File Path=".github/workflows/documentation.yml" />
     <File Path=".github/workflows/Release.yml" />
+    <File Path=".github/workflows/tests.yml" />
   </Folder>
   <Project Path="FFmpeg.AutoGen/FFmpeg.AutoGen/FFmpeg.AutoGen.csproj" />
   <Project Path="FFmpeg/FFmpeg.csproj" />
