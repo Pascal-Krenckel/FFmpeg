@@ -29,7 +29,7 @@ public abstract class VideoCodec(Codec codec, int width, int height, Rational ti
     /// <param name="width">The width of the video frame in pixels.</param>
     /// <param name="height">The height of the video frame in pixels.</param>
     /// <param name="timeBase">The time base used for timestamp calculations.</param>
-    public VideoCodec(Codec codec, int width, int height, Rational timeBase) : this(codec,width, height, timeBase,Rational.Zero)
+    public VideoCodec(Codec codec, int width, int height, Rational timeBase) : this(codec, width, height, timeBase, Rational.Zero)
     { }
 
 

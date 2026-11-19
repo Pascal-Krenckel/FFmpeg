@@ -367,12 +367,7 @@ public readonly struct AVResult32 : IEquatable<AVResult32>, IEquatable<int>
     bool IEquatable<int>.Equals(int other) => value.Equals(other);
 
     /// <inheritdoc cref="int.ToString()"/>
-    public override string ToString()
-    {
-        if (!IsError)
-            return value.ToString();
-        return s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
-    }
+    public override string ToString() => !IsError ? value.ToString() : s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
 
     // Built once on first use instead of reflecting over every property on each call.
     private static readonly Lazy<Dictionary<int, string>> s_names = new(() =>
@@ -774,12 +769,7 @@ public readonly struct AVResult64 : IEquatable<AVResult64>, IEquatable<long>
     bool IEquatable<long>.Equals(long other) => value.Equals(other);
 
     /// <inheritdoc cref="long.ToString()"/>
-    public override string ToString()
-    {
-        if (!IsError)
-            return value.ToString();
-        return s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
-    }
+    public override string ToString() => !IsError ? value.ToString() : s_names.Value.TryGetValue(value, out string? name) ? name : value.ToString();
 
     // Built once on first use instead of reflecting over every property on each call.
     private static readonly Lazy<Dictionary<long, string>> s_names = new(() =>

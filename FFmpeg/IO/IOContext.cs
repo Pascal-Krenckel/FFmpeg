@@ -170,8 +170,6 @@ public abstract unsafe class IOContext : AVIOContext
     /// Static method to read data from the stream into the specified buffer.
     /// </summary>
     /// <param name="opaque">A pointer to the user data (this object).</param>
-    /// <param name="buffer">The buffer to read data into.</param>
-    /// <param name="count">The number of bytes to read.</param>
     /// <returns>
     /// The number of bytes read, or an FFmpeg error code if the operation failed.
     /// Returning zero indicates end-of-file and is automatically translated to
@@ -300,7 +298,7 @@ public abstract unsafe class IOContext : AVIOContext
 #if NET6_0_OR_GREATER
             FormatContext.Context->pb->seekable = (int)value;
 #else
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 ((FFmpeg.AutoGen._AVIOContext_win*)FormatContext.Context->pb)->seekable = (int)value;
             else
                 FormatContext.Context->pb->seekable = (int)value;

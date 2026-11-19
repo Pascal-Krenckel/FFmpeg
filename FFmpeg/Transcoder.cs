@@ -1,4 +1,4 @@
-﻿﻿using FFmpeg.Audio;
+﻿using FFmpeg.Audio;
 using FFmpeg.Codecs;
 using FFmpeg.Exceptions;
 using FFmpeg.Filters;
@@ -10,7 +10,6 @@ using FFmpeg.Images;
 using FFmpeg.Utils;
 using System.Diagnostics;
 using System.Globalization;
-using System.Text;
 
 namespace FFmpeg;
 
@@ -349,7 +348,7 @@ public sealed unsafe class Transcoder : IDisposable
             AVStream stream = Sink.AddStream(encoder);
             CopyStreamProperties(inputStream, stream);
             Output output = new(outputIndex, inputIndex, type, context, filter ?? new TextFilter(null),
-                encoderOptions == null ? null : new Dictionary<string, string>(encoderOptions))
+                encoderOptions == null ? null : [with(encoderOptions)])
             {
                 UserFrameRate = context.FrameRate.IsValidTimeBase,
             };
@@ -381,12 +380,9 @@ public sealed unsafe class Transcoder : IDisposable
     /// <param name="configure">Called with the new encoder context.</param>
     /// <param name="encoderOptions">Private encoder options passed when the encoder is opened.</param>
     /// <returns>The index of the new output stream.</returns>
-    public int FilterStream(int inputIndex, string filter, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null)
-    {
-        if (string.IsNullOrWhiteSpace(filter))
-            throw new ArgumentException("A filter is required.", nameof(filter));
-        return TranscodeStream(inputIndex, GetInputEncoder(inputIndex), filter, configure, encoderOptions);
-    }
+    public int FilterStream(int inputIndex, string filter, Action<CodecContext>? configure = null, IDictionary<string, string>? encoderOptions = null) => string.IsNullOrWhiteSpace(filter)
+            ? throw new ArgumentException("A filter is required.", nameof(filter))
+            : TranscodeStream(inputIndex, GetInputEncoder(inputIndex), filter, configure, encoderOptions);
 
     /// <summary>
     /// Adds an output stream that filters the input stream with a graph from <paramref name="filterFactory"/>
@@ -803,7 +799,7 @@ public sealed unsafe class Transcoder : IDisposable
         {
             if (output.Graph == null)
                 BuildGraph(output, SourceFormat.FromDecoder(Source.CodecContexts[output.InputIndex], Source.Streams[output.InputIndex]));
-            ((AVResult32)output.BufferSource!.SendFrame(null)).ThrowIfError();
+            output.BufferSource!.SendFrame(null).ThrowIfError();
             PullFilteredFrames(output);
         }
 
@@ -971,13 +967,13 @@ public sealed unsafe class Transcoder : IDisposable
             }
             else
             {
-                ((AVResult32)output.BufferSource!.SendFrame(null)).ThrowIfError();
+                output.BufferSource!.SendFrame(null).ThrowIfError();
                 PullFilteredFrames(output);
             }
             BuildGraph(output, SourceFormat.FromFrame(frame, Source.CodecContexts[output.InputIndex]));
         }
 
-        ((AVResult32)output.BufferSource!.SendFrame(frame, keepRef: true)).ThrowIfError();
+        output.BufferSource!.SendFrame(frame, keepRef: true).ThrowIfError();
         PullFilteredFrames(output);
     }
 
@@ -1090,8 +1086,8 @@ public sealed unsafe class Transcoder : IDisposable
             graph.Config().ThrowIfError();
 
             output.Graph = graph;
-            output.BufferSource = (IBufferSource)source;
-            output.BufferSink = (IBufferSink)sink;
+            output.BufferSource = source;
+            output.BufferSink = sink;
             output.SourceFormat = format;
             graph = null!;
         }
@@ -1233,8 +1229,7 @@ public sealed unsafe class Transcoder : IDisposable
         CodecContext encoder = output.Encoder!;
         if (!encoder.TimeBase.IsValidTimeBase)
             encoder.TimeBase = Rational.TIME_BASE;
-        if (encoder.SubtitleHeader == null)
-            encoder.SubtitleHeader = decoder.SubtitleHeader;
+        encoder.SubtitleHeader ??= decoder.SubtitleHeader;
         if (encoder.Width <= 0 && encoder.Height <= 0)
         {
             encoder.Width = decoder.Width;
@@ -1285,7 +1280,7 @@ public sealed unsafe class Transcoder : IDisposable
             long end = packet.PresentationTimestamp + Math.Max(packet.Duration, 0);
             long ticks = Rational.Rescale(end, packet.TimeBase, new Rational(1, (int)TimeSpan.TicksPerSecond));
             if (ticks > Interlocked.Read(ref positionTicks))
-                Interlocked.Exchange(ref positionTicks, ticks);
+                _ = Interlocked.Exchange(ref positionTicks, ticks);
         }
 
         if (!headerWritten)
@@ -1645,32 +1640,32 @@ public sealed unsafe class Transcoder : IDisposable
             if (stream.MediaType == MediaType.Video)
             {
                 PixelFormat format = decoder.SoftwarePixelFormat != PixelFormat.None ? decoder.SoftwarePixelFormat : decoder.PixelFormat;
-                if (decoder.Width <= 0 || decoder.Height <= 0 || format == PixelFormat.None)
-                    throw new InvalidOperationException($"Input stream #{stream.Index} produced no frame and its decoder parameters are incomplete, so its encoder cannot be initialized.");
-                return new()
+                return decoder.Width <= 0 || decoder.Height <= 0 || format == PixelFormat.None
+                    ? throw new InvalidOperationException($"Input stream #{stream.Index} produced no frame and its decoder parameters are incomplete, so its encoder cannot be initialized.")
+                    : new()
+                    {
+                        Video = true,
+                        Width = decoder.Width,
+                        Height = decoder.Height,
+                        PixelFormat = format,
+                        SampleAspectRatio = decoder.SampleAspectRatio,
+                        ColorSpace = decoder.ColorSpace,
+                        ColorRange = decoder.ColorRange,
+                        ColorPrimaries = decoder.ColorPrimaries,
+                        ColorTransfer = decoder.ColorTransferCharacteristic,
+                        FrameRate = decoder.FrameRate,
+                        TimeBase = stream.TimeBase,
+                    };
+            }
+            return decoder.SampleRate <= 0 || decoder.SampleFormat == SampleFormat.None || decoder.ChannelLayout.Channels <= 0
+                ? throw new InvalidOperationException($"Input stream #{stream.Index} produced no frame and its decoder parameters are incomplete, so its encoder cannot be initialized.")
+                : new()
                 {
-                    Video = true,
-                    Width = decoder.Width,
-                    Height = decoder.Height,
-                    PixelFormat = format,
-                    SampleAspectRatio = decoder.SampleAspectRatio,
-                    ColorSpace = decoder.ColorSpace,
-                    ColorRange = decoder.ColorRange,
-                    ColorPrimaries = decoder.ColorPrimaries,
-                    ColorTransfer = decoder.ColorTransferCharacteristic,
-                    FrameRate = decoder.FrameRate,
+                    SampleFormat = decoder.SampleFormat,
+                    SampleRate = decoder.SampleRate,
+                    ChannelLayout = decoder.ChannelLayout.GetReferencedObject(),
                     TimeBase = stream.TimeBase,
                 };
-            }
-            if (decoder.SampleRate <= 0 || decoder.SampleFormat == SampleFormat.None || decoder.ChannelLayout.Channels <= 0)
-                throw new InvalidOperationException($"Input stream #{stream.Index} produced no frame and its decoder parameters are incomplete, so its encoder cannot be initialized.");
-            return new()
-            {
-                SampleFormat = decoder.SampleFormat,
-                SampleRate = decoder.SampleRate,
-                ChannelLayout = decoder.ChannelLayout.GetReferencedObject(),
-                TimeBase = stream.TimeBase,
-            };
         }
 
         public bool Matches(AVFrame frame) => Video

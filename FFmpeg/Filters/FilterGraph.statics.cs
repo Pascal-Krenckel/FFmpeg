@@ -82,8 +82,8 @@ public sealed unsafe partial class FilterGraph
         }
         else
         {
-            inputs = new FilterInOutList(@in);
-            outputs = new FilterInOutList(@out);
+            inputs = [with(@in)];
+            outputs = [with(@out)];
         }
         return res;
 

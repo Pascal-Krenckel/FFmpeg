@@ -484,9 +484,7 @@ public unsafe partial class AudioFifo : IDisposable
         int available = Count - offset;
         if (offset < 0 || available < 0)
             return ffmpeg.av_audio_fifo_peek_at(fifo, data, samples, offset); // let FFmpeg report the error
-        if (available == 0 || samples <= 0)
-            return 0;
-        return ffmpeg.av_audio_fifo_peek_at(fifo, data, Math.Min(samples, available), offset);
+        return available == 0 || samples <= 0 ? (AVResult32)0 : (AVResult32)ffmpeg.av_audio_fifo_peek_at(fifo, data, Math.Min(samples, available), offset);
     }
 
     private AVResult32 PeekPackedToPacked(byte* data, int samples) =>

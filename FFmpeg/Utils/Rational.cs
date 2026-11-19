@@ -256,7 +256,7 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
     /// <param name="r">The <see cref="Rational"/> number to multiply.</param>
     /// <returns>A new <see cref="Rational"/> that represents the product of the integer and the rational number.</returns>
     public static Rational operator *(int value, Rational r)
-        => new((long)value * r.Numerator, (long)r.Denominator);
+        => new((long)value * r.Numerator, r.Denominator);
 
     /// <summary>
     /// Multiplies a long integer by a <see cref="Rational"/>.

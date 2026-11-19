@@ -19,7 +19,7 @@ namespace FFmpeg.Codecs.Video;
 /// <param name="timeBase">The time base for the video.</param>
 /// <param name="framerate">The frame rate for the video.</param>
 /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
-public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational framerate) : VideoCodec(Codec.FindEncoder("libsvtav1") ?? throw new NotSupportedException(), width, height, timeBase,framerate)
+public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational framerate) : VideoCodec(Codec.FindEncoder("libsvtav1") ?? throw new NotSupportedException(), width, height, timeBase, framerate)
 {
     /// <summary>
     /// Represents the SVT-AV1 video codec. If the time base is too large opening the codec will fail without specifing the frame rate.
@@ -31,7 +31,7 @@ public unsafe class SVTAV1(int width, int height, Rational timeBase, Rational fr
     /// <param name="height">The height of the video.</param>
     /// <param name="timeBase">The time base for the video.</param>
     /// <exception cref="NotSupportedException">Thrown when the SVT-AV1 encoder is not found.</exception>
-    public SVTAV1(int width, int height, Rational timeBase) : this(width, height,timeBase,Rational.Zero)
+    public SVTAV1(int width, int height, Rational timeBase) : this(width, height, timeBase, Rational.Zero)
     {
 
     }
