@@ -53,6 +53,32 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     public void ResetOptions() => ffmpeg.av_opt_set_defaults(Pointer);
 
     /// <summary>
+    /// Checks whether an option still has its default value (<c>av_opt_is_set_to_default_by_name</c>).
+    /// </summary>
+    /// <param name="name">The name of the option.</param>
+    /// <param name="isDefault">When this method returns successfully, whether the option has its default value.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating success; an error if the option was not found or its type is not supported.</returns>
+    public AVResult32 TryIsSetToDefault(string name, out bool isDefault, bool recursive = true)
+    {
+        AVResult32 res = ffmpeg.av_opt_is_set_to_default_by_name(Pointer, name, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        isDefault = res > 0;
+        return res.IsError ? res : 0;
+    }
+
+    /// <summary>
+    /// Returns whether an option still has its default value (<c>av_opt_is_set_to_default_by_name</c>).
+    /// </summary>
+    /// <param name="name">The name of the option.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">The option was not found or its type is not supported.</exception>
+    public bool IsSetToDefault(string name, bool recursive = true)
+    {
+        TryIsSetToDefault(name, out bool isDefault, recursive).ThrowIfError();
+        return isDefault;
+    }
+
+    /// <summary>
     /// Retrieves a list of available AVOptions, optionally including those from child objects recursively.
     /// </summary>
     /// <param name="recursive">Specifies whether to include options from child objects recursively.</param>
