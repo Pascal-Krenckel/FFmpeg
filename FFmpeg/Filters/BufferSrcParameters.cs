@@ -97,7 +97,10 @@ public sealed unsafe class BufferSrcParameters : IDisposable, IAVPointer<AutoGen
             // Free unmanaged memory. av_free only frees the struct; a custom channel layout
             // set through ChannelLayout owns a separately allocated channel map.
             if (parameters != null)
+            {
                 ffmpeg.av_channel_layout_uninit(&parameters->ch_layout);
+                ffmpeg.av_buffer_unref(&parameters->hw_frames_ctx);
+            }
             ffmpeg.av_free(parameters);
             parameters = null;
 
@@ -132,5 +135,20 @@ public sealed unsafe class BufferSrcParameters : IDisposable, IAVPointer<AutoGen
     /// Gets or sets the color range of the buffer source.
     /// </summary>
     public ColorRange ColorRange { get => (ColorRange)parameters->color_range; set => parameters->color_range = (AutoGen._AVColorRange)value; }
+
+    /// <summary>
+    /// Gets or sets the alpha mode of video frames (whether alpha is premultiplied).
+    /// </summary>
+    public AlphaMode AlphaMode { get => (AlphaMode)parameters->alpha_mode; set => parameters->alpha_mode = (AutoGen._AVAlphaMode)value; }
+
+    /// <summary>
+    /// Gets a reference to the hardware frames context of the frames that will be sent, required when
+    /// feeding hardware frames (e.g. from a hardware decoder) into a buffer source.
+    /// </summary>
+    /// <remarks>
+    /// The buffer source takes its own reference when the parameters are applied; these parameters
+    /// release theirs when disposed.
+    /// </remarks>
+    public HW.FramesContext_ref HWFramesContext => new(&parameters->hw_frames_ctx, false);
 }
 
