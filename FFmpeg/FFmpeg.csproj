@@ -36,10 +36,24 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>9.9.2.0</Version>
+		<Version>9.9.3.0</Version>
 		<PackageReleaseNotes>
 			FFmpeg 9.0.1 - "Lei"
 			Version numbering scheme changed: FFMpegMajor.Major.Minor.Patch
+
+			--- 9.9.3.0 ---
+			SwsContext uses FFmpeg's current scaling API (sws_scale_frame on a dynamic context): new SwsContext() or new SwsContext(SwsAlgorithm) is not tied to an image size or format, adapts to every frame, image or buffer (ImageInfo) and only sets the conversion up again when they or the settings change.
+			Frames are converted with their color properties: YUV matrix, range, chroma location, and primaries/transfer function, including HDR to SDR tone mapping when the destination asks for other primaries or transfer. Color properties the destination frame leaves unspecified are taken from the source and written to it, like FFmpeg's scale filter.
+			Added settings: Scaler, ChromaScaler, ScalerParam1/2, Flags, Algorithm, Threads, Dither, AlphaBlend, GammaCorrect, Intent and Backends, with the enums SwsScaler, SwsDither, SwsAlphaBlend, SwsIntent and SwsBackend, and SwsFlags.Unstable.
+			Added: Setup (prepare or check a conversion), IsNoOp, IsSupportedInput/IsSupportedOutput and IsSupported for color spaces, primaries, transfer functions and frames; Convert overloads for frames and raw buffers or spans described by an ImageInfo.
+			BugFix: converting frames without a pixel format aborted the process inside FFmpeg; Convert returns InvalidArgument instead.
+			SVTAV1 converts with a dynamic context, so its input frames no longer all need the size of the first frame.
+			Behaviour changes:
+			Frames tagged with a YUV matrix (e.g. BT.709) are converted with that matrix; the old API always used BT.601. Untagged frames and raw buffers give the same results as before.
+			The static SwsContext.Convert helpers and Image.ConvertTo use dynamic contexts.
+			If only one of the frames is marked interlaced, both are scaled as progressive frames, as FFmpeg's scale filter does by default.
+			A no-op conversion into a frame without a buffer references the source buffers instead of copying them.
+			Obsolete: the fixed-size constructor (sws_getContext), its Source*/Destination* properties and size helpers, the Convert overloads that rely on the fixed size, CheckContext, and SwsFlags.ErrorDiffusion (use Dither) and DirectBGR (no effect). They keep working on fixed contexts.
 
 			--- 9.9.2.0 ---
 			Typed filters (namespaces Filters.VideoFilters and Filters.AudioFilters) with Allocate/Create and a property for every FFmpeg option; setters throw if FFmpeg rejects the value:
