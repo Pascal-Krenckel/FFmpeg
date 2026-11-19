@@ -219,14 +219,14 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         for (int i = 0; i < members.Length; i++)
         {
             System.Reflection.MemberInfo member = members[i];
-            if (member is System.Reflection.FieldInfo fi && fi.FieldType == typeof(T))
+            if (member is System.Reflection.FieldInfo fi && fi.FieldType == typeof(T) && fi.GetValue(source) is T fieldValue)
             {
-                value = (T)fi.GetValue(source);
+                value = fieldValue;
                 return true;
             }
-            else if (member is System.Reflection.PropertyInfo pi && pi.PropertyType == typeof(T))
+            else if (member is System.Reflection.PropertyInfo pi && pi.PropertyType == typeof(T) && pi.GetValue(source) is T propertyValue)
             {
-                value = (T)pi.GetValue(source);
+                value = propertyValue;
                 return true;
             }
         }

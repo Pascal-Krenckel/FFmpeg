@@ -35,7 +35,7 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     /// <summary>
     /// Gets the name of the filter context.
     /// </summary>
-    public string Name => Marshal.PtrToStringUTF8((nint)context->name);
+    public string Name => Marshal.PtrToStringUTF8((nint)context->name) ?? string.Empty;
 
     /// <summary>
     /// Gets or sets the maximum number of worker threads used by the filter.

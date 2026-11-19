@@ -239,7 +239,7 @@ public readonly unsafe struct CodecDescription : IEquatable<CodecDescription>
                 return [];
             List<string> mimeTypes = [];
             for (byte** ptr = descriptor->mime_types; *ptr != null; ptr++)
-                mimeTypes.Add(Marshal.PtrToStringUTF8((nint)(*ptr)));
+                mimeTypes.Add(Marshal.PtrToStringUTF8((nint)(*ptr)) ?? string.Empty);
             return [.. mimeTypes];
         }
     }

@@ -37,13 +37,13 @@ public readonly unsafe struct Codec : IEquatable<Codec>
     /// Gets the short, symbolic name of the codec implementation (e.g., "h264", "aac"). 
     /// This name is typically used in code or configuration files to reference the codec.
     /// </summary>
-    public string Name => codec != null ? Marshal.PtrToStringUTF8((nint)codec->name) : "UNKNOWN";
+    public string Name => codec != null ? Marshal.PtrToStringUTF8((nint)codec->name) ?? string.Empty : "UNKNOWN";
 
     /// <summary>
     /// Gets the human-readable, descriptive name of the codec (e.g., "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10").
     /// This name is more verbose than <see cref="Name"/> and provides better clarity for end users.
     /// </summary>
-    public string LongName => codec != null ? Marshal.PtrToStringUTF8((nint)codec->long_name) : "UNKNOWN";
+    public string LongName => codec != null ? Marshal.PtrToStringUTF8((nint)codec->long_name) ?? string.Empty : "UNKNOWN";
 
     /// <summary>
     /// Gets the capabilities of the codec, represented by a set of flags indicating what the codec supports.

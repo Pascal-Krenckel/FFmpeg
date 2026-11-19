@@ -268,7 +268,7 @@ public sealed unsafe partial class FilterGraph : ILoggingContext, IDisposable, I
         byte* buff = ffmpeg.avfilter_graph_dump(graph, (byte*)null);
         if (buff == null)
             return "Error";
-        string dump = Marshal.PtrToStringUTF8((nint)buff);
+        string dump = Marshal.PtrToStringUTF8((nint)buff) ?? string.Empty;
         ffmpeg.av_free(buff);
         return dump;
     }

@@ -199,7 +199,7 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
         private bool Check() => _version == dict._check && _count == dict.Count;
         public KeyValuePair<string, string> Current => prev == null
                     ? throw new InvalidOperationException()
-                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key), Marshal.PtrToStringUTF8((IntPtr)prev->value));
+                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key) ?? string.Empty, Marshal.PtrToStringUTF8((IntPtr)prev->value) ?? string.Empty);
 
         object IEnumerator.Current => Current;
 
@@ -231,7 +231,7 @@ public sealed unsafe class AVMultiDictionary : ILookup<string, string>, IDisposa
         private int _version = dict._check;
         private int _count = dict.Count;
         private bool Check() => _version == dict._check && _count == dict.Count;
-        public string Current => prev == null ? throw new InvalidOperationException() : Marshal.PtrToStringUTF8((IntPtr)prev->value);
+        public string Current => prev == null ? throw new InvalidOperationException() : Marshal.PtrToStringUTF8((IntPtr)prev->value) ?? string.Empty;
 
         object IEnumerator.Current => Current;
 

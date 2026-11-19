@@ -156,7 +156,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
         private int _count = dict.Count;
         public KeyValuePair<string, string> Current => prev == null
                     ? throw new InvalidOperationException()
-                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key), Marshal.PtrToStringUTF8((IntPtr)prev->value));
+                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key) ?? string.Empty, Marshal.PtrToStringUTF8((IntPtr)prev->value) ?? string.Empty);
 
         object IEnumerator.Current => Current;
 
@@ -186,7 +186,7 @@ public unsafe struct AVMultiDictionary_ref : ILookup<string, string>, Utils.IRef
         private readonly AVMultiDictionary_ref dict = dict;
         private int _count = dict.Count;
         private bool Check() => _count == dict.Count;
-        public string Current => prev == null ? throw new InvalidOperationException() : Marshal.PtrToStringUTF8((IntPtr)prev->value);
+        public string Current => prev == null ? throw new InvalidOperationException() : Marshal.PtrToStringUTF8((IntPtr)prev->value) ?? string.Empty;
 
         object IEnumerator.Current => Current;
 

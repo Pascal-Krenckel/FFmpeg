@@ -30,7 +30,7 @@ public readonly unsafe struct OutputFormat
     /// <remarks>
     /// The short name is a concise identifier for the format, often used for quick reference.
     /// </remarks>
-    public string ShortName => Marshal.PtrToStringUTF8((nint)Format->name);
+    public string ShortName => Marshal.PtrToStringUTF8((nint)Format->name) ?? string.Empty;
 
     /// <summary>
     /// Gets the long name of the output format.
@@ -38,7 +38,7 @@ public readonly unsafe struct OutputFormat
     /// <remarks>
     /// The long name provides a more descriptive name for the format compared to the short name.
     /// </remarks>
-    public string LongName => Marshal.PtrToStringUTF8((nint)Format->long_name);
+    public string LongName => Marshal.PtrToStringUTF8((nint)Format->long_name) ?? string.Empty;
 
     /// <summary>
     /// Gets a read-only list of MIME types associated with the output format.

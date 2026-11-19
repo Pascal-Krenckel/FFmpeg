@@ -77,7 +77,7 @@ public unsafe struct SubtitleRect
     /// Gets or sets the plain text subtitle content. 
     /// This is typically used for simple, unformatted subtitles.
     /// </summary>
-    public string Text
+    public string? Text
     {
         get => Marshal.PtrToStringUTF8((nint)rects->text);
         set
@@ -92,7 +92,7 @@ public unsafe struct SubtitleRect
     /// Gets or sets the ASS/SSA formatted subtitle content.
     /// This field is used for complex, formatted subtitles (e.g., with styling, positioning).
     /// </summary>
-    public string ASS
+    public string? ASS
     {
         get => Marshal.PtrToStringUTF8((nint)rects->ass);
         set
@@ -116,6 +116,6 @@ public unsafe struct SubtitleRect
     /// Returns a string representation of the subtitle. 
     /// If plain text is present, it will return that; otherwise, it returns the ASS-formatted content.
     /// </summary>
-    /// <returns>The plain text or ASS subtitle content as a string.</returns>
-    public override string ToString() => Text ?? ASS;
+    /// <returns>The plain text or ASS subtitle content; an empty string for bitmap subtitles.</returns>
+    public override string ToString() => Text ?? ASS ?? string.Empty;
 }

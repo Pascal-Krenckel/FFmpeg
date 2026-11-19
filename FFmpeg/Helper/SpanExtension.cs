@@ -43,11 +43,11 @@ internal static class SpanExtension
             if (span.IsEmpty)
                 return string.Empty;
             if (span.Length == 1)
-                return span[0]!.ToString();
+                return span[0]?.ToString() ?? string.Empty;
             StringBuilder sb = new();
-            _ = sb.Append(span[0]!.ToString());
+            _ = sb.Append(span[0]?.ToString());
             for (int i = 1; i < span.Length; i++)
-                _ = sb.Append(separator).Append(span[i]!.ToString());
+                _ = sb.Append(separator).Append(span[i]?.ToString());
             return sb.ToString();
         }
 
@@ -56,11 +56,11 @@ internal static class SpanExtension
             if (span.IsEmpty)
                 return string.Empty;
             if (span.Length == 1)
-                return span[0]!.ToString();
+                return span[0]?.ToString() ?? string.Empty;
             StringBuilder sb = new();
-            _ = sb.Append(span[0]!.ToString());
+            _ = sb.Append(span[0]?.ToString());
             for (int i = 1; i < span.Length; i++)
-                _ = sb.Append(separator).Append(span[i]!.ToString());
+                _ = sb.Append(separator).Append(span[i]?.ToString());
             return sb.ToString();
         }
 

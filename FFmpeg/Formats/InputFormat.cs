@@ -25,7 +25,7 @@ public readonly unsafe struct InputFormat
     /// Short names are often used as identifiers or abbreviations for the format. This property retrieves
     /// and splits the short names from a comma-separated string.
     /// </remarks>
-    public IEnumerable<string> ShortNames => Marshal.PtrToStringUTF8((nint)Format->name).Split(',', StringSplitOptions.RemoveEmptyEntries);
+    public IEnumerable<string> ShortNames => (Marshal.PtrToStringUTF8((nint)Format->name) ?? string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries);
 
     /// <summary>
     /// Gets the long name of the input format.
@@ -33,7 +33,7 @@ public readonly unsafe struct InputFormat
     /// <remarks>
     /// The long name provides a more descriptive name for the format compared to the short names.
     /// </remarks>
-    public string LongName => Marshal.PtrToStringUTF8((nint)Format->long_name);
+    public string LongName => Marshal.PtrToStringUTF8((nint)Format->long_name) ?? string.Empty;
 
     /// <summary>
     /// Gets the file extensions associated with the input format.

@@ -21,7 +21,7 @@ public static class ClockExtension
             TaskCompletionSource<int>? signal =
                 new(TaskCreationOptions.RunContinuationsAsynchronously);
 
-            void clockChanged(object sender, EventArgs e) => signal.TrySetResult(0);
+            void clockChanged(object? sender, EventArgs e) => signal.TrySetResult(0);
             @this.ClockChanged += clockChanged;
 
             try

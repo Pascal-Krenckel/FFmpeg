@@ -904,22 +904,22 @@ public readonly unsafe struct Rational : IEquatable<Rational>, IComparable<Ratio
 
     #region IConvertable
     TypeCode IConvertible.GetTypeCode() => TypeCode.Object;
-    bool IConvertible.ToBoolean(IFormatProvider provider) => !IsNaN && Numerator != 0;
-    byte IConvertible.ToByte(IFormatProvider provider) => (byte)(Numerator / Denominator);
-    char IConvertible.ToChar(IFormatProvider provider) => (char)(Numerator / Denominator);
-    DateTime IConvertible.ToDateTime(IFormatProvider provider) => throw new InvalidCastException();
-    decimal IConvertible.ToDecimal(IFormatProvider provider) => Numerator / (decimal)Denominator;
-    double IConvertible.ToDouble(IFormatProvider provider) => this;
-    short IConvertible.ToInt16(IFormatProvider provider) => (short)(Numerator / Denominator);
-    int IConvertible.ToInt32(IFormatProvider provider) => Numerator / Denominator;
-    long IConvertible.ToInt64(IFormatProvider provider) => Numerator / Denominator;
-    sbyte IConvertible.ToSByte(IFormatProvider provider) => (sbyte)(Numerator / Denominator);
-    float IConvertible.ToSingle(IFormatProvider provider) => (float)Numerator / Denominator;
-    string IConvertible.ToString(IFormatProvider provider) => ToString(null!, provider);
-    object IConvertible.ToType(Type conversionType, IFormatProvider provider) => Convert.ChangeType((double)this, conversionType, provider);
-    ushort IConvertible.ToUInt16(IFormatProvider provider) => (ushort)(Numerator / Denominator);
-    uint IConvertible.ToUInt32(IFormatProvider provider) => (uint)(Numerator / Denominator);
-    ulong IConvertible.ToUInt64(IFormatProvider provider) => (ulong)(Numerator / Denominator);
+    bool IConvertible.ToBoolean(IFormatProvider? provider) => !IsNaN && Numerator != 0;
+    byte IConvertible.ToByte(IFormatProvider? provider) => (byte)(Numerator / Denominator);
+    char IConvertible.ToChar(IFormatProvider? provider) => (char)(Numerator / Denominator);
+    DateTime IConvertible.ToDateTime(IFormatProvider? provider) => throw new InvalidCastException();
+    decimal IConvertible.ToDecimal(IFormatProvider? provider) => Numerator / (decimal)Denominator;
+    double IConvertible.ToDouble(IFormatProvider? provider) => this;
+    short IConvertible.ToInt16(IFormatProvider? provider) => (short)(Numerator / Denominator);
+    int IConvertible.ToInt32(IFormatProvider? provider) => Numerator / Denominator;
+    long IConvertible.ToInt64(IFormatProvider? provider) => Numerator / Denominator;
+    sbyte IConvertible.ToSByte(IFormatProvider? provider) => (sbyte)(Numerator / Denominator);
+    float IConvertible.ToSingle(IFormatProvider? provider) => (float)Numerator / Denominator;
+    string IConvertible.ToString(IFormatProvider? provider) => ToString(null, provider);
+    object IConvertible.ToType(Type conversionType, IFormatProvider? provider) => Convert.ChangeType((double)this, conversionType, provider);
+    ushort IConvertible.ToUInt16(IFormatProvider? provider) => (ushort)(Numerator / Denominator);
+    uint IConvertible.ToUInt32(IFormatProvider? provider) => (uint)(Numerator / Denominator);
+    ulong IConvertible.ToUInt64(IFormatProvider? provider) => (ulong)(Numerator / Denominator);
     #endregion
 }
 

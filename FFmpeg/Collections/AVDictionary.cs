@@ -264,7 +264,7 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
         private bool Check() => _version == dict._check && _count == dict.Count;
         public KeyValuePair<string, string> Current => prev == null
                     ? throw new InvalidOperationException()
-                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key), Marshal.PtrToStringUTF8((IntPtr)prev->value));
+                    : new KeyValuePair<string, string>(Marshal.PtrToStringUTF8((IntPtr)prev->key) ?? string.Empty, Marshal.PtrToStringUTF8((IntPtr)prev->value) ?? string.Empty);
 
         object IEnumerator.Current => Current;
 

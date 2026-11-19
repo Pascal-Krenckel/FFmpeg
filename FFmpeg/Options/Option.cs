@@ -19,7 +19,7 @@ public sealed unsafe class Option
     /// <remarks>
     /// The name is used as an identifier for the option within the FFmpeg library.
     /// </remarks>
-    public string Name => Marshal.PtrToStringUTF8((IntPtr)option->name);
+    public string Name => Marshal.PtrToStringUTF8((IntPtr)option->name) ?? string.Empty;
 
     /// <summary>
     /// Gets the help text associated with the option.
@@ -27,7 +27,7 @@ public sealed unsafe class Option
     /// <remarks>
     /// The help text provides a description of the option's purpose and usage.
     /// </remarks>
-    public string HelpText => Marshal.PtrToStringUTF8((IntPtr)option->help);
+    public string HelpText => Marshal.PtrToStringUTF8((IntPtr)option->help) ?? string.Empty;
 
     /// <summary>
     /// Gets the type of the option.

@@ -39,7 +39,7 @@ public partial class PlaybackEngine
         PlayerStateChanged += UpdateClockStateAndFinished;
     }
 
-    private void UpdateClockStateAndFinished(object sender, PlayerState e)
+    private void UpdateClockStateAndFinished(object? sender, PlayerState e)
     {
 
         if (State == PlayerState.Faulted)
