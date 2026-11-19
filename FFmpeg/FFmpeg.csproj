@@ -36,10 +36,13 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>9.9.3.1</Version>
+		<Version>9.9.4.0</Version>
 		<PackageReleaseNotes>
 			FFmpeg 9.0.1 - "Lei"
 			Version numbering scheme changed: FFMpegMajor.Major.Minor.Patch
+			--- 9.9.4.0 ---
+			Codecs, FFmpeg.Codecs.(Audio|Video|Image) contains multiple standard codecs which help you to create and configure encoders.
+			
 			--- 9.9.3.1 ---
 			BugFix: SetOption(string,IDictionary) was changed by Claude to behave like SetOption(IDictionary) and not setting the underlying Dictionary like intended. SetOption(IDictionary) is no obsolet use SetOptions instead.
 
