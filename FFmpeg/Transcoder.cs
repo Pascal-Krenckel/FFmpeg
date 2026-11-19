@@ -21,7 +21,7 @@ namespace FFmpeg;
 /// <remarks>
 /// <para>
 /// Map the streams first (<see cref="CopyStream"/>, <see cref="TranscodeStream(int, Codec, string?, Action{CodecContext}?, IDictionary{string, string}?)"/>,
-/// <see cref="FilterStream"/>), optionally set <see cref="Start"/> and <see cref="Duration"/>, then call
+/// <see cref="FilterStream(int, string, Action{CodecContext}?, IDictionary{string, string}?)"/>), optionally set <see cref="Start"/> and <see cref="Duration"/>, then call
 /// <see cref="Run"/>, <see cref="RunAsync"/> or <see cref="ProcessNext"/> repeatedly.
 /// Input streams that are not mapped are discarded.
 /// </para>
