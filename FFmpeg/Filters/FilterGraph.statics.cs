@@ -69,8 +69,9 @@ public sealed unsafe partial class FilterGraph
         out FilterGraph? filterGraph)
     {
         filterGraph = Allocate();
-        _AVFilterInOut* @in;
-        _AVFilterInOut* @out;
+        // avfilter_graph_parse_ptr reads *inputs/*outputs as lists of open pads, so they must start empty.
+        _AVFilterInOut* @in = null;
+        _AVFilterInOut* @out = null;
         AVResult32 res = ffmpeg.avfilter_graph_parse_ptr(filterGraph.graph, filter, &@in, &@out, null);
         if (res.IsError)
         {
