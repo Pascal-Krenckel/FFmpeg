@@ -85,9 +85,7 @@ public unsafe class VideoBufferSink : FilterContext, IBufferSink
     /// </exception>
     public static VideoBufferSink Create(string name, FilterGraph graph)
     {
-        VideoBufferSink context = Allocate(name, graph);
-        context.Init().ThrowIfError();
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
     }
 
     /// <summary>

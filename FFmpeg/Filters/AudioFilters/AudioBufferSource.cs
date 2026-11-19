@@ -123,12 +123,11 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
                 "The buffer source parameters must specify a positive sample rate.",
                 nameof(parameters));
 
-        AudioBufferSource context = Allocate(name, graph);
-
-        context.SetBufferSourceParameters(parameters).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetBufferSourceParameters(parameters).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -178,14 +177,13 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
                 channels,
                 "The number of channels must be greater than zero.");
 
-        AudioBufferSource context = Allocate(name, graph);
-
-        context.SetOption("sample_rate", sampleRate).ThrowIfError();
-        context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
-        context.SetOption("channels", channels).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetOption("sample_rate", sampleRate).ThrowIfError();
+            context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
+            context.SetOption("channels", channels).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -229,14 +227,13 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
                 sampleRate,
                 "The sample rate must be greater than zero.");
 
-        AudioBufferSource context = Allocate(name, graph);
-
-        context.SetOption("sample_rate", sampleRate).ThrowIfError();
-        context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
-        context.SetOption("channel_layout", channelLayout).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetOption("sample_rate", sampleRate).ThrowIfError();
+            context.SetOption("sample_fmt", sampleFormat).ThrowIfError();
+            context.SetOption("channel_layout", channelLayout).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -271,20 +268,12 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
                 "The codec context does not describe an audio codec.",
                 nameof(ctx));
 
-        AudioBufferSource context = Allocate(name, graph);
-
         using BufferSrcParameters parameters = BufferSrcParameters.Allocate();
-
         parameters.ChannelLayout.CopyFrom(ctx.ChannelLayout);
         parameters.SampleFormat = ctx.SampleFormat;
-        parameters.SampleAspectRatio = ctx.SampleAspectRatio;
         parameters.SampleRate = ctx.SampleRate;
         parameters.TimeBase = ctx.TimeBase;
-
-        context.SetBufferSourceParameters(parameters).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return Create(name, parameters, graph);
     }
 
     /// <summary>
@@ -319,19 +308,12 @@ public unsafe class AudioBufferSource : FilterContext, IBufferSource
                 "The stream does not describe an audio stream.",
                 nameof(stream));
 
-        AudioBufferSource context = Allocate(name, graph);
-
         using BufferSrcParameters parameters = BufferSrcParameters.Allocate();
-
         parameters.ChannelLayout.CopyFrom(stream.CodecParameters.ChannelLayout);
         parameters.SampleFormat = stream.CodecParameters.SampleFormat;
         parameters.SampleRate = stream.CodecParameters.SampleRate;
         parameters.TimeBase = stream.TimeBase;
-
-        context.SetBufferSourceParameters(parameters).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return Create(name, parameters, graph);
     }
 
     /// <summary>

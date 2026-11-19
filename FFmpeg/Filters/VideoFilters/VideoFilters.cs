@@ -37,9 +37,7 @@ public static class VideoFilters
     /// </remarks>
     public static FilterContext CreateScale(string name, int width, int height, FilterGraph graph)
     {
-        FilterContext? context = FilterContext.Allocate(name, Filter.Scale, graph) ?? throw new ArgumentNullException();
-        context.Init($"{width}:{height}").ThrowIfError();
-        return context;
+        return FilterContext.Create(name, Filter.Scale, string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}:{1}", width, height), graph);
     }
 
     /// <summary>
@@ -63,9 +61,7 @@ public static class VideoFilters
     /// </remarks>
     public static FilterContext CreateFPS(string name, Rational fps, FilterGraph graph)
     {
-        FilterContext? context = FilterContext.Allocate(name, Filter.FPS, graph) ?? throw new ArgumentNullException();
-        context.Init(fps.ToString()).ThrowIfError();
-        return context;
+        return FilterContext.Create(name, Filter.FPS, fps.ToString(), graph);
     }
 
     /// <summary>
@@ -79,10 +75,7 @@ public static class VideoFilters
     /// </returns>
     public static FilterContext CreateFormat(string name, PixelFormat format, FilterGraph graph)
     {
-        FilterContext context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
-        context.SetOption("pix_fmts", format.ToFFmpegString()).ThrowIfError();
-        context.Init().ThrowIfError();
-        return context;
+        return FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={format.ToFFmpegString()}", graph);
     }
 
     /// <summary>
@@ -103,11 +96,9 @@ public static class VideoFilters
     /// </exception>
     public static FilterContext CreateFormat(string name, FilterGraph graph, params ReadOnlySpan<PixelFormat> formats)
     {
-        FilterContext context = FilterContext.Allocate(name, Filter.VideoFormat, graph)!;
         if (formats.IsEmpty)
-            throw new ArgumentException(nameof(formats));
-        context.Init($"pix_fmts={string.Join('|', formats, PixelFormatExtensions.ToFFmpegString)}").ThrowIfError();
-        return context;
+            throw new ArgumentException("At least one pixel format is required.", nameof(formats));
+        return FilterContext.Create(name, Filter.VideoFormat, $"pix_fmts={string.Join('|', formats, PixelFormatExtensions.ToFFmpegString)}", graph);
     }
 
 

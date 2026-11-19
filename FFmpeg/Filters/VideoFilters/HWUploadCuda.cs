@@ -58,10 +58,11 @@ public unsafe class HWUploadCuda : FilterContext
     /// </returns>
     public static HWUploadCuda Create(string name, int device, FilterGraph graph)
     {
-        HWUploadCuda upload = Allocate(name, graph);
-        upload.Device = device;
-        upload.Init().ThrowIfError();
-        return upload;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            c.SetOption("device", device).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>

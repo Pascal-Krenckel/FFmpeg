@@ -72,10 +72,11 @@ public unsafe class HWUpload : FilterContext
     /// </returns>
     public static HWUpload Create(string name, HW.DeviceContext hwContext, FilterGraph graph)
     {
-        HWUpload upload = Allocate(name, graph);
-        upload.HwDeviceContext.SetReferencedObject(hwContext);
-        upload.Init().ThrowIfError();
-        return upload;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            c.HwDeviceContext.SetReferencedObject(hwContext);
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -97,11 +98,12 @@ public unsafe class HWUpload : FilterContext
     /// <inheritdoc cref="Create(string, HW.DeviceContext, FilterGraph)"/>
     public static HWUpload Create(string name, HW.DeviceContext_ref hwContext, FilterGraph graph)
     {
-        HWUpload upload = Allocate(name, graph);
-        using DeviceContext? hwC = hwContext.GetReferencedObject();
-        upload.HwDeviceContext.SetReferencedObject(hwC);
-        upload.Init().ThrowIfError();
-        return upload;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            using DeviceContext? hwC = hwContext.GetReferencedObject();
+            c.HwDeviceContext.SetReferencedObject(hwC);
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -126,10 +128,11 @@ public unsafe class HWUpload : FilterContext
     /// </remarks>
     public static HWUpload Create(string name, DeviceType deviceType, FilterGraph graph)
     {
-        HWUpload upload = Allocate(name, graph);
-        upload.DeriveDevice = deviceType;
-        upload.Init().ThrowIfError();
-        return upload;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            c.SetOption("derive_device", deviceType.ToFFmpegString()).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>

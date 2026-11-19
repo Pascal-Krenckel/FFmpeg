@@ -8,7 +8,35 @@ namespace FFmpeg.Filters;
 public unsafe partial class FilterContext
 {
 
-    internal static _AVFilterContext* AllocateInternal(string name, Filter filter, FilterGraph graph) => ffmpeg.avfilter_graph_alloc_filter(graph.graph, filter.filter, name);
+    internal static _AVFilterContext* AllocateInternal(string name, Filter filter, FilterGraph graph)
+    {
+        if (graph == null)
+            throw new ArgumentNullException(nameof(graph));
+        if (filter.filter == null)
+            throw new ArgumentException("The filter is not set.", nameof(filter));
+        _AVFilterContext* context = ffmpeg.avfilter_graph_alloc_filter(graph.graph, filter.filter, name);
+        return context != null ? context : throw new OutOfMemoryException($"Could not allocate the filter '{name}'.");
+    }
+
+    /// <summary>
+    /// Runs <paramref name="initialize"/> (setting options and calling <see cref="Init()"/>) on a newly
+    /// allocated filter. If it throws, the filter is removed from its graph again, like
+    /// <c>avfilter_graph_create_filter</c> does; otherwise the uninitialized filter would remain in the
+    /// graph and make <see cref="FilterGraph.Config"/> fail.
+    /// </summary>
+    internal static T InitializeOrDelete<T>(T context, Action<T> initialize) where T : FilterContext
+    {
+        try
+        {
+            initialize(context);
+            return context;
+        }
+        catch
+        {
+            context.Delete();
+            throw;
+        }
+    }
 
     /// <summary>
     /// Allocates a filter context without initializing it.
@@ -34,10 +62,7 @@ public unsafe partial class FilterContext
     /// initialization.
     /// </remarks>
     public static FilterContext? Allocate(string name, Filter filter, FilterGraph graph)
-    {
-        AutoGen._AVFilterContext* context = ffmpeg.avfilter_graph_alloc_filter(graph.graph, filter.filter, name);
-        return context == null ? null : new(context);
-    }
+        => new(AllocateInternal(name, filter, graph));
 
     /// <summary>
     /// Creates and initializes a filter within the specified filter graph.
@@ -115,11 +140,7 @@ public unsafe partial class FilterContext
     /// initialization, and returns the initialized filter context.
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, AVDictionary dictionary, FilterGraph graph)
-    {
-        FilterContext? filterContext = Allocate(name, filter, graph);
-        filterContext!.Init(dictionary).ThrowIfError();
-        return filterContext;
-    }
+        => InitializeOrDelete(new FilterContext(AllocateInternal(name, filter, graph)), c => c.Init(dictionary).ThrowIfError());
 
     /// <summary>
     /// Creates and initializes a filter using the specified dictionary of options.
@@ -146,11 +167,7 @@ public unsafe partial class FilterContext
     /// options, and returns the initialized filter context.
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, IDictionary<string, string> dictionary, FilterGraph graph)
-    {
-        FilterContext? filterContext = Allocate(name, filter, graph);
-        filterContext!.Init(dictionary).ThrowIfError();
-        return filterContext;
-    }
+        => InitializeOrDelete(new FilterContext(AllocateInternal(name, filter, graph)), c => c.Init(dictionary).ThrowIfError());
 
     /// <summary>
     /// Creates and initializes a filter using the specified multi-value dictionary
@@ -176,11 +193,7 @@ public unsafe partial class FilterContext
     /// options, and returns the initialized filter context.
     /// </remarks>
     public static FilterContext Create(string name, Filter filter, AVMultiDictionary dictionary, FilterGraph graph)
-    {
-        FilterContext? filterContext = Allocate(name, filter, graph);
-        filterContext!.Init(dictionary).ThrowIfError();
-        return filterContext;
-    }
+        => InitializeOrDelete(new FilterContext(AllocateInternal(name, filter, graph)), c => c.Init(dictionary).ThrowIfError());
 
     /// <summary>
     /// Creates a managed wrapper of the specified filter context type for the current native filter context.

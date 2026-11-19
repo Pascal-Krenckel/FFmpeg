@@ -63,9 +63,7 @@ public unsafe class FramePack : FilterContext
     /// </returns>
     public static FramePack Create(string name, FilterGraph graph)
     {
-        FramePack framePack = Allocate(name, graph);
-        framePack.Init().ThrowIfError();
-        return framePack;
+        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
     }
 
     /// <summary>
@@ -86,10 +84,11 @@ public unsafe class FramePack : FilterContext
     /// </returns>
     public static FramePack Create(string name, Stereo3DType format, FilterGraph graph)
     {
-        FramePack framePack = Allocate(name, graph);
-        framePack.Format = format;
-        framePack.Init().ThrowIfError();
-        return framePack;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            c.SetOption("format", (int)format).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -120,10 +119,11 @@ public unsafe class FramePack : FilterContext
     /// </remarks>
     public static FramePack Create(string name, string format, FilterGraph graph)
     {
-        FramePack framePack = Allocate(name, graph);
-        _ = framePack.SetOption("format", format);
-        framePack.Init().ThrowIfError();
-        return framePack;
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            c.SetOption("format", format).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
     }
 
     /// <summary>

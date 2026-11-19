@@ -78,14 +78,13 @@ public unsafe class AudioFormat : FilterContext
                 sampleRate,
                 "The sample rate must be greater than zero.");
 
-        AudioFormat context = Allocate(name, graph);
-
-        context.SetOption("f", sampleFormat.ToFFmpegString()).ThrowIfError();
-        context.SetOption("r", sampleRate.ToString()).ThrowIfError();
-        context.SetOption("cl", channelLayout.ToString()).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetOption("f", sampleFormat.ToFFmpegString()).ThrowIfError();
+            context.SetOption("r", sampleRate.ToString(System.Globalization.CultureInfo.InvariantCulture)).ThrowIfError();
+            context.SetOption("cl", channelLayout.ToString()).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -126,29 +125,26 @@ public unsafe class AudioFormat : FilterContext
         ReadOnlySpan<ChannelLayout> channelLayouts,
         FilterGraph graph)
     {
-        AudioFormat context = Allocate(name, graph);
+        // Spans cannot be captured by the lambda below, so build the option values first.
+        foreach (int rate in sampleRates)
+        {
+            if (rate <= 0)
+                throw new ArgumentException("The sample rates must be greater than zero.", nameof(sampleRates));
+        }
+        string? formats = sampleFormats.IsEmpty ? null : string.Join('|', sampleFormats, SampleExtensions.ToFFmpegString);
+        string? rates = sampleRates.IsEmpty ? null : string.Join('|', sampleRates.ToArray());
+        string? layouts = channelLayouts.IsEmpty ? null : string.Join('|', channelLayouts.ToArray().Select(l => l.ToString()));
 
-        if (!sampleFormats.IsEmpty)
-            context.SetOption(
-                "f",
-                string.Join('|', sampleFormats, SampleExtensions.ToFFmpegString))
-                .ThrowIfError();
-
-        if (!sampleRates.IsEmpty)
-            context.SetOption(
-                "r",
-                string.Join('|', sampleRates))
-                .ThrowIfError();
-
-        if (!channelLayouts.IsEmpty)
-            context.SetOption(
-                "cl",
-                string.Join('|', channelLayouts))
-                .ThrowIfError();
-
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            if (formats != null)
+                context.SetOption("f", formats).ThrowIfError();
+            if (rates != null)
+                context.SetOption("r", rates).ThrowIfError();
+            if (layouts != null)
+                context.SetOption("cl", layouts).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>

@@ -54,9 +54,7 @@ public unsafe class AudioBufferSink : FilterContext, IBufferSink
     /// </exception>
     public static AudioBufferSink Create(string name, FilterGraph graph)
     {
-        AudioBufferSink context = Allocate(name, graph);
-        context.Init().ThrowIfError();
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
     }
 
     /// <summary>

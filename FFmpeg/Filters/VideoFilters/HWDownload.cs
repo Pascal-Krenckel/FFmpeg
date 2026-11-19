@@ -59,8 +59,6 @@ public unsafe class HWDownload : FilterContext
     /// </returns>
     public static HWDownload Create(string name, FilterGraph graph)
     {
-        HWDownload download = Allocate(name, graph);
-        download.Init().ThrowIfError();
-        return download;
+        return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
     }
 }

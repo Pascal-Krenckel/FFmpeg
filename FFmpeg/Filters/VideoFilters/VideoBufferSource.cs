@@ -109,16 +109,13 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         Rational timeBase,
         FilterGraph graph)
     {
-        VideoBufferSource? context =
-            Allocate(name, graph)
-            ?? throw new ArgumentNullException();
-
-        context.SetOption("pix_fmt", (AutoGen._AVPixelFormat)format).ThrowIfError();
-        context.SetOption("video_size", width, height).ThrowIfError();
-        context.SetOption("time_base", timeBase).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetOption("pix_fmt", (AutoGen._AVPixelFormat)format).ThrowIfError();
+            context.SetOption("video_size", width, height).ThrowIfError();
+            context.SetOption("time_base", timeBase).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -178,11 +175,11 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         if (!isVideo)
             throw new ArgumentException("The bufferSrcParameters are not video parameters");
 
-        VideoBufferSource context = Allocate(name, graph);
-        context.SetBufferSourceParameters(parameters).ThrowIfError();
-        context.Init().ThrowIfError();
-
-        return context;
+        return InitializeOrDelete(Allocate(name, graph), context =>
+        {
+            context.SetBufferSourceParameters(parameters).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -219,25 +216,20 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         if (ctx.CodecType != MediaType.Video)
             throw new ArgumentException("The codec context does not represent a video stream.", nameof(ctx));
 
-        _AVFilterContext* ptr = AllocateInternal(name, Filter.VideoBufferSource, graph);
-        if (ptr == null)
-            throw new NullReferenceException();
-
-        VideoBufferSource context = new(ptr)
+        return InitializeOrDelete(Allocate(name, graph), context =>
         {
-            Width = ctx.Width,
-            Height = ctx.Height,
-            PixelFormat = ctx.PixelFormat,
-            PixelAspectRation = ctx.SampleAspectRatio,
-            TimeBase = ctx.TimeBase,
-            FrameRate = ctx.FrameRate,
-            ColorSpace = ctx.ColorSpace,
-            ColorRange = ctx.ColorRange,
-            AlphaMode = ctx.AlphaMode
-        };
-
-        context.Init().ThrowIfError();
-        return context;
+            context.SetOption("width", ctx.Width).ThrowIfError();
+            context.SetOption("height", ctx.Height).ThrowIfError();
+            context.SetOption("pix_fmt", ctx.PixelFormat).ThrowIfError();
+            context.SetOption("sar", ctx.SampleAspectRatio).ThrowIfError();
+            context.SetOption("time_base", ctx.TimeBase).ThrowIfError();
+            if (ctx.FrameRate.IsValidTimeBase)
+                context.SetOption("frame_rate", ctx.FrameRate).ThrowIfError();
+            context.SetOption("colorspace", (int)ctx.ColorSpace).ThrowIfError();
+            context.SetOption("range", (int)ctx.ColorRange).ThrowIfError();
+            context.SetOption("alpha_mode", (int)ctx.AlphaMode).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
@@ -273,26 +265,21 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
         if (stream.MediaType != MediaType.Video)
             throw new ArgumentException("The stream does not represent a video stream.", nameof(stream));
 
-        _AVFilterContext* ptr = AllocateInternal(name, Filter.VideoBufferSource, graph);
-        if (ptr == null)
-            throw new NullReferenceException();
-
         CodecParameters_ref parameters = stream.CodecParameters;
-        VideoBufferSource context = new(ptr)
+        return InitializeOrDelete(Allocate(name, graph), context =>
         {
-            Width = parameters.Width,
-            Height = parameters.Height,
-            PixelFormat = parameters.PixelFormat,
-            PixelAspectRation = parameters.SampleAspectRatio,
-            TimeBase = stream.TimeBase,
-            FrameRate = parameters.FrameRate,
-            ColorSpace = parameters.ColorSpace,
-            ColorRange = parameters.ColorRange,
-            AlphaMode = parameters.AlphaMode,
-        };
-
-        context.Init().ThrowIfError();
-        return context;
+            context.SetOption("width", parameters.Width).ThrowIfError();
+            context.SetOption("height", parameters.Height).ThrowIfError();
+            context.SetOption("pix_fmt", parameters.PixelFormat).ThrowIfError();
+            context.SetOption("sar", parameters.SampleAspectRatio).ThrowIfError();
+            context.SetOption("time_base", stream.TimeBase).ThrowIfError();
+            if (parameters.FrameRate.IsValidTimeBase)
+                context.SetOption("frame_rate", parameters.FrameRate).ThrowIfError();
+            context.SetOption("colorspace", (int)parameters.ColorSpace).ThrowIfError();
+            context.SetOption("range", (int)parameters.ColorRange).ThrowIfError();
+            context.SetOption("alpha_mode", (int)parameters.AlphaMode).ThrowIfError();
+            context.Init().ThrowIfError();
+        });
     }
 
     /// <summary>
