@@ -1155,6 +1155,10 @@ public sealed unsafe class Transcoder : IDisposable
     private static string FormatSeconds(long microseconds)
         => string.Format(CultureInfo.InvariantCulture, "{0}.{1:D6}", microseconds / 1_000_000, Math.Abs(microseconds % 1_000_000));
 
+    private static string ColorRangeName(ColorRange range) => ffmpeg.av_color_range_name((AutoGen._AVColorRange)range) ?? string.Empty;
+
+    private static string ColorSpaceName(ColorSpace space) => ffmpeg.av_color_space_name((AutoGen._AVColorSpace)space) ?? string.Empty;
+
     private static IEnumerable<(string Filter, string Args)> GetEncoderConstraints(Output output)
     {
         CodecContext encoder = output.Encoder!;
@@ -1175,9 +1179,24 @@ public sealed unsafe class Transcoder : IDisposable
             IEnumerable<PixelFormat> formats = encoder.PixelFormat != PixelFormat.None
                 ? [encoder.PixelFormat]
                 : codec.SupportedPixelFormats.ToArray();
+            List<string> args = [];
             string list = string.Join("|", formats.Select(f => f.ToFFmpegString()));
             if (list.Length > 0)
-                yield return ("format", $"pix_fmts={list}");
+                args.Add($"pix_fmts={list}");
+            // Like ffmpeg: also convert to a color space and range the encoder accepts (e.g. mjpeg only takes full
+            // range), or to the ones set on the encoder.
+            string spaces = encoder.ColorSpace != ColorSpace.Unspecified
+                ? ColorSpaceName(encoder.ColorSpace)
+                : string.Join("|", encoder.SupportedColorSpaces.ToArray().Select(ColorSpaceName));
+            if (spaces.Length > 0)
+                args.Add($"color_spaces={spaces}");
+            string ranges = encoder.ColorRange != ColorRange.Unspecified
+                ? ColorRangeName(encoder.ColorRange)
+                : string.Join("|", encoder.SupportedColorRanges.ToArray().Select(ColorRangeName));
+            if (ranges.Length > 0)
+                args.Add($"color_ranges={ranges}");
+            if (args.Count > 0)
+                yield return ("format", string.Join(":", args));
         }
         else
         {
