@@ -53,6 +53,32 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     public void ResetOptions() => ffmpeg.av_opt_set_defaults(Pointer);
 
     /// <summary>
+    /// Checks whether an option still has its default value (<c>av_opt_is_set_to_default_by_name</c>).
+    /// </summary>
+    /// <param name="name">The name of the option.</param>
+    /// <param name="isDefault">When this method returns successfully, whether the option has its default value.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An <see cref="AVResult32"/> indicating success; an error if the option was not found or its type is not supported.</returns>
+    public AVResult32 TryIsSetToDefault(string name, out bool isDefault, bool recursive = true)
+    {
+        AVResult32 res = ffmpeg.av_opt_is_set_to_default_by_name(Pointer, name, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        isDefault = res > 0;
+        return res.IsError ? res : 0;
+    }
+
+    /// <summary>
+    /// Returns whether an option still has its default value (<c>av_opt_is_set_to_default_by_name</c>).
+    /// </summary>
+    /// <param name="name">The name of the option.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <exception cref="FFmpeg.Exceptions.FFmpegException">The option was not found or its type is not supported.</exception>
+    public bool IsSetToDefault(string name, bool recursive = true)
+    {
+        TryIsSetToDefault(name, out bool isDefault, recursive).ThrowIfError();
+        return isDefault;
+    }
+
+    /// <summary>
     /// Retrieves a list of available AVOptions, optionally including those from child objects recursively.
     /// </summary>
     /// <param name="recursive">Specifies whether to include options from child objects recursively.</param>
@@ -193,14 +219,14 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         for (int i = 0; i < members.Length; i++)
         {
             System.Reflection.MemberInfo member = members[i];
-            if (member is System.Reflection.FieldInfo fi && fi.FieldType == typeof(T))
+            if (member is System.Reflection.FieldInfo fi && fi.FieldType == typeof(T) && fi.GetValue(source) is T fieldValue)
             {
-                value = (T)fi.GetValue(source);
+                value = fieldValue;
                 return true;
             }
-            else if (member is System.Reflection.PropertyInfo pi && pi.PropertyType == typeof(T))
+            else if (member is System.Reflection.PropertyInfo pi && pi.PropertyType == typeof(T) && pi.GetValue(source) is T propertyValue)
             {
-                value = (T)pi.GetValue(source);
+                value = propertyValue;
                 return true;
             }
         }
@@ -346,16 +372,24 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         => ffmpeg.av_opt_set_sample_fmt(Pointer, name, (AutoGen._AVSampleFormat)format, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
 
     /// <summary>
-    /// Sets multiple options from a dictionary of key-value pairs (<c>av_opt_set_dict2</c>).
+    /// Sets the dictionary option <paramref name="name"/> (e.g. <c>svtav1-params</c> or <c>x264-params</c>) to
+    /// <paramref name="values"/> (<c>av_opt_set_dict_val</c>).
     /// </summary>
-    /// <param name="name">Not used; every entry of <paramref name="values"/> is applied as its own option.</param>
-    /// <param name="values">The options to set. On return it contains only the entries that were not found.</param>
+    /// <remarks>To set several options from a dictionary, use <see cref="SetOptions(IDictionary{string, string}, bool)"/>.</remarks>
+    /// <param name="name">The name of an option of type dictionary.</param>
+    /// <param name="values">The entries of the dictionary; the collection is not changed.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(string name, IDictionary<string, string> values, bool recursive = true)
-        // av_opt_set_dict2: every entry is applied as its own option; entries that were
-        // consumed are removed from values, the unused ones remain (same as FFmpeg).
-        => SetOption(values, recursive);
+    {
+        if (values is AVDictionary_ref pDic)
+            return ffmpeg.av_opt_set_dict_val(Pointer, name, *pDic.Pointer, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        if (values is Collections.AVDictionary dic)
+            return ffmpeg.av_opt_set_dict_val(Pointer, name, dic.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+        // av_opt_set_dict_val copies the dictionary, so the caller's collection is left untouched.
+        using Collections.AVDictionary dictionary = new(values);
+        return ffmpeg.av_opt_set_dict_val(Pointer, name, dictionary.dictionary, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0);
+    }
 
     /// <summary>
     /// Sets an option by name with a lookup collection of key-value pairs.
@@ -387,7 +421,19 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <param name="values">The dictionary of key-value pairs to set as options.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
-    public AVResult32 SetOption(IDictionary<string, string> values, bool recursive = true)
+    [Obsolete("Use SetOptions; SetOption(name, dictionary) sets a dictionary option.")]
+    public AVResult32 SetOption(IDictionary<string, string> values, bool recursive = true) => SetOptions(values, recursive);
+
+    /// <summary>
+    /// Sets several options at once, one per entry of <paramref name="values"/> (<c>av_opt_set_dict2</c>), like the
+    /// options dictionary of FFmpeg's open functions.
+    /// </summary>
+    /// <remarks>To set a single option of type dictionary, use <see cref="SetOption(string, IDictionary{string, string}, bool)"/>.</remarks>
+    /// <param name="values">The options to set (name → value). On return it contains only the entries that were not
+    /// found, as with FFmpeg; options that were set are removed.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An AVResult32 indicating the success of the operation; options that are not found are no error.</returns>
+    public AVResult32 SetOptions(IDictionary<string, string> values, bool recursive = true)
     {
         if (values is AVDictionary_ref pDic)
         {
@@ -416,11 +462,22 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
     /// <summary>
     /// Sets multiple options using a reference to a lookup collection of key-value pairs.
     /// </summary>
-    /// <param name="name">Not used; every entry of <paramref name="values"/> is applied as its own option (<c>av_opt_set_dict2</c>).</param>
+    /// <param name="name">Not used.</param>
     /// <param name="values">The lookup collection of key-value pairs to set as options. On return it contains the entries that were not found.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
-    public AVResult32 SetOption(string name, ref ILookup<string, string> values, bool recursive = true)
+    [Obsolete("Use SetOptions(ref values); the name is not used.")]
+    public AVResult32 SetOption(string name, ref ILookup<string, string> values, bool recursive = true) => SetOptions(ref values, recursive);
+
+    /// <summary>
+    /// Sets several options at once, one per entry of <paramref name="values"/> (<c>av_opt_set_dict2</c>); keys with
+    /// several values set the option once per value, the last one wins.
+    /// </summary>
+    /// <param name="values">The options to set. On return it contains only the entries that were not found, as with
+    /// FFmpeg.</param>
+    /// <param name="recursive">Whether to search child objects recursively.</param>
+    /// <returns>An AVResult32 indicating the success of the operation; options that are not found are no error.</returns>
+    public AVResult32 SetOptions(ref ILookup<string, string> values, bool recursive = true)
     {
         if (values is AVMultiDictionary_ref pDic)
         {
@@ -602,10 +659,10 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         => SetOption(option.Name, value, recursive);
 
     /// <summary>
-    /// Sets multiple options from a dictionary of key-value pairs (<c>av_opt_set_dict2</c>).
+    /// Sets the dictionary option <paramref name="option"/> to <paramref name="values"/> (<c>av_opt_set_dict_val</c>).
     /// </summary>
-    /// <param name="option">Not used; every entry of <paramref name="values"/> is applied as its own option.</param>
-    /// <param name="values">The options to set. On return it contains only the entries that were not found.</param>
+    /// <param name="option">An option of type dictionary.</param>
+    /// <param name="values">The entries of the dictionary; the collection is not changed.</param>
     /// <param name="recursive">Whether to search child objects recursively.</param>
     /// <returns>An AVResult32 indicating the success of the operation.</returns>
     public AVResult32 SetOption(Option option, IDictionary<string, string> values, bool recursive = true)
@@ -659,7 +716,7 @@ public abstract unsafe class OptionQueryableBase : IOptionQueryable, ILoggingCon
         value = default;
         void* ptr;
         AutoGen._AVOption* ptrOption = ffmpeg.av_opt_find2(Pointer, name, null, 0, recursive ? ffmpeg.AV_OPT_SEARCH_CHILDREN : 0, &ptr);
-        if (ptrOption == null || ptr == null || (ptrOption->offset <= 0 && !ptrOption->type.HasFlag(OptionType.Constant)))
+        if (ptrOption == null || ptr == null || (ptrOption->offset <= 0 && !ptrOption->type.HasFlag(AutoGen._AVOptionType.AV_OPT_TYPE_CONST)))
             return AVResult32.OptionNotFound;
         void* dst = (byte*)ptr + ptrOption->offset;
         if (ptrOption->type == AutoGen._AVOptionType.AV_OPT_TYPE_BINARY)
