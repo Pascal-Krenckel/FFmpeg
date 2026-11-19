@@ -1730,8 +1730,8 @@ public readonly struct TranscodingProgress(TimeSpan position, TimeSpan totalDura
 }
 
 /// <summary>
-/// Creates a new, unconfigured filter graph with exactly one unlinked input and one unlinked output
-/// for a <see cref="Transcoder"/> output stream.
+/// Creates a new, unconfigured filter graph with exactly one unlinked input and one unlinked output,
+/// for a <see cref="Transcoder"/> output stream or a <see cref="MediaPlayer.PlaybackEngine"/> stream.
 /// </summary>
 /// <param name="context">The stream and the format of the frames that will enter the graph.</param>
 /// <returns>The unlinked input, the graph and the unlinked output; the transcoder takes ownership of all three.</returns>
@@ -1747,12 +1747,12 @@ public readonly struct TranscodingProgress(TimeSpan position, TimeSpan totalDura
 public delegate (FilterInOutList Inputs, FilterGraph Graph, FilterInOutList Outputs) FilterGraphFactory(FilterGraphContext context);
 
 /// <summary>
-/// Describes the filter graph a <see cref="Transcoder"/> is about to build: the input stream and the
-/// format of the decoded frames that will enter it.
+/// Describes the filter graph a <see cref="Transcoder"/> or <see cref="MediaPlayer.PlaybackEngine"/> is
+/// about to build: the input stream and the format of the decoded frames that will enter it.
 /// </summary>
 public sealed class FilterGraphContext
 {
-    internal FilterGraphContext(AVStream inputStream, int outputStreamIndex, CodecContext encoder, bool isRebuild)
+    internal FilterGraphContext(AVStream inputStream, int outputStreamIndex, CodecContext? encoder, bool isRebuild)
     {
         InputStream = inputStream;
         OutputStreamIndex = outputStreamIndex;
@@ -1764,21 +1764,22 @@ public sealed class FilterGraphContext
     /// <summary>Gets the input stream.</summary>
     public AVStream InputStream { get; }
 
-    /// <summary>Gets the index of the output stream the graph feeds.</summary>
+    /// <summary>Gets the index of the <see cref="Transcoder"/> output stream the graph feeds, or -1 for a <see cref="MediaPlayer.PlaybackEngine"/>.</summary>
     public int OutputStreamIndex { get; }
 
     /// <summary>Gets the media type (audio or video).</summary>
     public MediaType MediaType { get; }
 
     /// <summary>
-    /// Gets the encoder of the output stream. It is open when <see cref="IsRebuild"/> is <see langword="true"/>;
+    /// Gets the encoder of the <see cref="Transcoder"/> output stream, or <see langword="null"/> for a
+    /// <see cref="MediaPlayer.PlaybackEngine"/>. It is open when <see cref="IsRebuild"/> is <see langword="true"/>;
     /// the transcoder then converts the graph output to the format it was opened with.
     /// </summary>
-    public CodecContext Encoder { get; }
+    public CodecContext? Encoder { get; }
 
     /// <summary>
-    /// Gets whether the graph is rebuilt because the decoded format changed mid-stream
-    /// (<see langword="false"/> for the first graph).
+    /// Gets whether the graph is built again rather than for the first time: by a <see cref="Transcoder"/>
+    /// because the decoded format changed mid-stream, by a <see cref="MediaPlayer.PlaybackEngine"/> after a seek.
     /// </summary>
     public bool IsRebuild { get; }
 

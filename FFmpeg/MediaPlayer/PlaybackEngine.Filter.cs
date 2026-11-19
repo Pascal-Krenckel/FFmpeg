@@ -9,12 +9,16 @@ public partial class PlaybackEngine
 
     private string? videoFilter;
     private string? audioFilter;
+    private FilterGraphFactory? videoFilterFactory;
+    private FilterGraphFactory? audioFilterFactory;
 
     private void FlushFilters()
     {
         if (videoFilterGraph != null)
         {
-            if (videoFilter == null)
+            if (videoFilterFactory != null)
+                ApplyVideoFilterFactory(videoFilterFactory, rebuild: true);
+            else if (videoFilter == null)
             {
                 videoFilterGraph.Flush();
                 videoIn = videoFilterGraph.InputFilters.Single().As<VideoBufferSource>();
@@ -26,7 +30,9 @@ public partial class PlaybackEngine
         }
         if (audioFilterGraph != null)
         {
-            if (audioFilter == null)
+            if (audioFilterFactory != null)
+                ApplyAudioFilterFactory(audioFilterFactory, rebuild: true);
+            else if (audioFilter == null)
             {
                 audioFilterGraph.Flush();
                 audioIn = audioFilterGraph.InputFilters.Single().As<AudioBufferSource>();
@@ -89,6 +95,7 @@ public partial class PlaybackEngine
     public void SetVideoFilter(FilterInOutList? @in, FilterGraph? graph, FilterInOutList? @out)
     {
         videoFilter = null;
+        videoFilterFactory = null;
         if (videoStreamIndex == -1)
             if (graph == null)
                 return;
@@ -227,6 +234,7 @@ public partial class PlaybackEngine
     public void SetAudioFilter(FilterInOutList? @in, FilterGraph? graph, FilterInOutList? @out)
     {
         audioFilter = null;
+        audioFilterFactory = null;
         if (audioStreamIndex == -1)
             if (graph == null)
                 return;
@@ -311,4 +319,124 @@ public partial class PlaybackEngine
         }
         this.audioFilter = audioFilter;
     }
+
+    /// <summary>
+    /// Configures the video filter graph from a factory that returns a filter description.
+    /// </summary>
+    /// <param name="videoFilterFactory">
+    /// Returns the filter description (one input, one output) for the stream and frame format described by
+    /// the <see cref="FilterGraphContext"/>, e.g. <c>ctx =&gt; $"scale={ctx.Width / 2}:-2"</c>.
+    /// Use <see cref="SetVideoFilter(string?)"/> with <see langword="null"/> to remove the filter. It is called now and again whenever
+    /// the graph has to be set up again (after seeking, <see cref="FilterGraphContext.IsRebuild"/> is then
+    /// <see langword="true"/>).
+    /// </param>
+    /// <exception cref="ArgumentException">The media contains no video stream, or the description is not a valid video filter graph.</exception>
+    /// <exception cref="InvalidOperationException">The player is currently playing.</exception>
+    public void SetVideoFilterFactory(Func<FilterGraphContext, string> videoFilterFactory)
+        => SetVideoFilterFactory(ToGraphFactory(videoFilterFactory ?? throw new ArgumentNullException(nameof(videoFilterFactory))));
+
+    /// <summary>
+    /// Configures the video filter graph from a factory that creates filter graph objects.
+    /// </summary>
+    /// <param name="videoFilterFactory">
+    /// Creates a new, unconfigured filter graph with one unlinked input and one unlinked output for the
+    /// stream and frame format described by the <see cref="FilterGraphContext"/>
+    /// (use <see cref="SetVideoFilter(string?)"/> with <see langword="null"/> to remove the filter). The player takes ownership of the returned graph and
+    /// lists. It is called now and again whenever the graph has to be set up again (after seeking), so,
+    /// unlike <see cref="SetVideoFilter(FilterInOutList?, FilterGraph?, FilterInOutList?)"/>, the graph is
+    /// never recreated with <see cref="FilterGraph.Copy"/>.
+    /// </param>
+    /// <exception cref="ArgumentException">The media contains no video stream, or the graph does not have exactly one input and one output.</exception>
+    /// <exception cref="InvalidOperationException">The player is currently playing.</exception>
+    public void SetVideoFilterFactory(FilterGraphFactory videoFilterFactory)
+        => ApplyVideoFilterFactory(videoFilterFactory ?? throw new ArgumentNullException(nameof(videoFilterFactory)), rebuild: false);
+
+    /// <summary>
+    /// Configures the audio filter graph from a factory that returns a filter description.
+    /// </summary>
+    /// <param name="audioFilterFactory">
+    /// Returns the filter description (one input, one output) for the stream and frame format described by
+    /// the <see cref="FilterGraphContext"/>, e.g. <c>ctx =&gt; $"aresample={ctx.SampleRate / 2}"</c>.
+    /// Use <see cref="SetAudioFilter(string?)"/> with <see langword="null"/> to remove the filter. It is called now and again whenever
+    /// the graph has to be set up again (after seeking).
+    /// </param>
+    /// <exception cref="ArgumentException">The media contains no audio stream, or the description is not a valid audio filter graph.</exception>
+    /// <exception cref="InvalidOperationException">The player is currently playing.</exception>
+    public void SetAudioFilterFactory(Func<FilterGraphContext, string> audioFilterFactory)
+        => SetAudioFilterFactory(ToGraphFactory(audioFilterFactory ?? throw new ArgumentNullException(nameof(audioFilterFactory))));
+
+    /// <summary>
+    /// Configures the audio filter graph from a factory that creates filter graph objects.
+    /// </summary>
+    /// <param name="audioFilterFactory">
+    /// Creates a new, unconfigured filter graph with one unlinked input and one unlinked output for the
+    /// stream and frame format described by the <see cref="FilterGraphContext"/>
+    /// (use <see cref="SetAudioFilter(string?)"/> with <see langword="null"/> to remove the filter). The player takes ownership of the returned graph and
+    /// lists. It is called now and again whenever the graph has to be set up again (after seeking).
+    /// </param>
+    /// <exception cref="ArgumentException">The media contains no audio stream, or the graph does not have exactly one input and one output.</exception>
+    /// <exception cref="InvalidOperationException">The player is currently playing.</exception>
+    public void SetAudioFilterFactory(FilterGraphFactory audioFilterFactory)
+        => ApplyAudioFilterFactory(audioFilterFactory ?? throw new ArgumentNullException(nameof(audioFilterFactory)), rebuild: false);
+
+    private void ApplyVideoFilterFactory(FilterGraphFactory factory, bool rebuild)
+    {
+        if (videoStreamIndex == -1)
+            throw new ArgumentException("The media player has no video stream, so you can't set the filter graph");
+        (FilterInOutList inputs, FilterGraph graph, FilterInOutList outputs) = factory(CreateFilterGraphContext(videoStreamIndex, rebuild));
+        if (graph == null)
+        {
+            inputs?.Dispose();
+            outputs?.Dispose();
+            throw new InvalidOperationException("The video filter graph factory returned no graph.");
+        }
+        // SetVideoFilter takes ownership of the graph and lists and clears the stored factory.
+        SetVideoFilter(inputs, graph, outputs);
+        videoFilterFactory = factory;
+    }
+
+    private void ApplyAudioFilterFactory(FilterGraphFactory factory, bool rebuild)
+    {
+        if (audioStreamIndex == -1)
+            throw new ArgumentException("The media player has no audio stream, so you can't set the filter graph");
+        (FilterInOutList inputs, FilterGraph graph, FilterInOutList outputs) = factory(CreateFilterGraphContext(audioStreamIndex, rebuild));
+        if (graph == null)
+        {
+            inputs?.Dispose();
+            outputs?.Dispose();
+            throw new InvalidOperationException("The audio filter graph factory returned no graph.");
+        }
+        SetAudioFilter(inputs, graph, outputs);
+        audioFilterFactory = factory;
+    }
+
+    /// <summary>Describes the decoder output that the buffer source of the graph is created from.</summary>
+    private FilterGraphContext CreateFilterGraphContext(int streamIndex, bool rebuild)
+    {
+        Codecs.CodecContext decoder = source.CodecContexts[streamIndex];
+        bool video = decoder.CodecType == Utils.MediaType.Video;
+        Audio.ChannelLayout? layout = video ? null : decoder.ChannelLayout.GetReferencedObject();
+        using (layout)
+        {
+            return new FilterGraphContext(source.Streams[streamIndex], -1, null, rebuild)
+            {
+                TimeBase = decoder.TimeBase,
+                Width = video ? decoder.Width : 0,
+                Height = video ? decoder.Height : 0,
+                PixelFormat = video ? decoder.PixelFormat : Images.PixelFormat.None,
+                SampleAspectRatio = video ? decoder.SampleAspectRatio : default,
+                FrameRate = video ? decoder.FrameRate : default,
+                SampleFormat = video ? Audio.SampleFormat.None : decoder.SampleFormat,
+                SampleRate = video ? 0 : decoder.SampleRate,
+                Channels = layout?.Channels ?? 0,
+                ChannelLayout = layout?.ToString(),
+            };
+        }
+    }
+
+    private static FilterGraphFactory ToGraphFactory(Func<FilterGraphContext, string> descriptionFactory) => context =>
+    {
+        FilterGraph graph = FilterGraph.Create(out FilterInOutList? inputs, descriptionFactory(context), out FilterInOutList? outputs);
+        return (inputs!, graph, outputs!);
+    };
 }
