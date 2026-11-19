@@ -1038,6 +1038,10 @@ public sealed unsafe class Transcoder : IDisposable
             // Like ffmpeg: the decoder's frame type is not a request for a key frame. Encoders such as libx264 and
             // libsvtav1 turn every frame marked as I-frame into a key frame, which would copy the source's GOP.
             filteredFrame.PictureType = PictureType.None;
+            // Like ffmpeg: encoders based on mpegvideo (mjpeg, mpeg4, ...) take the fixed quantizer of -q:v
+            // (flag qscale, global_quality) from the frame.
+            if (output.Type == MediaType.Video)
+                filteredFrame.Quality = new Quality(output.Encoder!.GlobalQuality);
             Encode(output, filteredFrame);
         }
     }
