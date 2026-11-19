@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<TargetFrameworks>netstandard2.1;net8.0;net9.0;net10.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(NETCoreSdkVersion)', '11.0'))">$(TargetFrameworks);net11.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<!-- CS8981: the global alias "ffmpeg" deliberately mirrors the name of FFmpeg.AutoGen's ffmpeg class. -->
 		<NoWarn>$(NoWarn);CS8981</NoWarn>
