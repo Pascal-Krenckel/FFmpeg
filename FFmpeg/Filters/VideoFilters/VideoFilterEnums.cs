@@ -153,3 +153,36 @@ public enum OverlayFormat
     /// <summary>Choose automatically (<c>auto</c>).</summary>
     Auto = 8,
 }
+
+/// <summary>
+/// The format of the <see cref="LibVmaf"/> log file (option <c>log_fmt</c>).
+/// </summary>
+public enum VmafLogFormat
+{
+    /// <summary>XML (<c>xml</c>), the default; read it with <see cref="VmafLog"/>.</summary>
+    Xml,
+
+    /// <summary>JSON (<c>json</c>).</summary>
+    Json,
+
+    /// <summary>Comma-separated values (<c>csv</c>).</summary>
+    Csv,
+
+    /// <summary>MicroDVD subtitles that show the score of each frame (<c>sub</c>).</summary>
+    Sub,
+}
+
+/// <summary>
+/// How <see cref="LibVmaf"/> pools the per-frame scores into the score FFmpeg logs (option <c>pool</c>).
+/// </summary>
+public enum VmafPoolMethod
+{
+    /// <summary>The arithmetic mean (<c>mean</c>), the default.</summary>
+    Mean,
+
+    /// <summary>The lowest score (<c>min</c>).</summary>
+    Min,
+
+    /// <summary>The harmonic mean (<c>harmonic_mean</c>), which weighs bad frames more.</summary>
+    HarmonicMean,
+}
