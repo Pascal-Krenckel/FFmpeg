@@ -75,4 +75,39 @@ public class PlaybackEngineFilterTest
         Assert.AreEqual(24000L, rate);
         Assert.IsTrue(resampler.IsSetToDefault("ichl"));
     }
+
+    [TestMethod]
+    public void FilterThatEndsEarly_DoesNotFaultThePlayer()
+    {
+        // trim closes the video graph after 5 frames; the buffer source then answers AVERROR_EOF to
+        // every further frame. The player must drop those frames and keep decoding the audio.
+        using PlaybackEngine player = PlaybackEngine.Open(VideoFile);
+        Exception? fault = null;
+        player.Faulted += (_, ex) => fault = ex;
+        player.SetVideoFilter("trim=end_frame=5");
+        player.Play();
+
+        int videoFrames = 0;
+        TimeSpan audioPts = TimeSpan.Zero;
+        float[] samples = new float[4096];
+        DateTime deadline = DateTime.UtcNow + TimeSpan.FromSeconds(30);
+        while (audioPts < TimeSpan.FromSeconds(3) && DateTime.UtcNow < deadline && fault == null)
+        {
+            while (player.ReadVideo() is AVFrame video)
+            {
+                video.Dispose();
+                videoFrames++;
+            }
+            if (player.ReadAudio<float>(samples, out TimeSpan pts) > 0)
+                audioPts = pts;
+            else
+                Thread.Sleep(10);
+        }
+        player.Stop();
+
+        Assert.IsNull(fault, fault?.ToString());
+        Assert.AreNotEqual(PlayerState.Faulted, player.State);
+        Assert.IsTrue(audioPts >= TimeSpan.FromSeconds(3), $"Audio stopped at {audioPts}.");
+        Assert.AreEqual(5, videoFrames);
+    }
 }

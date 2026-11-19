@@ -373,15 +373,19 @@ public sealed partial class PlaybackEngine : IDisposable
             if (tmpFrame.IsVideo)
                 if (videoFilterGraph != null)
                 {
-                    AVResult32 result32;
-                    videoIn!.SendFrame(tmpFrame).ThrowIfError();
-                    while (!(result32 = videoOut!.ReceiveFrame(tmpFrame)).IsError)
+                    AVResult32 result32 = videoIn!.SendFrame(tmpFrame);
+                    // AVERROR_EOF: the filter graph takes no more input (e.g. a trim reached its end); drop the frame.
+                    if (result32 != AVResult32.EndOfFile)
                     {
-                        _ = await mediaBuffer!.WriteAsync(tmpFrame, token).ConfigureAwait(false);
-                        tmpFrame = AVFrame.Allocate();
+                        result32.ThrowIfError();
+                        while (!(result32 = videoOut!.ReceiveFrame(tmpFrame)).IsError)
+                        {
+                            _ = await mediaBuffer!.WriteAsync(tmpFrame, token).ConfigureAwait(false);
+                            tmpFrame = AVFrame.Allocate();
+                        }
                     }
                     tmpFrame.Dispose();
-                    if (!result32.IsTryAgain)
+                    if (!result32.IsTryAgain && result32 != AVResult32.EndOfFile)
                         result32.ThrowIfError();
                 }
                 else
@@ -389,15 +393,19 @@ public sealed partial class PlaybackEngine : IDisposable
             else if (tmpFrame.IsAudio)
                 if (audioFilterGraph != null)
                 {
-                    AVResult32 result32;
-                    audioIn!.SendFrame(tmpFrame).ThrowIfError();
-                    while (!(result32 = audioOut!.ReceiveFrame(tmpFrame)).IsError)
+                    AVResult32 result32 = audioIn!.SendFrame(tmpFrame);
+                    // AVERROR_EOF: the filter graph takes no more input (e.g. a trim reached its end); drop the frame.
+                    if (result32 != AVResult32.EndOfFile)
                     {
-                        _ = await mediaBuffer!.WriteAsync(tmpFrame, token).ConfigureAwait(false);
-                        tmpFrame = AVFrame.Allocate();
+                        result32.ThrowIfError();
+                        while (!(result32 = audioOut!.ReceiveFrame(tmpFrame)).IsError)
+                        {
+                            _ = await mediaBuffer!.WriteAsync(tmpFrame, token).ConfigureAwait(false);
+                            tmpFrame = AVFrame.Allocate();
+                        }
                     }
                     tmpFrame.Dispose();
-                    if (!result32.IsTryAgain)
+                    if (!result32.IsTryAgain && result32 != AVResult32.EndOfFile)
                         result32.ThrowIfError();
                 }
                 else
