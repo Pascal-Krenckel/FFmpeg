@@ -36,10 +36,13 @@
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>9.9.3.0</Version>
+		<Version>9.9.3.1</Version>
 		<PackageReleaseNotes>
 			FFmpeg 9.0.1 - "Lei"
 			Version numbering scheme changed: FFMpegMajor.Major.Minor.Patch
+			--- 9.9.3.1 ---
+			BugFix: SetOption(string,IDictionary) was changed by Claude to behave like SetOption(IDictionary) and not setting the underlying Dictionary like intended. SetOption(IDictionary) is no obsolet use SetOptions instead.
+
 
 			--- 9.9.3.0 ---
 			SwsContext uses FFmpeg's current scaling API (sws_scale_frame on a dynamic context): new SwsContext() or new SwsContext(SwsAlgorithm) is not tied to an image size or format, adapts to every frame, image or buffer (ImageInfo) and only sets the conversion up again when they or the settings change.
