@@ -1,4 +1,5 @@
-﻿using FFmpeg.Images;
+﻿using FFmpeg.AutoGen;
+using FFmpeg.Images;
 using FFmpeg.Utils;
 
 namespace FFmpeg.Filters.VideoFilters;
@@ -87,6 +88,70 @@ public unsafe class VideoBufferSink : FilterContext, IBufferSink
     {
         return InitializeOrDelete(Allocate(name, graph), c => c.Init().ThrowIfError());
     }
+
+    /// <summary>
+    /// Creates a video buffer sink that only accepts the given pixel formats. The graph converts to one
+    /// of them (e.g. by inserting a <c>scale</c> filter) when it is configured.
+    /// </summary>
+    /// <param name="name">The name of the filter instance.</param>
+    /// <param name="graph">The filter graph that will own the filter.</param>
+    /// <param name="pixelFormats">The accepted pixel formats; empty for no restriction.</param>
+    /// <returns>The initialized buffer sink.</returns>
+    public static VideoBufferSink Create(string name, FilterGraph graph, params ReadOnlySpan<PixelFormat> pixelFormats)
+        => Create(name, graph, pixelFormats, [], []);
+
+    /// <summary>
+    /// Creates a video buffer sink that only accepts the given formats (options <c>pixel_formats</c>,
+    /// <c>colorspaces</c> and <c>colorranges</c>). The graph converts to them when it is configured.
+    /// </summary>
+    /// <param name="name">The name of the filter instance.</param>
+    /// <param name="graph">The filter graph that will own the filter.</param>
+    /// <param name="pixelFormats">The accepted pixel formats; empty for no restriction.</param>
+    /// <param name="colorSpaces">The accepted color spaces; empty for no restriction.</param>
+    /// <param name="colorRanges">The accepted color ranges; empty for no restriction.</param>
+    /// <returns>The initialized buffer sink.</returns>
+    /// <remarks>
+    /// The accepted formats can only be set before the sink is initialized, which is why they are
+    /// parameters of <c>Create</c> and not settable properties.
+    /// </remarks>
+    public static VideoBufferSink Create(string name, FilterGraph graph, ReadOnlySpan<PixelFormat> pixelFormats, ReadOnlySpan<ColorSpace> colorSpaces, ReadOnlySpan<ColorRange> colorRanges)
+    {
+        // The arrays use FFmpeg's default separator ','.
+        string? formats = pixelFormats.IsEmpty ? null : string.Join(',', pixelFormats, PixelFormatExtensions.ToFFmpegString);
+        // colorspaces and colorranges are plain int arrays (no named constants), so pass the enum values.
+        string? spaces = colorSpaces.IsEmpty ? null : string.Join(",", colorSpaces.ToArray().Select(c => ((int)c).ToString(System.Globalization.CultureInfo.InvariantCulture)));
+        string? ranges = colorRanges.IsEmpty ? null : string.Join(",", colorRanges.ToArray().Select(r => ((int)r).ToString(System.Globalization.CultureInfo.InvariantCulture)));
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            if (formats != null)
+                c.SetOption("pixel_formats", formats).ThrowIfError();
+            if (spaces != null)
+                c.SetOption("colorspaces", spaces).ThrowIfError();
+            if (ranges != null)
+                c.SetOption("colorranges", ranges).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
+    }
+
+    /// <summary>
+    /// Gets the pixel formats this sink accepts (option <c>pixel_formats</c>); empty if it accepts any.
+    /// </summary>
+    public IReadOnlyList<PixelFormat> AcceptedPixelFormats => ReadList("pixel_formats", PixelFormatExtensions.Parse);
+
+    /// <summary>
+    /// Gets the color spaces this sink accepts (option <c>colorspaces</c>); empty if it accepts any.
+    /// </summary>
+    public IReadOnlyList<ColorSpace> AcceptedColorSpaces => ReadList("colorspaces", n => (ColorSpace)int.Parse(n, System.Globalization.CultureInfo.InvariantCulture));
+
+    /// <summary>
+    /// Gets the color ranges this sink accepts (option <c>colorranges</c>); empty if it accepts any.
+    /// </summary>
+    public IReadOnlyList<ColorRange> AcceptedColorRanges => ReadList("colorranges", n => (ColorRange)int.Parse(n, System.Globalization.CultureInfo.InvariantCulture));
+
+    private IReadOnlyList<T> ReadList<T>(string option, Func<string, T> parse)
+        => TryGetOption(option, out string? value).IsError || string.IsNullOrWhiteSpace(value)
+            ? []
+            : [.. value!.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(v => parse(v.Trim()))];
 
     /// <summary>
     /// Gets the time base of frames produced by the buffer sink filter.

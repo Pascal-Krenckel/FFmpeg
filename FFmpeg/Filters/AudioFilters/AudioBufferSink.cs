@@ -58,6 +58,65 @@ public unsafe class AudioBufferSink : FilterContext, IBufferSink
     }
 
     /// <summary>
+    /// Creates an audio buffer sink that only accepts the given formats (options <c>sample_formats</c>,
+    /// <c>samplerates</c> and <c>channel_layouts</c>). The graph converts to them (e.g. by inserting an
+    /// <c>aresample</c> filter) when it is configured.
+    /// </summary>
+    /// <param name="name">The name of the filter instance.</param>
+    /// <param name="graph">The filter graph that will own the filter.</param>
+    /// <param name="sampleFormats">The accepted sample formats; empty for no restriction.</param>
+    /// <param name="sampleRates">The accepted sample rates; empty for no restriction.</param>
+    /// <param name="channelLayouts">The accepted channel layouts; empty for no restriction.</param>
+    /// <returns>The initialized buffer sink.</returns>
+    /// <remarks>
+    /// The accepted formats can only be set before the sink is initialized, which is why they are
+    /// parameters of <c>Create</c> and not settable properties.
+    /// </remarks>
+    public static AudioBufferSink Create(string name, FilterGraph graph, ReadOnlySpan<SampleFormat> sampleFormats, ReadOnlySpan<int> sampleRates, ReadOnlySpan<ChannelLayout> channelLayouts)
+    {
+        foreach (int rate in sampleRates)
+        {
+            if (rate <= 0)
+                throw new ArgumentException("The sample rates must be greater than zero.", nameof(sampleRates));
+        }
+        // The arrays use FFmpeg's default separator ','.
+        string? formats = sampleFormats.IsEmpty ? null : string.Join(',', sampleFormats, SampleExtensions.ToFFmpegString);
+        string? rates = sampleRates.IsEmpty ? null : string.Join(",", sampleRates.ToArray().Select(r => r.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+        string? layouts = channelLayouts.IsEmpty ? null : string.Join(",", channelLayouts.ToArray().Select(l => l.ToString()));
+        return InitializeOrDelete(Allocate(name, graph), c =>
+        {
+            if (formats != null)
+                c.SetOption("sample_formats", formats).ThrowIfError();
+            if (rates != null)
+                c.SetOption("samplerates", rates).ThrowIfError();
+            if (layouts != null)
+                c.SetOption("channel_layouts", layouts).ThrowIfError();
+            c.Init().ThrowIfError();
+        });
+    }
+
+    /// <summary>
+    /// Gets the sample formats this sink accepts (option <c>sample_formats</c>); empty if it accepts any.
+    /// </summary>
+    public IReadOnlyList<SampleFormat> AcceptedSampleFormats => ReadList("sample_formats", SampleExtensions.Parse);
+
+    /// <summary>
+    /// Gets the sample rates this sink accepts (option <c>samplerates</c>); empty if it accepts any.
+    /// </summary>
+    public IReadOnlyList<int> AcceptedSampleRates => ReadList("samplerates", v => int.Parse(v, System.Globalization.CultureInfo.InvariantCulture));
+
+    /// <summary>
+    /// Gets the channel layouts this sink accepts (option <c>channel_layouts</c>); empty if it accepts any.
+    /// The caller owns the returned layouts.
+    /// </summary>
+    public IReadOnlyList<ChannelLayout> AcceptedChannelLayouts => ReadList("channel_layouts", ChannelLayout.Parse);
+
+    private IReadOnlyList<T> ReadList<T>(string option, Func<string, T> parse)
+        => TryGetOption(option, out string? value).IsError || string.IsNullOrWhiteSpace(value)
+            ? []
+            : [.. value!.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(v => parse(v.Trim()))];
+
+    /// <summary>
     /// Receives the next available audio frame from the buffer sink filter.
     /// </summary>
     /// <param name="frame">
