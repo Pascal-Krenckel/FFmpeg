@@ -309,8 +309,18 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
             : context->outputs[index] != null ? new FilterLink(context->outputs[index]) : null;
 
     /// <summary>
-    /// This frees the filter context and removes it from it's filter graph
+    /// Frees the filter context and removes it from its filter graph.
     /// </summary>
-    public void Delete() => ffmpeg.avfilter_free(context);
+    /// <remarks>
+    /// This instance can no longer be used afterwards. Other <see cref="FilterContext"/> instances that wrap
+    /// the same filter (e.g. returned by <see cref="FilterGraph.FindFilter(string)"/>) become invalid as well.
+    /// </remarks>
+    public void Delete()
+    {
+        if (context == null)
+            return;
+        ffmpeg.avfilter_free(context);
+        context = null;
+    }
 }
 
