@@ -23,7 +23,7 @@ public partial class PlaybackEngine
                 videoFilterGraph.Flush();
                 videoIn = videoFilterGraph.InputFilters.Single().As<VideoBufferSource>();
                 videoOut = videoFilterGraph.OutputFilters.Single().As<VideoBufferSink>();
-                _ = videoFilterGraph.Config();
+                videoFilterGraph.Config().ThrowIfError();
             }
             else
                 SetVideoFilter(videoFilter);
@@ -37,7 +37,7 @@ public partial class PlaybackEngine
                 audioFilterGraph.Flush();
                 audioIn = audioFilterGraph.InputFilters.Single().As<AudioBufferSource>();
                 audioOut = audioFilterGraph.OutputFilters.Single().As<AudioBufferSink>();
-                _ = audioFilterGraph.Config();
+                audioFilterGraph.Config().ThrowIfError();
             }
             else
                 SetAudioFilter(audioFilter);
