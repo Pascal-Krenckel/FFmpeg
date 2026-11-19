@@ -119,8 +119,12 @@ public sealed unsafe class AVDictionary : IDictionary<string, string>, IDisposab
     /// <exception cref="ArgumentException">Thrown when an element with the same key already exists in the dictionary.</exception>
     public void Add(string key, string value)
     {
+#if NET8_0_OR_GREATER
+         ArgumentNullException.ThrowIfNull(key, nameof(key));
+#else
         if (key == null)
             throw new ArgumentNullException(nameof(key));
+#endif
         if (ContainsKey(key))
             throw new ArgumentException("An element with the same key already exists in the Dictionary<TKey,TValue>.");
         this[key] = value;
