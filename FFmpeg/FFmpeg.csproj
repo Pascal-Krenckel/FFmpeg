@@ -31,8 +31,13 @@ Ideal for .NET developers who need to integrate FFmpeg's audio and video process
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>8.1.2.14</Version>
+		<Version>8.1.2.15</Version>
 		<PackageReleaseNotes>
+			--- 8.1.2.15 ---
+            BugFix: SetOption(string,IDictionary) was changed by Claude to behave like SetOption(IDictionary) and not setting the underlying Dictionary like intended. SetOption(IDictionary) is no obsolet use SetOptions instead.
+
+
+
 			--- 8.1.2.14 ---
 			Many BugFixes found in a code review:
 			IO: custom IOContext callbacks are rooted and no longer let exceptions escape into native code; IOContext/CodecContext can be finalized; use-after-free when opening custom IO failed; IOStreamContext no longer throws on construction; seeking works for seekable IOContexts; AVIOContext.seekable was read from the wrong offset on Windows (32-bit C long).
