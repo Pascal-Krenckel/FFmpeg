@@ -53,6 +53,17 @@ public unsafe partial class FilterContext : Options.OptionQueryableBase, IAVPoin
     /// <param name="context">Pointer to the FFmpeg filter context.</param>
     internal FilterContext(AutoGen._AVFilterContext* context) => this.context = context;
 
+    /// <summary>
+    /// Constructor for typed filters: checks that <paramref name="context"/> is an instance of the filter
+    /// named <paramref name="filterName"/>, so that e.g. <see cref="As{T}"/> cannot wrap the wrong filter.
+    /// </summary>
+    private protected FilterContext(AutoGen._AVFilterContext* context, string filterName) : this(context)
+    {
+        string? actual = context != null && context->filter != null ? Marshal.PtrToStringUTF8((nint)context->filter->name) : null;
+        if (actual != filterName)
+            throw new InvalidCastException($"The filter '{(context != null ? Marshal.PtrToStringUTF8((nint)context->name) : null)}' is a '{actual}' filter, not a '{filterName}' filter.");
+    }
+
 
 
     /// <summary>

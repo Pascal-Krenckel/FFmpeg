@@ -29,7 +29,7 @@ public unsafe class VideoBufferSource : FilterContext, IBufferSource
     public AVResult32 SetBufferSourceParameters(BufferSrcParameters parameters) =>
         ffmpeg.av_buffersrc_parameters_set(context, parameters.parameters);
 
-    internal VideoBufferSource(_AVFilterContext* context) : base(context)
+    internal VideoBufferSource(_AVFilterContext* context) : base(context, "buffer")
     {
     }
 

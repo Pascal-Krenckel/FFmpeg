@@ -15,7 +15,7 @@ namespace FFmpeg.Filters.AudioFilters;
 /// </remarks>
 public unsafe class AudioBufferSource : FilterContext, IBufferSource
 {
-    internal AudioBufferSource(_AVFilterContext* context) : base(context)
+    internal AudioBufferSource(_AVFilterContext* context) : base(context, "abuffer")
     {
     }
 

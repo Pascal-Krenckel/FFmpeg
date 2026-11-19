@@ -19,7 +19,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// </remarks>
 public unsafe class HWDownload : FilterContext
 {
-    internal HWDownload(_AVFilterContext* context) : base(context)
+    internal HWDownload(_AVFilterContext* context) : base(context, "hwdownload")
     {
     }
 

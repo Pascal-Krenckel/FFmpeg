@@ -15,7 +15,7 @@ namespace FFmpeg.Filters.AudioFilters;
 /// </remarks>
 public unsafe class AudioFormat : FilterContext
 {
-    internal AudioFormat(_AVFilterContext* context) : base(context)
+    internal AudioFormat(_AVFilterContext* context) : base(context, "aformat")
     {
     }
 

@@ -22,7 +22,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// </remarks>
 public unsafe class FramePack : FilterContext
 {
-    internal FramePack(_AVFilterContext* context) : base(context)
+    internal FramePack(_AVFilterContext* context) : base(context, "framepack")
     {
     }
 

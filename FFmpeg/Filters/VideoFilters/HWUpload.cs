@@ -27,7 +27,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// </remarks>
 public unsafe class HWUpload : FilterContext
 {
-    internal HWUpload(_AVFilterContext* context) : base(context)
+    internal HWUpload(_AVFilterContext* context) : base(context, "hwupload")
     {
     }
 

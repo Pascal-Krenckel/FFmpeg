@@ -13,7 +13,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// </remarks>
 public unsafe class VideoBufferSink : FilterContext, IBufferSink
 {
-    internal VideoBufferSink(AutoGen._AVFilterContext* context) : base(context)
+    internal VideoBufferSink(AutoGen._AVFilterContext* context) : base(context, "buffersink")
     {
     }
 

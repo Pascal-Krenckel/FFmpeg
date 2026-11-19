@@ -14,7 +14,7 @@ namespace FFmpeg.Filters.VideoFilters;
 /// </remarks>
 public unsafe class HWUploadCuda : FilterContext
 {
-    internal HWUploadCuda(_AVFilterContext* context) : base(context)
+    internal HWUploadCuda(_AVFilterContext* context) : base(context, "hwupload_cuda")
     {
     }
 

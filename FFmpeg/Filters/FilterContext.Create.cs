@@ -205,12 +205,13 @@ public unsafe partial class FilterContext
     /// A managed wrapper of type <typeparamref name="T"/> referencing the current native filter context.
     /// </returns>
     /// <exception cref="InvalidCastException">
-    /// <typeparamref name="T"/> does not provide a constructor accepting an <c>_AVFilterContext*</c>.
+    /// <typeparamref name="T"/> does not provide a constructor accepting an <c>_AVFilterContext*</c>, or the
+    /// native filter is not the filter <typeparamref name="T"/> wraps (e.g. <c>As&lt;AudioFormat&gt;()</c> on a
+    /// <c>scale</c> filter).
     /// </exception>
     /// <remarks>
-    /// This method does not verify that the underlying native filter is compatible with
-    /// <typeparamref name="T"/>. The caller is responsible for ensuring that the requested
-    /// type corresponds to the native filter context.
+    /// The typed filter classes of this library check the native filter. A custom subclass of
+    /// <see cref="FilterContext"/> is only checked if its constructor does so.
     /// </remarks>
     public unsafe T As<T>() where T : FilterContext
     {
@@ -221,9 +222,19 @@ public unsafe partial class FilterContext
             System.Reflection.BindingFlags.Public |
             System.Reflection.BindingFlags.Instance);
 
-        ConstructorInfo constructor = constructors.FirstOrDefault() ?? throw new InvalidCastException();
-
-        return (T)constructor.Invoke([(IntPtr)context]);
+        ConstructorInfo constructor = constructors.FirstOrDefault(c =>
+            c.GetParameters() is [{ ParameterType: Type type }] && type == typeof(_AVFilterContext*))
+            ?? throw new InvalidCastException($"{typeof(T).Name} cannot wrap a filter context.");
+        try
+        {
+            return (T)constructor.Invoke([System.Reflection.Pointer.Box(context, typeof(_AVFilterContext*))]);
+        }
+        catch (TargetInvocationException e) when (e.InnerException != null)
+        {
+            // The typed constructor throws InvalidCastException if the filter does not match T.
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(e.InnerException).Throw();
+            throw;
+        }
     }
 
 }
